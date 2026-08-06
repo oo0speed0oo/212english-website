@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prices — 212 English School</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Noto+Serif+JP:wght@300;400;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #b8912e;
+    --gold-light: #8a6a1a;
+    --gold-dim: rgba(184,145,46,0.25);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background-color: #f0ead8;
+    font-family: 'DM Sans', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+  body::before {
+    content: '';
+    position: fixed; top: -200px; right: -200px;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(201,168,76,0.18) 0%, transparent 70%);
+    pointer-events: none; z-index: 0;
+  }
+  body::after {
+    content: '';
+    position: fixed; bottom: -200px; left: -200px;
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(201,168,76,0.12) 0%, transparent 70%);
+    pointer-events: none; z-index: 0;
+  }
+  .container {
+    position: relative; z-index: 1;
+    min-height: 100vh;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    padding: 60px 20px;
+  }
+
+  /* Back link */
+  .back-link {
+    display: inline-flex; align-items: center; gap: 8px;
+    color: #7a5c10; text-decoration: none; font-size: 13px;
+    margin-bottom: 32px; opacity: 0.7; transition: opacity 0.2s;
+    animation: floatUp 0.8s ease both;
+  }
+  .back-link:hover { opacity: 1; }
+
+  /* Page title */
+  .page-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 5vw, 40px);
+    color: #1e1500;
+    text-align: center;
+    margin-bottom: 6px;
+    animation: floatUp 0.8s ease 0.1s both;
+  }
+  .page-title em { color: var(--gold); font-style: italic; }
+  .page-subtitle {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 14px; color: rgba(184,145,46,0.75);
+    letter-spacing: 0.18em; text-align: center;
+    margin-bottom: 48px;
+    animation: floatUp 0.8s ease 0.15s both;
+  }
+
+  /* Cards grid */
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 18px;
+    max-width: 780px; width: 100%;
+    margin-bottom: 48px;
+    animation: floatUp 0.8s ease 0.2s both;
+  }
+  .card {
+    background: rgba(255,252,245,0.88);
+    border: 1px solid rgba(184,145,46,0.22);
+    border-radius: 20px; padding: 32px 24px;
+    text-align: left;
+    box-shadow: 0 8px 32px rgba(120,90,20,0.08);
+    transition: transform 0.25s, box-shadow 0.25s;
+    position: relative;
+  }
+  .card.featured {
+    border: 1.5px solid rgba(184,145,46,0.55);
+    box-shadow: 0 12px 40px rgba(120,90,20,0.14);
+  }
+  .popular-badge {
+    position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+    background: var(--gold); color: #fff;
+    font-size: 10px; font-weight: 500; letter-spacing: 0.1em;
+    text-transform: uppercase; padding: 4px 14px; border-radius: 100px;
+    white-space: nowrap;
+  }
+  .card-type {
+    font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase;
+    color: rgba(184,145,46,0.7); margin-bottom: 10px;
+  }
+  .card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px; color: #1e1500;
+    margin-bottom: 6px; font-weight: 400;
+  }
+  .card-detail {
+    font-size: 13px; color: rgba(30,20,0,0.5);
+    margin-bottom: 24px; line-height: 1.6;
+  }
+  .card-price {
+    font-family: 'Playfair Display', serif;
+    font-size: 34px; color: var(--gold);
+    margin-bottom: 2px;
+  }
+  .card-price-unit {
+    font-size: 13px; color: rgba(30,20,0,0.45);
+    margin-bottom: 18px;
+  }
+  .card-divider {
+    border: none; border-top: 1px solid rgba(184,145,46,0.15);
+    margin-bottom: 16px;
+  }
+  .card-lessons {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 13px; color: rgba(30,20,0,0.6);
+  }
+  .card-lessons strong { color: #1e1500; font-weight: 500; }
+  .card-per-lesson {
+    margin-top: 6px; font-size: 12px;
+    color: rgba(184,145,46,0.7);
+  }
+
+  /* Bar chart */
+  .chart-wrap {
+    background: rgba(255,252,245,0.88);
+    border: 1px solid rgba(184,145,46,0.22);
+    border-radius: 20px; padding: 32px;
+    max-width: 780px; width: 100%;
+    box-shadow: 0 8px 32px rgba(120,90,20,0.08);
+    margin-bottom: 48px;
+    animation: floatUp 0.8s ease 0.3s both;
+  }
+  .chart-title {
+    font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase;
+    color: rgba(184,145,46,0.7); margin-bottom: 24px;
+  }
+  .bar-row { margin-bottom: 20px; }
+  .bar-meta {
+    display: flex; justify-content: space-between; align-items: baseline;
+    margin-bottom: 8px;
+  }
+  .bar-name { font-size: 14px; font-weight: 500; color: #1e1500; }
+  .bar-amount { font-family: 'Playfair Display', serif; font-size: 18px; color: var(--gold); }
+  .bar-sub { font-size: 12px; color: rgba(30,20,0,0.45); margin-bottom: 8px; }
+  .bar-track {
+    background: rgba(184,145,46,0.12);
+    border-radius: 100px; height: 10px; overflow: hidden;
+  }
+  .bar-fill {
+    height: 100%; border-radius: 100px;
+    background: linear-gradient(90deg, #c9a84c, #e8cc7e);
+    transition: width 1s ease;
+  }
+
+  /* CTA */
+  .cta-wrap {
+    text-align: center;
+    animation: floatUp 0.8s ease 0.4s both;
+  }
+  .cta-label {
+    font-size: 14px; color: rgba(30,20,0,0.5); margin-bottom: 16px;
+    font-family: 'Noto Serif JP', serif; letter-spacing: 0.08em;
+  }
+  .email-links { display: flex; flex-direction: column; gap: 12px; align-items: center; }
+  .email-link {
+    display: inline-flex; align-items: center; gap: 10px;
+    color: #7a5c10; text-decoration: none;
+    font-size: 15px; font-weight: 400;
+    padding: 14px 28px;
+    border: 1px solid rgba(184,145,46,0.3); border-radius: 12px;
+    background: rgba(184,145,46,0.07);
+    transition: all 0.3s ease; width: 100%; max-width: 340px; justify-content: center;
+  }
+  .email-link:hover {
+    background: rgba(184,145,46,0.16);
+    border-color: rgba(184,145,46,0.55);
+    color: #4a3500;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(184,145,46,0.12);
+  }
+
+  .footer-note {
+    margin-top: 48px; text-align: center;
+    animation: floatUp 0.8s ease 0.5s both;
+  }
+  .footer-note p { font-size: 12px; color: rgba(80,60,10,0.4); letter-spacing: 0.05em; }
+  .footer-note p + p { margin-top: 4px; font-family: 'Noto Serif JP', serif; }
+
+  @keyframes floatUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+  @media (max-width: 560px) {
+    .chart-wrap, .cards { padding: 24px 18px; }
+    .cards { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <a href="index.html" class="back-link">← Back to home</a>
+
+  <h1 class="page-title"><em>212</em> English School</h1>
+  <p class="page-subtitle">レッスン料金 · Lesson Prices</p>
+
+  <!-- Price cards -->
+  <div class="cards">
+
+    <div class="card">
+      <div class="card-type">1-to-1 · 対面またはオンライン</div>
+      <div class="card-title">30-minute lesson<br><span style="font-family:'Noto Serif JP',serif;font-size:14px;color:rgba(30,20,0,0.5);font-weight:300;">30分レッスン</span></div>
+      <div class="card-detail">先生との個別レッスン。<br>対面またはオンラインで受講できます。<br><span style="opacity:0.7">Private lesson with your teacher.<br>In person or online.</span></div>
+      <div class="card-price">¥11,000</div>
+      <div class="card-price-unit">月額 · per month</div>
+      <hr class="card-divider">
+      <div class="card-lessons">📅 <span><strong>月4回</strong> · 4 lessons per month</span></div>
+      <div class="card-per-lesson">1回あたり ¥2,750 · ¥2,750 per lesson</div>
+    </div>
+
+    <div class="card featured">
+      <div class="popular-badge">おすすめ · Best value</div>
+      <div class="card-type">1-to-1 · 対面またはオンライン</div>
+      <div class="card-title">60-minute lesson<br><span style="font-family:'Noto Serif JP',serif;font-size:14px;color:rgba(30,20,0,0.5);font-weight:300;">60分レッスン</span></div>
+      <div class="card-detail">先生との個別レッスン。<br>対面またはオンラインで受講できます。<br><span style="opacity:0.7">Private lesson with your teacher.<br>In person or online.</span></div>
+      <div class="card-price">¥22,000</div>
+      <div class="card-price-unit">月額 · per month</div>
+      <hr class="card-divider">
+      <div class="card-lessons">📅 <span><strong>月4回</strong> · 4 lessons per month</span></div>
+      <div class="card-per-lesson">1回あたり ¥5,500 · ¥5,500 per lesson</div>
+    </div>
+
+    <div class="card">
+      <div class="card-type">グループ · オンラインのみ</div>
+      <div class="card-title">45-minute group lesson<br><span style="font-family:'Noto Serif JP',serif;font-size:14px;color:rgba(30,20,0,0.5);font-weight:300;">45分グループレッスン</span></div>
+      <div class="card-detail">少人数のオンライングループレッスン。<br>回数が多くてお得なプランです。<br><span style="opacity:0.7">Small group lesson online.<br>More lessons, great value.</span></div>
+      <div class="card-price">¥9,980</div>
+      <div class="card-price-unit">月額 · per month</div>
+      <hr class="card-divider">
+      <div class="card-lessons">📅 <span><strong>月8回</strong> · 8 lessons per month</span></div>
+      <div class="card-per-lesson">1回あたり ¥1,248 · ¥1,248 per lesson</div>
+    </div>
+
+  </div>
+
+  <!-- Bar chart -->
+  <div class="chart-wrap">
+    <div class="chart-title">Monthly price comparison · 月額料金比較</div>
+
+    <div class="bar-row">
+      <div class="bar-meta">
+        <span class="bar-name">30分 1対1 · 30-min 1-to-1</span>
+        <span class="bar-amount">¥11,000</span>
+      </div>
+      <div class="bar-sub">月4回 · 4 lessons/month · 1回あたり ¥2,750</div>
+      <div class="bar-track"><div class="bar-fill" style="width: 50%"></div></div>
+    </div>
+
+    <div class="bar-row">
+      <div class="bar-meta">
+        <span class="bar-name">60分 1対1 · 60-min 1-to-1</span>
+        <span class="bar-amount">¥22,000</span>
+      </div>
+      <div class="bar-sub">月4回 · 4 lessons/month · 1回あたり ¥5,500</div>
+      <div class="bar-track"><div class="bar-fill" style="width: 100%"></div></div>
+    </div>
+
+    <div class="bar-row" style="margin-bottom:0">
+      <div class="bar-meta">
+        <span class="bar-name">45分グループ · 45-min group</span>
+        <span class="bar-amount">¥9,980</span>
+      </div>
+      <div class="bar-sub">月8回 · 8 lessons/month · 1回あたり ¥1,248</div>
+      <div class="bar-track"><div class="bar-fill" style="width: 45%"></div></div>
+    </div>
+  </div>
+
+  <!-- Contact -->
+  <div class="cta-wrap">
+    <p class="cta-label">ご質問・お申し込みはこちら · Questions or sign-ups</p>
+    <div class="email-links">
+      <a href="/cdn-cgi/l/email-protection#c7aea9a1a887f5f6f5a2a9a0abaeb4afe9a4a8aa" class="email-link">✉ <span class="__cf_email__" data-cfemail="d2bbbcb4bd92e0e3e0b7bcb5bebba1bafcb1bdbf">[email&#160;protected]</span></a>
+      <a href="/cdn-cgi/l/email-protection#0e676068613c3f3c6b606962677d664e69636f6762206d6163" class="email-link">✉ <span class="__cf_email__" da

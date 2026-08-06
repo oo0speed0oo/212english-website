@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>212 English School</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Noto+Serif+JP:wght@300;400;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #f5f0e8;
+    --gold: #b8912e;
+    --gold-light: #8a6a1a;
+    --cream: #f7f3ec;
+    --warm-white: #2a1f05;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background-color: #f0ead8;
+    font-family: 'DM Sans', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+  body::before {
+    content: '';
+    position: fixed;
+    top: -200px; right: -200px;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(201,168,76,0.18) 0%, transparent 70%);
+    pointer-events: none; z-index: 0;
+  }
+  body::after {
+    content: '';
+    position: fixed;
+    bottom: -200px; left: -200px;
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(201,168,76,0.12) 0%, transparent 70%);
+    pointer-events: none; z-index: 0;
+  }
+  .container {
+    position: relative; z-index: 1;
+    min-height: 100vh;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    padding: 40px 20px;
+  }
+
+  .student-login-wrap {
+    margin-bottom: 20px;
+    animation: floatUp 1s ease 0.05s both;
+  }
+  .student-login-btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: rgba(184,145,46,0.12);
+    border: 1px solid rgba(184,145,46,0.5);
+    border-radius: 100px;
+    padding: 11px 28px;
+    color: #7a5c10;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px; font-weight: 500;
+    letter-spacing: 0.08em;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+  .student-login-btn:hover {
+    background: rgba(184,145,46,0.22);
+    border-color: rgba(184,145,46,0.8);
+    color: #4a3500;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 28px rgba(184,145,46,0.15);
+  }
+  .login-icon { width: 18px; height: 18px; opacity: 0.85; flex-shrink: 0; }
+  .login-label-jp { font-family: 'Noto Serif JP', serif; font-size: 11px; opacity: 0.65; letter-spacing: 0.05em; }
+
+  .card {
+    background: rgba(255,252,245,0.85);
+    border: 1px solid rgba(184,145,46,0.25);
+    border-radius: 24px; padding: 56px 52px;
+    max-width: 680px; width: 100%; text-align: center;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 20px 60px rgba(120,90,20,0.1), inset 0 1px 0 rgba(255,255,255,0.8);
+    animation: floatUp 1s ease 0.2s both;
+  }
+  .school-name-en { font-family: 'Playfair Display', serif; font-size: clamp(28px, 5vw, 44px); color: #1e1500; line-height: 1.15; margin-bottom: 6px; }
+  .school-name-en em { color: var(--gold); font-style: italic; }
+  .school-name-jp { font-family: 'Noto Serif JP', serif; font-size: clamp(14px, 2.5vw, 17px); color: rgba(184,145,46,0.8); font-weight: 300; letter-spacing: 0.2em; margin-bottom: 40px; }
+
+  .divider { display: flex; align-items: center; gap: 16px; margin-bottom: 36px; }
+  .divider-line { flex: 1; height: 1px; background: linear-gradient(to right, transparent, rgba(184,145,46,0.35), transparent); }
+  .divider-diamond { width: 6px; height: 6px; background: var(--gold); transform: rotate(45deg); opacity: 0.6; }
+
+  .message-en { font-size: clamp(15px, 2.5vw, 17px); color: rgba(30,20,0,0.75); line-height: 1.75; margin-bottom: 20px; font-weight: 300; }
+  .message-jp { font-family: 'Noto Serif JP', serif; font-size: clamp(13px, 2vw, 15px); color: rgba(30,20,0,0.5); line-height: 2; margin-bottom: 36px; font-weight: 300; }
+
+  /* Prices link */
+  .prices-link-wrap { margin-bottom: 36px; }
+  .prices-link {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: rgba(184,145,46,0.1);
+    border: 1px solid rgba(184,145,46,0.4);
+    border-radius: 12px;
+    padding: 14px 32px;
+    color: #7a5c10;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px; font-weight: 500;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+  .prices-link:hover {
+    background: rgba(184,145,46,0.2);
+    border-color: rgba(184,145,46,0.7);
+    color: #4a3500;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(184,145,46,0.15);
+  }
+
+  .contact-label { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(184,145,46,0.7); margin-bottom: 16px; }
+  .contact-label-jp { font-family: 'Noto Serif JP', serif; font-size: 12px; letter-spacing: 0.1em; color: rgba(184,145,46,0.55); margin-bottom: 20px; }
+
+  .email-links { display: flex; flex-direction: column; gap: 12px; align-items: center; }
+  .email-link {
+    display: inline-flex; align-items: center; gap: 10px;
+    color: #7a5c10; text-decoration: none;
+    font-size: clamp(14px, 2vw, 16px); font-weight: 400;
+    padding: 14px 28px;
+    border: 1px solid rgba(184,145,46,0.3); border-radius: 12px;
+    background: rgba(184,145,46,0.07);
+    transition: all 0.3s ease; width: 100%; max-width: 340px; justify-content: center;
+  }
+  .email-link:hover { background: rgba(184,145,46,0.16); border-color: rgba(184,145,46,0.55); color: #4a3500; transform: translateY(-2px); box-shadow: 0 8px 30px rgba(184,145,46,0.12); }
+
+  .footer-note { margin-top: 40px; text-align: center; animation: floatUp 1s ease 0.4s both; }
+  .footer-note p { font-size: 12px; color: rgba(80,60,10,0.4); letter-spacing: 0.05em; }
+  .footer-note p + p { margin-top: 4px; font-family: 'Noto Serif JP', serif; }
+  .legal-link {
+    display: inline-block; margin-top: 15px; color: rgba(184,145,46,0.5); text-decoration: none; font-size: 10px; letter-spacing: 0.1em; transition: color 0.3s;
+  }
+  .legal-link:hover { color: var(--gold); text-decoration: underline; }
+
+  @keyframes floatUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+  @media (max-width: 560px) { .card { padding: 36px 24px; } }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="student-login-wrap">
+    <a href="https://212english.com/portal/login.html" class="student-login-btn">
+      <svg class="login-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
+      </svg>
+      Login for current students <span class="login-label-jp">・在校生ログイン</span>
+    </a>
+  </div>
+
+  <div class="card">
+    <h1 class="school-name-en"><em>212</em> English School</h1>
+    <p class="school-name-jp">２１２イングリッシュスクール</p>
+    <div class="divider">
+      <div class="divider-line"></div>
+      <div class="divider-diamond"></div>
+      <div class="divider-line"></div>
+    </div>
+    <p class="message-en">
+      Hey, welcome! 👋 We teach English for real life —<br>
+      conversational, practical, and built around you.
+    </p>
+    <p class="message-jp">
+      ようこそ！日常英会話から実践的なスキルまで、<br>
+      あなたに合わせた英語レッスンをご提供しています。
+    </p>
+
+    <div class="prices-link-wrap">
+      <a href="prices.html" class="prices-link">
+        💴 View lesson prices · 料金を見る
+      </a>
+    </div>
+
+    <p class="contact-label">Get in touch · お問い合わせ</p>
+    <p class="contact-label-jp">入学希望・ご質問はメールでどうぞ</p>
+    <div class="email-links">
+      <a href="mailto:info@212english.com" class="email-link">
+        <span>✉</span> info@212english.com
+      </a>
+      <a href="mailto:info212english@gmail.com" class="email-link">
+        <span>✉</span> info212english@gmail.com
+      </a>
+    </div>
+  </div>
+
+  <div class="footer-note">
+    <p>© 212 English School. All rights reserved.</p>
+    <p>英語を、もっと自由に。</p>
+    <a href="https://212english.com/?page_id=56" class="legal-link">Commercial Disclosure / 特定商取引法に基づく表記</a>
+  </div>
+
+</div>
+</body>
+</html>

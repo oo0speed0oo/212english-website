@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>212 English School – Login</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0d1b2a; --gold: #c9a84c; --gold-light: #e8cc7e;
+    --warm-white: #fdfaf5;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    background: var(--navy); font-family: 'DM Sans', sans-serif;
+    min-height: 100vh; display: flex;
+    align-items: center; justify-content: center; padding: 1.5rem;
+  }
+  .card {
+    background: rgba(253,250,245,0.04);
+    border: 1px solid rgba(201,168,76,0.18);
+    border-radius: 20px; padding: 2.5rem 2rem;
+    width: 100%; max-width: 400px;
+    box-shadow: 0 40px 100px rgba(0,0,0,0.4);
+  }
+  .logo { display:flex; align-items:center; gap:10px; margin-bottom:2rem; }
+  .logo-icon {
+    width:38px; height:38px; border-radius:10px; background:#185FA5;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .logo-icon svg { width:20px; height:20px; fill:white; }
+  .logo-text {
+    font-family: 'Playfair Display', serif; font-size:17px; color:var(--warm-white);
+  }
+  .logo-text em { color:var(--gold); font-style:italic; }
+  h2 { font-family:'Playfair Display',serif; font-size:22px; font-weight:400; color:var(--warm-white); margin-bottom:6px; }
+  .subtitle { font-size:14px; color:rgba(253,250,245,0.5); margin-bottom:1.75rem; }
+  .field { margin-bottom:1.1rem; }
+  label { display:block; font-size:11px; letter-spacing:0.15em; text-transform:uppercase; color:rgba(201,168,76,0.6); margin-bottom:6px; }
+  input {
+    width:100%; padding:10px 13px; font-size:14px; font-family:inherit;
+    background:rgba(255,255,255,0.05); border:1px solid rgba(201,168,76,0.2);
+    border-radius:8px; color:var(--warm-white); outline:none;
+    transition:border-color 0.15s, box-shadow 0.15s;
+  }
+  input::placeholder { color:rgba(253,250,245,0.25); }
+  input:focus { border-color:rgba(201,168,76,0.5); box-shadow:0 0 0 3px rgba(201,168,76,0.08); }
+  .btn {
+    width:100%; padding:11px; font-size:14px; font-weight:500; font-family:inherit;
+    background:rgba(201,168,76,0.15); color:var(--gold-light);
+    border:1px solid rgba(201,168,76,0.4); border-radius:8px;
+    cursor:pointer; margin-top:0.4rem; transition:all 0.2s;
+  }
+  .btn:hover { background:rgba(201,168,76,0.25); border-color:rgba(201,168,76,0.6); color:#fff; }
+  .error {
+    font-size:13px; color:#fc8181;
+    background:rgba(252,129,129,0.1); border:1px solid rgba(252,129,129,0.25);
+    border-radius:8px; padding:9px 12px; margin-bottom:1rem; display:none;
+  }
+  .hint {
+    font-size:12px; color:rgba(253,250,245,0.25); text-align:center;
+    margin-top:1.25rem; padding:10px; background:rgba(255,255,255,0.02);
+    border-radius:8px; line-height:1.7;
+  }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="logo">
+    <div class="logo-icon">
+      <svg viewBox="0 0 24 24"><path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3zM5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82z"/></svg>
+    </div>
+    <span class="logo-text"><em>212</em> English School</span>
+  </div>
+
+  <h2>Welcome back</h2>
+  <p class="subtitle">Log in to access your student portal.</p>
+
+  <div class="error" id="error-msg">Incorrect username or password.</div>
+
+  <div class="field">
+    <label>Username</label>
+    <input type="text" id="username" placeholder="Enter your username" autocomplete="username" />
+  </div>
+  <div class="field">
+    <label>Password</label>
+    <input type="password" id="password" placeholder="Enter your password" autocomplete="current-password" />
+  </div>
+
+  <button class="btn" onclick="doLogin()">Log in</button>
+  <div class="hint">Test: username <strong>student</strong> / password <strong>1234</strong></div>
+</div>
+
+<script>
+  const USERS = {
+    "student": { password: "1234", firstName: "Yuki", lastName: "Sato" }
+  };
+
+  function doLogin() {
+    const u   = document.getElementById('username').value.trim();
+    const p   = document.getElementById('password').value;
+    const err = document.getElementById('error-msg');
+    const user = USERS[u];
+    if (user && user.password === p) {
+      sessionStorage.setItem('212_student', JSON.stringify({
+        username: u, firstName: user.firstName, lastName: user.lastName
+      }));
+      window.location.href = 'dashboard.html';
+    } else {
+      err.style.display = 'block';
+    }
+  }
+
+  document.getElementById('password').addEventListener('keydown', e => { if (e.key === 'Enter') doLogin(); });
+  document.getElementById('username').addEventListener('keydown', e => { if (e.key === 'Enter') document.getElementById('password').focus(); });
+</script>
+</body>
+</html>

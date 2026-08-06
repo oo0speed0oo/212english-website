@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Vocabulary Photos — 212 English School</title>
+  <link rel="stylesheet" href="components/base.css" />
+  <style>
+    /* ── Photo Quiz Styles ── */
+    .quiz-header {
+      margin-bottom: 28px;
+    }
+    .quiz-header h2 {
+      font-size: 1.5rem;
+      color: #1a1a2e;
+      margin: 0 0 4px;
+    }
+    .quiz-header p {
+      color: #666;
+      margin: 0;
+      font-size: 0.95rem;
+    }
+
+    /* Progress bar */
+    .progress-bar-wrap {
+      background: #e5e7eb;
+      border-radius: 99px;
+      height: 10px;
+      margin-bottom: 24px;
+      overflow: hidden;
+    }
+    .progress-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #4f46e5, #7c3aed);
+      border-radius: 99px;
+      transition: width 0.4s ease;
+    }
+    .progress-label {
+      font-size: 0.82rem;
+      color: #888;
+      margin-bottom: 6px;
+      text-align: right;
+    }
+
+    /* Card */
+    .photo-card {
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+      padding: 32px;
+      max-width: 520px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .photo-card img {
+      width: 200px;
+      height: 200px;
+      object-fit: contain;
+      border-radius: 12px;
+      background: #f5f5f0;
+      padding: 12px;
+      margin-bottom: 20px;
+      border: 2px solid #e5e7eb;
+    }
+    .photo-card .question-text {
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: #1a1a2e;
+      margin-bottom: 20px;
+    }
+
+    /* Choices */
+    .choices {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+    .choice-btn {
+      padding: 14px 10px;
+      border-radius: 10px;
+      border: 2px solid #e5e7eb;
+      background: #fafafa;
+      font-size: 1rem;
+      font-weight: 500;
+      color: #333;
+      cursor: pointer;
+      transition: all 0.18s ease;
+    }
+    .choice-btn:hover {
+      border-color: #4f46e5;
+      background: #eef2ff;
+      color: #4f46e5;
+    }
+    .choice-btn.correct {
+      border-color: #16a34a;
+      background: #dcfce7;
+      color: #15803d;
+    }
+    .choice-btn.wrong {
+      border-color: #dc2626;
+      background: #fee2e2;
+      color: #dc2626;
+    }
+    .choice-btn:disabled {
+      cursor: default;
+    }
+
+    /* Feedback */
+    .feedback {
+      min-height: 28px;
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+    .feedback.correct { color: #16a34a; }
+    .feedback.wrong   { color: #dc2626; }
+
+    /* Next button */
+    .next-btn {
+      display: none;
+      margin: 0 auto;
+      padding: 12px 32px;
+      background: #4f46e5;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .next-btn:hover { background: #4338ca; }
+    .next-btn.visible { display: inline-block; }
+
+    /* Score screen */
+    .score-screen {
+      text-align: center;
+      padding: 40px 20px;
+    }
+    .score-screen .score-emoji {
+      font-size: 4rem;
+      margin-bottom: 12px;
+    }
+    .score-screen h2 {
+      font-size: 1.8rem;
+      color: #1a1a2e;
+      margin-bottom: 8px;
+    }
+    .score-screen .score-num {
+      font-size: 3rem;
+      font-weight: 800;
+      color: #4f46e5;
+      margin: 16px 0;
+    }
+    .score-screen p {
+      color: #555;
+      margin-bottom: 24px;
+    }
+    .retry-btn {
+      padding: 12px 32px;
+      background: #4f46e5;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .retry-btn:hover { background: #4338ca; }
+  </style>
+</head>
+<body>
+
+<script src="components/portal.js"></script>
+<script>PORTAL.buildNav('vocab-photo');</script>
+
+<main id="page-content" style="padding: 32px 24px; max-width: 700px; margin: 0 auto;">
+
+  <div class="quiz-header">
+    <h2>📸 Vocabulary Photo Quiz</h2>
+    <p>Look at the picture and choose the correct word.</p>
+  </div>
+
+  <div class="progress-label" id="progress-label">Question 1 of 7</div>
+  <div class="progress-bar-wrap">
+    <div class="progress-bar-fill" id="progress-bar" style="width: 0%"></div>
+  </div>
+
+  <div id="quiz-area"></div>
+
+</main>
+
+<script>
+// ─────────────────────────────────────────────
+//  DATA — same idea as your CSV, just inline for now.
+//  Later you can fetch() a CSV file exactly like homework.html does.
+//  Columns: image, question, choice_a, choice_b, choice_c, answer
+// ─────────────────────────────────────────────
+const PHOTO_QUESTIONS = [
+  { image: "pen.png",        question: "What is this?", choice_a: "pencil",     choice_b: "pen",        choice_c: "ruler",      answer: "b" },
+  { image: "pencil.png",     question: "What is this?", choice_a: "pen",        choice_b: "marker",     choice_c: "pencil",     answer: "c" },
+  { image: "book.png",       question: "What is this?", choice_a: "notebook",   choice_b: "dictionary", choice_c: "book",       answer: "c" },
+  { image: "notebook.png",   question: "What is this?", choice_a: "notebook",   choice_b: "book",       choice_c: "folder",     answer: "a" },
+  { image: "table.png",      question: "What is this?", choice_a: "chair",      choice_b: "shelf",      choice_c: "desk",       answer: "c" },
+  { image: "dictionary.png", question: "What is this?", choice_a: "book",       choice_b: "dictionary", choice_c: "notebook",   answer: "b" },
+  { image: "computer.png",   question: "What is this?", choice_a: "television", choice_b: "tablet",     choice_c: "computer",   answer: "c" },
+];
+
+// ─────────────────────────────────────────────
+//  IMPORTANT: Set this to the folder where your images live on the server.
+//  e.g. "images/vocab/"  or  "images/chapter1/"
+// ─────────────────────────────────────────────
+const IMAGE_FOLDER = "images/vocab/";
+
+// ── Quiz engine ──
+let currentIndex = 0;
+let score = 0;
+const total = PHOTO_QUESTIONS.length;
+
+function renderQuestion() {
+  const q = PHOTO_QUESTIONS[currentIndex];
+  const area = document.getElementById('quiz-area');
+
+  // Update progress
+  document.getElementById('progress-label').textContent =
+    `Question ${currentIndex + 1} of ${total}`;
+  document.getElementById('progress-bar').style.width =
+    `${(currentIndex / total) * 100}%`;
+
+  area.innerHTML = `
+    <div class="photo-card">
+      <img src="${IMAGE_FOLDER}${q.image}" alt="vocabulary image"
+           onerror="this.src='https://placehold.co/200x200/f5f5f0/999?text=Image+Missing'" />
+      <div class="question-text">${q.question}</div>
+      <div class="choices">
+        <button class="choice-btn" data-choice="a" onclick="checkAnswer('a')">${q.choice_a}</button>
+        <button class="choice-btn" data-choice="b" onclick="checkAnswer('b')">${q.choice_b}</button>
+        <button class="choice-btn" data-choice="c" onclick="checkAnswer('c')">${q.choice_c}</button>
+      </div>
+      <div class="feedback" id="feedback"></div>
+      <button class="next-btn" id="next-btn" onclick="nextQuestion()">
+        ${currentIndex + 1 < total ? 'Next Question →' : 'See Results'}
+      </button>
+    </div>
+  `;
+}
+
+function checkAnswer(chosen) {
+  const q = PHOTO_QUESTIONS[currentIndex];
+  const feedback = document.getElementById('feedback');
+  const buttons = document.querySelectorAll('.choice-btn');
+
+  // Disable all buttons
+  buttons.forEach(btn => btn.disabled = true);
+
+  if (chosen === q.answer) {
+    score++;
+    feedback.textContent = '✅ Correct!';
+    feedback.className = 'feedback correct';
+    document.querySelector(`[data-choice="${chosen}"]`).classList.add('correct');
+  } else {
+    feedback.textContent = `❌ Wrong! The answer is: ${q['choice_' + q.answer]}`;
+    feedback.className = 'feedback wrong';
+    document.querySelector(`[data-choice="${chosen}"]`).classList.add('wrong');
+    document.querySelector(`[data-choice="${q.answer}"]`).classList.add('correct');
+  }
+
+  document.getElementById('next-btn').classList.add('visible');
+}
+
+function nextQuestion() {
+  currentIndex++;
+  if (currentIndex < total) {
+    renderQuestion();
+  } else {
+    showScore();
+  }
+}
+
+function showScore() {
+  document.getElementById('progress-bar').style.width = '100%';
+  document.getElementById('progress-label').textContent = `Finished!`;
+
+  const pct = Math.round((score / total) * 100);
+  const emoji = pct === 100 ? '🏆' : pct >= 70 ? '🌟' : pct >= 50 ? '👍' : '💪';
+  const msg   = pct === 100 ? 'Perfect score!' : pct >= 70 ? 'Great job!' : pct >= 50 ? 'Good effort!' : 'Keep practising!';
+
+  document.getElementById('quiz-area').innerHTML = `
+    <div class="photo-card score-screen">
+      <div class="score-emoji">${emoji}</div>
+      <h2>${msg}</h2>
+      <div class="score-num">${score} / ${total}</div>
+      <p>You got ${pct}% correct.</p>
+      <button class="retry-btn" onclick="restartQuiz()">Try Again</button>
+    </div>
+  `;
+}
+
+function restartQuiz() {
+  currentIndex = 0;
+  score = 0;
+  renderQuestion();
+}
+
+// Start
+renderQuestion();
+</script>
+
+</body>
+</html>

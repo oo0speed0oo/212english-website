@@ -1,0 +1,14 @@
+.enwb-optin-overlay {background: #000; position: fixed;  height: 100%; width: 100%; z-index: 2; opacity: 0.75;} 
+.enwb-optin-div {position:fixed;margin-left:calc( 60% - 500px);top:100px;z-index:3;}
+.enwb-optin-form{max-width:500px;background:#f9f9f9;background-image:url('../images/62624-sm-sm.jpg');background-position:top right;padding:20px;}
+.enwb-optin-form label{font-size:1rem;line-height:2rem;}
+.form-row{margin-bottom:10px;}
+.row-buttons{display:flex;justify-content:space-between;}
+.enwb-optin-frm-field{width:100%;padding:5px !important;}
+.row-buttons .button{padding:3px 15px !important;}
+.visible{visibility:visible!important;}
+.optin-success-msg{ color: green; font-size: 1.1rem; line-height: 2rem; text-align: center !important; }
+.align-center{text-align:center;}
+.enwb-optin-form  .dashicons-yes{color:#71ae00;}
+.enwb-optin-form h3{font-size:22px;color:#2271b1;}
+.enwb-required{border:1px solid red !important;}

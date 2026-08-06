@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>212 English – My Profile</title>
+<link rel="stylesheet" href="components/base.css">
+<style>
+  .profile-card { background:rgba(253,250,245,0.04); border:1px solid rgba(201,168,76,0.15); border-radius:16px; padding:32px; max-width:620px; }
+  .avatar-row { display:flex; align-items:center; gap:20px; margin-bottom:32px; padding-bottom:24px; border-bottom:1px solid rgba(201,168,76,0.1); }
+  .avatar-big { width:72px; height:72px; border-radius:50%; background:rgba(201,168,76,0.15); border:2px solid rgba(201,168,76,0.3); display:flex; align-items:center; justify-content:center; font-size:26px; font-weight:500; color:var(--gold-light); flex-shrink:0; }
+  .avatar-info h3 { font-size:18px; font-weight:500; color:var(--warm-white); margin-bottom:4px; }
+  .avatar-info p  { font-size:13px; color:var(--text-muted); }
+  .age-box { background:rgba(201,168,76,0.08); border:1px solid rgba(201,168,76,0.2); border-radius:8px; padding:10px 14px; font-size:14px; color:var(--gold-light); min-height:40px; }
+</style>
+</head>
+<body>
+<div id="nav-mount"></div>
+<script src="components/portal.js"></script>
+<script>
+var PREFECTURES = ['Hokkaido','Aomori','Iwate','Miyagi','Akita','Yamagata','Fukushima',
+  'Ibaraki','Tochigi','Gunma','Saitama','Chiba','Tokyo','Kanagawa','Niigata','Toyama',
+  'Ishikawa','Fukui','Yamanashi','Nagano','Shizuoka','Aichi','Mie','Shiga','Kyoto',
+  'Osaka','Hyogo','Nara','Wakayama','Tottori','Shimane','Okayama','Hiroshima','Yamaguchi',
+  'Tokushima','Kagawa','Ehime','Kochi','Fukuoka','Saga','Nagasaki','Kumamoto','Oita',
+  'Miyazaki','Kagoshima','Okinawa'];
+
+var STATES = ['Alabama','Alaska','Arizona','Arkansas','California','Colorado','Connecticut',
+  'Delaware','Florida','Georgia','Hawaii','Idaho','Illinois','Indiana','Iowa','Kansas',
+  'Kentucky','Louisiana','Maine','Maryland','Massachusetts','Michigan','Minnesota',
+  'Mississippi','Missouri','Montana','Nebraska','Nevada','New Hampshire','New Jersey',
+  'New Mexico','New York','North Carolina','North Dakota','Ohio','Oklahoma','Oregon',
+  'Pennsylvania','Rhode Island','South Carolina','South Dakota','Tennessee','Texas',
+  'Utah','Vermont','Virginia','Washington','West Virginia','Wisconsin','Wyoming'];
+
+function makeOptions(arr) {
+  return arr.map(function(x) { return '<option value="' + x + '">' + x + '</option>'; }).join('');
+}
+
+window.addEventListener('DOMContentLoaded', function() {
+  PORTAL.buildNav('profile');
+
+  var pc = document.getElementById('page-content');
+
+  pc.innerHTML =
+    '<div class="section-header"><h2>My Profile</h2><p>Your personal information.</p></div>'
+  + '<div class="profile-card">'
+  +   '<div class="avatar-row">'
+  +     '<div class="avatar-big" id="av">?</div>'
+  +     '<div class="avatar-info">'
+  +       '<h3 id="fullname">Student</h3>'
+  +       '<p>212 English School Student</p>'
+  +     '</div>'
+  +   '</div>'
+  +   '<div class="form-grid">'
+  +     '<div class="form-group">'
+  +       '<label>First Name</label>'
+  +       '<input type="text" id="fn" placeholder="e.g. Yuki" oninput="updatePreview()" />'
+  +     '</div>'
+  +     '<div class="form-group">'
+  +       '<label>Last Name</label>'
+  +       '<input type="text" id="ln" placeholder="e.g. Sato" oninput="updatePreview()" />'
+  +     '</div>'
+  +     '<div class="form-group">'
+  +       '<label>Birthday</label>'
+  +       '<input type="date" id="bd" onchange="calcAge()" />'
+  +     '</div>'
+  +     '<div class="form-group">'
+  +       '<label>Age (calculated automatically)</label>'
+  +       '<div class="age-box" id="age">— enter your birthday</div>'
+  +     '</div>'
+  +     '<div class="form-group full">'
+  +       '<label>Country</label>'
+  +       '<select id="country" onchange="updateLoc()">'
+  +         '<option value="">Select your country...</option>'
+  +         '<option value="JP">🇯🇵 Japan</option>'
+  +         '<option value="US">🇺🇸 United States</option>'
+  +         '<option value="UK">🇬🇧 United Kingdom</option>'
+  +         '<option value="AU">🇦🇺 Australia</option>'
+  +         '<option value="CA">🇨🇦 Canada</option>'
+  +         '<option value="BR">🇧🇷 Brazil</option>'
+  +         '<option value="FR">🇫🇷 France</option>'
+  +         '<option value="DE">🇩🇪 Germany</option>'
+  +         '<option value="CN">🇨🇳 China</option>'
+  +         '<option value="KR">🇰🇷 South Korea</option>'
+  +         '<option value="OTHER">🌍 Other</option>'
+  +       '</select>'
+  +     '</div>'
+  +     '<div class="form-group" id="f-pref" style="display:none">'
+  +       '<label>Prefecture (都道府県)</label>'
+  +       '<select id="pref"><option value="">Select prefecture...</option>' + makeOptions(PREFECTURES) + '</select>'
+  +     '</div>'
+  +     '<div class="form-group" id="f-state" style="display:none">'
+  +       '<label>State</label>'
+  +       '<select id="state"><option value="">Select state...</option>' + makeOptions(STATES) + '</select>'
+  +     '</div>'
+  +     '<div class="form-group" id="f-region" style="display:none">'
+  +       '<label>Region / Province</label>'
+  +       '<input type="text" id="region" placeholder="e.g. Ontario, Bavaria..." />'
+  +     '</div>'
+  +     '<div class="form-group" id="f-city" style="display:none">'
+  +       '<label>City</label>'
+  +       '<input type="text" id="city" placeholder="e.g. Tokyo, London..." />'
+  +     '</div>'
+  +   '</div>'
+  +   '<button class="save-btn" onclick="saveProfile()">💾 Save Profile</button>'
+  +   '<div class="save-note">⚠️ Not saved to a database yet — coming in a future update.</div>'
+  + '</div>';
+});
+
+function updatePreview() {
+  var fn = document.getElementById('fn').value.trim();
+  var ln = document.getElementById('ln').value.trim();
+  document.getElementById('fullname').textContent = [fn, ln].filter(Boolean).join(' ') || 'Student';
+  document.getElementById('av').textContent = ((fn[0] || '') + (ln[0] || '')).toUpperCase() || '?';
+}
+
+function calcAge() {
+  var bday = document.getElementById('bd').value;
+  var el   = document.getElementById('age');
+  if (!bday) { el.textContent = '— enter your birthday'; return; }
+  var today = new Date(), birth = new Date(bday);
+  var age = today.getFullYear() - birth.getFullYear();
+  var m = today.getMonth() - birth.getMonth();
+  if (m < 0 || (m === 0 && today.getDate() < birth.getDate())) age--;
+  el.textContent = age + ' years old';
+}
+
+function updateLoc() {
+  var c = document.getElementById('country').value;
+  ['f-pref','f-state','f-region','f-city'].forEach(function(id) {
+    document.getElementById(id).style.display = 'none';
+  });
+  if (!c) return;
+  document.getElementById('f-city').style.display = 'flex';
+  if      (c === 'JP') document.getElementById('f-pref').style.display   = 'flex';
+  else if (c === 'US') document.getElementById('f-state').style.display  = 'flex';
+  else                 document.getElementById('f-region').style.display = 'flex';
+}
+
+function saveProfile() {
+  alert('Profile saved! (Database connection coming soon.)');
+}
+</script>
+</body>
+</html>

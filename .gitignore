@@ -1,0 +1,19 @@
+# WordPress secrets - never commit
+wp-config.php
+
+# Uploaded media (large, changes constantly, not code)
+wp-content/uploads/
+
+# Cache / temp / upgrade artifacts
+wp-content/upgrade/
+wp-content/upgrade-temp-backup/
+wp-content/litespeed/
+
+# WordPress maintenance flag (regenerated automatically on updates)
+.maintenance
+
+# macOS
+.DS_Store
+
+# Claude Code local settings (machine-specific, not shared)
+.claude/settings.local.json
