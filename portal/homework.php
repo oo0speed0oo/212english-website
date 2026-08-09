@@ -73,6 +73,8 @@
     border: 1px solid rgba(184,145,46,0.3);
     padding: 10px;
   }
+  .audio-wrap { margin-bottom: 20px; }
+  .audio-wrap audio { width: 100%; max-width: 320px; }
   .photo-badge {
     display: inline-block;
     font-size: 11px;
@@ -112,8 +114,9 @@ var currentQ       = [];
 var currentIndex   = 0;
 var score          = 0;
 
-// Folder where your vocab photos live on the server
+// Folders where your vocab photos / audio clips live on the server
 var IMAGE_FOLDER = 'images/vocab/';
+var AUDIO_FOLDER = 'audio/';
 
 // ── Boot ──────────────────────────────────────────
 window.addEventListener('DOMContentLoaded', function() {
@@ -135,20 +138,28 @@ function loadCSV() {
 
 function parseCSV(text) {
   var lines  = text.trim().split('\n');
+  var header = lines[0].split(',').map(function(h) { return h.trim().toLowerCase(); });
   var rows   = [];
   for (var i = 1; i < lines.length; i++) {
+    if (!lines[i].trim()) continue;
     var cols = lines[i].split(',');
-    if (cols.length < 8) continue;
-    var type = cols[2].trim().toLowerCase();
+    var get = function(name) {
+      var idx = header.indexOf(name);
+      return (idx === -1 || cols[idx] === undefined) ? '' : cols[idx].trim();
+    };
+    if (get('level') === '' || get('type') === '') continue;
     rows.push({
-      level:    parseInt(cols[0]),
-      chapter:  parseInt(cols[1]),
-      type:     type,
-      question: cols[3].trim(),
-      choice_a: cols[4].trim(),
-      choice_b: cols[5].trim(),
-      choice_c: cols[6].trim(),
-      answer:   cols[7].trim()
+      id:       get('id'),
+      level:    parseInt(get('level')),
+      chapter:  parseInt(get('chapter')),
+      type:     get('type').toLowerCase(),
+      question: get('question'),
+      choice_a: get('choice_a'),
+      choice_b: get('choice_b'),
+      choice_c: get('choice_c'),
+      answer:   get('answer'),
+      image:    get('image'),
+      audio:    get('audio')
     });
   }
   return rows;
@@ -244,19 +255,33 @@ function showQuestion() {
 
   var q     = currentQ[currentIndex];
   var total = currentQ.length;
-  var isPhoto = (q.type === 'photo');
+
+  // A question shows a picture/audio only if its "image"/"audio" column
+  // is filled in - this is independent of the question type, so any
+  // mix (some vocab questions with a photo, some listening ones with
+  // audio, some with nothing at all) is fine.
+  var imgFile = q.image;
+  if (!imgFile && q.type === 'photo') {
+    // Old rows with no image column filled in yet: guess from the answer word
+    imgFile = q.answer.toLowerCase().replace(/\s+/g, '-') + '.png';
+  }
 
   html += '<div class="score-bar">' + H212_T['hw.question'] + ' <span>' + (currentIndex + 1) + ' ' + H212_T['hw.of'] + ' ' + total + '</span>'
     + ' &nbsp;·&nbsp; ' + H212_T['hw.score'] + ' <span>' + score + '</span></div>'
     + '<div class="question-card">';
 
-  if (isPhoto) {
-    var imgFile = q.answer.toLowerCase().replace(/\s+/g, '-') + '.png';
-    html += '<div class="photo-badge">' + H212_T['hw.photo_question'] + '</div>'
-      + '<div class="photo-img-wrap">'
-      + '<img src="' + IMAGE_FOLDER + imgFile + '" alt="' + q.answer + '"'
+  if (imgFile) {
+    if (q.type === 'photo') {
+      html += '<div class="photo-badge">' + H212_T['hw.photo_question'] + '</div>';
+    }
+    html += '<div class="photo-img-wrap">'
+      + '<img src="' + IMAGE_FOLDER + imgFile + '" alt="' + esc(q.answer) + '"'
       + ' onerror="this.style.opacity=\'0.3\';this.title=\'Image not found: ' + imgFile + '\'" />'
       + '</div>';
+  }
+
+  if (q.audio) {
+    html += '<div class="audio-wrap"><audio controls preload="none" src="' + AUDIO_FOLDER + q.audio + '"></audio></div>';
   }
 
   html += '<div class="question-text">' + q.question + '</div>'

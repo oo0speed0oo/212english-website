@@ -1,56 +1,56 @@
-level,chapter,type,question,choice_a,choice_b,choice_c,answer
-1,1,vocabulary,What does "big" mean?,Large,Small,Fast,Large
-1,1,grammar,I ___ a student.,am,is,are,am
-1,1,listening,You hear someone say "Hello". What are they doing?,Greeting someone,Saying goodbye,Asking a question,Greeting someone
-1,2,vocabulary,What does "run" mean?,To move fast on foot,To sleep,To eat,To move fast on foot
-1,2,photo,What is this?,pen,pencil,ruler,pencil
-1,2,photo,What is this?,book,notebook,dictionary,book
-1,2,photo,What is this?,desk,chair,shelf,desk
-1,2,photo,What is this?,pen,marker,pencil,pen
-1,2,photo,What is this?,book,dictionary,notebook,notebook
-1,2,photo,What is this?,book,dictionary,notebook,dictionary
-1,2,photo,What is this?,television,tablet,computer,computer
-1,2,grammar,She ___ a teacher.,am,is,are,is
-1,2,listening,You hear "Thank you". What is the person doing?,Showing gratitude,Asking for help,Saying hello,Showing gratitude
-1,3,vocabulary,What does "happy" mean?,Feeling good or joyful,Feeling sad,Feeling tired,Feeling good or joyful
-1,3,grammar,They ___ my friends.,am,is,are,are
-1,3,listening,You hear "Goodbye". What is happening?,Someone is leaving,Someone is arriving,Someone is eating,Someone is leaving
-1,4,vocabulary,What does "eat" mean?,To put food in your mouth,To drink water,To sleep,To put food in your mouth
-1,4,grammar,We ___ at school.,am,is,are,are
-1,4,listening,You hear "Sorry". What did the person do?,Made a mistake,Asked a question,Said hello,Made a mistake
-1,5,vocabulary,What does "small" mean?,Little in size,Very big,Very loud,Little in size
-1,5,grammar,He ___ my brother.,am,is,are,is
-1,5,listening,You hear "Please". What is the person doing?,Making a polite request,Saying goodbye,Giving a command,Making a polite request
-1,6,vocabulary,What does "cold" mean?,Low temperature,Very hot,Very fast,Low temperature
-1,6,grammar,I ___ hungry.,am,is,are,am
-1,6,listening,You hear "Yes". What does the person mean?,They agree,They disagree,They don't know,They agree
-1,7,vocabulary,What does "drink" mean?,To swallow liquid,To eat food,To run fast,To swallow liquid
-1,7,grammar,She ___ at home.,am,is,are,is
-1,7,listening,You hear "No". What does the person mean?,They disagree or refuse,They agree,They are happy,They disagree or refuse
-1,8,vocabulary,What does "hot" mean?,High temperature,Very cold,Very slow,High temperature
-1,8,grammar,The cat ___ on the table.,am,is,are,is
-1,8,listening,You hear "Help!". What does the person need?,Assistance from someone,Food to eat,Time to rest,Assistance from someone
-1,9,vocabulary,What does "new" mean?,Recently made or bought,Very old,Very broken,Recently made or bought
-1,9,grammar,My parents ___ at work.,am,is,are,are
-1,9,listening,You hear "Come here". What should you do?,Move toward the speaker,Stay where you are,Leave the room,Move toward the speaker
-1,10,vocabulary,What does "open" mean?,Not closed or shut,Very tight,Very fast,Not closed or shut
-1,10,grammar,The dog ___ very friendly.,am,is,are,is
-1,10,listening,You hear "Sit down". What should you do?,Take a seat,Stand up,Leave,Take a seat
-1,11,vocabulary,What does "old" mean?,Having existed for a long time,Very new,Very clean,Having existed for a long time
-1,11,grammar,You ___ very kind.,am,is,are,are
-1,11,listening,You hear "Be quiet". What should you do?,Stop making noise,Start talking,Start running,Stop making noise
-1,12,vocabulary,What does "fast" mean?,Moving quickly,Moving slowly,Standing still,Moving quickly
-1,12,grammar,It ___ raining outside.,am,is,are,is
-1,12,listening,You hear "Good morning". What time of day is it?,Morning,Evening,Night,Morning
-1,13,vocabulary,What does "sleep" mean?,To rest with eyes closed,To eat a meal,To run outside,To rest with eyes closed
-1,13,grammar,The students ___ reading.,am,is,are,are
-1,13,listening,You hear "Good night". What is about to happen?,Someone is going to sleep,Someone is waking up,Someone is eating,Someone is going to sleep
-1,14,vocabulary,What does "clean" mean?,Free from dirt,Very messy,Very loud,Free from dirt
-1,14,grammar,My friend ___ very tall.,am,is,are,is
-1,14,listening,You hear "How are you?". What is being asked?,How the person is feeling,Where the person is going,What the person is eating,How the person is feeling
-1,15,vocabulary,What does "walk" mean?,To move on foot at a normal pace,To run very fast,To sit down,To move on foot at a normal pace
-1,15,grammar,The birds ___ singing.,am,is,are,are
-1,15,listening,You hear "I don't understand". What is the person saying?,They are confused,They are angry,They are happy,They are confused
-1,16,vocabulary,What does "tired" mean?,Feeling like you need to rest,Feeling very energetic,Feeling very hungry,Feeling like you need to rest
-1,16,grammar,He ___ my English teacher.,am,is,are,is
-1,16,listening,You hear "Can you repeat that?". What does the person want?,To hear something again,To stop talking,To leave,To hear something again
+id,level,chapter,type,question,choice_a,choice_b,choice_c,answer,image,audio
+1,1,1,vocabulary,What does "big" mean?,Large,Small,Fast,Large,,
+2,1,1,grammar,I ___ a student.,am,is,are,am,,
+3,1,1,listening,You hear someone say "Hello". What are they doing?,Greeting someone,Saying goodbye,Asking a question,Greeting someone,,
+4,1,2,vocabulary,What does "run" mean?,To move fast on foot,To sleep,To eat,To move fast on foot,,
+5,1,2,photo,What is this?,pen,pencil,ruler,pencil,pencil.png,
+6,1,2,photo,What is this?,book,notebook,dictionary,book,book.png,
+7,1,2,photo,What is this?,desk,chair,shelf,desk,desk.png,
+8,1,2,photo,What is this?,pen,marker,pencil,pen,pen.png,
+9,1,2,photo,What is this?,book,dictionary,notebook,notebook,notebook.png,
+10,1,2,photo,What is this?,book,dictionary,notebook,dictionary,dictionary.png,
+11,1,2,photo,What is this?,television,tablet,computer,computer,computer.png,
+12,1,2,grammar,She ___ a teacher.,am,is,are,is,,
+13,1,2,listening,You hear "Thank you". What is the person doing?,Showing gratitude,Asking for help,Saying hello,Showing gratitude,,
+14,1,3,vocabulary,What does "happy" mean?,Feeling good or joyful,Feeling sad,Feeling tired,Feeling good or joyful,,
+15,1,3,grammar,They ___ my friends.,am,is,are,are,,
+16,1,3,listening,You hear "Goodbye". What is happening?,Someone is leaving,Someone is arriving,Someone is eating,Someone is leaving,,
+17,1,4,vocabulary,What does "eat" mean?,To put food in your mouth,To drink water,To sleep,To put food in your mouth,,
+18,1,4,grammar,We ___ at school.,am,is,are,are,,
+19,1,4,listening,You hear "Sorry". What did the person do?,Made a mistake,Asked a question,Said hello,Made a mistake,,
+20,1,5,vocabulary,What does "small" mean?,Little in size,Very big,Very loud,Little in size,,
+21,1,5,grammar,He ___ my brother.,am,is,are,is,,
+22,1,5,listening,You hear "Please". What is the person doing?,Making a polite request,Saying goodbye,Giving a command,Making a polite request,,
+23,1,6,vocabulary,What does "cold" mean?,Low temperature,Very hot,Very fast,Low temperature,,
+24,1,6,grammar,I ___ hungry.,am,is,are,am,,
+25,1,6,listening,You hear "Yes". What does the person mean?,They agree,They disagree,They don't know,They agree,,
+26,1,7,vocabulary,What does "drink" mean?,To swallow liquid,To eat food,To run fast,To swallow liquid,,
+27,1,7,grammar,She ___ at home.,am,is,are,is,,
+28,1,7,listening,You hear "No". What does the person mean?,They disagree or refuse,They agree,They are happy,They disagree or refuse,,
+29,1,8,vocabulary,What does "hot" mean?,High temperature,Very cold,Very slow,High temperature,,
+30,1,8,grammar,The cat ___ on the table.,am,is,are,is,,
+31,1,8,listening,You hear "Help!". What does the person need?,Assistance from someone,Food to eat,Time to rest,Assistance from someone,,
+32,1,9,vocabulary,What does "new" mean?,Recently made or bought,Very old,Very broken,Recently made or bought,,
+33,1,9,grammar,My parents ___ at work.,am,is,are,are,,
+34,1,9,listening,You hear "Come here". What should you do?,Move toward the speaker,Stay where you are,Leave the room,Move toward the speaker,,
+35,1,10,vocabulary,What does "open" mean?,Not closed or shut,Very tight,Very fast,Not closed or shut,,
+36,1,10,grammar,The dog ___ very friendly.,am,is,are,is,,
+37,1,10,listening,You hear "Sit down". What should you do?,Take a seat,Stand up,Leave,Take a seat,,
+38,1,11,vocabulary,What does "old" mean?,Having existed for a long time,Very new,Very clean,Having existed for a long time,,
+39,1,11,grammar,You ___ very kind.,am,is,are,are,,
+40,1,11,listening,You hear "Be quiet". What should you do?,Stop making noise,Start talking,Start running,Stop making noise,,
+41,1,12,vocabulary,What does "fast" mean?,Moving quickly,Moving slowly,Standing still,Moving quickly,,
+42,1,12,grammar,It ___ raining outside.,am,is,are,is,,
+43,1,12,listening,You hear "Good morning". What time of day is it?,Morning,Evening,Night,Morning,,
+44,1,13,vocabulary,What does "sleep" mean?,To rest with eyes closed,To eat a meal,To run outside,To rest with eyes closed,,
+45,1,13,grammar,The students ___ reading.,am,is,are,are,,
+46,1,13,listening,You hear "Good night". What is about to happen?,Someone is going to sleep,Someone is waking up,Someone is eating,Someone is going to sleep,,
+47,1,14,vocabulary,What does "clean" mean?,Free from dirt,Very messy,Very loud,Free from dirt,,
+48,1,14,grammar,My friend ___ very tall.,am,is,are,is,,
+49,1,14,listening,You hear "How are you?". What is being asked?,How the person is feeling,Where the person is going,What the person is eating,How the person is feeling,,
+50,1,15,vocabulary,What does "walk" mean?,To move on foot at a normal pace,To run very fast,To sit down,To move on foot at a normal pace,,
+51,1,15,grammar,The birds ___ singing.,am,is,are,are,,
+52,1,15,listening,You hear "I don't understand". What is the person saying?,They are confused,They are angry,They are happy,They are confused,,
+53,1,16,vocabulary,What does "tired" mean?,Feeling like you need to rest,Feeling very energetic,Feeling very hungry,Feeling like you need to rest,,
+54,1,16,grammar,He ___ my English teacher.,am,is,are,is,,
+55,1,16,listening,You hear "Can you repeat that?". What does the person want?,To hear something again,To stop talking,To leave,To hear something again,,
