@@ -6,16 +6,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Noto+Serif+JP:wght@300;400;600&family=DM+Sans:wght@300;400;500&display=swap');
 
 :root {
-  --navy:       #0d1b2a;
-  --navy2:      #112236;
-  --navy3:      #1a2f45;
-  --gold:       #c9a84c;
-  --gold-light: #e8cc7e;
-  --gold-dim:   rgba(201,168,76,0.3);
-  --warm-white: #fdfaf5;
-  --text-main:  rgba(253,250,245,0.9);
-  --text-muted: rgba(253,250,245,0.5);
-  --text-dim:   rgba(253,250,245,0.3);
+  --navy:       #f0ead8;
+  --navy2:      #f7f3ec;
+  --navy3:      #fffcf5;
+  --gold:       #b8912e;
+  --gold-light: #8a6a1a;
+  --gold-dim:   rgba(184,145,46,0.3);
+  --warm-white: #2a1f05;
+  --text-main:  rgba(30,20,0,0.85);
+  --text-muted: rgba(30,20,0,0.55);
+  --text-dim:   rgba(30,20,0,0.35);
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -31,8 +31,8 @@ body {
 .topnav {
   display: flex; align-items: center; justify-content: space-between;
   padding: 18px 32px;
-  border-bottom: 1px solid rgba(201,168,76,0.12);
-  background: rgba(13,27,42,0.95);
+  border-bottom: 1px solid rgba(184,145,46,0.15);
+  background: rgba(247,243,236,0.95);
   position: sticky; top: 0; z-index: 100;
 }
 .nav-logo { font-family: 'Playfair Display', serif; font-size: 18px; color: var(--warm-white); }
@@ -41,14 +41,21 @@ body {
 .nav-student { display: flex; align-items: center; gap: 10px; cursor: pointer; }
 .nav-avatar {
   width: 36px; height: 36px; border-radius: 50%;
-  background: rgba(201,168,76,0.15); border: 1px solid var(--gold-dim);
+  background: rgba(184,145,46,0.15); border: 1px solid var(--gold-dim);
   display: flex; align-items: center; justify-content: center;
   font-size: 13px; font-weight: 500; color: var(--gold-light);
 }
 .nav-name { font-size: 14px; color: var(--text-main); }
+.lang-switch {
+  font-size: 12px; color: var(--gold-light);
+  background: none; border: 1px solid rgba(184,145,46,0.3);
+  border-radius: 6px; padding: 6px 12px;
+  text-decoration: none; transition: all 0.2s;
+}
+.lang-switch:hover { background: rgba(184,145,46,0.1); border-color: rgba(184,145,46,0.5); }
 .logout-btn {
   font-size: 12px; color: var(--text-muted);
-  background: none; border: 1px solid rgba(255,255,255,0.1);
+  background: none; border: 1px solid rgba(184,145,46,0.25);
   border-radius: 6px; padding: 6px 14px;
   cursor: pointer; font-family: inherit; transition: all 0.2s;
 }
@@ -60,8 +67,8 @@ body {
 /* ── SIDEBAR ── */
 .sidebar {
   width: 220px; flex-shrink: 0;
-  background: rgba(17,34,54,0.6);
-  border-right: 1px solid rgba(201,168,76,0.1);
+  background: rgba(255,252,245,0.5);
+  border-right: 1px solid rgba(184,145,46,0.15);
   padding: 28px 16px;
   display: flex; flex-direction: column; gap: 4px;
 }
@@ -77,10 +84,10 @@ body {
   transition: all 0.2s; border: 1px solid transparent;
   background: none; width: 100%; text-align: left; font-family: inherit;
 }
-.sidebar-item:hover { background: rgba(201,168,76,0.07); color: var(--text-main); }
+.sidebar-item:hover { background: rgba(184,145,46,0.07); color: var(--text-main); }
 .sidebar-item.active {
-  background: rgba(201,168,76,0.12);
-  border-color: rgba(201,168,76,0.25);
+  background: rgba(184,145,46,0.12);
+  border-color: rgba(184,145,46,0.25);
   color: var(--gold-light);
 }
 .sidebar-icon { font-size: 16px; width: 20px; text-align: center; }
@@ -119,15 +126,15 @@ body {
 .type-grid    { display: grid; gap: 14px; grid-template-columns: repeat(3, 1fr); max-width: 500px; }
 
 .level-btn, .chapter-btn, .type-btn {
-  background: rgba(253,250,245,0.04);
-  border: 1px solid rgba(201,168,76,0.15);
+  background: rgba(255,252,245,0.6);
+  border: 1px solid rgba(184,145,46,0.2);
   border-radius: 12px; padding: 20px 16px;
   cursor: pointer; font-family: inherit;
   color: var(--text-main); text-align: center; transition: all 0.25s;
 }
 .level-btn:hover, .chapter-btn:hover, .type-btn:hover {
-  background: rgba(201,168,76,0.1);
-  border-color: rgba(201,168,76,0.4);
+  background: rgba(184,145,46,0.1);
+  border-color: rgba(184,145,46,0.4);
   transform: translateY(-2px);
 }
 .level-btn .num   { font-family: 'Playfair Display', serif; font-size: 32px; color: var(--gold); display: block; margin-bottom: 6px; }
@@ -153,19 +160,19 @@ body {
 .form-group.full { grid-column: 1 / -1; }
 .form-group label {
   font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase;
-  color: rgba(201,168,76,0.6);
+  color: rgba(184,145,46,0.6);
 }
 .form-group input, .form-group select {
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(201,168,76,0.2);
+  background: rgba(255,255,255,0.6);
+  border: 1px solid rgba(184,145,46,0.2);
   border-radius: 8px; padding: 10px 14px;
   font-size: 14px; color: var(--text-main);
   font-family: inherit; outline: none;
   transition: border-color 0.2s, box-shadow 0.2s; width: 100%;
 }
 .form-group input:focus, .form-group select:focus {
-  border-color: rgba(201,168,76,0.5);
-  box-shadow: 0 0 0 3px rgba(201,168,76,0.08);
+  border-color: rgba(184,145,46,0.5);
+  box-shadow: 0 0 0 3px rgba(184,145,46,0.08);
 }
 .form-group input::placeholder { color: var(--text-dim); }
 .form-group select option { background: var(--navy2); color: var(--text-main); }
@@ -174,16 +181,16 @@ body {
 .save-btn {
   margin-top: 24px;
   display: inline-flex; align-items: center; gap: 8px;
-  background: rgba(201,168,76,0.15); border: 1px solid rgba(201,168,76,0.4);
+  background: rgba(184,145,46,0.15); border: 1px solid rgba(184,145,46,0.4);
   border-radius: 8px; padding: 11px 24px;
   color: var(--gold-light); font-size: 14px; font-weight: 500;
   cursor: pointer; font-family: inherit; transition: all 0.2s;
 }
-.save-btn:hover { background: rgba(201,168,76,0.25); border-color: rgba(201,168,76,0.6); }
+.save-btn:hover { background: rgba(184,145,46,0.25); border-color: rgba(184,145,46,0.6); }
 .save-note {
   font-size: 12px; color: var(--text-dim); margin-top: 12px;
-  padding: 10px 14px; background: rgba(255,255,255,0.03);
-  border-radius: 8px; border: 1px solid rgba(255,255,255,0.06);
+  padding: 10px 14px; background: rgba(255,255,255,0.4);
+  border-radius: 8px; border: 1px solid rgba(184,145,46,0.15);
 }
 
 /* ── RESPONSIVE ── */

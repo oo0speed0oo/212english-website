@@ -1,3 +1,4 @@
+<?php require __DIR__ . '/inc/auth.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,8 +8,8 @@
 <link rel="stylesheet" href="components/base.css">
 <style>
   .question-card {
-    background: rgba(253,250,245,0.04);
-    border: 1px solid rgba(201,168,76,0.15);
+    background: rgba(255,252,245,0.6);
+    border: 1px solid rgba(184,145,46,0.2);
     border-radius: 16px; padding: 32px; max-width: 620px;
   }
   .question-text {
@@ -17,35 +18,35 @@
   }
   .choices { display: flex; flex-direction: column; gap: 12px; }
   .choice-btn {
-    background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(201,168,76,0.2);
+    background: rgba(255,255,255,0.5);
+    border: 1px solid rgba(184,145,46,0.3);
     border-radius: 10px; padding: 14px 18px;
     color: var(--text-main); font-size: 15px;
     font-family: inherit; text-align: left;
     cursor: pointer; transition: all 0.2s;
   }
-  .choice-btn:hover { background: rgba(201,168,76,0.1); border-color: rgba(201,168,76,0.4); }
-  .choice-btn.correct { background: rgba(72,199,142,0.15); border-color: rgba(72,199,142,0.5); color: #48c78e; }
-  .choice-btn.wrong   { background: rgba(252,129,129,0.15); border-color: rgba(252,129,129,0.5); color: #fc8181; }
+  .choice-btn:hover { background: rgba(184,145,46,0.12); border-color: rgba(184,145,46,0.5); }
+  .choice-btn.correct { background: rgba(47,122,79,0.15); border-color: rgba(47,122,79,0.5); color: #2f7a4f; }
+  .choice-btn.wrong   { background: rgba(179,38,30,0.12); border-color: rgba(179,38,30,0.5); color: #b3261e; }
   .choice-btn:disabled { cursor: default; }
   .result-msg {
     margin-top: 20px; padding: 14px 18px;
     border-radius: 10px; font-size: 15px; font-weight: 500;
     display: none;
   }
-  .result-msg.correct { background: rgba(72,199,142,0.1); color: #48c78e; border: 1px solid rgba(72,199,142,0.3); }
-  .result-msg.wrong   { background: rgba(252,129,129,0.1); color: #fc8181; border: 1px solid rgba(252,129,129,0.3); }
+  .result-msg.correct { background: rgba(47,122,79,0.1); color: #2f7a4f; border: 1px solid rgba(47,122,79,0.3); }
+  .result-msg.wrong   { background: rgba(179,38,30,0.08); color: #b3261e; border: 1px solid rgba(179,38,30,0.3); }
   .next-btn {
     margin-top: 20px;
     display: none;
-    background: rgba(201,168,76,0.15);
-    border: 1px solid rgba(201,168,76,0.4);
+    background: rgba(184,145,46,0.15);
+    border: 1px solid rgba(184,145,46,0.4);
     border-radius: 8px; padding: 11px 24px;
     color: var(--gold-light); font-size: 14px;
     font-weight: 500; cursor: pointer; font-family: inherit;
     transition: all 0.2s;
   }
-  .next-btn:hover { background: rgba(201,168,76,0.25); }
+  .next-btn:hover { background: rgba(184,145,46,0.25); }
   .score-bar {
     font-size: 13px; color: var(--text-muted);
     margin-bottom: 20px;
@@ -68,8 +69,8 @@
     height: 180px;
     object-fit: contain;
     border-radius: 12px;
-    background: rgba(255,255,255,0.06);
-    border: 1px solid rgba(201,168,76,0.2);
+    background: rgba(255,255,255,0.5);
+    border: 1px solid rgba(184,145,46,0.3);
     padding: 10px;
   }
   .photo-badge {
@@ -77,9 +78,9 @@
     font-size: 11px;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: var(--gold);
-    background: rgba(201,168,76,0.1);
-    border: 1px solid rgba(201,168,76,0.2);
+    color: var(--gold-light);
+    background: rgba(184,145,46,0.1);
+    border: 1px solid rgba(184,145,46,0.25);
     border-radius: 6px;
     padding: 3px 10px;
     margin-bottom: 14px;
@@ -87,8 +88,19 @@
 </style>
 </head>
 <body>
-<div id="nav-mount"></div>
-<script src="components/portal.js"></script>
+<?php
+require __DIR__ . '/inc/nav.php';
+h212_render_nav( 'homework' );
+h212_js_strings( array(
+	'nav.homework', 'hw.choose_level', 'hw.choose_chapter', 'hw.choose_study',
+	'hw.back_levels', 'hw.back_chapters', 'hw.back', 'hw.level', 'hw.chapter',
+	'hw.vocabulary', 'hw.vocab_sub', 'hw.grammar', 'hw.grammar_sub',
+	'hw.listening', 'hw.listening_sub', 'hw.no_content', 'hw.question', 'hw.of',
+	'hw.score', 'hw.correct_msg', 'hw.wrong_msg', 'hw.next_question',
+	'hw.see_results', 'hw.results', 'hw.correct_word', 'hw.try_again',
+	'hw.back_to_topics', 'hw.photo_question',
+) );
+?>
 <script>
 
 // ── State ─────────────────────────────────────────
@@ -105,7 +117,6 @@ var IMAGE_FOLDER = 'images/vocab/';
 
 // ── Boot ──────────────────────────────────────────
 window.addEventListener('DOMContentLoaded', function() {
-  PORTAL.buildNav('homework');
   loadCSV();
 });
 
@@ -146,14 +157,21 @@ function parseCSV(text) {
 // ── Navigation ────────────────────────────────────
 function getPC() { return document.getElementById('page-content'); }
 
+function typeLabel(type) {
+  if (type === 'vocabulary') return H212_T['hw.vocabulary'];
+  if (type === 'grammar')    return H212_T['hw.grammar'];
+  if (type === 'listening')  return H212_T['hw.listening'];
+  return type;
+}
+
 function renderLevels() {
   currentLevel = null; currentChapter = null; currentType = null;
-  var html = '<div class="section-header"><h2>Homework</h2><p>Choose your level to begin.</p></div>'
-    + '<div class="breadcrumb"><span>Homework</span></div>'
+  var html = '<div class="section-header"><h2>' + H212_T['nav.homework'] + '</h2><p>' + H212_T['hw.choose_level'] + '</p></div>'
+    + '<div class="breadcrumb"><span>' + H212_T['nav.homework'] + '</span></div>'
     + '<div class="level-grid">';
   for (var i = 1; i <= 5; i++) {
     html += '<div class="level-btn" onclick="renderChapters(' + i + ')">'
-      + '<span class="num">' + i + '</span><span class="lbl">Level ' + i + '</span></div>';
+      + '<span class="num">' + i + '</span><span class="lbl">' + H212_T['hw.level'] + ' ' + i + '</span></div>';
   }
   html += '</div>';
   getPC().innerHTML = html;
@@ -161,13 +179,13 @@ function renderLevels() {
 
 function renderChapters(lvl) {
   currentLevel = lvl; currentChapter = null; currentType = null;
-  var html = '<div class="section-header"><h2>Homework</h2><p>Choose your chapter.</p></div>'
-    + '<div class="breadcrumb"><span>Homework</span><span class="sep">›</span><span>Level ' + lvl + '</span></div>'
-    + '<button class="back-btn" onclick="renderLevels()">← Back to Levels</button>'
+  var html = '<div class="section-header"><h2>' + H212_T['nav.homework'] + '</h2><p>' + H212_T['hw.choose_chapter'] + '</p></div>'
+    + '<div class="breadcrumb"><span>' + H212_T['nav.homework'] + '</span><span class="sep">›</span><span>' + H212_T['hw.level'] + ' ' + lvl + '</span></div>'
+    + '<button class="back-btn" onclick="renderLevels()">' + H212_T['hw.back_levels'] + '</button>'
     + '<div class="chapter-grid">';
   for (var c = 1; c <= 16; c++) {
     html += '<div class="chapter-btn" onclick="renderTypes(' + c + ')">'
-      + '<span class="num">' + c + '</span><span class="lbl">Chapter ' + c + '</span></div>';
+      + '<span class="num">' + c + '</span><span class="lbl">' + H212_T['hw.chapter'] + ' ' + c + '</span></div>';
   }
   html += '</div>';
   getPC().innerHTML = html;
@@ -175,16 +193,16 @@ function renderChapters(lvl) {
 
 function renderTypes(ch) {
   currentChapter = ch; currentType = null;
-  var html = '<div class="section-header"><h2>Homework</h2><p>What would you like to study?</p></div>'
-    + '<div class="breadcrumb"><span>Homework</span><span class="sep">›</span><span>Level ' + currentLevel + '</span><span class="sep">›</span><span>Chapter ' + ch + '</span></div>'
-    + '<button class="back-btn" onclick="renderChapters(' + currentLevel + ')">← Back to Chapters</button>'
+  var html = '<div class="section-header"><h2>' + H212_T['nav.homework'] + '</h2><p>' + H212_T['hw.choose_study'] + '</p></div>'
+    + '<div class="breadcrumb"><span>' + H212_T['nav.homework'] + '</span><span class="sep">›</span><span>' + H212_T['hw.level'] + ' ' + currentLevel + '</span><span class="sep">›</span><span>' + H212_T['hw.chapter'] + ' ' + ch + '</span></div>'
+    + '<button class="back-btn" onclick="renderChapters(' + currentLevel + ')">' + H212_T['hw.back_chapters'] + '</button>'
     + '<div class="type-grid">'
     + '<div class="type-btn" onclick="startQuiz(\'vocabulary\')">'
-    +   '<span class="icon">📖</span><span class="lbl">Vocabulary</span><span class="sub">Words & meanings</span></div>'
+    +   '<span class="icon">📖</span><span class="lbl">' + H212_T['hw.vocabulary'] + '</span><span class="sub">' + H212_T['hw.vocab_sub'] + '</span></div>'
     + '<div class="type-btn" onclick="startQuiz(\'grammar\')">'
-    +   '<span class="icon">✏️</span><span class="lbl">Grammar</span><span class="sub">Rules & practice</span></div>'
+    +   '<span class="icon">✏️</span><span class="lbl">' + H212_T['hw.grammar'] + '</span><span class="sub">' + H212_T['hw.grammar_sub'] + '</span></div>'
     + '<div class="type-btn" onclick="startQuiz(\'listening\')">'
-    +   '<span class="icon">🎧</span><span class="lbl">Listening</span><span class="sub">Audio exercises</span></div>'
+    +   '<span class="icon">🎧</span><span class="lbl">' + H212_T['hw.listening'] + '</span><span class="sub">' + H212_T['hw.listening_sub'] + '</span></div>'
     + '</div>';
   getPC().innerHTML = html;
 }
@@ -195,7 +213,6 @@ function startQuiz(type) {
   currentIndex = 0;
   score        = 0;
 
-  // For vocabulary, include both 'vocabulary' AND 'photo' type rows
   if (type === 'vocabulary') {
     currentQ = allQuestions.filter(function(q) {
       return q.level === currentLevel && q.chapter === currentChapter
@@ -211,16 +228,16 @@ function startQuiz(type) {
 }
 
 function showQuestion() {
-  var typeName = currentType.charAt(0).toUpperCase() + currentType.slice(1);
+  var typeName = typeLabel(currentType);
   var html = '<div class="section-header"><h2>' + typeName + '</h2></div>'
-    + '<div class="breadcrumb"><span>Homework</span><span class="sep">›</span>'
-    + '<span>Level ' + currentLevel + '</span><span class="sep">›</span>'
-    + '<span>Chapter ' + currentChapter + '</span><span class="sep">›</span>'
+    + '<div class="breadcrumb"><span>' + H212_T['nav.homework'] + '</span><span class="sep">›</span>'
+    + '<span>' + H212_T['hw.level'] + ' ' + currentLevel + '</span><span class="sep">›</span>'
+    + '<span>' + H212_T['hw.chapter'] + ' ' + currentChapter + '</span><span class="sep">›</span>'
     + '<span>' + typeName + '</span></div>'
-    + '<button class="back-btn" onclick="renderTypes(' + currentChapter + ')">← Back</button>';
+    + '<button class="back-btn" onclick="renderTypes(' + currentChapter + ')">' + H212_T['hw.back'] + '</button>';
 
   if (currentQ.length === 0) {
-    html += '<div class="no-content">🚧 No questions yet for this section.<br>Check back soon!</div>';
+    html += '<div class="no-content">' + H212_T['hw.no_content'] + '</div>';
     getPC().innerHTML = html;
     return;
   }
@@ -229,16 +246,13 @@ function showQuestion() {
   var total = currentQ.length;
   var isPhoto = (q.type === 'photo');
 
-  html += '<div class="score-bar">Question <span>' + (currentIndex + 1) + ' of ' + total + '</span>'
-    + ' &nbsp;·&nbsp; Score: <span>' + score + '</span></div>'
+  html += '<div class="score-bar">' + H212_T['hw.question'] + ' <span>' + (currentIndex + 1) + ' ' + H212_T['hw.of'] + ' ' + total + '</span>'
+    + ' &nbsp;·&nbsp; ' + H212_T['hw.score'] + ' <span>' + score + '</span></div>'
     + '<div class="question-card">';
 
-  // Photo badge + image if this is a photo question
   if (isPhoto) {
-    // Image filename: we derive it from the answer word, e.g. answer "pencil" → pencil.png
-    // This matches how your image files are named
     var imgFile = q.answer.toLowerCase().replace(/\s+/g, '-') + '.png';
-    html += '<div class="photo-badge">📸 Photo Question</div>'
+    html += '<div class="photo-badge">' + H212_T['hw.photo_question'] + '</div>'
       + '<div class="photo-img-wrap">'
       + '<img src="' + IMAGE_FOLDER + imgFile + '" alt="' + q.answer + '"'
       + ' onerror="this.style.opacity=\'0.3\';this.title=\'Image not found: ' + imgFile + '\'" />'
@@ -254,9 +268,9 @@ function showQuestion() {
     + '<div class="result-msg" id="result-msg"></div>';
 
   if (currentIndex + 1 < total) {
-    html += '<button class="next-btn" id="next-btn" onclick="nextQuestion()">Next Question →</button>';
+    html += '<button class="next-btn" id="next-btn" onclick="nextQuestion()">' + H212_T['hw.next_question'] + '</button>';
   } else {
-    html += '<button class="next-btn" id="next-btn" onclick="showFinish()">See Results 🎉</button>';
+    html += '<button class="next-btn" id="next-btn" onclick="showFinish()">' + H212_T['hw.see_results'] + '</button>';
   }
 
   html += '</div>';
@@ -276,12 +290,12 @@ function checkAnswer(btn, chosen, answer) {
 
   if (chosen === answer) {
     btn.classList.add('correct');
-    msg.textContent = '✅ Correct! Well done!';
+    msg.textContent = H212_T['hw.correct_msg'];
     msg.className = 'result-msg correct';
     score++;
   } else {
     btn.classList.add('wrong');
-    msg.textContent = '❌ Not quite. The correct answer is: ' + answer;
+    msg.textContent = H212_T['hw.wrong_msg'] + ' ' + answer;
     msg.className = 'result-msg wrong';
     btns.forEach(function(b) {
       if (b.textContent.trim() === answer) b.classList.add('correct');
@@ -299,24 +313,26 @@ function nextQuestion() {
 
 function showFinish() {
   var total    = currentQ.length;
-  var typeName = currentType.charAt(0).toUpperCase() + currentType.slice(1);
+  var typeName = typeLabel(currentType);
   var pct      = Math.round((score / total) * 100);
   var emoji    = pct === 100 ? '🏆' : pct >= 70 ? '😊' : '💪';
 
-  var html = '<div class="section-header"><h2>Results</h2></div>'
+  var html = '<div class="section-header"><h2>' + H212_T['hw.results'] + '</h2></div>'
     + '<div class="question-card" style="text-align:center">'
     + '<div style="font-size:48px;margin-bottom:16px">' + emoji + '</div>'
     + '<div style="font-size:22px;color:var(--warm-white);margin-bottom:8px;font-weight:500">'
-    + score + ' / ' + total + ' correct</div>'
+    + score + ' / ' + total + ' ' + H212_T['hw.correct_word'] + '</div>'
     + '<div style="font-size:14px;color:var(--text-muted);margin-bottom:28px">'
-    + typeName + ' · Level ' + currentLevel + ' · Chapter ' + currentChapter + '</div>'
+    + typeName + ' · ' + H212_T['hw.level'] + ' ' + currentLevel + ' · ' + H212_T['hw.chapter'] + ' ' + currentChapter + '</div>'
     + '<div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">'
-    + '<button class="next-btn" style="display:inline-flex" onclick="startQuiz(\'' + currentType + '\')">Try Again</button>'
-    + '<button class="next-btn" style="display:inline-flex" onclick="renderTypes(' + currentChapter + ')">Back to Topics</button>'
+    + '<button class="next-btn" style="display:inline-flex" onclick="startQuiz(\'' + currentType + '\')">' + H212_T['hw.try_again'] + '</button>'
+    + '<button class="next-btn" style="display:inline-flex" onclick="renderTypes(' + currentChapter + ')">' + H212_T['hw.back_to_topics'] + '</button>'
     + '</div></div>';
 
   getPC().innerHTML = html;
 }
 </script>
+</main>
+</div>
 </body>
 </html>

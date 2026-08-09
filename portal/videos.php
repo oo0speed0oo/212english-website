@@ -1,3 +1,4 @@
+<?php require __DIR__ . '/inc/auth.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,21 +8,21 @@
 <link rel="stylesheet" href="components/base.css">
 <style>
   .video-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:20px; }
-  .video-card { background:rgba(253,250,245,0.04); border:1px solid rgba(201,168,76,0.15); border-radius:14px; overflow:hidden; cursor:pointer; transition:all 0.25s; }
-  .video-card:hover { border-color:rgba(201,168,76,0.4); transform:translateY(-3px); box-shadow:0 12px 40px rgba(0,0,0,0.3); }
-  .video-thumb { position:relative; width:100%; padding-top:56.25%; background:#0a1520; overflow:hidden; }
+  .video-card { background:rgba(255,252,245,0.6); border:1px solid rgba(184,145,46,0.2); border-radius:14px; overflow:hidden; cursor:pointer; transition:all 0.25s; }
+  .video-card:hover { border-color:rgba(184,145,46,0.45); transform:translateY(-3px); box-shadow:0 12px 40px rgba(120,90,20,0.12); }
+  .video-thumb { position:relative; width:100%; padding-top:56.25%; background:#e5ddc8; overflow:hidden; }
   .video-thumb img { position:absolute; top:0; left:0; width:100%; height:100%; object-fit:cover; transition:transform 0.3s; }
   .video-card:hover .video-thumb img { transform:scale(1.04); }
-  .play-overlay { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:48px; height:48px; border-radius:50%; background:rgba(201,168,76,0.85); display:flex; align-items:center; justify-content:center; font-size:18px; }
+  .play-overlay { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:48px; height:48px; border-radius:50%; background:rgba(184,145,46,0.85); display:flex; align-items:center; justify-content:center; font-size:18px; color:#fff; }
   .video-card:hover .play-overlay { background:var(--gold); }
   .video-info { padding:14px 16px; }
   .video-title { font-size:14px; font-weight:500; color:var(--warm-white); line-height:1.4; margin-bottom:6px; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
   .video-date  { font-size:12px; color:var(--text-dim); }
   .video-msg   { text-align:center; padding:60px 20px; color:var(--text-muted); font-size:14px; }
-  .modal-backdrop { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); z-index:200; align-items:center; justify-content:center; padding:20px; }
+  .modal-backdrop { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(30,20,0,0.75); z-index:200; align-items:center; justify-content:center; padding:20px; }
   .modal-backdrop.open { display:flex; }
-  .modal { background:#112236; border:1px solid rgba(201,168,76,0.2); border-radius:16px; overflow:hidden; width:100%; max-width:860px; }
-  .modal-header { display:flex; align-items:center; justify-content:space-between; padding:14px 20px; border-bottom:1px solid rgba(201,168,76,0.1); }
+  .modal { background:#fffcf5; border:1px solid rgba(184,145,46,0.25); border-radius:16px; overflow:hidden; width:100%; max-width:860px; }
+  .modal-header { display:flex; align-items:center; justify-content:space-between; padding:14px 20px; border-bottom:1px solid rgba(184,145,46,0.15); }
   .modal-title { font-size:14px; font-weight:500; color:var(--warm-white); }
   .modal-close { background:none; border:none; color:var(--text-muted); font-size:22px; cursor:pointer; }
   .modal-close:hover { color:var(--gold-light); }
@@ -30,7 +31,11 @@
 </style>
 </head>
 <body>
-<div id="nav-mount"></div>
+<?php
+require __DIR__ . '/inc/nav.php';
+h212_render_nav( 'videos' );
+h212_js_strings( array( 'videos.loading', 'videos.error', 'videos.visit_yt' ) );
+?>
 
 <div class="modal-backdrop" id="modal">
   <div class="modal">
@@ -44,13 +49,12 @@
   </div>
 </div>
 
+<div class="section-header"><h2><?php echo esc_html( t( 'nav.videos' ) ); ?></h2><p><?php echo esc_html( t( 'videos.subtitle' ) ); ?></p></div>
+<div id="video-wrap"><div class="video-msg"><?php echo esc_html( t( 'videos.loading' ) ); ?></div></div>
+
 <script src="components/portal.js"></script>
 <script>
 window.addEventListener('DOMContentLoaded', function() {
-  PORTAL.buildNav('videos');
-  var pc = document.getElementById('page-content');
-  pc.innerHTML = '<div class="section-header"><h2>Videos</h2><p>Latest lessons from the 212 English School YouTube channel.</p></div>'
-    + '<div id="video-wrap"><div class="video-msg">⏳ Loading videos...</div></div>';
   loadVideos();
 });
 
@@ -86,7 +90,7 @@ function loadVideos() {
     })
     .catch(function() {
       document.getElementById('video-wrap').innerHTML = '<div class="video-msg">'
-        + '⚠️ Could not load videos. <a href="https://www.youtube.com/channel/' + PORTAL.YT_CHANNEL_ID + '" target="_blank" style="color:var(--gold-light);">Visit YouTube ↗</a></div>';
+        + H212_T['videos.error'] + ' <a href="https://www.youtube.com/channel/' + PORTAL.YT_CHANNEL_ID + '" target="_blank" style="color:var(--gold-light);">' + H212_T['videos.visit_yt'] + '</a></div>';
     });
 }
 
@@ -105,5 +109,7 @@ document.getElementById('modal').addEventListener('click', function(e) {
   if (e.target === this) closeModal();
 });
 </script>
+</main>
+</div>
 </body>
 </html>
