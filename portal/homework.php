@@ -100,13 +100,16 @@ h212_js_strings( array(
 	'hw.listening', 'hw.listening_sub', 'hw.no_content', 'hw.question', 'hw.of',
 	'hw.score', 'hw.correct_msg', 'hw.wrong_msg', 'hw.next_question',
 	'hw.see_results', 'hw.results', 'hw.correct_word', 'hw.try_again',
-	'hw.back_to_topics', 'hw.photo_question',
+	'hw.back_to_topics', 'hw.photo_question', 'hw.finished_badge',
+	'hw.already_finished', 'hw.best_score', 'hw.start_again',
 ) );
 ?>
+<script>window.H212_NONCE = "<?php echo esc_js( wp_create_nonce( 'h212_save_score' ) ); ?>";</script>
 <script>
 
 // ── State ─────────────────────────────────────────
 var allQuestions = [];
+var allScores     = []; // every quiz attempt this student has ever submitted
 var currentLevel   = null;
 var currentChapter = null;
 var currentType    = null;
@@ -120,20 +123,61 @@ var AUDIO_FOLDER = 'audio/';
 
 // ── Boot ──────────────────────────────────────────
 window.addEventListener('DOMContentLoaded', function() {
-  loadCSV();
+  Promise.all([ loadCSV(), loadScores() ]).then(renderLevels).catch(renderLevels);
 });
 
 // ── Load & parse CSV ──────────────────────────────
 function loadCSV() {
-  fetch('homework-content.csv')
+  return fetch('homework-content.csv')
     .then(function(r) { return r.text(); })
-    .then(function(text) {
-      allQuestions = parseCSV(text);
-      renderLevels();
+    .then(function(text) { allQuestions = parseCSV(text); })
+    .catch(function() { allQuestions = []; });
+}
+
+// ── Load this student's saved scores ──────────────
+function loadScores() {
+  return fetch('inc/scores.php')
+    .then(function(r) { return r.json(); })
+    .then(function(data) { allScores = (data && data.scores) ? data.scores : []; })
+    .catch(function() { allScores = []; });
+}
+
+// ── Score helpers ──────────────────────────────────
+function scoresFor(level, chapter, type) {
+  return allScores.filter(function(s) {
+    return s.level === level && s.chapter === chapter && s.type === type;
+  });
+}
+function bestScore(level, chapter, type) {
+  var list = scoresFor(level, chapter, type);
+  if (!list.length) return null;
+  var best = list[0];
+  for (var i = 1; i < list.length; i++) {
+    if (list[i].score > best.score) best = list[i];
+  }
+  return best;
+}
+function isTypeFinished(level, chapter, type) {
+  return scoresFor(level, chapter, type).length > 0;
+}
+function chapterFinishedCount(level, chapter) {
+  var types = ['vocabulary', 'grammar', 'listening'];
+  var n = 0;
+  types.forEach(function(t) { if (isTypeFinished(level, chapter, t)) n++; });
+  return n;
+}
+function saveScore(level, chapter, type, score, total) {
+  return fetch('inc/scores.php', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      nonce: window.H212_NONCE, level: level, chapter: chapter,
+      type: type, score: score, total: total
     })
-    .catch(function() {
-      renderLevels();
-    });
+  })
+    .then(function(r) { return r.json(); })
+    .then(function(data) { if (data && data.scores) allScores = data.scores; })
+    .catch(function() {});
 }
 
 function parseCSV(text) {
@@ -195,7 +239,12 @@ function renderChapters(lvl) {
     + '<button class="back-btn" onclick="renderLevels()">' + H212_T['hw.back_levels'] + '</button>'
     + '<div class="chapter-grid">';
   for (var c = 1; c <= 16; c++) {
+    var done = chapterFinishedCount(lvl, c);
+    var badge = done > 0
+      ? '<span class="chapter-progress' + (done === 3 ? ' done' : '') + '">' + done + '/3</span>'
+      : '';
     html += '<div class="chapter-btn" onclick="renderTypes(' + c + ')">'
+      + badge
       + '<span class="num">' + c + '</span><span class="lbl">' + H212_T['hw.chapter'] + ' ' + c + '</span></div>';
   }
   html += '</div>';
@@ -209,17 +258,51 @@ function renderTypes(ch) {
     + '<button class="back-btn" onclick="renderChapters(' + currentLevel + ')">' + H212_T['hw.back_chapters'] + '</button>'
     + '<div class="type-grid">'
     + '<div class="type-btn" onclick="startQuiz(\'vocabulary\')">'
-    +   '<span class="icon">📖</span><span class="lbl">' + H212_T['hw.vocabulary'] + '</span><span class="sub">' + H212_T['hw.vocab_sub'] + '</span></div>'
+    +   '<span class="icon">📖</span><span class="lbl">' + H212_T['hw.vocabulary'] + '</span><span class="sub">' + H212_T['hw.vocab_sub'] + '</span>' + typeStatusHtml(currentLevel, ch, 'vocabulary') + '</div>'
     + '<div class="type-btn" onclick="startQuiz(\'grammar\')">'
-    +   '<span class="icon">✏️</span><span class="lbl">' + H212_T['hw.grammar'] + '</span><span class="sub">' + H212_T['hw.grammar_sub'] + '</span></div>'
+    +   '<span class="icon">✏️</span><span class="lbl">' + H212_T['hw.grammar'] + '</span><span class="sub">' + H212_T['hw.grammar_sub'] + '</span>' + typeStatusHtml(currentLevel, ch, 'grammar') + '</div>'
     + '<div class="type-btn" onclick="startQuiz(\'listening\')">'
-    +   '<span class="icon">🎧</span><span class="lbl">' + H212_T['hw.listening'] + '</span><span class="sub">' + H212_T['hw.listening_sub'] + '</span></div>'
+    +   '<span class="icon">🎧</span><span class="lbl">' + H212_T['hw.listening'] + '</span><span class="sub">' + H212_T['hw.listening_sub'] + '</span>' + typeStatusHtml(currentLevel, ch, 'listening') + '</div>'
     + '</div>';
   getPC().innerHTML = html;
 }
 
+function typeStatusHtml(level, chapter, type) {
+  var best = bestScore(level, chapter, type);
+  if (!best) return '';
+  return '<span class="status">✓ ' + H212_T['hw.finished_badge'] + ' · ' + best.score + '/' + best.total + '</span>';
+}
+
 // ── Quiz ──────────────────────────────────────────
 function startQuiz(type) {
+  if (isTypeFinished(currentLevel, currentChapter, type)) {
+    showRetakeConfirm(type);
+  } else {
+    beginQuiz(type);
+  }
+}
+
+function showRetakeConfirm(type) {
+  var best     = bestScore(currentLevel, currentChapter, type);
+  var typeName = typeLabel(type);
+  var html = '<div class="section-header"><h2>' + typeName + '</h2></div>'
+    + '<div class="breadcrumb"><span>' + H212_T['nav.homework'] + '</span><span class="sep">›</span>'
+    + '<span>' + H212_T['hw.level'] + ' ' + currentLevel + '</span><span class="sep">›</span>'
+    + '<span>' + H212_T['hw.chapter'] + ' ' + currentChapter + '</span><span class="sep">›</span>'
+    + '<span>' + typeName + '</span></div>'
+    + '<button class="back-btn" onclick="renderTypes(' + currentChapter + ')">' + H212_T['hw.back'] + '</button>'
+    + '<div class="question-card" style="text-align:center">'
+    + '<div style="font-size:40px;margin-bottom:16px">✅</div>'
+    + '<div style="font-size:18px;color:var(--warm-white);margin-bottom:8px;font-weight:500">' + H212_T['hw.already_finished'] + '</div>'
+    + '<div style="font-size:14px;color:var(--text-muted);margin-bottom:28px">' + H212_T['hw.best_score'] + ' ' + best.score + '/' + best.total + '</div>'
+    + '<div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">'
+    + '<button class="next-btn" style="display:inline-flex" onclick="beginQuiz(\'' + type + '\')">' + H212_T['hw.start_again'] + '</button>'
+    + '<button class="next-btn" style="display:inline-flex" onclick="renderTypes(' + currentChapter + ')">' + H212_T['hw.back_to_topics'] + '</button>'
+    + '</div></div>';
+  getPC().innerHTML = html;
+}
+
+function beginQuiz(type) {
   currentType  = type;
   currentIndex = 0;
   score        = 0;
@@ -340,6 +423,8 @@ function showFinish() {
   var total    = currentQ.length;
   var typeName = typeLabel(currentType);
   var pct      = Math.round((score / total) * 100);
+
+  saveScore(currentLevel, currentChapter, currentType, score, total);
   var emoji    = pct === 100 ? '🏆' : pct >= 70 ? '😊' : '💪';
 
   var html = '<div class="section-header"><h2>' + H212_T['hw.results'] + '</h2></div>'
@@ -350,7 +435,7 @@ function showFinish() {
     + '<div style="font-size:14px;color:var(--text-muted);margin-bottom:28px">'
     + typeName + ' · ' + H212_T['hw.level'] + ' ' + currentLevel + ' · ' + H212_T['hw.chapter'] + ' ' + currentChapter + '</div>'
     + '<div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">'
-    + '<button class="next-btn" style="display:inline-flex" onclick="startQuiz(\'' + currentType + '\')">' + H212_T['hw.try_again'] + '</button>'
+    + '<button class="next-btn" style="display:inline-flex" onclick="beginQuiz(\'' + currentType + '\')">' + H212_T['hw.try_again'] + '</button>'
     + '<button class="next-btn" style="display:inline-flex" onclick="renderTypes(' + currentChapter + ')">' + H212_T['hw.back_to_topics'] + '</button>'
     + '</div></div>';
 

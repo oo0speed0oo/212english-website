@@ -89,6 +89,10 @@ $GLOBALS['h212_strings'] = array(
 	'hw.try_again'       => array( 'en' => 'Try Again',                        'ja' => 'もう一度挑戦' ),
 	'hw.back_to_topics'  => array( 'en' => 'Back to Topics',                   'ja' => 'トピックに戻る' ),
 	'hw.photo_question'  => array( 'en' => '📸 Photo Question',                'ja' => '📸 写真問題' ),
+	'hw.finished_badge'  => array( 'en' => 'Finished',                         'ja' => '完了' ),
+	'hw.already_finished'=> array( 'en' => "You've already finished this quiz.", 'ja' => 'このクイズはすでに完了しています。' ),
+	'hw.best_score'      => array( 'en' => 'Your best score:',                 'ja' => '最高スコア:' ),
+	'hw.start_again'     => array( 'en' => 'Start Again',                      'ja' => 'もう一度挑戦' ),
 
 	'tests.choose_level_chapter' => array( 'en' => 'Choose your level then chapter.', 'ja' => 'レベルとチャプターを選んでください。' ),
 	'tests.preparing'            => array( 'en' => 'This test is being prepared. Check back soon!', 'ja' => 'このテストは準備中です。また後で確認してください!' ),
