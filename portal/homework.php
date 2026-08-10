@@ -266,13 +266,42 @@ function saveScore(level, chapter, type, score, total) {
     .catch(function() {});
 }
 
+// Splits one CSV line into fields, respecting "quoted, fields" (with ""
+// as an escaped quote inside one) - a plain split(',') breaks the
+// moment any field contains a comma or a quote mark.
+function splitCSVLine(line) {
+  var result = [];
+  var cur = '';
+  var inQuotes = false;
+  for (var i = 0; i < line.length; i++) {
+    var ch = line[i];
+    if (inQuotes) {
+      if (ch === '"') {
+        if (line[i + 1] === '"') { cur += '"'; i++; }
+        else { inQuotes = false; }
+      } else {
+        cur += ch;
+      }
+    } else if (ch === '"') {
+      inQuotes = true;
+    } else if (ch === ',') {
+      result.push(cur);
+      cur = '';
+    } else {
+      cur += ch;
+    }
+  }
+  result.push(cur);
+  return result;
+}
+
 function parseCSV(text) {
   var lines  = text.trim().split('\n');
-  var header = lines[0].split(',').map(function(h) { return h.trim().toLowerCase(); });
+  var header = splitCSVLine(lines[0]).map(function(h) { return h.trim().toLowerCase(); });
   var rows   = [];
   for (var i = 1; i < lines.length; i++) {
     if (!lines[i].trim()) continue;
-    var cols = lines[i].split(',');
+    var cols = splitCSVLine(lines[i]);
     var get = function(name) {
       var idx = header.indexOf(name);
       return (idx === -1 || cols[idx] === undefined) ? '' : cols[idx].trim();

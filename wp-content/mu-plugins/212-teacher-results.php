@@ -16,13 +16,21 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 add_action( 'admin_menu', function () {
 	add_menu_page(
-		'Student Results',
-		'Student Results',
+		'212 English',
+		'212 English',
 		'manage_options',
 		'h212-student-results',
 		'h212_render_student_results_page',
 		'dashicons-welcome-learn-more',
 		26
+	);
+	add_submenu_page(
+		'h212-student-results',
+		'Student Results',
+		'Student Results',
+		'manage_options',
+		'h212-student-results',
+		'h212_render_student_results_page'
 	);
 } );
 
