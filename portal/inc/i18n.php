@@ -94,6 +94,8 @@ $GLOBALS['h212_strings'] = array(
 	'hw.best_score'      => array( 'en' => 'Your best score:',                 'ja' => '最高スコア:' ),
 	'hw.start_again'     => array( 'en' => 'Start Again',                      'ja' => 'もう一度挑戦' ),
 	'hw.needs_review'    => array( 'en' => 'to review',                       'ja' => '復習が必要' ),
+	'hw.locked_level'    => array( 'en' => 'Finish the previous level to unlock this.',   'ja' => '前のレベルを完了すると開放されます。' ),
+	'hw.locked_chapter'  => array( 'en' => 'Finish the previous chapter to unlock this.', 'ja' => '前のチャプターを完了すると開放されます。' ),
 
 	'tests.choose_level_chapter' => array( 'en' => 'Choose your level then chapter.', 'ja' => 'レベルとチャプターを選んでください。' ),
 	'tests.preparing'            => array( 'en' => 'This test is being prepared. Check back soon!', 'ja' => 'このテストは準備中です。また後で確認してください!' ),

@@ -102,6 +102,7 @@ h212_js_strings( array(
 	'hw.see_results', 'hw.results', 'hw.correct_word', 'hw.try_again',
 	'hw.back_to_topics', 'hw.photo_question', 'hw.finished_badge',
 	'hw.already_finished', 'hw.best_score', 'hw.start_again', 'hw.needs_review',
+	'hw.locked_level', 'hw.locked_chapter',
 ) );
 ?>
 <script>window.H212_NONCE = "<?php echo esc_js( wp_create_nonce( 'h212_save_score' ) ); ?>";</script>
@@ -236,6 +237,21 @@ function chapterFinishedCount(level, chapter) {
   types.forEach(function(t) { if (isTypeFinished(level, chapter, t)) n++; });
   return n;
 }
+function isChapterFullyFinished(level, chapter) {
+  return chapterFinishedCount(level, chapter) === 3;
+}
+function isLevelUnlocked(level) {
+  if (level <= 1) return true;
+  for (var c = 1; c <= 16; c++) {
+    if (!isChapterFullyFinished(level - 1, c)) return false;
+  }
+  return true;
+}
+function isChapterUnlocked(level, chapter) {
+  if (!isLevelUnlocked(level)) return false;
+  if (chapter <= 1) return true;
+  return isChapterFullyFinished(level, chapter - 1);
+}
 function saveScore(level, chapter, type, score, total) {
   return fetch('inc/scores.php', {
     method: 'POST',
@@ -295,33 +311,45 @@ function renderLevels() {
     + '<div class="breadcrumb"><span>' + H212_T['nav.homework'] + '</span></div>'
     + '<div class="level-grid">';
   for (var i = 1; i <= 5; i++) {
-    html += '<div class="level-btn" onclick="renderChapters(' + i + ')">'
-      + '<span class="num">' + i + '</span><span class="lbl">' + H212_T['hw.level'] + ' ' + i + '</span></div>';
+    if (isLevelUnlocked(i)) {
+      html += '<div class="level-btn" onclick="renderChapters(' + i + ')">'
+        + '<span class="num">' + i + '</span><span class="lbl">' + H212_T['hw.level'] + ' ' + i + '</span></div>';
+    } else {
+      html += '<div class="level-btn locked" title="' + H212_T['hw.locked_level'] + '">'
+        + '<span class="lock-icon">🔒</span><span class="num">' + i + '</span><span class="lbl">' + H212_T['hw.level'] + ' ' + i + '</span></div>';
+    }
   }
   html += '</div>';
   getPC().innerHTML = html;
 }
 
 function renderChapters(lvl) {
+  if (!isLevelUnlocked(lvl)) { renderLevels(); return; }
   currentLevel = lvl; currentChapter = null; currentType = null;
   var html = '<div class="section-header"><h2>' + H212_T['nav.homework'] + '</h2><p>' + H212_T['hw.choose_chapter'] + '</p></div>'
     + '<div class="breadcrumb"><span>' + H212_T['nav.homework'] + '</span><span class="sep">›</span><span>' + H212_T['hw.level'] + ' ' + lvl + '</span></div>'
     + '<button class="back-btn" onclick="renderLevels()">' + H212_T['hw.back_levels'] + '</button>'
     + '<div class="chapter-grid">';
   for (var c = 1; c <= 16; c++) {
-    var done = chapterFinishedCount(lvl, c);
-    var badge = done > 0
-      ? '<span class="chapter-progress' + (done === 3 ? ' done' : '') + '">' + done + '/3</span>'
-      : '';
-    html += '<div class="chapter-btn" onclick="renderTypes(' + c + ')">'
-      + badge
-      + '<span class="num">' + c + '</span><span class="lbl">' + H212_T['hw.chapter'] + ' ' + c + '</span></div>';
+    if (isChapterUnlocked(lvl, c)) {
+      var done = chapterFinishedCount(lvl, c);
+      var badge = done > 0
+        ? '<span class="chapter-progress' + (done === 3 ? ' done' : '') + '">' + done + '/3</span>'
+        : '';
+      html += '<div class="chapter-btn" onclick="renderTypes(' + c + ')">'
+        + badge
+        + '<span class="num">' + c + '</span><span class="lbl">' + H212_T['hw.chapter'] + ' ' + c + '</span></div>';
+    } else {
+      html += '<div class="chapter-btn locked" title="' + H212_T['hw.locked_chapter'] + '">'
+        + '<span class="lock-icon">🔒</span><span class="num">' + c + '</span><span class="lbl">' + H212_T['hw.chapter'] + ' ' + c + '</span></div>';
+    }
   }
   html += '</div>';
   getPC().innerHTML = html;
 }
 
 function renderTypes(ch) {
+  if (!isChapterUnlocked(currentLevel, ch)) { renderChapters(currentLevel); return; }
   currentChapter = ch; currentType = null;
   var html = '<div class="section-header"><h2>' + H212_T['nav.homework'] + '</h2><p>' + H212_T['hw.choose_study'] + '</p></div>'
     + '<div class="breadcrumb"><span>' + H212_T['nav.homework'] + '</span><span class="sep">›</span><span>' + H212_T['hw.level'] + ' ' + currentLevel + '</span><span class="sep">›</span><span>' + H212_T['hw.chapter'] + ' ' + ch + '</span></div>'
