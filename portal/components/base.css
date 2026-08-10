@@ -149,6 +149,7 @@ body {
   display: block; margin-top: 8px; font-size: 11px; font-weight: 600;
   color: #2f7a4f;
 }
+.type-btn .status.wrong { color: #b3261e; }
 .chapter-progress {
   position: absolute; top: 8px; right: 10px;
   font-size: 10px; font-weight: 600; letter-spacing: 0.03em;

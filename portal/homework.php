@@ -101,7 +101,7 @@ h212_js_strings( array(
 	'hw.score', 'hw.correct_msg', 'hw.wrong_msg', 'hw.next_question',
 	'hw.see_results', 'hw.results', 'hw.correct_word', 'hw.try_again',
 	'hw.back_to_topics', 'hw.photo_question', 'hw.finished_badge',
-	'hw.already_finished', 'hw.best_score', 'hw.start_again',
+	'hw.already_finished', 'hw.best_score', 'hw.start_again', 'hw.needs_review',
 ) );
 ?>
 <script>window.H212_NONCE = "<?php echo esc_js( wp_create_nonce( 'h212_save_score' ) ); ?>";</script>
@@ -110,6 +110,8 @@ h212_js_strings( array(
 // ── State ─────────────────────────────────────────
 var allQuestions = [];
 var allScores     = []; // every quiz attempt this student has ever submitted
+var allSeen       = []; // ids of every individual question this student has ever answered
+var allWrong      = []; // ids of questions currently answered wrong (cleared once corrected)
 var currentLevel   = null;
 var currentChapter = null;
 var currentType    = null;
@@ -123,7 +125,7 @@ var AUDIO_FOLDER = 'audio/';
 
 // ── Boot ──────────────────────────────────────────
 window.addEventListener('DOMContentLoaded', function() {
-  Promise.all([ loadCSV(), loadScores() ]).then(renderLevels).catch(renderLevels);
+  Promise.all([ loadCSV(), loadScores(), loadSeen(), loadWrong() ]).then(renderLevels).catch(renderLevels);
 });
 
 // ── Load & parse CSV ──────────────────────────────
@@ -142,7 +144,70 @@ function loadScores() {
     .catch(function() { allScores = []; });
 }
 
+// ── Load which questions this student has already answered ──
+function loadSeen() {
+  return fetch('inc/seen.php')
+    .then(function(r) { return r.json(); })
+    .then(function(data) { allSeen = (data && data.seen) ? data.seen : []; })
+    .catch(function() { allSeen = []; });
+}
+function markSeen(id) {
+  if (!id || allSeen.indexOf(id) !== -1) return;
+  allSeen.push(id);
+  fetch('inc/seen.php', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ nonce: window.H212_NONCE, id: id })
+  }).catch(function() {});
+}
+
+// ── Load / record wrong answers ────────────────────
+function loadWrong() {
+  return fetch('inc/mistakes.php')
+    .then(function(r) { return r.json(); })
+    .then(function(data) { allWrong = (data && data.current_wrong) ? data.current_wrong : []; })
+    .catch(function() { allWrong = []; });
+}
+function recordMistake(q, correct, chosen) {
+  if (correct) {
+    var idx = allWrong.indexOf(q.id);
+    if (idx !== -1) allWrong.splice(idx, 1);
+  } else if (allWrong.indexOf(q.id) === -1) {
+    allWrong.push(q.id);
+  }
+  fetch('inc/mistakes.php', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      nonce: window.H212_NONCE, id: q.id, correct: correct,
+      level: currentLevel, chapter: currentChapter, type: currentType,
+      question: q.question, chosen: chosen, correct_answer: q.answer
+    })
+  }).catch(function() {});
+}
+
 // ── Score helpers ──────────────────────────────────
+function questionsForType(level, chapter, type) {
+  if (type === 'vocabulary') {
+    return allQuestions.filter(function(q) {
+      return q.level === level && q.chapter === chapter
+        && (q.type === 'vocabulary' || q.type === 'photo');
+    });
+  }
+  return allQuestions.filter(function(q) {
+    return q.level === level && q.chapter === chapter && q.type === type;
+  });
+}
+function unseenQuestionsForType(level, chapter, type) {
+  return questionsForType(level, chapter, type).filter(function(q) {
+    return allSeen.indexOf(q.id) === -1;
+  });
+}
+function wrongQuestionsForType(level, chapter, type) {
+  return questionsForType(level, chapter, type).filter(function(q) {
+    return allWrong.indexOf(q.id) !== -1;
+  });
+}
 function scoresFor(level, chapter, type) {
   return allScores.filter(function(s) {
     return s.level === level && s.chapter === chapter && s.type === type;
@@ -153,12 +218,17 @@ function bestScore(level, chapter, type) {
   if (!list.length) return null;
   var best = list[0];
   for (var i = 1; i < list.length; i++) {
-    if (list[i].score > best.score) best = list[i];
+    // Compare by percentage, since a resumed quiz can have a smaller
+    // total than a full one and still be a better result.
+    if ((list[i].score / list[i].total) > (best.score / best.total)) best = list[i];
   }
   return best;
 }
 function isTypeFinished(level, chapter, type) {
-  return scoresFor(level, chapter, type).length > 0;
+  var qs = questionsForType(level, chapter, type);
+  return qs.length > 0
+    && unseenQuestionsForType(level, chapter, type).length === 0
+    && wrongQuestionsForType(level, chapter, type).length === 0;
 }
 function chapterFinishedCount(level, chapter) {
   var types = ['vocabulary', 'grammar', 'listening'];
@@ -268,9 +338,16 @@ function renderTypes(ch) {
 }
 
 function typeStatusHtml(level, chapter, type) {
-  var best = bestScore(level, chapter, type);
-  if (!best) return '';
-  return '<span class="status">✓ ' + H212_T['hw.finished_badge'] + ' · ' + best.score + '/' + best.total + '</span>';
+  if (isTypeFinished(level, chapter, type)) {
+    var best = bestScore(level, chapter, type);
+    if (!best) return '';
+    return '<span class="status">✓ ' + H212_T['hw.finished_badge'] + ' · ' + best.score + '/' + best.total + '</span>';
+  }
+  var wrongCount = wrongQuestionsForType(level, chapter, type).length;
+  if (wrongCount > 0 && unseenQuestionsForType(level, chapter, type).length === 0) {
+    return '<span class="status wrong">⚠ ' + wrongCount + ' ' + H212_T['hw.needs_review'] + '</span>';
+  }
+  return '';
 }
 
 // ── Quiz ──────────────────────────────────────────
@@ -307,15 +384,18 @@ function beginQuiz(type) {
   currentIndex = 0;
   score        = 0;
 
-  if (type === 'vocabulary') {
-    currentQ = allQuestions.filter(function(q) {
-      return q.level === currentLevel && q.chapter === currentChapter
-        && (q.type === 'vocabulary' || q.type === 'photo');
-    });
+  // Priority order: anything never seen before, then anything currently
+  // answered wrong (so mistakes get another try), and only once both of
+  // those are cleared does a retake bring back the full set.
+  var unseen = unseenQuestionsForType(currentLevel, currentChapter, type);
+  var wrong  = wrongQuestionsForType(currentLevel, currentChapter, type);
+
+  if (unseen.length > 0) {
+    currentQ = unseen;
+  } else if (wrong.length > 0) {
+    currentQ = wrong;
   } else {
-    currentQ = allQuestions.filter(function(q) {
-      return q.level === currentLevel && q.chapter === currentChapter && q.type === type;
-    });
+    currentQ = questionsForType(currentLevel, currentChapter, type);
   }
 
   showQuestion();
@@ -390,13 +470,18 @@ function esc(str) {
 }
 
 function checkAnswer(btn, chosen, answer) {
+  var q = currentQ[currentIndex];
+  var isCorrect = (chosen === answer);
+  markSeen(q.id);
+  recordMistake(q, isCorrect, chosen);
+
   var btns = document.querySelectorAll('.choice-btn');
   btns.forEach(function(b) { b.disabled = true; });
 
   var msg  = document.getElementById('result-msg');
   var next = document.getElementById('next-btn');
 
-  if (chosen === answer) {
+  if (isCorrect) {
     btn.classList.add('correct');
     msg.textContent = H212_T['hw.correct_msg'];
     msg.className = 'result-msg correct';
