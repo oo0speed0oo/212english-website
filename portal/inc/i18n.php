@@ -102,9 +102,17 @@ $GLOBALS['h212_strings'] = array(
 	'tests.test_label'           => array( 'en' => 'Test',                     'ja' => 'テスト' ),
 
 	// Grades
-	'grades.subtitle'     => array( 'en' => 'Your results and progress tracking.', 'ja' => 'あなたの結果と進捗状況。' ),
-	'grades.soon_title'   => array( 'en' => 'Grades coming soon',              'ja' => '成績は近日公開' ),
-	'grades.soon_body'    => array( 'en' => 'Your test results and progress will appear here once tests are live.', 'ja' => 'テストが公開されると、ここに結果と進捗が表示されます。' ),
+	'grades.subtitle'      => array( 'en' => 'Your progress, level by level.',   'ja' => 'あなたの進捗状況、レベルごとに。' ),
+	'grades.current_level' => array( 'en' => 'Currently on',                    'ja' => '現在のレベル' ),
+	'grades.mastered_of'   => array( 'en' => 'chapters mastered',               'ja' => 'チャプターを習得' ),
+	'grades.go_homework'   => array( 'en' => 'Go to Homework →',                'ja' => '宿題へ →' ),
+	'grades.status_mastered'    => array( 'en' => 'Mastered',                   'ja' => '習得済み' ),
+	'grades.status_progress'    => array( 'en' => 'Needs Practice',             'ja' => '練習が必要' ),
+	'grades.status_not_started' => array( 'en' => 'Not Started',                'ja' => '未着手' ),
+	'grades.coming_soon_level'  => array( 'en' => 'Content coming soon for this level.', 'ja' => 'このレベルのコンテンツは近日公開予定です。' ),
+	'grades.msg_start'    => array( 'en' => "Let's get started! 🌱",            'ja' => '始めましょう！🌱' ),
+	'grades.msg_progress' => array( 'en' => "Nice work - keep it up! 💪",       'ja' => 'いい調子です、その調子で！💪' ),
+	'grades.msg_great'    => array( 'en' => "You're doing great! 🎉",           'ja' => 'よくできています！🎉' ),
 
 	// Videos
 	'videos.subtitle'     => array( 'en' => 'Latest lessons from the 212 English School YouTube channel.', 'ja' => '212イングリッシュスクールのYouTubeチャンネルの最新レッスン。' ),

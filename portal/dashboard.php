@@ -38,7 +38,7 @@ if ( '' === $first ) {
   <a class="dash-card" href="homework.php"><div class="dash-card-icon">📚</div><div class="dash-card-title"><?php echo esc_html( t( 'nav.homework' ) ); ?></div><div class="dash-card-sub"><?php echo esc_html( t( 'dash.homework_sub' ) ); ?></div><div class="dash-card-badge"><?php echo esc_html( t( 'dash.start_study' ) ); ?></div></a>
   <a class="dash-card" href="tests.php"><div class="dash-card-icon">📝</div><div class="dash-card-title"><?php echo esc_html( t( 'nav.tests' ) ); ?></div><div class="dash-card-sub"><?php echo esc_html( t( 'dash.homework_sub' ) ); ?></div><div class="dash-card-badge"><?php echo esc_html( t( 'dash.start_study' ) ); ?></div></a>
   <a class="dash-card" href="videos.php"><div class="dash-card-icon">🎬</div><div class="dash-card-title"><?php echo esc_html( t( 'nav.videos' ) ); ?></div><div class="dash-card-sub"><?php echo esc_html( t( 'dash.videos_sub' ) ); ?></div><div class="dash-card-badge"><?php echo esc_html( t( 'dash.start_watch' ) ); ?></div></a>
-  <a class="dash-card" href="grades.php"><div class="dash-card-icon">📊</div><div class="dash-card-title"><?php echo esc_html( t( 'nav.grades' ) ); ?></div><div class="dash-card-sub"><?php echo esc_html( t( 'dash.grades_sub' ) ); ?></div><div class="dash-card-badge"><?php echo esc_html( t( 'dash.coming_soon' ) ); ?></div></a>
+  <a class="dash-card" href="grades.php"><div class="dash-card-icon">📊</div><div class="dash-card-title"><?php echo esc_html( t( 'nav.grades' ) ); ?></div><div class="dash-card-sub"><?php echo esc_html( t( 'dash.grades_sub' ) ); ?></div><div class="dash-card-badge"><?php echo esc_html( t( 'dash.start_study' ) ); ?></div></a>
 </div>
 </main>
 </div>
