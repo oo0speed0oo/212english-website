@@ -13,6 +13,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+// Priority 20 (later than the default 10) so this always registers
+// AFTER 212-teacher-results.php creates the "212 English" parent menu
+// and its "Student Results" item - otherwise, depending on mu-plugin
+// file load order, this page can register as the parent's "first"
+// submenu item instead, which WordPress links incorrectly (it assumes
+// the first submenu IS the parent page and builds a broken URL for it).
 add_action( 'admin_menu', function () {
 	add_submenu_page(
 		'h212-student-results',
@@ -22,7 +28,7 @@ add_action( 'admin_menu', function () {
 		'h212-homework-questions',
 		'h212_render_homework_admin_page'
 	);
-} );
+}, 20 );
 
 // ── CSV read/write ──────────────────────────────────
 
