@@ -34,20 +34,32 @@ add_action( 'admin_menu', function () {
 	);
 } );
 
-// Marks every currently-existing question as seen (and clears any
-// "currently wrong" flags) for one student, so all levels/chapters they
-// have access to are unlocked. Useful for a test/demo account, or for
-// re-unlocking it after new content is added. Does not touch scores.
+// Marks every question up through a chosen Level/Chapter as seen (and
+// clears any "currently wrong" flags) for one student, so everything up
+// to that point is unlocked - matches how the lock system actually
+// works: reaching Chapter 5 requires chapters 1-4 to be done too, so
+// there's no way to unlock only one isolated chapter further in.
+// Useful for a test/demo account, or for re-unlocking after new content
+// is added. Does not touch scores.
 add_action( 'admin_post_h212_unlock_student', function () {
 	if ( ! current_user_can( 'manage_options' ) ) {
 		wp_die( 'Not allowed.' );
 	}
-	$student_id = isset( $_GET['student_id'] ) ? intval( $_GET['student_id'] ) : 0;
+	$student_id   = isset( $_GET['student_id'] ) ? intval( $_GET['student_id'] ) : 0;
+	$up_to_level   = isset( $_GET['up_to_level'] )   ? intval( $_GET['up_to_level'] )   : 5;
+	$up_to_chapter = isset( $_GET['up_to_chapter'] ) ? intval( $_GET['up_to_chapter'] ) : 16;
 	check_admin_referer( 'h212_unlock_student_' . $student_id );
 
-	$bank    = h212_load_question_bank();
-	$all_ids = array_map( function ( $q ) { return $q['id']; }, $bank );
-	update_user_meta( $student_id, 'h212_seen_questions', $all_ids );
+	$bank = h212_load_question_bank();
+	$ids  = array();
+	foreach ( $bank as $q ) {
+		$level   = (int) $q['level'];
+		$chapter = (int) $q['chapter'];
+		if ( $level < $up_to_level || ( $level === $up_to_level && $chapter <= $up_to_chapter ) ) {
+			$ids[] = $q['id'];
+		}
+	}
+	update_user_meta( $student_id, 'h212_seen_questions', $ids );
 	delete_user_meta( $student_id, 'h212_current_wrong' );
 
 	wp_safe_redirect( admin_url( 'admin.php?page=h212-student-results&student_id=' . $student_id . '&unlocked=1' ) );
@@ -104,7 +116,7 @@ function h212_render_student_results_page() {
 	echo '<div class="wrap"><h1>Student Results</h1>';
 
 	if ( isset( $_GET['unlocked'] ) ) {
-		echo '<div class="notice notice-success is-dismissible"><p>Everything currently in the CSV is now marked as seen for this student - all their levels/chapters are unlocked.</p></div>';
+		echo '<div class="notice notice-success is-dismissible"><p>Marked as seen up through the chosen Level/Chapter for this student - everything up to that point is now unlocked.</p></div>';
 	}
 
 	if ( ! $students ) {
@@ -127,11 +139,23 @@ function h212_render_student_results_page() {
 	echo '</select>';
 	echo '</form>';
 
-	$unlock_url = wp_nonce_url(
-		admin_url( 'admin-post.php?action=h212_unlock_student&student_id=' . $selected_id ),
-		'h212_unlock_student_' . $selected_id
-	);
-	echo ' <a href="' . esc_url( $unlock_url ) . '" class="button" onclick="return confirm(\'Mark everything currently in the CSV as seen for this student? This unlocks all their levels/chapters, but does not change their scores.\');">Unlock Everything for This Student</a>';
+	echo '<form method="get" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '" style="margin:16px 0 0;display:inline-flex;align-items:center;gap:8px;" onsubmit="return confirm(\'Mark everything up through the chosen Level/Chapter as seen for this student? Unlocks up to that point, but does not change their scores.\');">';
+	echo '<input type="hidden" name="action" value="h212_unlock_student" />';
+	echo '<input type="hidden" name="student_id" value="' . esc_attr( $selected_id ) . '" />';
+	wp_nonce_field( 'h212_unlock_student_' . $selected_id, '_wpnonce', true, true );
+	echo '<span>Unlock up through</span>';
+	echo '<select name="up_to_level">';
+	for ( $l = 1; $l <= 5; $l++ ) {
+		printf( '<option value="%d">Level %d</option>', $l, $l );
+	}
+	echo '</select>';
+	echo '<select name="up_to_chapter">';
+	for ( $c = 1; $c <= 16; $c++ ) {
+		printf( '<option value="%d" %s>Chapter %d</option>', $c, selected( $c, 16, false ), $c );
+	}
+	echo '</select>';
+	echo '<button type="submit" class="button">Unlock</button>';
+	echo '</form>';
 
 	$bank     = h212_load_question_bank();
 	$scores   = get_user_meta( $selected_id, 'h212_quiz_scores', true );
