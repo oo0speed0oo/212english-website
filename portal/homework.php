@@ -428,7 +428,7 @@ function showRetakeConfirm(type) {
     + '<div class="question-card" style="text-align:center">'
     + '<div style="font-size:40px;margin-bottom:16px">✅</div>'
     + '<div style="font-size:18px;color:var(--warm-white);margin-bottom:8px;font-weight:500">' + H212_T['hw.already_finished'] + '</div>'
-    + '<div style="font-size:14px;color:var(--text-muted);margin-bottom:28px">' + H212_T['hw.best_score'] + ' ' + best.score + '/' + best.total + '</div>'
+    + (best ? '<div style="font-size:14px;color:var(--text-muted);margin-bottom:28px">' + H212_T['hw.best_score'] + ' ' + best.score + '/' + best.total + '</div>' : '')
     + '<div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">'
     + '<button class="next-btn" style="display:inline-flex" onclick="beginQuiz(\'' + type + '\')">' + H212_T['hw.start_again'] + '</button>'
     + '<button class="next-btn" style="display:inline-flex" onclick="renderTypes(' + currentChapter + ')">' + H212_T['hw.back_to_topics'] + '</button>'
