@@ -146,7 +146,7 @@ function h212_render_student_results_page() {
 	echo '<span>Unlock up through</span>';
 	echo '<select name="up_to_level">';
 	for ( $l = 1; $l <= 5; $l++ ) {
-		printf( '<option value="%d">Level %d</option>', $l, $l );
+		printf( '<option value="%d" %s>Level %d</option>', $l, selected( $l, 5, false ), $l );
 	}
 	echo '</select>';
 	echo '<select name="up_to_chapter">';
