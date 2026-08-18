@@ -1,139 +1,174 @@
-id,level,chapter,type,question,choice_a,choice_b,choice_c,answer,image,audio
-92,1,1,grammar,I ___ a student.,am,is,are,am,,
-93,1,1,grammar,You ___ a student.,am,is,are,are,,
-94,1,1,grammar,He ___ a teacher.,am,is,are,is,,
-95,1,1,grammar,She ___ a teacher.,am,is,are,is,,
-96,1,1,grammar,It ___ a book.,am,is,are,is,,
-97,1,1,grammar,We ___ students.,am,is,are,are,,
-98,1,1,grammar,They ___ students.,am,is,are,are,,
-99,1,1,vocabulary,Mr. Smith is a man. Which word matches him?,he,she,they,he,,
-100,1,1,vocabulary,Mrs. Smith is a woman. Which word matches her?,he,she,they,she,,
-101,1,1,vocabulary,Mr. and Mrs. Smith are two people. Which word matches them?,he,she,they,they,,
-102,1,1,vocabulary,Mr. Tanaka is a man. Which word matches him?,he,she,they,he,,
-103,1,1,vocabulary,Ms. Brown is a woman. Which word matches her?,he,she,they,she,,
-104,1,1,vocabulary,Mr. Tanaka and Ms. Brown are two people. Which word matches them?,he,she,they,they,,
-105,1,1,vocabulary,Mr. Lee is a man. Which word matches him?,he,she,they,he,,
-106,1,1,vocabulary,Mrs. Lee is a woman. Which word matches her?,he,she,they,she,,
-107,1,1,listening,You hear "He is a doctor." Who is being talked about?,A man,A woman,Two people,A man,,
-108,1,1,listening,You hear "She is a doctor." Who is being talked about?,A man,A woman,Two people,A woman,,
-109,1,1,listening,You hear "They are doctors." Who is being talked about?,One person,Two or more people,No one,Two or more people,,
-110,1,1,listening,You hear "It is a cat." What is being talked about?,A person,A thing or animal,A place,A thing or animal,,
-111,1,1,listening,You hear "We are friends." Who is speaking?,One person alone,The speaker and at least one other person,A stranger,The speaker and at least one other person,,
-4,1,2,vocabulary,What does "run" mean?,To move fast on foot,To sleep,To eat,To move fast on foot,,
-5,1,2,photo,What is this?,pen,pencil,ruler,pencil,pencil.png,
-6,1,2,photo,What is this?,book,notebook,dictionary,book,book.png,
-7,1,2,photo,What is this?,desk,chair,shelf,desk,desk.png,
-8,1,2,photo,What is this?,pen,marker,pencil,pen,pen.png,
-9,1,2,photo,What is this?,book,dictionary,notebook,notebook,notebook.png,
-10,1,2,photo,What is this?,book,dictionary,notebook,dictionary,dictionary.png,
-11,1,2,photo,What is this?,television,tablet,computer,computer,computer.png,
-12,1,2,grammar,She ___ a teacher.,am,is,are,is,,
-13,1,2,listening,You hear "Thank you". What is the person doing?,Showing gratitude,Asking for help,Saying hello,Showing gratitude,,
-56,1,2,vocabulary,What does "ruler" mean?,A tool used to measure or draw straight lines,A tool used to cut paper,A tool used to write,A tool used to measure or draw straight lines,,
-57,1,2,vocabulary,What does "table" mean?,A piece of furniture with a flat top used for eating or working,A piece of furniture for sitting,A piece of furniture for sleeping,A piece of furniture with a flat top used for eating or working,,
-58,1,2,vocabulary,What does "chair" mean?,A piece of furniture for one person to sit on,A piece of furniture for sleeping,A piece of furniture for storing books,A piece of furniture for one person to sit on,,
-59,1,2,vocabulary,What does "bookshelf" mean?,A piece of furniture used to hold books,A piece of furniture used to hold clothes,A piece of furniture used for sitting,A piece of furniture used to hold books,,
-60,1,2,vocabulary,What does "globe" mean?,A round model of the Earth,A flat drawing of a country,A model of the sun,A round model of the Earth,,
-61,1,2,vocabulary,What does "map" mean?,A drawing that shows where places are,A book with a story,A list of names,A drawing that shows where places are,,
-62,1,2,vocabulary,What does "board" mean?,A flat surface a teacher writes on,A piece of paper for drawing,A type of desk,A flat surface a teacher writes on,,
-63,1,2,vocabulary,What does "wall" mean?,The side of a room that divides spaces,The floor of a room,The top of a room,The side of a room that divides spaces,,
-64,1,2,vocabulary,What does "clock" mean?,A device used to tell the time,A device used to tell the weather,A device used to make phone calls,A device used to tell the time,,
-65,1,2,vocabulary,What does "bulletin board" mean?,A board used to post notices or announcements,A board used to play games,A board used to write letters,A board used to post notices or announcements,,
-66,1,2,vocabulary,What does "bank" mean?,A place where you keep or manage money,A place where you buy food,A place where you send letters,A place where you keep or manage money,,
-67,1,2,vocabulary,What does "supermarket" mean?,A large store that sells food and other items,A place where you keep money,A place where you eat a meal,A large store that sells food and other items,,
-68,1,2,vocabulary,What does "post office" mean?,A place where you send and receive mail,A place where you buy food,A place where you eat a meal,A place where you send and receive mail,,
-69,1,2,vocabulary,What does "restaurant" mean?,A place where you go to eat a meal,A place where you send mail,A place where you borrow books,A place where you go to eat a meal,,
-70,1,2,vocabulary,What does "library" mean?,A place with many books you can read or borrow,A place where you buy books,A place where you eat lunch,A place with many books you can read or borrow,,
-71,1,2,vocabulary,What does "living room" mean?,A room in a house for relaxing or watching TV,A room in a house for cooking,A room in a house for sleeping,A room in a house for relaxing or watching TV,,
-72,1,2,vocabulary,What does "dining room" mean?,A room in a house where you eat meals,A room in a house where you sleep,A room in a house where you wash,A room in a house where you eat meals,,
-73,1,2,vocabulary,What does "kitchen" mean?,A room in a house where you cook food,A room in a house where you sleep,A room in a house where you wash,A room in a house where you cook food,,
-74,1,2,vocabulary,What does "bedroom" mean?,A room in a house where you sleep,A room in a house where you cook,A room in a house where you eat,A room in a house where you sleep,,
-75,1,2,vocabulary,What does "bathroom" mean?,A room in a house with a toilet and shower,A room in a house for cooking,A room in a house for sleeping,A room in a house with a toilet and shower,,
-76,1,2,vocabulary,What does "attic" mean?,A space at the top of a house under the roof,A space below the ground floor,A room for eating meals,A space at the top of a house under the roof,,
-77,1,2,vocabulary,What does "yard" mean?,An outdoor area next to a house,An indoor room for sleeping,A room for cooking,An outdoor area next to a house,,
-78,1,2,vocabulary,What does "garage" mean?,A place in a house where you park a car,A place in a house where you cook,A place in a house where you sleep,A place in a house where you park a car,,
-79,1,2,vocabulary,What does "basement" mean?,A room below the ground floor of a house,A room at the top of a house,An outdoor area next to a house,A room below the ground floor of a house,,
-80,1,2,grammar,The pen is ___ the desk.,in,on,at,on,,
-81,1,2,grammar,I ___ in the kitchen.,am,is,are,am,,
-82,1,2,grammar,We ___ in the library.,am,is,are,are,,
-83,1,2,grammar,Tom and Ann ___ in the supermarket.,am,is,are,are,,
-84,1,2,grammar,He ___ in the bank.,am,is,are,is,,
-85,1,2,grammar,She ___ in the restaurant.,am,is,are,is,,
-86,1,2,grammar,The book is ___ the bookshelf.,in,on,at,in,,
-87,1,2,listening,You hear someone ask "Where is the pen?" What are they doing?,Asking where something is,Saying goodbye,Giving a compliment,Asking where something is,,
-88,1,2,listening,You hear someone ask "Where are you?" What are they doing?,Asking where someone is,Asking for the time,Saying hello,Asking where someone is,,
-89,1,2,listening,You hear someone say "I am in the kitchen." What are they doing?,Telling someone where they are,Asking a question,Saying goodbye,Telling someone where they are,,
-90,1,2,listening,You hear someone ask "Where is she?" What are they doing?,Asking where someone is,Giving directions,Saying thank you,Asking where someone is,,
-91,1,2,listening,You hear someone say "We are in the library." What are they doing?,Telling someone where they are,Asking for help,Saying good morning,Telling someone where they are,,
-112,1,3,vocabulary,What does "eating" mean?,putting food in your mouth and swallowing it,drinking water,cooking food,putting food in your mouth and swallowing it,,
-113,1,3,vocabulary,What does "drinking" mean?,swallowing a liquid,eating food,washing your hands,swallowing a liquid,,
-114,1,3,vocabulary,What does "cooking" mean?,preparing food by heating it,eating a meal,washing dishes,preparing food by heating it,,
-115,1,3,vocabulary,What does "reading" mean?,looking at and understanding written words,writing a letter,drawing a picture,looking at and understanding written words,,
-116,1,3,vocabulary,What does "studying" mean?,learning about a subject,teaching a class,sleeping,learning about a subject,,
-117,1,3,vocabulary,What does "teaching" mean?,helping someone learn,learning by yourself,reading alone,helping someone learn,,
-118,1,3,vocabulary,What does "singing" mean?,making music with your voice,playing an instrument,dancing,making music with your voice,,
-119,1,3,vocabulary,What does "sleeping" mean?,resting with your eyes closed,eating a meal,studying,resting with your eyes closed,,
-120,1,3,vocabulary,What does "swimming" mean?,moving through water using your body,walking outside,washing your hands,moving through water using your body,,
-121,1,3,vocabulary,What does "planting" mean?,putting a seed or plant in the ground,picking fruit,cutting grass,putting a seed or plant in the ground,,
-122,1,3,vocabulary,What does "watching TV" mean?,looking at a television program,listening to the radio,reading a magazine,looking at a television program,,
-123,1,3,vocabulary,What does "listening to music" mean?,paying attention to music,playing an instrument,singing a song,paying attention to music,,
-124,1,3,vocabulary,What does "playing cards" mean?,playing a game with a deck of cards,writing a letter,playing a sport,playing a game with a deck of cards,,
-125,1,3,vocabulary,What does "playing baseball" mean?,playing a sport with a bat and a ball,playing a card game,playing an instrument,playing a sport with a bat and a ball,,
-126,1,3,vocabulary,What does "playing the piano" mean?,making music on a piano,singing without music,playing a sport,making music on a piano,,
-127,1,3,grammar,I ___ eating breakfast.,am,is,are,am,,
-128,1,3,grammar,You ___ reading a book.,am,is,are,are,,
-129,1,3,grammar,He ___ playing baseball.,am,is,are,is,,
-130,1,3,grammar,She ___ singing a song.,am,is,are,is,,
-131,1,3,grammar,It ___ sleeping.,am,is,are,is,,
-132,1,3,grammar,We ___ studying English.,am,is,are,are,,
-133,1,3,grammar,They ___ watching TV.,am,is,are,are,,
-134,1,3,grammar,He is in the kitchen. What is he doing?,cooking,sleeping,swimming,cooking,,
-135,1,3,grammar,She is in the bedroom. What is she doing?,sleeping,cooking,planting,sleeping,,
-136,1,3,grammar,They are in the yard. What are they doing?,planting,reading,singing,planting,,
-137,1,3,grammar,We are in the living room. What are we doing?,watching TV,swimming,teaching,watching TV,,
-138,1,3,grammar,You are in the library. What are you doing?,reading,swimming,planting,reading,,
-139,1,3,grammar,I am in the kitchen. What am I doing?,cooking,sleeping,singing,cooking,,
-140,1,3,listening,You hear "He is eating." What is he doing?,Eating a meal,Reading a book,Sleeping,Eating a meal,,
-141,1,3,listening,You hear "She is singing." What is she doing?,Making music with her voice,Cooking food,Reading a book,Making music with her voice,,
-142,1,3,listening,You hear "They are swimming." What are they doing?,Moving through water,Watching TV,Studying,Moving through water,,
-143,1,3,listening,You hear "We are studying." What are we doing?,Learning about a subject,Playing a game,Sleeping,Learning about a subject,,
-144,1,3,listening,You hear "I am playing the piano." What am I doing?,Making music on a piano,Cooking food,Reading a book,Making music on a piano,,
-17,1,4,vocabulary,What does "eat" mean?,To put food in your mouth,To drink water,To sleep,To put food in your mouth,,
-18,1,4,grammar,We ___ at school.,am,is,are,are,,
-19,1,4,listening,You hear "Sorry". What did the person do?,Made a mistake,Asked a question,Said hello,Made a mistake,,
-20,1,5,vocabulary,What does "small" mean?,Little in size,Very big,Very loud,Little in size,,
-21,1,5,grammar,He ___ my brother.,am,is,are,is,,
-22,1,5,listening,You hear "Please". What is the person doing?,Making a polite request,Saying goodbye,Giving a command,Making a polite request,,
-23,1,6,vocabulary,What does "cold" mean?,Low temperature,Very hot,Very fast,Low temperature,,
-24,1,6,grammar,I ___ hungry.,am,is,are,am,,
-25,1,6,listening,You hear "Yes". What does the person mean?,They agree,They disagree,They don't know,They agree,,
-26,1,7,vocabulary,What does "drink" mean?,To swallow liquid,To eat food,To run fast,To swallow liquid,,
-27,1,7,grammar,She ___ at home.,am,is,are,is,,
-28,1,7,listening,You hear "No". What does the person mean?,They disagree or refuse,They agree,They are happy,They disagree or refuse,,
-29,1,8,vocabulary,What does "hot" mean?,High temperature,Very cold,Very slow,High temperature,,
-30,1,8,grammar,The cat ___ on the table.,am,is,are,is,,
-31,1,8,listening,You hear "Help!". What does the person need?,Assistance from someone,Food to eat,Time to rest,Assistance from someone,,
-32,1,9,vocabulary,What does "new" mean?,Recently made or bought,Very old,Very broken,Recently made or bought,,
-33,1,9,grammar,My parents ___ at work.,am,is,are,are,,
-34,1,9,listening,You hear "Come here". What should you do?,Move toward the speaker,Stay where you are,Leave the room,Move toward the speaker,,
-35,1,10,vocabulary,What does "open" mean?,Not closed or shut,Very tight,Very fast,Not closed or shut,,
-36,1,10,grammar,The dog ___ very friendly.,am,is,are,is,,
-37,1,10,listening,You hear "Sit down". What should you do?,Take a seat,Stand up,Leave,Take a seat,,
-38,1,11,vocabulary,What does "old" mean?,Having existed for a long time,Very new,Very clean,Having existed for a long time,,
-39,1,11,grammar,You ___ very kind.,am,is,are,are,,
-40,1,11,listening,You hear "Be quiet". What should you do?,Stop making noise,Start talking,Start running,Stop making noise,,
-41,1,12,vocabulary,What does "fast" mean?,Moving quickly,Moving slowly,Standing still,Moving quickly,,
-42,1,12,grammar,It ___ raining outside.,am,is,are,is,,
-43,1,12,listening,You hear "Good morning". What time of day is it?,Morning,Evening,Night,Morning,,
-44,1,13,vocabulary,What does "sleep" mean?,To rest with eyes closed,To eat a meal,To run outside,To rest with eyes closed,,
-45,1,13,grammar,The students ___ reading.,am,is,are,are,,
-46,1,13,listening,You hear "Good night". What is about to happen?,Someone is going to sleep,Someone is waking up,Someone is eating,Someone is going to sleep,,
-47,1,14,vocabulary,What does "clean" mean?,Free from dirt,Very messy,Very loud,Free from dirt,,
-48,1,14,grammar,My friend ___ very tall.,am,is,are,is,,
-49,1,14,listening,You hear "How are you?". What is being asked?,How the person is feeling,Where the person is going,What the person is eating,How the person is feeling,,
-50,1,15,vocabulary,What does "walk" mean?,To move on foot at a normal pace,To run very fast,To sit down,To move on foot at a normal pace,,
-51,1,15,grammar,The birds ___ singing.,am,is,are,are,,
-52,1,15,listening,You hear "I don't understand". What is the person saying?,They are confused,They are angry,They are happy,They are confused,,
-53,1,16,vocabulary,What does "tired" mean?,Feeling like you need to rest,Feeling very energetic,Feeling very hungry,Feeling like you need to rest,,
-54,1,16,grammar,He ___ my English teacher.,am,is,are,is,,
-55,1,16,listening,You hear "Can you repeat that?". What does the person want?,To hear something again,To stop talking,To leave,To hear something again,,
+id,level,chapter,type,question,choice_a,choice_b,choice_c,answer,image,audio,mode
+92,1,1,grammar,I ___ a student.,am,is,are,am,,,homework
+93,1,1,grammar,You ___ a student.,am,is,are,are,,,homework
+94,1,1,grammar,He ___ a teacher.,am,is,are,is,,,homework
+95,1,1,grammar,She ___ a teacher.,am,is,are,is,,,homework
+96,1,1,grammar,It ___ a book.,am,is,are,is,,,homework
+97,1,1,grammar,We ___ students.,am,is,are,are,,,homework
+98,1,1,grammar,They ___ students.,am,is,are,are,,,homework
+99,1,1,vocabulary,Mr. Smith is a man. Which word matches him?,he,she,they,he,,,homework
+100,1,1,vocabulary,Mrs. Smith is a woman. Which word matches her?,he,she,they,she,,,homework
+101,1,1,vocabulary,Mr. and Mrs. Smith are two people. Which word matches them?,he,she,they,they,,,homework
+102,1,1,vocabulary,Mr. Tanaka is a man. Which word matches him?,he,she,they,he,,,homework
+103,1,1,vocabulary,Ms. Brown is a woman. Which word matches her?,he,she,they,she,,,homework
+104,1,1,vocabulary,Mr. Tanaka and Ms. Brown are two people. Which word matches them?,he,she,they,they,,,homework
+105,1,1,vocabulary,Mr. Lee is a man. Which word matches him?,he,she,they,he,,,homework
+106,1,1,vocabulary,Mrs. Lee is a woman. Which word matches her?,he,she,they,she,,,homework
+107,1,1,listening,You hear "He is a doctor." Who is being talked about?,A man,A woman,Two people,A man,,,homework
+108,1,1,listening,You hear "She is a doctor." Who is being talked about?,A man,A woman,Two people,A woman,,,homework
+109,1,1,listening,You hear "They are doctors." Who is being talked about?,One person,Two or more people,No one,Two or more people,,,homework
+110,1,1,listening,You hear "It is a cat." What is being talked about?,A person,A thing or animal,A place,A thing or animal,,,homework
+111,1,1,listening,You hear "We are friends." Who is speaking?,One person alone,The speaker and at least one other person,A stranger,The speaker and at least one other person,,,homework
+145,1,1,grammar,I ___ a teacher.,am,is,are,am,,,test
+146,1,1,grammar,You ___ my friend.,am,is,are,are,,,test
+147,1,1,grammar,She ___ a doctor.,am,is,are,is,,,test
+148,1,1,grammar,They ___ happy.,am,is,are,are,,,test
+149,1,1,vocabulary,Mr. Johnson is a man. Which word matches him?,he,she,they,he,,,test
+150,1,1,vocabulary,Mrs. Johnson is a woman. Which word matches her?,he,she,they,she,,,test
+151,1,1,vocabulary,Mr. and Mrs. Johnson are two people. Which word matches them?,he,she,they,they,,,test
+152,1,1,vocabulary,Ms. Green is a woman. Which word matches her?,he,she,they,she,,,test
+153,1,1,listening,You hear "He is a nurse." Who is being talked about?,A man,A woman,Two people,A man,,,test
+154,1,1,listening,You hear "It is a dog." What is being talked about?,A person,A thing or animal,A place,A thing or animal,,,test
+4,1,2,vocabulary,What does "run" mean?,To move fast on foot,To sleep,To eat,To move fast on foot,,,homework
+5,1,2,photo,What is this?,pen,pencil,ruler,pencil,pencil.png,,homework
+6,1,2,photo,What is this?,book,notebook,dictionary,book,book.png,,homework
+7,1,2,photo,What is this?,desk,chair,shelf,desk,desk.png,,homework
+8,1,2,photo,What is this?,pen,marker,pencil,pen,pen.png,,homework
+9,1,2,photo,What is this?,book,dictionary,notebook,notebook,notebook.png,,homework
+10,1,2,photo,What is this?,book,dictionary,notebook,dictionary,dictionary.png,,homework
+11,1,2,photo,What is this?,television,tablet,computer,computer,computer.png,,homework
+12,1,2,grammar,She ___ a teacher.,am,is,are,is,,,homework
+13,1,2,listening,You hear "Thank you". What is the person doing?,Showing gratitude,Asking for help,Saying hello,Showing gratitude,,,homework
+56,1,2,vocabulary,What does "ruler" mean?,A tool used to measure or draw straight lines,A tool used to cut paper,A tool used to write,A tool used to measure or draw straight lines,,,homework
+57,1,2,vocabulary,What does "table" mean?,A piece of furniture with a flat top used for eating or working,A piece of furniture for sitting,A piece of furniture for sleeping,A piece of furniture with a flat top used for eating or working,,,homework
+58,1,2,vocabulary,What does "chair" mean?,A piece of furniture for one person to sit on,A piece of furniture for sleeping,A piece of furniture for storing books,A piece of furniture for one person to sit on,,,homework
+59,1,2,vocabulary,What does "bookshelf" mean?,A piece of furniture used to hold books,A piece of furniture used to hold clothes,A piece of furniture used for sitting,A piece of furniture used to hold books,,,homework
+60,1,2,vocabulary,What does "globe" mean?,A round model of the Earth,A flat drawing of a country,A model of the sun,A round model of the Earth,,,homework
+61,1,2,vocabulary,What does "map" mean?,A drawing that shows where places are,A book with a story,A list of names,A drawing that shows where places are,,,homework
+62,1,2,vocabulary,What does "board" mean?,A flat surface a teacher writes on,A piece of paper for drawing,A type of desk,A flat surface a teacher writes on,,,homework
+63,1,2,vocabulary,What does "wall" mean?,The side of a room that divides spaces,The floor of a room,The top of a room,The side of a room that divides spaces,,,homework
+64,1,2,vocabulary,What does "clock" mean?,A device used to tell the time,A device used to tell the weather,A device used to make phone calls,A device used to tell the time,,,homework
+65,1,2,vocabulary,What does "bulletin board" mean?,A board used to post notices or announcements,A board used to play games,A board used to write letters,A board used to post notices or announcements,,,homework
+66,1,2,vocabulary,What does "bank" mean?,A place where you keep or manage money,A place where you buy food,A place where you send letters,A place where you keep or manage money,,,homework
+67,1,2,vocabulary,What does "supermarket" mean?,A large store that sells food and other items,A place where you keep money,A place where you eat a meal,A large store that sells food and other items,,,homework
+68,1,2,vocabulary,What does "post office" mean?,A place where you send and receive mail,A place where you buy food,A place where you eat a meal,A place where you send and receive mail,,,homework
+69,1,2,vocabulary,What does "restaurant" mean?,A place where you go to eat a meal,A place where you send mail,A place where you borrow books,A place where you go to eat a meal,,,homework
+70,1,2,vocabulary,What does "library" mean?,A place with many books you can read or borrow,A place where you buy books,A place where you eat lunch,A place with many books you can read or borrow,,,homework
+71,1,2,vocabulary,What does "living room" mean?,A room in a house for relaxing or watching TV,A room in a house for cooking,A room in a house for sleeping,A room in a house for relaxing or watching TV,,,homework
+72,1,2,vocabulary,What does "dining room" mean?,A room in a house where you eat meals,A room in a house where you sleep,A room in a house where you wash,A room in a house where you eat meals,,,homework
+73,1,2,vocabulary,What does "kitchen" mean?,A room in a house where you cook food,A room in a house where you sleep,A room in a house where you wash,A room in a house where you cook food,,,homework
+74,1,2,vocabulary,What does "bedroom" mean?,A room in a house where you sleep,A room in a house where you cook,A room in a house where you eat,A room in a house where you sleep,,,homework
+75,1,2,vocabulary,What does "bathroom" mean?,A room in a house with a toilet and shower,A room in a house for cooking,A room in a house for sleeping,A room in a house with a toilet and shower,,,homework
+76,1,2,vocabulary,What does "attic" mean?,A space at the top of a house under the roof,A space below the ground floor,A room for eating meals,A space at the top of a house under the roof,,,homework
+77,1,2,vocabulary,What does "yard" mean?,An outdoor area next to a house,An indoor room for sleeping,A room for cooking,An outdoor area next to a house,,,homework
+78,1,2,vocabulary,What does "garage" mean?,A place in a house where you park a car,A place in a house where you cook,A place in a house where you sleep,A place in a house where you park a car,,,homework
+79,1,2,vocabulary,What does "basement" mean?,A room below the ground floor of a house,A room at the top of a house,An outdoor area next to a house,A room below the ground floor of a house,,,homework
+80,1,2,grammar,The pen is ___ the desk.,in,on,at,on,,,homework
+81,1,2,grammar,I ___ in the kitchen.,am,is,are,am,,,homework
+82,1,2,grammar,We ___ in the library.,am,is,are,are,,,homework
+83,1,2,grammar,Tom and Ann ___ in the supermarket.,am,is,are,are,,,homework
+84,1,2,grammar,He ___ in the bank.,am,is,are,is,,,homework
+85,1,2,grammar,She ___ in the restaurant.,am,is,are,is,,,homework
+86,1,2,grammar,The book is ___ the bookshelf.,in,on,at,in,,,homework
+87,1,2,listening,You hear someone ask "Where is the pen?" What are they doing?,Asking where something is,Saying goodbye,Giving a compliment,Asking where something is,,,homework
+88,1,2,listening,You hear someone ask "Where are you?" What are they doing?,Asking where someone is,Asking for the time,Saying hello,Asking where someone is,,,homework
+89,1,2,listening,You hear someone say "I am in the kitchen." What are they doing?,Telling someone where they are,Asking a question,Saying goodbye,Telling someone where they are,,,homework
+90,1,2,listening,You hear someone ask "Where is she?" What are they doing?,Asking where someone is,Giving directions,Saying thank you,Asking where someone is,,,homework
+91,1,2,listening,You hear someone say "We are in the library." What are they doing?,Telling someone where they are,Asking for help,Saying good morning,Telling someone where they are,,,homework
+155,1,2,vocabulary,Which word means "a tool to measure or draw straight lines"?,ruler,chair,clock,ruler,,,test
+156,1,2,vocabulary,Which word means "a large store that sells food"?,bank,supermarket,library,supermarket,,,test
+157,1,2,vocabulary,Which word means "a room where you sleep"?,bedroom,kitchen,garage,bedroom,,,test
+158,1,2,vocabulary,Which word means "a place to park a car"?,garage,yard,attic,garage,,,test
+159,1,2,vocabulary,Which word means "a place with books you can read or borrow"?,library,post office,bathroom,library,,,test
+160,1,2,grammar,The clock is ___ the wall.,in,on,at,on,,,test
+161,1,2,grammar,He ___ in the garage.,am,is,are,is,,,test
+162,1,2,grammar,We ___ in the dining room.,am,is,are,are,,,test
+163,1,2,listening,You hear someone ask "Where is the map?" What are they doing?,Asking where something is,Saying goodbye,Giving a compliment,Asking where something is,,,test
+164,1,2,listening,You hear someone say "She is in the yard." What are they doing?,Telling someone where someone is,Asking a question,Saying hello,Telling someone where someone is,,,test
+112,1,3,vocabulary,What does "eating" mean?,putting food in your mouth and swallowing it,drinking water,cooking food,putting food in your mouth and swallowing it,,,homework
+113,1,3,vocabulary,What does "drinking" mean?,swallowing a liquid,eating food,washing your hands,swallowing a liquid,,,homework
+114,1,3,vocabulary,What does "cooking" mean?,preparing food by heating it,eating a meal,washing dishes,preparing food by heating it,,,homework
+115,1,3,vocabulary,What does "reading" mean?,looking at and understanding written words,writing a letter,drawing a picture,looking at and understanding written words,,,homework
+116,1,3,vocabulary,What does "studying" mean?,learning about a subject,teaching a class,sleeping,learning about a subject,,,homework
+117,1,3,vocabulary,What does "teaching" mean?,helping someone learn,learning by yourself,reading alone,helping someone learn,,,homework
+118,1,3,vocabulary,What does "singing" mean?,making music with your voice,playing an instrument,dancing,making music with your voice,,,homework
+119,1,3,vocabulary,What does "sleeping" mean?,resting with your eyes closed,eating a meal,studying,resting with your eyes closed,,,homework
+120,1,3,vocabulary,What does "swimming" mean?,moving through water using your body,walking outside,washing your hands,moving through water using your body,,,homework
+121,1,3,vocabulary,What does "planting" mean?,putting a seed or plant in the ground,picking fruit,cutting grass,putting a seed or plant in the ground,,,homework
+122,1,3,vocabulary,What does "watching TV" mean?,looking at a television program,listening to the radio,reading a magazine,looking at a television program,,,homework
+123,1,3,vocabulary,What does "listening to music" mean?,paying attention to music,playing an instrument,singing a song,paying attention to music,,,homework
+124,1,3,vocabulary,What does "playing cards" mean?,playing a game with a deck of cards,writing a letter,playing a sport,playing a game with a deck of cards,,,homework
+125,1,3,vocabulary,What does "playing baseball" mean?,playing a sport with a bat and a ball,playing a card game,playing an instrument,playing a sport with a bat and a ball,,,homework
+126,1,3,vocabulary,What does "playing the piano" mean?,making music on a piano,singing without music,playing a sport,making music on a piano,,,homework
+127,1,3,grammar,I ___ eating breakfast.,am,is,are,am,,,homework
+128,1,3,grammar,You ___ reading a book.,am,is,are,are,,,homework
+129,1,3,grammar,He ___ playing baseball.,am,is,are,is,,,homework
+130,1,3,grammar,She ___ singing a song.,am,is,are,is,,,homework
+131,1,3,grammar,It ___ sleeping.,am,is,are,is,,,homework
+132,1,3,grammar,We ___ studying English.,am,is,are,are,,,homework
+133,1,3,grammar,They ___ watching TV.,am,is,are,are,,,homework
+134,1,3,grammar,He is in the kitchen. What is he doing?,cooking,sleeping,swimming,cooking,,,homework
+135,1,3,grammar,She is in the bedroom. What is she doing?,sleeping,cooking,planting,sleeping,,,homework
+136,1,3,grammar,They are in the yard. What are they doing?,planting,reading,singing,planting,,,homework
+137,1,3,grammar,We are in the living room. What are we doing?,watching TV,swimming,teaching,watching TV,,,homework
+138,1,3,grammar,You are in the library. What are you doing?,reading,swimming,planting,reading,,,homework
+139,1,3,grammar,I am in the kitchen. What am I doing?,cooking,sleeping,singing,cooking,,,homework
+140,1,3,listening,You hear "He is eating." What is he doing?,Eating a meal,Reading a book,Sleeping,Eating a meal,,,homework
+141,1,3,listening,You hear "She is singing." What is she doing?,Making music with her voice,Cooking food,Reading a book,Making music with her voice,,,homework
+142,1,3,listening,You hear "They are swimming." What are they doing?,Moving through water,Watching TV,Studying,Moving through water,,,homework
+143,1,3,listening,You hear "We are studying." What are we doing?,Learning about a subject,Playing a game,Sleeping,Learning about a subject,,,homework
+144,1,3,listening,You hear "I am playing the piano." What am I doing?,Making music on a piano,Cooking food,Reading a book,Making music on a piano,,,homework
+165,1,3,vocabulary,Which word means "resting with your eyes closed"?,sleeping,eating,studying,sleeping,,,test
+166,1,3,vocabulary,Which word means "moving through water using your body"?,swimming,planting,singing,swimming,,,test
+167,1,3,vocabulary,Which word means "putting a seed or plant in the ground"?,planting,cooking,reading,planting,,,test
+168,1,3,vocabulary,Which word means "helping someone learn"?,teaching,studying,singing,teaching,,,test
+169,1,3,vocabulary,Which word means "playing a game with a deck of cards"?,playing cards,playing baseball,playing the piano,playing cards,,,test
+170,1,3,vocabulary,Which word means "making music on a piano"?,playing the piano,singing,listening to music,playing the piano,,,test
+171,1,3,grammar,She ___ drinking water.,am,is,are,is,,,test
+172,1,3,grammar,They ___ teaching a class.,am,is,are,are,,,test
+173,1,3,grammar,I ___ swimming in the pool.,am,is,are,am,,,test
+174,1,3,grammar,He is in the yard. What is he doing?,planting,sleeping,reading,planting,,,test
+175,1,3,grammar,We are in the bedroom. What are we doing?,sleeping,cooking,singing,sleeping,,,test
+176,1,3,grammar,You are in the kitchen. What are you doing?,cooking,swimming,teaching,cooking,,,test
+177,1,3,listening,You hear "He is teaching." What is he doing?,Helping someone learn,Cooking food,Sleeping,Helping someone learn,,,test
+178,1,3,listening,You hear "She is planting." What is she doing?,Putting a seed in the ground,Reading a book,Singing,Putting a seed in the ground,,,test
+179,1,3,listening,You hear "They are playing cards." What are they doing?,Playing a game with cards,Cooking a meal,Swimming,Playing a game with cards,,,test
+17,1,4,vocabulary,What does "eat" mean?,To put food in your mouth,To drink water,To sleep,To put food in your mouth,,,homework
+18,1,4,grammar,We ___ at school.,am,is,are,are,,,homework
+19,1,4,listening,You hear "Sorry". What did the person do?,Made a mistake,Asked a question,Said hello,Made a mistake,,,homework
+20,1,5,vocabulary,What does "small" mean?,Little in size,Very big,Very loud,Little in size,,,homework
+21,1,5,grammar,He ___ my brother.,am,is,are,is,,,homework
+22,1,5,listening,You hear "Please". What is the person doing?,Making a polite request,Saying goodbye,Giving a command,Making a polite request,,,homework
+23,1,6,vocabulary,What does "cold" mean?,Low temperature,Very hot,Very fast,Low temperature,,,homework
+24,1,6,grammar,I ___ hungry.,am,is,are,am,,,homework
+25,1,6,listening,You hear "Yes". What does the person mean?,They agree,They disagree,They don't know,They agree,,,homework
+26,1,7,vocabulary,What does "drink" mean?,To swallow liquid,To eat food,To run fast,To swallow liquid,,,homework
+27,1,7,grammar,She ___ at home.,am,is,are,is,,,homework
+28,1,7,listening,You hear "No". What does the person mean?,They disagree or refuse,They agree,They are happy,They disagree or refuse,,,homework
+29,1,8,vocabulary,What does "hot" mean?,High temperature,Very cold,Very slow,High temperature,,,homework
+30,1,8,grammar,The cat ___ on the table.,am,is,are,is,,,homework
+31,1,8,listening,You hear "Help!". What does the person need?,Assistance from someone,Food to eat,Time to rest,Assistance from someone,,,homework
+32,1,9,vocabulary,What does "new" mean?,Recently made or bought,Very old,Very broken,Recently made or bought,,,homework
+33,1,9,grammar,My parents ___ at work.,am,is,are,are,,,homework
+34,1,9,listening,You hear "Come here". What should you do?,Move toward the speaker,Stay where you are,Leave the room,Move toward the speaker,,,homework
+35,1,10,vocabulary,What does "open" mean?,Not closed or shut,Very tight,Very fast,Not closed or shut,,,homework
+36,1,10,grammar,The dog ___ very friendly.,am,is,are,is,,,homework
+37,1,10,listening,You hear "Sit down". What should you do?,Take a seat,Stand up,Leave,Take a seat,,,homework
+38,1,11,vocabulary,What does "old" mean?,Having existed for a long time,Very new,Very clean,Having existed for a long time,,,homework
+39,1,11,grammar,You ___ very kind.,am,is,are,are,,,homework
+40,1,11,listening,You hear "Be quiet". What should you do?,Stop making noise,Start talking,Start running,Stop making noise,,,homework
+41,1,12,vocabulary,What does "fast" mean?,Moving quickly,Moving slowly,Standing still,Moving quickly,,,homework
+42,1,12,grammar,It ___ raining outside.,am,is,are,is,,,homework
+43,1,12,listening,You hear "Good morning". What time of day is it?,Morning,Evening,Night,Morning,,,homework
+44,1,13,vocabulary,What does "sleep" mean?,To rest with eyes closed,To eat a meal,To run outside,To rest with eyes closed,,,homework
+45,1,13,grammar,The students ___ reading.,am,is,are,are,,,homework
+46,1,13,listening,You hear "Good night". What is about to happen?,Someone is going to sleep,Someone is waking up,Someone is eating,Someone is going to sleep,,,homework
+47,1,14,vocabulary,What does "clean" mean?,Free from dirt,Very messy,Very loud,Free from dirt,,,homework
+48,1,14,grammar,My friend ___ very tall.,am,is,are,is,,,homework
+49,1,14,listening,You hear "How are you?". What is being asked?,How the person is feeling,Where the person is going,What the person is eating,How the person is feeling,,,homework
+50,1,15,vocabulary,What does "walk" mean?,To move on foot at a normal pace,To run very fast,To sit down,To move on foot at a normal pace,,,homework
+51,1,15,grammar,The birds ___ singing.,am,is,are,are,,,homework
+52,1,15,listening,You hear "I don't understand". What is the person saying?,They are confused,They are angry,They are happy,They are confused,,,homework
+53,1,16,vocabulary,What does "tired" mean?,Feeling like you need to rest,Feeling very energetic,Feeling very hungry,Feeling like you need to rest,,,homework
+54,1,16,grammar,He ___ my English teacher.,am,is,are,is,,,homework
+55,1,16,listening,You hear "Can you repeat that?". What does the person want?,To hear something again,To stop talking,To leave,To hear something again,,,homework

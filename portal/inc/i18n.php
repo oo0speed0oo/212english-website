@@ -111,6 +111,9 @@ $GLOBALS['h212_strings'] = array(
 	'tests.choose_level_chapter' => array( 'en' => 'Choose your level then chapter.', 'ja' => 'レベルとチャプターを選んでください。' ),
 	'tests.preparing'            => array( 'en' => 'This test is being prepared. Check back soon!', 'ja' => 'このテストは準備中です。また後で確認してください!' ),
 	'tests.test_label'           => array( 'en' => 'Test',                     'ja' => 'テスト' ),
+	'tests.no_content'           => array( 'en' => 'No test yet',              'ja' => 'テストはまだありません' ),
+	'tests.take'                 => array( 'en' => 'Take Test',                'ja' => 'テストを受ける' ),
+	'tests.already_taken'        => array( 'en' => "You've already taken this test.", 'ja' => 'このテストはすでに受けています。' ),
 
 	// Grades
 	'grades.subtitle'      => array( 'en' => 'Your progress, level by level.',   'ja' => 'あなたの進捗状況、レベルごとに。' ),

@@ -37,7 +37,7 @@ function h212_hwadmin_csv_path() {
 }
 
 function h212_hwadmin_header() {
-	return array( 'id', 'level', 'chapter', 'type', 'question', 'choice_a', 'choice_b', 'choice_c', 'answer', 'image', 'audio' );
+	return array( 'id', 'level', 'chapter', 'type', 'question', 'choice_a', 'choice_b', 'choice_c', 'answer', 'image', 'audio', 'mode' );
 }
 
 function h212_hwadmin_read_rows() {
@@ -143,6 +143,7 @@ add_action( 'admin_post_h212_save_question', function () {
 	$level    = isset( $_POST['level'] ) ? intval( $_POST['level'] ) : 0;
 	$chapter  = isset( $_POST['chapter'] ) ? intval( $_POST['chapter'] ) : 0;
 	$type     = isset( $_POST['type'] ) ? sanitize_text_field( $_POST['type'] ) : '';
+	$mode     = ( isset( $_POST['mode'] ) && 'test' === $_POST['mode'] ) ? 'test' : 'homework';
 	$question = isset( $_POST['question'] ) ? sanitize_text_field( wp_unslash( $_POST['question'] ) ) : '';
 	$choice_a = isset( $_POST['choice_a'] ) ? sanitize_text_field( wp_unslash( $_POST['choice_a'] ) ) : '';
 	$choice_b = isset( $_POST['choice_b'] ) ? sanitize_text_field( wp_unslash( $_POST['choice_b'] ) ) : '';
@@ -224,6 +225,7 @@ add_action( 'admin_post_h212_save_question', function () {
 		'answer'   => $answer,
 		'image'    => $image,
 		'audio'    => $audio,
+		'mode'     => $mode,
 	);
 
 	if ( $is_new ) {
@@ -309,29 +311,47 @@ function h212_render_question_list() {
 		} ) );
 	}
 
-	echo '<form method="get" style="margin:16px 0;">';
+	$filter_mode = isset( $_GET['mode'] ) ? sanitize_text_field( $_GET['mode'] ) : '';
+	if ( in_array( $filter_mode, array( 'homework', 'test' ), true ) ) {
+		$rows = array_values( array_filter( $rows, function ( $r ) use ( $filter_mode ) {
+			$row_mode = empty( $r['mode'] ) ? 'homework' : $r['mode'];
+			return $row_mode === $filter_mode;
+		} ) );
+	}
+
+	echo '<form method="get" style="margin:16px 0;display:inline-block;">';
 	echo '<input type="hidden" name="page" value="h212-homework-questions" />';
 	echo '<select name="level" onchange="this.form.submit()"><option value="">All Levels</option>';
 	for ( $l = 1; $l <= 5; $l++ ) {
 		printf( '<option value="%d" %s>Level %d</option>', $l, selected( $filter_level, $l, false ), $l );
 	}
-	echo '</select></form>';
+	echo '</select> ';
+	echo '<select name="mode" onchange="this.form.submit()"><option value="">Homework + Test</option>';
+	printf( '<option value="homework" %s>Homework only</option>', selected( $filter_mode, 'homework', false ) );
+	printf( '<option value="test" %s>Test only</option>', selected( $filter_mode, 'test', false ) );
+	echo '</select>';
+	echo '</form>';
 
-	echo '<table class="widefat striped"><thead><tr><th>ID</th><th>Level</th><th>Chapter</th><th>Type</th><th>Question</th><th>Answer</th><th>Image</th><th>Audio</th><th>Actions</th></tr></thead><tbody>';
+	echo '<table class="widefat striped"><thead><tr><th>ID</th><th>Level</th><th>Chapter</th><th>Mode</th><th>Type</th><th>Question</th><th>Answer</th><th>Image</th><th>Audio</th><th>Actions</th></tr></thead><tbody>';
 	if ( ! $rows ) {
-		echo '<tr><td colspan="9">No questions yet.</td></tr>';
+		echo '<tr><td colspan="10">No questions yet.</td></tr>';
 	}
 	foreach ( $rows as $r ) {
+		$row_mode   = empty( $r['mode'] ) ? 'homework' : $r['mode'];
+		$mode_label = 'test' === $row_mode
+			? '<span style="color:#b3261e;font-weight:600;">Test</span>'
+			: '<span style="color:#2271b1;">Homework</span>';
 		$edit_url   = admin_url( 'admin.php?page=h212-homework-questions&action=edit&id=' . urlencode( $r['id'] ) );
 		$delete_url = wp_nonce_url(
 			admin_url( 'admin-post.php?action=h212_delete_question&id=' . urlencode( $r['id'] ) ),
 			'h212_delete_question_' . $r['id']
 		);
 		printf(
-			'<tr><td>%s</td><td>%d</td><td>%d</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td><a href="%s">Edit</a> | <a href="%s" onclick="return confirm(\'Delete this question? This cannot be undone.\');" style="color:#b3261e;">Delete</a></td></tr>',
+			'<tr><td>%s</td><td>%d</td><td>%d</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td><a href="%s">Edit</a> | <a href="%s" onclick="return confirm(\'Delete this question? This cannot be undone.\');" style="color:#b3261e;">Delete</a></td></tr>',
 			esc_html( $r['id'] ),
 			(int) $r['level'],
 			(int) $r['chapter'],
+			$mode_label,
 			esc_html( ucfirst( $r['type'] ) ),
 			esc_html( mb_strimwidth( $r['question'], 0, 60, '…' ) ),
 			esc_html( $r['answer'] ),
@@ -348,7 +368,7 @@ function h212_render_question_form( $action ) {
 	$row = array(
 		'id' => '', 'level' => 1, 'chapter' => 1, 'type' => 'vocabulary',
 		'question' => '', 'choice_a' => '', 'choice_b' => '', 'choice_c' => '',
-		'answer' => '', 'image' => '', 'audio' => '',
+		'answer' => '', 'image' => '', 'audio' => '', 'mode' => 'homework',
 	);
 
 	if ( 'edit' === $action ) {
@@ -373,6 +393,12 @@ function h212_render_question_form( $action ) {
 	echo '<input type="hidden" name="id" value="' . esc_attr( $row['id'] ) . '" />';
 
 	echo '<table class="form-table"><tbody>';
+
+	$row_mode = empty( $row['mode'] ) ? 'homework' : $row['mode'];
+	echo '<tr><th><label>Mode</label></th><td><select name="mode">';
+	printf( '<option value="homework" %s>Homework</option>', selected( $row_mode, 'homework', false ) );
+	printf( '<option value="test" %s>Test</option>', selected( $row_mode, 'test', false ) );
+	echo '</select><p class="description">Homework questions are for practice/review. Test questions are a separate, shorter check - they never mix into Homework.</p></td></tr>';
 
 	echo '<tr><th><label>Level</label></th><td><select name="level">';
 	for ( $l = 1; $l <= 5; $l++ ) {

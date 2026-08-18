@@ -307,6 +307,7 @@ function parseCSV(text) {
       return (idx === -1 || cols[idx] === undefined) ? '' : cols[idx].trim();
     };
     if (get('level') === '' || get('type') === '') continue;
+    if (get('mode') === 'test') continue; // Test-mode rows belong to tests.php, not Homework
     rows.push({
       id:       get('id'),
       level:    parseInt(get('level')),
