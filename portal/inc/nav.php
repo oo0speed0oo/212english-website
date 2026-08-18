@@ -34,6 +34,7 @@ function h212_render_nav( $active ) {
 	<nav class="topnav">
 		<div class="nav-logo"><em>212</em> English School</div>
 		<div class="nav-right">
+			<a class="report-btn" href="#" onclick="h212OpenReportModal(); return false;"><?php echo esc_html( t( 'report.button' ) ); ?></a>
 			<a class="lang-switch" href="<?php echo $current_url; ?>"><?php echo esc_html( $other_lang_label ); ?></a>
 			<a class="nav-student" href="profile.php">
 				<div class="nav-avatar"><?php echo esc_html( $initials ); ?></div>
@@ -42,6 +43,80 @@ function h212_render_nav( $active ) {
 			<a class="logout-btn" href="logout.php"><?php echo esc_html( t( 'nav.logout' ) ); ?></a>
 		</div>
 	</nav>
+
+	<div class="report-modal-backdrop" id="h212-report-backdrop">
+		<div class="report-modal">
+			<div class="report-modal-header">
+				<span><?php echo esc_html( t( 'report.title' ) ); ?></span>
+				<button type="button" class="report-modal-close" onclick="h212CloseReportModal()">&times;</button>
+			</div>
+			<div class="report-modal-body">
+				<p><?php echo esc_html( t( 'report.description' ) ); ?></p>
+				<textarea id="h212-report-message" rows="5" placeholder="<?php echo esc_attr( t( 'report.placeholder' ) ); ?>"></textarea>
+				<div class="report-status" id="h212-report-status"></div>
+			</div>
+			<div class="report-modal-footer">
+				<button type="button" class="report-send-btn" onclick="h212SubmitReport()"><?php echo esc_html( t( 'report.send' ) ); ?></button>
+			</div>
+		</div>
+	</div>
+	<script>
+	window.H212_REPORT_NONCE = "<?php echo esc_js( wp_create_nonce( 'h212_report_problem' ) ); ?>";
+	window.H212_REPORT_T = {
+		sending: "<?php echo esc_js( t( 'report.sending' ) ); ?>",
+		thanks: "<?php echo esc_js( t( 'report.thanks' ) ); ?>",
+		error_generic: "<?php echo esc_js( t( 'report.error_generic' ) ); ?>",
+		error_empty: "<?php echo esc_js( t( 'report.error_empty' ) ); ?>"
+	};
+	function h212OpenReportModal() {
+		document.getElementById('h212-report-backdrop').classList.add('open');
+	}
+	function h212CloseReportModal() {
+		document.getElementById('h212-report-backdrop').classList.remove('open');
+		document.getElementById('h212-report-message').value = '';
+		document.getElementById('h212-report-status').textContent = '';
+		document.getElementById('h212-report-status').className = 'report-status';
+	}
+	function h212SubmitReport() {
+		var msg = document.getElementById('h212-report-message').value.trim();
+		var statusEl = document.getElementById('h212-report-status');
+		if (!msg) {
+			statusEl.textContent = window.H212_REPORT_T.error_empty;
+			statusEl.className = 'report-status error';
+			return;
+		}
+		statusEl.textContent = window.H212_REPORT_T.sending;
+		statusEl.className = 'report-status';
+		fetch('inc/report.php', {
+			method: 'POST',
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify({ nonce: window.H212_REPORT_NONCE, message: msg, page: window.location.pathname })
+		})
+			.then(function(r) { return r.json(); })
+			.then(function(data) {
+				if (data && data.ok) {
+					statusEl.textContent = window.H212_REPORT_T.thanks;
+					statusEl.className = 'report-status success';
+					setTimeout(h212CloseReportModal, 1500);
+				} else {
+					statusEl.textContent = (data && data.error) || window.H212_REPORT_T.error_generic;
+					statusEl.className = 'report-status error';
+				}
+			})
+			.catch(function() {
+				statusEl.textContent = window.H212_REPORT_T.error_generic;
+				statusEl.className = 'report-status error';
+			});
+	}
+	document.addEventListener('DOMContentLoaded', function() {
+		var backdrop = document.getElementById('h212-report-backdrop');
+		if (backdrop) {
+			backdrop.addEventListener('click', function(e) {
+				if (e.target === backdrop) h212CloseReportModal();
+			});
+		}
+	});
+	</script>
 
 	<div class="main">
 		<aside class="sidebar">

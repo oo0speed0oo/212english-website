@@ -30,6 +30,17 @@ $GLOBALS['h212_strings'] = array(
 	'nav.group_menu'  => array( 'en' => 'Menu',            'ja' => 'メニュー' ),
 	'nav.group_study' => array( 'en' => 'Study',           'ja' => '学習' ),
 
+	// Report a problem
+	'report.button'        => array( 'en' => '⚠️ Report a Problem',                          'ja' => '⚠️ 問題を報告' ),
+	'report.title'         => array( 'en' => 'Report a Problem',                             'ja' => '問題を報告' ),
+	'report.description'   => array( 'en' => "Something not working right? Let us know and we'll take a look.", 'ja' => '何か不具合がありましたか？お知らせいただければ確認いたします。' ),
+	'report.placeholder'   => array( 'en' => 'What happened?',                               'ja' => '何が起きましたか？' ),
+	'report.send'          => array( 'en' => 'Send Report',                                  'ja' => '送信する' ),
+	'report.sending'       => array( 'en' => 'Sending...',                                   'ja' => '送信中...' ),
+	'report.thanks'        => array( 'en' => 'Thanks! We got your report.',                  'ja' => 'ありがとうございます！報告を受け取りました。' ),
+	'report.error_generic' => array( 'en' => 'Something went wrong. Please try again.',      'ja' => 'エラーが発生しました。もう一度お試しください。' ),
+	'report.error_empty'   => array( 'en' => 'Please describe what happened.',               'ja' => '何が起きたか説明してください。' ),
+
 	// Login
 	'login.welcome'       => array( 'en' => 'Welcome back',                              'ja' => 'おかえりなさい' ),
 	'login.subtitle'      => array( 'en' => 'Log in to access your student portal.',     'ja' => '生徒用ポータルにログインしてください。' ),
