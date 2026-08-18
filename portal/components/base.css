@@ -60,24 +60,32 @@ body {
   cursor: pointer; font-family: inherit; transition: all 0.2s;
 }
 .logout-btn:hover { border-color: var(--gold-dim); color: var(--gold-light); }
-.report-btn {
-  font-size: 12px; color: var(--gold-light);
-  background: none; border: 1px solid rgba(184,145,46,0.3);
-  border-radius: 6px; padding: 6px 12px;
-  text-decoration: none; transition: all 0.2s;
+/* ── REPORT A PROBLEM: floating button + bottom sheet ── */
+.report-fab {
+  position: fixed; bottom: 22px; right: 22px; z-index: 250;
+  background: var(--gold); color: #fffcf5; border: none;
+  border-radius: 30px; padding: 12px 18px;
+  font-size: 13px; font-weight: 500; font-family: inherit;
+  cursor: pointer; white-space: nowrap;
+  box-shadow: 0 6px 20px rgba(120,90,20,0.28);
+  transition: all 0.2s;
 }
-.report-btn:hover { background: rgba(184,145,46,0.1); border-color: rgba(184,145,46,0.5); }
+.report-fab:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(120,90,20,0.35); }
 
-/* ── REPORT A PROBLEM MODAL ── */
 .report-modal-backdrop {
   display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-  background: rgba(30,20,0,0.45); z-index: 300;
-  align-items: center; justify-content: center; padding: 20px;
+  background: rgba(30,20,0,0.4); z-index: 300;
+  align-items: flex-end; justify-content: center;
 }
 .report-modal-backdrop.open { display: flex; }
 .report-modal {
-  background: #fffcf5; border: 1px solid rgba(184,145,46,0.25);
-  border-radius: 16px; overflow: hidden; width: 100%; max-width: 420px;
+  background: #fffcf5; border: 1px solid rgba(184,145,46,0.25); border-bottom: none;
+  border-radius: 18px 18px 0 0; overflow: hidden; width: 100%; max-width: 480px;
+  transform: translateY(100%); transition: transform 0.28s ease;
+}
+.report-modal-backdrop.open .report-modal { transform: translateY(0); }
+@media (max-width: 640px) {
+  .report-fab { bottom: 16px; right: 16px; padding: 11px 16px; font-size: 12.5px; }
 }
 .report-modal-header {
   display: flex; align-items: center; justify-content: space-between;

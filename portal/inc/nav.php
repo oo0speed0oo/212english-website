@@ -34,7 +34,6 @@ function h212_render_nav( $active ) {
 	<nav class="topnav">
 		<div class="nav-logo"><em>212</em> English School</div>
 		<div class="nav-right">
-			<a class="report-btn" href="#" onclick="h212OpenReportModal(); return false;"><?php echo esc_html( t( 'report.button' ) ); ?></a>
 			<a class="lang-switch" href="<?php echo $current_url; ?>"><?php echo esc_html( $other_lang_label ); ?></a>
 			<a class="nav-student" href="profile.php">
 				<div class="nav-avatar"><?php echo esc_html( $initials ); ?></div>
@@ -43,6 +42,8 @@ function h212_render_nav( $active ) {
 			<a class="logout-btn" href="logout.php"><?php echo esc_html( t( 'nav.logout' ) ); ?></a>
 		</div>
 	</nav>
+
+	<button type="button" class="report-fab" onclick="h212OpenReportModal()"><?php echo esc_html( t( 'report.button' ) ); ?></button>
 
 	<div class="report-modal-backdrop" id="h212-report-backdrop">
 		<div class="report-modal">
