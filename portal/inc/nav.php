@@ -90,7 +90,7 @@ function h212_render_nav( $active ) {
 		fetch('inc/report.php', {
 			method: 'POST',
 			headers: { 'Content-Type': 'application/json' },
-			body: JSON.stringify({ nonce: window.H212_REPORT_NONCE, message: msg, page: window.location.pathname })
+			body: JSON.stringify({ nonce: window.H212_REPORT_NONCE, type: 'manual', message: msg, page: window.location.pathname })
 		})
 			.then(function(r) { return r.json(); })
 			.then(function(data) {
@@ -115,6 +115,39 @@ function h212_render_nav( $active ) {
 				if (e.target === backdrop) h212CloseReportModal();
 			});
 		}
+	});
+
+	// ── Automatic error detection ──────────────────────
+	// Catches real JavaScript errors and failed background saves the
+	// student never sees or thinks to report. Ignores cross-origin
+	// "Script error." noise (browser extensions etc., not our code) and
+	// caps how many it will send per page load so a runaway loop can't
+	// flood anything.
+	var h212SeenErrors = {};
+	function h212AutoReportError(message, filename, lineno, colno, stack) {
+		if (!message || message === 'Script error.') return;
+		var sig = message + '|' + filename + '|' + lineno;
+		if (h212SeenErrors[sig]) return;
+		if (Object.keys(h212SeenErrors).length >= 5) return;
+		h212SeenErrors[sig] = true;
+
+		fetch('inc/report.php', {
+			method: 'POST',
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify({
+				nonce: window.H212_REPORT_NONCE, type: 'auto', message: message,
+				filename: filename || '', lineno: lineno || 0, colno: colno || 0,
+				stack: stack || '', page: window.location.pathname
+			})
+		}).catch(function() {});
+	}
+	window.addEventListener('error', function(e) {
+		h212AutoReportError(e.message, e.filename, e.lineno, e.colno, e.error && e.error.stack);
+	});
+	window.addEventListener('unhandledrejection', function(e) {
+		var reason = e.reason;
+		var msg = (reason && reason.message) ? reason.message : String(reason);
+		h212AutoReportError('Unhandled promise rejection: ' + msg, window.location.pathname, 0, 0, reason && reason.stack);
 	});
 	</script>
 
