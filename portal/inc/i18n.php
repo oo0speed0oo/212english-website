@@ -29,6 +29,7 @@ $GLOBALS['h212_strings'] = array(
 	'nav.logout'      => array( 'en' => 'Log out',         'ja' => 'ログアウト' ),
 	'nav.group_menu'  => array( 'en' => 'Menu',            'ja' => 'メニュー' ),
 	'nav.group_study' => array( 'en' => 'Study',           'ja' => '学習' ),
+	'nav.menu'        => array( 'en' => 'Menu',            'ja' => 'メニュー' ),
 
 	// Report a problem
 	'report.button'        => array( 'en' => '⚠️ Report a Problem',                          'ja' => '⚠️ 問題を報告' ),

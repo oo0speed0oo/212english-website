@@ -32,7 +32,10 @@ function h212_render_nav( $active ) {
 	$current_url      = esc_url( add_query_arg( 'lang', $other_lang ) );
 	?>
 	<nav class="topnav">
-		<div class="nav-logo"><em>212</em> English School</div>
+		<div class="nav-left">
+			<button type="button" class="nav-hamburger" onclick="h212OpenNav()" aria-label="<?php echo esc_attr( t( 'nav.menu' ) ); ?>">☰</button>
+			<a class="nav-logo" href="dashboard.php"><em>212</em> English School</a>
+		</div>
 		<div class="nav-right">
 			<a class="lang-switch" href="<?php echo $current_url; ?>"><?php echo esc_html( $other_lang_label ); ?></a>
 			<a class="nav-student" href="profile.php">
@@ -118,6 +121,16 @@ function h212_render_nav( $active ) {
 		}
 	});
 
+	// ── Mobile nav drawer ──
+	function h212OpenNav() {
+		document.getElementById('h212-sidebar').classList.add('open');
+		document.getElementById('h212-sidebar-backdrop').classList.add('open');
+	}
+	function h212CloseNav() {
+		document.getElementById('h212-sidebar').classList.remove('open');
+		document.getElementById('h212-sidebar-backdrop').classList.remove('open');
+	}
+
 	// ── Automatic error detection ──────────────────────
 	// Catches real JavaScript errors and failed background saves the
 	// student never sees or thinks to report. Ignores cross-origin
@@ -152,8 +165,10 @@ function h212_render_nav( $active ) {
 	});
 	</script>
 
+	<div class="sidebar-backdrop" id="h212-sidebar-backdrop" onclick="h212CloseNav()"></div>
+
 	<div class="main">
-		<aside class="sidebar">
+		<aside class="sidebar" id="h212-sidebar">
 			<?php
 			$last_group = '';
 			foreach ( $pages as $p ) {

@@ -14,22 +14,21 @@ id,level,chapter,type,question,choice_a,choice_b,choice_c,answer,image,audio,mod
 104,1,1,vocabulary,Mr. Tanaka and Ms. Brown are two people. Which word matches them?,he,she,they,they,,,homework
 105,1,1,vocabulary,Mr. Lee is a man. Which word matches him?,he,she,they,he,,,homework
 106,1,1,vocabulary,Mrs. Lee is a woman. Which word matches her?,he,she,they,she,,,homework
-107,1,1,listening,You hear "He is a doctor." Who is being talked about?,A man,A woman,Two people,A man,,,homework
-108,1,1,listening,You hear "She is a doctor." Who is being talked about?,A man,A woman,Two people,A woman,,,homework
-109,1,1,listening,You hear "They are doctors." Who is being talked about?,One person,Two or more people,No one,Two or more people,,,homework
-110,1,1,listening,You hear "It is a cat." What is being talked about?,A person,A thing or animal,A place,A thing or animal,,,homework
-111,1,1,listening,You hear "We are friends." Who is speaking?,One person alone,The speaker and at least one other person,A stranger,The speaker and at least one other person,,,homework
-145,1,1,grammar,I ___ a teacher.,am,is,are,am,,,test
-146,1,1,grammar,You ___ my friend.,am,is,are,are,,,test
-147,1,1,grammar,She ___ a doctor.,am,is,are,is,,,test
-148,1,1,grammar,They ___ happy.,am,is,are,are,,,test
-149,1,1,vocabulary,Mr. Johnson is a man. Which word matches him?,he,she,they,he,,,test
-150,1,1,vocabulary,Mrs. Johnson is a woman. Which word matches her?,he,she,they,she,,,test
-151,1,1,vocabulary,Mr. and Mrs. Johnson are two people. Which word matches them?,he,she,they,they,,,test
-152,1,1,vocabulary,Ms. Green is a woman. Which word matches her?,he,she,they,she,,,test
-153,1,1,listening,You hear "He is a nurse." Who is being talked about?,A man,A woman,Two people,A man,,,test
-154,1,1,listening,You hear "It is a dog." What is being talked about?,A person,A thing or animal,A place,A thing or animal,,,test
-4,1,2,vocabulary,"What does ""run"" mean?",To sleep,To move fast on foot,To eat,To move fast on foot,,,homework
+107,1,1,listening,"You hear ""He is a doctor."" Who is being talked about?",A man,A woman,Two people,A man,,,homework
+108,1,1,listening,"You hear ""She is a doctor."" Who is being talked about?",A man,A woman,Two people,A woman,,,homework
+109,1,1,listening,"You hear ""They are doctors."" Who is being talked about?",One person,Two or more people,No one,Two or more people,,,homework
+110,1,1,listening,"You hear ""It is a cat."" What is being talked about?",A person,A thing or animal,A place,A thing or animal,,,homework
+111,1,1,listening,"You hear ""We are friends."" Who is speaking?",One person alone,The speaker and at least one other person,A stranger,The speaker and at least one other person,,,homework
+1001,1,1,grammar,"Hi, I ___ Ken Sato.",am,is,are,am,,,test
+1002,1,1,grammar,"This ___ my friend, Lisa.",am,is,are,is,,,test
+1003,1,1,grammar,Mr. and Mrs. Hill ___ teachers.,am,is,are,are,,,test
+1004,1,1,grammar,Which sentence is correct?,He and I am nurses.,He and I are nurses.,He and I is nurses.,He and I are nurses.,,,test
+1005,1,1,grammar,"Emi ___ a nurse. Jun and Rika ___ nurses, too.","is, is","are, is","is, are","is, are",,,test
+1006,1,1,grammar,Ms. Kato is a teacher. ___ is my friend.,He,She,They,She,,,test
+1007,1,1,grammar,"Ken says, ""Ann, this is Bob."" What does Ann say to Bob?","Nice to meet you, Bob.","Goodbye, Bob.","Excuse me, Bob.","Nice to meet you, Bob.",,,test
+1008,1,1,grammar,I am a teacher. = ___ a teacher.,Im,I'm,I'am,I'm,,,test
+1009,1,1,grammar,They are students. = ___ students.,They'is,Theyre,They're,They're,,,test
+1010,1,1,listening,"You hear ""Hi, I'm Mika. This is my friend, Tom."" Who is Tom?",The speaker's friend,The speaker,The speaker's teacher,The speaker's friend,,,test
 5,1,2,photo,What is this?,ruler,pen,pencil,pencil,pencil.png,,homework
 6,1,2,photo,What is this?,book,dictionary,notebook,book,book.png,,homework
 7,1,2,photo,What is this?,desk,shelf,chair,desk,desk.png,,homework
@@ -37,8 +36,6 @@ id,level,chapter,type,question,choice_a,choice_b,choice_c,answer,image,audio,mod
 9,1,2,photo,What is this?,book,dictionary,notebook,notebook,notebook.png,,homework
 10,1,2,photo,What is this?,dictionary,book,notebook,dictionary,dictionary.png,,homework
 11,1,2,photo,What is this?,television,computer,tablet,computer,computer.png,,homework
-12,1,2,grammar,She ___ a teacher.,am,are,is,is,,,homework
-13,1,2,listening,"You hear ""Thank you"". What is the person doing?",Asking for help,Showing gratitude,Saying hello,Showing gratitude,,,homework
 56,1,2,vocabulary,"What does ""ruler"" mean?",A tool used to cut paper,A tool used to write,A tool used to measure or draw straight lines,A tool used to measure or draw straight lines,,,homework
 57,1,2,vocabulary,"What does ""table"" mean?",A piece of furniture for sitting,A piece of furniture for sleeping,A piece of furniture with a flat top used for eating or working,A piece of furniture with a flat top used for eating or working,,,homework
 58,1,2,vocabulary,"What does ""chair"" mean?",A piece of furniture for storing books,A piece of furniture for sleeping,A piece of furniture for one person to sit on,A piece of furniture for one person to sit on,,,homework
@@ -75,16 +72,16 @@ id,level,chapter,type,question,choice_a,choice_b,choice_c,answer,image,audio,mod
 89,1,2,listening,"You hear someone say ""I am in the kitchen."" What are they doing?",Asking a question,Telling someone where they are,Saying goodbye,Telling someone where they are,,,homework
 90,1,2,listening,"You hear someone ask ""Where is she?"" What are they doing?",Asking where someone is,Giving directions,Saying thank you,Asking where someone is,,,homework
 91,1,2,listening,"You hear someone say ""We are in the library."" What are they doing?",Asking for help,Telling someone where they are,Saying good morning,Telling someone where they are,,,homework
-155,1,2,vocabulary,"Which word means ""a tool to measure or draw straight lines""?",clock,ruler,chair,ruler,,,test
-156,1,2,vocabulary,"Which word means ""a large store that sells food""?",supermarket,bank,library,supermarket,,,test
-157,1,2,vocabulary,"Which word means ""a room where you sleep""?",garage,kitchen,bedroom,bedroom,,,test
-158,1,2,vocabulary,"Which word means ""a place to park a car""?",attic,yard,garage,garage,,,test
-159,1,2,vocabulary,"Which word means ""a place with books you can read or borrow""?",post office,library,bathroom,library,,,test
-160,1,2,grammar,The clock is ___ the wall.,on,in,at,on,,,test
-161,1,2,grammar,He ___ in the garage.,is,am,are,is,,,test
-162,1,2,grammar,We ___ in the dining room.,is,am,are,are,,,test
-163,1,2,listening,"You hear someone ask ""Where is the map?"" What are they doing?",Asking where something is,Giving a compliment,Saying goodbye,Asking where something is,,,test
-164,1,2,listening,"You hear someone say ""She is in the yard."" What are they doing?",Asking a question,Telling someone where someone is,Saying hello,Telling someone where someone is,,,test
+1011,1,2,grammar,Where ___ the map?,am,is,are,is,,,test
+1012,1,2,grammar,Where ___ Ken and Yumi?,am,is,are,are,,,test
+1013,1,2,grammar,Where is the computer? ___ is in the bedroom.,He,It,They,It,,,test
+1014,1,2,grammar,Where are the books? ___ are on the bookshelf.,He,It,They,They,,,test
+1015,1,2,grammar,Where is Dad?,He is in the yard.,He are in the yard.,It is in the yard.,He is in the yard.,,,test
+1016,1,2,grammar,Where are you and Ken?,You are in the library.,We are in the library.,They are in the library.,We are in the library.,,,test
+1017,1,2,grammar,Dad is ___ the kitchen. The pen is ___ the table.,"in, on","on, in","on, on","in, on",,,test
+1018,1,2,grammar,The globe is ___ the desk.,in,on,at,on,,,test
+1019,1,2,grammar,Which question is correct?,Where is the pens?,Where am the pens?,Where are the pens?,Where are the pens?,,,test
+1020,1,2,listening,"You hear ""They're in the basement."" Who is in the basement?",One man,Two or more people,One woman,Two or more people,,,test
 112,1,3,vocabulary,"What does ""eating"" mean?",drinking water,putting food in your mouth and swallowing it,cooking food,putting food in your mouth and swallowing it,,,homework
 113,1,3,vocabulary,"What does ""drinking"" mean?",washing your hands,eating food,swallowing a liquid,swallowing a liquid,,,homework
 114,1,3,vocabulary,"What does ""cooking"" mean?",preparing food by heating it,washing dishes,eating a meal,preparing food by heating it,,,homework
@@ -118,72 +115,65 @@ id,level,chapter,type,question,choice_a,choice_b,choice_c,answer,image,audio,mod
 142,1,3,listening,"You hear ""They are swimming."" What are they doing?",Watching TV,Studying,Moving through water,Moving through water,,,homework
 143,1,3,listening,"You hear ""We are studying."" What are we doing?",Playing a game,Learning about a subject,Sleeping,Learning about a subject,,,homework
 144,1,3,listening,"You hear ""I am playing the piano."" What am I doing?",Cooking food,Reading a book,Making music on a piano,Making music on a piano,,,homework
-165,1,3,vocabulary,"Which word means ""resting with your eyes closed""?",eating,sleeping,studying,sleeping,,,test
-166,1,3,vocabulary,"Which word means ""moving through water using your body""?",singing,swimming,planting,swimming,,,test
-167,1,3,vocabulary,"Which word means ""putting a seed or plant in the ground""?",planting,reading,cooking,planting,,,test
-168,1,3,vocabulary,"Which word means ""helping someone learn""?",teaching,singing,studying,teaching,,,test
-169,1,3,vocabulary,"Which word means ""playing a game with a deck of cards""?",playing baseball,playing cards,playing the piano,playing cards,,,test
-170,1,3,vocabulary,"Which word means ""making music on a piano""?",listening to music,singing,playing the piano,playing the piano,,,test
-171,1,3,grammar,She ___ drinking water.,is,are,am,is,,,test
-172,1,3,grammar,They ___ teaching a class.,are,am,is,are,,,test
-173,1,3,grammar,I ___ swimming in the pool.,are,am,is,am,,,test
-174,1,3,grammar,He is in the yard. What is he doing?,sleeping,reading,planting,planting,,,test
-175,1,3,grammar,We are in the bedroom. What are we doing?,cooking,singing,sleeping,sleeping,,,test
-176,1,3,grammar,You are in the kitchen. What are you doing?,teaching,swimming,cooking,cooking,,,test
-177,1,3,listening,"You hear ""He is teaching."" What is he doing?",Cooking food,Sleeping,Helping someone learn,Helping someone learn,,,test
-178,1,3,listening,"You hear ""She is planting."" What is she doing?",Putting a seed in the ground,Singing,Reading a book,Putting a seed in the ground,,,test
-179,1,3,listening,"You hear ""They are playing cards."" What are they doing?",Cooking a meal,Playing a game with cards,Swimming,Playing a game with cards,,,test
-180,1,4,vocabulary,"What does ""brushing"" mean?","Moving a brush over something, like hair or teeth, to clean it",Washing something with soap and water,Repairing something broken,"Moving a brush over something, like hair or teeth, to clean it",,,homework
+1021,1,3,grammar,Ken and Mari ___ playing cards.,am,is,are,are,,,test
+1022,1,3,grammar,Which sentence is correct?,She sleeping.,She is sleeping.,She is sleep.,She is sleeping.,,,test
+1023,1,3,grammar,What ___ they doing? They are watching TV.,am,is,are,are,,,test
+1024,1,3,grammar,What is Jun doing?,He studying English.,He is study English.,He is studying English.,He is studying English.,,,test
+1025,1,3,grammar,"I ___ listening to music, and Ken ___ reading.","am, is","is, am","am, are","am, is",,,test
+1026,1,3,grammar,What ___ you doing? I'm cooking.,am,is,are,are,,,test
+1027,1,3,grammar,Aya is ___ in the pool.,swimming,swiming,swimmming,swimming,,,test
+1028,1,3,grammar,Mika is ___ a song.,sing,singing,sings,singing,,,test
+1029,1,3,grammar,Which question is correct?,What she is doing?,What doing is she?,What is she doing?,What is she doing?,,,test
+1030,1,3,listening,"You hear ""Yuki is playing the piano, and Ren is singing."" Who is singing?",Ren,Yuki,Yuki and Ren,Ren,,,test
+180,1,4,vocabulary,"What does ""brushing"" mean?",Using a brush on your hair or teeth,Using soap and water on something,Making a broken thing work again,Using a brush on your hair or teeth,,,homework
 181,1,4,vocabulary,"What does ""cleaning"" mean?",Making something free from dirt,Making something wet,Making something colorful,Making something free from dirt,,,homework
-182,1,4,vocabulary,"What does ""feeding"" mean?",Giving food to a person or animal,Washing an animal,Teaching an animal,Giving food to a person or animal,,,homework
+182,1,4,vocabulary,"What does ""feeding"" mean?",Washing an animal,Giving food to an animal,Brushing an animal,Giving food to an animal,,,homework
 183,1,4,vocabulary,"What does ""fixing"" mean?",Cleaning something dirty,Repairing something that is broken,Painting something a new color,Repairing something that is broken,,,homework
-184,1,4,vocabulary,"What does ""painting"" mean?",Fixing something broken,Washing something with water,Putting paint on something with a brush,Putting paint on something with a brush,,,homework
-185,1,4,vocabulary,"What does ""reading"" mean?",Drawing a picture,Looking at and understanding written words,Writing a letter,Looking at and understanding written words,,,homework
-186,1,4,vocabulary,"What does ""washing"" mean?",Painting something a new color,Fixing something broken,"Cleaning something with water, and often soap","Cleaning something with water, and often soap",,,homework
-187,1,4,grammar,I am brushing ___ teeth.,their,my,his,my,,,homework
-188,1,4,grammar,You are cleaning ___ room.,your,her,their,your,,,homework
-189,1,4,grammar,He is fixing ___ car.,her,its,his,his,,,homework
-190,1,4,grammar,She is painting ___ bedroom.,their,her,his,her,,,homework
-191,1,4,grammar,The cat is eating ___ food.,its,their,his,its,,,homework
-192,1,4,grammar,We are washing ___ car.,their,your,our,our,,,homework
-193,1,4,grammar,They are feeding ___ dog.,his,their,our,their,,,homework
+184,1,4,vocabulary,"What does ""painting"" mean?",Fixing a broken thing,Washing a thing with water,Giving a thing a new color,Giving a thing a new color,,,homework
+185,1,4,vocabulary,Sam has a newspaper. He is looking at the words. What is he doing?,Fixing,Cleaning,Reading,Reading,,,homework
+186,1,4,vocabulary,"What does ""washing"" mean?",Painting something a new color,Cleaning something with soap and water,Fixing something that is broken,Cleaning something with soap and water,,,homework
+187,1,4,grammar,I have a new toothbrush. I am brushing ___ teeth.,my,his,their,my,,,homework
+188,1,4,grammar,You have a small room. You are cleaning ___ room.,your,her,their,your,,,homework
+189,1,4,grammar,Tom has an old car. He is fixing ___ car.,his,her,its,his,,,homework
+190,1,4,grammar,Lisa has a new bedroom. She is painting ___ bedroom.,his,her,their,her,,,homework
+191,1,4,grammar,The cat is hungry. It is eating ___ food.,its,our,their,its,,,homework
+192,1,4,grammar,We have a white car. We are washing ___ car.,your,our,their,our,,,homework
+193,1,4,grammar,Ken and Amy have a dog. They are feeding ___ dog.,his,our,their,their,,,homework
 194,1,4,grammar,"Are you busy? Yes, I ___.",am,is,are,am,,,homework
-195,1,4,grammar,"Is he busy? Yes, he ___.",are,is,am,is,,,homework
-196,1,4,grammar,"Is she busy? Yes, she ___.",are,am,is,is,,,homework
-197,1,4,grammar,"Is it busy? Yes, it ___.",are,am,is,is,,,homework
-198,1,4,grammar,"Are we busy? Yes, we ___.",am,is,are,are,,,homework
-199,1,4,grammar,"Are you busy? Yes, you ___.",are,am,is,are,,,homework
-200,1,4,grammar,"Are they busy? Yes, they ___.",am,are,is,are,,,homework
+195,1,4,grammar,"Is Bob busy? Yes, he ___.",am,is,are,is,,,homework
+196,1,4,grammar,"Is your mother busy? Yes, she ___.",am,is,are,is,,,homework
+197,1,4,grammar,"Is the store busy? Yes, it ___.",am,is,are,is,,,homework
+198,1,4,grammar,"Are you and your wife busy? Yes, we ___.",am,is,are,are,,,homework
+199,1,4,grammar,"Am I busy today? Yes, you ___.",am,is,are,are,,,homework
+200,1,4,grammar,"Are your parents busy? Yes, they ___.",am,is,are,are,,,homework
 201,1,4,grammar,Bob's car won't start. He gets his tools and opens the hood. What is he doing?,Painting his car,Fixing his car,Washing his car,Fixing his car,,,homework
 202,1,4,grammar,Mary's room is messy. She picks up her clothes and books. What is she doing?,Fixing her room,Cleaning her room,Painting her room,Cleaning her room,,,homework
 203,1,4,grammar,Our dog is dirty. We get water and soap. What are we doing?,Feeding our dog,Brushing our dog,Washing our dog,Washing our dog,,,homework
-204,1,4,grammar,Their house is an old color. They buy new paint and brushes. What are they doing?,Cleaning their house,Fixing their house,Painting their house,Painting their house,,,homework
+204,1,4,grammar,The paint on their house is old. They buy new paint and brushes. What are they doing?,Cleaning their house,Fixing their house,Painting their house,Painting their house,,,homework
 205,1,4,grammar,My cat is hungry. I open a can of cat food. What am I doing?,Brushing my cat,Feeding my cat,Washing my cat,Feeding my cat,,,homework
-206,1,4,grammar,Your hair is messy. You pick up your hairbrush. What are you doing?,Washing your hair,Brushing your hair,Cleaning your hair,Brushing your hair,,,homework
-207,1,4,grammar,"The cat is hungry, and its bowl is full. What is it doing?",Reading its food,Fixing its food,Eating its food,Eating its food,,,homework
-208,1,4,listening,"You hear ""Are you busy?"" What is being asked?",Where you are,What time it is,Whether you are doing something right now,Whether you are doing something right now,,,homework
+206,1,4,grammar,"Your hair is clean, but it is messy. You pick up your hairbrush. What are you doing?",Washing your hair,Brushing your hair,Cleaning your hairbrush,Brushing your hair,,,homework
+207,1,4,grammar,Ken is hungry. He sits at the table with a sandwich. What is he doing?,Washing his hands,Reading a book,Eating his sandwich,Eating his sandwich,,,homework
+208,1,4,listening,"You hear ""Are you busy?"" What is being asked?",If you are at home now,If you have a lot to do now,If you are happy now,If you have a lot to do now,,,homework
 209,1,4,listening,"You hear ""He's fixing his car."" What is he doing?",Buying a car,Washing his car,Repairing his car,Repairing his car,,,homework
 210,1,4,listening,"You hear ""She's feeding her cat."" What is she doing?",Giving food to her cat,Playing with her cat,Washing her cat,Giving food to her cat,,,homework
-211,1,4,listening,"You hear ""We're painting our bedroom."" What are we doing?",Putting paint on our bedroom,Cleaning our bedroom,Fixing our bedroom,Putting paint on our bedroom,,,homework
-212,1,4,listening,"Someone asks if you're busy, and you hear ""Yes, I am."" What does this mean?",You are not busy,You are busy right now,You don't understand,You are busy right now,,,homework
-213,1,4,vocabulary,"What does ""washing"" mean?",Cleaning something with water and soap,Repairing something broken,Giving food to an animal,Cleaning something with water and soap,,,test
-214,1,4,vocabulary,"What does ""fixing"" mean?",Feeding an animal,Painting something new,Repairing something broken,Repairing something broken,,,test
-215,1,4,vocabulary,"What does ""feeding"" mean?",Giving food to a person or animal,Cleaning a person or animal,Brushing a person or animal,Giving food to a person or animal,,,test
-216,1,4,grammar,She is washing ___ car.,her,their,his,her,,,test
-217,1,4,grammar,We are painting ___ kitchen.,our,their,your,our,,,test
-218,1,4,grammar,The dog is eating ___ food.,her,its,his,its,,,test
-219,1,4,grammar,"Is Frank busy? Yes, he ___.",am,is,are,is,,,test
-220,1,4,grammar,"Are Jim and Lisa busy? Yes, they ___.",are,am,is,are,,,test
-221,1,4,grammar,Helen's cat is hungry. She opens a can of food. What is she doing?,Feeding her cat,Washing her cat,Painting her cat,Feeding her cat,,,test
-222,1,4,listening,"You hear ""He's cleaning his apartment."" What is he doing?",Fixing his apartment,Painting his apartment,Making his apartment free of dirt,Making his apartment free of dirt,,,test
+211,1,4,listening,"You hear ""We're painting our bedroom."" What are we doing?",Cleaning our bedroom,Giving our bedroom a new color,Fixing our bedroom,Giving our bedroom a new color,,,homework
+212,1,4,listening,"You ask Tom, ""Are you busy?"" You hear ""Yes, I am."" What does this mean?",Tom is not busy,Tom is busy,Tom is at home,Tom is busy,,,homework
+1031,1,4,grammar,Nao and Kai have a cat. They are feeding ___ cat.,his,her,their,their,,,test
+1032,1,4,grammar,"I have a car, and you have a car. I'm washing ___ car, and you're washing ___ car.","your, my","my, your","my, my","my, your",,,test
+1033,1,4,grammar,"Is Ms. Kato busy? Yes, ___.",she is,she's,she are,she is,,,test
+1034,1,4,grammar,"Are you and Ken busy? Yes, ___.",we are,you are,they are,we are,,,test
+1035,1,4,grammar,"Are your parents busy? Yes, ___.",they are,they're,their are,they are,,,test
+1036,1,4,grammar,Which sentence is correct?,They is cleaning their room.,They are cleaning there room.,They are cleaning their room.,They are cleaning their room.,,,test
+1037,1,4,grammar,Our dog is hungry. It is eating ___ food.,their,it's,its,its,,,test
+1038,1,4,grammar,"You ask your secretary, ""Am I busy this afternoon?"" She says, ""Yes, ___.""",I am,you are,you is,you are,,,test
+1039,1,4,grammar,"Mrs. Ito has a new kitchen. Mr. Ito has an old car. She is painting ___ kitchen, and he is fixing ___ car.","her, her","his, her","her, his","her, his",,,test
+1040,1,4,listening,"You hear ""Are you busy, Tom?"" ""Yes, I am. I'm fixing my car."" Who is busy?",The person asking,Tom,Tom's friend,Tom,,,test
 223,1,5,vocabulary,"What is the opposite of ""tall""?",old,cheap,short,short,,,homework
-224,1,5,vocabulary,"What is the opposite of ""short""?",quiet,tall,poor,tall,,,homework
 225,1,5,vocabulary,"What is the opposite of ""young""?",old,thin,difficult,old,,,homework
 226,1,5,vocabulary,"What is the opposite of ""new""?",married,old,small,old,,,homework
 227,1,5,vocabulary,"What is the opposite of ""heavy""?",cheap,ugly,thin,thin,,,homework
 228,1,5,vocabulary,"What is the opposite of ""fat""?",noisy,rich,thin,thin,,,homework
 229,1,5,vocabulary,"What is the opposite of ""married""?",expensive,single,tall,single,,,homework
-230,1,5,vocabulary,"What is the opposite of ""single""?",quiet,large,married,married,,,homework
 231,1,5,vocabulary,"What is the opposite of ""handsome""?",easy,poor,ugly,ugly,,,homework
 232,1,5,vocabulary,"What is the opposite of ""beautiful""?",small,ugly,difficult,ugly,,,homework
 233,1,5,vocabulary,"What is the opposite of ""pretty""?",ugly,rich,noisy,ugly,,,homework
@@ -192,68 +182,65 @@ id,level,chapter,type,question,choice_a,choice_b,choice_c,answer,image,audio,mod
 236,1,5,vocabulary,"What is the opposite of ""noisy""?",expensive,quiet,tall,quiet,,,homework
 237,1,5,vocabulary,"What is the opposite of ""loud""?",quiet,difficult,poor,quiet,,,homework
 238,1,5,vocabulary,"What is the opposite of ""expensive""?",thin,cheap,easy,cheap,,,homework
-239,1,5,vocabulary,"What is the opposite of ""cheap""?",expensive,old,noisy,expensive,,,homework
 240,1,5,vocabulary,"What is the opposite of ""easy""?",rich,married,difficult,difficult,,,homework
-241,1,5,vocabulary,"What is the opposite of ""difficult""?",easy,large,ugly,easy,,,homework
 242,1,5,vocabulary,"What is the opposite of ""rich""?",quiet,young,poor,poor,,,homework
-243,1,5,vocabulary,"What is the opposite of ""poor""?",rich,cheap,tall,rich,,,homework
-244,1,5,grammar,I ___ tall.,is,am,are,am,,,homework
-245,1,5,grammar,He ___ young.,is,are,am,is,,,homework
-246,1,5,grammar,She ___ married.,is,am,are,is,,,homework
-247,1,5,grammar,It ___ expensive.,are,am,is,is,,,homework
-248,1,5,grammar,We ___ noisy.,am,are,is,are,,,homework
-249,1,5,grammar,You ___ rich.,are,am,is,are,,,homework
-250,1,5,grammar,They ___ poor.,is,am,are,are,,,homework
-251,1,5,grammar,___ he tall?,Is,Are,Am,Is,,,homework
-252,1,5,grammar,___ she young?,Are,Is,Am,Is,,,homework
-253,1,5,grammar,___ it expensive?,Is,Are,Am,Is,,,homework
-254,1,5,grammar,___ we rich?,Is,Am,Are,Are,,,homework
-255,1,5,grammar,___ you married?,Is,Are,Am,Are,,,homework
+244,1,5,grammar,I ___ tall.,am,is,are,am,,,homework
+245,1,5,grammar,He ___ young.,am,is,are,is,,,homework
+246,1,5,grammar,She ___ married.,am,is,are,is,,,homework
+247,1,5,grammar,It ___ expensive.,am,is,are,is,,,homework
+248,1,5,grammar,We ___ noisy.,am,is,are,are,,,homework
+249,1,5,grammar,You ___ rich.,am,is,are,are,,,homework
+250,1,5,grammar,They ___ poor.,am,is,are,are,,,homework
+251,1,5,grammar,___ he tall?,Am,Is,Are,Is,,,homework
+252,1,5,grammar,___ she young?,Am,Is,Are,Is,,,homework
+253,1,5,grammar,___ it expensive?,Am,Is,Are,Is,,,homework
+254,1,5,grammar,___ we rich?,Am,Is,Are,Are,,,homework
+255,1,5,grammar,___ you married?,Am,Is,Are,Are,,,homework
 256,1,5,grammar,___ they noisy?,Am,Is,Are,Are,,,homework
-257,1,5,grammar,Bob is 6 feet 5 inches tall. Is he tall or short?,Short,Cheap,Tall,Tall,,,homework
-258,1,5,grammar,Bill is only 5 feet tall. Is he tall or short?,Short,Tall,Married,Short,,,homework
-259,1,5,grammar,Kate just turned 8 years old. Is she young or old?,Old,Young,Noisy,Young,,,homework
-260,1,5,grammar,Peggy is 85 years old. Is she young or old?,Young,Easy,Old,Old,,,homework
-261,1,5,grammar,Howard weighs 250 pounds. Is he heavy or thin?,Rich,Heavy,Thin,Heavy,,,homework
-262,1,5,grammar,Mike weighs 120 pounds and has a slim build. Is he heavy or thin?,Thin,Small,Heavy,Thin,,,homework
-263,1,5,grammar,Howard bought his car yesterday. Is it new or old?,Quiet,New,Old,New,,,homework
-264,1,5,grammar,Mike's car is from 1995 and breaks down often. Is it new or old?,New,Difficult,Old,Old,,,homework
-265,1,5,grammar,Kate's neighbors play loud music every night. Are they noisy or quiet?,Noisy,Quiet,Poor,Noisy,,,homework
-266,1,5,grammar,Peggy's neighbors never make a sound. Are they noisy or quiet?,Quiet,Large,Noisy,Quiet,,,homework
-267,1,5,grammar,Frank has a wife of ten years. Is he married or single?,Single,Expensive,Married,Married,,,homework
-268,1,5,grammar,Their new apartment has lots of space. Is it large or small?,Cheap,Small,Large,Large,,,homework
-269,1,5,grammar,Diamonds cost thousands of dollars. Are they expensive or cheap?,Expensive,Cheap,Tall,Expensive,,,homework
-270,1,5,grammar,This puzzle only takes two minutes to finish. Is it easy or difficult?,Difficult,Easy,Rich,Easy,,,homework
-271,1,5,grammar,Mr. Kim owns three companies and a mansion. Is he rich or poor?,Young,Rich,Poor,Rich,,,homework
-272,1,5,listening,"You hear ""He's handsome."" What is being said about him?",That he looks attractive,That he is very tall,That he is unfriendly,That he looks attractive,,,homework
-273,1,5,listening,"You hear ""It's expensive."" What does this mean?",It is very small,It is free,It costs a lot of money,It costs a lot of money,,,homework
-274,1,5,listening,"You hear ""She's married."" What does this mean?",She has children,She has a husband or wife,She lives alone,She has a husband or wife,,,homework
+257,1,5,grammar,Bob is 195 cm. He is ___.,short,tall,old,tall,,,homework
+258,1,5,grammar,Bill is 150 cm. He is ___.,short,tall,heavy,short,,,homework
+259,1,5,grammar,Kate is 8 years old. She is ___.,old,married,young,young,,,homework
+260,1,5,grammar,Peggy is 85 years old. She is ___.,young,old,tall,old,,,homework
+261,1,5,grammar,Howard is 120 kg. He is ___.,heavy,thin,young,heavy,,,homework
+262,1,5,grammar,Mike is 50 kg. He is ___.,heavy,old,thin,thin,,,homework
+263,1,5,grammar,Howard's car is from this year. It is ___.,new,old,cheap,new,,,homework
+264,1,5,grammar,Mike's car is from 1995. It is ___.,new,expensive,old,old,,,homework
+265,1,5,grammar,Kate's neighbors play loud music every night. They are ___.,quiet,noisy,rich,noisy,,,homework
+266,1,5,grammar,Peggy's neighbors never make a sound. They are ___.,noisy,old,quiet,quiet,,,homework
+267,1,5,grammar,Frank has a wife and two children. He is ___.,married,single,young,married,,,homework
+268,1,5,grammar,Their new apartment has six rooms. It is ___.,small,large,cheap,large,,,homework
+269,1,5,grammar,"A diamond ring is ¥500,000. It is ___.",cheap,new,expensive,expensive,,,homework
+270,1,5,grammar,This puzzle takes two minutes. It is ___.,easy,difficult,old,easy,,,homework
+271,1,5,grammar,Mr. Kim has three cars and a very big house. He is ___.,poor,rich,single,rich,,,homework
+272,1,5,listening,"You hear ""He's handsome."" What is being said about him?",How old he is,How he looks,How tall he is,How he looks,,,homework
+273,1,5,listening,"You hear ""It's expensive."" What does this mean?",It costs a little,It is very small,It costs a lot,It costs a lot,,,homework
+274,1,5,listening,"You hear ""She's married."" What does this mean?",She has a sister,She has a husband,She lives alone,She has a husband,,,homework
 275,1,5,listening,"You hear ""This is easy."" What does this mean?",It takes a long time,It is not difficult,It is very expensive,It is not difficult,,,homework
 276,1,5,listening,"You hear ""They're noisy."" What does this mean?",They make a lot of sound,They are very quiet,They are very old,They make a lot of sound,,,homework
-277,1,5,vocabulary,"What is the opposite of ""big""?",small,cheap,large,small,,,test
-278,1,5,vocabulary,"What is the opposite of ""poor""?",quiet,thin,rich,rich,,,test
-279,1,5,vocabulary,"What is the opposite of ""difficult""?",large,easy,cheap,easy,,,test
-280,1,5,grammar,She ___ beautiful.,am,is,are,is,,,test
-281,1,5,grammar,You ___ handsome.,are,is,am,are,,,test
-282,1,5,grammar,___ it cheap?,Am,Is,Are,Is,,,test
-283,1,5,grammar,___ they rich?,Are,Am,Is,Are,,,test
-284,1,5,grammar,Nancy has been married for twenty years. Is she married or single?,Single,Married,Noisy,Married,,,test
-285,1,5,grammar,"Oscar's new laptop cost him $3,000. Is it expensive or cheap?",Expensive,Cheap,Old,Expensive,,,test
-286,1,5,listening,"You hear ""The test is difficult."" What does this mean?",It is hard to do,It is free,It is very short,It is hard to do,,,test
+1041,1,5,grammar,"___ your neighbors noisy? Yes, they are.",Am,Is,Are,Are,,,test
+1042,1,5,grammar,Is the test easy?,"Yes, it is.","Yes, it's.","Yes, he is.","Yes, it is.",,,test
+1043,1,5,grammar,Is Bob tall?,"No, he is. He's short.","No, he isn't. He's short.","Yes, he isn't. He's short.","No, he isn't. He's short.",,,test
+1044,1,5,grammar,Which sentence is correct?,My car are old.,My car old is.,My car is old.,My car is old.,,,test
+1045,1,5,grammar,Which sentence is correct?,She is a woman beautiful.,She is a beautiful woman.,She is beautiful a woman.,She is a beautiful woman.,,,test
+1046,1,5,grammar,Tom has a red car. It's ___ car.,Tom,Toms,Tom's,Tom's,,,test
+1047,1,5,grammar,Ken's sister is tall. Who is tall?,Ken,Ken and his sister,Ken's sister,Ken's sister,,,test
+1048,1,5,grammar,How's the weather today? ___ sunny.,It's,Its,It,It's,,,test
+1049,1,5,grammar,"Is your apartment large? No, ___. It's small.",it isn't,it not,it aren't,it isn't,,,test
+1050,1,5,listening,"You hear ""Is it hot today?"" ""No, it isn't. It's cold."" How is the weather?",Hot,Cold,Sunny,Cold,,,test
 287,1,6,vocabulary,This woman gave birth to me. Who is she to me?,Grandmother,Aunt,Mother,Mother,,,homework
 288,1,6,vocabulary,This man is my mother's husband. Who is he to me?,Father,Uncle,Grandfather,Father,,,homework
-289,1,6,vocabulary,My mother and father together. Who are they to me?,Grandparents,Cousins,Parents,Parents,,,homework
+289,1,6,vocabulary,My mother and father are my ___.,grandparents,cousins,parents,parents,,,homework
 290,1,6,vocabulary,This boy is my child. Who is he to me?,Grandson,Nephew,Son,Son,,,homework
 291,1,6,vocabulary,This girl is my child. Who is she to me?,Daughter,Niece,Granddaughter,Daughter,,,homework
-292,1,6,vocabulary,My son and daughter together. Who are they to me?,Grandchildren,Children,Cousins,Children,,,homework
+292,1,6,vocabulary,My son and daughter are my ___.,grandchildren,children,cousins,children,,,homework
 293,1,6,vocabulary,This boy has the same parents as me. Who is he to me?,Brother,Nephew,Cousin,Brother,,,homework
 294,1,6,vocabulary,This girl has the same parents as me. Who is she to me?,Cousin,Niece,Sister,Sister,,,homework
 295,1,6,vocabulary,This woman is my mother's mother. Who is she to me?,Mother,Grandmother,Aunt,Grandmother,,,homework
 296,1,6,vocabulary,This man is my father's father. Who is he to me?,Grandfather,Uncle,Father,Grandfather,,,homework
-297,1,6,vocabulary,My grandmother and grandfather together. Who are they to me?,Cousins,Grandparents,Parents,Grandparents,,,homework
+297,1,6,vocabulary,My grandmother and grandfather are my ___.,cousins,grandparents,parents,grandparents,,,homework
 298,1,6,vocabulary,This boy is my daughter's son. Who is he to me?,Son,Grandson,Nephew,Grandson,,,homework
 299,1,6,vocabulary,This girl is my son's daughter. Who is she to me?,Granddaughter,Daughter,Niece,Granddaughter,,,homework
-300,1,6,vocabulary,My grandson and granddaughter together. Who are they to me?,Children,Grandchildren,Cousins,Grandchildren,,,homework
+300,1,6,vocabulary,My grandson and granddaughter are my ___.,children,grandchildren,cousins,grandchildren,,,homework
 301,1,6,vocabulary,This woman is married to me. Who is she to me?,Mother,Wife,Sister,Wife,,,homework
 302,1,6,vocabulary,This man is married to me. Who is he to me?,Husband,Father,Brother,Husband,,,homework
 303,1,6,vocabulary,This woman is my mother's sister. Who is she to me?,Grandmother,Cousin,Aunt,Aunt,,,homework
@@ -261,74 +248,669 @@ id,level,chapter,type,question,choice_a,choice_b,choice_c,answer,image,audio,mod
 305,1,6,vocabulary,This girl is my sister's daughter. Who is she to me?,Granddaughter,Daughter,Niece,Niece,,,homework
 306,1,6,vocabulary,This boy is my brother's son. Who is he to me?,Nephew,Grandson,Son,Nephew,,,homework
 307,1,6,vocabulary,This person is my aunt's child. Who is this to me?,Niece,Nephew,Cousin,Cousin,,,homework
-308,1,6,vocabulary,"Tom is on stage, pretending to be a king in the school play. What is he doing?",Acting,Talking,Dancing,Acting,,,homework
+308,1,6,vocabulary,Tom is on a stage in a play. What is he doing?,Acting,Talking,Dancing,Acting,,,homework
 309,1,6,vocabulary,"Mom is in the kitchen, putting a cake in the oven. What is she doing?",Vacuuming,Baking,Having dinner,Baking,,,homework
 310,1,6,vocabulary,The baby's eyes are full of tears. What is the baby doing?,Talking,Laughing,Crying,Crying,,,homework
 311,1,6,vocabulary,They are moving to the music at the party. What are they doing?,Dancing,Riding,Skateboarding,Dancing,,,homework
 312,1,6,vocabulary,"The family is sitting at the table, eating together in the evening. What are they doing?",Having dinner,Baking,Talking,Having dinner,,,homework
-313,1,6,vocabulary,"Her friend told a very funny joke, and she can't stop smiling. What is she doing?",Acting,Crying,Laughing,Laughing,,,homework
-314,1,6,vocabulary,"He is sitting on his bicycle, pedaling down the street. What is he doing?",Skateboarding,Riding,Dancing,Riding,,,homework
-315,1,6,vocabulary,"He is standing on his board, rolling down the ramp. What is he doing?",Dancing,Riding,Skateboarding,Skateboarding,,,homework
+313,1,6,vocabulary,"Her friend tells a funny joke. She says, ""Ha ha ha!"" What is she doing?",Acting,Crying,Laughing,Laughing,,,homework
+314,1,6,vocabulary,"He is on his bicycle, going down the street. What is he doing?",Skateboarding,Riding,Dancing,Riding,,,homework
+315,1,6,vocabulary,"He is standing on his board, going down the street. What is he doing?",Dancing,Talking,Skateboarding,Skateboarding,,,homework
 316,1,6,vocabulary,The two friends are having a conversation on the phone. What are they doing?,Talking,Crying,Laughing,Talking,,,homework
 317,1,6,vocabulary,She is cleaning the carpet with a loud machine. What is she doing?,Baking,Vacuuming,Having dinner,Vacuuming,,,homework
-318,1,6,grammar,Who ___ she?,Am,Are,Is,Is,,,homework
+318,1,6,grammar,Who ___ she?,Am,Is,Are,Is,,,homework
 319,1,6,grammar,Who ___ he?,Am,Is,Are,Is,,,homework
-320,1,6,grammar,Who ___ they?,Are,Is,Am,Are,,,homework
-321,1,6,grammar,"Kate is sitting ___ the park, reading a book.",on,at,in,in,,,homework
-322,1,6,grammar,Mike is relaxing ___ the beach.,on,in,at,at,,,homework
-323,1,6,grammar,The cat is sleeping ___ the sofa.,on,at,in,on,,,homework
-324,1,6,grammar,We're standing ___ front of our house.,in,at,on,in,,,homework
-325,1,6,grammar,Grandma is resting ___ her bed.,at,on,in,on,,,homework
-326,1,6,grammar,The kids are playing ___ school today.,on,at,in,at,,,homework
+320,1,6,grammar,Who ___ they?,Am,Is,Are,Are,,,homework
+321,1,6,grammar,"Kate is sitting ___ the sofa, reading a book.",in,on,at,on,,,homework
+322,1,6,grammar,Mike is ___ home today.,in,on,at,at,,,homework
+323,1,6,grammar,The cat is sleeping ___ the sofa.,in,on,at,on,,,homework
+324,1,6,grammar,We're standing ___ front of our house.,in,on,at,in,,,homework
+325,1,6,grammar,Grandma is resting ___ the bedroom.,in,on,at,in,,,homework
+326,1,6,grammar,Dad is ___ work today.,in,on,at,at,,,homework
 327,1,6,grammar,Dad is cooking ___ the kitchen.,in,on,at,in,,,homework
-328,1,6,grammar,The book is ___ the table.,at,in,on,on,,,homework
-329,1,6,grammar,They are waiting ___ the bus stop.,on,at,in,at,,,homework
+328,1,6,grammar,The book is ___ the table.,in,on,at,on,,,homework
+329,1,6,grammar,They are waiting ___ the bus stop.,in,on,at,at,,,homework
 330,1,6,grammar,Someone says 'Nice to meet you.' What is the polite reply?,"Nice to meet you, too.","Goodbye, see you later.",Nice to see you again.,"Nice to meet you, too.",,,homework
 331,1,6,grammar,You want your friend to meet someone new. What do you say first?,"Nice to meet you, too.",Who is he?,I'd like to introduce...,I'd like to introduce...,,,homework
-332,1,6,grammar,"A teacher says ""I'd like to introduce my new student, Sam."" What is she doing?",Asking a question,Introducing someone to the class,Saying goodbye to someone,Introducing someone to the class,,,homework
+332,1,6,grammar,"A teacher says ""I'd like to introduce my new student, Sam."" What is she doing?",Asking a question,Introducing someone,Saying goodbye,Introducing someone,,,homework
 333,1,6,grammar,This is the first time you are meeting someone. What do you say?,Nice to meet you.,"Nice to meet you, too.",I'd like to introduce...,Nice to meet you.,,,homework
-334,1,6,listening,"You hear ""Who is she?"" What is being asked?",Someone's identity or relationship,Where she is,What she is doing,Someone's identity or relationship,,,homework
-335,1,6,listening,"You hear ""She's my sister."" What is being said?",A location,An activity,A family relationship,A family relationship,,,homework
-336,1,6,listening,"You hear ""What's he doing?"" What is being asked?",What activity someone is doing right now,Who someone is,Where someone is,What activity someone is doing right now,,,homework
+334,1,6,listening,"You hear ""Who is she?"" What is being asked?",Who she is,Where she is,What she is doing,Who she is,,,homework
+335,1,6,listening,"You hear ""She's my sister."" Who is she?",The speaker's mother,The speaker's sister,The speaker's friend,The speaker's sister,,,homework
+336,1,6,listening,"You hear ""What's he doing?"" What is being asked?",Who he is,Where he is,What he is doing,What he is doing,,,homework
 337,1,6,listening,"You hear ""He's at the beach."" What does this tell you?",Who he is,Where he is,What he is doing,Where he is,,,homework
 338,1,6,listening,"You hear ""Nice to meet you, too."" What just happened?",Two people are saying goodbye,Two people are meeting for the first time,Two people are arguing,Two people are meeting for the first time,,,homework
-339,1,6,vocabulary,This man is my mother's brother. Who is he to me?,Uncle,Cousin,Father,Uncle,,,test
-340,1,6,vocabulary,This girl is my son's daughter. Who is she to me?,Niece,Granddaughter,Daughter,Granddaughter,,,test
-341,1,6,vocabulary,This is my father's mother. Who is she to me?,Aunt,Mother,Grandmother,Grandmother,,,test
-342,1,6,vocabulary,"Lucy is standing on a board, rolling down the street.",Skateboarding,Riding,Dancing,Skateboarding,,,test
-343,1,6,vocabulary,"The kids are sitting around the table, eating their evening meal.",Vacuuming,Having dinner,Baking,Having dinner,,,test
-344,1,6,grammar,Ben is walking ___ the park.,at,on,in,in,,,test
-345,1,6,grammar,Sara is waiting ___ the beach for her friends.,at,on,in,at,,,test
-346,1,6,grammar,The lamp is ___ the desk.,at,on,in,on,,,test
-347,1,6,grammar,You meet your friend's brother for the first time. What do you say?,Nice to meet you.,"Nice to meet you, too.",I'd like to introduce...,Nice to meet you.,,,test
-348,1,6,listening,"You hear ""Who are they?"" What is being asked?",Someone's identity or relationship,What they are doing,Where they are,Someone's identity or relationship,,,test
-26,1,7,vocabulary,What does "drink" mean?,To swallow liquid,To eat food,To run fast,To swallow liquid,,,homework
-27,1,7,grammar,She ___ at home.,am,is,are,is,,,homework
-28,1,7,listening,You hear "No". What does the person mean?,They disagree or refuse,They agree,They are happy,They disagree or refuse,,,homework
-29,1,8,vocabulary,What does "hot" mean?,High temperature,Very cold,Very slow,High temperature,,,homework
-30,1,8,grammar,The cat ___ on the table.,am,is,are,is,,,homework
-31,1,8,listening,You hear "Help!". What does the person need?,Assistance from someone,Food to eat,Time to rest,Assistance from someone,,,homework
-32,1,9,vocabulary,What does "new" mean?,Recently made or bought,Very old,Very broken,Recently made or bought,,,homework
-33,1,9,grammar,My parents ___ at work.,am,is,are,are,,,homework
-34,1,9,listening,You hear "Come here". What should you do?,Move toward the speaker,Stay where you are,Leave the room,Move toward the speaker,,,homework
-35,1,10,vocabulary,What does "open" mean?,Not closed or shut,Very tight,Very fast,Not closed or shut,,,homework
-36,1,10,grammar,The dog ___ very friendly.,am,is,are,is,,,homework
-37,1,10,listening,You hear "Sit down". What should you do?,Take a seat,Stand up,Leave,Take a seat,,,homework
-38,1,11,vocabulary,What does "old" mean?,Having existed for a long time,Very new,Very clean,Having existed for a long time,,,homework
-39,1,11,grammar,You ___ very kind.,am,is,are,are,,,homework
-40,1,11,listening,You hear "Be quiet". What should you do?,Stop making noise,Start talking,Start running,Stop making noise,,,homework
-41,1,12,vocabulary,What does "fast" mean?,Moving quickly,Moving slowly,Standing still,Moving quickly,,,homework
-42,1,12,grammar,It ___ raining outside.,am,is,are,is,,,homework
-43,1,12,listening,You hear "Good morning". What time of day is it?,Morning,Evening,Night,Morning,,,homework
-44,1,13,vocabulary,What does "sleep" mean?,To rest with eyes closed,To eat a meal,To run outside,To rest with eyes closed,,,homework
-45,1,13,grammar,The students ___ reading.,am,is,are,are,,,homework
-46,1,13,listening,You hear "Good night". What is about to happen?,Someone is going to sleep,Someone is waking up,Someone is eating,Someone is going to sleep,,,homework
-47,1,14,vocabulary,What does "clean" mean?,Free from dirt,Very messy,Very loud,Free from dirt,,,homework
-48,1,14,grammar,My friend ___ very tall.,am,is,are,is,,,homework
-49,1,14,listening,You hear "How are you?". What is being asked?,How the person is feeling,Where the person is going,What the person is eating,How the person is feeling,,,homework
-50,1,15,vocabulary,What does "walk" mean?,To move on foot at a normal pace,To run very fast,To sit down,To move on foot at a normal pace,,,homework
-51,1,15,grammar,The birds ___ singing.,am,is,are,are,,,homework
-52,1,15,listening,You hear "I don't understand". What is the person saying?,They are confused,They are angry,They are happy,They are confused,,,homework
-53,1,16,vocabulary,What does "tired" mean?,Feeling like you need to rest,Feeling very energetic,Feeling very hungry,Feeling like you need to rest,,,homework
-54,1,16,grammar,He ___ my English teacher.,am,is,are,is,,,homework
-55,1,16,listening,You hear "Can you repeat that?". What does the person want?,To hear something again,To stop talking,To leave,To hear something again,,,homework
+1051,1,6,grammar,Who ___ Ken and Emi? They're my cousins.,am,is,are,are,,,test
+1052,1,6,grammar,Ken is ___ home. He is sitting ___ the sofa.,"in, at","at, on","on, in","at, on",,,test
+1053,1,6,grammar,My grandmother ___ baking bread in the kitchen.,am,is,are,is,,,test
+1054,1,6,grammar,The children are ___ school now.,in,on,at,at,,,test
+1055,1,6,grammar,Which sentence is correct?,My parents are dancing.,My parents is dancing.,My parents are dance.,My parents are dancing.,,,test
+1056,1,6,grammar,What is your uncle doing?,He vacuuming the living room.,He's vacuum the living room.,He's vacuuming the living room.,He's vacuuming the living room.,,,test
+1057,1,6,grammar,My sister's books are ___ her bag.,in,on,at,in,,,test
+1058,1,6,grammar,Who is she?,She my aunt.,She's my aunt.,Her is my aunt.,She's my aunt.,,,test
+1059,1,6,grammar,"Your friend says, ""I'd like to introduce my brother, Sam."" Sam says, ""Nice to meet you."" What do you say?","Nice to meet you, too.",I'd like to introduce...,Who is he?,"Nice to meet you, too.",,,test
+1060,1,6,listening,"You hear ""My cousins are at the beach. They're swimming."" Where are the cousins?",At the park,At school,At the beach,At the beach,,,test
+349,1,7,vocabulary,Where would you go to catch a flight?,Bus station,Train station,Airport,Airport,,,homework
+350,1,7,vocabulary,Where would you go to buy fresh bread?,Bakery,Post office,Bank,Bakery,,,homework
+351,1,7,vocabulary,Where would you go to keep your money safe?,Drug store,Post office,Bank,Bank,,,homework
+352,1,7,vocabulary,Where would a man go to get his hair and beard cut?,Barber shop,Health club,Hair salon,Barber shop,,,homework
+353,1,7,vocabulary,Where would you go to buy a novel?,Clothing store,Video store,Book store,Book store,,,homework
+355,1,7,vocabulary,Where do students and workers eat a quick lunch at school or work?,Laundromat,Cafeteria,Bakery,Cafeteria,,,homework
+356,1,7,vocabulary,Where would you go to attend a religious service?,School,Hospital,Church,Church,,,homework
+357,1,7,vocabulary,Where would you go for a small medical checkup that isn't an emergency?,Health club,Clinic,Drug store,Clinic,,,homework
+358,1,7,vocabulary,Where would you go to buy new clothes?,Book store,Bakery,Clothing store,Clothing store,,,homework
+359,1,7,vocabulary,Where would you go to buy many different kinds of things in one big store?,Bakery,Department store,Clothing store,Department store,,,homework
+360,1,7,vocabulary,Where would you go to buy medicine?,Book store,Drug store,Post office,Drug store,,,homework
+361,1,7,vocabulary,Where do firefighters keep their trucks?,Police station,Gas station,Fire station,Fire station,,,homework
+362,1,7,vocabulary,Where would you go to fill up your car?,Fire station,Gas station,Bus station,Gas station,,,homework
+364,1,7,vocabulary,Where would you go to exercise and use gym equipment?,Hospital,Health club,Hair salon,Health club,,,homework
+365,1,7,vocabulary,Where would you go for a serious medical emergency?,Clinic,Hospital,Drug store,Hospital,,,homework
+366,1,7,vocabulary,Where would you stay overnight while traveling?,Hotel,Train station,Apartment building,Hotel,,,homework
+367,1,7,vocabulary,Where would you go to wash your clothes if you don't have a washing machine?,Department store,Drug store,Laundromat,Laundromat,,,homework
+368,1,7,vocabulary,Where would you go to watch a new film?,Video store,Movie theater,Book store,Movie theater,,,homework
+369,1,7,vocabulary,Where would you go to have a picnic outside?,School,Church,Park,Park,,,homework
+370,1,7,vocabulary,Where would you go to report a crime?,Fire station,Police station,Hospital,Police station,,,homework
+371,1,7,vocabulary,Where would you go to mail a letter?,Drug store,Bank,Post office,Post office,,,homework
+372,1,7,vocabulary,Where would you go for a nice dinner with your wife?,Laundromat,Restaurant,Bakery,Restaurant,,,homework
+373,1,7,vocabulary,Where would you go to study and take classes?,School,Church,Health club,School,,,homework
+374,1,7,vocabulary,Where would you go to visit many different stores in one big building?,Shopping mall,Supermarket,Bakery,Shopping mall,,,homework
+375,1,7,vocabulary,Where would you go to buy groceries for the week?,Bakery,Drug store,Supermarket,Supermarket,,,homework
+376,1,7,vocabulary,Where would you go to catch a train?,Bus station,Train station,Airport,Train station,,,homework
+378,1,7,vocabulary,What do you use to cool down a room in summer?,Stove,Air conditioner,Refrigerator,Air conditioner,,,homework
+379,1,7,vocabulary,What do you call a large building divided into many separate homes?,Building,Apartment building,Floor,Apartment building,,,homework
+381,1,7,vocabulary,Where do you wait for a city bus on the street?,Bus stop,Bus station,Fire escape,Bus stop,,,homework
+382,1,7,vocabulary,Where do you hang your clothes inside your bedroom?,Mailbox,Elevator,Closet,Closet,,,homework
+383,1,7,vocabulary,What do you use to go up to a high floor without using the stairs?,Fire escape,Elevator,Closet,Elevator,,,homework
+384,1,7,vocabulary,What do you use to leave a building quickly and safely during a fire?,Elevator,Closet,Fire escape,Fire escape,,,homework
+385,1,7,vocabulary,My apartment is on the 3rd ___.,building,apartment building,floor,floor,,,homework
+386,1,7,vocabulary,What do you call a tub with jets that bubble the water for relaxing?,Stove,Jacuzzi,Refrigerator,Jacuzzi,,,homework
+387,1,7,vocabulary,Where does your mail carrier put your letters?,Mailbox,Fire escape,Closet,Mailbox,,,homework
+388,1,7,vocabulary,What do you use to keep your food cold?,Stove,Jacuzzi,Refrigerator,Refrigerator,,,homework
+389,1,7,vocabulary,"What do you use to cook food on top of, with burners?",Stove,Refrigerator,Air conditioner,Stove,,,homework
+390,1,7,vocabulary,Who do you call to fix something broken in your apartment building?,Superintendent,Fire escape,Mailbox,Superintendent,,,homework
+391,1,7,vocabulary,What do you use to wash your clothes at home?,Stove,Washing machine,Refrigerator,Washing machine,,,homework
+392,1,7,grammar,There ___ one window in the bedroom.,am,is,are,is,,,homework
+393,1,7,grammar,There ___ two windows in the bedroom.,am,is,are,are,,,homework
+396,1,7,grammar,There ___ a supermarket on Main Street.,am,is,are,is,,,homework
+397,1,7,grammar,There ___ many stores in the shopping mall.,am,is,are,are,,,homework
+399,1,7,grammar,"Is there a laundromat in this neighborhood? Yes, there ___.",is,isn't,are,is,,,homework
+400,1,7,grammar,"Is there a pool in the building? No, there ___.",is,isn't,aren't,isn't,,,homework
+401,1,7,grammar,"Are there any children in the building? Yes, there ___.",is,are,aren't,are,,,homework
+402,1,7,grammar,"Are there any elevators here? No, there ___.",isn't,are,aren't,aren't,,,homework
+403,1,7,grammar,"Is there a Jacuzzi in the health club? Yes, there ___.",is,isn't,are,is,,,homework
+404,1,7,grammar,"Are there any closets in this apartment? Yes, there ___.",is,are,aren't,are,,,homework
+405,1,7,grammar,"Is there a mailbox near the entrance? No, there ___.",is,isn't,aren't,isn't,,,homework
+406,1,7,grammar,"Main Street: the bank, the bakery, the school. Where is the bakery?",Across from the bank,Between the bank and the school,Around the corner from the bank,Between the bank and the school,,,homework
+407,1,7,grammar,You are at the restaurant. The movie theater is on the other side of the street. Where is the movie theater?,Across from the restaurant,Next to the restaurant,Around the corner from the restaurant,Across from the restaurant,,,homework
+408,1,7,grammar,The library is next to the park. Where is the park?,Across from the library,Next to the library,Around the corner from the library,Next to the library,,,homework
+409,1,7,grammar,Turn the corner at the police station. The hospital is there. Where is the hospital?,Next to the police station,Across from the police station,Around the corner from the police station,Around the corner from the police station,,,homework
+410,1,7,grammar,"Main Street: the gas station, the drug store, the bank. Where is the gas station?",Between the drug store and the bank,Next to the drug store,Across from the bank,Next to the drug store,,,homework
+411,1,7,grammar,The hotel is on this side of the street. The train station is on the other side. Where is the train station?,Across from the hotel,Next to the hotel,Between the hotel and the park,Across from the hotel,,,homework
+412,1,7,grammar,"Main Street: the post office, the clinic, the bank. Where is the clinic?",Across from the bank,Around the corner from the bank,Between the post office and the bank,Between the post office and the bank,,,homework
+413,1,7,grammar,"The supermarket is on Main Street. The barber shop is just around the corner, on Park Street. Where is the barber shop?",Across from the supermarket,Around the corner from the supermarket,Next to the supermarket,Around the corner from the supermarket,,,homework
+414,1,7,grammar,The cafeteria is next to the book store. Where is the book store?,Next to the cafeteria,Across from the cafeteria,Around the corner from the cafeteria,Next to the cafeteria,,,homework
+415,1,7,grammar,The church is across from the fire station. Where is the fire station?,Next to the church,Around the corner from the church,Across from the church,Across from the church,,,homework
+416,1,7,listening,"You hear ""Is there a laundromat nearby?"" What is being asked?",Where the laundromat is,If there is one near here,When the laundromat opens,If there is one near here,,,homework
+417,1,7,listening,"You hear ""No, there isn't."" What does this mean?",There are two here,It is broken,There is not one here,There is not one here,,,homework
+418,1,7,listening,"You hear ""It's across from the bank."" What is being described?",Where something is,When the bank opens,How big the bank is,Where something is,,,homework
+419,1,7,listening,"You hear ""There are three elevators."" What is being said?",How old the elevators are,Where the elevators are,How many elevators there are,How many elevators there are,,,homework
+420,1,7,listening,"You hear ""It's around the corner from the hospital."" What does this tell you?",When the hospital opens,Where something is,How big the hospital is,Where something is,,,homework
+1061,1,7,grammar,There ___ two supermarkets and a bank on my street.,am,is,are,are,,,test
+1062,1,7,grammar,"Are there any restaurants on this street? No, there ___.",is,isn't,aren't,aren't,,,test
+1063,1,7,grammar,"There ___ one closet in my bedroom, and there ___ three closets in the living room.","are, is","is, is","is, are","is, are",,,test
+1064,1,7,grammar,"Is there a laundromat near here? Yes, there ___.",is,isn't,aren't,is,,,test
+1065,1,7,grammar,Which sentence is correct?,There are three elevators.,There is three elevators.,There am three elevators.,There are three elevators.,,,test
+1066,1,7,grammar,Which question is correct?,Is a bank there near here?,There is a bank near here?,Is there a bank near here?,Is there a bank near here?,,,test
+1067,1,7,grammar,"Park Street: the bakery, the bank, the post office. Where is the bank?",Across from the bakery,Between the bakery and the post office,Around the corner from the bakery,Between the bakery and the post office,,,test
+1068,1,7,grammar,The school is across from the park. Where is the park?,Next to the school,Across from the school,Around the corner from the school,Across from the school,,,test
+1069,1,7,grammar,The library is next to the hospital. Where is the hospital?,Next to the library,Around the corner from the library,Across from the library,Next to the library,,,test
+1070,1,7,listening,"You hear ""Is there a bank near here?"" ""Yes, there is. It's next to the post office."" Where is the bank?",Next to the post office,Around the corner from the post office,Across from the post office,Next to the post office,,,test
+517,1,8,vocabulary,You wear it around your waist. It holds up your pants. What is it?,Tie,Belt,Bracelet,Belt,,,homework
+518,1,8,vocabulary,A man wears it around his neck with a suit and a shirt. What is it?,Tie,Necklace,Belt,Tie,,,homework
+519,1,8,vocabulary,Mary wears them on her ears. What are they?,Necklaces,Bracelets,Earrings,Earrings,,,homework
+520,1,8,vocabulary,It's raining. You open it and hold it over your head. What is it?,Umbrella,Raincoat,Hat,Umbrella,,,homework
+521,1,8,vocabulary,It's raining. You wear it over your clothes to stay dry. What is it?,Sweater,Raincoat,Umbrella,Raincoat,,,homework
+522,1,8,vocabulary,Tom works at a bank. He carries his papers in it. What is it?,Purse,Pocketbook,Briefcase,Briefcase,,,homework
+523,1,8,vocabulary,It's cold and snowy. You wear them on your hands. Your fingers are together. What are they?,Mittens,Gloves,Socks,Mittens,,,homework
+524,1,8,vocabulary,You wear them on your hands. Each finger has its own place. What are they?,Mittens,Socks,Gloves,Gloves,,,homework
+525,1,8,vocabulary,You wear them in bed at night. What are they?,Jeans,Pajamas,Suits,Pajamas,,,homework
+526,1,8,vocabulary,It's very sunny. You wear them to help your eyes. What are they?,Sunglasses,Earrings,Bracelets,Sunglasses,,,homework
+527,1,8,vocabulary,You wear it on your wrist. It tells the time. What is it?,Bracelet,Glove,Watch,Watch,,,homework
+528,1,8,vocabulary,A woman wears it from her waist down. It has no legs. What is it?,Pants,Skirt,Jeans,Skirt,,,homework
+529,1,8,vocabulary,A man wears it to a job interview. The jacket and pants are the same color. What is it?,Suit,Sports jacket,Coat,Suit,,,homework
+530,1,8,vocabulary,You wear it over your shirt on a cold day. You pull it over your head. What is it?,Coat,Sweater,Tie,Sweater,,,homework
+531,1,8,vocabulary,You wear them on your feet in the snow. They are tall. What are they?,Shoes,Socks,Boots,Boots,,,homework
+532,1,8,vocabulary,What color is snow?,White,Gray,Silver,White,,,homework
+533,1,8,vocabulary,What color is the sky on a sunny day?,Green,Blue,Gray,Blue,,,homework
+534,1,8,vocabulary,Red and white make ___.,orange,purple,pink,pink,,,homework
+535,1,8,vocabulary,Red and blue make ___.,purple,green,brown,purple,,,homework
+536,1,8,vocabulary,Black and white make ___.,brown,gray,blue,gray,,,homework
+537,1,8,vocabulary,What color is a carrot?,Red,Yellow,Orange,Orange,,,homework
+538,1,8,grammar,I'm looking for ___ umbrella.,a,an,these,an,,,homework
+539,1,8,grammar,I'm looking for ___ dress.,a,an,these,a,,,homework
+540,1,8,grammar,This is ___ orange sweater.,a,an,these,an,,,homework
+541,1,8,grammar,This is ___ purple jacket.,a,an,these,a,,,homework
+542,1,8,grammar,I'm looking for a coat. ___ are over there.,Coat,Coats,Coates,Coats,,,homework
+543,1,8,grammar,I'm looking for a dress. ___ are over there.,Dresss,Dress,Dresses,Dresses,,,homework
+544,1,8,grammar,I'm looking for a watch. ___ are over there.,Watches,Watchs,Watch,Watches,,,homework
+545,1,8,grammar,I'm looking for a blouse. ___ are over there.,Blouse,Blouses,Blouse's,Blouses,,,homework
+546,1,8,grammar,"Say the words. Which one ends with the same sound as ""dresses""?",Coats,Shoes,Necklaces,Necklaces,,,homework
+547,1,8,grammar,"Say the words. Which one ends with the same sound as ""coats""?",Belts,Gloves,Watches,Belts,,,homework
+548,1,8,grammar,"Say the words. Which one ends with the same sound as ""umbrellas""?",Socks,Shoes,Purses,Shoes,,,homework
+549,1,8,grammar,The jacket is in my hand. ___ is a purple jacket.,This,That,These,This,,,homework
+550,1,8,grammar,The gloves are in my hand. ___ are green gloves.,That,These,Those,These,,,homework
+551,1,8,grammar,Look at the boots over there. ___ boots are dirty.,That,These,Those,Those,,,homework
+552,1,8,grammar,Look at the umbrella over there. ___ umbrella is brown.,This,That,These,That,,,homework
+553,1,8,grammar,"The umbrella is here, next to me. Is ___ your umbrella?",this,these,those,this,,,homework
+554,1,8,grammar,"The boots are here, next to me. Are ___ your boots?",this,these,those,these,,,homework
+555,1,8,grammar,"Is this your watch? Yes, it ___.",am,is,are,is,,,homework
+556,1,8,grammar,"Are these your gloves? Yes, they ___.",am,is,are,are,,,homework
+557,1,8,listening,"You hear ""I'm looking for a raincoat."" What does the person want?",To sell a raincoat,To find a raincoat,To wash a raincoat,To find a raincoat,,,homework
+558,1,8,listening,"You hear ""These are green gloves."" What color are the gloves?",Gray,Gold,Green,Green,,,homework
+559,1,8,listening,"You hear ""Is this your umbrella?"" What is the person asking?",If the umbrella is yours,Where your umbrella is,What color your umbrella is,If the umbrella is yours,,,homework
+560,1,8,listening,"You hear ""Sweaters are over there."" What is the person telling you?",Where the sweaters are,What color the sweaters are,How many sweaters there are,Where the sweaters are,,,homework
+561,1,8,listening,"You hear ""I'm looking for an earring."" How many earrings?",Two,Three,One,One,,,homework
+562,1,8,listening,"You hear ""Bracelets are over there."" How many bracelets?",More than one,One,None,More than one,,,homework
+1071,1,8,grammar,I have ___ old watch and ___ new bracelet.,"a, a","a, an","an, a","an, a",,,test
+1072,1,8,grammar,"Are these your ___? Yes, they are.",glove,glove's,gloves,gloves,,,test
+1073,1,8,grammar,"The shoes are over there, by the door. ___ your shoes?",Is this,Are those,Are these,Are those,,,test
+1074,1,8,grammar,A gold necklace is in my hand. ___ necklace is beautiful.,This,These,Those,This,,,test
+1075,1,8,grammar,Which sentence is correct?,These is red shoes.,These are red shoes.,This are red shoes.,These are red shoes.,,,test
+1076,1,8,grammar,I'm looking for two ___ shirts.,blue,blues,blue's,blue,,,test
+1077,1,8,grammar,I'm looking for ___.,a black coat,black a coat,a coat black,a black coat,,,test
+1078,1,8,grammar,I'm looking for two ___.,watchs,watches,watch,watches,,,test
+1079,1,8,grammar,"Is that your umbrella over there? Yes, ___.",it is,they are,this is,it is,,,test
+1080,1,8,listening,"You hear ""I'm looking for a sweater."" ""Sweaters are over there, next to the jackets."" Where are the sweaters?",Next to the coats,Next to the shirts,Next to the jackets,Next to the jackets,,,test
+573,1,9,vocabulary,Mr. Sato has a clothing store. People buy shirts from him. What does he do?,He sells shirts.,He paints shirts.,He washes shirts.,He sells shirts.,,,homework
+574,1,9,vocabulary,"Every Saturday, Amy goes to the shopping mall and buys new clothes. What does she do on Saturday?",She shops.,She sells.,She sings.,She shops.,,,homework
+575,1,9,vocabulary,Ken talks to his mother on the phone every night. What does he do every night?,He calls his mother.,He sings to his mother.,He visits his mother.,He calls his mother.,,,homework
+576,1,9,vocabulary,Lisa goes to her grandmother's house every Sunday. What does she do every Sunday?,She calls her grandmother.,She visits her grandmother.,She paints her grandmother's house.,She visits her grandmother.,,,homework
+577,1,9,vocabulary,Mr. Brown has a bus. Every day he takes people to the airport. What does he do?,He fixes buses.,He sells buses.,He drives a bus.,He drives a bus.,,,homework
+578,1,9,vocabulary,"On the train, Yuki can hear her favorite songs on her phone. What does she do on the train?",She listens to music.,She watches TV.,She sings.,She listens to music.,,,homework
+579,1,9,vocabulary,Tom is in a band. Every night he uses his voice to make music. What does he do?,He plays the piano.,He sings.,He speaks.,He sings.,,,homework
+580,1,9,vocabulary,Peter's favorite program is on at 8:00. He sits on the sofa in the living room. What does he do at 8:00?,He reads.,He watches TV.,He cooks.,He watches TV.,,,homework
+581,1,9,vocabulary,Anna buys paint and brushes. She makes beautiful pictures every weekend. What does she do?,She paints.,She reads.,She sells.,She paints.,,,homework
+582,1,9,vocabulary,"Every night, Mike opens a book in bed. What does he do?",He paints.,He sings.,He reads.,He reads.,,,homework
+583,1,9,vocabulary,The children go to the park every afternoon with a ball. What do they do there?,They work.,They shop.,They play.,They play.,,,homework
+584,1,9,vocabulary,Mr. Tanaka goes to his office from 9:00 to 5:00 every day. What does he do there?,He works.,He shops.,He visits.,He works.,,,homework
+585,1,9,vocabulary,"Every evening, Ms. Lee makes dinner for her family in the kitchen. What does she do?",She paints.,She cooks.,She drives.,She cooks.,,,homework
+586,1,9,vocabulary,"At 12:00, the workers sit down in the cafeteria with their lunch. What do they do at 12:00?",They sell.,They eat.,They cook.,They eat.,,,homework
+587,1,9,vocabulary,"Mrs. Kim is from Korea, but she lives in Tokyo. She ___ Korean and Japanese.",sells,drives,speaks,speaks,,,homework
+588,1,9,grammar,Where ___ you live?,do,does,is,do,,,homework
+589,1,9,grammar,Where ___ Maria live?,do,does,is,does,,,homework
+590,1,9,grammar,Where ___ Mr. and Mrs. Kato live?,do,does,is,do,,,homework
+591,1,9,grammar,Where ___ your brother live?,do,does,is,does,,,homework
+592,1,9,grammar,We have a dog. It lives in the yard. Where ___ it live?,do,does,is,does,,,homework
+593,1,9,grammar,I ___ in Tokyo.,lives,live,living,live,,,homework
+594,1,9,grammar,Kenji ___ in Osaka.,lives,live,living,lives,,,homework
+595,1,9,grammar,My parents ___ in Kyoto.,lives,live,living,live,,,homework
+596,1,9,grammar,We ___ in an apartment building.,living,lives,live,live,,,homework
+597,1,9,grammar,Where does Ken live? He ___ in Yokohama.,lives,live,is live,lives,,,homework
+598,1,9,grammar,Where do you live?,I living in Chiba.,I lives in Chiba.,I live in Chiba.,I live in Chiba.,,,homework
+599,1,9,grammar,Where does Lucia live? ___ lives in Rome.,He,She,They,She,,,homework
+600,1,9,grammar,Tom ___ English and Japanese.,speak,speaks,speaking,speaks,,,homework
+601,1,9,grammar,Amy ___ TV every night.,watchs,watch,watches,watches,,,homework
+602,1,9,grammar,My father ___ to work every day.,drive,drives,driving,drives,,,homework
+603,1,9,grammar,I ___ my mother every Sunday.,calls,call,calling,call,,,homework
+604,1,9,grammar,Mr. and Mrs. Lee ___ Korean food every weekend.,cook,cooking,cooks,cook,,,homework
+605,1,9,grammar,Yuki ___ at a bank.,works,work,working,works,,,homework
+606,1,9,listening,"You hear ""I live in Osaka."" Where does the speaker live?",In Osaka,In Tokyo,In Kyoto,In Osaka,,,homework
+607,1,9,listening,"You hear ""She speaks Japanese and English."" How many languages does she speak?",One,Three,Two,Two,,,homework
+608,1,9,listening,"You hear ""Where does he live?"" What is the person asking?",Where you live,Where a man lives,Where a woman lives,Where a man lives,,,homework
+609,1,9,listening,"You hear ""They visit their grandparents every Sunday."" When do they visit?",Every Saturday,Every day,Every Sunday,Every Sunday,,,homework
+610,1,9,listening,"You hear ""My father works at a bank."" Where does he work?",At a hospital,At a school,At a bank,At a bank,,,homework
+611,1,9,listening,"You hear ""We shop at the supermarket."" What do the speakers do there?",They sell things.,They work there.,They buy things.,They buy things.,,,homework
+1081,1,9,grammar,Where ___ Mr. Ota and his wife live?,do,does,is,do,,,test
+1082,1,9,grammar,Where does your teacher live?,She live in Kobe.,She lives in Kobe.,She living in Kobe.,She lives in Kobe.,,,test
+1083,1,9,grammar,"My sister ___ in Sapporo, and my parents ___ in Sendai.","live, lives","lives, lives","lives, live","lives, live",,,test
+1084,1,9,grammar,Which sentence is correct?,Ken eats lunch at 12:00.,Ken eating lunch at 12:00.,Ken eat lunch at 12:00.,Ken eats lunch at 12:00.,,,test
+1085,1,9,grammar,Where ___ your grandmother live? She lives in Nara.,do,does,is,does,,,test
+1086,1,9,grammar,Carlos is from Mexico. He ___ Spanish.,speaks,speak,speaking,speaks,,,test
+1087,1,9,grammar,Yuki is from Japan. She is ___.,Japan,Japanese,Japaneses,Japanese,,,test
+1088,1,9,grammar,Paul and Marie are from France. They speak ___.,French,France,Frenches,French,,,test
+1089,1,9,grammar,What language ___ Mr. Kim speak?,do,does,is,does,,,test
+1090,1,9,listening,"You hear ""Where do they live?"" ""They live in Kobe."" Who lives in Kobe?",One man,One woman,Two or more people,Two or more people,,,test
+622,1,10,vocabulary,Saturday and ___ are the weekend.,Sunday,Friday,Monday,Sunday,,,homework
+623,1,10,vocabulary,Today is Monday. Tomorrow is ___.,Sunday,Tuesday,Wednesday,Tuesday,,,homework
+624,1,10,vocabulary,Today is Thursday. Tomorrow is ___.,Wednesday,Friday,Saturday,Friday,,,homework
+625,1,10,vocabulary,Which day comes after Tuesday?,Monday,Thursday,Wednesday,Wednesday,,,homework
+626,1,10,vocabulary,Which day comes before Sunday?,Saturday,Monday,Friday,Saturday,,,homework
+627,1,10,vocabulary,Mr. and Mrs. Ono go out on Friday night. Kumi stays at their house with their two children. What does Kumi do?,She cleans.,She babysits.,She jogs.,She babysits.,,,homework
+628,1,10,vocabulary,"Every morning, Ken runs slowly in the park for 30 minutes. What does he do?",He rides.,He jogs.,He goes dancing.,He jogs.,,,homework
+629,1,10,vocabulary,"On Friday night, Rina and her friends go to a club and move to the music. What do they do?",They see a play.,They play volleyball.,They go dancing.,They go dancing.,,,homework
+630,1,10,vocabulary,"Every Tuesday, Amy goes to a class at the health club. She sits on a mat and breathes slowly. What does she do?",She does yoga.,She jogs.,She plays volleyball.,She does yoga.,,,homework
+631,1,10,vocabulary,"On Saturday, Ben and his friends hit a ball over a net at the beach. What do they do?",They jog.,They play volleyball.,They go dancing.,They play volleyball.,,,homework
+632,1,10,vocabulary,"Every Sunday, Mr. Sato vacuums and washes the floors in his house. What does he do on Sunday?",He paints his house.,He fixes his house.,He cleans his house.,He cleans his house.,,,homework
+633,1,10,vocabulary,Lisa goes to the theater. Real actors are on the stage. What does she do?,She goes dancing.,She sees a movie.,She sees a play.,She sees a play.,,,homework
+634,1,10,vocabulary,Tom goes to the movie theater on Friday night. What does he do?,He sees a movie.,He sees a play.,He goes dancing.,He sees a movie.,,,homework
+635,1,10,vocabulary,Mika has a bicycle. She goes to work on it every day. What does she do?,She drives her car.,She rides her bicycle.,She jogs.,She rides her bicycle.,,,homework
+636,1,10,grammar,"___ you jog every morning? Yes, I do.",Do,Does,Are,Do,,,homework
+637,1,10,grammar,"___ Kenji play volleyball? Yes, he does.",Do,Does,Is,Does,,,homework
+638,1,10,grammar,___ your parents see a movie every Saturday?,Do,Does,Are,Do,,,homework
+639,1,10,grammar,"Your computer is very old. ___ it work? Yes, it does.",Do,Does,Is,Does,,,homework
+640,1,10,grammar,"Does Emi do yoga? Yes, ___.",she is,she do,she does,she does,,,homework
+641,1,10,grammar,"Do you babysit on Friday? No, ___.",I doesn't,I don't,I not,I don't,,,homework
+642,1,10,grammar,"Does Mr. Hara jog? No, ___.",he don't,he isn't,he doesn't,he doesn't,,,homework
+643,1,10,grammar,"Do Ken and Yumi go dancing? Yes, ___.",they are,they does,they do,they do,,,homework
+644,1,10,grammar,"Do you and your wife see plays? Yes, ___.",you do,they do,we do,we do,,,homework
+645,1,10,grammar,"Do Tom and Lucy ride their bicycles to work? No, ___.",they don't,their don't,they doesn't,they don't,,,homework
+646,1,10,grammar,I ___ work on Sunday.,don't,doesn't,not,don't,,,homework
+647,1,10,grammar,Rika ___ play volleyball.,don't,doesn't,isn't,doesn't,,,homework
+648,1,10,grammar,My parents ___ go dancing.,don't,doesn't,aren't,don't,,,homework
+649,1,10,grammar,This old watch ___ work.,don't,doesn't,isn't,doesn't,,,homework
+650,1,10,grammar,Which sentence is correct?,He doesn't jogs.,He don't jog.,He doesn't jog.,He doesn't jog.,,,homework
+651,1,10,grammar,Which question is correct?,Does she clean on Monday?,Do she clean on Monday?,Does she cleans on Monday?,Does she clean on Monday?,,,homework
+652,1,10,grammar,"Lucas is from Mexico. ___ he speak Spanish? Yes, he does.",Do,Does,Is,Does,,,homework
+653,1,10,grammar,"Mr. Lee works on Monday, but he ___ work on Sunday.",don't,doesn't,isn't,doesn't,,,homework
+654,1,10,grammar,Kumi babysits ___ sister's children on Wednesday.,his,her,their,her,,,homework
+655,1,10,grammar,Where does your brother live? He ___ in Fukuoka.,live,lives,living,lives,,,homework
+656,1,10,listening,"You hear ""I don't work on Saturday."" What does the speaker say?",The speaker doesn't work on Saturday.,The speaker works on Saturday.,The speaker works every day.,The speaker doesn't work on Saturday.,,,homework
+657,1,10,listening,"You hear ""Do you jog?"" ""Yes, I do."" Does the person jog?",Yes,No,We don't know,Yes,,,homework
+658,1,10,listening,"You hear ""Does your brother play volleyball?"" ""No, he doesn't. He jogs."" What does the brother do?",He jogs.,He plays volleyball.,He does yoga.,He jogs.,,,homework
+659,1,10,listening,"You hear ""We see a movie every Friday."" When do they see a movie?",Every Thursday,Every Friday,Every Saturday,Every Friday,,,homework
+660,1,10,listening,"You hear ""Does it work?"" ""No, it doesn't."" What does this mean?",It is new.,It is broken.,It is cheap.,It is broken.,,,homework
+661,1,10,listening,"You hear ""My sister babysits on Wednesday and Saturday."" How many days does she babysit?",Two,One,Three,Two,,,homework
+1091,1,10,grammar,"___ Mr. Okada do yoga? Yes, he does.",Do,Does,Is,Does,,,test
+1092,1,10,grammar,"___ your children play volleyball on Saturday? No, they don't.",Do,Does,Are,Do,,,test
+1093,1,10,grammar,"Does Hana babysit on the weekend? No, ___.",she doesn't,she don't,she isn't,she doesn't,,,test
+1094,1,10,grammar,"Do you and Ken go dancing on Friday? Yes, ___.",you do,we do,we does,we do,,,test
+1095,1,10,grammar,Yuto ___ jog in the rain.,don't,doesn't,isn't,doesn't,,,test
+1096,1,10,grammar,Which sentence is correct?,My parents don't sees plays.,My parents doesn't see plays.,My parents don't see plays.,My parents don't see plays.,,,test
+1097,1,10,grammar,Which question is correct?,Does Ken rides his bicycle?,Does Ken ride his bicycle?,Do Ken ride his bicycle?,Does Ken ride his bicycle?,,,test
+1098,1,10,grammar,Sofia is from Spain. She speaks Spanish. She ___ speak Japanese.,don't,doesn't,isn't,doesn't,,,test
+1099,1,10,grammar,"Do Mr. and Mrs. Ito clean ___ house on Sunday? Yes, they do.",his,her,their,their,,,test
+1100,1,10,listening,"You hear ""Does your wife work on Monday?"" ""No, she doesn't. She works on Tuesday and Thursday."" When does the wife work?",On Tuesday and Thursday,On Monday,On Monday and Thursday,On Tuesday and Thursday,,,test
+662,1,11,vocabulary,There are seven days in a ___.,month,week,year,week,,,homework
+663,1,11,vocabulary,There are twelve months in a ___.,year,week,day,year,,,homework
+664,1,11,vocabulary,January and February are ___.,days,months,weeks,months,,,homework
+665,1,11,vocabulary,Saturday and Sunday are the ___.,weekend,week,month,weekend,,,homework
+666,1,11,vocabulary,You eat breakfast in the ___.,afternoon,morning,evening,morning,,,homework
+667,1,11,vocabulary,It's 3:00 p.m. It's the ___.,morning,night,afternoon,afternoon,,,homework
+668,1,11,vocabulary,It's 7:00 p.m. You eat dinner in the ___.,morning,evening,afternoon,evening,,,homework
+669,1,11,vocabulary,It's 2:00 a.m. You are in bed. It's ___.,morning,night,afternoon,night,,,homework
+670,1,11,vocabulary,"Mika visits her grandparents in January, February, March... in every month of the year. How often does she visit them?",Every month,Every week,Every year,Every month,,,homework
+671,1,11,vocabulary,"Ryo sees a movie on Saturday, then the next Saturday, then the next Saturday. How often does he see a movie?",Every week,Every month,Every day,Every week,,,homework
+672,1,11,vocabulary,Yumi's son calls her ten times a day! How often does he call her?,Every week,All the time,Every month,All the time,,,homework
+673,1,11,vocabulary,Mr. Kim goes to Korea in August. He goes again next August. How often does he go to Korea?,Every month,Every week,Every year,Every year,,,homework
+674,1,11,vocabulary,Emi's hair goes down to her waist. She has ___ hair.,short,long,tall,long,,,homework
+675,1,11,vocabulary,Bob is 190 cm. Which word describes his height?,long,short,tall,tall,,,homework
+676,1,11,vocabulary,Mr. Kato is 160 cm and 110 kg. He is short and ___.,skinny,fat,tall,fat,,,homework
+677,1,11,vocabulary,Ann is 175 cm and 45 kg. She is tall and ___.,fat,short,skinny,skinny,,,homework
+678,1,11,grammar,Ken calls Amy every night. He calls ___ every night.,him,her,them,her,,,homework
+679,1,11,grammar,My grandparents live in Nagano. I visit ___ every month.,him,her,them,them,,,homework
+680,1,11,grammar,We have a great teacher. She helps ___ all the time.,you,us,them,us,,,homework
+681,1,11,grammar,"My car is old, but I wash ___ every Sunday.",him,it,them,it,,,homework
+682,1,11,grammar,Mr. Hara is in the office. Do you see ___?,him,her,it,him,,,homework
+683,1,11,grammar,My sister calls ___ every night. I talk to her for an hour.,me,him,them,me,,,homework
+684,1,11,grammar,Lisa ___ long hair.,have,has,is,has,,,homework
+685,1,11,grammar,My parents ___ a big house.,have,has,are,have,,,homework
+686,1,11,grammar,Our cat ___ white feet.,have,has,is,has,,,homework
+687,1,11,grammar,"Does Ken ___ a bicycle? Yes, he does.",have,has,having,have,,,homework
+688,1,11,grammar,Yumi ___ her car every Sunday.,washes,washs,wash,washes,,,homework
+689,1,11,grammar,My father ___ the newspaper every morning.,read,reades,reads,reads,,,homework
+690,1,11,grammar,Ken and I ___ lunch at 12:00.,eat,eats,eates,eat,,,homework
+691,1,11,grammar,The dog ___ in the yard every afternoon.,play,playes,plays,plays,,,homework
+692,1,11,grammar,Ken jogs every day. He ___ jogs.,always,usually,never,always,,,homework
+693,1,11,grammar,"Mika jogs from Monday to Friday, but not on the weekend. She ___ jogs.",always,usually,never,usually,,,homework
+694,1,11,grammar,Ben plays volleyball two days a month. He ___ plays volleyball.,always,usually,sometimes,sometimes,,,homework
+695,1,11,grammar,Aya sees a play one time a year. She ___ sees a play.,always,usually,rarely,rarely,,,homework
+696,1,11,grammar,Taro doesn't do yoga. He ___ does yoga.,always,sometimes,never,never,,,homework
+697,1,11,grammar,Which sentence is correct?,I wash always my car.,I wash my always car.,I always wash my car.,I always wash my car.,,,homework
+698,1,11,grammar,Which sentence is correct?,Emi does yoga every morning.,Emi dos yoga every morning.,Emi do yoga every morning.,Emi does yoga every morning.,,,homework
+699,1,11,grammar,"Does your sister have long hair? No, she ___.",don't,doesn't,isn't,doesn't,,,homework
+700,1,11,grammar,Mr. Ito has ___ gray hair.,short,shorts,short's,short,,,homework
+701,1,11,grammar,Ken's wife has long hair. Who has long hair?,Ken,Ken's wife,Ken and his wife,Ken's wife,,,homework
+702,1,11,listening,"You hear ""I never eat breakfast."" Does the speaker eat breakfast?","Yes, always","No, never","Yes, sometimes","No, never",,,homework
+703,1,11,listening,"You hear ""She has short black hair."" What color is her hair?",Gold,Brown,Black,Black,,,homework
+704,1,11,listening,"You hear ""He calls them every weekend."" When does he call them?",On Saturday and Sunday,On Monday,Every night,On Saturday and Sunday,,,homework
+705,1,11,listening,"You hear ""I visit her every month."" Who does the speaker visit?",A man,Two people,A woman,A woman,,,homework
+706,1,11,listening,"You hear ""My sister usually does yoga in the evening."" When does she usually do yoga?",In the evening,In the afternoon,In the morning,In the evening,,,homework
+707,1,11,listening,"You hear ""Do you have a car?"" ""No, I don't."" Does the person have a car?",Yes,We don't know,No,No,,,homework
+1101,1,11,grammar,Mr. Mori calls his daughter every week. He calls ___ every week.,him,her,them,her,,,test
+1102,1,11,grammar,Nami has two cats. She feeds ___ every morning.,him,it,them,them,,,test
+1103,1,11,grammar,Mr. and Mrs. Sato ___ three children.,have,has,are,have,,,test
+1104,1,11,grammar,Kenta ___ short brown hair.,have,has,is,has,,,test
+1105,1,11,grammar,Ms. Ueda ___ TV every evening.,watch,watches,watchs,watches,,,test
+1106,1,11,grammar,Hiro reads a book every night. He ___ reads at night.,always,sometimes,never,always,,,test
+1107,1,11,grammar,Which sentence is correct?,She eats never breakfast.,Never she eats breakfast.,She never eats breakfast.,She never eats breakfast.,,,test
+1108,1,11,grammar,"Does Kenta have a car? No, he ___.",don't,doesn't,isn't,doesn't,,,test
+1109,1,11,grammar,How often do you see your parents?,I see them every month.,I see them every months.,I see they every month.,I see them every month.,,,test
+1110,1,11,listening,"You hear ""My brother usually jogs in the morning, but sometimes he jogs at night."" When does he usually jog?",In the morning,At night,In the afternoon,In the morning,,,test
+708,1,12,vocabulary,You shiver when you are ___.,hot,cold,embarrassed,cold,,,homework
+709,1,12,vocabulary,You yawn when you are ___.,scared,angry,tired,tired,,,homework
+710,1,12,vocabulary,You blush when you are ___.,embarrassed,thirsty,hungry,embarrassed,,,homework
+711,1,12,vocabulary,You cover your eyes when you are ___.,scared,thirsty,hot,scared,,,homework
+712,1,12,vocabulary,You bite your nails when you are ___.,nervous,thirsty,hot,nervous,,,homework
+713,1,12,vocabulary,You perspire when you are ___.,cold,hot,tired,hot,,,homework
+714,1,12,vocabulary,You cry when you are ___.,sad,cold,hungry,sad,,,homework
+715,1,12,vocabulary,You smile when you are ___.,angry,sad,happy,happy,,,homework
+716,1,12,vocabulary,You shout when you are ___.,angry,tired,thirsty,angry,,,homework
+717,1,12,vocabulary,"Lisa says, ""I want some water!"" How does she feel?",Hungry,Thirsty,Tired,Thirsty,,,homework
+718,1,12,vocabulary,"Ken says, ""I want a sandwich now!"" How does he feel?",Thirsty,Hungry,Sick,Hungry,,,homework
+719,1,12,vocabulary,Taro's temperature is 39°C. He stays in bed all day. How does he feel?,Embarrassed,Angry,Sick,Sick,,,homework
+720,1,12,vocabulary,Rika has a big test tomorrow. She walks back and forth in her room. How does she feel?,Hungry,Cold,Nervous,Nervous,,,homework
+721,1,12,vocabulary,"It's 11:00 p.m. Jun opens his mouth wide, but he doesn't say anything. What is he doing?",Yawning,Shouting,Smiling,Yawning,,,homework
+722,1,12,vocabulary,Mr. Ono brings letters and packages to people's houses every day. What does he do?,He sweeps.,He delivers.,He types.,He delivers.,,,homework
+723,1,12,vocabulary,Grandma cleans the kitchen floor with a broom. What is she doing?,Typing,Delivering,Sweeping,Sweeping,,,homework
+724,1,12,vocabulary,Emi writes emails on her computer all day at work. What does she do?,She sweeps.,She delivers.,She types.,She types.,,,homework
+725,1,12,vocabulary,Ken goes to work in a big car with many people and a driver. How does he go to work?,He rides a bicycle.,He takes the bus.,He drives.,He takes the bus.,,,homework
+726,1,12,grammar,"Ken usually ___ the bus to work, but today he's riding his bicycle.",is taking,takes,take,takes,,,homework
+727,1,12,grammar,Mika's car isn't working. Today she ___ to work.,is walking,walks,walk,is walking,,,homework
+728,1,12,grammar,"Every day, Aya ___ her bicycle to school.",ride,is riding,rides,rides,,,homework
+729,1,12,grammar,"It's raining right now, so Aya ___ the bus.",takes,is taking,take,is taking,,,homework
+730,1,12,grammar,Look! The baby ___.,cries,is crying,cry,is crying,,,homework
+731,1,12,grammar,Mr. Ono is a mail carrier. He ___ letters every day.,is delivering,delivers,deliver,delivers,,,homework
+732,1,12,grammar,I always ___ my nails when I'm nervous.,bites,am biting,bite,bite,,,homework
+733,1,12,grammar,"Do you usually sweep the floor? No, I don't, but I ___ it now.",sweep,am sweeping,sweeps,am sweeping,,,homework
+734,1,12,grammar,Mrs. Lee usually types on her computer. Today she is typing on her phone. Does she usually type on her phone?,"Yes, she does.","No, she isn't.","No, she doesn't.","No, she doesn't.",,,homework
+735,1,12,grammar,Why are you yawning? I'm yawning because I'm ___.,thirsty,hungry,tired,tired,,,homework
+736,1,12,grammar,Why ___ Tom shivering? Because he's cold.,is,are,does,is,,,homework
+737,1,12,grammar,Why are you using a pencil? Because my computer ___ working.,doesn't,aren't,isn't,isn't,,,homework
+738,1,12,grammar,Why are you washing your clothes at the laundromat? Because my washing machine ___.,isn't working,doesn't working,not working,isn't working,,,homework
+739,1,12,grammar,Which sentence is correct?,She is crying now.,She crying now.,She is cry now.,She is crying now.,,,homework
+740,1,12,grammar,"Mr. Hara usually drives to work, but today he's taking the bus. ___ he usually take the bus? No, he doesn't.",Do,Does,Is,Does,,,homework
+741,1,12,grammar,My sister is scared. Please help ___.,him,her,them,her,,,homework
+742,1,12,grammar,Ann is hungry. She ___ an apple in her bag.,have,has,is,has,,,homework
+743,1,12,listening,"You hear ""Why are you shivering?"" ""Because I'm cold."" How does the person feel?",Cold,Hot,Scared,Cold,,,homework
+744,1,12,listening,"You hear ""I usually drive to work, but today I'm taking the bus."" What does the speaker usually do?",Take the bus,Drive to work,Walk to work,Drive to work,,,homework
+745,1,12,listening,"You hear ""My washing machine isn't working, so I'm at the laundromat."" What isn't working?",The washing machine,The computer,The car,The washing machine,,,homework
+746,1,12,listening,"You hear ""I always bite my nails when I'm nervous."" When does the speaker bite their nails?",When they're tired,When they're hungry,When they're nervous,When they're nervous,,,homework
+747,1,12,listening,"You hear ""Is Tom sleeping?"" ""No, he isn't. He's studying."" What is Tom doing now?",Studying,Sleeping,Typing,Studying,,,homework
+1111,1,12,grammar,"Mr. Ito usually ___ to work, but today he's taking the bus.",drive,is driving,drives,drives,,,test
+1112,1,12,grammar,Yuki's car isn't working. Today she ___ her bicycle.,rides,is riding,ride,is riding,,,test
+1113,1,12,grammar,Why ___ Ken shivering? Because he's cold.,does,are,is,is,,,test
+1114,1,12,grammar,"Do you usually wash the dishes? No, I don't, but I ___ them now.",wash,washes,am washing,am washing,,,test
+1115,1,12,grammar,I always ___ when I'm tired.,am yawning,yawn,yawns,yawn,,,test
+1116,1,12,grammar,Listen! The children ___.,are shouting,shout,shouts,are shouting,,,test
+1117,1,12,grammar,Why are you typing on your phone? Because my computer ___ working.,isn't,aren't,doesn't,isn't,,,test
+1118,1,12,grammar,Which sentence is correct?,"She usually takes the bus, but today she is walking.","She is usually taking the bus, but today she walks.","She usually take the bus, but today she walking.","She usually takes the bus, but today she is walking.",,,test
+1119,1,12,grammar,"Does Mrs. Kato usually deliver the mail? No, she ___.",don't,doesn't,isn't,doesn't,,,test
+1120,1,12,listening,"You hear ""I usually walk to work, but today I'm riding my bicycle."" What is the speaker doing today?",Walking,Riding a bicycle,Taking the bus,Riding a bicycle,,,test
+1121,1,13,vocabulary,Mr. Ito fixes cars at a garage. What is his job?,Superintendent,Mechanic,Construction worker,Mechanic,,,homework
+1122,1,13,vocabulary,Ms. Mori makes bread and cakes every morning at her shop. What is her job?,Secretary,Baker,Salesperson,Baker,,,homework
+1123,1,13,vocabulary,Paul cooks dinner for people at a restaurant. What is his job?,Truck driver,Chef,Teacher,Chef,,,homework
+1124,1,13,vocabulary,Ryo builds houses and apartment buildings. What is his job?,Construction worker,Superintendent,Mechanic,Construction worker,,,homework
+1125,1,13,vocabulary,Mr. Lee fixes the stoves and lights in our apartment building. What is his job?,Superintendent,Secretary,Mechanic,Superintendent,,,homework
+1126,1,13,vocabulary,Amy types letters and answers the phone at an office. What is her job?,Secretary,Salesperson,Teacher,Secretary,,,homework
+1127,1,13,vocabulary,Ken sells shoes at a department store. What is his job?,Secretary,Chef,Salesperson,Salesperson,,,homework
+1128,1,13,vocabulary,Mr. Hara drives a big truck from Tokyo to Osaka. What is his job?,Truck driver,Mechanic,Construction worker,Truck driver,,,homework
+1129,1,13,vocabulary,Emma acts in movies. She's ___.,an actress,an actor,a singer,an actress,,,homework
+1130,1,13,vocabulary,Tom acts in plays. He's ___.,a dancer,an actress,an actor,an actor,,,homework
+1131,1,13,vocabulary,Yuki sings in a band. She's ___.,a singer,an actress,a dancer,a singer,,,homework
+1132,1,13,vocabulary,Mika dances on stage every night. She's ___.,a singer,a dancer,an actress,a dancer,,,homework
+1133,1,13,vocabulary,Ms. Kato teaches English at a school. She's ___.,a secretary,a salesperson,a teacher,a teacher,,,homework
+1134,1,13,grammar,Ken ___ swim.,cans,can,can to,can,,,homework
+1135,1,13,grammar,Which sentence is correct?,She can sing.,She can sings.,She cans sing.,She can sing.,,,homework
+1136,1,13,grammar,"___ you drive a truck? Yes, I can.",Are,Do,Can,Can,,,homework
+1137,1,13,grammar,"Can Mr. Ito fix cars? Yes, ___.",he can,he can't,he does,he can,,,homework
+1138,1,13,grammar,"Can your sister dance? No, ___.",she can,she doesn't,she can't,she can't,,,homework
+1139,1,13,grammar,"Can you and Ken cook? Yes, ___.",you can,we can,they can,we can,,,homework
+1140,1,13,grammar,I'm sorry. I ___ sing. I'm not a singer.,can,cans,can't,can't,,,homework
+1141,1,13,grammar,Which question is correct?,Can play he the piano?,Does he can play the piano?,Can he play the piano?,Can he play the piano?,,,homework
+1142,1,13,grammar,"Fish can swim, but they ___ walk.",can,can't,cans,can't,,,homework
+1143,1,13,grammar,"At a job interview: ""Can you use a computer?""","Yes, I can.","Yes, I can use.","Yes, I do.","Yes, I can.",,,homework
+1144,1,13,grammar,"They ___ speak Japanese, but they can't speak Chinese.",can't,can,cans,can,,,homework
+1145,1,13,grammar,Ryo is a chef. He ___ cook very well.,cans,can't,can,can,,,homework
+1146,1,13,grammar,Ken is a mechanic. Right now he ___ a truck.,fixes,fix,is fixing,is fixing,,,homework
+1147,1,13,grammar,My car is broken. Mr. Ito can fix ___.,him,it,them,it,,,homework
+1148,1,13,grammar,"Does Lisa make bread every morning? Yes, she ___. She's a baker.",do,does,is,does,,,homework
+1149,1,13,grammar,Our superintendent ___ a lot of tools.,have,has,is,has,,,homework
+1150,1,13,listening,"You hear ""I can't swim."" Can the speaker swim?",Yes,No,We don't know,No,,,homework
+1151,1,13,listening,"You hear ""Can she drive a truck?"" ""Yes, she can. She's a truck driver."" What is her job?",Mechanic,Truck driver,Salesperson,Truck driver,,,homework
+1152,1,13,listening,"You hear ""I'm a chef. I cook at a restaurant."" Where does the speaker work?",At a restaurant,At a school,At a bakery,At a restaurant,,,homework
+1153,1,13,listening,"You hear ""They can sing, but they can't dance."" What can't they do?",Dance,Sing,Cook,Dance,,,homework
+1154,1,13,listening,"You hear ""Can you fix my stove?"" ""Yes, I can. I'm the superintendent."" What is the speaker's job?",Construction worker,Mechanic,Superintendent,Superintendent,,,homework
+1155,1,13,grammar,Mr. Sato ___ fix trucks. He's a mechanic.,can,can't,cans,can,,,test
+1156,1,13,grammar,Which sentence is correct?,He can cooks.,He can cook.,He cans cook.,He can cook.,,,test
+1157,1,13,grammar,"___ Emi dance? Yes, she can.",Is,Does,Can,Can,,,test
+1158,1,13,grammar,"Can you and your wife sing? No, ___.",we can't,you can't,we don't,we can't,,,test
+1159,1,13,grammar,"Can Ken speak French? Yes, ___.",he does,he cans,he can,he can,,,test
+1160,1,13,grammar,My son is ten years old. He ___ drive.,can,can't,cans,can't,,,test
+1161,1,13,grammar,Which question is correct?,Does she can type?,Can she type?,Can type she?,Can she type?,,,test
+1162,1,13,grammar,Ms. Ono is a teacher. Right now she ___ English.,is teaching,teach,teaches,is teaching,,,test
+1163,1,13,grammar,Mr. Lee is our superintendent. We call ___ when something is broken.,him,her,it,him,,,test
+1164,1,13,listening,"You hear ""I can play the piano, but I can't sing."" What can the speaker do?",Sing,Dance,Play the piano,Play the piano,,,test
+1165,1,14,vocabulary,It's 3:00.,It's three o'clock.,It's three thirty.,It's quarter to three.,It's three o'clock.,,,homework
+1166,1,14,vocabulary,It's 6:15.,It's quarter to six.,It's half past six.,It's quarter after six.,It's quarter after six.,,,homework
+1167,1,14,vocabulary,It's 9:30.,It's half past nine.,It's half past ten.,It's quarter after nine.,It's half past nine.,,,homework
+1168,1,14,vocabulary,It's 4:45.,It's quarter to four.,It's quarter to five.,It's quarter after four.,It's quarter to five.,,,homework
+1169,1,14,vocabulary,It's quarter to eight. What time is it?,8:45,8:15,7:45,7:45,,,homework
+1170,1,14,vocabulary,It's half past eleven. What time is it?,12:30,11:30,11:15,11:30,,,homework
+1171,1,14,vocabulary,"""It's ten fifteen"" means the same as ___.",It's quarter to ten.,It's quarter after ten.,It's half past ten.,It's quarter after ten.,,,homework
+1172,1,14,vocabulary,"In Japan, December, January and February are in ___.",winter,summer,fall,winter,,,homework
+1173,1,14,vocabulary,"It's very hot, and children swim in the sea. What season is it in Japan?",Spring,Winter,Summer,Summer,,,homework
+1174,1,14,vocabulary,The cherry blossoms are pink in April. What season is it?,Fall,Spring,Winter,Spring,,,homework
+1175,1,14,vocabulary,"""Fall"" and ""___"" are the same season.",winter,spring,autumn,autumn,,,homework
+1176,1,14,vocabulary,"It's Monday morning. When is ""tomorrow morning""?",Tuesday morning,Monday evening,Sunday morning,Tuesday morning,,,homework
+1177,1,14,vocabulary,"It's January now. When is ""next month""?",December,February,January,February,,,homework
+1178,1,14,vocabulary,"""Right away"" means ___.",tomorrow,immediately,next month,immediately,,,homework
+1179,1,14,vocabulary,"Your boss says, ""Come here at once!"" When do you go?",Now,Tomorrow,Next week,Now,,,homework
+1180,1,14,vocabulary,"It's 10:00 a.m. on Saturday. When is ""this afternoon""?",Sunday afternoon,Friday afternoon,Saturday afternoon,Saturday afternoon,,,homework
+1181,1,14,grammar,I ___ going to read tonight.,am,is,are,am,,,homework
+1182,1,14,grammar,Ken ___ going to see a movie tomorrow.,am,is,are,is,,,homework
+1183,1,14,grammar,My parents ___ going to visit Kyoto next month.,am,is,are,are,,,homework
+1184,1,14,grammar,What ___ Ken going to do tonight?,am,is,are,is,,,homework
+1185,1,14,grammar,What are you going to do this weekend?,I'm going to clean.,I going to clean.,I'm go to clean.,I'm going to clean.,,,homework
+1186,1,14,grammar,Which sentence is correct?,She's going to swim.,She going to swim.,She's going to swims.,She's going to swim.,,,homework
+1187,1,14,grammar,We're going ___ beach tomorrow.,to the,the,at the,to the,,,homework
+1188,1,14,grammar,We're going ___ on Saturday.,swim,to swimming,swimming,swimming,,,homework
+1189,1,14,grammar,Look at those dark clouds! It's ___ rain.,going,go to,going to,going to,,,homework
+1190,1,14,grammar,I ___ to study English.,want,wants,wanting,want,,,homework
+1191,1,14,grammar,Yumi ___ to be a teacher.,want,wants,wanting,wants,,,homework
+1192,1,14,grammar,My children ___ to go swimming.,wanting,wants,want,want,,,homework
+1193,1,14,grammar,Which sentence is correct?,He wants sleeping.,He want to sleep.,He wants to sleep.,He wants to sleep.,,,homework
+1194,1,14,grammar,"Does Ken want to see a play? No, he ___.",don't,doesn't,isn't,doesn't,,,homework
+1195,1,14,grammar,"Can you come at 3:00? Yes, I ___.",can't,can,do,can,,,homework
+1196,1,14,grammar,I always eat lunch at ___.,half after twelve,half past twelve,half to twelve,half past twelve,,,homework
+1197,1,14,grammar,I'm going to call ___ tonight. She's my best friend.,him,her,them,her,,,homework
+1198,1,14,listening,"You hear ""It's quarter after seven."" What time is it?",6:45,7:45,7:15,7:15,,,homework
+1199,1,14,listening,"You hear ""We're going to go to the beach tomorrow."" When are they going to the beach?",Tomorrow,Tonight,Today,Tomorrow,,,homework
+1200,1,14,listening,"You hear ""She wants to be a chef."" What job does she want?",Baker,Chef,Singer,Chef,,,homework
+1201,1,14,listening,"You hear ""The movie is at half past eight."" What time is the movie?",8:15,8:30,9:30,8:30,,,homework
+1202,1,14,listening,"You hear ""Please call me right away."" When should you call?",Now,Tomorrow,Next week,Now,,,homework
+1203,1,14,grammar,It's 2:45.,It's quarter to two.,It's quarter to three.,It's quarter after two.,It's quarter to three.,,,test
+1204,1,14,grammar,It's half past four. What time is it?,4:30,5:30,4:15,4:30,,,test
+1205,1,14,grammar,My brother ___ going to buy a car next month.,am,is,are,is,,,test
+1206,1,14,grammar,What are they going to do tomorrow?,They going to play volleyball.,They're going to play volleyball.,They're going to plays volleyball.,They're going to play volleyball.,,,test
+1207,1,14,grammar,We're going ___ this weekend.,to dancing,dance,dancing,dancing,,,test
+1208,1,14,grammar,Mika ___ to learn French.,wants,want,wanting,wants,,,test
+1209,1,14,grammar,Which sentence is correct?,I going to the park tomorrow.,I'm going to the park tomorrow.,I'm going the park tomorrow.,I'm going to the park tomorrow.,,,test
+1210,1,14,grammar,"It's Friday evening. When is ""tomorrow night""?",Thursday night,Friday night,Saturday night,Saturday night,,,test
+1211,1,14,grammar,"Can you come to my party tonight? Sorry, I ___. I'm going to work late.",can't,can,cans,can't,,,test
+1212,1,14,listening,"You hear ""I'm going to visit my grandparents next month."" When is the speaker going to visit?",This month,Tomorrow,Next month,Next month,,,test
+1213,1,15,vocabulary,Ken's head hurts. What's the matter?,He has a backache.,He has an earache.,He has a headache.,He has a headache.,,,homework
+1214,1,15,vocabulary,Amy ate too much cake. Now her stomach hurts. What's the matter?,She has a toothache.,She has a stomachache.,She has a backache.,She has a stomachache.,,,homework
+1215,1,15,vocabulary,Mr. Sato can't eat. His tooth hurts. What's the matter?,He has a toothache.,He has an earache.,He has a headache.,He has a toothache.,,,homework
+1216,1,15,vocabulary,Yumi worked in her garden all day. Now her back hurts. What's the matter?,She has a toothache.,She has a sore throat.,She has a backache.,She has a backache.,,,homework
+1217,1,15,vocabulary,Taro's ear hurts. What's the matter?,He has an earache.,He has a headache.,He has a cough.,He has an earache.,,,homework
+1218,1,15,vocabulary,Lisa's temperature is 39°C. What's the matter?,She has a backache.,She has a toothache.,She has a fever.,She has a fever.,,,homework
+1219,1,15,vocabulary,"Ben goes ""cough, cough"" all day. What's the matter?",He has an earache.,He has a backache.,He has a cough.,He has a cough.,,,homework
+1220,1,15,vocabulary,Rika's throat hurts. She can't sing today. What's the matter?,She has a sore throat.,She has a stomachache.,She has an earache.,She has a sore throat.,,,homework
+1221,1,15,vocabulary,"Mika has a runny nose, and she sneezes a lot. What's the matter?",She has a cold.,She has a toothache.,She has a backache.,She has a cold.,,,homework
+1222,1,15,grammar,What's the matter?,I have a headache.,I am headache.,I have headache.,I have a headache.,,,homework
+1223,1,15,grammar,A: How ___ you feel today? B: Not good.,does,do,are,do,,,homework
+1224,1,15,grammar,A: What's the ___? B: I have a cold.,feel,sick,matter,matter,,,homework
+1225,1,15,grammar,My son ___ a fever.,have,has,is,has,,,homework
+1226,1,15,grammar,I work every day. I ___ yesterday.,work,working,worked,worked,,,homework
+1227,1,15,grammar,She ___ the piano yesterday.,plaied,play,played,played,,,homework
+1228,1,15,grammar,Ken has a fever today. Yesterday he ___ in bed all day.,rested,rests,rest,rested,,,homework
+1229,1,15,grammar,My mother ___ a cake yesterday.,baked,bakes,bakeed,baked,,,homework
+1230,1,15,grammar,The baby ___ a lot yesterday.,cries,cryed,cried,cried,,,homework
+1231,1,15,grammar,I ___ English for two hours yesterday.,studyed,studied,study,studied,,,homework
+1232,1,15,grammar,Dad ___ his car yesterday.,washed,washes,washd,washed,,,homework
+1233,1,15,grammar,Ken ___ his bicycle yesterday.,fixs,fixes,fixed,fixed,,,homework
+1234,1,15,grammar,We ___ for the bus for 30 minutes yesterday.,wait,waitted,waited,waited,,,homework
+1235,1,15,grammar,Which sentence is correct?,I dance yesterday.,I danceed yesterday.,I danced yesterday.,I danced yesterday.,,,homework
+1236,1,15,grammar,"Ken ___ TV every evening. He ___ TV yesterday evening, too.","watched, watches","watches, watched","watch, watched","watches, watched",,,homework
+1237,1,15,grammar,"Say the words. Which one has the same -ed sound as ""rested""?",cooked,waited,played,waited,,,homework
+1238,1,15,grammar,"Say the words. Which one has the same -ed sound as ""worked""?",played,washed,rested,washed,,,homework
+1239,1,15,grammar,"Say the words. Which one has the same -ed sound as ""played""?",cooked,waited,cleaned,cleaned,,,homework
+1240,1,15,grammar,I eat breakfast every day. I ___ breakfast yesterday.,eated,ate,eat,ate,,,homework
+1241,1,15,grammar,Yuki ___ a song at the party yesterday.,singed,sang,sings,sang,,,homework
+1242,1,15,grammar,"We jogged yesterday. After that, we ___ a lot of water.",drank,drink,drinked,drank,,,homework
+1243,1,15,grammar,Grandpa ___ in his chair all afternoon yesterday.,sitted,sat,sits,sat,,,homework
+1244,1,15,grammar,Mika ___ her bicycle to the park yesterday.,rided,rode,rides,rode,,,homework
+1245,1,15,grammar,"The doctor's office calls: ""Can you come in tomorrow at 10:00?"" You say:","Yes, I can.","Yes, I am.","Yes, I do.","Yes, I can.",,,homework
+1246,1,15,grammar,I want ___ an appointment with the doctor.,make,to make,making,to make,,,homework
+1247,1,15,grammar,The doctor can see you at quarter to four. What time is that?,3:45,4:45,4:15,3:45,,,homework
+1248,1,15,grammar,I have a toothache. I ___ see the doctor tomorrow.,going to,am going to,am going,am going to,,,homework
+1249,1,15,listening,"You hear ""What's the matter?"" ""I have an earache."" What hurts?",The back,The tooth,The ear,The ear,,,homework
+1250,1,15,listening,"You hear ""I cooked dinner yesterday."" What does the speaker say?",They cooked dinner yesterday.,They cook dinner every day.,They are going to cook dinner.,They cooked dinner yesterday.,,,homework
+1251,1,15,listening,"You hear ""My son has a fever and a cough."" What is wrong with the son?",A fever and a cough,A cough and a backache,A fever and a cold,A fever and a cough,,,homework
+1252,1,15,listening,"You hear ""I played volleyball yesterday, and today I have a backache."" What hurts today?",The speaker's head,The speaker's back,The speaker's stomach,The speaker's back,,,homework
+1253,1,15,grammar,Yesterday I ___ my room.,clean,cleans,cleaned,cleaned,,,test
+1254,1,15,grammar,Ms. Ito ___ dinner every day. She ___ fish yesterday.,"cooked, cooks","cooks, cooked","cook, cooked","cooks, cooked",,,test
+1255,1,15,grammar,My brother ___ English for three hours yesterday.,studied,studyed,studies,studied,,,test
+1256,1,15,grammar,Which sentence is correct?,She cried yesterday.,She cryed yesterday.,She cries yesterday.,She cried yesterday.,,,test
+1257,1,15,grammar,We ___ pizza for dinner yesterday.,ate,eat,eated,ate,,,test
+1258,1,15,grammar,Ken ___ his bicycle to work yesterday.,rided,rides,rode,rode,,,test
+1259,1,15,grammar,A: What's the matter? B: ___,I have stomachache.,I have a stomachache.,I am stomachache.,I have a stomachache.,,,test
+1260,1,15,grammar,"Say the words. Which one has the same -ed sound as ""waited""?",planted,shaved,smiled,planted,,,test
+1261,1,15,grammar,I have a sore throat. I ___ see the doctor this afternoon.,am go to,going to,am going to,am going to,,,test
+1262,1,15,listening,"You hear ""I sat at my desk all day yesterday, and now I have a backache."" What's the matter with the speaker?",A headache,A backache,A toothache,A backache,,,test
+1263,1,16,grammar,I take a shower every morning. I ___ a shower this morning.,taked,took,take,took,,,homework
+1264,1,16,grammar,Ken ___ to work by bus yesterday.,went,goed,go,went,,,homework
+1265,1,16,grammar,We ___ breakfast at 7:00 this morning.,haved,have,had,had,,,homework
+1266,1,16,grammar,I ___ up early yesterday.,getted,got,get,got,,,homework
+1267,1,16,grammar,My wife ___ dinner last night.,maked,makes,made,made,,,homework
+1268,1,16,grammar,Mr. Sato ___ groceries at the supermarket yesterday.,bought,buys,buyed,bought,,,homework
+1269,1,16,grammar,I ___ my homework last night.,did,doed,do,did,,,homework
+1270,1,16,grammar,Yumi ___ a letter to her grandmother yesterday.,wrote,writed,writes,wrote,,,homework
+1271,1,16,grammar,Dad ___ the newspaper yesterday morning.,readed,read,reads,read,,,homework
+1272,1,16,grammar,We ___ a movie last Saturday.,see,seed,saw,saw,,,homework
+1273,1,16,grammar,Ken ___ to the supermarket this afternoon.,drove,drived,drives,drove,,,homework
+1274,1,16,grammar,I ___ my umbrella at home this morning.,forgot,forget,forgetted,forgot,,,homework
+1275,1,16,grammar,A thief ___ my bicycle last night.,stealed,stole,steals,stole,,,homework
+1276,1,16,grammar,Amy ___ her friend's mother yesterday.,met,meeted,meets,met,,,homework
+1277,1,16,grammar,We ___ lunch at a restaurant yesterday.,eated,ate,eat,ate,,,homework
+1278,1,16,grammar,"What is the past of ""buy""?",buyed,bought,brought,bought,,,homework
+1279,1,16,vocabulary,"At 7:00 this morning, Ken washed his body and hair in the bathroom. What did he do?",He had breakfast.,He took a shower.,He did exercises.,He took a shower.,,,homework
+1280,1,16,vocabulary,"At 7:30, Ken ate eggs and toast in the kitchen. What did he do?",He had breakfast.,He had dinner.,He made dinner.,He had breakfast.,,,homework
+1281,1,16,vocabulary,"At 8:00, Ken looked at the news in the paper. What did he do?",He wrote a letter.,He read the newspaper.,He saw a movie.,He read the newspaper.,,,homework
+1282,1,16,vocabulary,"At 6:00 a.m., Mika's day started. What did she do?",She made dinner.,She went to sleep.,She got up.,She got up.,,,homework
+1283,1,16,vocabulary,"Yesterday morning, Ken jogged and did yoga in the park. What did he do?",He bought groceries.,He did exercises.,He wrote a letter.,He did exercises.,,,homework
+1284,1,16,vocabulary,"Mr. Hara's bag is full of eggs, milk and bread from the supermarket. What did he do?",He made dinner.,He bought groceries.,He ate lunch.,He bought groceries.,,,homework
+1285,1,16,vocabulary,"At 6:00 p.m., Yumi cooked fish and rice for her family. What did she do?",She bought groceries.,She had breakfast.,She made dinner.,She made dinner.,,,homework
+1286,1,16,vocabulary,"Yesterday, Amy used a pen, paper and a stamp. What did she do?",She saw a movie.,She took a bath.,She wrote a letter.,She wrote a letter.,,,homework
+1287,1,16,vocabulary,"At 11:00 p.m., Ken turned off the light and closed his eyes. What did he do?",He went to sleep.,He took a shower.,He got up.,He went to sleep.,,,homework
+1288,1,16,vocabulary,"Last night, Lisa watched a film at the movie theater. What did she do?",She read a magazine.,She saw a play.,She saw a movie.,She saw a movie.,,,homework
+1289,1,16,vocabulary,Ken filled the tub with hot water and sat in it. What did he do?,He took a shower.,He took a bath.,He did exercises.,He took a bath.,,,homework
+1290,1,16,vocabulary,Ms. Kato put new flowers in the ground in her yard. What did she do?,She washed her windows.,She cleaned her garage.,She planted flowers.,She planted flowers.,,,homework
+1291,1,16,grammar,"___ you work yesterday? Yes, I did.",Do,Did,Does,Did,,,homework
+1292,1,16,grammar,Did Ken ___ to the bank yesterday?,goes,went,go,go,,,homework
+1293,1,16,grammar,Did she ___ breakfast this morning?,had,has,have,have,,,homework
+1294,1,16,grammar,Which question is correct?,Did you buy groceries?,Do you bought groceries?,Did you bought groceries?,Did you buy groceries?,,,homework
+1295,1,16,grammar,"___ they see a movie last night? No, they didn't.",Do,Did,Does,Did,,,homework
+1296,1,16,grammar,Did Mr. Ito ___ his car yesterday afternoon?,fixed,fix,fixes,fix,,,homework
+1297,1,16,grammar,Which question is correct?,Does he wrote a letter?,Did he wrote a letter?,Did he write a letter?,Did he write a letter?,,,homework
+1298,1,16,grammar,What ___ you do last weekend?,does,do,did,did,,,homework
+1299,1,16,grammar,Where did you ___ last night?,go,going,went,go,,,homework
+1300,1,16,grammar,What did Yumi ___ for dinner?,made,makes,make,make,,,homework
+1301,1,16,grammar,"Did you take a shower this morning? Yes, ___.",I took,I do,I did,I did,,,homework
+1302,1,16,grammar,"Did Ken get up early? No, ___.",he doesn't,he didn't,he wasn't,he didn't,,,homework
+1303,1,16,grammar,"Did your parents go to Kyoto? Yes, ___.",they did,they do,they are,they did,,,homework
+1304,1,16,grammar,"Did Amy read the newspaper? No, ___.",she doesn't,she don't,she didn't,she didn't,,,homework
+1305,1,16,grammar,"Did you and your wife see a play? Yes, ___.",we did,they did,you did,we did,,,homework
+1306,1,16,grammar,"Did the bus come late? Yes, ___.",he did,it does,it did,it did,,,homework
+1307,1,16,grammar,Did you eat lunch? ___ I ate a big breakfast.,"No, I didn't.","Yes, I didn't.","No, I did.","No, I didn't.",,,homework
+1308,1,16,grammar,I didn't ___ to work yesterday.,go,went,goes,go,,,homework
+1309,1,16,grammar,Ken ___ his homework last night.,didn't did,didn't do,doesn't did,didn't do,,,homework
+1310,1,16,grammar,She didn't ___ breakfast this morning.,had,have,has,have,,,homework
+1311,1,16,grammar,Which sentence is correct?,They didn't saw the movie.,They don't saw the movie.,They didn't see the movie.,They didn't see the movie.,,,homework
+1312,1,16,grammar,The refrigerator is empty. We ___ groceries yesterday.,don't bought,didn't bought,didn't buy,didn't buy,,,homework
+1313,1,16,grammar,Mika didn't write a letter. She ___ an email.,write,wrote,writes,wrote,,,homework
+1314,1,16,vocabulary,My son didn't get up early. He got up ___.,early,late,at once,late,,,homework
+1315,1,16,grammar,"Did you brush your hair this morning? No, I didn't. I ___ my teeth.",brush,brushes,brushed,brushed,,,homework
+1316,1,16,grammar,"Did he wash his windows yesterday morning? No, he ___. He washed his car.",did,doesn't,didn't,didn't,,,homework
+1317,1,16,grammar,Did she paint her kitchen this afternoon?,"No, she did. She painted her bedroom.","Yes, she didn't. She painted her bedroom.","No, she didn't. She painted her bedroom.","No, she didn't. She painted her bedroom.",,,homework
+1318,1,16,grammar,"Did Tom clean his garage? No, he didn't. He ___ his yard.",cleans,clean,cleaned,cleaned,,,homework
+1319,1,16,grammar,"Did they take the bus? No, they didn't. They ___ their bicycles.",ride,rode,rided,rode,,,homework
+1320,1,16,grammar,"Did you read a magazine? No, I didn't. I ___ the newspaper.",read,reads,readed,read,,,homework
+1321,1,16,grammar,I'm sorry I'm late. I ___ the bus.,missing,miss,missed,missed,,,homework
+1322,1,16,grammar,I'm sorry I'm late. I ___ my keys and had to go back home.,forgot,forget,forgetted,forgot,,,homework
+1323,1,16,grammar,I'm sorry I'm late. A thief ___ my bicycle.,stole,stealed,steal,stole,,,homework
+1324,1,16,grammar,I'm sorry I'm late. I ___ a friend on the way to work.,met,meet,meeted,met,,,homework
+1325,1,16,grammar,I'm sorry I'm late. I had ___ go to the doctor.,to,a,for,to,,,homework
+1326,1,16,grammar,I'm sorry I'm late. I had a ___ this morning.,doctor's office,doctor,doctor's appointment,doctor's appointment,,,homework
+1327,1,16,vocabulary,"Your friend is late. She says, ""A thief stole my bag."" Why is she late?",She forgot her bag.,Someone took her bag.,She bought a bag.,Someone took her bag.,,,homework
+1328,1,16,grammar,"Yesterday I had a headache, so I ___ all day.",rest,rested,rests,rested,,,homework
+1329,1,16,grammar,Yesterday I cleaned my room. Tomorrow I ___ clean the kitchen.,going to,am going to,cleaned,am going to,,,homework
+1330,1,16,grammar,"Ken usually takes the bus, but yesterday he ___ to work.",walked,walking,walks,walked,,,homework
+1331,1,16,grammar,I met Amy's brother yesterday. I met ___ at the station.,him,her,them,him,,,homework
+1332,1,16,grammar,"Ken ate too much last night. Did he have a stomachache this morning? Yes, he ___.",did,does,had,did,,,homework
+1333,1,16,grammar,"___ you usually get up early? Yes, I do.",Did,Do,Does,Do,,,homework
+1334,1,16,listening,"You hear ""I didn't go to work yesterday."" What does the speaker say?",They didn't go to work yesterday.,They went to work yesterday.,They are going to work.,They didn't go to work yesterday.,,,homework
+1335,1,16,listening,"You hear ""Did you see the movie?"" ""Yes, I did."" Did the person see the movie?",Yes,No,We don't know,Yes,,,homework
+1336,1,16,listening,"You hear ""I'm sorry I'm late. I missed the bus."" Why is the speaker late?",They got up late.,They forgot their keys.,They missed the bus.,They missed the bus.,,,homework
+1337,1,16,listening,"You hear ""We bought groceries and made dinner."" What did they do?",They bought groceries and had lunch.,They made breakfast and ate dinner.,They bought groceries and made dinner.,They bought groceries and made dinner.,,,homework
+1338,1,16,listening,"You hear ""Did he wash his car?"" ""No, he didn't. He washed his windows."" What did he wash?",His windows,His car,His bicycle,His windows,,,homework
+1339,1,16,listening,"You hear ""I got up late this morning."" When did the speaker get up?",Early,Late,At 6:00,Late,,,homework
+1340,1,16,listening,"You hear ""A thief stole my bag!"" What happened?",Someone took the speaker's bag.,The speaker bought a bag.,The speaker forgot a bag.,Someone took the speaker's bag.,,,homework
+1341,1,16,listening,"You hear ""I read the newspaper this morning."" When did the speaker read the newspaper?",Every morning,This morning,Tomorrow morning,This morning,,,homework
+1342,1,16,grammar,I ___ a shower this morning.,took,take,taked,took,,,test
+1343,1,16,grammar,"___ Ken go to the bank yesterday? Yes, he did.",Does,Do,Did,Did,,,test
+1344,1,16,grammar,Did Amy ___ dinner last night?,make,made,makes,make,,,test
+1345,1,16,grammar,"Did you buy groceries? No, ___.",I don't,I didn't,I did,I didn't,,,test
+1346,1,16,grammar,Which sentence is correct?,He didn't went to school.,He doesn't went to school.,He didn't go to school.,He didn't go to school.,,,test
+1347,1,16,grammar,"Did she wash her car this morning? No, she didn't. She ___ her windows.",washed,wash,washes,washed,,,test
+1348,1,16,grammar,I'm sorry I'm late. I ___ my bag at home and had to go back.,forgetted,forget,forgot,forgot,,,test
+1349,1,16,grammar,Where ___ you go last weekend?,did,do,does,did,,,test
+1350,1,16,grammar,Yesterday I had a fever. Tomorrow I ___ see the doctor.,going to,am going to,saw,am going to,,,test
+1351,1,16,listening,"You hear ""I'm sorry I'm late. A thief stole my bicycle, so I took the bus."" How did the speaker come today?",By bicycle,By bus,By car,By bus,,,test
+1352,1,17,vocabulary,"TV commercial: ""Before, my shirt was dirty. Now, with SuperWash, it's ___!""",clean,dull,tiny,clean,,,homework
+1353,1,17,vocabulary,"TV commercial: ""Before, my kitchen floor was dull. Now, with ShinePro, it's ___!""",shiny,heavy,full,shiny,,,homework
+1354,1,17,vocabulary,"TV commercial: ""Before, I was always tired. Now, with VitaDrink, I'm ___!""",uncomfortable,enormous,energetic,energetic,,,homework
+1355,1,17,vocabulary,"Before, my old chair was uncomfortable. Now my new chair is ___.",comfortable,dirty,tiny,comfortable,,,homework
+1356,1,17,vocabulary,"Before, Ken was sick. Now he's ___.",hungry,dull,healthy,healthy,,,homework
+1357,1,17,vocabulary,I was hungry. Then I ate a big lunch. Now I'm ___.,thin,full,dirty,full,,,homework
+1358,1,17,vocabulary,My puppy was tiny. Now it's ___!,thirsty,shiny,enormous,enormous,,,homework
+1359,1,17,vocabulary,"Before, Mr. Ito was heavy. Now, after jogging every day, he's ___.",full,dirty,thin,thin,,,homework
+1360,1,17,vocabulary,"Before, Amy was sad. Now she's ___.",tiny,happy,dull,happy,,,homework
+1361,1,17,vocabulary,"What is the opposite of ""tiny""?",enormous,thin,quiet,enormous,,,homework
+1362,1,17,vocabulary,The soccer game was very ___. Everybody stood up and shouted.,exciting,quiet,uncomfortable,exciting,,,homework
+1363,1,17,grammar,Mr. Kim ___ born in Seoul in 1980.,did,were,was,was,,,homework
+1364,1,17,grammar,My parents ___ born in Osaka.,was,were,did,were,,,homework
+1365,1,17,grammar,Ana grew ___ in Brazil.,in,on,up,up,,,homework
+1366,1,17,grammar,Ken ___ to Tokyo in 2015. He lives there now.,moves,move,moved,moved,,,homework
+1367,1,17,grammar,The class ___ at 9:00 yesterday.,began,begined,begins,began,,,homework
+1368,1,17,grammar,Yumi ___ in New York for five years. Now she lives in Kyoto.,lives,lived,living,lived,,,homework
+1369,1,17,grammar,The train ___ at the station at 3:00 yesterday.,arrives,arrived,arrive,arrived,,,homework
+1370,1,17,grammar,"When he was young, Mr. Lee ___ English in London.",studies,study,studied,studied,,,homework
+1371,1,17,grammar,Where did you ___ up? In Nagoya.,grown,grew,grow,grow,,,homework
+1372,1,17,grammar,I ___ tired yesterday.,were,was,did,was,,,homework
+1373,1,17,grammar,We ___ at home last night.,were,was,did,were,,,homework
+1374,1,17,grammar,Ken and Yumi ___ late for class yesterday.,was,were,did,were,,,homework
+1375,1,17,grammar,The movie ___ exciting.,were,was,did,was,,,homework
+1376,1,17,grammar,You ___ very happy at the party.,were,did,was,were,,,homework
+1377,1,17,grammar,"I ___ hungry this morning, so I didn't eat breakfast.",weren't,wasn't,didn't,wasn't,,,homework
+1378,1,17,grammar,They ___ at school yesterday. They were sick.,weren't,wasn't,didn't,weren't,,,homework
+1379,1,17,grammar,Which sentence is correct?,She weren't tired.,She wasn't tired.,She didn't tired.,She wasn't tired.,,,homework
+1380,1,17,grammar,"___ you tired yesterday? Yes, I was.",Were,Was,Did,Were,,,homework
+1381,1,17,grammar,"___ Ken at work last night? No, he wasn't.",Was,Were,Did,Was,,,homework
+1382,1,17,grammar,"Were your parents happy? Yes, ___.",they was,they were,they did,they were,,,homework
+1383,1,17,grammar,"Was the hotel comfortable? No, ___.",it weren't,it didn't,it wasn't,it wasn't,,,homework
+1384,1,17,grammar,"Was Amy at the party? Yes, ___.",she did,she were,she was,she was,,,homework
+1385,1,17,grammar,"___ you see the movie? Yes, I did.",Was,Did,Were,Did,,,homework
+1386,1,17,grammar,"___ the movie good? Yes, it was.",Was,Did,Were,Was,,,homework
+1387,1,17,grammar,"Did Ken go to work yesterday? No, he ___. He was sick.",didn't,wasn't,weren't,didn't,,,homework
+1388,1,17,grammar,"Was Mika at home yesterday? No, she ___. She went to the beach.",wasn't,weren't,didn't,wasn't,,,homework
+1389,1,17,grammar,Which sentence is correct?,I was go to the park.,I went to the park.,I did went to the park.,I went to the park.,,,homework
+1390,1,17,grammar,"Before, I ___ sad. Now I'm happy.",am,was,were,was,,,homework
+1391,1,17,grammar,"Before, we were tired, but now we ___ energetic.",were,was,are,are,,,homework
+1392,1,17,grammar,"I got up late, so I ___ late for work.",were,was,did,was,,,homework
+1393,1,17,grammar,Yesterday I was sick. Tomorrow I ___ go to work.,going to,was,am going to,am going to,,,homework
+1394,1,17,grammar,My grandmother was born in 1940. I visit ___ every month.,him,her,them,her,,,homework
+1395,1,17,listening,"You hear ""I was born in Kobe, but I grew up in Tokyo."" Where did the speaker grow up?",In Tokyo,In Kobe,In Osaka,In Tokyo,,,homework
+1396,1,17,listening,"You hear ""Were you at home last night?"" ""No, I wasn't."" Was the person at home?",Yes,We don't know,No,No,,,homework
+1397,1,17,listening,"You hear ""Before, my car was dull. Now it's shiny!"" How is the car now?",Dull,Shiny,Dirty,Shiny,,,homework
+1398,1,17,listening,"You hear ""We moved to Osaka in 2020."" What happened in 2020?",They visited Osaka.,They were born in Osaka.,They moved to Osaka.,They moved to Osaka.,,,homework
+1399,1,17,listening,"You hear ""The test wasn't difficult."" What does this mean?",It was easy.,It was difficult.,It was long.,It was easy.,,,homework
+1400,1,17,grammar,My brother ___ born in 1995.,was,were,did,was,,,test
+1401,1,17,grammar,Mr. and Mrs. Ito ___ at the beach yesterday.,was,did,were,were,,,test
+1402,1,17,grammar,"I ___ hungry, so I didn't eat lunch.",weren't,wasn't,didn't,wasn't,,,test
+1403,1,17,grammar,"___ the hotel comfortable? Yes, it was.",Were,Was,Did,Was,,,test
+1404,1,17,grammar,"Were you tired last night? No, ___.",I weren't,I didn't,I wasn't,I wasn't,,,test
+1405,1,17,grammar,"___ you go to the party? Yes, I did.",Did,Was,Were,Did,,,test
+1406,1,17,grammar,Which sentence is correct?,They was late yesterday.,They were late yesterday.,They did late yesterday.,They were late yesterday.,,,test
+1407,1,17,grammar,"Emi ___ up in Sapporo, but now she lives in Tokyo.",growed,grow,grew,grew,,,test
+1408,1,17,grammar,"Before, I was tired. Now I ___ energetic.",am,was,were,am,,,test
+1409,1,17,listening,"You hear ""I was born in Seoul, and I moved to Japan in 2010."" Where was the speaker born?",In Seoul,In Japan,In Tokyo,In Seoul,,,test
