@@ -99,7 +99,7 @@ $total_mastered      = 0;
 for ( $lvl = 1; $lvl <= 5; $lvl++ ) {
 	$level_has_content[ $lvl ] = false;
 	$level_mastered[ $lvl ]    = 0;
-	for ( $c = 1; $c <= 16; $c++ ) {
+	for ( $c = 1; $c <= 17; $c++ ) {
 		$status = h212_grades_chapter_status( $bank, $lvl, $c, $seen, $wrong );
 		if ( 'no_content' === $status ) {
 			continue;
@@ -122,7 +122,7 @@ for ( $lvl = 1; $lvl <= 5; $lvl++ ) {
 	}
 	$current_level = $lvl;
 	$chapters_in_level = 0;
-	for ( $c = 1; $c <= 16; $c++ ) {
+	for ( $c = 1; $c <= 17; $c++ ) {
 		if ( 'no_content' !== h212_grades_chapter_status( $bank, $lvl, $c, $seen, $wrong ) ) {
 			$chapters_in_level++;
 		}
@@ -161,7 +161,7 @@ if ( 0 === $total_mastered ) {
       <div class="grades-coming-soon"><?php echo esc_html( t( 'grades.coming_soon_level' ) ); ?></div>
     <?php else : ?>
       <div class="grades-chapter-grid">
-        <?php for ( $c = 1; $c <= 16; $c++ ) :
+        <?php for ( $c = 1; $c <= 17; $c++ ) :
           $status = h212_grades_chapter_status( $bank, $lvl, $c, $seen, $wrong );
           if ( 'no_content' === $status ) {
             continue;

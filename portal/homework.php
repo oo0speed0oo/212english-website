@@ -242,7 +242,7 @@ function isChapterFullyFinished(level, chapter) {
 }
 function isLevelUnlocked(level) {
   if (level <= 1) return true;
-  for (var c = 1; c <= 16; c++) {
+  for (var c = 1; c <= 17; c++) {
     if (!isChapterFullyFinished(level - 1, c)) return false;
   }
   return true;
@@ -360,7 +360,7 @@ function renderChapters(lvl) {
     + '<div class="breadcrumb"><span>' + H212_T['nav.homework'] + '</span><span class="sep">›</span><span>' + H212_T['hw.level'] + ' ' + lvl + '</span></div>'
     + '<button class="back-btn" onclick="renderLevels()">' + H212_T['hw.back_levels'] + '</button>'
     + '<div class="chapter-grid">';
-  for (var c = 1; c <= 16; c++) {
+  for (var c = 1; c <= 17; c++) {
     if (isChapterUnlocked(lvl, c)) {
       var done = chapterFinishedCount(lvl, c);
       var badge = done > 0

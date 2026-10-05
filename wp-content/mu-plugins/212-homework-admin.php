@@ -156,7 +156,7 @@ add_action( 'admin_post_h212_save_question', function () {
 	if ( $level < 1 || $level > 5 ) {
 		$errors[] = 'Please choose a level.';
 	}
-	if ( $chapter < 1 || $chapter > 16 ) {
+	if ( $chapter < 1 || $chapter > 17 ) {
 		$errors[] = 'Please choose a chapter.';
 	}
 	if ( ! in_array( $type, array( 'vocabulary', 'grammar', 'listening', 'photo' ), true ) ) {
@@ -407,7 +407,7 @@ function h212_render_question_form( $action ) {
 	echo '</select></td></tr>';
 
 	echo '<tr><th><label>Chapter</label></th><td><select name="chapter">';
-	for ( $c = 1; $c <= 16; $c++ ) {
+	for ( $c = 1; $c <= 17; $c++ ) {
 		printf( '<option value="%d" %s>Chapter %d</option>', $c, selected( (int) $row['chapter'], $c, false ), $c );
 	}
 	echo '</select></td></tr>';

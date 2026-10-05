@@ -47,7 +47,7 @@ add_action( 'admin_post_h212_unlock_student', function () {
 	}
 	$student_id   = isset( $_GET['student_id'] ) ? intval( $_GET['student_id'] ) : 0;
 	$up_to_level   = isset( $_GET['up_to_level'] )   ? intval( $_GET['up_to_level'] )   : 5;
-	$up_to_chapter = isset( $_GET['up_to_chapter'] ) ? intval( $_GET['up_to_chapter'] ) : 16;
+	$up_to_chapter = isset( $_GET['up_to_chapter'] ) ? intval( $_GET['up_to_chapter'] ) : 17;
 	check_admin_referer( 'h212_unlock_student_' . $student_id );
 
 	$bank = h212_load_question_bank();
@@ -150,8 +150,8 @@ function h212_render_student_results_page() {
 	}
 	echo '</select>';
 	echo '<select name="up_to_chapter">';
-	for ( $c = 1; $c <= 16; $c++ ) {
-		printf( '<option value="%d" %s>Chapter %d</option>', $c, selected( $c, 16, false ), $c );
+	for ( $c = 1; $c <= 17; $c++ ) {
+		printf( '<option value="%d" %s>Chapter %d</option>', $c, selected( $c, 17, false ), $c );
 	}
 	echo '</select>';
 	echo '<button type="submit" class="button">Unlock</button>';
@@ -193,13 +193,13 @@ function h212_render_student_results_page() {
 	// ── Progress overview ──
 	echo '<h2>Progress</h2>';
 	echo '<div style="overflow-x:auto;"><table class="widefat striped" style="min-width:900px;"><thead><tr><th>Level</th>';
-	for ( $c = 1; $c <= 16; $c++ ) {
+	for ( $c = 1; $c <= 17; $c++ ) {
 		echo '<th style="text-align:center;">Ch ' . $c . '</th>';
 	}
 	echo '</tr></thead><tbody>';
 	for ( $lvl = 1; $lvl <= 5; $lvl++ ) {
 		echo '<tr><td><strong>Level ' . $lvl . '</strong></td>';
-		for ( $c = 1; $c <= 16; $c++ ) {
+		for ( $c = 1; $c <= 17; $c++ ) {
 			$types      = array( 'vocabulary', 'grammar', 'listening' );
 			$done_count = 0;
 			$has_content = false;
@@ -243,14 +243,14 @@ function h212_render_student_results_page() {
 
 	// Current level = lowest level unlocked but not yet fully finished
 	// (level 1 always unlocked; level N unlocks once level N-1 has all
-	// 16 chapters finished). If everything is finished, show the last one.
+	// 17 chapters finished). If everything is finished, show the last one.
 	$current_level = 1;
 	for ( $lvl = 1; $lvl <= 5; $lvl++ ) {
-		if ( $lvl > 1 && $level_chapters_done[ $lvl - 1 ] < 16 ) {
+		if ( $lvl > 1 && $level_chapters_done[ $lvl - 1 ] < 17 ) {
 			break;
 		}
 		$current_level = $lvl;
-		if ( $level_chapters_done[ $lvl ] < 16 ) {
+		if ( $level_chapters_done[ $lvl ] < 17 ) {
 			break;
 		}
 	}

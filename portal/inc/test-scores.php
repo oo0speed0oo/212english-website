@@ -29,7 +29,7 @@ if ( $_SERVER['REQUEST_METHOD'] === 'POST' ) {
 	$total   = isset( $body['total'] )   ? intval( $body['total'] )   : 0;
 
 	$is_valid = $level >= 1 && $level <= 5
-		&& $chapter >= 1 && $chapter <= 16
+		&& $chapter >= 1 && $chapter <= 17
 		&& $total > 0 && $score >= 0 && $score <= $total;
 
 	if ( ! $is_valid ) {

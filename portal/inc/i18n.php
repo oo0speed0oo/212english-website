@@ -56,7 +56,7 @@ $GLOBALS['h212_strings'] = array(
 	// Dashboard
 	'dash.welcome'       => array( 'en' => 'Welcome back,',                    'ja' => 'おかえりなさい、' ),
 	'dash.subtitle'      => array( 'en' => 'What would you like to study today?', 'ja' => '今日は何を勉強しますか?' ),
-	'dash.homework_sub'  => array( 'en' => '5 levels · 16 chapters each',      'ja' => '5レベル・各16チャプター' ),
+	'dash.homework_sub'  => array( 'en' => '5 levels · 17 chapters each',      'ja' => '5レベル・各17チャプター' ),
 	'dash.start_study'   => array( 'en' => 'Start studying',                  'ja' => '学習を始める' ),
 	'dash.videos_sub'    => array( 'en' => 'Latest YouTube lessons',          'ja' => '最新のYouTubeレッスン' ),
 	'dash.start_watch'   => array( 'en' => 'Start watching',                  'ja' => '視聴を始める' ),
