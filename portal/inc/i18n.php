@@ -109,6 +109,13 @@ $GLOBALS['h212_strings'] = array(
 	'hw.locked_level'    => array( 'en' => 'Finish the previous level to unlock this.',   'ja' => '前のレベルを完了すると開放されます。' ),
 	'hw.locked_chapter'  => array( 'en' => 'Finish the previous chapter to unlock this.', 'ja' => '前のチャプターを完了すると開放されます。' ),
 
+	// Robot voice (Listening questions)
+	'listen.who'      => array( 'en' => 'Who do you want to hear?',  'ja' => '誰の声で聞きますか？' ),
+	'listen.robot'    => array( 'en' => 'Robot',                     'ja' => 'ロボット' ),
+	'listen.button'   => array( 'en' => '🔊 Listen',                 'ja' => '🔊 聞く' ),
+	'listen.playing'  => array( 'en' => '🔊 Playing…',               'ja' => '🔊 再生中…' ),
+	'listen.no_voice' => array( 'en' => 'No English voice found on this device, so the sentence is shown here instead.', 'ja' => 'この端末に英語の音声がないため、代わりに文を表示しています。' ),
+
 	'tests.choose_level_chapter' => array( 'en' => 'Choose your level then chapter.', 'ja' => 'レベルとチャプターを選んでください。' ),
 	'tests.preparing'            => array( 'en' => 'This test is being prepared. Check back soon!', 'ja' => 'このテストは準備中です。また後で確認してください!' ),
 	'tests.test_label'           => array( 'en' => 'Test',                     'ja' => 'テスト' ),

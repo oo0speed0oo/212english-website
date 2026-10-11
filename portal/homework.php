@@ -103,8 +103,10 @@ h212_js_strings( array(
 	'hw.back_to_topics', 'hw.photo_question', 'hw.finished_badge',
 	'hw.already_finished', 'hw.best_score', 'hw.start_again', 'hw.needs_review',
 	'hw.locked_level', 'hw.locked_chapter',
+	'listen.who', 'listen.robot', 'listen.button', 'listen.playing', 'listen.no_voice',
 ) );
 ?>
+<script src="components/listen.js?v=<?php echo (int) filemtime( __DIR__ . '/components/listen.js' ); ?>"></script>
 <script>window.H212_NONCE = "<?php echo esc_js( wp_create_nonce( 'h212_save_score' ) ); ?>";</script>
 <script>
 
@@ -505,7 +507,9 @@ function showQuestion() {
     html += '<div class="audio-wrap"><audio controls preload="none" src="' + AUDIO_FOLDER + q.audio + '"></audio></div>';
   }
 
-  html += '<div class="question-text">' + q.question + '</div>'
+  // Listening questions with quoted text: hide the quote, show a Listen button instead
+  var listenHtml = (typeof H212Listen !== 'undefined') ? H212Listen.render(q) : null;
+  html += (listenHtml !== null ? listenHtml : '<div class="question-text">' + q.question + '</div>')
     + '<div class="choices">'
     + '<button class="choice-btn" onclick="checkAnswer(this, \'' + esc(q.choice_a) + '\', \'' + esc(q.answer) + '\')">' + q.choice_a + '</button>'
     + '<button class="choice-btn" onclick="checkAnswer(this, \'' + esc(q.choice_b) + '\', \'' + esc(q.answer) + '\')">' + q.choice_b + '</button>'

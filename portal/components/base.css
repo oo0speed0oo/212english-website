@@ -302,3 +302,31 @@ body {
   .type-grid { grid-template-columns: 1fr; }
   .topnav { padding: 14px 20px; }
 }
+
+/* ── Robot voice for Listening questions ── */
+.listen-who { margin-bottom: 18px; }
+.listen-who-title { font-size: 12px; color: var(--text-muted); margin-bottom: 8px; letter-spacing: 0.02em; }
+.listen-who-options { display: flex; gap: 8px; }
+.listen-who-opt {
+  display: inline-block; padding: 6px 14px; font-size: 14px;
+  border: 1px solid var(--gold-dim); border-radius: 999px;
+  color: var(--text-main); background: rgba(255,255,255,0.5);
+}
+.listen-who-opt.selected { background: rgba(184,145,46,0.18); border-color: var(--gold); color: var(--warm-white); }
+.listen-btn {
+  display: inline-block; margin: 4px 0 18px; padding: 14px 28px; min-height: 48px;
+  font-family: inherit; font-size: 17px; cursor: pointer;
+  color: var(--warm-white); background: rgba(184,145,46,0.18);
+  border: 1px solid var(--gold); border-radius: 12px; transition: all 0.2s;
+}
+.listen-btn:hover { background: rgba(184,145,46,0.3); }
+.listen-btn.playing { opacity: 0.7; }
+.listen-prefix { margin-bottom: 12px !important; }
+.listen-suffix { margin-bottom: 28px; }
+.listen-msg { font-size: 13px; color: var(--text-muted); margin-bottom: 10px; }
+.listen-msg:empty { display: none; }
+.listen-reveal {
+  font-size: 18px; color: var(--warm-white); line-height: 1.6; margin-bottom: 18px;
+  padding: 10px 14px; border-left: 3px solid var(--gold-dim);
+}
+.listen-reveal[hidden] { display: none; }
