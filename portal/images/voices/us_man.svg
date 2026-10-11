@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" width="96" height="96">
+<defs><clipPath id="face"><circle cx="48" cy="48" r="45"/></clipPath><clipPath id="flag"><circle cx="78" cy="78" r="13"/></clipPath></defs>
+<circle cx="48" cy="48" r="46" fill="#f7f3ec"/>
+<g clip-path="url(#face)">
+<path d="M12 96C12 72 28 66 48 66C68 66 84 72 84 96Z" fill="#2f5d8a"/>
+
+<rect x="41" y="54" width="14" height="16" rx="6" fill="#b0744d"/>
+<circle cx="31" cy="44" r="3.2" fill="#c58a62"/><circle cx="65" cy="44" r="3.2" fill="#c58a62"/>
+<ellipse cx="48" cy="42" rx="17" ry="20" fill="#c58a62"/>
+<path d="M29 40C25 15 71 15 67 40C63 29 35 29 29 40Z" fill="#1f1a14"/><path d="M32 50C36 64 60 64 64 50C60 59 36 59 32 50Z" fill="#1f1a14" opacity=".55"/>
+<circle cx="41" cy="43" r="2" fill="#2a1f05"/><circle cx="55" cy="43" r="2" fill="#2a1f05"/>
+<path d="M36.5 38.5Q41 36 45 38M51 38Q55 36 59.5 38.5" stroke="#2a1f05" stroke-width="1.5" fill="none" stroke-linecap="round" opacity=".7"/>
+<path d="M48 46Q46 50 49 51" stroke="#b0744d" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+<path d="M42 55Q48 60 54 55" stroke="#8a3b2a" stroke-width="2" fill="none" stroke-linecap="round"/>
+<circle cx="37" cy="51" r="3" fill="#e08a7a" opacity=".25"/><circle cx="59" cy="51" r="3" fill="#e08a7a" opacity=".25"/>
+
+</g>
+<circle cx="48" cy="48" r="45" fill="none" stroke="#b8912e" stroke-width="2.5"/>
+<g clip-path="url(#flag)"><rect x="65" y="65" width="26" height="26" fill="#fff"/>
+<g fill="#b3261e"><rect x="65" y="65" width="26" height="3.7"/><rect x="65" y="72.4" width="26" height="3.7"/><rect x="65" y="79.9" width="26" height="3.7"/><rect x="65" y="87.3" width="26" height="3.7"/></g>
+<rect x="65" y="65" width="13" height="14.8" fill="#3c3b6e"/>
+<g fill="#fff"><circle cx="69" cy="69" r="1"/><circle cx="74" cy="69" r="1"/><circle cx="71.5" cy="73" r="1"/><circle cx="69" cy="77" r="1"/><circle cx="74" cy="77" r="1"/></g></g>
+<circle cx="78" cy="78" r="13" fill="none" stroke="#fffcf5" stroke-width="3"/><circle cx="78" cy="78" r="14.5" fill="none" stroke="#b8912e" stroke-width="1.2"/>
+</svg>

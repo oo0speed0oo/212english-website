@@ -112,6 +112,11 @@ $GLOBALS['h212_strings'] = array(
 	// Robot voice (Listening questions)
 	'listen.who'      => array( 'en' => 'Who do you want to hear?',  'ja' => '誰の声で聞きますか？' ),
 	'listen.robot'    => array( 'en' => 'Robot',                     'ja' => 'ロボット' ),
+	'listen.mix'      => array( 'en' => 'Mix',                       'ja' => 'ミックス' ),
+	'listen.us_woman' => array( 'en' => 'American woman',            'ja' => 'アメリカ 女性' ),
+	'listen.us_man'   => array( 'en' => 'American man',              'ja' => 'アメリカ 男性' ),
+	'listen.uk_woman' => array( 'en' => 'British woman',             'ja' => 'イギリス 女性' ),
+	'listen.uk_man'   => array( 'en' => 'British man',               'ja' => 'イギリス 男性' ),
 	'listen.button'   => array( 'en' => '🔊 Listen',                 'ja' => '🔊 聞く' ),
 	'listen.playing'  => array( 'en' => '🔊 Playing…',               'ja' => '🔊 再生中…' ),
 	'listen.no_voice' => array( 'en' => 'No English voice found on this device, so the sentence is shown here instead.', 'ja' => 'この端末に英語の音声がないため、代わりに文を表示しています。' ),

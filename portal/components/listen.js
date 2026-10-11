@@ -1,19 +1,25 @@
-// "Robot voice" for Listening questions.
+// Listening questions: the quoted part of the question (e.g. You hear
+// "I live in Osaka.") is hidden on screen and played when the student taps
+// the Listen button.
 //
-// The quoted part of a Listening question (e.g. You hear "I live in Osaka.")
-// is hidden on screen and read aloud by the device's built-in voice when the
-// student taps the Listen button. No audio files, nothing is sent anywhere.
+// Voices: a recorded mp3 voice (American/British, woman/man - files in
+// portal/audio/<voice>/<id>.mp3) or, if there is no mp3 or it fails to load,
+// the robot (the device's built-in English voice, no files needed).
+// The student's choice is remembered in a cookie.
 //
 // Used by homework.php and tests.php:
 //   var listenHtml = H212Listen.render(q);   // null = show the question as normal
 //
-// Needs window.H212_T to contain: listen.who, listen.robot, listen.button,
-// listen.playing, listen.no_voice  (see h212_js_strings in each page).
+// Needs window.H212_T (listen.* strings, see h212_js_strings in each page)
+// and window.H212_VOICES (which ids have an mp3, from inc/voices.php).
 var H212Listen = (function () {
   var lines    = [];   // the sentence(s) to speak for the question on screen
   var voices   = [];   // English voices on this device, best first
   var speaking = false;
   var playId   = 0;    // so a cancelled earlier play cannot reset the button of a newer one
+  var VOICE_KEYS = ['us_woman', 'us_man', 'uk_woman', 'uk_man'];
+  var COOKIE   = 'h212_voice';
+  var cur      = { id: null, avail: [], sel: 'robot', effective: 'robot', mixPick: null, audio: null };
 
   // macOS ships some joke voices - never use these for teaching.
   var NOVELTY = /^(Albert|Bad News|Bahh|Bells|Boing|Bubbles|Cellos|Deranged|Good News|Hysterical|Jester|Organ|Pipe Organ|Superstar|Trinoids|Whisper|Wobble|Zarvox)\b/i;
@@ -96,7 +102,73 @@ var H212Listen = (function () {
   function stop() {
     speaking = false;
     playId++;
+    if (cur.audio) { try { cur.audio.pause(); } catch (e) {} }
     if (supported()) window.speechSynthesis.cancel();
+  }
+
+  // ── Student's voice choice (cookie) ──
+  function getPref() {
+    var m = document.cookie.match(/(?:^|; )h212_voice=([^;]*)/);
+    return m ? decodeURIComponent(m[1]) : 'mix';
+  }
+  function setPref(v) {
+    document.cookie = COOKIE + '=' + encodeURIComponent(v) + '; path=/; max-age=31536000; SameSite=Lax';
+  }
+
+  // Which mp3 voices exist for this question id?
+  function availableVoices(id) {
+    var out = [], ids = (window.H212_VOICES && window.H212_VOICES.ids) || {};
+    for (var i = 0; i < VOICE_KEYS.length; i++) {
+      var list = ids[VOICE_KEYS[i]] || [];
+      if (list.indexOf(String(id)) >= 0) out.push(VOICE_KEYS[i]);
+    }
+    return out;
+  }
+
+  // Work out which chip is highlighted and which voice will actually play.
+  function resolve() {
+    var pref = getPref(), a = cur.avail;
+    if (!a.length || pref === 'robot') {
+      cur.sel = 'robot'; cur.effective = 'robot';
+    } else if (a.indexOf(pref) >= 0) {
+      cur.sel = pref; cur.effective = pref;
+    } else {
+      // Mix (the default), or a voice this question doesn't have: random available voice
+      if (!cur.mixPick || a.indexOf(cur.mixPick) < 0) cur.mixPick = a[Math.floor(Math.random() * a.length)];
+      cur.sel = a.length > 1 ? 'mix' : a[0];
+      cur.effective = cur.mixPick;
+    }
+    prepareAudio();
+  }
+
+  // Load the mp3 now (they are tiny) so a broken file is known before the tap.
+  function prepareAudio() {
+    cur.audio = null;
+    if (cur.effective === 'robot') return;
+    var a = new Audio();
+    a.preload = 'auto';
+    var v = (window.H212_VOICES && window.H212_VOICES.v) || 0;
+    a.src = 'audio/' + cur.effective + '/' + cur.id + '.mp3?v=' + v;
+    cur.audio = a;
+  }
+
+  function refreshChips() {
+    var chips = document.querySelectorAll('.listen-who-opt');
+    for (var i = 0; i < chips.length; i++) {
+      var on = chips[i].getAttribute('data-voice') === cur.sel;
+      chips[i].classList.toggle('selected', on);
+      chips[i].setAttribute('aria-checked', on ? 'true' : 'false');
+    }
+  }
+
+  // Called when the student taps a face / Robot / Mix.
+  function choose(key) {
+    stop();
+    setButton(false);
+    setPref(key);
+    cur.mixPick = null;
+    resolve();
+    refreshChips();
   }
 
   function setButton(playing) {
@@ -126,6 +198,26 @@ var H212Listen = (function () {
   // Called from the Listen button. Must run straight from the tap (iPhone rule).
   function play() {
     if (!lines.length) return;
+    stop();
+    var a = cur.audio;
+    if (cur.effective !== 'robot' && a && !a.error) {
+      var myId = ++playId;
+      setButton(true);
+      a.currentTime = 0;
+      a.onended = function () { if (myId === playId) setButton(false); };
+      a.onerror = function () { if (myId === playId) { setButton(false); speakRobot(); } };
+      var pr = a.play();
+      if (pr && pr.catch) pr.catch(function (e) {
+        if (myId !== playId || (e && e.name === 'AbortError')) return;
+        setButton(false);
+        speakRobot();   // mp3 would not play: use the robot instead
+      });
+      return;
+    }
+    speakRobot();
+  }
+
+  function speakRobot() {
     if (!supported()) { showFallback(); return; }
     if (!voices.length) loadVoices();
     if (!voices.length) { showFallback(); return; }
@@ -156,6 +248,13 @@ var H212Listen = (function () {
     }
   }
 
+  function chip(key, face, label) {
+    var on = key === cur.sel;
+    return '<button type="button" class="listen-who-opt' + (on ? ' selected' : '') + '" role="radio" aria-checked="' + (on ? 'true' : 'false')
+      + '" data-voice="' + key + '" onclick="H212Listen.choose(\'' + key + '\')">'
+      + face + '<span class="listen-who-label">' + label + '</span></button>';
+  }
+
   // Returns the HTML for the Listen part of a question, or null if the
   // question is not a Listening question with quoted text.
   function render(q) {
@@ -166,11 +265,25 @@ var H212Listen = (function () {
     if (!p) return null;
     lines = p.spoken;
 
+    cur.id = q.id;
+    cur.avail = availableVoices(q.id);
+    cur.mixPick = null;
+    resolve();
+
     var T = window.H212_T;
+    var chips = [];
+    if (cur.avail.length > 1) chips.push(chip('mix', '<span class="listen-face listen-face-emoji">🎲</span>', T['listen.mix']));
+    chips.push(chip('robot', '<span class="listen-face listen-face-emoji">🤖</span>', T['listen.robot']));
+    for (var i = 0; i < VOICE_KEYS.length; i++) {
+      if (cur.avail.indexOf(VOICE_KEYS[i]) < 0) continue;
+      chips.push(chip(VOICE_KEYS[i],
+        '<img class="listen-face" src="images/voices/' + VOICE_KEYS[i] + '.svg" alt="" width="48" height="48">',
+        T['listen.' + VOICE_KEYS[i]]));
+    }
     var html = '<div class="listen-who">'
       + '<div class="listen-who-title">' + T['listen.who'] + '</div>'
       + '<div class="listen-who-options" role="radiogroup" aria-label="' + T['listen.who'] + '">'
-      + '<span class="listen-who-opt selected" role="radio" aria-checked="true">🤖 ' + T['listen.robot'] + '</span>'
+      + chips.join('')
       + '</div></div>';
     if (p.prefix) html += '<div class="question-text listen-prefix">' + p.prefix + '</div>';
     html += '<button type="button" class="listen-btn" id="listen-btn" onclick="H212Listen.play()">' + T['listen.button'] + '</button>'
@@ -180,5 +293,5 @@ var H212Listen = (function () {
     return html;
   }
 
-  return { render: render, play: play, stop: stop, parse: parse };
+  return { render: render, play: play, stop: stop, parse: parse, choose: choose };
 })();

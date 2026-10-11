@@ -62,7 +62,10 @@ h212_js_strings( array(
 	'hw.wrong_msg', 'hw.next_question', 'hw.see_results', 'hw.results', 'hw.correct_word',
 	'hw.start_again', 'hw.back_to_topics', 'hw.best_score',
 	'listen.who', 'listen.robot', 'listen.button', 'listen.playing', 'listen.no_voice',
+	'listen.mix', 'listen.us_woman', 'listen.us_man', 'listen.uk_woman', 'listen.uk_man',
 ) );
+require_once __DIR__ . '/inc/voices.php';
+h212_voice_script();
 ?>
 <script src="components/listen.js?v=<?php echo (int) filemtime( __DIR__ . '/components/listen.js' ); ?>"></script>
 <script>

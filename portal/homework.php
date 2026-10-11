@@ -104,7 +104,10 @@ h212_js_strings( array(
 	'hw.already_finished', 'hw.best_score', 'hw.start_again', 'hw.needs_review',
 	'hw.locked_level', 'hw.locked_chapter',
 	'listen.who', 'listen.robot', 'listen.button', 'listen.playing', 'listen.no_voice',
+	'listen.mix', 'listen.us_woman', 'listen.us_man', 'listen.uk_woman', 'listen.uk_man',
 ) );
+require_once __DIR__ . '/inc/voices.php';
+h212_voice_script();
 ?>
 <script src="components/listen.js?v=<?php echo (int) filemtime( __DIR__ . '/components/listen.js' ); ?>"></script>
 <script>window.H212_NONCE = "<?php echo esc_js( wp_create_nonce( 'h212_save_score' ) ); ?>";</script>
