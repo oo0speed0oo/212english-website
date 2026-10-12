@@ -23,8 +23,11 @@ h212_js_strings( array(
 ) );
 require_once __DIR__ . '/inc/voices.php';
 h212_voice_script();
+require_once __DIR__ . '/inc/mike.php';
+h212_mike_for_js();
 ?>
 <script src="components/listen.js?v=<?php echo (int) filemtime( __DIR__ . '/components/listen.js' ); ?>"></script>
+<script src="components/mike.js?v=<?php echo (int) filemtime( __DIR__ . '/components/mike.js' ); ?>"></script>
 <script src="components/ui.js?v=<?php echo (int) filemtime( __DIR__ . '/components/ui.js' ); ?>"></script>
 <script src="components/builder.js?v=<?php echo (int) filemtime( __DIR__ . '/components/builder.js' ); ?>"></script>
 <script>window.H212_NONCE = "<?php echo esc_js( wp_create_nonce( 'h212_save_score' ) ); ?>";</script>
@@ -313,15 +316,18 @@ function showQuestion() {
     html += '<button class="next-btn" id="next-btn" onclick="showFinish()">' + H212_T['hw.see_results'] + '</button>';
   }
 
-  html += '</div>';
+  html += '</div>' + H212Mike.row();
   getPC().innerHTML = html;
   if (q.type === 'builder') H212Builder.afterRender();
+  // Mike gives a short hint (his mouth moves only on the first question)
+  H212Mike.say('hint_test', currentIndex === 0);
 }
 
 // Sentence Builder was checked (tests only count the score)
 H212Builder.onChecked = function(res) {
   if (res.correct) score++;
   document.getElementById('next-btn').style.display = 'inline-flex';
+  H212Mike.say(res.correct ? 'correct' : 'wrong');
 };
 
 function esc(str) {
@@ -351,6 +357,7 @@ function checkAnswer(btn, chosen, answer) {
 
   msg.style.display  = 'block';
   next.style.display = 'inline-flex';
+  H212Mike.say(chosen === answer ? 'correct' : 'wrong');
 }
 
 function nextQuestion() {
@@ -375,9 +382,10 @@ function showFinish() {
     + '<div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">'
     + '<button class="next-btn" style="display:inline-flex" onclick="beginTest()">' + H212_T['hw.start_again'] + '</button>'
     + '<button class="next-btn" style="display:inline-flex" onclick="renderChapters(' + currentLevel + ')">' + H212_T['hw.back_to_topics'] + '</button>'
-    + '</div></div>';
+    + '</div></div>' + H212Mike.row();
 
   getPC().innerHTML = html;
+  H212Mike.say(pct === 100 ? 'finish_perfect' : (pct >= 70 ? 'finish_good' : 'finish_try'));
 }
 </script>
 </main>

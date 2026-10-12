@@ -151,6 +151,25 @@ $GLOBALS['h212_strings'] = array(
 	'hw.just_unlocked'     => array( 'en' => '🎉 You opened Chapter {n}!', 'ja' => '🎉 チャプター{n}が開きました！' ),
 	'hw.just_unlocked_level' => array( 'en' => '🎉 You opened Level {n}!', 'ja' => '🎉 レベル{n}が開きました！' ),
 
+	// Teacher Mike's reactions
+	'mike.correct_1' => array( 'en' => 'Great job!',                         'ja' => 'よくできました！' ),
+	'mike.correct_2' => array( 'en' => "That's right!",                      'ja' => '正解です！' ),
+	'mike.correct_3' => array( 'en' => 'Nice one!',                          'ja' => 'いいね！' ),
+	'mike.correct_4' => array( 'en' => 'Perfect - keep going!',              'ja' => '完璧！その調子！' ),
+	'mike.wrong_1'   => array( 'en' => "Not quite - you'll get it next time.", 'ja' => 'おしい！次はできるよ。' ),
+	'mike.wrong_2'   => array( 'en' => 'Good try! Check the answer and move on.', 'ja' => 'いい挑戦！答えを確認して次へ進もう。' ),
+	'mike.wrong_3'   => array( 'en' => 'Mistakes help us learn.',            'ja' => '間違いは学びのチャンス。' ),
+	'mike.finish_perfect' => array( 'en' => 'Perfect score! Amazing!',       'ja' => '満点！すばらしい！' ),
+	'mike.finish_good'    => array( 'en' => 'Well done! Keep it up.',        'ja' => 'よくできました！この調子。' ),
+	'mike.finish_try'     => array( 'en' => 'Good effort! Try again to do even better.', 'ja' => 'よく頑張りました！もう一度挑戦しよう。' ),
+	'mike.hint_photo'        => array( 'en' => 'Look at the picture first, then read the choices.', 'ja' => 'まず写真を見て、選択肢を読もう。' ),
+	'mike.hint_vocabulary'   => array( 'en' => 'Read all three choices before you pick.', 'ja' => '3つの選択肢をすべて読んでから選ぼう。' ),
+	'mike.hint_grammar'      => array( 'en' => 'Look at the words around the blank.', 'ja' => '空欄のまわりの語に注目しよう。' ),
+	'mike.hint_builder'      => array( 'en' => 'Start with who is doing it - find the subject.', 'ja' => 'まず「だれが」を探そう。主語から始めよう。' ),
+	'mike.hint_listening'    => array( 'en' => 'Tap Listen as many times as you like.', 'ja' => '「聞く」は何回でも押してOK。' ),
+	'mike.hint_conversation' => array( 'en' => 'Think about what a friend would say back.', 'ja' => '友だちならどう返すか考えてみよう。' ),
+	'mike.hint_test'         => array( 'en' => 'Take your time. You can do it!', 'ja' => 'ゆっくりでOK。きっとできるよ！' ),
+
 	// Sentence Builder and Conversation
 	'builder.instruction' => array( 'en' => 'Put the words in order to say this in English.', 'ja' => '英語で言えるように、語を正しい順に並べましょう。' ),
 	'builder.empty'       => array( 'en' => 'Tap the words below',  'ja' => '下の語をタップ' ),

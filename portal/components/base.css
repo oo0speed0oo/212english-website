@@ -451,6 +451,31 @@ button, input, select, textarea { font-family: inherit; }
 .grade-chip.status-not_started .gc-status { color: var(--text-dim); }
 .grades-coming-soon { font-size: 13px; color: var(--text-muted); font-style: italic; }
 
+/* ── TEACHER MIKE ── */
+.mike { animation: mike-bob 3s ease-in-out infinite; }
+.mike .eyes { animation: mike-blink 4s steps(1) infinite; }
+.mike .mouth-open { opacity: 0; }
+.mike.talking .mouth-open { animation: mike-talk 0.3s steps(1) 10; }
+@keyframes mike-bob   { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-3px); } }
+@keyframes mike-blink { 0%, 93%, 100% { opacity: 1; } 94%, 97% { opacity: 0; } }
+@keyframes mike-talk  { 0% { opacity: 1; } 50% { opacity: 0; } }
+@media (prefers-reduced-motion: reduce) {
+  .mike, .mike .eyes, .mike.talking .mouth-open { animation: none !important; }
+}
+.mike-row { display: flex; gap: 12px; align-items: flex-end; max-width: 620px; margin-top: 16px; }
+.mike-small { flex: none; width: 60px; }
+.mike-small svg { display: block; width: 60px; height: auto; }
+.mike-bubble {
+  background: var(--card); border: 1px solid var(--line); border-radius: 16px 16px 16px 4px;
+  padding: 10px 12px; font-size: 14px; line-height: 1.4; color: var(--ink); min-height: 44px;
+}
+.mike-bubble .mb-main { font-weight: 600; }
+.mike-bubble .mb-sub { font-size: 12px; color: var(--text-muted); margin-top: 2px; font-family: 'Zen Kaku Gothic New', var(--font); }
+.mike-bubble:has(.mb-main:empty) { visibility: hidden; }
+.mike-bubble.pop { animation: mike-pop 0.25s ease-out; }
+@keyframes mike-pop { from { opacity: 0; transform: translateY(6px) scale(0.97); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { .mike-bubble.pop { animation: none; } }
+
 /* ── Unlock message ── */
 .unlock-note { display: none; margin: 0 0 20px; padding: 12px 16px; border-radius: 14px; background: #E4F1E7; border: 1px solid rgba(47,107,63,0.35); color: var(--ok); font-weight: 700; }
 
