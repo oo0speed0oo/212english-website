@@ -186,3 +186,40 @@ function h212_render_nav( $active ) {
 		<main class="content" id="page-content">
 	<?php
 }
+
+/**
+ * "THEME · テーマ" row: three buttons that switch the look straight away and
+ * remember the choice (inc/theme.php). Used on the dashboard and in Profile.
+ */
+function h212_theme_picker() {
+	$current = h212_current_theme();
+	$themes  = array( 'classic', 'sakura', 'sky' );
+	?>
+	<div class="theme-row" id="h212-theme-row">
+		<div class="theme-label"><?php echo esc_html( t( 'theme.label' ) . ' · ' . t_other( 'theme.label' ) ); ?></div>
+		<?php foreach ( $themes as $key ) : ?>
+			<button type="button" class="theme-btn" data-theme="<?php echo esc_attr( $key ); ?>" aria-pressed="<?php echo $key === $current ? 'true' : 'false'; ?>">
+				<span class="theme-swatch <?php echo esc_attr( $key ); ?>" aria-hidden="true"></span><?php echo esc_html( t( 'theme.' . $key ) ); ?>
+			</button>
+		<?php endforeach; ?>
+	</div>
+	<script>
+	(function () {
+		var nonce = "<?php echo esc_js( wp_create_nonce( 'h212_theme' ) ); ?>";
+		var btns = document.querySelectorAll('#h212-theme-row .theme-btn');
+		btns.forEach(function (b) {
+			b.addEventListener('click', function () {
+				var theme = b.getAttribute('data-theme');
+				document.documentElement.setAttribute('data-theme', theme);
+				btns.forEach(function (o) { o.setAttribute('aria-pressed', o === b ? 'true' : 'false'); });
+				fetch('inc/theme.php', {
+					method: 'POST',
+					headers: { 'Content-Type': 'application/json' },
+					body: JSON.stringify({ nonce: nonce, theme: theme })
+				}).catch(function () {});
+			});
+		});
+	})();
+	</script>
+	<?php
+}

@@ -2,7 +2,10 @@
    212 English School — Portal Base Styles
    shared by all portal pages
 
-   Look (Oct 2026): navy text, warm-white background, gold accent,
+   Look (Oct 2026): three themes (Classic navy/gold, Sakura pink, Sky blue),
+   chosen per student (user meta h212_theme) via <html data-theme="...">.
+   Colours live in the theme blocks at the top; change them there.
+   Shared look: navy text, warm-white background, gold accent,
    Lexend + Zen Kaku Gothic New, white cards with soft borders,
    44px+ tap targets. Change colours here (the :root block) and the
    whole portal follows.
@@ -10,29 +13,85 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700&family=Zen+Kaku+Gothic+New:wght@500;700&display=swap');
 
-:root {
-  /* names kept from the old theme so every page picks up the new colours */
-  --navy:       #FBF8F2;                 /* page background (warm white) */
+:root, [data-theme="classic"] {
+  /* THEME: Classic (navy + gold). Names kept from the old theme so every page follows. */
+  --navy:       #FBF8F2;                 /* page background */
   --navy2:      #FFFFFF;
   --navy3:      #FFFFFF;
-  --gold:       #C99A2E;
-  --gold-light: #8A6215;                 /* gold that is readable as text */
-  --gold-dim:   rgba(201,154,46,0.35);
-  --warm-white: #14284B;                 /* strong text (navy) */
+  --ink:        #14284B;                 /* text */
+  --warm-white: #14284B;                 /* strong text (same as --ink) */
   --text-main:  #14284B;
   --text-muted: #6B6455;
-  --text-dim:   #8E866F;
-  /* new */
-  --ink:        #14284B;
-  --card:       #FFFFFF;
+  --text-dim:   #6B6455;
+  --gold:       #C99A2E;                 /* accent (fills, borders, focus) */
+  --gold-light: #855F14;                 /* dark accent: readable text on the page, on white and on pale */
+  --gold-soft:  #E9C977;                 /* button background */
+  --gold-tint:  #F3E6C4;                 /* pale accent */
+  --on-accent:  #14284B;                 /* text on buttons */
+  --accent-rgb: 201,154,46;
+  --gold-dim:   rgba(201,154,46,0.35);
   --line:       #E4DCCB;                 /* soft card border */
   --line-strong:#D9CDB2;
   --sand:       #EFE7D6;                 /* empty progress track */
-  --gold-soft:  #E9C977;
-  --gold-tint:  #F3E6C4;
+  /* greeting card */
+  --hero-bg:    #14284B;
+  --hero-text:  #FFFFFF;
+  --hero-kicker:#E9C977;
+  --hero-sub:   #D5DCEA;
+  --hero-border:#14284B;
+}
+[data-theme="sakura"] {
+  --navy:       #FFF6F8;
+  --ink:        #3E2A34;
+  --warm-white: #3E2A34;
+  --text-main:  #3E2A34;
+  --text-muted: #7D5E6B;
+  --text-dim:   #7D5E6B;
+  --gold:       #E76F98;
+  --gold-light: #AE4369;
+  --gold-soft:  #E76F98;
+  --gold-tint:  #FFE6EE;
+  --on-accent:  #3C2832;
+  --accent-rgb: 231,111,152;
+  --gold-dim:   rgba(231,111,152,0.4);
+  --line:       #F2D7E0;
+  --line-strong:#E8C5D2;
+  --sand:       #F9E4EB;
+  --hero-bg:    #FFE6EE;
+  --hero-text:  #3E2A34;
+  --hero-kicker:#AE4369;
+  --hero-sub:   #7D5E6B;
+  --hero-border:#F2D7E0;
+}
+[data-theme="sky"] {
+  --navy:       #F3F9FC;
+  --ink:        #16324A;
+  --warm-white: #16324A;
+  --text-main:  #16324A;
+  --text-muted: #536D80;
+  --text-dim:   #536D80;
+  --gold:       #2E9CCB;
+  --gold-light: #1F7099;
+  --gold-soft:  #2E9CCB;
+  --gold-tint:  #DDF0F8;
+  --on-accent:  #132B41;
+  --accent-rgb: 46,156,203;
+  --gold-dim:   rgba(46,156,203,0.4);
+  --line:       #D3E6EF;
+  --line-strong:#BFD9E6;
+  --sand:       #E1EEF5;
+  --hero-bg:    #DDF0F8;
+  --hero-text:  #16324A;
+  --hero-kicker:#1F7099;
+  --hero-sub:   #536D80;
+  --hero-border:#D3E6EF;
+}
+:root {
+  /* the same in every theme */
+  --card:       #FFFFFF;
   --ok:         #2F6B3F;
   --bad:        #B3261E;
-  --vocab:      #0F6E68;  --vocab-bg:   #E6F2F1;
+  --vocab:      #0F6E68;  --vocab-bg:   #E6F2F1;   /* skill colours stay the same in all themes */
   --grammar:    #8A6215;  --grammar-bg: #FBF0D9;
   --listen:     #2E3F8F;  --listen-bg:  #E9ECF7;
   --rose:       #9A3B2C;  --rose-bg:    #F6E7E4;
@@ -97,14 +156,14 @@ button, input, select, textarea { font-family: inherit; }
 /* ── REPORT A PROBLEM: floating button + bottom sheet ── */
 .report-fab {
   position: fixed; bottom: 22px; right: 22px; z-index: 250;
-  background: var(--gold); color: #fffcf5; border: none;
+  background: var(--gold); color: var(--on-accent); border: none;
   border-radius: 30px; padding: 12px 18px;
   font-size: 13px; font-weight: 500; font-family: inherit;
   cursor: pointer; white-space: nowrap;
   box-shadow: 0 6px 20px rgba(120,90,20,0.28);
   transition: all 0.2s;
 }
-.report-fab:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(120,90,20,0.35); }
+.report-fab:hover { filter: brightness(0.95); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(120,90,20,0.35); }
 
 .report-modal-backdrop {
   display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
@@ -113,7 +172,7 @@ button, input, select, textarea { font-family: inherit; }
 }
 .report-modal-backdrop.open { display: flex; }
 .report-modal {
-  background: #fffcf5; border: 1px solid rgba(184,145,46,0.25); border-bottom: none;
+  background: #fffcf5; border: 1px solid rgba(var(--accent-rgb), 0.25); border-bottom: none;
   border-radius: 18px 18px 0 0; overflow: hidden; width: 100%; max-width: 480px;
   transform: translateY(100%); transition: transform 0.28s ease;
 }
@@ -123,7 +182,7 @@ button, input, select, textarea { font-family: inherit; }
 }
 .report-modal-header {
   display: flex; align-items: center; justify-content: space-between;
-  padding: 16px 20px; border-bottom: 1px solid rgba(184,145,46,0.15);
+  padding: 16px 20px; border-bottom: 1px solid rgba(var(--accent-rgb), 0.15);
   font-size: 15px; font-weight: 500; color: var(--warm-white);
 }
 .report-modal-close {
@@ -134,7 +193,7 @@ button, input, select, textarea { font-family: inherit; }
 .report-modal-body { padding: 18px 20px; }
 .report-modal-body p { font-size: 13px; color: var(--text-muted); margin: 0 0 12px; }
 .report-modal-body textarea {
-  width: 100%; border: 1px solid rgba(184,145,46,0.3); border-radius: 10px;
+  width: 100%; border: 1px solid rgba(var(--accent-rgb), 0.3); border-radius: 10px;
   padding: 12px 14px; font-family: inherit; font-size: 14px; color: var(--text-main);
   background: #fff; resize: vertical;
 }
@@ -142,13 +201,13 @@ button, input, select, textarea { font-family: inherit; }
 .report-status { margin-top: 10px; font-size: 12.5px; min-height: 16px; }
 .report-status.error   { color: #b3261e; }
 .report-status.success { color: #2f7a4f; }
-.report-modal-footer { padding: 14px 20px; border-top: 1px solid rgba(184,145,46,0.15); text-align: right; }
+.report-modal-footer { padding: 14px 20px; border-top: 1px solid rgba(var(--accent-rgb), 0.15); text-align: right; }
 .report-send-btn {
-  background: var(--gold); color: #fffcf5; border: none;
+  background: var(--gold); color: var(--on-accent); border: none;
   border-radius: 8px; padding: 10px 20px; font-size: 13px; font-weight: 500;
   font-family: inherit; cursor: pointer; transition: all 0.2s;
 }
-.report-send-btn:hover { background: var(--gold-light); }
+.report-send-btn:hover { filter: brightness(0.95); }
 
 
 /* ── LAYOUT ── */
@@ -295,7 +354,7 @@ button, input, select, textarea { font-family: inherit; }
 .type-btn .status.take  { color: var(--ink); background: var(--gold-tint); }
 .type-btn .status.part  { color: var(--c); background: var(--bg); }
 .type-btn .status.wrong { color: var(--bad); background: #FBE9E7; }
-.type-btn .status.muted { color: var(--text-muted); background: var(--sand); font-weight: 500; }
+.type-btn .status.muted { color: var(--ink); background: var(--sand); font-weight: 500; }
 .type-btn.empty { opacity: 0.65; cursor: default; }
 .type-btn.empty:hover { border-color: var(--line); box-shadow: none; }
 
@@ -319,7 +378,7 @@ button, input, select, textarea { font-family: inherit; }
   font-size: 15px; color: var(--text-main); outline: none;
   transition: border-color 0.2s, box-shadow 0.2s; width: 100%;
 }
-.form-group input:focus, .form-group select:focus { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(201,154,46,0.18); }
+.form-group input:focus, .form-group select:focus { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(var(--accent-rgb), 0.18); }
 .form-group input::placeholder { color: var(--text-dim); }
 .form-group select option { background: var(--navy2); color: var(--text-main); }
 
@@ -327,9 +386,9 @@ button, input, select, textarea { font-family: inherit; }
 .save-btn {
   margin-top: 24px; display: inline-flex; align-items: center; gap: 8px; min-height: 48px;
   background: var(--gold-soft); border: none; border-radius: 14px; padding: 12px 28px;
-  color: var(--ink); font-size: 15px; font-weight: 700; cursor: pointer; transition: all 0.2s;
+  color: var(--on-accent); font-size: 15px; font-weight: 700; cursor: pointer; transition: all 0.2s;
 }
-.save-btn:hover { background: var(--gold); }
+.save-btn:hover { filter: brightness(0.95); }
 .save-note {
   font-size: 12px; color: var(--text-muted); margin-top: 12px;
   padding: 10px 14px; background: var(--card); border-radius: 12px; border: 1px solid var(--line);
@@ -337,15 +396,15 @@ button, input, select, textarea { font-family: inherit; }
 
 /* ── DASHBOARD ── */
 .hero {
-  background: var(--ink); color: #fff; border-radius: 22px; padding: 18px;
+  background: var(--hero-bg); color: var(--hero-text); border: 1px solid var(--hero-border); border-radius: 22px; padding: 18px;
   display: flex; gap: 14px; align-items: center; margin-bottom: 16px; max-width: 640px;
 }
 .hero-mike { flex: none; width: 120px; display: flex; flex-direction: column; align-items: center; }
 .hero-mike svg { display: block; width: 120px; height: auto; }
 .hero-text { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
-.hero-kicker { font-size: 12px; color: var(--gold-soft); font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; }
+.hero-kicker { font-size: 12px; color: var(--hero-kicker); font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; }
 .hero-line { font-size: 17px; font-weight: 600; line-height: 1.35; }
-.hero-line-ja { font-family: 'Zen Kaku Gothic New', var(--font); font-size: 13px; color: #D5DCEA; }
+.hero-line-ja { font-family: 'Zen Kaku Gothic New', var(--font); font-size: 13px; color: var(--hero-sub); }
 .continue-card {
   display: flex; align-items: center; gap: 14px; max-width: 640px;
   background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 16px;
@@ -413,9 +472,9 @@ button, input, select, textarea { font-family: inherit; }
 .next-btn {
   margin-top: 16px; display: none; align-items: center; justify-content: center;
   min-height: 52px; background: var(--gold-soft); border: none; border-radius: 16px; padding: 12px 28px;
-  color: var(--ink); font-size: 16px; font-weight: 700; cursor: pointer; transition: all 0.2s;
+  color: var(--on-accent); font-size: 16px; font-weight: 700; cursor: pointer; transition: all 0.2s;
 }
-.next-btn:hover { background: var(--gold); }
+.next-btn:hover { filter: brightness(0.95); }
 .loading-msg { color: var(--text-muted); font-size: 14px; padding: 40px 0; }
 .no-content { color: var(--text-muted); font-size: 14px; padding: 40px 0; text-align: center; }
 .photo-img-wrap { margin-bottom: 18px; display: flex; justify-content: flex-start; }
@@ -450,6 +509,21 @@ button, input, select, textarea { font-family: inherit; }
 .grade-chip.status-progress .gc-status { color: var(--gold-light); }
 .grade-chip.status-not_started .gc-status { color: var(--text-dim); }
 .grades-coming-soon { font-size: 13px; color: var(--text-muted); font-style: italic; }
+
+/* ── THEME PICKER ── */
+.theme-row { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin: 18px 0 0; max-width: 640px; }
+.theme-label { font-size: 12px; font-weight: 700; color: var(--text-muted); letter-spacing: 0.06em; text-transform: uppercase; margin-right: 4px; }
+.theme-btn {
+  display: inline-flex; align-items: center; gap: 6px; min-height: 44px; padding: 6px 14px 6px 10px;
+  font-size: 13px; font-weight: 600; color: var(--ink); background: var(--card);
+  border: 1px solid var(--line); border-radius: 999px; cursor: pointer; transition: all 0.2s;
+}
+.theme-btn:hover { border-color: var(--gold); }
+.theme-btn[aria-pressed="true"] { border: 2px solid var(--ink); padding: 5px 13px 5px 9px; }
+.theme-swatch { width: 18px; height: 18px; border-radius: 50%; border: 1px solid var(--line); }
+.theme-swatch.classic { background: linear-gradient(135deg, #14284B 50%, #C99A2E 50%); }
+.theme-swatch.sakura  { background: linear-gradient(135deg, #E76F98 50%, #FFE6EE 50%); }
+.theme-swatch.sky     { background: linear-gradient(135deg, #2E9CCB 50%, #DDF0F8 50%); }
 
 /* ── TEACHER MIKE ── */
 .mike { animation: mike-bob 3s ease-in-out infinite; }
@@ -518,8 +592,8 @@ button, input, select, textarea { font-family: inherit; }
   color: var(--text-main); background: var(--card);
   cursor: pointer; transition: all 0.2s;
 }
-.listen-who-opt:hover { background: rgba(184,145,46,0.12); border-color: rgba(184,145,46,0.5); }
-.listen-who-opt.selected { background: rgba(184,145,46,0.2); border-color: var(--gold); box-shadow: 0 0 0 1px var(--gold); color: var(--warm-white); }
+.listen-who-opt:hover { background: rgba(var(--accent-rgb), 0.12); border-color: rgba(var(--accent-rgb), 0.5); }
+.listen-who-opt.selected { background: rgba(var(--accent-rgb), 0.2); border-color: var(--gold); box-shadow: 0 0 0 1px var(--gold); color: var(--warm-white); }
 .listen-face { width: 48px; height: 48px; display: block; }
 .listen-face-emoji {
   display: flex; align-items: center; justify-content: center; font-size: 26px;
@@ -530,10 +604,10 @@ button, input, select, textarea { font-family: inherit; }
 .listen-btn {
   display: inline-block; margin: 4px 0 18px; padding: 14px 28px; min-height: 48px;
   font-family: inherit; font-size: 17px; cursor: pointer;
-  color: var(--warm-white); background: rgba(184,145,46,0.18);
+  color: var(--warm-white); background: rgba(var(--accent-rgb), 0.18);
   border: 1px solid var(--gold); border-radius: 12px; transition: all 0.2s;
 }
-.listen-btn:hover { background: rgba(184,145,46,0.3); }
+.listen-btn:hover { background: rgba(var(--accent-rgb), 0.3); }
 .listen-btn.playing { opacity: 0.7; }
 .listen-prefix { margin-bottom: 12px !important; }
 .listen-suffix { margin-bottom: 28px; }
@@ -568,8 +642,8 @@ button, input, select, textarea { font-family: inherit; }
 .tile:disabled { cursor: default; opacity: 0.9; }
 .builder-actions { display: flex; gap: 10px; flex-wrap: wrap; }
 .builder-check, .builder-clear { font-size: 16px; padding: 12px 24px; min-height: 52px; border-radius: 16px; cursor: pointer; border: none; font-weight: 700; }
-.builder-check { background: var(--gold-soft); color: var(--ink); flex: 1; }
-.builder-check:hover:not(:disabled) { background: var(--gold); }
+.builder-check { background: var(--gold-soft); color: var(--on-accent); flex: 1; }
+.builder-check:hover:not(:disabled) { filter: brightness(0.95); }
 .builder-clear { background: transparent; color: var(--text-muted); border: 1px solid var(--line-strong); font-weight: 600; }
 .builder-check:disabled, .builder-clear:disabled { opacity: 0.45; cursor: default; }
 .builder-sentence { margin-top: 6px; font-size: 17px; font-weight: 700; }

@@ -1,15 +1,15 @@
 <?php require __DIR__ . '/inc/auth.php'; ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="<?php echo esc_attr( h212_current_theme() ); ?>">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>212 English – My Profile</title>
 <link rel="stylesheet" href="components/base.css?v=<?php echo (int) filemtime( __DIR__ . '/components/base.css' ); ?>">
 <style>
-  .profile-card { background:rgba(255,252,245,0.6); border:1px solid rgba(184,145,46,0.2); border-radius:16px; padding:32px; max-width:620px; }
-  .avatar-row { display:flex; align-items:center; gap:20px; margin-bottom:32px; padding-bottom:24px; border-bottom:1px solid rgba(184,145,46,0.15); }
-  .avatar-big { width:72px; height:72px; border-radius:50%; background:rgba(184,145,46,0.15); border:2px solid rgba(184,145,46,0.35); display:flex; align-items:center; justify-content:center; font-size:26px; font-weight:500; color:var(--gold-light); flex-shrink:0; }
+  .profile-card { background:rgba(255,252,245,0.6); border:1px solid rgba(var(--accent-rgb), 0.2); border-radius:16px; padding:32px; max-width:620px; }
+  .avatar-row { display:flex; align-items:center; gap:20px; margin-bottom:32px; padding-bottom:24px; border-bottom:1px solid rgba(var(--accent-rgb), 0.15); }
+  .avatar-big { width:72px; height:72px; border-radius:50%; background:rgba(var(--accent-rgb), 0.15); border:2px solid rgba(var(--accent-rgb), 0.35); display:flex; align-items:center; justify-content:center; font-size:26px; font-weight:500; color:var(--gold-light); flex-shrink:0; }
   .avatar-info h3 { font-size:18px; font-weight:500; color:var(--warm-white); margin-bottom:4px; }
   .avatar-info p  { font-size:13px; color:var(--text-muted); }
   .save-success {
@@ -91,6 +91,7 @@ if ( '' === $fullname ) {
     </div>
     <button type="submit" class="save-btn"><?php echo esc_html( t( 'profile.save' ) ); ?></button>
   </form>
+  <?php h212_theme_picker(); ?>
 </div>
 </main>
 </div>

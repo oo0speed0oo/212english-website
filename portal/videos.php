@@ -1,6 +1,6 @@
 <?php require __DIR__ . '/inc/auth.php'; ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="<?php echo esc_attr( h212_current_theme() ); ?>">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,12 +8,12 @@
 <link rel="stylesheet" href="components/base.css?v=<?php echo (int) filemtime( __DIR__ . '/components/base.css' ); ?>">
 <style>
   .video-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:20px; }
-  .video-card { background:rgba(255,252,245,0.6); border:1px solid rgba(184,145,46,0.2); border-radius:14px; overflow:hidden; cursor:pointer; transition:all 0.25s; }
-  .video-card:hover { border-color:rgba(184,145,46,0.45); transform:translateY(-3px); box-shadow:0 12px 40px rgba(120,90,20,0.12); }
+  .video-card { background:rgba(255,252,245,0.6); border:1px solid rgba(var(--accent-rgb), 0.2); border-radius:14px; overflow:hidden; cursor:pointer; transition:all 0.25s; }
+  .video-card:hover { border-color:rgba(var(--accent-rgb), 0.45); transform:translateY(-3px); box-shadow:0 12px 40px rgba(120,90,20,0.12); }
   .video-thumb { position:relative; width:100%; padding-top:56.25%; background:#e5ddc8; overflow:hidden; }
   .video-thumb img { position:absolute; top:0; left:0; width:100%; height:100%; object-fit:cover; transition:transform 0.3s; }
   .video-card:hover .video-thumb img { transform:scale(1.04); }
-  .play-overlay { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:48px; height:48px; border-radius:50%; background:rgba(184,145,46,0.85); display:flex; align-items:center; justify-content:center; font-size:18px; color:#fff; }
+  .play-overlay { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:48px; height:48px; border-radius:50%; background:rgba(var(--accent-rgb), 0.85); display:flex; align-items:center; justify-content:center; font-size:18px; color:#fff; }
   .video-card:hover .play-overlay { background:var(--gold); }
   .video-info { padding:14px 16px; }
   .video-title { font-size:14px; font-weight:500; color:var(--warm-white); line-height:1.4; margin-bottom:6px; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
@@ -21,8 +21,8 @@
   .video-msg   { text-align:center; padding:60px 20px; color:var(--text-muted); font-size:14px; }
   .modal-backdrop { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(30,20,0,0.75); z-index:200; align-items:center; justify-content:center; padding:20px; }
   .modal-backdrop.open { display:flex; }
-  .modal { background:#fffcf5; border:1px solid rgba(184,145,46,0.25); border-radius:16px; overflow:hidden; width:100%; max-width:860px; }
-  .modal-header { display:flex; align-items:center; justify-content:space-between; padding:14px 20px; border-bottom:1px solid rgba(184,145,46,0.15); }
+  .modal { background:#fffcf5; border:1px solid rgba(var(--accent-rgb), 0.25); border-radius:16px; overflow:hidden; width:100%; max-width:860px; }
+  .modal-header { display:flex; align-items:center; justify-content:space-between; padding:14px 20px; border-bottom:1px solid rgba(var(--accent-rgb), 0.15); }
   .modal-title { font-size:14px; font-weight:500; color:var(--warm-white); }
   .modal-close { background:none; border:none; color:var(--text-muted); font-size:22px; cursor:pointer; }
   .modal-close:hover { color:var(--gold-light); }

@@ -1,6 +1,6 @@
 <?php require __DIR__ . '/inc/auth.php'; ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="<?php echo esc_attr( h212_current_theme() ); ?>">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -104,6 +104,7 @@ $vars_alt = array( 'name' => $first, 'n' => $cur['chapter'], 'pct' => $pct, 'par
     <div class="dash-card-sub"><?php echo esc_html( t_other( 'nav.videos' ) . ' · ' . t( 'dash.videos_sub' ) ); ?></div>
   </a>
 </div>
+<?php h212_theme_picker(); ?>
 </main>
 </div>
 </body>

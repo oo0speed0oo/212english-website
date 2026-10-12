@@ -151,6 +151,12 @@ $GLOBALS['h212_strings'] = array(
 	'hw.just_unlocked'     => array( 'en' => '🎉 You opened Chapter {n}!', 'ja' => '🎉 チャプター{n}が開きました！' ),
 	'hw.just_unlocked_level' => array( 'en' => '🎉 You opened Level {n}!', 'ja' => '🎉 レベル{n}が開きました！' ),
 
+	// Theme picker
+	'theme.label'   => array( 'en' => 'Theme',   'ja' => 'テーマ' ),
+	'theme.classic' => array( 'en' => 'Classic', 'ja' => 'クラシック' ),
+	'theme.sakura'  => array( 'en' => 'Sakura',  'ja' => 'さくら' ),
+	'theme.sky'     => array( 'en' => 'Sky',     'ja' => 'スカイ' ),
+
 	// Teacher Mike's reactions
 	'mike.correct_1' => array( 'en' => 'Great job!',                         'ja' => 'よくできました！' ),
 	'mike.correct_2' => array( 'en' => "That's right!",                      'ja' => '正解です！' ),
@@ -216,6 +222,12 @@ $GLOBALS['h212_strings'] = array(
 	'videos.error'        => array( 'en' => '⚠️ Could not load videos.',       'ja' => '⚠️ 動画を読み込めませんでした。' ),
 	'videos.visit_yt'     => array( 'en' => 'Visit YouTube ↗',                 'ja' => 'YouTubeで見る ↗' ),
 );
+
+/** The student's chosen colour theme: classic | sakura | sky (default sakura). */
+function h212_current_theme() {
+	$theme = get_user_meta( get_current_user_id(), 'h212_theme', true );
+	return in_array( $theme, array( 'classic', 'sakura', 'sky' ), true ) ? $theme : 'sakura';
+}
 
 /** The same text in the OTHER language (used for small bilingual labels). */
 function t_other( $key ) {
