@@ -103,8 +103,8 @@ function h212_hwadmin_next_id( $rows ) {
 	}
 	// Sentence Builder questions (build-content.csv) share the same id numbers,
 	// so a new question must also stay clear of those.
-	if ( function_exists( 'h212_load_question_bank' ) ) {
-		foreach ( h212_load_question_bank() as $q ) {
+	if ( function_exists( 'h212_progress_bank' ) ) {
+		foreach ( h212_progress_bank() as $q ) {
 			$max = max( $max, intval( $q['id'] ) );
 		}
 	}

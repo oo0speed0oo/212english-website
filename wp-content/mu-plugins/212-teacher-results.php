@@ -50,7 +50,7 @@ add_action( 'admin_post_h212_unlock_student', function () {
 	$up_to_chapter = isset( $_GET['up_to_chapter'] ) ? intval( $_GET['up_to_chapter'] ) : H212_CHAPTERS;
 	check_admin_referer( 'h212_unlock_student_' . $student_id );
 
-	$bank = h212_load_question_bank();
+	$bank = h212_progress_bank();
 	$ids  = array();
 	foreach ( $bank as $q ) {
 		$level   = (int) $q['level'];
@@ -123,7 +123,7 @@ function h212_render_student_results_page() {
 	echo '<button type="submit" class="button">Unlock</button>';
 	echo '</form>';
 
-	$bank     = h212_load_question_bank();
+	$bank     = h212_progress_bank();
 	$scores   = get_user_meta( $selected_id, 'h212_quiz_scores', true );
 	$scores   = is_array( $scores ) ? $scores : array();
 	$mistakes = get_user_meta( $selected_id, 'h212_mistake_log', true );

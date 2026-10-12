@@ -92,7 +92,7 @@ function h212_read_csv_rows( $path ) {
  * Sentence Builder rows (build-content.csv) come in with type 'builder'.
  * The list is cached for the rest of the request.
  */
-function h212_load_question_bank() {
+function h212_progress_bank() {
 	static $bank = null;
 	if ( null !== $bank ) {
 		return $bank;
@@ -242,7 +242,7 @@ function h212_legacy_unlocked_keys( $bank, $seen_set, $wrong_set ) {
  * account so they stay unlocked. The wp-admin report passes false (read only).
  */
 function h212_progress_state( $user_id, $persist = true ) {
-	$bank  = h212_load_question_bank();
+	$bank  = h212_progress_bank();
 	$lists = h212_student_lists( $user_id );
 	$seen  = $lists['seen'];
 	$wrong = $lists['wrong'];

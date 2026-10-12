@@ -14,7 +14,7 @@ h212_render_nav( 'grades' );
 
 // All the progress rules (parts, 70% unlock, Mastered = 100%) live in
 // wp-content/mu-plugins/212-progress.php - this page just shows them.
-$bank  = h212_load_question_bank();
+$bank  = h212_progress_bank();
 $lists = h212_student_lists( $h212_user->ID );
 
 // Status for one chapter, based on where the student stands RIGHT NOW -
