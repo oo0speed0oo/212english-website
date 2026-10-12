@@ -1,0 +1,351 @@
+id,level,chapter,mode,source_id,prompt_ja,tiles,extra
+1410,1,1,homework,92,私は学生です。,I|am|a|student.,is|are
+1411,1,1,homework,93,あなたは学生です。,You|are|a|student.,am|is
+1412,1,1,homework,94,彼は先生です。,He|is|a|teacher.,am|are
+1413,1,1,homework,95,彼女は先生です。,She|is|a|teacher.,am|are
+1414,1,1,homework,96,それは本です。,It|is|a|book.,am|are
+1415,1,1,homework,97,私たちは学生です。,We|are|students.,am|is
+1416,1,1,homework,98,彼らは学生です。,They|are|students.,am|is
+1417,1,1,test,1001,こんにちは、私は佐藤ケンです。,"Hi,|I|am|Ken Sato.",is|are
+1418,1,1,test,1002,こちらは私の友だちのリサです。,"This|is|my|friend,|Lisa.",am|are
+1419,1,1,test,1003,ヒルさん夫妻は先生です。,Mr. and Mrs. Hill|are|teachers.,is|am
+1420,1,1,test,1004,彼と私は看護師です。,He and I|are|nurses.,am|is
+1421,1,1,test,1005,ジュンとリカは看護師です。,Jun and Rika|are|nurses.,is|am
+1422,1,1,test,1006,彼女は私の友だちです。,She|is|my|friend.,He|They
+1423,1,1,test,1007,はじめまして、ボブ。,"Nice|to|meet|you,|Bob.","Goodbye,"
+1424,1,1,test,1008,私は先生です。,I'm|a|teacher.,Im|I'am
+1425,1,1,test,1009,彼らは私の学生です。,They're|my|students.,Theyre|They'is
+1426,1,2,homework,80,ペンは机の上にあります。,The|pen|is|on|the|desk.,in|at
+1427,1,2,homework,81,私は台所にいます。,I|am|in|the|kitchen.,is|are
+1428,1,2,homework,82,私たちは図書館にいます。,We|are|in|the|library.,is|am
+1429,1,2,homework,83,トムとアンはスーパーにいます。,Tom and Ann|are|in|the|supermarket.,is|am
+1430,1,2,homework,84,彼は銀行にいます。,He|is|in|the|bank.,am|are
+1431,1,2,homework,85,彼女はレストランにいます。,She|is|in|the|restaurant.,am|are
+1432,1,2,test,1011,地図はどこですか。,Where|is|the|map?,am|are
+1433,1,2,test,1012,ケンとユミはどこですか。,Where|are|Ken and Yumi?,am|is
+1434,1,2,test,1013,それは寝室にあります。,It|is|in|the|bedroom.,He|They
+1435,1,2,test,1014,それらは本棚の上にあります。,They|are|on|the|bookshelf.,He|It
+1436,1,2,test,1015,彼は庭にいます。,He|is|in|the|yard.,are|It
+1437,1,2,test,1017,お父さんは台所にいます。,Dad|is|in|the|kitchen.,on|at
+1438,1,2,test,1018,地球儀は机の上にあります。,The|globe|is|on|the|desk.,in|at
+1439,1,2,test,1019,（何本かの）ペンはどこですか。,Where|are|the|pens?,is|am
+1440,1,3,homework,127,私は朝ごはんを食べています。,I|am|eating|breakfast.,is|are
+1441,1,3,homework,128,あなたは本を読んでいます。,You|are|reading|a|book.,is|am
+1442,1,3,homework,129,彼は野球をしています。,He|is|playing|baseball.,are|am
+1443,1,3,homework,130,彼女は歌を歌っています。,She|is|singing|a|song.,am|are
+1444,1,3,homework,131,（ネコが）寝ています。,It|is|sleeping.,are|am
+1445,1,3,homework,132,私たちは英語を勉強しています。,We|are|studying|English.,is|am
+1446,1,3,homework,133,彼らはテレビを見ています。,They|are|watching|TV.,is|am
+1447,1,3,homework,134,彼は台所で料理をしています。,He|is|cooking|in|the|kitchen.,sleeping|swimming
+1448,1,3,homework,135,彼女は寝室で寝ています。,She|is|sleeping|in|the|bedroom.,cooking|planting
+1449,1,3,homework,136,彼らは庭で植物を植えています。,They|are|planting|in|the|yard.,reading|singing
+1450,1,3,homework,137,私たちはリビングでテレビを見ています。,We|are|watching|TV|in|the|living room.,teaching|swimming
+1451,1,3,homework,138,あなたは図書館で本を読んでいます。,You|are|reading|in|the|library.,planting|swimming
+1452,1,3,homework,139,私は台所で料理をしています。,I|am|cooking|in|the|kitchen.,singing|sleeping
+1453,1,3,test,1021,ケンとマリはトランプをしています。,Ken and Mari|are|playing|cards.,is|am
+1454,1,3,test,1022,彼女は寝ています。,She|is|sleeping.,sleep|are
+1455,1,3,test,1023,彼らは何をしていますか。,What|are|they|doing?,is|am
+1456,1,3,test,1024,彼は英語を勉強しています。,He|is|studying|English.,study|are
+1457,1,3,test,1025,私は音楽を聞いています。,I|am|listening|to|music.,is|are
+1458,1,3,test,1026,あなたは何をしていますか。,What|are|you|doing?,is|am
+1459,1,3,test,1027,アヤはプールで泳いでいます。,Aya|is|swimming|in|the|pool.,swiming|swimmming
+1460,1,3,test,1028,ミカは歌を歌っています。,Mika|is|singing|a|song.,sing|sings
+1461,1,3,test,1029,彼女は何をしていますか。,What|is|she|doing?,are|am
+1462,1,4,homework,187,私は歯をみがいています。,I|am|brushing|my|teeth.,his|their
+1463,1,4,homework,188,あなたは自分の部屋を掃除しています。,You|are|cleaning|your|room.,her|their
+1464,1,4,homework,189,彼は自分の車を修理しています。,He|is|fixing|his|car.,her|its
+1465,1,4,homework,190,彼女は自分の寝室にペンキをぬっています。,She|is|painting|her|bedroom.,his|their
+1466,1,4,homework,191,（ネコは）自分のエサを食べています。,It|is|eating|its|food.,it's|their
+1467,1,4,homework,192,私たちは自分たちの車を洗っています。,We|are|washing|our|car.,your|their
+1468,1,4,homework,193,彼らは自分たちの犬にエサをあげています。,They|are|feeding|their|dog.,his|our
+1469,1,4,homework,202,彼女は自分の部屋を掃除しています。,She|is|cleaning|her|room.,fixing|painting
+1470,1,4,homework,203,私たちは自分たちの犬を洗っています。,We|are|washing|our|dog.,feeding|brushing
+1471,1,4,homework,204,彼らは自分たちの家にペンキをぬっています。,They|are|painting|their|house.,cleaning|fixing
+1472,1,4,homework,205,私は自分のネコにエサをあげています。,I|am|feeding|my|cat.,brushing|washing
+1473,1,4,homework,206,あなたは髪をとかしています。,You|are|brushing|your|hair.,washing|cleaning
+1474,1,4,homework,207,彼はサンドイッチを食べています。,He|is|eating|his|sandwich.,washing|reading
+1475,1,4,test,1031,彼らは自分たちのネコにエサをあげています。,They|are|feeding|their|cat.,his|her
+1476,1,4,test,1032,あなたは自分の車を洗っています。,You're|washing|your|car.,my|his
+1477,1,4,test,1033,加藤さんは忙しいですか。,Is|Ms. Kato|busy?,Are|Am
+1478,1,4,test,1034,あなたとケンは忙しいですか。,Are|you and Ken|busy?,Is|Am
+1479,1,4,test,1035,ご両親は忙しいですか。,Are|your|parents|busy?,Is|Am
+1480,1,4,test,1036,彼らは自分たちの部屋を掃除しています。,They|are|cleaning|their|room.,is|there
+1481,1,4,test,1039,彼女は自分の台所にペンキをぬっています。,She|is|painting|her|kitchen.,his|their
+1482,1,5,homework,251,彼は背が高いですか。,Is|he|tall?,Am|Are
+1483,1,5,homework,252,彼女は若いですか。,Is|she|young?,Am|Are
+1484,1,5,homework,253,それは（値段が）高いですか。,Is|it|expensive?,Am|Are
+1485,1,5,homework,255,あなたは結婚していますか。,Are|you|married?,Am|Is
+1486,1,5,homework,256,彼らはうるさいですか。,Are|they|noisy?,Am|Is
+1487,1,5,homework,246,彼女は結婚しています。,She|is|married.,am|are
+1488,1,5,homework,265,彼女の近所の人たちはうるさいです。,Her|neighbors|are|noisy.,is|quiet
+1489,1,5,homework,268,彼らの新しいアパートは広いです。,Their|new|apartment|is|large.,small|are
+1490,1,5,homework,263,ハワードの車は新しいです。,Howard's|car|is|new.,old|are
+1491,1,5,homework,271,キムさんはお金持ちです。,Mr. Kim|is|rich.,poor|are
+1492,1,5,homework,270,このパズルは簡単です。,This|puzzle|is|easy.,difficult|are
+1493,1,5,homework,269,ダイヤの指輪は（値段が）高いです。,A|diamond|ring|is|expensive.,cheap|are
+1494,1,5,test,1041,あなたの近所の人たちはうるさいですか。,Are|your|neighbors|noisy?,Is|Am
+1495,1,5,test,1044,私の車は古いです。,My|car|is|old.,are|cars
+1496,1,5,test,1045,彼女は美しい女性です。,She|is|a|beautiful|woman.,an|women
+1497,1,5,test,1046,それはトムの車です。,It's|Tom's|car.,Toms|Tom
+1498,1,5,test,1047,ケンのお姉さんは背が高いです。,Ken's|sister|is|tall.,Kens|are
+1499,1,5,test,1048,今日は晴れています。,It's|sunny|today.,Its|It
+1500,1,5,test,1049,あなたのアパートは広いですか。,Is|your|apartment|large?,Are|Am
+1501,1,6,homework,318,彼女はだれですか。,Who|is|she?,am|are
+1502,1,6,homework,320,彼らはだれですか。,Who|are|they?,am|is
+1503,1,6,homework,321,ケイトはソファに座っています。,Kate|is|sitting|on|the|sofa.,in|at
+1504,1,6,homework,322,マイクは今日家にいます。,Mike|is|at|home|today.,in|on
+1505,1,6,homework,323,ネコはソファの上で寝ています。,The|cat|is|sleeping|on|the|sofa.,in|at
+1506,1,6,homework,324,私たちは家の前に立っています。,We're|standing|in front of|our|house.,on|at
+1507,1,6,homework,325,おばあちゃんは寝室で休んでいます。,Grandma|is|resting|in|the|bedroom.,on|at
+1508,1,6,homework,326,お父さんは今日仕事に行っています。,Dad|is|at|work|today.,in|on
+1509,1,6,homework,327,お父さんは台所で料理をしています。,Dad|is|cooking|in|the|kitchen.,on|at
+1510,1,6,homework,329,彼らはバス停で待っています。,They|are|waiting|at|the|bus stop.,in|on
+1511,1,6,homework,330,こちらこそ、はじめまして。,"Nice|to|meet|you,|too.","Goodbye,|again"
+1512,1,6,homework,331,妹を紹介します。,I'd|like|to|introduce|my|sister.,Who|meet
+1513,1,6,test,1051,ケンとエミはだれですか。,Who|are|Ken and Emi?,am|is
+1514,1,6,test,1052,ケンは家にいます。,Ken|is|at|home.,in|on
+1515,1,6,test,1053,祖母は台所でパンを焼いています。,My|grandmother|is|baking|bread|in|the|kitchen.,are|am
+1516,1,6,test,1054,子どもたちは今学校にいます。,The|children|are|at|school|now.,in|on
+1517,1,6,test,1055,両親は踊っています。,My|parents|are|dancing.,is|dance
+1518,1,6,test,1056,彼はリビングに掃除機をかけています。,He's|vacuuming|the|living room.,vacuum|He
+1519,1,6,test,1057,姉の本はかばんの中にあります。,My sister's|books|are|in|her|bag.,on|at
+1520,1,6,test,1058,彼女は私のおばです。,She's|my|aunt.,Her|She
+1521,1,7,homework,392,寝室には窓が1つあります。,There|is|one|window|in|the|bedroom.,are|am
+1522,1,7,homework,393,寝室には窓が2つあります。,There|are|two|windows|in|the|bedroom.,is|window
+1523,1,7,homework,396,メイン通りにスーパーがあります。,There|is|a|supermarket|on|Main Street.,are|am
+1524,1,7,homework,397,ショッピングモールにはたくさんの店があります。,There|are|many|stores|in|the|shopping mall.,is|store
+1525,1,7,homework,399,この近くにコインランドリーはありますか。,Is|there|a|laundromat|near|here?,Are|any
+1526,1,7,homework,401,建物に子どもはいますか。,Are|there|any|children|in|the|building?,Is|a
+1527,1,7,homework,406,パン屋は銀行と学校の間にあります。,The bakery|is|between|the bank|and|the school.,across from|next to
+1528,1,7,homework,407,映画館はレストランの向かいにあります。,The movie theater|is|across from|the restaurant.,next to|between
+1529,1,7,homework,408,公園は図書館のとなりにあります。,The park|is|next to|the library.,across from|between
+1530,1,7,homework,409,病院は警察署の角を曲がったところにあります。,The hospital|is|around the corner from|the police station.,next to|across from
+1531,1,7,homework,410,ガソリンスタンドは薬局のとなりにあります。,The gas station|is|next to|the drug store.,between|across from
+1532,1,7,test,1061,私の通りにはスーパーが2つあります。,There|are|two|supermarkets|on|my|street.,is|supermarket
+1533,1,7,test,1062,この通りにレストランはありますか。,Are|there|any|restaurants|on|this|street?,Is|a
+1534,1,7,test,1063,私の寝室にはクローゼットが1つあります。,There|is|one|closet|in|my|bedroom.,are|closets
+1535,1,7,test,1065,エレベーターが3つあります。,There|are|three|elevators.,is|elevator
+1536,1,7,test,1066,この近くに銀行はありますか。,Is|there|a|bank|near|here?,Are|There
+1537,1,7,test,1067,銀行はパン屋と郵便局の間にあります。,The bank|is|between|the bakery|and|the post office.,across from|next to
+1538,1,7,test,1068,公園は学校の向かいにあります。,The park|is|across from|the school.,next to|between
+1539,1,7,test,1069,病院は図書館のとなりにあります。,The hospital|is|next to|the library.,across from|around the corner from
+1540,1,8,homework,538,かさを探しています。,I'm|looking|for|an|umbrella.,a|these
+1541,1,8,homework,539,ドレスを探しています。,I'm|looking|for|a|dress.,an|these
+1542,1,8,homework,540,これはオレンジ色のセーターです。,This|is|an|orange|sweater.,a|These
+1543,1,8,homework,541,これは紫色のジャケットです。,This|is|a|purple|jacket.,an|These
+1544,1,8,homework,542,コートはあちらです。,Coats|are|over|there.,Coat|is
+1545,1,8,homework,543,ドレスはあちらです。,Dresses|are|over|there.,Dresss|is
+1546,1,8,homework,550,これらは緑の手袋です。,These|are|green|gloves.,Those|is
+1547,1,8,homework,551,あのブーツは汚れています。,Those|boots|are|dirty.,These|is
+1548,1,8,homework,552,あのかさは茶色です。,That|umbrella|is|brown.,This|are
+1549,1,8,homework,553,これはあなたのかさですか。,Is|this|your|umbrella?,these|those
+1550,1,8,homework,554,これらはあなたのブーツですか。,Are|these|your|boots?,this|those
+1551,1,8,test,1071,私は古い腕時計を持っています。,I|have|an|old|watch.,a|olds
+1552,1,8,test,1072,これらはあなたの手袋ですか。,Are|these|your|gloves?,glove|Is
+1553,1,8,test,1073,あれはあなたの靴ですか。,Are|those|your|shoes?,these|Is
+1554,1,8,test,1074,このネックレスはきれいです。,This|necklace|is|beautiful.,These|are
+1555,1,8,test,1075,これらは赤い靴です。,These|are|red|shoes.,is|reds
+1556,1,8,test,1076,青いシャツを2枚探しています。,I'm|looking|for|two|blue|shirts.,blues|shirt
+1557,1,8,test,1077,黒いコートを探しています。,I'm|looking|for|a|black|coat.,an|blacks
+1558,1,8,test,1078,腕時計を2つ探しています。,I'm|looking|for|two|watches.,watchs|a
+1559,1,9,homework,588,あなたはどこに住んでいますか。,Where|do|you|live?,does|lives
+1560,1,9,homework,589,マリアはどこに住んでいますか。,Where|does|Maria|live?,do|lives
+1561,1,9,homework,591,あなたのお兄さんはどこに住んでいますか。,Where|does|your|brother|live?,do|lives
+1562,1,9,homework,593,私は東京に住んでいます。,I|live|in|Tokyo.,lives|living
+1563,1,9,homework,594,ケンジは大阪に住んでいます。,Kenji|lives|in|Osaka.,live|living
+1564,1,9,homework,595,両親は京都に住んでいます。,My|parents|live|in|Kyoto.,lives|living
+1565,1,9,homework,596,私たちはアパートに住んでいます。,We|live|in|an|apartment building.,lives|a
+1566,1,9,homework,600,トムは英語と日本語を話します。,Tom|speaks|English and Japanese.,speak|speaking
+1567,1,9,homework,601,エイミーは毎晩テレビを見ます。,Amy|watches|TV|every night.,watchs|watch
+1568,1,9,homework,602,父は毎日車で仕事に行きます。,My|father|drives|to|work|every day.,drive|driving
+1569,1,9,homework,603,私は毎週日曜日に母に電話します。,I|call|my|mother|every Sunday.,calls|calling
+1570,1,9,homework,604,リーさん夫妻は毎週末、韓国料理を作ります。,Mr. and Mrs. Lee|cook|Korean|food|every weekend.,cooks|cooking
+1571,1,9,homework,605,ユキは銀行で働いています。,Yuki|works|at|a|bank.,work|working
+1572,1,9,test,1081,太田さん夫妻はどこに住んでいますか。,Where|do|Mr. Ota and his wife|live?,does|lives
+1573,1,9,test,1082,彼女は神戸に住んでいます。,She|lives|in|Kobe.,live|living
+1574,1,9,test,1083,姉は札幌に住んでいます。,My|sister|lives|in|Sapporo.,live|living
+1575,1,9,test,1084,ケンは12時に昼ごはんを食べます。,Ken|eats|lunch|at 12:00.,eat|eating
+1576,1,9,test,1085,あなたのおばあさんはどこに住んでいますか。,Where|does|your|grandmother|live?,do|lives
+1577,1,9,test,1086,カルロスはスペイン語を話します。,Carlos|speaks|Spanish.,speak|speaking
+1578,1,9,test,1087,ユキは日本人です。,Yuki|is|Japanese.,Japan|Japaneses
+1579,1,9,test,1088,彼らはフランス語を話します。,They|speak|French.,France|speaks
+1580,1,9,test,1089,キムさんは何語を話しますか。,What|language|does|Mr. Kim|speak?,do|speaks
+1581,1,10,homework,636,あなたは毎朝ジョギングしますか。,Do|you|jog|every morning?,Does|jogs
+1582,1,10,homework,637,ケンジはバレーボールをしますか。,Does|Kenji|play|volleyball?,Do|plays
+1583,1,10,homework,638,ご両親は毎週土曜日に映画を見ますか。,Do|your|parents|see|a movie|every Saturday?,Does|sees
+1584,1,10,homework,639,それは動きますか。,Does|it|work?,Do|works
+1585,1,10,homework,646,私は日曜日は働きません。,I|don't|work|on Sunday.,doesn't|works
+1586,1,10,homework,647,リカはバレーボールをしません。,Rika|doesn't|play|volleyball.,don't|plays
+1587,1,10,homework,648,両親はダンスに行きません。,My|parents|don't|go dancing.,doesn't|goes
+1588,1,10,homework,649,この古い腕時計は動きません。,This|old|watch|doesn't|work.,don't|works
+1589,1,10,homework,650,彼はジョギングしません。,He|doesn't|jog.,jogs|don't
+1590,1,10,homework,651,彼女は月曜日に掃除をしますか。,Does|she|clean|on Monday?,Do|cleans
+1591,1,10,homework,652,ルーカスはスペイン語を話しますか。,Does|Lucas|speak|Spanish?,Do|speaks
+1592,1,10,homework,653,リーさんは月曜日は働きますが、日曜日は働きません。,"Mr. Lee|works|on Monday,|but|he|doesn't|work|on Sunday.",don't|isn't
+1593,1,10,homework,654,クミは姉の子どもたちのベビーシッターをします。,Kumi|babysits|her|sister's|children.,his|babysit
+1594,1,10,test,1091,岡田さんはヨガをしますか。,Does|Mr. Okada|do|yoga?,Do|does
+1595,1,10,test,1092,あなたの子どもたちはバレーボールをしますか。,Do|your|children|play|volleyball?,Does|plays
+1596,1,10,test,1095,ユウトは雨の日はジョギングしません。,Yuto|doesn't|jog|in|the|rain.,don't|jogs
+1597,1,10,test,1096,両親は劇を見ません。,My|parents|don't|see|plays.,doesn't|sees
+1598,1,10,test,1097,ケンは自転車に乗りますか。,Does|Ken|ride|his|bicycle?,rides|Do
+1599,1,10,test,1098,彼女は日本語を話しません。,She|doesn't|speak|Japanese.,don't|speaks
+1600,1,10,test,1099,伊藤さん夫妻は日曜日に家を掃除しますか。,Do|Mr. and Mrs. Ito|clean|their|house|on Sunday?,Does|his
+1601,1,11,homework,678,彼は毎晩彼女に電話します。,He|calls|her|every night.,him|she
+1602,1,11,homework,679,私は毎月彼らを訪ねます。,I|visit|them|every month.,they|him
+1603,1,11,homework,680,彼女はいつも私たちを助けてくれます。,She|helps|us|all the time.,we|help
+1604,1,11,homework,681,私は毎週日曜日にそれを洗います。,I|wash|it|every Sunday.,washes|them
+1605,1,11,homework,683,姉は毎晩私に電話します。,My|sister|calls|me|every night.,I|call
+1606,1,11,homework,684,リサは長い髪をしています。,Lisa|has|long|hair.,have|longs
+1607,1,11,homework,685,両親は大きな家を持っています。,My|parents|have|a|big|house.,has|houses
+1608,1,11,homework,687,ケンは自転車を持っていますか。,Does|Ken|have|a|bicycle?,has|Do
+1609,1,11,homework,688,ユミは毎週日曜日に車を洗います。,Yumi|washes|her|car|every Sunday.,washs|wash
+1610,1,11,homework,689,父は毎朝新聞を読みます。,My|father|reads|the|newspaper|every morning.,read|reades
+1611,1,11,homework,690,ケンと私は12時に昼ごはんを食べます。,Ken and I|eat|lunch|at 12:00.,eats|eates
+1612,1,11,homework,692,彼はいつもジョギングします。,He|always|jogs.,usually|never
+1613,1,11,homework,693,彼女はたいていジョギングします。,She|usually|jogs.,always|never
+1614,1,11,homework,694,彼はときどきバレーボールをします。,He|sometimes|plays|volleyball.,usually|play
+1615,1,11,homework,695,彼女はめったに劇を見ません。,She|rarely|sees|a play.,never|always
+1616,1,11,homework,696,彼は決してヨガをしません。,He|never|does|yoga.,always|do
+1617,1,11,homework,697,私はいつも自分の車を洗います。,I|always|wash|my|car.,washes|never
+1618,1,11,homework,700,伊藤さんは短いグレーの髪をしています。,Mr. Ito|has|short|gray|hair.,shorts|have
+1619,1,11,test,1101,彼は毎週彼女に電話します。,He|calls|her|every week.,him|she
+1620,1,11,test,1102,彼女は毎朝それらにエサをあげます。,She|feeds|them|every morning.,they|feed
+1621,1,11,test,1103,佐藤さん夫妻には子どもが3人います。,Mr. and Mrs. Sato|have|three|children.,has|child
+1622,1,11,test,1104,ケンタは短い茶色の髪をしています。,Kenta|has|short|brown|hair.,have|browns
+1623,1,11,test,1105,上田さんは毎晩テレビを見ます。,Ms. Ueda|watches|TV|every evening.,watchs|watch
+1624,1,11,test,1106,彼はいつも夜に本を読みます。,He|always|reads|at night.,never|read
+1625,1,11,test,1107,彼女は朝ごはんを決して食べません。,She|never|eats|breakfast.,eat|always
+1626,1,11,test,1109,私は毎月彼らに会います。,I|see|them|every month.,they|months
+1627,1,12,homework,726,ケンはふだんバスに乗りますが、今日は自転車に乗っています。,"Ken|usually|takes|the bus,|but|today|he's|riding|his bicycle.",is taking|rides
+1628,1,12,homework,727,今日、彼女は歩いて仕事に行っています。,Today|she|is|walking|to work.,walks|walk
+1629,1,12,homework,728,毎日、アヤは自転車で学校に行きます。,"Every day,|Aya|rides|her|bicycle|to school.",is riding|ride
+1630,1,12,homework,729,アヤは今バスに乗っています。,Aya|is|taking|the|bus|right now.,takes|take
+1631,1,12,homework,730,赤ちゃんが泣いています。,The|baby|is|crying.,cries|cry
+1632,1,12,homework,731,彼は毎日手紙を配達します。,He|delivers|letters|every day.,is delivering|deliver
+1633,1,12,homework,732,私は緊張するといつも爪をかみます。,I|always|bite|my|nails|when I'm nervous.,bites|am biting
+1634,1,12,homework,735,あくびをしているのは、疲れているからです。,I'm|yawning|because|I'm|tired.,thirsty|hungry
+1635,1,12,homework,736,トムはなぜ震えているのですか。,Why|is|Tom|shivering?,are|does
+1636,1,12,homework,737,私のコンピューターが動きません。,My|computer|isn't|working.,doesn't|aren't
+1637,1,12,homework,739,彼女は今泣いています。,She|is|crying|now.,cry|cries
+1638,1,12,homework,740,彼はふだんバスに乗りますか。,Does|he|usually|take|the bus?,Is|takes
+1639,1,12,homework,742,彼女はかばんにリンゴを持っています。,She|has|an|apple|in|her|bag.,have|a
+1640,1,12,test,1111,伊藤さんはふだん車で仕事に行きます。,Mr. Ito|usually|drives|to work.,is driving|drive
+1641,1,12,test,1112,今日、彼女は自転車に乗っています。,Today|she|is|riding|her bicycle.,rides|ride
+1642,1,12,test,1113,ケンはなぜ震えているのですか。,Why|is|Ken|shivering?,are|does
+1643,1,12,test,1114,今、私は皿を洗っています。,I'm|washing|the dishes|now.,wash|washes
+1644,1,12,test,1115,私は疲れるといつもあくびをします。,I|always|yawn|when I'm tired.,am yawning|yawns
+1645,1,12,test,1116,子どもたちが叫んでいます。,The|children|are|shouting.,shout|shouts
+1646,1,12,test,1118,彼女はふだんバスに乗りますが、今日は歩いています。,"She|usually|takes|the bus,|but|today|she|is|walking.",take|walks
+1647,1,13,homework,1134,ケンは泳げます。,Ken|can|swim.,cans|swims
+1648,1,13,homework,1136,あなたはトラックを運転できますか。,Can|you|drive|a|truck?,Do|drives
+1649,1,13,homework,1140,私は歌えません。,I|can't|sing.,sings|cans
+1650,1,13,homework,1141,彼はピアノをひけますか。,Can|he|play|the|piano?,Does|plays
+1651,1,13,homework,1142,魚は泳げますが、歩けません。,"Fish|can|swim,|but|they|can't|walk.",cans|swims
+1652,1,13,homework,1144,彼らは日本語を話せます。,They|can|speak|Japanese.,speaks|cans
+1653,1,13,homework,1145,リョウはとても上手に料理ができます。,Ryo|can|cook|very well.,cooks|cans
+1654,1,13,homework,1146,今、彼はトラックを修理しています。,Right now|he|is|fixing|a|truck.,fixes|fix
+1655,1,13,homework,1147,伊藤さんはそれを修理できます。,Mr. Ito|can|fix|it.,him|fixes
+1656,1,13,homework,1149,うちの管理人はたくさんの道具を持っています。,Our|superintendent|has|a lot of|tools.,have|tool
+1657,1,13,test,1155,佐藤さんはトラックを修理できます。,Mr. Sato|can|fix|trucks.,cans|fixes
+1658,1,13,test,1156,彼は料理ができます。,He|can|cook.,cooks|cans
+1659,1,13,test,1157,エミは踊れますか。,Can|Emi|dance?,Does|dances
+1660,1,13,test,1160,彼は運転できません。,He|can't|drive.,drives|cans
+1661,1,13,test,1161,彼女はタイプできますか。,Can|she|type?,Does|types
+1662,1,13,test,1162,今、彼女は英語を教えています。,Right now|she|is|teaching|English.,teaches|teach
+1663,1,13,test,1163,何かが壊れたら、私たちは彼に電話します。,We|call|him|when something is broken.,he|calls
+1664,1,14,homework,1181,私は今夜本を読むつもりです。,I|am|going|to|read|tonight.,is|reading
+1665,1,14,homework,1182,ケンは明日映画を見るつもりです。,Ken|is|going|to|see|a movie|tomorrow.,are|sees
+1666,1,14,homework,1183,両親は来月京都を訪れるつもりです。,My|parents|are|going|to|visit|Kyoto|next month.,is|visits
+1667,1,14,homework,1184,ケンは今夜何をするつもりですか。,What|is|Ken|going|to|do|tonight?,are|does
+1668,1,14,homework,1185,私は掃除をするつもりです。,I'm|going|to|clean.,go|cleaning
+1669,1,14,homework,1187,私たちは明日ビーチに行きます。,We're|going|to the beach|tomorrow.,at the beach|swimming
+1670,1,14,homework,1188,私たちは土曜日に泳ぎに行きます。,We're|going|swimming|on Saturday.,swim|to swimming
+1671,1,14,homework,1189,雨が降りそうです。,It's|going|to|rain.,go|rains
+1672,1,14,homework,1190,私は英語を勉強したいです。,I|want|to|study|English.,wants|studying
+1673,1,14,homework,1191,ユミは先生になりたいです。,Yumi|wants|to|be|a|teacher.,want|is
+1674,1,14,homework,1193,彼は寝たいです。,He|wants|to|sleep.,want|sleeping
+1675,1,14,homework,1196,私はいつも12時半に昼ごはんを食べます。,I|always|eat|lunch|at|half past twelve.,half after twelve|half to twelve
+1676,1,14,homework,1197,私は今夜彼女に電話するつもりです。,I'm|going|to|call|her|tonight.,him|she
+1677,1,14,test,1203,2時45分です。,It's|quarter|to|three.,after|two
+1678,1,14,test,1205,兄は来月車を買うつもりです。,My|brother|is|going|to|buy|a car|next month.,are|buys
+1679,1,14,test,1206,彼らはバレーボールをするつもりです。,They're|going|to|play|volleyball.,plays|go
+1680,1,14,test,1207,私たちは今週末ダンスに行きます。,We're|going|dancing|this weekend.,dance|to dancing
+1681,1,14,test,1208,ミカはフランス語を習いたいです。,Mika|wants|to|learn|French.,want|learning
+1682,1,14,test,1209,私は明日公園に行きます。,I'm|going|to the park|tomorrow.,go|at the park
+1683,1,15,homework,1222,頭が痛いです。,I|have|a|headache.,am|an
+1684,1,15,homework,1223,今日の気分はどうですか。,How|do|you|feel|today?,does|are
+1685,1,15,homework,1224,どうしたのですか。,What's|the|matter?,sick|feel
+1686,1,15,homework,1225,息子は熱があります。,My|son|has|a|fever.,have|is
+1687,1,15,homework,1226,私は昨日働きました。,I|worked|yesterday.,work|working
+1688,1,15,homework,1227,彼女は昨日ピアノをひきました。,She|played|the|piano|yesterday.,plaied|play
+1689,1,15,homework,1229,母は昨日ケーキを焼きました。,My|mother|baked|a|cake|yesterday.,bakes|bakeed
+1690,1,15,homework,1230,赤ちゃんは昨日たくさん泣きました。,The|baby|cried|a lot|yesterday.,cryed|cries
+1691,1,15,homework,1231,私は昨日2時間英語を勉強しました。,I|studied|English|for two hours|yesterday.,studyed|study
+1692,1,15,homework,1232,お父さんは昨日車を洗いました。,Dad|washed|his|car|yesterday.,washd|washes
+1693,1,15,homework,1234,私たちはバスを30分待ちました。,We|waited|for|the bus|for 30 minutes.,waitted|wait
+1694,1,15,homework,1240,私は昨日朝ごはんを食べました。,I|ate|breakfast|yesterday.,eated|eat
+1695,1,15,homework,1241,ユキはパーティーで歌を歌いました。,Yuki|sang|a|song|at the party.,singed|sings
+1696,1,15,homework,1243,おじいちゃんは午後ずっといすに座っていました。,Grandpa|sat|in|his|chair|all afternoon.,sitted|sits
+1697,1,15,homework,1244,ミカは自転車で公園に行きました。,Mika|rode|her|bicycle|to the park.,rided|rides
+1698,1,15,homework,1246,予約をしたいです。,I|want|to|make|an appointment.,making|a
+1699,1,15,test,1253,昨日、私は部屋を掃除しました。,Yesterday|I|cleaned|my|room.,clean|cleans
+1700,1,15,test,1254,彼女は昨日魚を料理しました。,She|cooked|fish|yesterday.,cooks|cook
+1701,1,15,test,1255,兄は昨日英語を勉強しました。,My|brother|studied|English|yesterday.,studyed|studies
+1702,1,15,test,1256,彼女は昨日泣きました。,She|cried|yesterday.,cryed|cries
+1703,1,15,test,1257,私たちは夕食にピザを食べました。,We|ate|pizza|for dinner.,eated|eat
+1704,1,15,test,1258,ケンは自転車で仕事に行きました。,Ken|rode|his|bicycle|to work.,rided|rides
+1705,1,15,test,1259,おなかが痛いです。,I|have|a|stomachache.,am|an
+1706,1,15,test,1261,私は今日の午後、医者に診てもらうつもりです。,I|am|going|to|see|the doctor|this afternoon.,go|saw
+1707,1,16,homework,1263,私は今朝シャワーを浴びました。,I|took|a shower|this morning.,taked|take
+1708,1,16,homework,1264,ケンはバスで仕事に行きました。,Ken|went|to work|by bus.,goed|go
+1709,1,16,homework,1266,私は昨日早く起きました。,I|got up|early|yesterday.,getted|late
+1710,1,16,homework,1267,妻は昨夜夕食を作りました。,My|wife|made|dinner|last night.,maked|makes
+1711,1,16,homework,1268,佐藤さんは昨日食料品を買いました。,Mr. Sato|bought|groceries|yesterday.,buyed|brought
+1712,1,16,homework,1270,ユミはおばあさんに手紙を書きました。,Yumi|wrote|a letter|to her grandmother.,writed|writes
+1713,1,16,homework,1272,私たちは先週の土曜日に映画を見ました。,We|saw|a movie|last Saturday.,seed|see
+1714,1,16,homework,1274,私は今朝かさを忘れました。,I|forgot|my|umbrella|this morning.,forgetted|forget
+1715,1,16,homework,1275,昨夜、どろぼうが私の自転車を盗みました。,A thief|stole|my|bicycle|last night.,stealed|steals
+1716,1,16,homework,1291,あなたは昨日働きましたか。,Did|you|work|yesterday?,Do|worked
+1717,1,16,homework,1292,ケンは昨日銀行に行きましたか。,Did|Ken|go|to the bank|yesterday?,went|Does
+1718,1,16,homework,1294,あなたは食料品を買いましたか。,Did|you|buy|groceries?,bought|Do
+1719,1,16,homework,1298,先週末は何をしましたか。,What|did|you|do|last weekend?,does|done
+1720,1,16,homework,1299,昨夜はどこに行きましたか。,Where|did|you|go|last night?,went|going
+1721,1,16,homework,1308,私は昨日仕事に行きませんでした。,I|didn't|go|to work|yesterday.,went|goes
+1722,1,16,homework,1309,ケンは宿題をしませんでした。,Ken|didn't|do|his|homework.,did|doesn't
+1723,1,16,homework,1311,彼らはその映画を見ませんでした。,They|didn't|see|the movie.,saw|don't
+1724,1,16,homework,1315,私は歯をみがきました。,I|brushed|my|teeth.,brush|brushes
+1725,1,16,homework,1321,遅れてすみません。バスに乗り遅れました。,I'm sorry|I'm late.|I|missed|the bus.,miss|missing
+1726,1,16,homework,1324,仕事に行く途中で友だちに会いました。,I|met|a friend|on the way|to work.,meet|meeted
+1727,1,16,test,1344,エイミーは昨夜夕食を作りましたか。,Did|Amy|make|dinner|last night?,made|Does
+1728,1,16,test,1346,彼は学校に行きませんでした。,He|didn't|go|to school.,went|doesn't
+1729,1,16,test,1347,彼女は窓を洗いました。,She|washed|her|windows.,wash|washes
+1730,1,16,test,1348,私はかばんを家に忘れました。,I|forgot|my|bag|at home.,forget|forgetted
+1731,1,16,test,1349,先週末はどこに行きましたか。,Where|did|you|go|last weekend?,do|went
+1732,1,16,test,1350,明日、私は医者に診てもらうつもりです。,Tomorrow|I|am|going|to|see|the doctor.,saw|go
+1733,1,17,homework,1363,キムさんはソウルで生まれました。,Mr. Kim|was|born|in Seoul.,were|did
+1734,1,17,homework,1364,両親は大阪で生まれました。,My|parents|were|born|in Osaka.,was|did
+1735,1,17,homework,1365,アナはブラジルで育ちました。,Ana|grew|up|in Brazil.,grow|growed
+1736,1,17,homework,1366,ケンは2015年に東京に引っ越しました。,Ken|moved|to Tokyo|in 2015.,moves|move
+1737,1,17,homework,1367,授業は9時に始まりました。,The|class|began|at 9:00.,begined|begins
+1738,1,17,homework,1368,ユミはニューヨークに5年間住んでいました。,Yumi|lived|in New York|for five years.,lives|living
+1739,1,17,homework,1369,電車は3時に着きました。,The|train|arrived|at 3:00.,arrives|arrive
+1740,1,17,homework,1371,あなたはどこで育ちましたか。,Where|did|you|grow|up?,grew|grown
+1741,1,17,homework,1372,私は昨日疲れていました。,I|was|tired|yesterday.,were|did
+1742,1,17,homework,1373,私たちは昨夜家にいました。,We|were|at|home|last night.,was|did
+1743,1,17,homework,1375,その映画はわくわくしました。,The|movie|was|exciting.,were|did
+1744,1,17,homework,1377,私は今朝おなかがすいていませんでした。,I|wasn't|hungry|this morning.,weren't|didn't
+1745,1,17,homework,1378,彼らは昨日学校にいませんでした。,They|weren't|at|school|yesterday.,wasn't|didn't
+1746,1,17,homework,1380,あなたは昨日疲れていましたか。,Were|you|tired|yesterday?,Was|Did
+1747,1,17,homework,1381,ケンは昨夜仕事でしたか。,Was|Ken|at|work|last night?,Were|Did
+1748,1,17,homework,1385,あなたはその映画を見ましたか。,Did|you|see|the movie?,Was|saw
+1749,1,17,homework,1386,その映画はよかったですか。,Was|the movie|good?,Did|Were
+1750,1,17,homework,1389,私は公園に行きました。,I|went|to|the|park.,was|go
+1751,1,17,homework,1390,以前は悲しかったけれど、今は幸せです。,"Before,|I|was|sad.|Now|I'm|happy.",were|am
+1752,1,17,test,1400,兄は1995年に生まれました。,My|brother|was|born|in 1995.,were|did
+1753,1,17,test,1401,伊藤さん夫妻は昨日ビーチにいました。,Mr. and Mrs. Ito|were|at|the beach|yesterday.,was|did
+1754,1,17,test,1402,私はおなかがすいていませんでした。,I|wasn't|hungry.,weren't|didn't
+1755,1,17,test,1403,そのホテルは快適でしたか。,Was|the|hotel|comfortable?,Were|Did
+1756,1,17,test,1405,あなたはパーティーに行きましたか。,Did|you|go|to the party?,Were|went
+1757,1,17,test,1406,彼らは昨日遅刻しました。,They|were|late|yesterday.,was|did
+1758,1,17,test,1407,エミは札幌で育ちました。,Emi|grew|up|in Sapporo.,grow|growed
+1759,1,17,test,1408,以前は疲れていたけれど、今は元気いっぱいです。,"Before,|I|was|tired.|Now|I|am|energetic.",were|is

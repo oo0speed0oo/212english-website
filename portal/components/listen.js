@@ -80,7 +80,7 @@ var H212Listen = (function () {
   // Split a question into: text to keep on screen before the Listen button,
   // the sentence(s) to speak, and the question text after the button.
   // Returns null if the question has no quoted text.
-  function parse(question) {
+  function parse(question, type) {
     var s = String(question);
     var marker = s.search(/you hear/i);
     var from = marker >= 0 ? marker : 0;
@@ -92,7 +92,11 @@ var H212Listen = (function () {
       lastEnd = re.lastIndex;
       spoken.push(m[1].trim());
     }
-    if (!spoken.length) return null;
+    if (!spoken.length) {
+      // A Conversation line with no quote marks: the whole text is what the student hears.
+      if (type === 'conversation' && s.trim()) return { prefix: '', spoken: [s.trim()], suffix: '' };
+      return null;
+    }
     // Anything before "You hear" stays visible (e.g. You ask Tom, "Are you busy?").
     var prefix = marker >= 0 ? s.slice(0, marker) : s.slice(0, first);
     var suffix = s.slice(lastEnd);
@@ -217,6 +221,21 @@ var H212Listen = (function () {
     speakRobot();
   }
 
+  // Say any English text with the robot voice (Sentence Builder answers).
+  // Works only if the English voice is available; silently does nothing otherwise.
+  function speakText(text) {
+    if (!supported() || !text) return;
+    if (!voices.length) loadVoices();
+    if (!voices.length) return;
+    var synth = window.speechSynthesis;
+    synth.cancel();
+    var u = new SpeechSynthesisUtterance(text);
+    u.voice = voices[0];
+    u.lang  = voices[0].lang || 'en-US';
+    u.rate  = 0.9;
+    synth.speak(u);
+  }
+
   function speakRobot() {
     if (!supported()) { showFallback(); return; }
     if (!voices.length) loadVoices();
@@ -260,9 +279,11 @@ var H212Listen = (function () {
   function render(q) {
     stop();
     lines = [];
-    if (!q || q.type !== 'listening') return null;
-    var p = parse(q.question);
+    if (!q || (q.type !== 'listening' && q.type !== 'conversation')) return null;
+    var p = parse(q.question, q.type);
     if (!p) return null;
+    // Conversation: after the line, ask for the best reply.
+    if (q.type === 'conversation' && !p.suffix) p.suffix = window.H212_T['conv.prompt'] || '';
     lines = p.spoken;
 
     cur.id = q.id;
@@ -293,5 +314,5 @@ var H212Listen = (function () {
     return html;
   }
 
-  return { render: render, play: play, stop: stop, parse: parse, choose: choose };
+  return { render: render, play: play, stop: stop, parse: parse, choose: choose, speakText: speakText };
 })();

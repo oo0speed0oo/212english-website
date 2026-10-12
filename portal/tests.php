@@ -61,6 +61,7 @@ h212_js_strings( array(
 	'hw.locked_level', 'hw.locked_chapter', 'hw.question', 'hw.of', 'hw.score', 'hw.correct_msg',
 	'hw.wrong_msg', 'hw.next_question', 'hw.see_results', 'hw.results', 'hw.correct_word',
 	'hw.start_again', 'hw.back_to_topics', 'hw.best_score',
+	'builder.instruction', 'builder.empty', 'builder.check', 'builder.clear', 'builder.wrong_msg', 'conv.prompt',
 	'listen.who', 'listen.robot', 'listen.button', 'listen.playing', 'listen.no_voice',
 	'listen.mix', 'listen.us_woman', 'listen.us_man', 'listen.uk_woman', 'listen.uk_man',
 ) );
@@ -68,11 +69,13 @@ require_once __DIR__ . '/inc/voices.php';
 h212_voice_script();
 ?>
 <script src="components/listen.js?v=<?php echo (int) filemtime( __DIR__ . '/components/listen.js' ); ?>"></script>
+<script src="components/builder.js?v=<?php echo (int) filemtime( __DIR__ . '/components/builder.js' ); ?>"></script>
+<script>window.H212_NONCE = "<?php echo esc_js( wp_create_nonce( 'h212_save_score' ) ); ?>";</script>
 <script>
 // ── State ─────────────────────────────────────────
-var allBank        = []; // every row (homework + test), used for lock calc AND test content
-var allSeen        = [];
-var allWrong       = [];
+var allBank        = []; // every row (homework + test) - test rows make up the tests
+var builderTests   = []; // Sentence Builder rows marked mode=test (3 random ones are added to each test)
+var progress       = null; // unlock state from inc/progress.php (rules live in one place, on the server)
 var allTestScores   = [];
 var currentLevel   = null;
 var currentChapter = null;
@@ -84,7 +87,7 @@ var IMAGE_FOLDER = 'images/vocab/';
 var AUDIO_FOLDER = 'audio/';
 
 window.addEventListener('DOMContentLoaded', function() {
-  Promise.all([ loadCSV(), loadSeen(), loadWrong(), loadTestScores() ]).then(renderLevels).catch(renderLevels);
+  Promise.all([ loadCSV(), loadBuilderTests(), loadProgress(), loadTestScores() ]).then(renderLevels).catch(renderLevels);
 });
 
 // ── Load & parse CSV (same robust parser as homework.php) ──
@@ -141,17 +144,19 @@ function loadCSV() {
     .then(function(text) { allBank = parseCSV(text); })
     .catch(function() { allBank = []; });
 }
-function loadSeen() {
-  return fetch('inc/seen.php')
-    .then(function(r) { return r.json(); })
-    .then(function(data) { allSeen = (data && data.seen) ? data.seen : []; })
-    .catch(function() { allSeen = []; });
+function loadBuilderTests() {
+  return fetch('build-content.csv')
+    .then(function(r) { return r.ok ? r.text() : ''; })
+    .then(function(text) {
+      builderTests = text ? H212Builder.parse(text).filter(function(q) { return q.mode === 'test'; }) : [];
+    })
+    .catch(function() { builderTests = []; });
 }
-function loadWrong() {
-  return fetch('inc/mistakes.php')
+function loadProgress() {
+  return fetch('inc/progress.php', { cache: 'no-store' })
     .then(function(r) { return r.json(); })
-    .then(function(data) { allWrong = (data && data.current_wrong) ? data.current_wrong : []; })
-    .catch(function() { allWrong = []; });
+    .then(function(data) { progress = (data && data.chapters) ? data.chapters : null; })
+    .catch(function() { progress = null; });
 }
 function loadTestScores() {
   return fetch('inc/test-scores.php')
@@ -160,43 +165,16 @@ function loadTestScores() {
     .catch(function() { allTestScores = []; });
 }
 
-// ── Lock status (mirrors homework.php exactly - a chapter/level's
-// lock state is driven by Homework progress, not Test progress) ──
-function homeworkQuestionsForType(level, chapter, type) {
-  if (type === 'vocabulary') {
-    return allBank.filter(function(q) {
-      return q.mode === 'homework' && q.level === level && q.chapter === chapter
-        && (q.type === 'vocabulary' || q.type === 'photo');
-    });
-  }
-  return allBank.filter(function(q) {
-    return q.mode === 'homework' && q.level === level && q.chapter === chapter && q.type === type;
-  });
-}
-function isHomeworkTypeFinished(level, chapter, type) {
-  var qs = homeworkQuestionsForType(level, chapter, type);
-  if (!qs.length) return false;
-  return qs.every(function(q) {
-    return allSeen.indexOf(q.id) !== -1 && allWrong.indexOf(q.id) === -1;
-  });
-}
-function isChapterFullyFinished(level, chapter) {
-  var types = ['vocabulary', 'grammar', 'listening'];
-  var n = 0;
-  types.forEach(function(t) { if (isHomeworkTypeFinished(level, chapter, t)) n++; });
-  return n === 3;
+// ── Lock status: same as Homework - a chapter's test opens when its
+// Homework chapter is open (the rule is on the server, see inc/progress.php).
+// If the progress file could not be loaded, nothing is locked.
+function isChapterUnlocked(level, chapter) {
+  if (!progress) return true;
+  var p = progress[level + '-' + chapter];
+  return p ? !!p.u : false;
 }
 function isLevelUnlocked(level) {
-  if (level <= 1) return true;
-  for (var c = 1; c <= 17; c++) {
-    if (!isChapterFullyFinished(level - 1, c)) return false;
-  }
-  return true;
-}
-function isChapterUnlocked(level, chapter) {
-  if (!isLevelUnlocked(level)) return false;
-  if (chapter <= 1) return true;
-  return isChapterFullyFinished(level, chapter - 1);
+  return isChapterUnlocked(level, 1);
 }
 
 // ── Test content & scores ──────────────────────────
@@ -204,6 +182,15 @@ function testQuestionsForChapter(level, chapter) {
   return allBank.filter(function(q) {
     return q.mode === 'test' && q.level === level && q.chapter === chapter;
   });
+}
+// 3 random Sentence Builder test questions for a chapter (fewer if it has fewer)
+function pickBuilderTests(level, chapter) {
+  var pool = builderTests.filter(function(q) { return q.level === level && q.chapter === chapter; });
+  for (var i = pool.length - 1; i > 0; i--) {
+    var j = Math.floor(Math.random() * (i + 1));
+    var t = pool[i]; pool[i] = pool[j]; pool[j] = t;
+  }
+  return pool.slice(0, 3);
 }
 function testScoresFor(level, chapter) {
   return allTestScores.filter(function(s) { return s.level === level && s.chapter === chapter; });
@@ -316,7 +303,8 @@ function showRetakeConfirm() {
 }
 
 function beginTest() {
-  currentQ     = testQuestionsForChapter(currentLevel, currentChapter);
+  currentQ     = testQuestionsForChapter(currentLevel, currentChapter)
+    .concat(pickBuilderTests(currentLevel, currentChapter));
   currentIndex = 0;
   score        = 0;
   showQuestion();
@@ -350,15 +338,20 @@ function showQuestion() {
     html += '<div class="audio-wrap"><audio controls preload="none" src="' + AUDIO_FOLDER + q.audio + '"></audio></div>';
   }
 
-  // Listening questions with quoted text: hide the quote, show a Listen button instead
-  var listenHtml = (typeof H212Listen !== 'undefined') ? H212Listen.render(q) : null;
-  html += (listenHtml !== null ? listenHtml : '<div class="question-text">' + q.question + '</div>')
-    + '<div class="choices">'
-    + '<button class="choice-btn" onclick="checkAnswer(this, \'' + esc(q.choice_a) + '\', \'' + esc(q.answer) + '\')">' + q.choice_a + '</button>'
-    + '<button class="choice-btn" onclick="checkAnswer(this, \'' + esc(q.choice_b) + '\', \'' + esc(q.answer) + '\')">' + q.choice_b + '</button>'
-    + '<button class="choice-btn" onclick="checkAnswer(this, \'' + esc(q.choice_c) + '\', \'' + esc(q.answer) + '\')">' + q.choice_c + '</button>'
-    + '</div>'
-    + '<div class="result-msg" id="result-msg"></div>';
+  if (q.type === 'builder') {
+    // Sentence Builder: tap word tiles into order (checked by H212Builder)
+    html += H212Builder.render(q);
+  } else {
+    // Listening / Conversation questions with a spoken line: hide the line, show a Listen button instead
+    var listenHtml = (typeof H212Listen !== 'undefined') ? H212Listen.render(q) : null;
+    html += (listenHtml !== null ? listenHtml : '<div class="question-text">' + q.question + '</div>')
+      + '<div class="choices">'
+      + '<button class="choice-btn" onclick="checkAnswer(this, \'' + esc(q.choice_a) + '\', \'' + esc(q.answer) + '\')">' + q.choice_a + '</button>'
+      + '<button class="choice-btn" onclick="checkAnswer(this, \'' + esc(q.choice_b) + '\', \'' + esc(q.answer) + '\')">' + q.choice_b + '</button>'
+      + '<button class="choice-btn" onclick="checkAnswer(this, \'' + esc(q.choice_c) + '\', \'' + esc(q.answer) + '\')">' + q.choice_c + '</button>'
+      + '</div>'
+      + '<div class="result-msg" id="result-msg"></div>';
+  }
 
   if (currentIndex + 1 < total) {
     html += '<button class="next-btn" id="next-btn" onclick="nextQuestion()">' + H212_T['hw.next_question'] + '</button>';
@@ -368,7 +361,14 @@ function showQuestion() {
 
   html += '</div>';
   getPC().innerHTML = html;
+  if (q.type === 'builder') H212Builder.afterRender();
 }
+
+// Sentence Builder was checked (tests only count the score)
+H212Builder.onChecked = function(res) {
+  if (res.correct) score++;
+  document.getElementById('next-btn').style.display = 'inline-flex';
+};
 
 function esc(str) {
   return (str || '').replace(/'/g, "\\'").replace(/"/g, '&quot;');

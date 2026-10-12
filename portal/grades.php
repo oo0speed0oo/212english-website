@@ -43,52 +43,23 @@
 require __DIR__ . '/inc/nav.php';
 h212_render_nav( 'grades' );
 
+// All the progress rules (parts, 70% unlock, Mastered = 100%) live in
+// wp-content/mu-plugins/212-progress.php - this page just shows them.
 $bank  = h212_load_question_bank();
-$seen  = get_user_meta( $h212_user->ID, 'h212_seen_questions', true );
-$seen  = is_array( $seen ) ? $seen : array();
-$wrong = get_user_meta( $h212_user->ID, 'h212_current_wrong', true );
-$wrong = is_array( $wrong ) ? $wrong : array();
-
-$h212_types = array( 'vocabulary', 'grammar', 'listening' );
+$lists = h212_student_lists( $h212_user->ID );
 
 // Status for one chapter, based on where the student stands RIGHT NOW -
 // not a running history of past attempts. Get something right on a
 // retry and the status simply updates; nothing "bad" stays visible.
-function h212_grades_chapter_status( $bank, $level, $chapter, $seen, $wrong ) {
-	global $h212_types;
-	$has_content = false;
-	$any_seen    = false;
-	$all_done    = true;
-
-	foreach ( $h212_types as $t ) {
-		$qs = h212_questions_for_type( $bank, $level, $chapter, $t );
-		if ( ! $qs ) {
-			continue;
-		}
-		$has_content = true;
-		$type_done   = true;
-		foreach ( $qs as $q ) {
-			if ( in_array( $q['id'], $seen, true ) ) {
-				$any_seen = true;
-			} else {
-				$type_done = false;
-			}
-			if ( in_array( $q['id'], $wrong, true ) ) {
-				$type_done = false;
-			}
-		}
-		if ( ! $type_done ) {
-			$all_done = false;
-		}
-	}
-
-	if ( ! $has_content ) {
+function h212_grades_chapter_status( $bank, $level, $chapter, $lists ) {
+	$stats = h212_chapter_stats( $bank, $level, $chapter, $lists['seen'], $lists['wrong'] );
+	if ( 0 === $stats['total'] ) {
 		return 'no_content';
 	}
-	if ( ! $any_seen ) {
+	if ( 0 === $stats['seen'] ) {
 		return 'not_started';
 	}
-	return $all_done ? 'mastered' : 'progress';
+	return h212_chapter_mastered( $stats ) ? 'mastered' : 'progress';
 }
 
 $level_has_content   = array();
@@ -96,11 +67,11 @@ $level_mastered      = array();
 $total_chapters      = 0;
 $total_mastered      = 0;
 
-for ( $lvl = 1; $lvl <= 5; $lvl++ ) {
+for ( $lvl = 1; $lvl <= H212_LEVELS; $lvl++ ) {
 	$level_has_content[ $lvl ] = false;
 	$level_mastered[ $lvl ]    = 0;
-	for ( $c = 1; $c <= 17; $c++ ) {
-		$status = h212_grades_chapter_status( $bank, $lvl, $c, $seen, $wrong );
+	for ( $c = 1; $c <= H212_CHAPTERS; $c++ ) {
+		$status = h212_grades_chapter_status( $bank, $lvl, $c, $lists );
 		if ( 'no_content' === $status ) {
 			continue;
 		}
@@ -116,14 +87,14 @@ for ( $lvl = 1; $lvl <= 5; $lvl++ ) {
 // "Currently on" level: the first level with unfinished content in it,
 // same idea as the level-locking logic in homework.php.
 $current_level = 1;
-for ( $lvl = 1; $lvl <= 5; $lvl++ ) {
+for ( $lvl = 1; $lvl <= H212_LEVELS; $lvl++ ) {
 	if ( ! $level_has_content[ $lvl ] ) {
 		break;
 	}
 	$current_level = $lvl;
 	$chapters_in_level = 0;
-	for ( $c = 1; $c <= 17; $c++ ) {
-		if ( 'no_content' !== h212_grades_chapter_status( $bank, $lvl, $c, $seen, $wrong ) ) {
+	for ( $c = 1; $c <= H212_CHAPTERS; $c++ ) {
+		if ( 'no_content' !== h212_grades_chapter_status( $bank, $lvl, $c, $lists ) ) {
 			$chapters_in_level++;
 		}
 	}
@@ -154,15 +125,15 @@ if ( 0 === $total_mastered ) {
   <a class="back-btn" href="homework.php" style="margin:0;"><?php echo esc_html( t( 'grades.go_homework' ) ); ?></a>
 </div>
 
-<?php for ( $lvl = 1; $lvl <= 5; $lvl++ ) : ?>
+<?php for ( $lvl = 1; $lvl <= H212_LEVELS; $lvl++ ) : ?>
   <div class="grades-level-block">
     <div class="grades-level-title"><?php echo esc_html( t( 'hw.level' ) ); ?> <?php echo (int) $lvl; ?></div>
     <?php if ( ! $level_has_content[ $lvl ] ) : ?>
       <div class="grades-coming-soon"><?php echo esc_html( t( 'grades.coming_soon_level' ) ); ?></div>
     <?php else : ?>
       <div class="grades-chapter-grid">
-        <?php for ( $c = 1; $c <= 17; $c++ ) :
-          $status = h212_grades_chapter_status( $bank, $lvl, $c, $seen, $wrong );
+        <?php for ( $c = 1; $c <= H212_CHAPTERS; $c++ ) :
+          $status = h212_grades_chapter_status( $bank, $lvl, $c, $lists );
           if ( 'no_content' === $status ) {
             continue;
           }

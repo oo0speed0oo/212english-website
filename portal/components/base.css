@@ -193,7 +193,7 @@ body {
 /* ── GRIDS ── */
 .level-grid   { display: grid; gap: 14px; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
 .chapter-grid { display: grid; gap: 14px; grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); }
-.type-grid    { display: grid; gap: 14px; grid-template-columns: repeat(3, 1fr); max-width: 500px; }
+.type-grid    { display: grid; gap: 14px; grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 500px; }
 
 .level-btn, .chapter-btn, .type-btn {
   background: rgba(255,252,245,0.6);
@@ -220,6 +220,10 @@ body {
   color: #2f7a4f;
 }
 .type-btn .status.wrong { color: #b3261e; }
+.type-btn .status.take  { color: var(--gold-light); }
+.type-btn .status.muted { color: var(--text-muted); font-weight: 400; }
+.type-btn.empty { opacity: 0.6; cursor: default; }
+.type-btn.empty:hover { background: rgba(255,252,245,0.6); border-color: rgba(184,145,46,0.2); transform: none; }
 .chapter-progress {
   position: absolute; top: 8px; right: 10px;
   font-size: 10px; font-weight: 600; letter-spacing: 0.03em;
@@ -340,3 +344,46 @@ body {
   padding: 10px 14px; border-left: 3px solid var(--gold-dim);
 }
 .listen-reveal[hidden] { display: none; }
+
+/* ── Homework parts: groups, chapter progress bar ── */
+.part-group { margin-bottom: 22px; }
+.part-group-title { font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); margin: 0 0 10px; font-weight: 600; }
+.chapter-bar { max-width: 500px; margin-bottom: 26px; }
+.chapter-bar-top { display: flex; justify-content: space-between; font-size: 13px; color: var(--text-muted); margin-bottom: 6px; }
+.chapter-bar-top strong { color: var(--warm-white); }
+.chapter-bar-track { position: relative; height: 10px; border-radius: 99px; background: rgba(184,145,46,0.18); overflow: visible; }
+.chapter-bar-fill { height: 100%; border-radius: 99px; background: var(--gold); transition: width 0.4s; }
+.chapter-bar-mark { position: absolute; left: 70%; top: -3px; width: 2px; height: 16px; background: var(--warm-white); opacity: 0.45; }
+.chapter-bar-next { font-size: 12px; color: var(--text-muted); margin-top: 6px; }
+.unlock-note { display: none; margin: 0 0 20px; padding: 12px 16px; border-radius: 10px; background: rgba(47,122,79,0.1); border: 1px solid rgba(47,122,79,0.3); color: #2f7a4f; font-weight: 600; }
+
+/* ── Sentence Builder ── */
+.builder-label { font-size: 12px; color: var(--text-muted); margin-bottom: 8px; }
+.builder-prompt { font-size: 20px; color: var(--warm-white); line-height: 1.5; margin-bottom: 18px; }
+.builder-answer {
+  min-height: 56px; display: flex; flex-wrap: wrap; gap: 8px; align-items: center;
+  padding: 10px; margin-bottom: 14px; border-radius: 12px;
+  background: rgba(255,255,255,0.55); border: 2px dashed rgba(184,145,46,0.4);
+}
+.builder-answer.is-correct { border-style: solid; border-color: rgba(47,122,79,0.6); background: rgba(47,122,79,0.08); }
+.builder-answer.is-wrong   { border-style: solid; border-color: rgba(179,38,30,0.5); background: rgba(179,38,30,0.06); }
+.builder-hint { color: var(--text-dim); font-size: 14px; padding: 0 4px; }
+.builder-bank { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 18px; min-height: 48px; }
+.tile {
+  font-family: inherit; font-size: 16px; padding: 10px 14px; min-height: 44px; border-radius: 10px;
+  background: #fffcf5; border: 1px solid rgba(184,145,46,0.5); color: var(--text-main);
+  cursor: pointer; box-shadow: 0 2px 0 rgba(184,145,46,0.25); transition: transform 0.1s;
+}
+.tile:active { transform: translateY(1px); box-shadow: none; }
+.tile.placed { background: rgba(184,145,46,0.16); border-color: var(--gold); }
+.tile.ghost { visibility: hidden; border: 1px dashed transparent; cursor: default; }
+.tile:disabled { cursor: default; opacity: 0.85; }
+.builder-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+.builder-check, .builder-clear {
+  font-family: inherit; font-size: 15px; padding: 11px 24px; min-height: 44px; border-radius: 10px; cursor: pointer;
+  border: 1px solid rgba(184,145,46,0.5);
+}
+.builder-check { background: rgba(184,145,46,0.2); color: var(--warm-white); font-weight: 600; }
+.builder-clear { background: transparent; color: var(--text-muted); }
+.builder-check:disabled, .builder-clear:disabled { opacity: 0.45; cursor: default; }
+.builder-sentence { margin-top: 6px; font-size: 17px; font-weight: 600; }

@@ -103,6 +103,11 @@ h212_js_strings( array(
 	'hw.back_to_topics', 'hw.photo_question', 'hw.finished_badge',
 	'hw.already_finished', 'hw.best_score', 'hw.start_again', 'hw.needs_review',
 	'hw.locked_level', 'hw.locked_chapter',
+	'hw.part_photo', 'hw.part_vocabulary', 'hw.part_grammar', 'hw.part_builder', 'hw.part_listening', 'hw.part_conversation',
+	'hw.part_photo_sub', 'hw.part_vocabulary_sub', 'hw.part_grammar_sub', 'hw.part_builder_sub', 'hw.part_listening_sub', 'hw.part_conversation_sub',
+	'hw.coming_parts', 'hw.status_done', 'hw.status_new', 'hw.chapter_progress', 'hw.next_open', 'hw.next_locked',
+	'hw.next_level_open', 'hw.next_level_locked', 'hw.just_unlocked', 'hw.just_unlocked_level',
+	'builder.instruction', 'builder.empty', 'builder.check', 'builder.clear', 'builder.wrong_msg', 'conv.prompt',
 	'listen.who', 'listen.robot', 'listen.button', 'listen.playing', 'listen.no_voice',
 	'listen.mix', 'listen.us_woman', 'listen.us_man', 'listen.uk_woman', 'listen.uk_man',
 ) );
@@ -110,6 +115,7 @@ require_once __DIR__ . '/inc/voices.php';
 h212_voice_script();
 ?>
 <script src="components/listen.js?v=<?php echo (int) filemtime( __DIR__ . '/components/listen.js' ); ?>"></script>
+<script src="components/builder.js?v=<?php echo (int) filemtime( __DIR__ . '/components/builder.js' ); ?>"></script>
 <script>window.H212_NONCE = "<?php echo esc_js( wp_create_nonce( 'h212_save_score' ) ); ?>";</script>
 <script>
 
@@ -118,6 +124,8 @@ var allQuestions = [];
 var allScores     = []; // every quiz attempt this student has ever submitted
 var allSeen       = []; // ids of every individual question this student has ever answered
 var allWrong      = []; // ids of questions currently answered wrong (cleared once corrected)
+var progress      = null; // unlock state from inc/progress.php (the rules live in one place, on the server)
+var pendingSaves  = []; // saves still travelling to the server (so progress is read after they land)
 var currentLevel   = null;
 var currentChapter = null;
 var currentType    = null;
@@ -131,15 +139,43 @@ var AUDIO_FOLDER = 'audio/';
 
 // ── Boot ──────────────────────────────────────────
 window.addEventListener('DOMContentLoaded', function() {
-  Promise.all([ loadCSV(), loadScores(), loadSeen(), loadWrong() ]).then(renderLevels).catch(renderLevels);
+  Promise.all([ loadCSV(), loadScores(), loadSeen(), loadWrong(), loadProgress() ]).then(renderLevels).catch(renderLevels);
 });
 
 // ── Load & parse CSV ──────────────────────────────
 function loadCSV() {
-  return fetch('homework-content.csv')
+  var main = fetch('homework-content.csv')
     .then(function(r) { return r.text(); })
-    .then(function(text) { allQuestions = parseCSV(text); })
-    .catch(function() { allQuestions = []; });
+    .then(function(text) { return parseCSV(text); })
+    .catch(function() { return []; });
+  // Sentence Builder questions live in their own file; they join the pool as type 'builder'.
+  var builder = fetch('build-content.csv')
+    .then(function(r) { return r.ok ? r.text() : ''; })
+    .then(function(text) {
+      return text ? H212Builder.parse(text).filter(function(q) { return q.mode !== 'test'; }) : [];
+    })
+    .catch(function() { return []; });
+  return Promise.all([ main, builder ]).then(function(res) { allQuestions = res[0].concat(res[1]); });
+}
+
+// ── Load unlock state (which chapters are open, how far through each) ──
+function loadProgress() {
+  return fetch('inc/progress.php', { cache: 'no-store' })
+    .then(function(r) { return r.json(); })
+    .then(function(data) { progress = (data && data.chapters) ? data.chapters : null; })
+    .catch(function() { progress = null; });
+}
+// After the student's answers have reached the server, ask again what is unlocked.
+// Returns a promise; the list of newly opened chapters is passed on.
+function refreshProgress() {
+  var before = progress;
+  return Promise.all(pendingSaves).then(loadProgress).then(function() {
+    var opened = [];
+    if (before && progress) {
+      Object.keys(progress).forEach(function(k) { if (progress[k].u && before[k] && !before[k].u) opened.push(k); });
+    }
+    return opened;
+  });
 }
 
 // ── Load this student's saved scores ──────────────
@@ -160,11 +196,11 @@ function loadSeen() {
 function markSeen(id) {
   if (!id || allSeen.indexOf(id) !== -1) return;
   allSeen.push(id);
-  fetch('inc/seen.php', {
+  pendingSaves.push(fetch('inc/seen.php', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ nonce: window.H212_NONCE, id: id })
-  }).catch(function() {});
+  }).catch(function() {}));
 }
 
 // ── Load / record wrong answers ────────────────────
@@ -181,7 +217,7 @@ function recordMistake(q, correct, chosen) {
   } else if (allWrong.indexOf(q.id) === -1) {
     allWrong.push(q.id);
   }
-  fetch('inc/mistakes.php', {
+  pendingSaves.push(fetch('inc/mistakes.php', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
@@ -189,17 +225,11 @@ function recordMistake(q, correct, chosen) {
       level: currentLevel, chapter: currentChapter, type: currentType,
       question: q.question, chosen: chosen, correct_answer: q.answer
     })
-  }).catch(function() {});
+  }).catch(function() {}));
 }
 
 // ── Score helpers ──────────────────────────────────
 function questionsForType(level, chapter, type) {
-  if (type === 'vocabulary') {
-    return allQuestions.filter(function(q) {
-      return q.level === level && q.chapter === chapter
-        && (q.type === 'vocabulary' || q.type === 'photo');
-    });
-  }
   return allQuestions.filter(function(q) {
     return q.level === level && q.chapter === chapter && q.type === type;
   });
@@ -236,29 +266,24 @@ function isTypeFinished(level, chapter, type) {
     && unseenQuestionsForType(level, chapter, type).length === 0
     && wrongQuestionsForType(level, chapter, type).length === 0;
 }
-function chapterFinishedCount(level, chapter) {
-  var types = ['vocabulary', 'grammar', 'listening'];
-  var n = 0;
-  types.forEach(function(t) { if (isTypeFinished(level, chapter, t)) n++; });
-  return n;
-}
-function isChapterFullyFinished(level, chapter) {
-  return chapterFinishedCount(level, chapter) === 3;
+// Which chapters/levels are open comes from the server (progress), so the
+// rule (70% of the previous chapter, then open for good) lives in one place.
+// If the progress file could not be loaded, nothing is locked.
+function isChapterUnlocked(level, chapter) {
+  if (!progress) return true;
+  var p = progress[level + '-' + chapter];
+  return p ? !!p.u : false;
 }
 function isLevelUnlocked(level) {
-  if (level <= 1) return true;
-  for (var c = 1; c <= 17; c++) {
-    if (!isChapterFullyFinished(level - 1, c)) return false;
-  }
-  return true;
+  return isChapterUnlocked(level, 1);
 }
-function isChapterUnlocked(level, chapter) {
-  if (!isLevelUnlocked(level)) return false;
-  if (chapter <= 1) return true;
-  return isChapterFullyFinished(level, chapter - 1);
+function chapterPercent(level, chapter) {
+  var p = progress && progress[level + '-' + chapter];
+  if (!p || !p.t) return 0;
+  return Math.floor(p.f * 100 / p.t);
 }
 function saveScore(level, chapter, type, score, total) {
-  return fetch('inc/scores.php', {
+  var p = fetch('inc/scores.php', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
@@ -269,6 +294,8 @@ function saveScore(level, chapter, type, score, total) {
     .then(function(r) { return r.json(); })
     .then(function(data) { if (data && data.scores) allScores = data.scores; })
     .catch(function() {});
+  pendingSaves.push(p);
+  return p;
 }
 
 // Splits one CSV line into fields, respecting "quoted, fields" (with ""
@@ -334,11 +361,16 @@ function parseCSV(text) {
 function getPC() { return document.getElementById('page-content'); }
 
 function typeLabel(type) {
-  if (type === 'vocabulary') return H212_T['hw.vocabulary'];
-  if (type === 'grammar')    return H212_T['hw.grammar'];
-  if (type === 'listening')  return H212_T['hw.listening'];
-  return type;
+  return H212_T['hw.part_' + type] || type;
 }
+
+// The 6 practice parts of a chapter, in 3 groups
+var GROUPS = [
+  { label: 'hw.vocabulary', parts: ['photo', 'vocabulary'] },
+  { label: 'hw.grammar',    parts: ['grammar', 'builder'] },
+  { label: 'hw.listening',  parts: ['listening', 'conversation'] }
+];
+var PART_ICON = { photo: '📸', vocabulary: '🔤', grammar: '✏️', builder: '🧩', listening: '🎧', conversation: '💬' };
 
 function renderLevels() {
   currentLevel = null; currentChapter = null; currentType = null;
@@ -367,9 +399,9 @@ function renderChapters(lvl) {
     + '<div class="chapter-grid">';
   for (var c = 1; c <= 17; c++) {
     if (isChapterUnlocked(lvl, c)) {
-      var done = chapterFinishedCount(lvl, c);
-      var badge = done > 0
-        ? '<span class="chapter-progress' + (done === 3 ? ' done' : '') + '">' + done + '/3</span>'
+      var pct = chapterPercent(lvl, c);
+      var badge = pct > 0
+        ? '<span class="chapter-progress' + (pct === 100 ? ' done' : '') + '">' + pct + '%</span>'
         : '';
       html += '<div class="chapter-btn" onclick="renderTypes(' + c + ')">'
         + badge
@@ -389,32 +421,60 @@ function renderTypes(ch) {
   var html = '<div class="section-header"><h2>' + H212_T['nav.homework'] + '</h2><p>' + H212_T['hw.choose_study'] + '</p></div>'
     + '<div class="breadcrumb"><span>' + H212_T['nav.homework'] + '</span><span class="sep">›</span><span>' + H212_T['hw.level'] + ' ' + currentLevel + '</span><span class="sep">›</span><span>' + H212_T['hw.chapter'] + ' ' + ch + '</span></div>'
     + '<button class="back-btn" onclick="renderChapters(' + currentLevel + ')">' + H212_T['hw.back_chapters'] + '</button>'
-    + '<div class="type-grid">'
-    + '<div class="type-btn" onclick="startQuiz(\'vocabulary\')">'
-    +   '<span class="icon">📖</span><span class="lbl">' + H212_T['hw.vocabulary'] + '</span><span class="sub">' + H212_T['hw.vocab_sub'] + '</span>' + typeStatusHtml(currentLevel, ch, 'vocabulary') + '</div>'
-    + '<div class="type-btn" onclick="startQuiz(\'grammar\')">'
-    +   '<span class="icon">✏️</span><span class="lbl">' + H212_T['hw.grammar'] + '</span><span class="sub">' + H212_T['hw.grammar_sub'] + '</span>' + typeStatusHtml(currentLevel, ch, 'grammar') + '</div>'
-    + '<div class="type-btn" onclick="startQuiz(\'listening\')">'
-    +   '<span class="icon">🎧</span><span class="lbl">' + H212_T['hw.listening'] + '</span><span class="sub">' + H212_T['hw.listening_sub'] + '</span>' + typeStatusHtml(currentLevel, ch, 'listening') + '</div>'
-    + '</div>';
+    + chapterBarHtml(currentLevel, ch);
+  GROUPS.forEach(function(g) {
+    html += '<div class="part-group"><h3 class="part-group-title">' + H212_T[g.label] + '</h3><div class="type-grid">';
+    g.parts.forEach(function(part) {
+      var has = questionsForType(currentLevel, ch, part).length > 0;
+      html += '<div class="type-btn part-' + part + (has ? '' : ' empty') + '"' + (has ? ' onclick="startQuiz(\'' + part + '\')"' : '') + '>'
+        + '<span class="icon">' + PART_ICON[part] + '</span>'
+        + '<span class="lbl">' + H212_T['hw.part_' + part] + '</span>'
+        + '<span class="sub">' + H212_T['hw.part_' + part + '_sub'] + '</span>'
+        + typeStatusHtml(currentLevel, ch, part) + '</div>';
+    });
+    html += '</div></div>';
+  });
   getPC().innerHTML = html;
 }
 
+// "Chapter progress" bar with the 70% mark, and what it opens next.
+function chapterBarHtml(level, ch) {
+  var pct = chapterPercent(level, ch);
+  var next = '';
+  if (ch < 17 || level < 5) {
+    var isLevelStep = ch >= 17;
+    var nl = isLevelStep ? level + 1 : level;
+    var nc = isLevelStep ? 1 : ch + 1;
+    var open = isChapterUnlocked(nl, nc);
+    var key = isLevelStep ? (open ? 'hw.next_level_open' : 'hw.next_level_locked') : (open ? 'hw.next_open' : 'hw.next_locked');
+    next = H212_T[key].replace('{n}', isLevelStep ? nl : nc);
+  }
+  return '<div class="chapter-bar">'
+    + '<div class="chapter-bar-top"><span>' + H212_T['hw.chapter_progress'] + '</span><strong>' + pct + '%</strong></div>'
+    + '<div class="chapter-bar-track"><div class="chapter-bar-fill" style="width:' + pct + '%"></div><div class="chapter-bar-mark" title="70%"></div></div>'
+    + (next ? '<div class="chapter-bar-next">' + next + '</div>' : '')
+    + '</div>';
+}
+
 function typeStatusHtml(level, chapter, type) {
+  var qs = questionsForType(level, chapter, type);
+  if (!qs.length) return '<span class="status muted">' + H212_T['hw.coming_parts'] + '</span>';
   if (isTypeFinished(level, chapter, type)) {
     var best = bestScore(level, chapter, type);
-    if (!best) return '';
-    return '<span class="status">✓ ' + H212_T['hw.finished_badge'] + ' · ' + best.score + '/' + best.total + '</span>';
+    return '<span class="status">✓ ' + H212_T['hw.status_done'] + (best ? ' · ' + best.score + '/' + best.total : '') + '</span>';
   }
   var wrongCount = wrongQuestionsForType(level, chapter, type).length;
   if (wrongCount > 0 && unseenQuestionsForType(level, chapter, type).length === 0) {
     return '<span class="status wrong">⚠ ' + wrongCount + ' ' + H212_T['hw.needs_review'] + '</span>';
   }
-  return '';
+  var finished = qs.filter(function(q) { return allSeen.indexOf(q.id) !== -1 && allWrong.indexOf(q.id) === -1; }).length;
+  if (finished > 0) return '<span class="status take">' + finished + '/' + qs.length + '</span>';
+  return '<span class="status take">' + H212_T['hw.status_new'] + '</span>';
 }
 
 // ── Quiz ──────────────────────────────────────────
 function startQuiz(type) {
+  if (!questionsForType(currentLevel, currentChapter, type).length) return;
   if (isTypeFinished(currentLevel, currentChapter, type)) {
     showRetakeConfirm(type);
   } else {
@@ -510,15 +570,20 @@ function showQuestion() {
     html += '<div class="audio-wrap"><audio controls preload="none" src="' + AUDIO_FOLDER + q.audio + '"></audio></div>';
   }
 
-  // Listening questions with quoted text: hide the quote, show a Listen button instead
-  var listenHtml = (typeof H212Listen !== 'undefined') ? H212Listen.render(q) : null;
-  html += (listenHtml !== null ? listenHtml : '<div class="question-text">' + q.question + '</div>')
-    + '<div class="choices">'
-    + '<button class="choice-btn" onclick="checkAnswer(this, \'' + esc(q.choice_a) + '\', \'' + esc(q.answer) + '\')">' + q.choice_a + '</button>'
-    + '<button class="choice-btn" onclick="checkAnswer(this, \'' + esc(q.choice_b) + '\', \'' + esc(q.answer) + '\')">' + q.choice_b + '</button>'
-    + '<button class="choice-btn" onclick="checkAnswer(this, \'' + esc(q.choice_c) + '\', \'' + esc(q.answer) + '\')">' + q.choice_c + '</button>'
-    + '</div>'
-    + '<div class="result-msg" id="result-msg"></div>';
+  if (q.type === 'builder') {
+    // Sentence Builder: tap word tiles into order (checked by H212Builder)
+    html += H212Builder.render(q);
+  } else {
+    // Listening / Conversation questions with a spoken line: hide the line, show a Listen button instead
+    var listenHtml = (typeof H212Listen !== 'undefined') ? H212Listen.render(q) : null;
+    html += (listenHtml !== null ? listenHtml : '<div class="question-text">' + q.question + '</div>')
+      + '<div class="choices">'
+      + '<button class="choice-btn" onclick="checkAnswer(this, \'' + esc(q.choice_a) + '\', \'' + esc(q.answer) + '\')">' + q.choice_a + '</button>'
+      + '<button class="choice-btn" onclick="checkAnswer(this, \'' + esc(q.choice_b) + '\', \'' + esc(q.answer) + '\')">' + q.choice_b + '</button>'
+      + '<button class="choice-btn" onclick="checkAnswer(this, \'' + esc(q.choice_c) + '\', \'' + esc(q.answer) + '\')">' + q.choice_c + '</button>'
+      + '</div>'
+      + '<div class="result-msg" id="result-msg"></div>';
+  }
 
   if (currentIndex + 1 < total) {
     html += '<button class="next-btn" id="next-btn" onclick="nextQuestion()">' + H212_T['hw.next_question'] + '</button>';
@@ -528,7 +593,17 @@ function showQuestion() {
 
   html += '</div>';
   getPC().innerHTML = html;
+  if (q.type === 'builder') H212Builder.afterRender();
 }
+
+// Sentence Builder was checked: save it like any other answer
+H212Builder.onChecked = function(res) {
+  var q = currentQ[currentIndex];
+  markSeen(q.id);
+  recordMistake(q, res.correct, res.chosen);
+  if (res.correct) score++;
+  document.getElementById('next-btn').style.display = 'inline-flex';
+};
 
 function esc(str) {
   return str.replace(/'/g, "\\'").replace(/"/g, '&quot;');
@@ -584,12 +659,23 @@ function showFinish() {
     + score + ' / ' + total + ' ' + H212_T['hw.correct_word'] + '</div>'
     + '<div style="font-size:14px;color:var(--text-muted);margin-bottom:28px">'
     + typeName + ' · ' + H212_T['hw.level'] + ' ' + currentLevel + ' · ' + H212_T['hw.chapter'] + ' ' + currentChapter + '</div>'
+    + '<div id="unlock-note" class="unlock-note"></div>'
     + '<div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">'
     + '<button class="next-btn" style="display:inline-flex" onclick="beginQuiz(\'' + currentType + '\')">' + H212_T['hw.try_again'] + '</button>'
     + '<button class="next-btn" style="display:inline-flex" onclick="renderTypes(' + currentChapter + ')">' + H212_T['hw.back_to_topics'] + '</button>'
     + '</div></div>';
 
   getPC().innerHTML = html;
+
+  // Once the answers have reached the server, see whether a new chapter opened
+  refreshProgress().then(function(opened) {
+    var note = document.getElementById('unlock-note');
+    if (!note || !opened.length) return;
+    var last = opened[opened.length - 1].split('-');
+    var lvl = parseInt(last[0]), ch = parseInt(last[1]);
+    note.textContent = (ch === 1 && lvl > 1 ? H212_T['hw.just_unlocked_level'].replace('{n}', lvl) : H212_T['hw.just_unlocked'].replace('{n}', ch));
+    note.style.display = 'block';
+  });
 }
 </script>
 </main>

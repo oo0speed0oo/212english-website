@@ -101,6 +101,13 @@ function h212_hwadmin_next_id( $rows ) {
 	foreach ( $rows as $r ) {
 		$max = max( $max, intval( $r['id'] ) );
 	}
+	// Sentence Builder questions (build-content.csv) share the same id numbers,
+	// so a new question must also stay clear of those.
+	if ( function_exists( 'h212_load_question_bank' ) ) {
+		foreach ( h212_load_question_bank() as $q ) {
+			$max = max( $max, intval( $q['id'] ) );
+		}
+	}
 	return (string) ( $max + 1 );
 }
 
@@ -159,7 +166,7 @@ add_action( 'admin_post_h212_save_question', function () {
 	if ( $chapter < 1 || $chapter > 17 ) {
 		$errors[] = 'Please choose a chapter.';
 	}
-	if ( ! in_array( $type, array( 'vocabulary', 'grammar', 'listening', 'photo' ), true ) ) {
+	if ( ! in_array( $type, array( 'vocabulary', 'grammar', 'listening', 'photo', 'conversation' ), true ) ) {
 		$errors[] = 'Please choose a type.';
 	}
 	if ( '' === $question ) {
@@ -413,7 +420,7 @@ function h212_render_question_form( $action ) {
 	echo '</select></td></tr>';
 
 	echo '<tr><th><label>Type</label></th><td><select name="type">';
-	foreach ( array( 'vocabulary', 'grammar', 'listening', 'photo' ) as $t ) {
+	foreach ( array( 'vocabulary', 'grammar', 'listening', 'photo', 'conversation' ) as $t ) {
 		printf( '<option value="%s" %s>%s</option>', esc_attr( $t ), selected( $row['type'], $t, false ), esc_html( ucfirst( $t ) ) );
 	}
 	echo '</select><p class="description">"Photo" questions show under Vocabulary and display an image.</p></td></tr>';

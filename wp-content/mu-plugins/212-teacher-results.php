@@ -5,9 +5,9 @@
  * Read-only report of each student's homework progress, quiz score
  * history, and wrong-answer log. Sourced from the same per-student data
  * the portal itself already saves (h212_seen_questions, h212_quiz_scores,
- * h212_current_wrong, h212_mistake_log) plus the shared question bank in
- * portal/homework-content.csv, used here only to know each chapter's
- * quiz types - never written to.
+ * h212_current_wrong, h212_mistake_log) plus the shared question bank and
+ * progress/unlock rules in 212-progress.php (which reads
+ * portal/homework-content.csv and portal/build-content.csv, never writes them).
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -47,7 +47,7 @@ add_action( 'admin_post_h212_unlock_student', function () {
 	}
 	$student_id   = isset( $_GET['student_id'] ) ? intval( $_GET['student_id'] ) : 0;
 	$up_to_level   = isset( $_GET['up_to_level'] )   ? intval( $_GET['up_to_level'] )   : 5;
-	$up_to_chapter = isset( $_GET['up_to_chapter'] ) ? intval( $_GET['up_to_chapter'] ) : 17;
+	$up_to_chapter = isset( $_GET['up_to_chapter'] ) ? intval( $_GET['up_to_chapter'] ) : H212_CHAPTERS;
 	check_admin_referer( 'h212_unlock_student_' . $student_id );
 
 	$bank = h212_load_question_bank();
@@ -61,46 +61,12 @@ add_action( 'admin_post_h212_unlock_student', function () {
 	}
 	update_user_meta( $student_id, 'h212_seen_questions', $ids );
 	delete_user_meta( $student_id, 'h212_current_wrong' );
+	// Save the chapters this opens (they then stay open for good).
+	h212_progress_state( $student_id, true );
 
 	wp_safe_redirect( admin_url( 'admin.php?page=h212-student-results&student_id=' . $student_id . '&unlocked=1' ) );
 	exit;
 } );
-
-function h212_load_question_bank() {
-	$path = ABSPATH . 'portal/homework-content.csv';
-	if ( ! file_exists( $path ) ) {
-		return array();
-	}
-	$rows = array_map( 'str_getcsv', file( $path ) );
-	if ( ! $rows ) {
-		return array();
-	}
-	$header = array_map( function ( $h ) { return strtolower( trim( $h ) ); }, array_shift( $rows ) );
-	$out    = array();
-	foreach ( $rows as $row ) {
-		if ( count( $row ) < count( $header ) ) {
-			continue;
-		}
-		$item = array_combine( $header, $row );
-		if ( empty( $item['level'] ) || empty( $item['type'] ) ) {
-			continue;
-		}
-		$out[] = $item;
-	}
-	return $out;
-}
-
-function h212_questions_for_type( $bank, $level, $chapter, $type ) {
-	return array_values( array_filter( $bank, function ( $q ) use ( $level, $chapter, $type ) {
-		if ( (int) $q['level'] !== $level || (int) $q['chapter'] !== $chapter ) {
-			return false;
-		}
-		if ( $type === 'vocabulary' ) {
-			return in_array( $q['type'], array( 'vocabulary', 'photo' ), true );
-		}
-		return $q['type'] === $type;
-	} ) );
-}
 
 function h212_render_student_results_page() {
 	if ( ! current_user_can( 'manage_options' ) ) {
@@ -145,13 +111,13 @@ function h212_render_student_results_page() {
 	wp_nonce_field( 'h212_unlock_student_' . $selected_id, '_wpnonce', true, true );
 	echo '<span>Unlock up through</span>';
 	echo '<select name="up_to_level">';
-	for ( $l = 1; $l <= 5; $l++ ) {
-		printf( '<option value="%d" %s>Level %d</option>', $l, selected( $l, 5, false ), $l );
+	for ( $l = 1; $l <= H212_LEVELS; $l++ ) {
+		printf( '<option value="%d" %s>Level %d</option>', $l, selected( $l, H212_LEVELS, false ), $l );
 	}
 	echo '</select>';
 	echo '<select name="up_to_chapter">';
-	for ( $c = 1; $c <= 17; $c++ ) {
-		printf( '<option value="%d" %s>Chapter %d</option>', $c, selected( $c, 17, false ), $c );
+	for ( $c = 1; $c <= H212_CHAPTERS; $c++ ) {
+		printf( '<option value="%d" %s>Chapter %d</option>', $c, selected( $c, H212_CHAPTERS, false ), $c );
 	}
 	echo '</select>';
 	echo '<button type="submit" class="button">Unlock</button>';
@@ -188,75 +154,47 @@ function h212_render_student_results_page() {
 			$last_active = $row['date'];
 		}
 	}
-	$level_chapters_done = array_fill( 1, 5, 0 );
 
-	// ── Progress overview ──
+	// ── Progress overview ── (read-only: shows unlocks without saving them)
+	$state = h212_progress_state( $selected_id, false );
 	echo '<h2>Progress</h2>';
 	echo '<div style="overflow-x:auto;"><table class="widefat striped" style="min-width:900px;"><thead><tr><th>Level</th>';
-	for ( $c = 1; $c <= 17; $c++ ) {
+	for ( $c = 1; $c <= H212_CHAPTERS; $c++ ) {
 		echo '<th style="text-align:center;">Ch ' . $c . '</th>';
 	}
 	echo '</tr></thead><tbody>';
-	for ( $lvl = 1; $lvl <= 5; $lvl++ ) {
+	$current_label = 'Level 1';
+	for ( $lvl = 1; $lvl <= H212_LEVELS; $lvl++ ) {
 		echo '<tr><td><strong>Level ' . $lvl . '</strong></td>';
-		for ( $c = 1; $c <= 17; $c++ ) {
-			$types      = array( 'vocabulary', 'grammar', 'listening' );
-			$done_count = 0;
-			$has_content = false;
-			foreach ( $types as $t ) {
-				$qs = h212_questions_for_type( $bank, $lvl, $c, $t );
-				if ( ! $qs ) {
-					continue;
-				}
-				$has_content = true;
-				$all_seen    = true;
-				$any_wrong   = false;
-				foreach ( $qs as $q ) {
-					if ( ! in_array( $q['id'], $seen, true ) ) {
-						$all_seen = false;
-					}
-					if ( in_array( $q['id'], $wrong, true ) ) {
-						$any_wrong = true;
-					}
-				}
-				if ( $all_seen && ! $any_wrong ) {
-					$done_count++;
-				}
+		for ( $c = 1; $c <= H212_CHAPTERS; $c++ ) {
+			$ch   = $state['chapters'][ $lvl . '-' . $c ];
+			$lock = $ch['u'] ? 'Open' : 'Locked';
+			if ( 0 === $ch['t'] ) {
+				echo '<td style="text-align:center;color:#bbb;" title="No questions yet">–</td>';
+				continue;
 			}
-			if ( ! $has_content ) {
-				echo '<td style="text-align:center;color:#bbb;">–</td>';
-			} elseif ( 3 === $done_count ) {
-				$level_chapters_done[ $lvl ]++;
+			if ( $ch['u'] ) {
+				$current_label = 'Level ' . $lvl . ', Chapter ' . $c;
+			}
+			if ( $ch['f'] === $ch['t'] ) {
 				$finished_on = $latest_chapter_date( $lvl, $c );
 				$title       = $finished_on ? ' title="Finished ' . esc_attr( $finished_on ) . '"' : '';
 				echo '<td style="text-align:center;background:#d7f0dd;cursor:default;"' . $title . '>✓</td>';
-			} elseif ( $done_count > 0 ) {
-				echo '<td style="text-align:center;background:#fff3cd;">' . $done_count . '/3</td>';
+			} elseif ( $ch['s'] > 0 ) {
+				$pct = (int) floor( $ch['f'] * 100 / $ch['t'] );
+				$bg  = ( $ch['f'] * 100 >= H212_UNLOCK_PERCENT * $ch['t'] ) ? '#e3f1d4' : '#fff3cd';
+				echo '<td style="text-align:center;background:' . $bg . ';" title="' . esc_attr( $ch['f'] . ' of ' . $ch['t'] . ' questions finished - ' . $lock ) . '">' . $pct . '%</td>';
 			} else {
-				echo '<td style="text-align:center;">–</td>';
+				echo '<td style="text-align:center;" title="' . esc_attr( $lock ) . '">' . ( $ch['u'] ? '–' : '🔒' ) . '</td>';
 			}
 		}
 		echo '</tr>';
 	}
 	echo '</tbody></table></div>';
-	echo '<p style="color:#666;font-size:13px;">✓ = fully finished (hover for date) &nbsp;·&nbsp; X/3 = partly done &nbsp;·&nbsp; – = not started or no content yet</p>';
-
-	// Current level = lowest level unlocked but not yet fully finished
-	// (level 1 always unlocked; level N unlocks once level N-1 has all
-	// 17 chapters finished). If everything is finished, show the last one.
-	$current_level = 1;
-	for ( $lvl = 1; $lvl <= 5; $lvl++ ) {
-		if ( $lvl > 1 && $level_chapters_done[ $lvl - 1 ] < 17 ) {
-			break;
-		}
-		$current_level = $lvl;
-		if ( $level_chapters_done[ $lvl ] < 17 ) {
-			break;
-		}
-	}
+	echo '<p style="color:#666;font-size:13px;">✓ = every question finished (hover for date) &nbsp;·&nbsp; % = share of the chapter\'s homework finished (green = 70% or more, which opens the next chapter) &nbsp;·&nbsp; – = not started or no questions yet &nbsp;·&nbsp; 🔒 = locked</p>';
 
 	echo '<div style="display:flex;gap:24px;flex-wrap:wrap;margin:16px 0 28px;padding:16px 20px;background:#f6f7f7;border:1px solid #dcdcde;border-radius:4px;">';
-	echo '<div><strong>Currently on:</strong> Level ' . $current_level . '</div>';
+	echo '<div><strong>Furthest open chapter:</strong> ' . esc_html( $current_label ) . '</div>';
 	echo '<div><strong>Last active:</strong> ' . ( $last_active ? esc_html( $last_active ) : '—' ) . '</div>';
 	echo '<div><strong>Quiz attempts:</strong> ' . count( $scores ) . '</div>';
 	echo '<div><strong>Mistakes logged:</strong> ' . count( $mistakes ) . '</div>';

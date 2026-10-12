@@ -13,7 +13,7 @@ require __DIR__ . '/auth.php';
 header( 'Content-Type: application/json' );
 
 $h212_scores_meta_key = 'h212_quiz_scores';
-$h212_valid_types     = array( 'vocabulary', 'grammar', 'listening' );
+$h212_valid_types     = array( 'photo', 'vocabulary', 'grammar', 'builder', 'listening', 'conversation' );
 
 function h212_get_scores( $user_id ) {
 	$scores = get_user_meta( $user_id, 'h212_quiz_scores', true );
