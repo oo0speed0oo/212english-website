@@ -222,6 +222,26 @@ function h212_render_student_results_page() {
 		echo '</tbody></table>';
 	}
 
+	// ── Video sentences ("Your turn" writing from the video lessons) ──
+	echo '<h2 style="margin-top:32px;">Video Sentences</h2>';
+	$video_sentences = function_exists( 'h212_video_sentences' ) ? h212_video_sentences( $selected_id ) : array();
+	if ( ! $video_sentences ) {
+		echo '<p>No video sentences yet.</p>';
+	} else {
+		$titles = function_exists( 'h212_video_titles' ) ? h212_video_titles() : array();
+		usort( $video_sentences, function ( $a, $b ) { return strcmp( $b['date'], $a['date'] ); } );
+		echo '<div style="overflow-x:auto;"><table class="widefat striped" style="min-width:700px;"><thead><tr><th>Date</th><th>Video</th><th>Sentence</th></tr></thead><tbody>';
+		foreach ( $video_sentences as $vs ) {
+			printf(
+				'<tr><td style="white-space:nowrap;">%s</td><td>%s</td><td>%s</td></tr>',
+				esc_html( $vs['date'] ),
+				esc_html( isset( $titles[ $vs['video_id'] ] ) ? $titles[ $vs['video_id'] ] : $vs['video_id'] ),
+				esc_html( $vs['text'] )
+			);
+		}
+		echo '</tbody></table></div>';
+	}
+
 	// ── Mistake log ──
 	echo '<h2 style="margin-top:32px;">Wrong Answers</h2>';
 	if ( ! $mistakes ) {

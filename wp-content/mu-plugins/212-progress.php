@@ -294,3 +294,148 @@ function h212_progress_state( $user_id, $persist = true ) {
 
 	return array( 'chapters' => $chapters, 'first_run' => $first_run );
 }
+
+/* ============================================================
+ * VIDEO LESSONS (portal/video-content.csv)
+ *
+ * 71 videos, each with 5 multiple-choice questions and 1 "Your turn"
+ * writing task. Question ids share the main id sequence (1760-2185). Videos do
+ * NOT count for chapter unlocks: nothing here touches h212_progress_bank().
+ * ============================================================ */
+
+/** Every video, in "order": video_id, title, questions[], write (required words, example, id). */
+function h212_video_list() {
+	static $videos = null;
+	if ( null !== $videos ) {
+		return $videos;
+	}
+	$by_id = array();
+	foreach ( h212_read_csv_rows( ABSPATH . 'portal/video-content.csv' ) as $r ) {
+		$vid = isset( $r['video_id'] ) ? trim( $r['video_id'] ) : '';
+		if ( '' === $vid || ! preg_match( '/^[A-Za-z0-9_-]{6,20}$/', $vid ) ) {
+			continue;
+		}
+		if ( ! isset( $by_id[ $vid ] ) ) {
+			$by_id[ $vid ] = array(
+				'video_id'  => $vid,
+				'order'     => (int) ( $r['order'] ?? 0 ),
+				'title'     => $r['title'] ?? '',
+				'questions' => array(),
+				'write'     => null,
+			);
+		}
+		$type = strtolower( trim( $r['type'] ?? '' ) );
+		if ( 'question' === $type ) {
+			$by_id[ $vid ]['questions'][] = array(
+				'id'       => $r['id'],
+				'question' => $r['question'],
+				'choices'  => array( $r['choice_a'], $r['choice_b'], $r['choice_c'] ),
+				'answer'   => $r['answer'],
+			);
+		} elseif ( 'write' === $type ) {
+			$req = array();
+			foreach ( explode( '|', (string) ( $r['required_words'] ?? '' ) ) as $w ) {
+				$w = trim( $w );
+				if ( '' !== $w && '-' !== $w ) {
+					$req[] = $w;
+				}
+			}
+			$by_id[ $vid ]['write'] = array(
+				'id'       => $r['id'],
+				'required' => $req,
+				'example'  => ( isset( $r['example'] ) && '-' !== trim( $r['example'] ) ) ? $r['example'] : '',
+			);
+		}
+	}
+	$videos = array_values( $by_id );
+	usort( $videos, function ( $a, $b ) { return $a['order'] <=> $b['order']; } );
+	return $videos;
+}
+
+function h212_video_get( $video_id ) {
+	foreach ( h212_video_list() as $v ) {
+		if ( $v['video_id'] === $video_id ) {
+			return $v;
+		}
+	}
+	return null;
+}
+
+/** video_id => title, for the teacher's report. */
+function h212_video_titles() {
+	$out = array();
+	foreach ( h212_video_list() as $v ) {
+		$out[ $v['video_id'] ] = $v['title'];
+	}
+	return $out;
+}
+
+/** Curly quotes (iPhones type them) become straight ones; lower case. */
+function h212_video_normalize( $text ) {
+	$text = str_replace( array( "\xE2\x80\x99", "\xE2\x80\x98", "\xCA\xBC" ), "'", (string) $text );
+	$text = str_replace( array( "\xE2\x80\x9C", "\xE2\x80\x9D" ), '"', $text );
+	return function_exists( 'mb_strtolower' ) ? mb_strtolower( $text, 'UTF-8' ) : strtolower( $text );
+}
+
+/**
+ * Checks a student's sentence for one video.
+ *  - at least 5 words
+ *  - every required word/phrase is used (case-insensitive; a word also matches
+ *    when it starts a longer word, so "pamper" matches "pampered"; words of
+ *    1-2 letters must match exactly so "to" does not match "today")
+ * Returns array( 'ok' => bool, 'short' => bool, 'missing' => array of required items not used ).
+ */
+function h212_video_check_sentence( $text, $required ) {
+	$norm  = h212_video_normalize( $text );
+	$words = preg_split( '/[^a-z0-9\']+/u', $norm, -1, PREG_SPLIT_NO_EMPTY );
+	$short = count( $words ) < 5;
+
+	$missing = array();
+	foreach ( (array) $required as $item ) {
+		$parts = preg_split( '/\s+/', trim( h212_video_normalize( $item ) ), -1, PREG_SPLIT_NO_EMPTY );
+		if ( ! $parts ) {
+			continue;
+		}
+		$pieces = array();
+		foreach ( $parts as $p ) {
+			$q        = preg_quote( $p, '/' );
+			$pieces[] = ( strlen( $p ) >= 3 ) ? $q . "[a-z0-9']*" : $q . "(?![a-z0-9'])";
+		}
+		$re = "/(?<![a-z0-9'])" . implode( '[^a-z0-9\']+', $pieces ) . '/u';
+		if ( ! preg_match( $re, $norm ) ) {
+			$missing[] = $item;
+		}
+	}
+	return array( 'ok' => ! $short && ! $missing, 'short' => $short, 'missing' => $missing );
+}
+
+function h212_video_sentences( $user_id ) {
+	$list = get_user_meta( $user_id, 'h212_video_sentences', true );
+	return is_array( $list ) ? $list : array();
+}
+
+/** For the Videos list: per video, how many questions are finished and whether a sentence was sent. */
+function h212_video_progress( $user_id ) {
+	$lists = h212_student_lists( $user_id );
+	$sent  = array();
+	foreach ( h212_video_sentences( $user_id ) as $s ) {
+		$sent[ $s['video_id'] ] = true;
+	}
+	$out = array();
+	foreach ( h212_video_list() as $v ) {
+		$done = 0;
+		foreach ( $v['questions'] as $q ) {
+			if ( isset( $lists['seen'][ $q['id'] ] ) && ! isset( $lists['wrong'][ $q['id'] ] ) ) {
+				$done++;
+			}
+		}
+		$total = count( $v['questions'] );
+		$out[ $v['video_id'] ] = array(
+			'done'     => $done,
+			'total'    => $total,
+			'sentence' => ! empty( $sent[ $v['video_id'] ] ),
+			'finished' => $total > 0 && $done === $total && ! empty( $sent[ $v['video_id'] ] ),
+		);
+	}
+	return $out;
+}

@@ -101,11 +101,22 @@ function h212_hwadmin_next_id( $rows ) {
 	foreach ( $rows as $r ) {
 		$max = max( $max, intval( $r['id'] ) );
 	}
-	// Sentence Builder questions (build-content.csv) share the same id numbers,
-	// so a new question must also stay clear of those.
+	// Sentence Builder (build-content.csv) shares the same id numbers,
+	// so a new question must also stay clear of those...
 	if ( function_exists( 'h212_progress_bank' ) ) {
 		foreach ( h212_progress_bank() as $q ) {
 			$max = max( $max, intval( $q['id'] ) );
+		}
+	}
+	// ...and from the video lesson questions (video-content.csv)
+	if ( function_exists( 'h212_video_list' ) ) {
+		foreach ( h212_video_list() as $v ) {
+			foreach ( $v['questions'] as $q ) {
+				$max = max( $max, intval( $q['id'] ) );
+			}
+			if ( $v['write'] ) {
+				$max = max( $max, intval( $v['write']['id'] ) );
+			}
 		}
 	}
 	return (string) ( $max + 1 );

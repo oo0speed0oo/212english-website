@@ -510,6 +510,50 @@ button, input, select, textarea { font-family: inherit; }
 .grade-chip.status-not_started .gc-status { color: var(--text-dim); }
 .grades-coming-soon { font-size: 13px; color: var(--text-muted); font-style: italic; }
 
+/* ── VIDEO LESSONS ── */
+.video-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 16px; }
+.video-card {
+  display: block; text-decoration: none; color: var(--ink);
+  background: var(--card); border: 1px solid var(--line); border-radius: 18px; overflow: hidden; transition: all 0.2s;
+}
+.video-card:hover { border-color: var(--gold); box-shadow: 0 6px 18px rgba(20,40,75,0.08); transform: translateY(-2px); }
+.video-thumb { position: relative; width: 100%; padding-top: 56.25%; background: var(--sand); overflow: hidden; }
+.video-thumb img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; }
+.play-overlay {
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 48px; height: 48px; border-radius: 50%;
+  background: rgba(20,40,75,0.72); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 16px; padding-left: 3px;
+}
+.video-badge { position: absolute; top: 8px; right: 8px; font-size: 12px; font-weight: 700; border-radius: 999px; padding: 3px 10px; }
+.video-badge.done { background: var(--ok); color: #fff; }
+.video-badge.part { background: var(--card); color: var(--ink); border: 1px solid var(--line); }
+.video-info { padding: 12px 14px 14px; }
+.video-title { font-size: 15px; font-weight: 600; line-height: 1.4; }
+.video-msg { text-align: center; padding: 60px 20px; color: var(--text-muted); font-size: 14px; }
+.video-more { margin-top: 24px; font-size: 14px; }
+.video-more a { color: var(--gold-light); font-weight: 600; }
+.lesson-title { font-size: 22px; font-weight: 700; color: var(--ink); margin: 0 0 14px; }
+.video-embed { position: relative; width: 100%; max-width: 720px; aspect-ratio: 16 / 9; background: #000; border-radius: 18px; overflow: hidden; margin-bottom: 18px; }
+.video-embed iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
+#lesson-area { max-width: 720px; }
+.lesson-intro-text { font-size: 15px; line-height: 1.6; color: var(--text-main); margin-bottom: 18px; }
+.lesson-buttons { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+.lesson-buttons .next-btn { margin-top: 0; }
+.lesson-buttons .builder-clear { min-height: 52px; }
+.word-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
+.word-chip { font-size: 15px; font-weight: 700; color: var(--ink); background: var(--gold-tint); border-radius: 999px; padding: 6px 14px; }
+.turn-text {
+  width: 100%; min-height: 96px; resize: vertical; font-size: 17px; line-height: 1.5; color: var(--ink);
+  background: #FFFDF8; border: 2px solid var(--line-strong); border-radius: 14px; padding: 12px 14px; margin-bottom: 12px;
+}
+.turn-text:focus { outline: none; border-color: var(--gold); }
+.turn-msg { font-size: 15px; font-weight: 600; margin-bottom: 12px; }
+.turn-msg:empty { display: none; }
+.turn-msg.ok  { color: var(--ok); }
+.turn-msg.bad { color: var(--bad); }
+.turn-msg-sub { font-size: 13px; font-weight: 500; margin-top: 2px; font-family: 'Zen Kaku Gothic New', var(--font); }
+.turn-example { margin-top: 10px; font-size: 15px; font-weight: 500; color: var(--ink); background: var(--gold-tint); border-radius: 12px; padding: 10px 14px; }
+.turn-last { margin-top: 16px; font-size: 13px; color: var(--text-muted); }
+
 /* ── THEME PICKER ── */
 .theme-row { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin: 18px 0 0; max-width: 640px; }
 .theme-label { font-size: 12px; font-weight: 700; color: var(--text-muted); letter-spacing: 0.06em; text-transform: uppercase; margin-right: 4px; }
