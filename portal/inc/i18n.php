@@ -56,12 +56,21 @@ $GLOBALS['h212_strings'] = array(
 	// Dashboard
 	'dash.welcome'       => array( 'en' => 'Welcome back,',                    'ja' => 'おかえりなさい、' ),
 	'dash.subtitle'      => array( 'en' => 'What would you like to study today?', 'ja' => '今日は何を勉強しますか?' ),
-	'dash.homework_sub'  => array( 'en' => '5 levels · 17 chapters each',      'ja' => '5レベル・各17チャプター' ),
+	'dash.homework_sub'  => array( 'en' => '6 parts per chapter',              'ja' => '1チャプターに6つのパート' ),
+	'dash.tests_sub'     => array( 'en' => 'Check what you learned',           'ja' => '学んだことを確認' ),
 	'dash.start_study'   => array( 'en' => 'Start studying',                  'ja' => '学習を始める' ),
 	'dash.videos_sub'    => array( 'en' => 'Latest YouTube lessons',          'ja' => '最新のYouTubeレッスン' ),
 	'dash.start_watch'   => array( 'en' => 'Start watching',                  'ja' => '視聴を始める' ),
 	'dash.grades_sub'    => array( 'en' => 'Your progress & results',         'ja' => 'あなたの進捗と結果' ),
 	'dash.coming_soon'   => array( 'en' => 'Coming soon',                     'ja' => '近日公開' ),
+	'dash.teacher'       => array( 'en' => 'Teacher Mike',                    'ja' => 'マイク先生' ),
+	'dash.your_study'    => array( 'en' => 'Your study',                      'ja' => 'あなたの学習' ),
+	'dash.continue'      => array( 'en' => 'Continue',                        'ja' => '続きから' ),
+	'dash.next_part'     => array( 'en' => 'Next: {part}',                    'ja' => '次は：{part}' ),
+	'dash.all_done'      => array( 'en' => 'All parts finished - nice work!', 'ja' => 'すべてのパートが完了しました！' ),
+	'dash.greet_new'     => array( 'en' => 'Welcome, {name}! Ready to start Chapter {n}?', 'ja' => 'ようこそ、{name}さん！チャプター{n}を始めましょう。' ),
+	'dash.greet_back'    => array( 'en' => "Welcome back, {name}! You're {pct}% through Chapter {n}. Let's finish {part} today.", 'ja' => 'おかえり、{name}さん！チャプター{n}は{pct}%まで来ました。今日は{part}を終わらせよう。' ),
+	'dash.greet_done'    => array( 'en' => 'Welcome back, {name}! You finished Chapter {n}. Great job!', 'ja' => 'おかえり、{name}さん！チャプター{n}を完了しました。よくできました！' ),
 
 	// Profile
 	'profile.subtitle'    => array( 'en' => 'Your personal information.',      'ja' => 'あなたの個人情報。' ),
@@ -122,6 +131,15 @@ $GLOBALS['h212_strings'] = array(
 	'hw.part_builder_sub'      => array( 'en' => 'Put the words in order',  'ja' => '語を正しい順に' ),
 	'hw.part_listening_sub'    => array( 'en' => 'Hear and answer',         'ja' => '聞いて答える' ),
 	'hw.part_conversation_sub' => array( 'en' => 'Choose the best reply',   'ja' => '最適な返事を選ぶ' ),
+	'hw.group_alt_vocabulary' => array( 'en' => '語彙',         'ja' => 'Vocabulary' ),
+	'hw.group_alt_grammar'    => array( 'en' => '文法',         'ja' => 'Grammar' ),
+	'hw.group_alt_listening'  => array( 'en' => 'リスニング',   'ja' => 'Listening' ),
+	'hw.part_alt_photo'        => array( 'en' => '写真',       'ja' => 'Photos' ),
+	'hw.part_alt_vocabulary'   => array( 'en' => '単語',       'ja' => 'Words' ),
+	'hw.part_alt_grammar'      => array( 'en' => '穴うめ',     'ja' => 'Fill in the blank' ),
+	'hw.part_alt_builder'      => array( 'en' => '並べ替え',   'ja' => 'Sentence Builder' ),
+	'hw.part_alt_listening'    => array( 'en' => '聞き取り',   'ja' => 'Listen' ),
+	'hw.part_alt_conversation' => array( 'en' => '会話',       'ja' => 'Conversation' ),
 	'hw.coming_parts'      => array( 'en' => 'Coming with new lessons', 'ja' => '新しいレッスンで追加予定' ),
 	'hw.status_done'       => array( 'en' => 'Done',               'ja' => '完了' ),
 	'hw.status_new'        => array( 'en' => 'New',                'ja' => '新規' ),
@@ -179,6 +197,12 @@ $GLOBALS['h212_strings'] = array(
 	'videos.error'        => array( 'en' => '⚠️ Could not load videos.',       'ja' => '⚠️ 動画を読み込めませんでした。' ),
 	'videos.visit_yt'     => array( 'en' => 'Visit YouTube ↗',                 'ja' => 'YouTubeで見る ↗' ),
 );
+
+/** The same text in the OTHER language (used for small bilingual labels). */
+function t_other( $key ) {
+	$other = ( 'en' === $GLOBALS['h212_lang'] ) ? 'ja' : 'en';
+	return $GLOBALS['h212_strings'][ $key ][ $other ] ?? $key;
+}
 
 function t( $key ) {
 	$lang = $GLOBALS['h212_lang'];

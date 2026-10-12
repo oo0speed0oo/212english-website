@@ -5,7 +5,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>212 English – My Profile</title>
-<link rel="stylesheet" href="components/base.css">
+<link rel="stylesheet" href="components/base.css?v=<?php echo (int) filemtime( __DIR__ . '/components/base.css' ); ?>">
 <style>
   .profile-card { background:rgba(255,252,245,0.6); border:1px solid rgba(184,145,46,0.2); border-radius:16px; padding:32px; max-width:620px; }
   .avatar-row { display:flex; align-items:center; gap:20px; margin-bottom:32px; padding-bottom:24px; border-bottom:1px solid rgba(184,145,46,0.15); }

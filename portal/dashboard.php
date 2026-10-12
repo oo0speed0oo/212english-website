@@ -5,40 +5,104 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>212 English – Dashboard</title>
-<link rel="stylesheet" href="components/base.css">
-<style>
-  .welcome-banner { margin-bottom:32px; padding-bottom:24px; border-bottom:1px solid rgba(184,145,46,0.15); }
-  .welcome-banner h1 { font-family:'Playfair Display',serif; font-size:28px; font-weight:400; color:var(--warm-white); margin-bottom:6px; }
-  .welcome-banner h1 em { color:var(--gold); font-style:italic; }
-  .welcome-banner p { font-size:14px; color:var(--text-muted); }
-  .dash-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:16px; }
-  .dash-card { background:rgba(255,252,245,0.6); border:1px solid rgba(184,145,46,0.2); border-radius:14px; padding:24px 20px; cursor:pointer; transition:all 0.3s; text-align:left; text-decoration:none; display:block; }
-  .dash-card:hover { background:rgba(255,252,245,0.9); border-color:rgba(184,145,46,0.45); transform:translateY(-3px); box-shadow:0 12px 40px rgba(120,90,20,0.12); }
-  .dash-card-icon  { font-size:28px; margin-bottom:14px; }
-  .dash-card-title { font-size:16px; font-weight:500; color:var(--warm-white); margin-bottom:4px; }
-  .dash-card-sub   { font-size:12px; color:var(--text-muted); }
-  .dash-card-badge { display:inline-block; margin-top:12px; font-size:11px; padding:3px 10px; border-radius:100px; background:rgba(184,145,46,0.12); color:var(--gold-light); border:1px solid rgba(184,145,46,0.25); }
-</style>
+<link rel="stylesheet" href="components/base.css?v=<?php echo (int) filemtime( __DIR__ . '/components/base.css' ); ?>">
 </head>
 <body>
 <?php
 require __DIR__ . '/inc/nav.php';
+require __DIR__ . '/inc/mike.php';
 h212_render_nav( 'home' );
 
 $first = get_user_meta( $h212_user->ID, 'first_name', true );
 if ( '' === $first ) {
 	$first = 'Student';
 }
+
+// Where the student is: the furthest open chapter that has questions.
+// (All the progress rules live in wp-content/mu-plugins/212-progress.php.)
+$state = function_exists( 'h212_progress_state' ) ? h212_progress_state( $h212_user->ID, true ) : array( 'chapters' => array() );
+$cur   = null;
+foreach ( $state['chapters'] as $key => $ch ) {
+	if ( $ch['u'] && $ch['t'] > 0 ) {
+		list( $l, $c ) = array_map( 'intval', explode( '-', $key ) );
+		$cur = array( 'level' => $l, 'chapter' => $c, 'total' => $ch['t'], 'finished' => $ch['f'], 'parts' => $ch['parts'] );
+	}
+}
+// Next part to work on = first part (in on-screen order) that has questions and isn't finished.
+$next_part = '';
+if ( $cur ) {
+	foreach ( array( 'photo', 'vocabulary', 'grammar', 'builder', 'listening', 'conversation' ) as $part ) {
+		$p = $cur['parts'][ $part ];
+		if ( $p['total'] > 0 && $p['finished'] < $p['total'] ) {
+			$next_part = $part;
+			break;
+		}
+	}
+}
+$pct = $cur ? (int) floor( $cur['finished'] * 100 / $cur['total'] ) : 0;
+
+function h212_fill( $text, $vars ) {
+	foreach ( $vars as $k => $v ) {
+		$text = str_replace( '{' . $k . '}', $v, $text );
+	}
+	return $text;
+}
+$part_name_cur = $next_part ? t( 'hw.part_' . $next_part ) : '';
+$part_name_alt = $next_part ? t_other( 'hw.part_' . $next_part ) : '';
+if ( ! $cur ) {
+	$cur = array( 'level' => 1, 'chapter' => 1 );
+}
+if ( $next_part && $pct > 0 ) {
+	$greet_key = 'dash.greet_back';
+} elseif ( $next_part ) {
+	$greet_key = 'dash.greet_new';
+} else {
+	$greet_key = 'dash.greet_done';
+}
+$vars_cur = array( 'name' => $first, 'n' => $cur['chapter'], 'pct' => $pct, 'part' => $part_name_cur );
+$vars_alt = array( 'name' => $first, 'n' => $cur['chapter'], 'pct' => $pct, 'part' => $part_name_alt );
 ?>
-<div class="welcome-banner">
-  <h1><?php echo esc_html( t( 'dash.welcome' ) ); ?> <em><?php echo esc_html( $first ); ?></em> 👋</h1>
-  <p><?php echo esc_html( t( 'dash.subtitle' ) ); ?></p>
+<div class="hero">
+  <div class="hero-mike"><?php echo h212_mike_svg( 120, 'talking' ); // phpcs:ignore ?></div>
+  <div class="hero-text">
+    <div class="hero-kicker"><?php echo esc_html( t( 'dash.teacher' ) ); ?></div>
+    <div class="hero-line" id="mike-line"><?php echo esc_html( h212_fill( t( $greet_key ), $vars_cur ) ); ?></div>
+    <div class="hero-line-ja"><?php echo esc_html( h212_fill( t_other( $greet_key ), $vars_alt ) ); ?></div>
+  </div>
 </div>
+
+<a class="continue-card" href="homework.php?level=<?php echo (int) $cur['level']; ?>&amp;chapter=<?php echo (int) $cur['chapter']; ?>">
+  <div class="ring" style="background: conic-gradient(var(--gold) 0 <?php echo (int) $pct; ?>%, var(--sand) <?php echo (int) $pct; ?>% 100%)"><div class="ring-inner"><?php echo (int) $pct; ?>%</div></div>
+  <div class="continue-text">
+    <div class="continue-kicker"><?php echo esc_html( t( 'dash.continue' ) ); ?> · <?php echo esc_html( t( 'hw.level' ) ); ?> <?php echo (int) $cur['level']; ?></div>
+    <div class="continue-title"><?php echo esc_html( t( 'hw.chapter' ) ); ?> <?php echo (int) $cur['chapter']; ?></div>
+    <div class="continue-next"><?php echo esc_html( $next_part ? h212_fill( t( 'dash.next_part' ), array( 'part' => $part_name_cur ) ) : t( 'dash.all_done' ) ); ?></div>
+  </div>
+  <svg class="continue-arrow" aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"></path></svg>
+</a>
+
+<div class="dash-label"><?php echo esc_html( t( 'dash.your_study' ) ); ?></div>
 <div class="dash-grid">
-  <a class="dash-card" href="homework.php"><div class="dash-card-icon">📚</div><div class="dash-card-title"><?php echo esc_html( t( 'nav.homework' ) ); ?></div><div class="dash-card-sub"><?php echo esc_html( t( 'dash.homework_sub' ) ); ?></div><div class="dash-card-badge"><?php echo esc_html( t( 'dash.start_study' ) ); ?></div></a>
-  <a class="dash-card" href="tests.php"><div class="dash-card-icon">📝</div><div class="dash-card-title"><?php echo esc_html( t( 'nav.tests' ) ); ?></div><div class="dash-card-sub"><?php echo esc_html( t( 'dash.homework_sub' ) ); ?></div><div class="dash-card-badge"><?php echo esc_html( t( 'dash.start_study' ) ); ?></div></a>
-  <a class="dash-card" href="videos.php"><div class="dash-card-icon">🎬</div><div class="dash-card-title"><?php echo esc_html( t( 'nav.videos' ) ); ?></div><div class="dash-card-sub"><?php echo esc_html( t( 'dash.videos_sub' ) ); ?></div><div class="dash-card-badge"><?php echo esc_html( t( 'dash.start_watch' ) ); ?></div></a>
-  <a class="dash-card" href="grades.php"><div class="dash-card-icon">📊</div><div class="dash-card-title"><?php echo esc_html( t( 'nav.grades' ) ); ?></div><div class="dash-card-sub"><?php echo esc_html( t( 'dash.grades_sub' ) ); ?></div><div class="dash-card-badge"><?php echo esc_html( t( 'dash.start_study' ) ); ?></div></a>
+  <a class="dash-card dash-homework" href="homework.php">
+    <div class="dash-card-icon"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h11a3 3 0 013 3v11H7a3 3 0 01-3-3z"></path><path d="M8 9h6M8 13h4"></path></svg></div>
+    <div class="dash-card-title"><?php echo esc_html( t( 'nav.homework' ) ); ?></div>
+    <div class="dash-card-sub"><?php echo esc_html( t_other( 'nav.homework' ) . ' · ' . t( 'dash.homework_sub' ) ); ?></div>
+  </a>
+  <a class="dash-card dash-tests" href="tests.php">
+    <div class="dash-card-icon"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="4" width="14" height="17" rx="2.5"></rect><path d="M9 4V3h6v1M9 11l2 2 4-4M9 17h6"></path></svg></div>
+    <div class="dash-card-title"><?php echo esc_html( t( 'nav.tests' ) ); ?></div>
+    <div class="dash-card-sub"><?php echo esc_html( t_other( 'nav.tests' ) . ' · ' . t( 'dash.tests_sub' ) ); ?></div>
+  </a>
+  <a class="dash-card dash-grades" href="grades.php">
+    <div class="dash-card-icon"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 20V10M12 20V4M19 20v-7"></path></svg></div>
+    <div class="dash-card-title"><?php echo esc_html( t( 'nav.grades' ) ); ?></div>
+    <div class="dash-card-sub"><?php echo esc_html( t_other( 'nav.grades' ) . ' · ' . t( 'dash.grades_sub' ) ); ?></div>
+  </a>
+  <a class="dash-card dash-videos" href="videos.php">
+    <div class="dash-card-icon"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="3"></rect><path d="M10 9.5v5l4.5-2.5z"></path></svg></div>
+    <div class="dash-card-title"><?php echo esc_html( t( 'nav.videos' ) ); ?></div>
+    <div class="dash-card-sub"><?php echo esc_html( t_other( 'nav.videos' ) . ' · ' . t( 'dash.videos_sub' ) ); ?></div>
+  </a>
 </div>
 </main>
 </div>

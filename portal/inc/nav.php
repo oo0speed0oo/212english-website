@@ -34,7 +34,7 @@ function h212_render_nav( $active ) {
 	<nav class="topnav">
 		<div class="nav-left">
 			<button type="button" class="nav-hamburger" onclick="h212OpenNav()" aria-label="<?php echo esc_attr( t( 'nav.menu' ) ); ?>">☰</button>
-			<a class="nav-logo" href="dashboard.php"><em>212</em> English School</a>
+			<a class="nav-logo" href="dashboard.php"><em>212</em> English<span class="nav-logo-school"> School</span></a>
 		</div>
 		<div class="nav-right">
 			<a class="lang-switch" href="<?php echo $current_url; ?>"><?php echo esc_html( $other_lang_label ); ?></a>

@@ -5,38 +5,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>212 English – Grades</title>
-<link rel="stylesheet" href="components/base.css">
-<style>
-  .grades-summary {
-    background: rgba(255,252,245,0.6);
-    border: 1px solid rgba(184,145,46,0.2);
-    border-radius: 16px; padding: 24px 28px;
-    margin-bottom: 32px;
-    display: flex; align-items: center; justify-content: space-between;
-    flex-wrap: wrap; gap: 16px;
-  }
-  .grades-headline { font-size: 18px; color: var(--warm-white); font-weight: 500; margin-bottom: 6px; }
-  .grades-stats { font-size: 13px; color: var(--text-muted); }
-  .grades-stats strong { color: var(--gold-light); font-weight: 500; }
-
-  .grades-level-block { margin-bottom: 28px; }
-  .grades-level-title { font-size: 15px; color: var(--warm-white); font-weight: 500; margin-bottom: 12px; }
-  .grades-chapter-grid { display: grid; gap: 10px; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); }
-  .grade-chip {
-    border-radius: 10px; padding: 12px 14px;
-    border: 1px solid rgba(184,145,46,0.2);
-    background: rgba(255,252,245,0.5);
-  }
-  .grade-chip .gc-num { display:block; font-size: 12px; color: var(--text-muted); margin-bottom: 4px; }
-  .grade-chip .gc-status { display:block; font-size: 12px; font-weight: 600; }
-  .grade-chip.status-mastered { border-color: rgba(47,122,79,0.35); background: rgba(47,122,79,0.08); }
-  .grade-chip.status-mastered .gc-status { color: #2f7a4f; }
-  .grade-chip.status-progress { border-color: rgba(184,145,46,0.4); background: rgba(184,145,46,0.08); }
-  .grade-chip.status-progress .gc-status { color: var(--gold-light); }
-  .grade-chip.status-not_started .gc-status { color: var(--text-dim); }
-
-  .grades-coming-soon { font-size: 13px; color: var(--text-muted); font-style: italic; }
-</style>
+<link rel="stylesheet" href="components/base.css?v=<?php echo (int) filemtime( __DIR__ . '/components/base.css' ); ?>">
 </head>
 <body>
 <?php

@@ -5,7 +5,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>212 English – Videos</title>
-<link rel="stylesheet" href="components/base.css">
+<link rel="stylesheet" href="components/base.css?v=<?php echo (int) filemtime( __DIR__ . '/components/base.css' ); ?>">
 <style>
   .video-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:20px; }
   .video-card { background:rgba(255,252,245,0.6); border:1px solid rgba(184,145,46,0.2); border-radius:14px; overflow:hidden; cursor:pointer; transition:all 0.25s; }

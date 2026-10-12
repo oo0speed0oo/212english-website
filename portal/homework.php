@@ -5,89 +5,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>212 English – Homework</title>
-<link rel="stylesheet" href="components/base.css">
-<style>
-  .question-card {
-    background: rgba(255,252,245,0.6);
-    border: 1px solid rgba(184,145,46,0.2);
-    border-radius: 16px; padding: 32px; max-width: 620px;
-  }
-  .question-text {
-    font-size: 18px; color: var(--warm-white);
-    margin-bottom: 28px; line-height: 1.6;
-  }
-  .choices { display: flex; flex-direction: column; gap: 12px; }
-  .choice-btn {
-    background: rgba(255,255,255,0.5);
-    border: 1px solid rgba(184,145,46,0.3);
-    border-radius: 10px; padding: 14px 18px;
-    color: var(--text-main); font-size: 15px;
-    font-family: inherit; text-align: left;
-    cursor: pointer; transition: all 0.2s;
-  }
-  .choice-btn:hover { background: rgba(184,145,46,0.12); border-color: rgba(184,145,46,0.5); }
-  .choice-btn.correct { background: rgba(47,122,79,0.15); border-color: rgba(47,122,79,0.5); color: #2f7a4f; }
-  .choice-btn.wrong   { background: rgba(179,38,30,0.12); border-color: rgba(179,38,30,0.5); color: #b3261e; }
-  .choice-btn:disabled { cursor: default; }
-  .result-msg {
-    margin-top: 20px; padding: 14px 18px;
-    border-radius: 10px; font-size: 15px; font-weight: 500;
-    display: none;
-  }
-  .result-msg.correct { background: rgba(47,122,79,0.1); color: #2f7a4f; border: 1px solid rgba(47,122,79,0.3); }
-  .result-msg.wrong   { background: rgba(179,38,30,0.08); color: #b3261e; border: 1px solid rgba(179,38,30,0.3); }
-  .next-btn {
-    margin-top: 20px;
-    display: none;
-    background: rgba(184,145,46,0.15);
-    border: 1px solid rgba(184,145,46,0.4);
-    border-radius: 8px; padding: 11px 24px;
-    color: var(--gold-light); font-size: 14px;
-    font-weight: 500; cursor: pointer; font-family: inherit;
-    transition: all 0.2s;
-  }
-  .next-btn:hover { background: rgba(184,145,46,0.25); }
-  .score-bar {
-    font-size: 13px; color: var(--text-muted);
-    margin-bottom: 20px;
-  }
-  .score-bar span { color: var(--gold-light); font-weight: 500; }
-  .loading-msg { color: var(--text-muted); font-size: 14px; padding: 40px 0; }
-  .no-content {
-    color: var(--text-muted); font-size: 14px; padding: 40px 0;
-    text-align: center;
-  }
-
-  /* ── Photo question image ── */
-  .photo-img-wrap {
-    margin-bottom: 20px;
-    display: flex;
-    justify-content: flex-start;
-  }
-  .photo-img-wrap img {
-    width: 180px;
-    height: 180px;
-    object-fit: contain;
-    border-radius: 12px;
-    background: rgba(255,255,255,0.5);
-    border: 1px solid rgba(184,145,46,0.3);
-    padding: 10px;
-  }
-  .audio-wrap { margin-bottom: 20px; }
-  .audio-wrap audio { width: 100%; max-width: 320px; }
-  .photo-badge {
-    display: inline-block;
-    font-size: 11px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--gold-light);
-    background: rgba(184,145,46,0.1);
-    border: 1px solid rgba(184,145,46,0.25);
-    border-radius: 6px;
-    padding: 3px 10px;
-    margin-bottom: 14px;
-  }
-</style>
+<link rel="stylesheet" href="components/base.css?v=<?php echo (int) filemtime( __DIR__ . '/components/base.css' ); ?>">
 </head>
 <body>
 <?php
@@ -105,6 +23,8 @@ h212_js_strings( array(
 	'hw.locked_level', 'hw.locked_chapter',
 	'hw.part_photo', 'hw.part_vocabulary', 'hw.part_grammar', 'hw.part_builder', 'hw.part_listening', 'hw.part_conversation',
 	'hw.part_photo_sub', 'hw.part_vocabulary_sub', 'hw.part_grammar_sub', 'hw.part_builder_sub', 'hw.part_listening_sub', 'hw.part_conversation_sub',
+	'hw.group_alt_vocabulary', 'hw.group_alt_grammar', 'hw.group_alt_listening',
+	'hw.part_alt_photo', 'hw.part_alt_vocabulary', 'hw.part_alt_grammar', 'hw.part_alt_builder', 'hw.part_alt_listening', 'hw.part_alt_conversation',
 	'hw.coming_parts', 'hw.status_done', 'hw.status_new', 'hw.chapter_progress', 'hw.next_open', 'hw.next_locked',
 	'hw.next_level_open', 'hw.next_level_locked', 'hw.just_unlocked', 'hw.just_unlocked_level',
 	'builder.instruction', 'builder.empty', 'builder.check', 'builder.clear', 'builder.wrong_msg', 'conv.prompt',
@@ -115,6 +35,7 @@ require_once __DIR__ . '/inc/voices.php';
 h212_voice_script();
 ?>
 <script src="components/listen.js?v=<?php echo (int) filemtime( __DIR__ . '/components/listen.js' ); ?>"></script>
+<script src="components/ui.js?v=<?php echo (int) filemtime( __DIR__ . '/components/ui.js' ); ?>"></script>
 <script src="components/builder.js?v=<?php echo (int) filemtime( __DIR__ . '/components/builder.js' ); ?>"></script>
 <script>window.H212_NONCE = "<?php echo esc_js( wp_create_nonce( 'h212_save_score' ) ); ?>";</script>
 <script>
@@ -139,8 +60,19 @@ var AUDIO_FOLDER = 'audio/';
 
 // ── Boot ──────────────────────────────────────────
 window.addEventListener('DOMContentLoaded', function() {
-  Promise.all([ loadCSV(), loadScores(), loadSeen(), loadWrong(), loadProgress() ]).then(renderLevels).catch(renderLevels);
+  Promise.all([ loadCSV(), loadScores(), loadSeen(), loadWrong(), loadProgress() ]).then(openFromLink).catch(renderLevels);
 });
+
+// The dashboard's Continue card links straight to a chapter (?level=1&chapter=4)
+function openFromLink() {
+  var m = /[?&]level=(\d+)&chapter=(\d+)/.exec(window.location.search);
+  if (m && isChapterUnlocked(parseInt(m[1]), parseInt(m[2]))) {
+    currentLevel = parseInt(m[1]);
+    renderTypes(parseInt(m[2]));
+  } else {
+    renderLevels();
+  }
+}
 
 // ── Load & parse CSV ──────────────────────────────
 function loadCSV() {
@@ -366,11 +298,10 @@ function typeLabel(type) {
 
 // The 6 practice parts of a chapter, in 3 groups
 var GROUPS = [
-  { label: 'hw.vocabulary', parts: ['photo', 'vocabulary'] },
-  { label: 'hw.grammar',    parts: ['grammar', 'builder'] },
-  { label: 'hw.listening',  parts: ['listening', 'conversation'] }
+  { key: 'vocabulary', label: 'hw.vocabulary', alt: 'hw.group_alt_vocabulary', parts: ['photo', 'vocabulary'] },
+  { key: 'grammar',    label: 'hw.grammar',    alt: 'hw.group_alt_grammar',    parts: ['grammar', 'builder'] },
+  { key: 'listening',  label: 'hw.listening',  alt: 'hw.group_alt_listening',  parts: ['listening', 'conversation'] }
 ];
-var PART_ICON = { photo: '📸', vocabulary: '🔤', grammar: '✏️', builder: '🧩', listening: '🎧', conversation: '💬' };
 
 function renderLevels() {
   currentLevel = null; currentChapter = null; currentType = null;
@@ -418,19 +349,20 @@ function renderChapters(lvl) {
 function renderTypes(ch) {
   if (!isChapterUnlocked(currentLevel, ch)) { renderChapters(currentLevel); return; }
   currentChapter = ch; currentType = null;
-  var html = '<div class="section-header"><h2>' + H212_T['nav.homework'] + '</h2><p>' + H212_T['hw.choose_study'] + '</p></div>'
-    + '<div class="breadcrumb"><span>' + H212_T['nav.homework'] + '</span><span class="sep">›</span><span>' + H212_T['hw.level'] + ' ' + currentLevel + '</span><span class="sep">›</span><span>' + H212_T['hw.chapter'] + ' ' + ch + '</span></div>'
-    + '<button class="back-btn" onclick="renderChapters(' + currentLevel + ')">' + H212_T['hw.back_chapters'] + '</button>'
+  var html = '<div class="chapter-head">'
+    + '<button type="button" class="back-btn" onclick="renderChapters(' + currentLevel + ')" aria-label="' + H212_T['hw.back_chapters'] + '">' + H212UI.icons.back + '</button>'
+    + '<div><div class="chapter-head-kicker">' + H212_T['hw.level'] + ' ' + currentLevel + ' · ' + H212_T['hw.chapter'] + ' ' + ch + '</div>'
+    + '<div class="chapter-head-title">' + H212_T['hw.chapter'] + ' ' + ch + '</div></div></div>'
     + chapterBarHtml(currentLevel, ch);
   GROUPS.forEach(function(g) {
-    html += '<div class="part-group"><h3 class="part-group-title">' + H212_T[g.label] + '</h3><div class="type-grid">';
+    html += '<div class="part-group grp-' + g.key + '"><h3 class="part-group-title">' + H212_T[g.label].toUpperCase() + ' <span class="alt">· ' + H212_T[g.alt] + '</span></h3><div class="type-grid">';
     g.parts.forEach(function(part) {
       var has = questionsForType(currentLevel, ch, part).length > 0;
-      html += '<div class="type-btn part-' + part + (has ? '' : ' empty') + '"' + (has ? ' onclick="startQuiz(\'' + part + '\')"' : '') + '>'
-        + '<span class="icon">' + PART_ICON[part] + '</span>'
-        + '<span class="lbl">' + H212_T['hw.part_' + part] + '</span>'
-        + '<span class="sub">' + H212_T['hw.part_' + part + '_sub'] + '</span>'
-        + typeStatusHtml(currentLevel, ch, part) + '</div>';
+      html += '<div class="type-btn part-' + part + (has ? '' : ' empty') + '"' + (has ? ' role="button" tabindex="0" onclick="startQuiz(\'' + part + '\')" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();startQuiz(\'' + part + '\');}"' : '') + '>'
+        + '<span class="icon">' + H212UI.icons[part] + '</span>'
+        + '<span class="lbl">' + H212_T['hw.part_' + part] + ' <span class="alt">· ' + H212_T['hw.part_alt_' + part] + '</span></span>'
+        + '<span class="sub">' + (has ? H212_T['hw.part_' + part + '_sub'] : H212_T['hw.coming_parts']) + '</span>'
+        + (has ? typeStatusHtml(currentLevel, ch, part) : '') + '</div>';
     });
     html += '</div></div>';
   });
@@ -441,18 +373,20 @@ function renderTypes(ch) {
 function chapterBarHtml(level, ch) {
   var pct = chapterPercent(level, ch);
   var next = '';
+  var nextOpen = true;
   if (ch < 17 || level < 5) {
     var isLevelStep = ch >= 17;
     var nl = isLevelStep ? level + 1 : level;
     var nc = isLevelStep ? 1 : ch + 1;
     var open = isChapterUnlocked(nl, nc);
+    nextOpen = open;
     var key = isLevelStep ? (open ? 'hw.next_level_open' : 'hw.next_level_locked') : (open ? 'hw.next_open' : 'hw.next_locked');
     next = H212_T[key].replace('{n}', isLevelStep ? nl : nc);
   }
   return '<div class="chapter-bar">'
-    + '<div class="chapter-bar-top"><span>' + H212_T['hw.chapter_progress'] + '</span><strong>' + pct + '%</strong></div>'
+    + '<div class="chapter-bar-top"><span>' + H212_T['hw.chapter_progress'] + '</span><span>' + pct + '%</span></div>'
     + '<div class="chapter-bar-track"><div class="chapter-bar-fill" style="width:' + pct + '%"></div><div class="chapter-bar-mark" title="70%"></div></div>'
-    + (next ? '<div class="chapter-bar-next">' + next + '</div>' : '')
+    + (next ? '<div class="chapter-bar-next' + (nextOpen ? '' : ' locked') + '">' + next + '</div>' : '')
     + '</div>';
 }
 
@@ -460,15 +394,14 @@ function typeStatusHtml(level, chapter, type) {
   var qs = questionsForType(level, chapter, type);
   if (!qs.length) return '<span class="status muted">' + H212_T['hw.coming_parts'] + '</span>';
   if (isTypeFinished(level, chapter, type)) {
-    var best = bestScore(level, chapter, type);
-    return '<span class="status">✓ ' + H212_T['hw.status_done'] + (best ? ' · ' + best.score + '/' + best.total : '') + '</span>';
+    return '<span class="status done">✓ ' + H212_T['hw.status_done'] + '</span>';
   }
   var wrongCount = wrongQuestionsForType(level, chapter, type).length;
   if (wrongCount > 0 && unseenQuestionsForType(level, chapter, type).length === 0) {
     return '<span class="status wrong">⚠ ' + wrongCount + ' ' + H212_T['hw.needs_review'] + '</span>';
   }
   var finished = qs.filter(function(q) { return allSeen.indexOf(q.id) !== -1 && allWrong.indexOf(q.id) === -1; }).length;
-  if (finished > 0) return '<span class="status take">' + finished + '/' + qs.length + '</span>';
+  if (finished > 0) return '<span class="status part">' + finished + '/' + qs.length + '</span>';
   return '<span class="status take">' + H212_T['hw.status_new'] + '</span>';
 }
 
@@ -526,15 +459,12 @@ function beginQuiz(type) {
 
 function showQuestion() {
   var typeName = typeLabel(currentType);
-  var html = '<div class="section-header"><h2>' + typeName + '</h2></div>'
-    + '<div class="breadcrumb"><span>' + H212_T['nav.homework'] + '</span><span class="sep">›</span>'
-    + '<span>' + H212_T['hw.level'] + ' ' + currentLevel + '</span><span class="sep">›</span>'
-    + '<span>' + H212_T['hw.chapter'] + ' ' + currentChapter + '</span><span class="sep">›</span>'
-    + '<span>' + typeName + '</span></div>'
-    + '<button class="back-btn" onclick="renderTypes(' + currentChapter + ')">' + H212_T['hw.back'] + '</button>';
+  var grp = H212UI.groupOf(currentType);
+  var html = '';
 
   if (currentQ.length === 0) {
-    html += '<div class="no-content">' + H212_T['hw.no_content'] + '</div>';
+    html += '<button class="back-btn" onclick="renderTypes(' + currentChapter + ')">' + H212_T['hw.back'] + '</button>'
+      + '<div class="no-content">' + H212_T['hw.no_content'] + '</div>';
     getPC().innerHTML = html;
     return;
   }
@@ -552,8 +482,8 @@ function showQuestion() {
     imgFile = q.answer.toLowerCase().replace(/\s+/g, '-') + '.png';
   }
 
-  html += '<div class="score-bar">' + H212_T['hw.question'] + ' <span>' + (currentIndex + 1) + ' ' + H212_T['hw.of'] + ' ' + total + '</span>'
-    + ' &nbsp;·&nbsp; ' + H212_T['hw.score'] + ' <span>' + score + '</span></div>'
+  html += H212UI.qTop({ onclose: 'renderTypes(' + currentChapter + ')', label: H212_T['hw.back'], index: currentIndex, total: total, score: score, scoreWord: H212_T['hw.score'].replace(/:$/, '') })
+    + '<div class="grp-' + grp + '"><div class="q-label">' + H212_T[GROUPS.filter(function(g) { return g.key === grp; })[0].label] + ' · ' + typeName + '</div></div>'
     + '<div class="question-card">';
 
   if (imgFile) {

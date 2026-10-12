@@ -5,51 +5,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>212 English – Tests</title>
-<link rel="stylesheet" href="components/base.css">
-<style>
-  .question-card {
-    background: rgba(255,252,245,0.6);
-    border: 1px solid rgba(184,145,46,0.2);
-    border-radius: 16px; padding: 32px; max-width: 620px;
-  }
-  .question-text { font-size: 18px; color: var(--warm-white); margin-bottom: 28px; line-height: 1.6; }
-  .choices { display: flex; flex-direction: column; gap: 12px; }
-  .choice-btn {
-    background: rgba(255,255,255,0.5);
-    border: 1px solid rgba(184,145,46,0.3);
-    border-radius: 10px; padding: 14px 18px;
-    color: var(--text-main); font-size: 15px;
-    font-family: inherit; text-align: left;
-    cursor: pointer; transition: all 0.2s;
-  }
-  .choice-btn:hover { background: rgba(184,145,46,0.12); border-color: rgba(184,145,46,0.5); }
-  .choice-btn.correct { background: rgba(47,122,79,0.15); border-color: rgba(47,122,79,0.5); color: #2f7a4f; }
-  .choice-btn.wrong   { background: rgba(179,38,30,0.12); border-color: rgba(179,38,30,0.5); color: #b3261e; }
-  .choice-btn:disabled { cursor: default; }
-  .result-msg {
-    margin-top: 20px; padding: 14px 18px;
-    border-radius: 10px; font-size: 15px; font-weight: 500;
-    display: none;
-  }
-  .result-msg.correct { background: rgba(47,122,79,0.1); color: #2f7a4f; border: 1px solid rgba(47,122,79,0.3); }
-  .result-msg.wrong   { background: rgba(179,38,30,0.08); color: #b3261e; border: 1px solid rgba(179,38,30,0.3); }
-  .next-btn {
-    margin-top: 20px; display: none;
-    background: rgba(184,145,46,0.15);
-    border: 1px solid rgba(184,145,46,0.4);
-    border-radius: 8px; padding: 11px 24px;
-    color: var(--gold-light); font-size: 14px;
-    font-weight: 500; cursor: pointer; font-family: inherit;
-    transition: all 0.2s;
-  }
-  .next-btn:hover { background: rgba(184,145,46,0.25); }
-  .score-bar { font-size: 13px; color: var(--text-muted); margin-bottom: 20px; }
-  .score-bar span { color: var(--gold-light); font-weight: 500; }
-  .no-content { color: var(--text-muted); font-size: 14px; padding: 40px 0; text-align: center; }
-  .chapter-btn .status { display: block; margin-top: 8px; font-size: 11px; font-weight: 600; color: #2f7a4f; }
-  .chapter-btn .status.take  { color: var(--gold-light); }
-  .chapter-btn .status.muted { color: var(--text-dim); font-weight: 400; }
-</style>
+<link rel="stylesheet" href="components/base.css?v=<?php echo (int) filemtime( __DIR__ . '/components/base.css' ); ?>">
 </head>
 <body>
 <?php
@@ -69,6 +25,7 @@ require_once __DIR__ . '/inc/voices.php';
 h212_voice_script();
 ?>
 <script src="components/listen.js?v=<?php echo (int) filemtime( __DIR__ . '/components/listen.js' ); ?>"></script>
+<script src="components/ui.js?v=<?php echo (int) filemtime( __DIR__ . '/components/ui.js' ); ?>"></script>
 <script src="components/builder.js?v=<?php echo (int) filemtime( __DIR__ . '/components/builder.js' ); ?>"></script>
 <script>window.H212_NONCE = "<?php echo esc_js( wp_create_nonce( 'h212_save_score' ) ); ?>";</script>
 <script>
@@ -312,22 +269,19 @@ function beginTest() {
 
 function showQuestion() {
   var total = currentQ.length;
-  var html = '<div class="section-header"><h2>' + H212_T['tests.test_label'] + '</h2></div>'
-    + '<div class="breadcrumb"><span>' + H212_T['nav.tests'] + '</span><span class="sep">›</span>'
-    + '<span>' + H212_T['hw.level'] + ' ' + currentLevel + '</span><span class="sep">›</span>'
-    + '<span>' + H212_T['hw.chapter'] + ' ' + currentChapter + '</span></div>'
-    + '<button class="back-btn" onclick="renderChapters(' + currentLevel + ')">' + H212_T['hw.back'] + '</button>';
+  var html = '';
 
   if (!total) {
-    html += '<div class="no-content">' + H212_T['tests.no_content'] + '</div>';
+    html += '<button class="back-btn" onclick="renderChapters(' + currentLevel + ')">' + H212_T['hw.back'] + '</button>'
+      + '<div class="no-content">' + H212_T['tests.no_content'] + '</div>';
     getPC().innerHTML = html;
     return;
   }
 
   var q = currentQ[currentIndex];
 
-  html += '<div class="score-bar">' + H212_T['hw.question'] + ' <span>' + (currentIndex + 1) + ' ' + H212_T['hw.of'] + ' ' + total + '</span>'
-    + ' &nbsp;·&nbsp; ' + H212_T['hw.score'] + ' <span>' + score + '</span></div>'
+  html += H212UI.qTop({ onclose: 'renderChapters(' + currentLevel + ')', label: H212_T['hw.back'], index: currentIndex, total: total, score: score, scoreWord: H212_T['hw.score'].replace(/:$/, '') })
+    + '<div class="q-label">' + H212_T['tests.test_label'] + ' · ' + H212_T['hw.level'] + ' ' + currentLevel + ' · ' + H212_T['hw.chapter'] + ' ' + currentChapter + '</div>'
     + '<div class="question-card">';
 
   if (q.image) {
