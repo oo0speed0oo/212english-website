@@ -25,6 +25,12 @@ require_once __DIR__ . '/inc/voices.php';
 h212_voice_script();
 require_once __DIR__ . '/inc/mike.php';
 h212_mike_for_js();
+// Version numbers for the question files, so a browser never shows an old copy after an upload
+$h212_csv_v = array();
+foreach ( array( 'homework' => 'homework-content.csv', 'build' => 'build-content.csv' ) as $k => $f ) {
+	$h212_csv_v[ $k ] = file_exists( __DIR__ . '/' . $f ) ? filemtime( __DIR__ . '/' . $f ) . '-' . filesize( __DIR__ . '/' . $f ) : '0';
+}
+echo '<script>window.H212_CSV_V = ' . wp_json_encode( $h212_csv_v ) . ';</script>' . "\n";
 ?>
 <script src="components/listen.js?v=<?php echo (int) filemtime( __DIR__ . '/components/listen.js' ); ?>"></script>
 <script src="components/mike.js?v=<?php echo (int) filemtime( __DIR__ . '/components/mike.js' ); ?>"></script>
@@ -99,13 +105,13 @@ function parseCSV(text) {
   return rows;
 }
 function loadCSV() {
-  return fetch('homework-content.csv')
+  return fetch('homework-content.csv?v=' + H212_CSV_V.homework, { cache: 'no-cache' })
     .then(function(r) { return r.text(); })
     .then(function(text) { allBank = parseCSV(text); })
     .catch(function() { allBank = []; });
 }
 function loadBuilderTests() {
-  return fetch('build-content.csv')
+  return fetch('build-content.csv?v=' + H212_CSV_V.build, { cache: 'no-cache' })
     .then(function(r) { return r.ok ? r.text() : ''; })
     .then(function(text) {
       builderTests = text ? H212Builder.parse(text).filter(function(q) { return q.mode === 'test'; }) : [];

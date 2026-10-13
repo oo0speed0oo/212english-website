@@ -35,6 +35,12 @@ require_once __DIR__ . '/inc/voices.php';
 h212_voice_script();
 require_once __DIR__ . '/inc/mike.php';
 h212_mike_for_js();
+// Version numbers for the question files, so a browser never shows an old copy after an upload
+$h212_csv_v = array();
+foreach ( array( 'homework' => 'homework-content.csv', 'build' => 'build-content.csv' ) as $k => $f ) {
+	$h212_csv_v[ $k ] = file_exists( __DIR__ . '/' . $f ) ? filemtime( __DIR__ . '/' . $f ) . '-' . filesize( __DIR__ . '/' . $f ) : '0';
+}
+echo '<script>window.H212_CSV_V = ' . wp_json_encode( $h212_csv_v ) . ';</script>' . "\n";
 // Which question pictures are on the server (a photo question with no picture yet is hidden)
 echo '<script>window.H212_IMAGES = ' . ( function_exists( 'h212_vocab_images' ) ? wp_json_encode( (object) h212_vocab_images() ) : 'null' ) . ';</script>' . "\n";
 ?>
@@ -81,12 +87,12 @@ function openFromLink() {
 
 // ── Load & parse CSV ──────────────────────────────
 function loadCSV() {
-  var main = fetch('homework-content.csv')
+  var main = fetch('homework-content.csv?v=' + H212_CSV_V.homework, { cache: 'no-cache' })
     .then(function(r) { return r.text(); })
     .then(function(text) { return parseCSV(text); })
     .catch(function() { return []; });
   // Sentence Builder questions live in their own file; they join the pool as type 'builder'.
-  var builder = fetch('build-content.csv')
+  var builder = fetch('build-content.csv?v=' + H212_CSV_V.build, { cache: 'no-cache' })
     .then(function(r) { return r.ok ? r.text() : ''; })
     .then(function(text) {
       return text ? H212Builder.parse(text).filter(function(q) { return q.mode !== 'test'; }) : [];
