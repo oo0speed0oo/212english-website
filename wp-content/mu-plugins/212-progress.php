@@ -38,6 +38,12 @@ if ( ! defined( 'H212_CHAPTERS' ) ) {
 if ( ! defined( 'H212_UNLOCK_PERCENT' ) ) {
 	define( 'H212_UNLOCK_PERCENT', 70 );
 }
+// The old (pre-70%) unlock rule only ever saw the original Homework questions,
+// ids 1-1409. Questions added after that never count against a student's
+// existing access (see h212_legacy_unlocked_keys()).
+if ( ! defined( 'H212_LEGACY_MAX_ID' ) ) {
+	define( 'H212_LEGACY_MAX_ID', 1409 );
+}
 
 /**
  * The 6 practice parts of a chapter, in 3 groups. Each part is a question
@@ -87,6 +93,36 @@ function h212_read_csv_rows( $path ) {
 }
 
 /**
+ * File names in portal/images/vocab/ (question photos). Read from the folder
+ * with exact spelling, so it behaves the same on Mac and on the server (which
+ * cares about capital letters).
+ */
+function h212_vocab_images() {
+	static $names = null;
+	if ( null === $names ) {
+		$names = array();
+		$dir   = ABSPATH . 'portal/images/vocab';
+		if ( is_dir( $dir ) ) {
+			foreach ( (array) scandir( $dir ) as $f ) {
+				if ( '.' !== $f[0] ) {
+					$names[ $f ] = true;
+				}
+			}
+		}
+	}
+	return $names;
+}
+
+/** The picture file a photo question uses (its image column, or a guess from the answer word). */
+function h212_photo_file( $item ) {
+	$img = isset( $item['image'] ) ? trim( $item['image'] ) : '';
+	if ( '' === $img ) {
+		$img = strtolower( preg_replace( '/\s+/', '-', trim( isset( $item['answer'] ) ? $item['answer'] : '' ) ) ) . '.png';
+	}
+	return $img;
+}
+
+/**
  * Every question the portal knows about, as plain rows:
  * id, level, chapter, type, mode ('homework'|'test'), question, answer ...
  * Sentence Builder rows (build-content.csv) come in with type 'builder'.
@@ -106,7 +142,16 @@ function h212_progress_bank() {
 		$item['chapter'] = (int) $item['chapter'];
 		$item['type']    = strtolower( trim( $item['type'] ) );
 		$item['mode']    = ( isset( $item['mode'] ) && 'test' === strtolower( trim( $item['mode'] ) ) ) ? 'test' : 'homework';
-		$bank[]          = $item;
+		// A photo question whose picture is not on the server yet is hidden
+		// completely: it is not shown and not counted for finishing or the
+		// 70% rule. It appears by itself when the picture is uploaded.
+		if ( 'photo' === $item['type'] ) {
+			$images = h212_vocab_images();
+			if ( ! isset( $images[ h212_photo_file( $item ) ] ) ) {
+				continue;
+			}
+		}
+		$bank[] = $item;
 	}
 	foreach ( h212_read_csv_rows( ABSPATH . 'portal/build-content.csv' ) as $item ) {
 		if ( empty( $item['id'] ) || empty( $item['level'] ) ) {
@@ -194,7 +239,8 @@ function h212_legacy_unlocked_keys( $bank, $seen_set, $wrong_set ) {
 			foreach ( $old_types as $types ) {
 				$qs = array_filter( $bank, function ( $q ) use ( $l, $c, $types ) {
 					return (int) $q['level'] === $l && (int) $q['chapter'] === $c
-						&& 'homework' === $q['mode'] && in_array( $q['type'], $types, true );
+						&& 'homework' === $q['mode'] && in_array( $q['type'], $types, true )
+						&& (int) $q['id'] <= H212_LEGACY_MAX_ID;
 				} );
 				if ( ! $qs ) {
 					$ok = false;

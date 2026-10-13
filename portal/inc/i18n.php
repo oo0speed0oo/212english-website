@@ -140,6 +140,7 @@ $GLOBALS['h212_strings'] = array(
 	'hw.part_alt_builder'      => array( 'en' => '並べ替え',   'ja' => 'Sentence Builder' ),
 	'hw.part_alt_listening'    => array( 'en' => '聞き取り',   'ja' => 'Listen' ),
 	'hw.part_alt_conversation' => array( 'en' => '会話',       'ja' => 'Conversation' ),
+	'hw.photos_soon'       => array( 'en' => 'Photos are coming soon', 'ja' => '写真は近日追加予定です' ),
 	'hw.coming_parts'      => array( 'en' => 'Coming with new lessons', 'ja' => '新しいレッスンで追加予定' ),
 	'hw.status_done'       => array( 'en' => 'Done',               'ja' => '完了' ),
 	'hw.status_new'        => array( 'en' => 'New',                'ja' => '新規' ),

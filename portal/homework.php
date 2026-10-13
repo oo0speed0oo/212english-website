@@ -25,7 +25,7 @@ h212_js_strings( array(
 	'hw.part_photo_sub', 'hw.part_vocabulary_sub', 'hw.part_grammar_sub', 'hw.part_builder_sub', 'hw.part_listening_sub', 'hw.part_conversation_sub',
 	'hw.group_alt_vocabulary', 'hw.group_alt_grammar', 'hw.group_alt_listening',
 	'hw.part_alt_photo', 'hw.part_alt_vocabulary', 'hw.part_alt_grammar', 'hw.part_alt_builder', 'hw.part_alt_listening', 'hw.part_alt_conversation',
-	'hw.coming_parts', 'hw.status_done', 'hw.status_new', 'hw.chapter_progress', 'hw.next_open', 'hw.next_locked',
+	'hw.coming_parts', 'hw.photos_soon', 'hw.status_done', 'hw.status_new', 'hw.chapter_progress', 'hw.next_open', 'hw.next_locked',
 	'hw.next_level_open', 'hw.next_level_locked', 'hw.just_unlocked', 'hw.just_unlocked_level',
 	'builder.instruction', 'builder.empty', 'builder.check', 'builder.clear', 'builder.wrong_msg', 'conv.prompt',
 	'listen.who', 'listen.robot', 'listen.button', 'listen.playing', 'listen.no_voice',
@@ -35,6 +35,8 @@ require_once __DIR__ . '/inc/voices.php';
 h212_voice_script();
 require_once __DIR__ . '/inc/mike.php';
 h212_mike_for_js();
+// Which question pictures are on the server (a photo question with no picture yet is hidden)
+echo '<script>window.H212_IMAGES = ' . ( function_exists( 'h212_vocab_images' ) ? wp_json_encode( (object) h212_vocab_images() ) : 'null' ) . ';</script>' . "\n";
 ?>
 <script src="components/listen.js?v=<?php echo (int) filemtime( __DIR__ . '/components/listen.js' ); ?>"></script>
 <script src="components/mike.js?v=<?php echo (int) filemtime( __DIR__ . '/components/mike.js' ); ?>"></script>
@@ -90,7 +92,18 @@ function loadCSV() {
       return text ? H212Builder.parse(text).filter(function(q) { return q.mode !== 'test'; }) : [];
     })
     .catch(function() { return []; });
-  return Promise.all([ main, builder ]).then(function(res) { allQuestions = res[0].concat(res[1]); });
+  return Promise.all([ main, builder ]).then(function(res) {
+    // A photo question whose picture is not on the server yet is hidden completely
+    // (not shown, not counted). It appears by itself once the picture is uploaded.
+    allQuestions = res[0].concat(res[1]).filter(function(q) {
+      return q.type !== 'photo' || !window.H212_IMAGES || window.H212_IMAGES[photoFile(q)];
+    });
+  });
+}
+
+// The picture file a photo question uses (its image column, or a guess from the answer word)
+function photoFile(q) {
+  return q.image || (q.answer.toLowerCase().replace(/\s+/g, '-') + '.png');
 }
 
 // ── Load unlock state (which chapters are open, how far through each) ──
@@ -364,7 +377,7 @@ function renderTypes(ch) {
       html += '<div class="type-btn part-' + part + (has ? '' : ' empty') + '"' + (has ? ' role="button" tabindex="0" onclick="startQuiz(\'' + part + '\')" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();startQuiz(\'' + part + '\');}"' : '') + '>'
         + '<span class="icon">' + H212UI.icons[part] + '</span>'
         + '<span class="lbl">' + H212_T['hw.part_' + part] + ' <span class="alt">· ' + H212_T['hw.part_alt_' + part] + '</span></span>'
-        + '<span class="sub">' + (has ? H212_T['hw.part_' + part + '_sub'] : H212_T['hw.coming_parts']) + '</span>'
+        + '<span class="sub">' + (has ? H212_T['hw.part_' + part + '_sub'] : H212_T[part === 'photo' ? 'hw.photos_soon' : 'hw.coming_parts']) + '</span>'
         + (has ? typeStatusHtml(currentLevel, ch, part) : '') + '</div>';
     });
     html += '</div></div>';
@@ -482,17 +495,14 @@ function showQuestion() {
   var imgFile = q.image;
   if (!imgFile && q.type === 'photo') {
     // Old rows with no image column filled in yet: guess from the answer word
-    imgFile = q.answer.toLowerCase().replace(/\s+/g, '-') + '.png';
+    imgFile = photoFile(q);
   }
 
-  html += H212UI.qTop({ onclose: 'renderTypes(' + currentChapter + ')', label: H212_T['hw.back'], index: currentIndex, total: total, score: score, scoreWord: H212_T['hw.score'].replace(/:$/, '') })
-    + '<div class="grp-' + grp + '"><div class="q-label">' + H212_T[GROUPS.filter(function(g) { return g.key === grp; })[0].label] + ' · ' + typeName + '</div></div>'
-    + '<div class="question-card">';
-
-  if (imgFile) {
-    if (q.type === 'photo') {
-      html += '<div class="photo-badge">' + H212_T['hw.photo_question'] + '</div>';
-    }
+  if (imgFile && q.type === 'photo') {
+    // Photos part: the picture big, with the answer buttons under it
+    html += '<div class="photo-hero"><img src="' + IMAGE_FOLDER + imgFile + '" alt=""'
+      + ' onerror="this.style.opacity=\'0.3\'" /></div>';
+  } else if (imgFile) {
     html += '<div class="photo-img-wrap">'
       + '<img src="' + IMAGE_FOLDER + imgFile + '" alt="' + esc(q.answer) + '"'
       + ' onerror="this.style.opacity=\'0.3\';this.title=\'Image not found: ' + imgFile + '\'" />'

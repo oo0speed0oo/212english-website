@@ -489,6 +489,13 @@ button, input, select, textarea { font-family: inherit; }
   color: var(--gold-light); background: var(--gold-tint); border-radius: 8px; padding: 3px 10px; margin-bottom: 14px;
 }
 
+/* Photos part: the picture big, rounded, with the answers underneath */
+.photo-hero { margin: 0 0 18px; }
+.photo-hero img {
+  display: block; width: 100%; max-width: 600px; height: auto; aspect-ratio: 1 / 1; object-fit: contain;
+  border-radius: 16px; background: var(--card); border: 1px solid var(--line);
+}
+
 /* ── GRADES ── */
 .grades-summary {
   background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 20px 22px;
