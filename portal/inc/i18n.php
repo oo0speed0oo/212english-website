@@ -183,6 +183,7 @@ $GLOBALS['h212_strings'] = array(
 	'builder.check'       => array( 'en' => 'Check',                'ja' => '答え合わせ' ),
 	'builder.clear'       => array( 'en' => 'Clear',                'ja' => 'クリア' ),
 	'builder.wrong_msg'   => array( 'en' => '❌ Not quite. The correct sentence is:', 'ja' => '❌ 惜しい！正しい文は：' ),
+	'conv.text_label'     => array( 'en' => 'The conversation:',      'ja' => '会話：' ),
 	'conv.prompt'         => array( 'en' => 'Choose the best reply.', 'ja' => '一番よい返事を選んでください。' ),
 
 	// Robot voice (Listening questions)
@@ -193,6 +194,7 @@ $GLOBALS['h212_strings'] = array(
 	'listen.us_man'   => array( 'en' => 'American man',              'ja' => 'アメリカ 男性' ),
 	'listen.uk_woman' => array( 'en' => 'British woman',             'ja' => 'イギリス 女性' ),
 	'listen.uk_man'   => array( 'en' => 'British man',               'ja' => 'イギリス 男性' ),
+	'listen.play'     => array( 'en' => '▶ Play',                    'ja' => '▶ 再生' ),
 	'listen.button'   => array( 'en' => '🔊 Listen',                 'ja' => '🔊 聞く' ),
 	'listen.playing'  => array( 'en' => '🔊 Playing…',               'ja' => '🔊 再生中…' ),
 	'listen.no_voice' => array( 'en' => 'No English voice found on this device, so the sentence is shown here instead.', 'ja' => 'この端末に英語の音声がないため、代わりに文を表示しています。' ),

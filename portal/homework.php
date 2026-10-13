@@ -27,7 +27,7 @@ h212_js_strings( array(
 	'hw.part_alt_photo', 'hw.part_alt_vocabulary', 'hw.part_alt_grammar', 'hw.part_alt_builder', 'hw.part_alt_listening', 'hw.part_alt_conversation',
 	'hw.coming_parts', 'hw.photos_soon', 'hw.status_done', 'hw.status_new', 'hw.chapter_progress', 'hw.next_open', 'hw.next_locked',
 	'hw.next_level_open', 'hw.next_level_locked', 'hw.just_unlocked', 'hw.just_unlocked_level',
-	'builder.instruction', 'builder.empty', 'builder.check', 'builder.clear', 'builder.wrong_msg', 'conv.prompt',
+	'builder.instruction', 'builder.empty', 'builder.check', 'builder.clear', 'builder.wrong_msg', 'conv.prompt', 'conv.text_label', 'listen.play',
 	'listen.who', 'listen.robot', 'listen.button', 'listen.playing', 'listen.no_voice',
 	'listen.mix', 'listen.us_woman', 'listen.us_man', 'listen.uk_woman', 'listen.uk_man',
 ) );
@@ -504,9 +504,14 @@ function showQuestion() {
     imgFile = photoFile(q);
   }
 
+  // Top of the screen: close button + progress bar, the part's name, then the question card opens
+  html += H212UI.qTop({ onclose: 'renderTypes(' + currentChapter + ')', label: H212_T['hw.back'], index: currentIndex, total: total, score: score, scoreWord: H212_T['hw.score'].replace(/:$/, '') })
+    + '<div class="grp-' + grp + '"><div class="q-label">' + H212_T[GROUPS.filter(function(g) { return g.key === grp; })[0].label] + ' · ' + typeName + '</div></div>'
+    + '<div class="question-card">';
+
   if (imgFile && q.type === 'photo') {
     // Photos part: the picture big, with the answer buttons under it
-    html += '<div class="photo-hero"><img src="' + IMAGE_FOLDER + imgFile + '" alt=""'
+    html += '<div class="photo-hero"><img src="' + IMAGE_FOLDER + imgFile + ((window.H212_IMAGES && window.H212_IMAGES[imgFile] > 1) ? '?v=' + window.H212_IMAGES[imgFile] : '') + '" alt=""'
       + ' onerror="this.style.opacity=\'0.3\'" /></div>';
   } else if (imgFile) {
     html += '<div class="photo-img-wrap">'
@@ -590,6 +595,8 @@ function checkAnswer(btn, chosen, answer) {
   msg.style.display  = 'block';
   next.style.display = 'inline-flex';
   H212Mike.say(isCorrect ? 'correct' : 'wrong');
+  // Conversation: now that they have answered, show what was said
+  if (q.type === 'conversation') H212Listen.reveal();
 }
 
 function nextQuestion() {

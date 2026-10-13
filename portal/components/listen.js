@@ -2,6 +2,11 @@
 // "I live in Osaka.") is hidden on screen and played when the student taps
 // the Listen button.
 //
+// Conversation questions (homework part 6): You hear "line 1" "line 2" Question?
+// Only a big Play button and the text after the quotes are shown at first. Two
+// quoted lines = two people (two different voices, a short pause between).
+// After the student answers, reveal() shows the conversation text.
+//
 // Voices: a recorded mp3 voice (American/British, woman/man - files in
 // portal/audio/<voice>/<id>.mp3) or, if there is no mp3 or it fails to load,
 // the robot (the device's built-in English voice, no files needed).
@@ -19,7 +24,7 @@ var H212Listen = (function () {
   var playId   = 0;    // so a cancelled earlier play cannot reset the button of a newer one
   var VOICE_KEYS = ['us_woman', 'us_man', 'uk_woman', 'uk_man'];
   var COOKIE   = 'h212_voice';
-  var cur      = { id: null, avail: [], sel: 'robot', effective: 'robot', mixPick: null, audio: null };
+  var cur      = { type: '', id: null, avail: [], sel: 'robot', effective: 'robot', mixPick: null, audio: null };
 
   // macOS ships some joke voices - never use these for teaching.
   var NOVELTY = /^(Albert|Bad News|Bahh|Bells|Boing|Bubbles|Cellos|Deranged|Good News|Hysterical|Jester|Organ|Pipe Organ|Superstar|Trinoids|Whisper|Wobble|Zarvox)\b/i;
@@ -178,7 +183,8 @@ var H212Listen = (function () {
   function setButton(playing) {
     var btn = document.getElementById('listen-btn');
     if (!btn) return;
-    btn.textContent = playing ? window.H212_T['listen.playing'] : window.H212_T['listen.button'];
+    var idle = cur.type === 'conversation' ? window.H212_T['listen.play'] : window.H212_T['listen.button'];
+    btn.textContent = playing ? window.H212_T['listen.playing'] : idle;
     btn.classList.toggle('playing', playing);
   }
 
@@ -197,6 +203,23 @@ var H212Listen = (function () {
       }
       rev.hidden = false;
     }
+  }
+
+  // Show the conversation text (Conversation questions, after the student has answered)
+  function reveal() {
+    var rev = document.getElementById('listen-reveal');
+    if (!rev || !lines.length) return;
+    rev.textContent = '';
+    var label = document.createElement('div');
+    label.className = 'listen-reveal-label';
+    label.textContent = window.H212_T['conv.text_label'] || '';
+    rev.appendChild(label);
+    for (var i = 0; i < lines.length; i++) {
+      var p = document.createElement('div');
+      p.textContent = '“' + lines[i] + '”';
+      rev.appendChild(p);
+    }
+    rev.hidden = false;
   }
 
   // Called from the Listen button. Must run straight from the tap (iPhone rule).
@@ -248,6 +271,25 @@ var H212Listen = (function () {
     var myId = ++playId;
     setButton(true);
 
+    // Conversation: say line 1, wait a moment, then line 2 in the other voice
+    if (cur.type === 'conversation' && lines.length > 1) {
+      var say = function (i) {
+        if (myId !== playId) return;
+        var u = new SpeechSynthesisUtterance(lines[i]);
+        var v = (i % 2 === 1 && pair[1]) ? pair[1] : pair[0];
+        u.voice = v; u.lang = v.lang || 'en-US'; u.rate = 0.9;
+        if (i % 2 === 1 && !pair[1]) u.pitch = 0.75;
+        u.onend = u.onerror = function () {
+          if (myId !== playId) return;
+          if (i + 1 < lines.length) { setTimeout(function () { say(i + 1); }, 500); }
+          else { speaking = false; setButton(false); }
+        };
+        synth.speak(u);
+      };
+      say(0);
+      return;
+    }
+
     for (var i = 0; i < lines.length; i++) {
       var u = new SpeechSynthesisUtterance(lines[i]);
       var v = (i % 2 === 1 && pair[1]) ? pair[1] : pair[0];
@@ -285,13 +327,24 @@ var H212Listen = (function () {
     // Conversation: after the line, ask for the best reply.
     if (q.type === 'conversation' && !p.suffix) p.suffix = window.H212_T['conv.prompt'] || '';
     lines = p.spoken;
+    cur.type = q.type;
+
+    var T = window.H212_T;
+    if (q.type === 'conversation') {
+      // Conversation: only a big Play button (robot voice) and the part after the quotes
+      cur.id = q.id; cur.avail = []; cur.mixPick = null; cur.audio = null; cur.sel = 'robot'; cur.effective = 'robot';
+      var h = '<button type="button" class="listen-btn listen-btn-big" id="listen-btn" onclick="H212Listen.play()">' + T['listen.play'] + '</button>'
+        + '<div class="listen-msg" id="listen-msg" role="status"></div>'
+        + '<div class="listen-reveal" id="listen-reveal" hidden></div>';
+      if (p.suffix) h += '<div class="question-text listen-suffix">' + p.suffix + '</div>';
+      return h;
+    }
 
     cur.id = q.id;
     cur.avail = availableVoices(q.id);
     cur.mixPick = null;
     resolve();
 
-    var T = window.H212_T;
     var chips = [];
     if (cur.avail.length > 1) chips.push(chip('mix', '<span class="listen-face listen-face-emoji">🎲</span>', T['listen.mix']));
     chips.push(chip('robot', '<span class="listen-face listen-face-emoji">🤖</span>', T['listen.robot']));
@@ -314,5 +367,5 @@ var H212Listen = (function () {
     return html;
   }
 
-  return { render: render, play: play, stop: stop, parse: parse, choose: choose, speakText: speakText };
+  return { render: render, play: play, stop: stop, parse: parse, choose: choose, speakText: speakText, reveal: reveal };
 })();

@@ -44,7 +44,7 @@ if ( ! defined( 'H212_UNLOCK_PERCENT' ) ) {
 // Question ids up to this number are used OR were skipped on purpose. Never hand
 // them out again (the Homework Questions screen starts new ids above this).
 if ( ! defined( 'H212_RESERVED_MAX_ID' ) ) {
-	define( 'H212_RESERVED_MAX_ID', 2440 );
+	define( 'H212_RESERVED_MAX_ID', 2610 );
 }
 if ( ! defined( 'H212_LEGACY_MAX_ID' ) ) {
 	define( 'H212_LEGACY_MAX_ID', 1409 );
@@ -110,7 +110,8 @@ function h212_vocab_images() {
 		if ( is_dir( $dir ) ) {
 			foreach ( (array) scandir( $dir ) as $f ) {
 				if ( '.' !== $f[0] ) {
-					$names[ $f ] = true;
+					// value = file time, used as a version number on the picture link
+					$names[ $f ] = max( 1, (int) @filemtime( $dir . '/' . $f ) );
 				}
 			}
 		}

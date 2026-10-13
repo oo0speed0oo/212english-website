@@ -1130,3 +1130,173 @@ id,level,chapter,type,question,choice_a,choice_b,choice_c,answer,image,audio,mod
 2438,1,17,photo,This person is ___.,tired,sick,energetic,energetic,ch17_energetic.jpg,,homework
 2439,1,17,photo,"After the big meal, the person is ___.",cold,full,hungry,full,ch17_full.jpg,,homework
 2440,1,17,photo,Who is this?,a baby,a teenager,an old man,a baby,ch17_baby.jpg,,homework
+2441,1,1,conversation,"You hear ""Hi. I'm Yuki. I'm a nurse."" What is the best reply?","She's a nurse, too.","Yes, they are nurses.","Nice to meet you, Yuki.","Nice to meet you, Yuki.",,,homework
+2442,1,1,conversation,"You hear ""Is he a doctor?"" What is the best reply?","No, he isn't. He's a nurse.","No, I'm not. I'm a nurse.","No, she isn't. She's a nurse.","No, he isn't. He's a nurse.",,,homework
+2443,1,1,conversation,"You hear ""Are you a student?"" What is the best reply?","Yes, I am. I'm a student.","Yes, he is. He's a student.","Yes, you are. You're a student.","Yes, I am. I'm a student.",,,homework
+2444,1,1,conversation,"You hear ""Are they teachers?"" What is the best reply?","No, he isn't. He's a doctor.","No, we aren't. They're doctors.","No, they aren't. They're doctors.","No, they aren't. They're doctors.",,,homework
+2445,1,1,conversation,"You hear ""This is my friend, Ken."" What is the best reply?","Hi, Ken. They're my friends.","Hi, Ken. Nice to meet you.","Hi, Ken. You're my friend.","Hi, Ken. Nice to meet you.",,,homework
+2446,1,1,conversation,"You hear ""This is Emma. She's a teacher."" What does Emma do?",She's a student.,She's a nurse.,She's a teacher.,She's a teacher.,,,homework
+2447,1,1,conversation,"You hear ""Is Tom a student?"" ""No, he isn't. He's a doctor."" What does Tom do?",He's a student.,He's a teacher.,He's a doctor.,He's a doctor.,,,homework
+2448,1,1,conversation,"You hear ""We're Mia and Sara. We're nurses."" Who is talking?",two nurses,one nurse,two doctors,two nurses,,,homework
+2449,1,1,conversation,"You hear ""Hello. I'm Dr. Sato."" ""Hi. I'm Lisa. I'm a student."" Who is the student?",Dr. Sato,Lisa,Lisa and Dr. Sato,Lisa,,,homework
+2450,1,1,conversation,"You hear ""Are you a teacher, Mr. Brown?"" ""Yes, I am."" Who is the teacher?",nobody,Mr. Brown,the person asking,Mr. Brown,,,homework
+2451,1,2,conversation,"You hear ""Where is my pen?"" What is the best reply?",They're on the desk.,He's on the desk.,It's on the desk.,It's on the desk.,,,homework
+2452,1,2,conversation,"You hear ""Where are Ken and Yumi?"" What is the best reply?",They're in the kitchen.,It's in the kitchen.,She's in the kitchen.,They're in the kitchen.,,,homework
+2453,1,2,conversation,"You hear ""Where are you?"" What is the best reply?",I'm in the living room.,It's in the living room.,You're in the living room.,I'm in the living room.,,,homework
+2454,1,2,conversation,"You hear ""Where is the map?"" What is the best reply?",It's in the wall.,It's on the wall.,They're on the wall.,It's on the wall.,,,homework
+2455,1,2,conversation,"You hear ""Where is Mr. Lee?"" What is the best reply?",It's at the bank.,He's at the bank.,They're at the bank.,He's at the bank.,,,homework
+2456,1,2,conversation,"You hear ""Where are the books?"" ""They're on the bookshelf."" Where are the books?",on the desk,on the bookshelf,on the chair,on the bookshelf,,,homework
+2457,1,2,conversation,"You hear ""Where's Mom?"" ""She's in the garage."" Where is Mom?",in the kitchen,in the garage,in the yard,in the garage,,,homework
+2458,1,2,conversation,"You hear ""Where is Kenji?"" ""He's at the library."" Where is Kenji?",at the supermarket,at the library,at the post office,at the library,,,homework
+2459,1,2,conversation,"You hear ""Where is the cat?"" ""It's in the bedroom."" What is in the bedroom?",the clock,the dog,the cat,the cat,,,homework
+2460,1,2,conversation,"You hear ""Where are you, Lisa?"" ""I'm at the restaurant."" Where is Lisa?",at the restaurant,at the bank,at home,at the restaurant,,,homework
+2461,1,3,conversation,"You hear ""What are you doing?"" What is the best reply?",I'm cooking dinner.,I cooking dinner.,He's cooking dinner.,I'm cooking dinner.,,,homework
+2462,1,3,conversation,"You hear ""What is Ken doing?"" What is the best reply?",I'm watching TV.,He's watching TV.,She's watching TV.,He's watching TV.,,,homework
+2463,1,3,conversation,"You hear ""What are they doing?"" What is the best reply?",We're play cards.,They're playing cards.,They playing cards.,They're playing cards.,,,homework
+2464,1,3,conversation,"You hear ""Hi, Yumi. What are you doing?"" What is the best reply?",She's studying English.,I'm studying English.,You're studying English.,I'm studying English.,,,homework
+2465,1,3,conversation,"You hear ""Where is Tom? What is he doing?"" What is the best reply?",He's in the yard. He's planting flowers.,She's in the yard. She's planting flowers.,He's in the yard. He planting flowers.,He's in the yard. He's planting flowers.,,,homework
+2466,1,3,conversation,"You hear ""Where's Mike?"" ""He's in the living room. He's playing the piano."" What is Mike doing?",watching TV,reading a book,playing the piano,playing the piano,,,homework
+2467,1,3,conversation,"You hear ""What are you doing, Emma?"" ""I'm swimming."" What is Emma doing?",sleeping,singing,swimming,swimming,,,homework
+2468,1,3,conversation,"You hear ""Where are Mom and Dad?"" ""They're in the kitchen. They're eating breakfast."" Where are Mom and Dad?",in the kitchen,in the yard,in the bedroom,in the kitchen,,,homework
+2469,1,3,conversation,"You hear ""What is Yuki doing?"" ""She's listening to music."" What is Yuki doing?",playing baseball,teaching,listening to music,listening to music,,,homework
+2470,1,3,conversation,"You hear ""Is Ken here?"" ""He's in the bedroom. He's sleeping."" What is Ken doing?",sleeping,studying,cooking,sleeping,,,homework
+2471,1,4,conversation,"You hear ""Are you busy?"" What is the best reply?","Yes, you are. I'm cleaning my room.","Yes, I am. I'm cleaning my room.","Yes, I'm. I'm cleaning my room.","Yes, I am. I'm cleaning my room.",,,homework
+2472,1,4,conversation,"You hear ""Is Ken busy?"" What is the best reply?","Yes, he is. He's fixing his car.","Yes, he's. He's fixing his car.","Yes, she is. She's fixing his car.","Yes, he is. He's fixing his car.",,,homework
+2473,1,4,conversation,"You hear ""Are Tom and Lisa busy?"" What is the best reply?","Yes, we are. They're washing their car.","Yes, they are. They're washing their car.","Yes, they're. They're washing their car.","Yes, they are. They're washing their car.",,,homework
+2474,1,4,conversation,"You hear ""Is Yumi busy?"" What is the best reply?","No, he isn't. She's reading.","No, she isn't. She's reading.","No, she is. She's reading.","No, she isn't. She's reading.",,,homework
+2475,1,4,conversation,"You hear ""What's Emma doing?"" What is the best reply?",She's feeding his cat.,She's feeding her cat.,She feeding her cat.,She's feeding her cat.,,,homework
+2476,1,4,conversation,"You hear ""Is Mr. Sato busy?"" ""Yes, he is. He's painting his kitchen."" What is Mr. Sato painting?",his garage,his kitchen,his bedroom,his kitchen,,,homework
+2477,1,4,conversation,"You hear ""Are you busy, Mia?"" ""Yes, I am. I'm washing my dog."" What is Mia doing?",washing her dog,washing her car,feeding her dog,washing her dog,,,homework
+2478,1,4,conversation,"You hear ""Is Ken busy?"" ""No, he isn't. He's watching TV."" Is Ken busy?","Yes, he is.","Yes, she is.","No, he isn't.","No, he isn't.",,,homework
+2479,1,4,conversation,"You hear ""Are your parents busy?"" ""Yes, they are. They're cleaning their apartment."" What are the parents cleaning?",their garage,their car,their apartment,their apartment,,,homework
+2480,1,4,conversation,"You hear ""Where's Lisa?"" ""She's in the bathroom. She's brushing her teeth."" What is Lisa doing?",taking a bath,brushing her teeth,brushing her hair,brushing her teeth,,,homework
+2481,1,5,conversation,"You hear ""Is your apartment large?"" What is the best reply?","No, they aren't. They're small.","No, it isn't. It's large.","No, it isn't. It's small.","No, it isn't. It's small.",,,homework
+2482,1,5,conversation,"You hear ""How's the weather today?"" What is the best reply?",It's Tuesday.,It's rainy.,It's my umbrella.,It's rainy.,,,homework
+2483,1,5,conversation,"You hear ""Is your car new?"" What is the best reply?","No, it isn't. It's new.","No, it is. It's old.","No, it isn't. It's old.","No, it isn't. It's old.",,,homework
+2484,1,5,conversation,"You hear ""Is Tom's brother tall?"" What is the best reply?","Yes, he is. He's very tall.","Yes, he's. He's very tall.","Yes, it is. It's very tall.","Yes, he is. He's very tall.",,,homework
+2485,1,5,conversation,"You hear ""Is the restaurant noisy?"" What is the best reply?","No, they aren't. They're quiet.","No, it isn't. It's quiet.","No, it isn't. It's noisy.","No, it isn't. It's quiet.",,,homework
+2486,1,5,conversation,"You hear ""Is it sunny today?"" ""No, it isn't. It's cloudy."" How is the weather?",cloudy,snowy,sunny,cloudy,,,homework
+2487,1,5,conversation,"You hear ""Is your watch expensive?"" ""No, it isn't. It's cheap."" What is cheap?",the house,the car,the watch,the watch,,,homework
+2488,1,5,conversation,"You hear ""Is Lisa's house small?"" ""No, it isn't. It's very large."" What is true?",Lisa's car is large.,Lisa's house is small.,Lisa's house is large.,Lisa's house is large.,,,homework
+2489,1,5,conversation,"You hear ""Is your teacher old?"" ""No, she isn't. She's young."" What is true about the teacher?",She's young.,He's young.,She's old.,She's young.,,,homework
+2490,1,5,conversation,"You hear ""Is it cold in Sapporo today?"" ""Yes, it is. It's snowy."" How is the weather in Sapporo?",warm and rainy,hot and sunny,cold and snowy,cold and snowy,,,homework
+2491,1,6,conversation,"You hear ""Who is she?"" What is the best reply?",It's my sister.,He's my sister.,She's my sister.,She's my sister.,,,homework
+2492,1,6,conversation,"You hear ""Where's your father?"" What is the best reply?",He's in bank.,He's on the bank.,He's at the bank.,He's at the bank.,,,homework
+2493,1,6,conversation,"You hear ""Is that your grandmother?"" What is the best reply?","Yes, she's. She's 80.","Yes, he is. He's 80.","Yes, it is. She's 80.","Yes, it is. She's 80.",,,homework
+2494,1,6,conversation,"You hear ""What's your brother doing?"" What is the best reply?",She's riding her bicycle.,He riding his bicycle.,He's riding his bicycle.,He's riding his bicycle.,,,homework
+2495,1,6,conversation,"You hear ""Where are your parents?"" What is the best reply?",He's at the park.,They're at the park.,They're on the park.,They're at the park.,,,homework
+2496,1,6,conversation,"You hear ""Who's that?"" ""That's my uncle. He's my father's brother."" Who is the man?",the speaker's father,the speaker's brother,the speaker's uncle,the speaker's uncle,,,homework
+2497,1,6,conversation,"You hear ""Where's your sister?"" ""She's at the bus stop."" Where is the sister?",at school,at the bus stop,at home,at the bus stop,,,homework
+2498,1,6,conversation,"You hear ""What's your mother doing?"" ""She's baking bread in the kitchen."" What is the mother doing?",baking bread,vacuuming,dancing,baking bread,,,homework
+2499,1,6,conversation,"You hear ""Is that your son?"" ""No, it isn't. It's my nephew."" Who is the boy?",the speaker's brother,the speaker's nephew,the speaker's son,the speaker's nephew,,,homework
+2500,1,6,conversation,"You hear ""Where are the children?"" ""They're on the sofa. They're laughing."" Where are the children?",at the park,on the sofa,in the yard,on the sofa,,,homework
+2501,1,7,conversation,"You hear ""Is there a bank in this neighborhood?"" What is the best reply?","Yes, it is. It's on Main Street.","Yes, there is. It's on Main Street.","Yes, there are. It's on Main Street.","Yes, there is. It's on Main Street.",,,homework
+2502,1,7,conversation,"You hear ""Are there any restaurants near here?"" What is the best reply?","Yes, there is. There are two.","Yes, there are. There are two.","Yes, they are. There are two.","Yes, there are. There are two.",,,homework
+2503,1,7,conversation,"You hear ""Excuse me. Where's the post office?"" What is the best reply?",It's next to bank the.,It's next to the bank.,It's next the bank.,It's next to the bank.,,,homework
+2504,1,7,conversation,"You hear ""Is there a laundromat in your apartment building?"" What is the best reply?","No, there isn't.","No, there aren't.","No, it isn't there.","No, there isn't.",,,homework
+2505,1,7,conversation,"You hear ""Where's the drug store?"" What is the best reply?",It's between the bakery.,It's between from the bakery.,It's between the bakery and the park.,It's between the bakery and the park.,,,homework
+2506,1,7,conversation,"You hear ""Excuse me. Is there a bakery near here?"" ""Yes. It's across from the school."" Where is the bakery?",around the corner from the school,next to the school,across from the school,across from the school,,,homework
+2507,1,7,conversation,"You hear ""Is there an elevator in your building?"" ""No, there isn't."" What is NOT in the building?",a washing machine,an elevator,a mailbox,an elevator,,,homework
+2508,1,7,conversation,"You hear ""Where's the gas station?"" ""It's around the corner from the hospital."" Where is the gas station?",around the corner from the hospital,across from the hospital,next to the hospital,around the corner from the hospital,,,homework
+2509,1,7,conversation,"You hear ""How many closets are there in the apartment?"" ""There are three."" How many closets are there?",two,one,three,three,,,homework
+2510,1,7,conversation,"You hear ""Is there a park in your neighborhood?"" ""Yes, there is. It's between the church and the library."" Where is the park?",across from the church,next to the library only,between the church and the library,between the church and the library,,,homework
+2511,1,8,conversation,"You hear ""Is this your umbrella?"" What is the best reply?","Yes, it is. Thank you.","Yes, these are. Thank you.","Yes, they are. Thank you.","Yes, it is. Thank you.",,,homework
+2512,1,8,conversation,"You hear ""Are these your gloves?"" What is the best reply?","No, this isn't. My gloves are blue.","No, they aren't. My gloves are blue.","No, it isn't. My gloves are blue.","No, they aren't. My gloves are blue.",,,homework
+2513,1,8,conversation,"You hear ""That's a nice sweater."" What is the best reply?",Thank you.,Excuse me.,You're welcome.,Thank you.,,,homework
+2514,1,8,conversation,"You hear ""Excuse me. How much is that coat?"" What is the best reply?","It's 9,000 yen.","They're 9,000 yen.",It's a coat.,"It's 9,000 yen.",,,homework
+2515,1,8,conversation,"You hear ""What color is your new tie?"" What is the best reply?",They're purple.,It's a tie.,It's purple.,It's purple.,,,homework
+2516,1,8,conversation,"You hear ""Are those your boots?"" ""No, they aren't. My boots are black."" What color are the speaker's boots?",brown,black,white,black,,,homework
+2517,1,8,conversation,"You hear ""May I help you?"" ""Yes, please. I'm looking for a raincoat."" What is the customer looking for?",a suit,a raincoat,an umbrella,a raincoat,,,homework
+2518,1,8,conversation,"You hear ""Is that your briefcase?"" ""Yes, it is. Thanks!"" Whose briefcase is it?",nobody's,the speaker's,the clerk's,the speaker's,,,homework
+2519,1,8,conversation,"You hear ""These earrings are beautiful."" ""Thank you. They're new."" What is new?",the earrings,the necklace,the watch,the earrings,,,homework
+2520,1,8,conversation,"You hear ""I'm looking for a gray suit."" ""Gray suits are over there."" What color suit does the customer want?",gray,black,blue,gray,,,homework
+2521,1,9,conversation,"You hear ""Where do you live?"" What is the best reply?",I'm live in Osaka.,I live in Osaka.,I lives in Osaka.,I live in Osaka.,,,homework
+2522,1,9,conversation,"You hear ""What language does Maria speak?"" What is the best reply?",She speak Spanish.,She speaking Spanish.,She speaks Spanish.,She speaks Spanish.,,,homework
+2523,1,9,conversation,"You hear ""What does your father do every day?"" What is the best reply?",He's drive a bus.,He drives a bus.,He drive a bus.,He drives a bus.,,,homework
+2524,1,9,conversation,"You hear ""Where does Ken work?"" What is the best reply?",He working at a bank.,He work at a bank.,He works at a bank.,He works at a bank.,,,homework
+2525,1,9,conversation,"You hear ""What do you do on Sunday?"" What is the best reply?",She visits her grandmother.,I visits my grandmother.,I visit my grandmother.,I visit my grandmother.,,,homework
+2526,1,9,conversation,"You hear ""Where do Tom and Lisa live?"" ""They live in London."" Where do Tom and Lisa live?",in London,in Mexico City,in Tokyo,in London,,,homework
+2527,1,9,conversation,"You hear ""What language do they speak in Brazil?"" ""They speak Portuguese."" What language do they speak in Brazil?",Portuguese,English,Spanish,Portuguese,,,homework
+2528,1,9,conversation,"You hear ""What does Yumi do?"" ""She sells shirts at a department store."" Where does Yumi work?",at a department store,at a restaurant,at a bank,at a department store,,,homework
+2529,1,9,conversation,"You hear ""Where does your brother live?"" ""He lives in Seoul. He speaks Korean."" What language does the brother speak?",Japanese,Korean,Chinese,Korean,,,homework
+2530,1,9,conversation,"You hear ""What does Mr. Kato do in the evening?"" ""He reads the newspaper."" What does Mr. Kato do in the evening?",He calls his mother.,He watches TV.,He reads the newspaper.,He reads the newspaper.,,,homework
+2531,1,10,conversation,"You hear ""Do you play volleyball?"" What is the best reply?","No, I'm not. I jog.","No, I doesn't. I jog.","No, I don't. I jog.","No, I don't. I jog.",,,homework
+2532,1,10,conversation,"You hear ""Does Emma do yoga?"" What is the best reply?","Yes, she is. She does yoga every Monday.","Yes, she do. She does yoga every Monday.","Yes, she does. She does yoga every Monday.","Yes, she does. She does yoga every Monday.",,,homework
+2533,1,10,conversation,"You hear ""When do you go dancing?"" What is the best reply?",With my sister.,In the kitchen.,On Saturday.,On Saturday.,,,homework
+2534,1,10,conversation,"You hear ""Does your brother babysit?"" What is the best reply?","No, he isn't.","No, he doesn't.","No, he don't.","No, he doesn't.",,,homework
+2535,1,10,conversation,"You hear ""Do your parents see a movie on Sunday?"" What is the best reply?","Yes, they do.","Yes, they does.","Yes, they are.","Yes, they do.",,,homework
+2536,1,10,conversation,"You hear ""Do you work on Saturday?"" ""No, I don't. I work on Monday, Tuesday and Wednesday."" When does the speaker NOT work?",on Saturday,on Monday,on Tuesday,on Saturday,,,homework
+2537,1,10,conversation,"You hear ""Does Ken ride his bicycle to work?"" ""No, he doesn't. He takes the bus."" How does Ken go to work?",by bicycle,by car,by bus,by bus,,,homework
+2538,1,10,conversation,"You hear ""When does Lisa play volleyball?"" ""She plays on Thursday."" When does Lisa play volleyball?",on Friday,on Thursday,on Tuesday,on Thursday,,,homework
+2539,1,10,conversation,"You hear ""Do you and your wife see plays?"" ""Yes, we do. We see a play every month."" What do they do every month?",see a play,go dancing,jog,see a play,,,homework
+2540,1,10,conversation,"You hear ""Does Yumi clean her apartment on Sunday?"" ""Yes, she does."" When does Yumi clean her apartment?",on Sunday,on Saturday,on Friday,on Sunday,,,homework
+2541,1,11,conversation,"You hear ""How often do you jog?"" What is the best reply?",I jog every morning.,I jog in the park.,I jog with my brother.,I jog every morning.,,,homework
+2542,1,11,conversation,"You hear ""Do you call your mother?"" What is the best reply?","Yes, I call she every week.","Yes, I call him every week.","Yes, I call her every week.","Yes, I call her every week.",,,homework
+2543,1,11,conversation,"You hear ""Does your sister have long hair?"" What is the best reply?","No, she isn't. She has short hair.","No, she doesn't. She has short hair.","No, she doesn't. She have short hair.","No, she doesn't. She has short hair.",,,homework
+2544,1,11,conversation,"You hear ""Do you ever eat sushi?"" What is the best reply?","Yes, I sometimes eat them.","Yes, I sometimes eat it.","Yes, I eat sometimes it.","Yes, I sometimes eat it.",,,homework
+2545,1,11,conversation,"You hear ""Is your brother tall?"" What is the best reply?","Yes, he does. He's very tall.","Yes, he is. He's very tall.","Yes, he has. He's very tall.","Yes, he is. He's very tall.",,,homework
+2546,1,11,conversation,"You hear ""How often does Ken see a movie?"" ""He rarely sees a movie."" How often does Ken see a movie?",every week,rarely,always,rarely,,,homework
+2547,1,11,conversation,"You hear ""Do you visit your grandparents?"" ""Yes. I visit them every month."" How often does the speaker visit the grandparents?",every year,every week,every month,every month,,,homework
+2548,1,11,conversation,"You hear ""What does your new teacher look like?"" ""She's tall, and she has long hair."" What is true about the teacher?",She has short hair.,She's short.,She has long hair.,She has long hair.,,,homework
+2549,1,11,conversation,"You hear ""Does Tom eat breakfast?"" ""No. He never eats breakfast."" What does Tom do?",He always eats breakfast.,He never eats breakfast.,He sometimes eats breakfast.,He never eats breakfast.,,,homework
+2550,1,11,conversation,"You hear ""Do you work on the weekend?"" ""No, I never work on the weekend."" When does the speaker NOT work?",on Monday,on the weekend,in the morning,on the weekend,,,homework
+2551,1,12,conversation,"You hear ""Why are you crying?"" What is the best reply?",Because I'm sad.,Because I'm hot.,Because I cry.,Because I'm sad.,,,homework
+2552,1,12,conversation,"You hear ""Why are you shivering?"" What is the best reply?",Because I'm cold.,Because I'm hungry.,Because I'm hot.,Because I'm cold.,,,homework
+2553,1,12,conversation,"You hear ""Why is Ken yawning?"" What is the best reply?",Because he's angry.,Because he's tired.,Because he yawns.,Because he's tired.,,,homework
+2554,1,12,conversation,"You hear ""Why are you biting your nails?"" What is the best reply?",Because I'm happy.,Because I'm thirsty.,Because I'm nervous.,Because I'm nervous.,,,homework
+2555,1,12,conversation,"You hear ""Ken usually takes the bus. Why is he walking today?"" What is the best reply?",Because the bus isn't running.,Because he usually walks.,Because the bus is running.,Because the bus isn't running.,,,homework
+2556,1,12,conversation,"You hear ""Why is Lisa blushing?"" ""Because she's embarrassed."" How does Lisa feel?",embarrassed,scared,angry,embarrassed,,,homework
+2557,1,12,conversation,"You hear ""Why are you smiling?"" ""Because I'm happy. It's my birthday!"" How does the speaker feel?",nervous,sad,happy,happy,,,homework
+2558,1,12,conversation,"You hear ""Why is Tom shouting?"" ""Because he's angry."" How does Tom feel?",angry,cold,tired,angry,,,homework
+2559,1,12,conversation,"You hear ""Mia usually types at the office. Why is she at home today?"" ""Because she's sick."" Why is Mia at home?",She's busy.,She's hungry.,She's sick.,She's sick.,,,homework
+2560,1,12,conversation,"You hear ""Why are you perspiring?"" ""Because I'm hot."" Why is the speaker perspiring?",The speaker is hot.,The speaker is sad.,The speaker is cold.,The speaker is hot.,,,homework
+2561,1,13,conversation,"You hear ""Can you drive a truck?"" What is the best reply?","Yes, I can.","Yes, I am.","Yes, I do.","Yes, I can.",,,homework
+2562,1,13,conversation,"You hear ""Can you come to my party on Saturday?"" What is the best reply?","Sorry, I can't. I have to work.","Sorry, I can't. I has to work.","Sorry, I can. I have to work.","Sorry, I can't. I have to work.",,,homework
+2563,1,13,conversation,"You hear ""Can your sister sing?"" What is the best reply?","Yes, she can sings. She's a singer.","Yes, she cans. She's a singer.","Yes, she can. She's a singer.","Yes, she can. She's a singer.",,,homework
+2564,1,13,conversation,"You hear ""Can you fix cars?"" What is the best reply?","Yes, I can. I'm a secretary.","Yes, I can. I'm a mechanic.","Yes, I can. I'm a baker.","Yes, I can. I'm a mechanic.",,,homework
+2565,1,13,conversation,"You hear ""Can you see a movie with me tonight?"" What is the best reply?","Sorry, I can. I have to study.","Sorry, I can't. I has to study.","Sorry, I can't. I have to study.","Sorry, I can't. I have to study.",,,homework
+2566,1,13,conversation,"You hear ""Can you bake bread?"" ""Yes, I can. I'm a baker."" What is the speaker's job?",a baker,a chef,a salesperson,a baker,,,homework
+2567,1,13,conversation,"You hear ""Can Ken come to the meeting?"" ""No, he can't. He has to go to the doctor."" Why can't Ken come?",He has to go to the doctor.,He has to work.,He has to cook dinner.,He has to go to the doctor.,,,homework
+2568,1,13,conversation,"You hear ""Can you type?"" ""Yes, I can. I'm a secretary."" What can the speaker do?",type,drive a truck,dance,type,,,homework
+2569,1,13,conversation,"You hear ""Can Mr. Ito fix the washing machine?"" ""Yes, he can. He's the superintendent."" Who is Mr. Ito?",a construction worker,a mechanic,the superintendent,the superintendent,,,homework
+2570,1,13,conversation,"You hear ""Can you play volleyball tomorrow?"" ""No, I can't. I have to babysit my niece."" What does the speaker have to do?",clean,babysit,work,babysit,,,homework
+2571,1,14,conversation,"You hear ""What time is it?"" What is the best reply?",It's quarter after six.,It's in the morning.,It's Tuesday.,It's quarter after six.,,,homework
+2572,1,14,conversation,"You hear ""What are you going to do tomorrow?"" What is the best reply?",I go to clean my apartment.,I'm going to clean my apartment.,I'm going clean my apartment.,I'm going to clean my apartment.,,,homework
+2573,1,14,conversation,"You hear ""What's the weather going to be like tomorrow?"" What is the best reply?",It's going to rain.,It's going to the park.,It going to rain.,It's going to rain.,,,homework
+2574,1,14,conversation,"You hear ""When are you going to visit your parents?"" What is the best reply?",In my car.,Next weekend.,Last weekend.,Next weekend.,,,homework
+2575,1,14,conversation,"You hear ""What do you want to do this summer?"" What is the best reply?",I want go to the beach.,I want to going to the beach.,I want to go to the beach.,I want to go to the beach.,,,homework
+2576,1,14,conversation,"You hear ""When is the movie?"" ""It's at half past nine."" When is the movie?",at 9:30,at 9:15,at 6:30,at 9:30,,,homework
+2577,1,14,conversation,"You hear ""What's Ken going to do this weekend?"" ""He's going to fix his car."" What is Ken going to do?",buy a car,wash his car,fix his car,fix his car,,,homework
+2578,1,14,conversation,"You hear ""What's the weather going to be like tomorrow?"" ""It's going to be cold and snowy."" What season is it probably?",spring,winter,summer,winter,,,homework
+2579,1,14,conversation,"You hear ""What time is the train?"" ""It's at quarter to five."" When is the train?",4:45,5:45,5:15,4:45,,,homework
+2580,1,14,conversation,"You hear ""Are you going to see a movie tonight?"" ""No. I'm going to study. I have a test tomorrow."" What is the speaker going to do tonight?",study,see a movie,take a test,study,,,homework
+2581,1,15,conversation,"You hear ""What's the matter?"" What is the best reply?",I have a doctor.,I have a headache.,I'm a headache.,I have a headache.,,,homework
+2582,1,15,conversation,"You hear ""You don't look well. What's the matter?"" What is the best reply?",I have a new sweater.,I have a good idea.,I have a sore throat.,I have a sore throat.,,,homework
+2583,1,15,conversation,"You hear ""I watched TV all night."" What is the best reply?",Oh! Are you cold?,Oh! Are you tired?,Oh! Are you hungry?,Oh! Are you tired?,,,homework
+2584,1,15,conversation,"You hear ""I have a terrible toothache."" What is the best reply?","Oh, no! Call the dentist.","Oh, great! Call the dentist.","Oh, no! Call the mechanic.","Oh, no! Call the dentist.",,,homework
+2585,1,15,conversation,"You hear ""I cleaned my whole apartment yesterday."" What is the best reply?",Wow! You're going to work!,Wow! You work tomorrow!,Wow! You worked hard!,Wow! You worked hard!,,,homework
+2586,1,15,conversation,"You hear ""What's the matter, Ken?"" ""I have a stomachache. I ate too much."" What is Ken's problem?",a headache,a backache,a stomachache,a stomachache,,,homework
+2587,1,15,conversation,"You hear ""I played volleyball yesterday. Now I have a backache."" Why does the speaker have a backache?",The speaker studied all day.,The speaker played volleyball.,The speaker cooked dinner.,The speaker played volleyball.,,,homework
+2588,1,15,conversation,"You hear ""What's the matter?"" ""I have a cold and a fever."" What is NOT the problem?",a cold,a toothache,a fever,a toothache,,,homework
+2589,1,15,conversation,"You hear ""I listened to loud music last night. Now I have an earache."" Which is true?",The speaker listened to loud music.,The speaker played baseball.,The speaker watched a movie.,The speaker listened to loud music.,,,homework
+2590,1,15,conversation,"You hear ""Yumi coughed all night. She has a bad cough."" What is Yumi's problem?",an earache,a stomachache,a cough,a cough,,,homework
+2591,1,16,conversation,"You hear ""Did you do your homework?"" What is the best reply?","Yes, I am.","Yes, I do.","Yes, I did.","Yes, I did.",,,homework
+2592,1,16,conversation,"You hear ""Did Ken take the bus this morning?"" What is the best reply?","No, he didn't. He drives to work tomorrow.","No, he didn't. He drove to work.","No, he don't. He drove to work.","No, he didn't. He drove to work.",,,homework
+2593,1,16,conversation,"You hear ""What did you do last night?"" What is the best reply?",I see a movie tomorrow.,I seeing a movie.,I saw a movie.,I saw a movie.,,,homework
+2594,1,16,conversation,"You hear ""Why did you miss the meeting?"" What is the best reply?",I'm sorry. I get up late tomorrow.,I'm sorry. I got up late.,I'm sorry. I'm getting up late.,I'm sorry. I got up late.,,,homework
+2595,1,16,conversation,"You hear ""When did you get up this morning?"" What is the best reply?",At seven o'clock.,In the kitchen.,With my wife.,At seven o'clock.,,,homework
+2596,1,16,conversation,"You hear ""Did you have breakfast this morning?"" ""No, I didn't. I got up late."" Why didn't the speaker have breakfast?",The speaker went jogging.,The speaker had no food.,The speaker got up late.,The speaker got up late.,,,homework
+2597,1,16,conversation,"You hear ""What did Lisa do yesterday?"" ""She wrote a letter to her grandmother."" What did Lisa do?",She wrote a letter.,She called her grandmother.,She read a letter.,She wrote a letter.,,,homework
+2598,1,16,conversation,"You hear ""Where did you go last weekend?"" ""I went to the beach with my family."" Where did the speaker go?",to the beach,to the park,to the mountains,to the beach,,,homework
+2599,1,16,conversation,"You hear ""Did Tom buy groceries?"" ""Yes, he did. He bought milk and bread."" What did Tom buy?",milk and bread,milk and eggs,bread and rice,milk and bread,,,homework
+2600,1,16,conversation,"You hear ""Did you take a bath last night?"" ""No, I didn't. I took a shower."" What did the speaker do last night?",went to sleep early,took a bath,took a shower,took a shower,,,homework
+2601,1,17,conversation,"You hear ""How was the movie?"" What is the best reply?",It were exciting!,It was exciting!,It's going to be exciting!,It was exciting!,,,homework
+2602,1,17,conversation,"You hear ""Were you at home last night?"" What is the best reply?","No, I didn't. I was at work.","No, I weren't. I was at work.","No, I wasn't. I was at work.","No, I wasn't. I was at work.",,,homework
+2603,1,17,conversation,"You hear ""Was the hotel comfortable?"" What is the best reply?","Yes, it is. The beds are going to be comfortable.","Yes, it were. The beds was very comfortable.","Yes, it was. The beds were very comfortable.","Yes, it was. The beds were very comfortable.",,,homework
+2604,1,17,conversation,"You hear ""Were your children hungry after the game?"" What is the best reply?","Yes, they was. They ate a lot.","Yes, they did. They ate a lot.","Yes, they were. They ate a lot.","Yes, they were. They ate a lot.",,,homework
+2605,1,17,conversation,"You hear ""Were you tired yesterday?"" What is the best reply?","Yes, I was. I worked all day.","Yes, I am. I work all day tomorrow.","Yes, I were. I worked all day.","Yes, I was. I worked all day.",,,homework
+2606,1,17,conversation,"You hear ""Where were you yesterday?"" ""I was at the hospital. I was sick."" Why was the speaker at the hospital?",The speaker was sick.,The speaker visited a friend.,The speaker works there.,The speaker was sick.,,,homework
+2607,1,17,conversation,"You hear ""How was your vacation?"" ""It was wonderful. The weather was sunny every day."" How was the weather?",sunny,rainy,snowy,sunny,,,homework
+2608,1,17,conversation,"You hear ""Was the restaurant full?"" ""Yes, it was. There were a lot of people."" What is true?",The restaurant was empty.,The restaurant was full.,The restaurant was closed.,The restaurant was full.,,,homework
+2609,1,17,conversation,"You hear ""Were you nervous at the job interview?"" ""Yes, I was very nervous."" How did the speaker feel?",bored,nervous,angry,nervous,,,homework
+2610,1,17,conversation,"You hear ""Was your grandfather a teacher?"" ""No, he wasn't. He was a mechanic."" What was the grandfather's job?",a mechanic,a teacher,a doctor,a mechanic,,,homework

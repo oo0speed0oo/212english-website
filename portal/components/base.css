@@ -660,6 +660,8 @@ button, input, select, textarea { font-family: inherit; }
 }
 .listen-btn:hover { background: rgba(var(--accent-rgb), 0.3); }
 .listen-btn.playing { opacity: 0.7; }
+.listen-btn-big { display: block; width: 100%; max-width: 420px; min-height: 72px; font-size: 22px; font-weight: 700; margin: 4px 0 18px; }
+.listen-reveal-label { font-size: 12px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 6px; }
 .listen-prefix { margin-bottom: 12px !important; }
 .listen-suffix { margin-bottom: 28px; }
 .listen-msg { font-size: 13px; color: var(--text-muted); margin-bottom: 10px; }
