@@ -7,6 +7,9 @@
 // quoted lines = two people (two different voices, a short pause between).
 // After the student answers, reveal() shows the conversation text.
 //
+// Conversation questions play a recorded file (audio/conversation/<id>.m4a) when there is one,
+// otherwise the robot voice.
+//
 // Voices: a recorded mp3 voice (American/British, woman/man - files in
 // portal/audio/<voice>/<id>.mp3) or, if there is no mp3 or it fails to load,
 // the robot (the device's built-in English voice, no files needed).
@@ -333,6 +336,16 @@ var H212Listen = (function () {
     if (q.type === 'conversation') {
       // Conversation: only a big Play button (robot voice) and the part after the quotes
       cur.id = q.id; cur.avail = []; cur.mixPick = null; cur.audio = null; cur.sel = 'robot'; cur.effective = 'robot';
+      // A recorded file for this question (audio/conversation/<id>.m4a) plays when it exists;
+      // if it is missing or fails to load, play() falls back to the robot voice.
+      var cv = window.H212_VOICES && window.H212_VOICES.conv;
+      if (cv && cv[q.id] && typeof Audio !== 'undefined') {
+        var a = new Audio();
+        a.preload = 'auto';
+        a.src = 'audio/conversation/' + q.id + '.m4a?v=' + cv[q.id];
+        cur.audio = a;
+        cur.effective = 'file';
+      }
       var h = '<button type="button" class="listen-btn listen-btn-big" id="listen-btn" onclick="H212Listen.play()">' + T['listen.play'] + '</button>'
         + '<div class="listen-msg" id="listen-msg" role="status"></div>'
         + '<div class="listen-reveal" id="listen-reveal" hidden></div>';

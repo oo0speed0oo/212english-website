@@ -1,8 +1,9 @@
 <?php
 /**
  * Tells the Listening player which question ids have an mp3 for each voice.
- * Reads the folders in portal/audio/ (us_woman, us_man, uk_woman, uk_man),
- * so new mp3 files show up automatically - no list to keep up to date.
+ * Reads the folders in portal/audio/ (us_woman, us_man, uk_woman, uk_man for
+ * Listening, conversation for Conversation), so new audio files show up
+ * automatically - no list to keep up to date.
  * Prints window.H212_VOICES for components/listen.js.
  */
 function h212_voice_script() {
@@ -16,5 +17,11 @@ function h212_voice_script() {
 			$latest = max( $latest, (int) filemtime( $file ) );
 		}
 	}
-	echo '<script>window.H212_VOICES = ' . wp_json_encode( array( 'v' => $latest, 'ids' => $ids ) ) . ';</script>' . "\n";
+	// Conversation questions: one recorded file per question id (audio/conversation/<id>.m4a).
+	// value = file time, used as a version number on the link.
+	$conv = array();
+	foreach ( (array) glob( $base . 'conversation/*.m4a' ) as $file ) {
+		$conv[ basename( $file, '.m4a' ) ] = max( 1, (int) filemtime( $file ) );
+	}
+	echo '<script>window.H212_VOICES = ' . wp_json_encode( array( 'v' => $latest, 'ids' => $ids, 'conv' => (object) $conv ) ) . ';</script>' . "\n";
 }
