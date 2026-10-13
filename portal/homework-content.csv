@@ -923,7 +923,6 @@ id,level,chapter,type,question,choice_a,choice_b,choice_c,answer,image,audio,mod
 2192,1,1,photo,Look at the picture. ___ are friends.,He,She,They,They,ch01_they_two_people.jpg,,homework
 2193,1,1,photo,What is this?,a bird,a cat,a dog,a cat,ch01_cat.jpg,,homework
 2194,1,1,photo,What is this?,a cat,a bird,a dog,a dog,ch01_dog.jpg,,homework
-2195,1,2,photo,What is this?,a clock,a ruler,a chair,a ruler,ch02_ruler.jpg,,homework
 2196,1,2,photo,What is this?,a chair,a globe,a bulletin board,a chair,ch02_chair.jpg,,homework
 2197,1,2,photo,What is this?,a bookshelf,a map,a table,a table,ch02_table.jpg,,homework
 2198,1,2,photo,What is this?,a table,a bookshelf,a clock,a bookshelf,ch02_bookshelf_with_books.jpg,,homework
@@ -942,32 +941,25 @@ id,level,chapter,type,question,choice_a,choice_b,choice_c,answer,image,audio,mod
 2211,1,2,photo,Where is this?,the yard,the attic,the garage,the yard,ch02_yard.jpg,,homework
 2212,1,2,photo,Where is this?,a bank,a restaurant,a supermarket,a bank,ch02_bank.jpg,,homework
 2213,1,2,photo,Where is this?,a supermarket,a restaurant,a post office,a supermarket,ch02_supermarket.jpg,,homework
-2214,1,2,photo,Where is this?,a restaurant,a supermarket,a post office,a post office,ch02_post_office.jpg,,homework
 2215,1,2,photo,Where is this?,a library,a restaurant,a post office,a restaurant,ch02_restaurant.jpg,,homework
 2216,1,2,photo,Where is this?,a restaurant,a library,a bank,a library,ch02_library.jpg,,homework
-2217,1,3,photo,What is the person doing?,eating,reading a book,planting a flower,eating,ch03_eating.jpg,,homework
 2218,1,3,photo,What is the person doing?,drinking water,watching TV,playing baseball,drinking water,ch03_drinking_water.jpg,,homework
-2219,1,3,photo,What is the person doing?,cooking,singing,teaching,cooking,ch03_cooking.jpg,,homework
 2220,1,3,photo,What is the person doing?,listening to music,playing the piano,reading a book,reading a book,ch03_reading_a_book.jpg,,homework
 2221,1,3,photo,What is the person doing?,studying,cooking,drinking water,studying,ch03_studying_at_a_desk.jpg,,homework
 2222,1,3,photo,What is the person doing?,cooking,singing,teaching,singing,ch03_singing.jpg,,homework
 2223,1,3,photo,What is the person doing?,sleeping,drinking water,playing baseball,sleeping,ch03_sleeping_in_bed.jpg,,homework
 2224,1,3,photo,What is the person doing?,teaching,swimming,drinking water,swimming,ch03_swimming_in_a_pool.jpg,,homework
-2225,1,3,photo,What is the person doing?,eating,planting a flower,watching TV,planting a flower,ch03_planting_a_flower.jpg,,homework
 2226,1,3,photo,What is the person doing?,reading a book,singing,watching TV,watching TV,ch03_watching_tv.jpg,,homework
 2227,1,3,photo,What is the person doing?,eating,listening to music,swimming,listening to music,ch03_listening_to_music_with_headphones.jpg,,homework
 2228,1,3,photo,What is the person doing?,listening to music,studying,playing cards,playing cards,ch03_playing_cards.jpg,,homework
-2229,1,3,photo,What is the person doing?,drinking water,reading a book,playing baseball,playing baseball,ch03_playing_baseball.jpg,,homework
 2230,1,3,photo,What is the person doing?,planting a flower,eating,playing the piano,playing the piano,ch03_playing_the_piano.jpg,,homework
 2231,1,3,photo,What is the person doing?,teaching,listening to music,sleeping,teaching,ch03_teaching.jpg,,homework
 2232,1,4,photo,What is the person doing?,washing hands,brushing hair,brushing teeth,brushing teeth,ch04_brushing_teeth.jpg,,homework
 2233,1,4,photo,What is the person doing?,fixing the car,cleaning the room,feeding the cat,cleaning the room,ch04_cleaning_a_room_with_a_cloth.jpg,,homework
-2234,1,4,photo,What is the person doing?,feeding the cat,cleaning the room,brushing teeth,feeding the cat,ch04_feeding_a_cat.jpg,,homework
 2235,1,4,photo,What is the person doing?,washing the dog,fixing the car,cleaning the room,fixing the car,ch04_fixing_a_car_with_tools.jpg,,homework
 2236,1,4,photo,What is the person doing?,washing the car,brushing teeth,painting the wall,painting the wall,ch04_painting_a_wall_with_a_roller.jpg,,homework
 2237,1,4,photo,What is the person doing?,washing the car,painting the wall,brushing hair,washing the car,ch04_washing_a_car_with_a_sponge.jpg,,homework
 2238,1,4,photo,What is the person doing?,brushing teeth,washing the car,washing the dog,washing the dog,ch04_washing_a_dog_in_a_tub.jpg,,homework
-2239,1,4,photo,What is the person doing?,brushing teeth,washing hair,brushing hair,brushing hair,ch04_brushing_hair.jpg,,homework
 2240,1,5,photo,Look at the man who is highlighted. He is ___.,tall,sad,short,tall,ch05_tall.jpg,,homework
 2241,1,5,photo,This person is ___.,tall,old,young,young,ch05_young.jpg,,homework
 2242,1,5,photo,This person is ___.,old,young,cheap,old,ch05_old.jpg,,homework
@@ -985,7 +977,6 @@ id,level,chapter,type,question,choice_a,choice_b,choice_c,answer,image,audio,mod
 2254,1,5,photo,How's the weather?,It's snowy.,It's sunny.,It's rainy.,It's snowy.,ch05_snowy.jpg,,homework
 2255,1,6,photo,What is the person doing?,crying,acting,skateboarding,acting,ch06_acting_on_a_stage.jpg,,homework
 2256,1,6,photo,What is the person doing?,laughing,baking bread,skateboarding,baking bread,ch06_baking_bread.jpg,,homework
-2257,1,6,photo,What is the person doing?,crying,vacuuming,acting,crying,ch06_crying.jpg,,homework
 2258,1,6,photo,What is the person doing?,vacuuming,talking on the phone,dancing,dancing,ch06_dancing.jpg,,homework
 2259,1,6,photo,What is the person doing?,acting,having dinner,crying,having dinner,ch06_having_dinner_at_a_table_with_family.jpg,,homework
 2260,1,6,photo,What is the person doing?,laughing,vacuuming,riding a bicycle,laughing,ch06_laughing.jpg,,homework
@@ -1017,7 +1008,6 @@ id,level,chapter,type,question,choice_a,choice_b,choice_c,answer,image,audio,mod
 2286,1,7,photo,Where is this?,a movie theater,a hospital,a department store,a movie theater,ch07_movie_theater.jpg,,homework
 2287,1,7,photo,Where is this?,a health club,a movie theater,a park,a park,ch07_park.jpg,,homework
 2288,1,7,photo,Where is this?,a hospital,a department store,a police station,a police station,ch07_police_station.jpg,,homework
-2289,1,7,photo,Where is this?,a school,a hospital,a bakery,a school,ch07_school.jpg,,homework
 2290,1,7,photo,Where is this?,a train station,a department store,a movie theater,a train station,ch07_train_station.jpg,,homework
 2291,1,7,photo,What is this?,an air conditioner,an elevator,a jacuzzi,an elevator,ch07_elevator.jpg,,homework
 2292,1,7,photo,What is this?,a mailbox,a fire escape,a jacuzzi,a fire escape,ch07_fire_escape_on_a_building.jpg,,homework
@@ -1048,7 +1038,6 @@ id,level,chapter,type,question,choice_a,choice_b,choice_c,answer,image,audio,mod
 2317,1,8,photo,What is this?,a hat,a sweater,a purse,a purse,ch08_purse.jpg,,homework
 2318,1,8,photo,What is this?,a raincoat,a wristwatch,a shirt,a raincoat,ch08_raincoat.jpg,,homework
 2319,1,8,photo,What is this?,a shirt,a wristwatch,a belt,a shirt,ch08_shirt.jpg,,homework
-2320,1,8,photo,What are these?,sunglasses,earrings,shoes,shoes,ch08_pair_of_shoes.jpg,,homework
 2321,1,8,photo,What is this?,a hat,a skirt,a tie,a skirt,ch08_skirt.jpg,,homework
 2322,1,8,photo,What are these?,socks,glasses,jeans,socks,ch08_pair_of_socks.jpg,,homework
 2323,1,8,photo,What is this?,a suit,a bracelet,a blouse,a suit,ch08_suit.jpg,,homework
@@ -1057,18 +1046,7 @@ id,level,chapter,type,question,choice_a,choice_b,choice_c,answer,image,audio,mod
 2326,1,8,photo,What is this?,a wristwatch,a tie,a blouse,a tie,ch08_tie.jpg,,homework
 2327,1,8,photo,What is this?,an umbrella,a bracelet,a hat,an umbrella,ch08_umbrella.jpg,,homework
 2328,1,8,photo,What is this?,a belt,a wristwatch,a purse,a wristwatch,ch08_wristwatch.jpg,,homework
-2329,1,9,photo,Which country's flag is this?,the United Kingdom,China,Japan,Japan,ch09_japan.jpg,,homework
-2330,1,9,photo,Which country's flag is this?,the United States,South Korea,China,the United States,ch09_united_states.jpg,,homework
-2331,1,9,photo,Which country's flag is this?,the United Kingdom,Japan,Mexico,the United Kingdom,ch09_united_kingdom.jpg,,homework
-2332,1,9,photo,Which country's flag is this?,South Korea,France,Spain,France,ch09_france.jpg,,homework
-2333,1,9,photo,Which country's flag is this?,Brazil,China,Mexico,Mexico,ch09_mexico.jpg,,homework
-2334,1,9,photo,Which country's flag is this?,South Korea,Spain,France,South Korea,ch09_south_korea.jpg,,homework
-2335,1,9,photo,Which country's flag is this?,Mexico,China,France,China,ch09_china.jpg,,homework
-2336,1,9,photo,Which country's flag is this?,Brazil,France,the United States,Brazil,ch09_brazil.jpg,,homework
-2337,1,9,photo,Which country's flag is this?,the United States,Italy,Spain,Spain,ch09_spain.jpg,,homework
-2338,1,9,photo,Which country's flag is this?,Brazil,Italy,South Korea,Italy,ch09_italy.jpg,,homework
 2339,1,9,photo,What is the person doing?,shopping,making a call,selling fruit,making a call,ch09_calling_on_a_phone.jpg,,homework
-2340,1,9,photo,What is the person doing?,giving a speech,working,driving,driving,ch09_driving_a_car.jpg,,homework
 2341,1,9,photo,What is the person doing?,selling fruit,visiting grandparents,painting,painting,ch09_painting_a_picture.jpg,,homework
 2342,1,9,photo,What is the person doing?,visiting grandparents,selling fruit,giving a speech,selling fruit,ch09_selling_fruit_at_a_market_stall.jpg,,homework
 2343,1,9,photo,What is the person doing?,working,painting,shopping,shopping,ch09_shopping_with_bags.jpg,,homework
@@ -1076,7 +1054,6 @@ id,level,chapter,type,question,choice_a,choice_b,choice_c,answer,image,audio,mod
 2345,1,9,photo,What is the person doing?,selling fruit,visiting grandparents,working,visiting grandparents,ch09_visiting_grandparents.jpg,,homework
 2346,1,9,photo,What is the person doing?,working,painting,visiting grandparents,working,ch09_working_at_an_office_desk.jpg,,homework
 2347,1,10,photo,What is the person doing?,babysitting,dancing,playing volleyball,babysitting,ch10_babysitting_a_child.jpg,,homework
-2348,1,10,photo,What is the person doing?,riding a bike,doing yoga,babysitting,doing yoga,ch10_doing_yoga.jpg,,homework
 2349,1,10,photo,What is the person doing?,watching a play,dancing,playing volleyball,dancing,ch10_dancing_at_a_party.jpg,,homework
 2350,1,10,photo,What is the person doing?,playing volleyball,watching a movie,jogging,jogging,ch10_jogging_in_a_park.jpg,,homework
 2351,1,10,photo,What is the person doing?,riding a bike,babysitting,playing volleyball,playing volleyball,ch10_playing_volleyball.jpg,,homework
@@ -1092,25 +1069,18 @@ id,level,chapter,type,question,choice_a,choice_b,choice_c,answer,image,audio,mod
 2361,1,11,photo,The family is relaxing. When is it?,on the weekend,at a work meeting,on a school day,on the weekend,ch11_weekend.jpg,,homework
 2362,1,12,photo,How does the person feel?,happy,cold,angry,happy,ch12_happy.jpg,,homework
 2363,1,12,photo,How does the person feel?,hot,sad,embarrassed,sad,ch12_sad.jpg,,homework
-2364,1,12,photo,How does the person feel?,hungry,nervous,angry,hungry,ch12_hungry.jpg,,homework
-2365,1,12,photo,How does the person feel?,nervous,thirsty,scared,thirsty,ch12_thirsty.jpg,,homework
 2366,1,12,photo,How does the person feel?,angry,hot,tired,hot,ch12_hot.jpg,,homework
 2367,1,12,photo,How does the person feel?,cold,thirsty,happy,cold,ch12_cold.jpg,,homework
-2368,1,12,photo,How does the person feel?,cold,tired,happy,tired,ch12_tired.jpg,,homework
 2369,1,12,photo,How does the person feel?,angry,happy,sick,sick,ch12_sick.jpg,,homework
 2370,1,12,photo,How does the person feel?,tired,angry,thirsty,angry,ch12_angry.jpg,,homework
 2371,1,12,photo,How does the person feel?,nervous,hungry,thirsty,nervous,ch12_nervous.jpg,,homework
-2372,1,12,photo,How does the person feel?,angry,scared,sad,scared,ch12_scared.jpg,,homework
-2373,1,12,photo,How does the person feel?,thirsty,sad,embarrassed,embarrassed,ch12_embarrassed.jpg,,homework
 2374,1,12,photo,What is the person doing?,smiling,shouting,biting nails,biting nails,ch12_biting_nails.jpg,,homework
 2375,1,12,photo,What is the person doing?,blushing,yawning,biting nails,blushing,ch12_blushing.jpg,,homework
 2376,1,12,photo,What is the person doing?,shouting,blushing,covering eyes,covering eyes,ch12_covering_eyes.jpg,,homework
 2377,1,12,photo,What is the person doing?,crying,shouting,sweating,crying,ch12_crying.jpg,,homework
 2378,1,12,photo,What is the person doing?,shivering,sweating,walking back and forth,sweating,ch12_sweating.jpg,,homework
 2379,1,12,photo,What is the person doing?,crying,walking back and forth,shivering,shivering,ch12_shivering.jpg,,homework
-2380,1,12,photo,What is the person doing?,covering eyes,shouting,blushing,shouting,ch12_shouting.jpg,,homework
 2381,1,12,photo,What is the person doing?,sweating,smiling,crying,smiling,ch12_smiling.jpg,,homework
-2382,1,12,photo,What is the person doing?,walking back and forth,shouting,biting nails,walking back and forth,ch12_walking_back_and_forth.jpg,,homework
 2383,1,12,photo,What is the person doing?,biting nails,yawning,walking back and forth,yawning,ch12_yawning.jpg,,homework
 2384,1,13,photo,What does this person do?,an actor,a chef,a secretary,an actor,ch13_actor.jpg,,homework
 2385,1,13,photo,What does this person do?,an actress,a truck driver,a secretary,an actress,ch13_actress.jpg,,homework
@@ -1144,28 +1114,19 @@ id,level,chapter,type,question,choice_a,choice_b,choice_c,answer,image,audio,mod
 2413,1,15,photo,What's the matter?,a cough,an earache,a cold,an earache,ch15_earache.jpg,,homework
 2414,1,15,photo,What's the matter?,an earache,a headache,a cold,a cold,ch15_cold.jpg,,homework
 2415,1,15,photo,What's the matter?,a toothache,a backache,a fever,a fever,ch15_fever.jpg,,homework
-2416,1,15,photo,What's the matter?,a headache,a cough,a toothache,a cough,ch15_cough.jpg,,homework
 2417,1,15,photo,What's the matter?,a sore throat,an earache,a headache,a sore throat,ch15_sore_throat.jpg,,homework
-2418,1,16,photo,What is the person doing?,getting up,taking a shower,buying groceries,getting up,ch16_getting_up_in_the_morning.jpg,,homework
-2419,1,16,photo,What is the person doing?,driving,going to sleep,taking a shower,taking a shower,ch16_taking_a_shower.jpg,,homework
 2420,1,16,photo,What is the person doing?,taking a bath,driving,reading the newspaper,taking a bath,ch16_taking_a_bath.jpg,,homework
-2421,1,16,photo,What is the person doing?,having breakfast,going to sleep,writing a letter,having breakfast,ch16_having_breakfast.jpg,,homework
 2422,1,16,photo,What is the person doing?,doing exercises,driving,reading the newspaper,reading the newspaper,ch16_reading_the_newspaper.jpg,,homework
 2423,1,16,photo,What is the person doing?,doing exercises,reading the newspaper,taking a bath,doing exercises,ch16_doing_exercises.jpg,,homework
-2424,1,16,photo,What is the person doing?,doing exercises,going to sleep,driving,driving,ch16_driving_to_the_supermarket.jpg,,homework
 2425,1,16,photo,What is the person doing?,buying groceries,making dinner,taking a bath,buying groceries,ch16_buying_groceries.jpg,,homework
 2426,1,16,photo,What is the person doing?,buying groceries,making dinner,going to sleep,making dinner,ch16_making_dinner.jpg,,homework
-2427,1,16,photo,What is the person doing?,writing a letter,taking a bath,reading the newspaper,writing a letter,ch16_writing_a_letter.jpg,,homework
 2428,1,16,photo,What is the person doing?,making dinner,going to sleep,taking a bath,going to sleep,ch16_going_to_sleep.jpg,,homework
-2429,1,16,photo,What is the person doing?,writing a letter,making dinner,washing windows,washing windows,ch16_washing_windows.jpg,,homework
-2430,1,17,photo,This shirt is ___.,tiny,clean,dirty,clean,ch17_clean.jpg,,homework
 2431,1,17,photo,This shirt is ___.,clean,tiny,dirty,dirty,ch17_dirty.jpg,,homework
 2432,1,17,photo,This shoe is ___.,shiny,enormous,dull,shiny,ch17_shiny.jpg,,homework
 2433,1,17,photo,This shoe is ___.,dull,enormous,shiny,dull,ch17_dull.jpg,,homework
 2434,1,17,photo,This puppy is ___.,tiny,dirty,enormous,tiny,ch17_tiny.jpg,,homework
 2435,1,17,photo,This dog is ___.,tiny,shiny,enormous,enormous,ch17_enormous.jpg,,homework
 2436,1,17,photo,This chair is ___.,comfortable,uncomfortable,dirty,comfortable,ch17_comfortable.jpg,,homework
-2437,1,17,photo,This stool is ___.,uncomfortable,enormous,comfortable,uncomfortable,ch17_uncomfortable.jpg,,homework
 2438,1,17,photo,This person is ___.,tired,sick,energetic,energetic,ch17_energetic.jpg,,homework
 2439,1,17,photo,"After the big meal, the person is ___.",cold,full,hungry,full,ch17_full.jpg,,homework
 2440,1,17,photo,Who is this?,a baby,a teenager,an old man,a baby,ch17_baby.jpg,,homework

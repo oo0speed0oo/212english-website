@@ -41,6 +41,11 @@ if ( ! defined( 'H212_UNLOCK_PERCENT' ) ) {
 // The old (pre-70%) unlock rule only ever saw the original Homework questions,
 // ids 1-1409. Questions added after that never count against a student's
 // existing access (see h212_legacy_unlocked_keys()).
+// Question ids up to this number are used OR were skipped on purpose. Never hand
+// them out again (the Homework Questions screen starts new ids above this).
+if ( ! defined( 'H212_RESERVED_MAX_ID' ) ) {
+	define( 'H212_RESERVED_MAX_ID', 2440 );
+}
 if ( ! defined( 'H212_LEGACY_MAX_ID' ) ) {
 	define( 'H212_LEGACY_MAX_ID', 1409 );
 }

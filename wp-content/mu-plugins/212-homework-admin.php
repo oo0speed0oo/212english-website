@@ -119,6 +119,10 @@ function h212_hwadmin_next_id( $rows ) {
 			}
 		}
 	}
+	// Ids up to the reserved number were used or skipped on purpose: never reuse them.
+	if ( defined( 'H212_RESERVED_MAX_ID' ) ) {
+		$max = max( $max, (int) H212_RESERVED_MAX_ID );
+	}
 	return (string) ( $max + 1 );
 }
 
