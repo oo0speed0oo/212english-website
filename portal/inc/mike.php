@@ -39,6 +39,10 @@ function h212_mike_for_js() {
 		'hint_listening'    => array( 'mike.hint_listening' ),
 		'hint_conversation' => array( 'mike.hint_conversation' ),
 		'hint_test'         => array( 'mike.hint_test' ),
+		'hint_speaking'     => array( 'mike.hint_speaking' ),
+		'speak_great'       => array( 'mike.speak_great' ),
+		'speak_close'       => array( 'mike.speak_close' ),
+		'speak_try'         => array( 'mike.speak_try' ),
 	);
 	$out = array( 'svg' => h212_mike_svg( 60 ) );
 	foreach ( $groups as $name => $keys ) {

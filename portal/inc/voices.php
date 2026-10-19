@@ -23,5 +23,10 @@ function h212_voice_script() {
 	foreach ( (array) glob( $base . 'conversation/*.m4a' ) as $file ) {
 		$conv[ basename( $file, '.m4a' ) ] = max( 1, (int) filemtime( $file ) );
 	}
-	echo '<script>window.H212_VOICES = ' . wp_json_encode( array( 'v' => $latest, 'ids' => $ids, 'conv' => (object) $conv ) ) . ';</script>' . "\n";
+	// Speaking practice: audio/speaking/<id>_q.m4a (the question) and <id>_a.m4a (the good answer).
+	$speak = array();
+	foreach ( (array) glob( $base . 'speaking/*.m4a' ) as $file ) {
+		$speak[ basename( $file, '.m4a' ) ] = max( 1, (int) filemtime( $file ) );
+	}
+	echo '<script>window.H212_VOICES = ' . wp_json_encode( array( 'v' => $latest, 'ids' => $ids, 'conv' => (object) $conv, 'speak' => (object) $speak ) ) . ';</script>' . "\n";
 }

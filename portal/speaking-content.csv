@@ -1,0 +1,171 @@
+id,level,chapter,kind,prompt_audio,prompt_ja,cue_en,keywords,answers,mode
+2611,1,1,cue,Is Ken a doctor?,いいえ／先生,no / teacher,no|teacher,"No, he isn't. He's a teacher.",practice
+2612,1,1,cue,Are you a teacher?,いいえ／学生,no / student,no|student,"No, I'm not. I'm a student.",practice
+2613,1,1,cue,Who is Emma?,看護師,nurse,she|nurse,She's a nurse.|She is a nurse.,practice
+2614,1,1,japanese,,私は学生です。,,i|student,I am a student.,practice
+2615,1,1,japanese,,あなたは学生です。,,you|student,You are a student.,practice
+2616,1,1,japanese,,彼は先生です。,,he|teacher,He is a teacher.,practice
+2617,1,1,japanese,,彼女は先生です。,,she|teacher,She is a teacher.,practice
+2618,1,1,about,What's your name?,,,my name is/i am,My name is ___.|I'm ___.,practice
+2619,1,1,about,Are you a student?,,,yes/no,"Yes, I am.|No, I'm not. I'm a ___.",practice
+2620,1,1,about,Are you a nurse?,,,yes/no,"Yes, I am.|No, I'm not. I'm a ___.",practice
+2621,1,2,cue,Where is Mr. Lee?,銀行,bank,he|bank,He's at the bank.|He's in the bank.,practice
+2622,1,2,cue,Where is the pen?,机の上,on the desk,pen/it|on|desk,It's on the desk.|The pen is on the desk.,practice
+2623,1,2,cue,Where are you?,台所,kitchen,i|kitchen,I'm in the kitchen.|I am in the kitchen.,practice
+2624,1,2,japanese,,ペンは机の上にあります。,,desk|pen,The pen is on the desk.,practice
+2625,1,2,japanese,,私は台所にいます。,,i|kitchen,I am in the kitchen.,practice
+2626,1,2,japanese,,私たちは図書館にいます。,,we|library,We are in the library.,practice
+2627,1,2,japanese,,トムとアンはスーパーにいます。,,supermarket,Tom and Ann are in the supermarket.,practice
+2628,1,2,about,Where are you now?,,,i am|in/at,I'm at home.|I'm in my bedroom.,practice
+2629,1,2,about,Where is your phone?,,,it is|on/in,It's on the table.|It's in my bag.,practice
+2630,1,2,about,Where are you from?,,,from,I'm from Japan.|I'm from Osaka.,practice
+2631,1,3,cue,What are you doing?,料理,cooking,i|cooking,I'm cooking.|I am cooking.,practice
+2632,1,3,cue,What is Tom doing?,テレビを見る,watching TV,he|watching|tv,He's watching TV.|He is watching TV.,practice
+2633,1,3,cue,What are they doing?,トランプ,playing cards,they|playing|cards,They're playing cards.|They are playing cards.,practice
+2634,1,3,japanese,,私は朝ごはんを食べています。,,i|breakfast|eating,I am eating breakfast.,practice
+2635,1,3,japanese,,あなたは本を読んでいます。,,you|reading|book,You are reading a book.,practice
+2636,1,3,japanese,,彼は野球をしています。,,he|baseball|playing,He is playing baseball.,practice
+2637,1,3,japanese,,彼女は歌を歌っています。,,she|singing|song,She is singing a song.,practice
+2638,1,3,about,What are you doing now?,,,i am|*ing,I'm studying English.|I'm sitting on the sofa.,practice
+2639,1,3,about,What is your family doing now?,,,is/are|*ing,My mother is cooking.|My husband is watching TV.,practice
+2640,1,3,about,Are you eating now?,,,yes/no,"Yes, I am.|No, I'm not.",practice
+2641,1,4,cue,Are you busy?,はい／車を洗う,yes / washing my car,yes|washing|car,"Yes, I am. I'm washing my car.",practice
+2642,1,4,cue,Is Lisa busy?,はい／部屋の掃除,yes / cleaning her room,yes|cleaning|room,"Yes, she is. She's cleaning her room.",practice
+2643,1,4,cue,Is Ken busy?,いいえ／テレビを見る,no / watching TV,no|watching|tv,"No, he isn't. He's watching TV.",practice
+2644,1,4,japanese,,私は歯をみがいています。,,i|brushing|teeth,I am brushing my teeth.,practice
+2645,1,4,japanese,,あなたは自分の部屋を掃除しています。,,you|cleaning|room,You are cleaning your room.,practice
+2646,1,4,japanese,,彼は自分の車を修理しています。,,he|fixing|car,He is fixing his car.,practice
+2647,1,4,japanese,,彼女は自分の寝室にペンキをぬっています。,,she|painting|bedroom,She is painting her bedroom.,practice
+2648,1,4,about,Are you busy now?,,,yes/no,"Yes, I am.|No, I'm not.",practice
+2649,1,4,about,What's your favorite room?,,,my|room/kitchen/bedroom,My favorite room is my living room.,practice
+2650,1,4,about,Is your room clean?,,,yes/no,"Yes, it is.|No, it isn't.",practice
+2651,1,5,cue,How's the weather?,晴れ,sunny,sunny,It's sunny.|It is sunny.,practice
+2652,1,5,cue,Is your apartment large?,いいえ／小さい,no / small,no|small,"No, it isn't. It's small.",practice
+2653,1,5,cue,Is your car new?,いいえ／古い,no / old,no|old,"No, it isn't. It's old.",practice
+2654,1,5,japanese,,彼女は結婚しています。,,she|married,She is married.,practice
+2655,1,5,japanese,,彼女の近所の人たちはうるさいです。,,neighbors|noisy,Her neighbors are noisy.,practice
+2656,1,5,japanese,,彼らの新しいアパートは広いです。,,apartment|large|new,Their new apartment is large.,practice
+2657,1,5,japanese,,ハワードの車は新しいです。,,car|new,Howard's car is new.,practice
+2658,1,5,about,How's the weather today?,,,it is,It's sunny.|It's cloudy.|It's rainy.,practice
+2659,1,5,about,Is your house large or small?,,,it is|large/small,It's small.|It's large.,practice
+2660,1,5,about,Is your neighborhood noisy?,,,yes/no,"Yes, it is.|No, it isn't. It's quiet.",practice
+2661,1,6,cue,Who is she?,私の姉（妹）,my sister,sister,She's my sister.|She is my sister.,practice
+2662,1,6,cue,Where is your father?,仕事中,at work,he|work,He's at work.|He is at work.,practice
+2663,1,6,cue,Where are the children?,公園,at the park,they|park,They're at the park.|They are at the park.,practice
+2664,1,6,japanese,,ケイトはソファに座っています。,,sitting|sofa,Kate is sitting on the sofa.,practice
+2665,1,6,japanese,,マイクは今日家にいます。,,today|home,Mike is at home today.,practice
+2666,1,6,japanese,,ネコはソファの上で寝ています。,,sleeping|sofa|cat,The cat is sleeping on the sofa.,practice
+2667,1,6,japanese,,私たちは家の前に立っています。,,standing|house|front,We're standing in front of our house.,practice
+2668,1,6,about,Who is in your family?,,,my,"My wife, my son and my daughter.|My mother and my father.",practice
+2669,1,6,about,Where is your family now?,,,at/in,My wife is at work.|My parents are at home.,practice
+2670,1,6,about,Who is your best friend?,,,my|friend,My best friend is ___.,practice
+2671,1,7,cue,Is there a bank near here?,はい／郵便局のとなり,yes / next to the post office,yes|next to|post office,"Yes, there is. It's next to the post office.",practice
+2672,1,7,cue,Where is the bakery?,学校の向かい,across from the school,across from|school,It's across from the school.,practice
+2673,1,7,cue,Is there an elevator in the building?,いいえ,no,no,"No, there isn't.|No, there is not.",practice
+2674,1,7,japanese,,寝室には窓が1つあります。,,bedroom|window|one,There is one window in the bedroom.,practice
+2675,1,7,japanese,,寝室には窓が2つあります。,,bedroom|windows|two,There are two windows in the bedroom.,practice
+2676,1,7,japanese,,メイン通りにスーパーがあります。,,supermarket|street|main,There is a supermarket on Main Street.,practice
+2677,1,7,japanese,,ショッピングモールにはたくさんの店があります。,,shopping|stores|mall,There are many stores in the shopping mall.,practice
+2678,1,7,about,Is there a park in your neighborhood?,,,yes/no|there,"Yes, there is.|No, there isn't.",practice
+2679,1,7,about,What's next to your house?,,,next to,There's a supermarket next to my house.,practice
+2680,1,7,about,Is there a train station near your home?,,,yes/no|there,"Yes, there is.|No, there isn't.",practice
+2681,1,8,cue,May I help you?,セーター,a sweater,looking for|sweater,"Yes, please. I'm looking for a sweater.",practice
+2682,1,8,cue,What color is your coat?,青,blue,blue,It's blue.|My coat is blue.,practice
+2683,1,8,cue,Are these your gloves?,はい,yes,yes|they,"Yes, they are.|Yes, they are my gloves.",practice
+2684,1,8,japanese,,かさを探しています。,,umbrella|looking,I'm looking for an umbrella.,practice
+2685,1,8,japanese,,ドレスを探しています。,,looking|dress,I'm looking for a dress.,practice
+2686,1,8,japanese,,これはオレンジ色のセーターです。,,sweater|orange,This is an orange sweater.,practice
+2687,1,8,japanese,,これは紫色のジャケットです。,,jacket|purple,This is a purple jacket.,practice
+2688,1,8,about,What are you wearing today?,,,wearing,I'm wearing a blue shirt and jeans.,practice
+2689,1,8,about,What color is your bag?,,,it is,It's black.|It's brown.,practice
+2690,1,8,about,Are your shoes new?,,,yes/no,"Yes, they are.|No, they aren't.",practice
+2691,1,9,cue,Where does Kenji live?,大阪,Osaka,he|lives|osaka,He lives in Osaka.,practice
+2692,1,9,cue,What language does Maria speak?,スペイン語,Spanish,she|speaks|spanish,She speaks Spanish.,practice
+2693,1,9,cue,What does your father do?,バスの運転,drives a bus,he|drives|bus,He drives a bus.,practice
+2694,1,9,japanese,,私は東京に住んでいます。,,i|tokyo|live,I live in Tokyo.,practice
+2695,1,9,japanese,,ケンジは大阪に住んでいます。,,lives|osaka,Kenji lives in Osaka.,practice
+2696,1,9,japanese,,両親は京都に住んでいます。,,parents|kyoto|live,My parents live in Kyoto.,practice
+2697,1,9,japanese,,私たちはアパートに住んでいます。,,we|apartment|building|live,We live in an apartment building.,practice
+2698,1,9,about,Where do you live?,,,i live/live,I live in Tokyo.|I live in Osaka.,practice
+2699,1,9,about,What language do you speak?,,,speak,I speak Japanese.|I speak Japanese and English.,practice
+2700,1,9,about,What do you do in the evening?,,,i,I watch TV.|I read a book.,practice
+2701,1,10,cue,Do you play volleyball?,いいえ／ジョギング,no / jog,no|jog,"No, I don't. I jog.",practice
+2702,1,10,cue,When do you go dancing?,土曜日,Saturday,saturday,On Saturday.|I go dancing on Saturday.,practice
+2703,1,10,cue,Does Emma do yoga?,はい,yes,yes|she|does,"Yes, she does.",practice
+2704,1,10,japanese,,私は日曜日は働きません。,,i|sunday|work,I don't work on Sunday.,practice
+2705,1,10,japanese,,リカはバレーボールをしません。,,volleyball|play,Rika doesn't play volleyball.,practice
+2706,1,10,japanese,,両親はダンスに行きません。,,parents|dancing|go,My parents don't go dancing.,practice
+2707,1,10,japanese,,この古い腕時計は動きません。,,watch|work|old,This old watch doesn't work.,practice
+2708,1,10,about,What do you do on the weekend?,,,i,I go shopping.|I clean my house.,practice
+2709,1,10,about,Do you play a sport?,,,yes/no,"Yes, I do. I play tennis.|No, I don't.",practice
+2710,1,10,about,When do you see your friends?,,,on/every,On Saturday.|Every weekend.,practice
+2711,1,11,cue,How often do you call your mother?,毎週,every week,every week,I call her every week.,practice
+2712,1,11,cue,Does your sister have long hair?,いいえ／短い髪,no / short hair,no|short,"No, she doesn't. She has short hair.",practice
+2713,1,11,cue,How often does Ken see a movie?,めったにない,rarely,rarely,He rarely sees a movie.,practice
+2714,1,11,japanese,,彼は毎晩彼女に電話します。,,he|calls|night,He calls her every night.,practice
+2715,1,11,japanese,,私は毎月彼らを訪ねます。,,i|visit|month|them,I visit them every month.,practice
+2716,1,11,japanese,,彼女はいつも私たちを助けてくれます。,,she|helps|time|all,She helps us all the time.,practice
+2717,1,11,japanese,,私は毎週日曜日にそれを洗います。,,i|sunday|wash,I wash it every Sunday.,practice
+2718,1,11,about,How often do you cook?,,,always/usually/sometimes/rarely/never/every,I usually cook every day.|I sometimes cook.,practice
+2719,1,11,about,Do you have long hair or short hair?,,,have|long/short,I have short hair.|I have long hair.,practice
+2720,1,11,about,How often do you exercise?,,,always/usually/sometimes/rarely/never/every,I sometimes exercise.|I jog every morning.,practice
+2721,1,12,cue,Why are you crying?,悲しい,sad,because|sad,Because I'm sad.|Because I am sad.,practice
+2722,1,12,cue,Why is Tom shivering?,寒い,cold,because|cold,Because he's cold.|Because he is cold.,practice
+2723,1,12,cue,Why are you yawning?,疲れている,tired,because|tired,Because I'm tired.|Because I am tired.,practice
+2724,1,12,japanese,,今日、彼女は歩いて仕事に行っています。,,walking|today|work,Today she is walking to work.,practice
+2725,1,12,japanese,,毎日、アヤは自転車で学校に行きます。,,bicycle|school|rides,"Every day, Aya rides her bicycle to school.",practice
+2726,1,12,japanese,,アヤは今バスに乗っています。,,taking|now|bus,Aya is taking the bus right now.,practice
+2727,1,12,japanese,,赤ちゃんが泣いています。,,crying|baby,The baby is crying.,practice
+2728,1,12,about,How do you feel today?,,,i am/i feel,I'm happy.|I'm tired.,practice
+2729,1,12,about,What do you do when you're nervous?,,,when|nervous,I bite my nails when I'm nervous.,practice
+2730,1,12,about,What are you doing right now?,,,i am|*ing,I'm studying English.,practice
+2731,1,13,cue,Can you swim?,はい,yes,yes|can,"Yes, I can.",practice
+2732,1,13,cue,Can you come to my party on Saturday?,いいえ／仕事がある,no / have to work,sorry/no|have to|work,"Sorry, I can't. I have to work.",practice
+2733,1,13,cue,What does your brother do?,整備士,mechanic,he|mechanic,He's a mechanic.|He is a mechanic.,practice
+2734,1,13,japanese,,ケンは泳げます。,,swim|can,Ken can swim.,practice
+2735,1,13,japanese,,私は歌えません。,,i|sing,I can't sing.,practice
+2736,1,13,japanese,,魚は泳げますが、歩けません。,,swim|walk|fish,"Fish can swim, but they can't walk.",practice
+2737,1,13,japanese,,彼らは日本語を話せます。,,they|japanese|speak|can,They can speak Japanese.,practice
+2738,1,13,about,What can you do well?,,,can,I can cook well.|I can swim.,practice
+2739,1,13,about,What can't you do?,,,cannot/can not,I can't sing.|I can't drive.,practice
+2740,1,13,about,What do you have to do tomorrow?,,,have to,I have to work.|I have to clean my house.,practice
+2741,1,14,cue,What time is it?,3時,3:00,three|oclock,It's three o'clock.,practice
+2742,1,14,cue,What are you going to do tomorrow?,アパートの掃除,clean my apartment,going to|clean,I'm going to clean my apartment.,practice
+2743,1,14,cue,What's the weather going to be like?,雨,rain,going to|rain,It's going to rain.,practice
+2744,1,14,japanese,,私は今夜本を読むつもりです。,,i|tonight|going|read,I am going to read tonight.,practice
+2745,1,14,japanese,,ケンは明日映画を見るつもりです。,,tomorrow|going|movie,Ken is going to see a movie tomorrow.,practice
+2746,1,14,japanese,,両親は来月京都を訪れるつもりです。,,parents|going|month,My parents are going to visit Kyoto next month.,practice
+2747,1,14,japanese,,私は掃除をするつもりです。,,clean|going,I'm going to clean.,practice
+2748,1,14,about,What are you going to do this weekend?,,,going to,I'm going to see a movie.|I'm going to visit my parents.,practice
+2749,1,14,about,What time do you get up?,,,at|oclock/thirty/fifteen/am,At seven o'clock.|I get up at six thirty.,practice
+2750,1,14,about,What do you want to do this summer?,,,want to,I want to go to the beach.|I want to travel.,practice
+2751,1,15,cue,What's the matter?,頭痛,headache,have|headache,I have a headache.,practice
+2752,1,15,cue,What's the matter with Ken?,歯痛,toothache,he|has|toothache,He has a toothache.,practice
+2753,1,15,cue,What's the matter?,熱,fever,have|fever,I have a fever.,practice
+2754,1,15,japanese,,頭が痛いです。,,i|headache|have,I have a headache.,practice
+2755,1,15,japanese,,息子は熱があります。,,fever|son|has,My son has a fever.,practice
+2756,1,15,japanese,,私は昨日働きました。,,i|yesterday|worked,I worked yesterday.,practice
+2757,1,15,japanese,,彼女は昨日ピアノをひきました。,,she|yesterday|played|piano,She played the piano yesterday.,practice
+2758,1,15,about,How do you feel today?,,,i,I feel fine.|I have a cold.,practice
+2759,1,15,about,What did you do yesterday? Use one -ed word.,,,*ed,I worked.|I cleaned my room.|I cooked dinner.,practice
+2760,1,15,about,What do you do when you have a headache?,,,when|headache,I rest when I have a headache.,practice
+2761,1,16,cue,What did you do last night?,映画を見た,saw a movie,saw|movie,I saw a movie.,practice
+2762,1,16,cue,Did you have breakfast?,いいえ／寝坊した,no / got up late,no|got up|late,"No, I didn't. I got up late.",practice
+2763,1,16,cue,Where did you go yesterday?,ビーチ,the beach,went|beach,I went to the beach.,practice
+2764,1,16,japanese,,私は今朝シャワーを浴びました。,,i|morning|shower|took,I took a shower this morning.,practice
+2765,1,16,japanese,,ケンはバスで仕事に行きました。,,work|went|bus,Ken went to work by bus.,practice
+2766,1,16,japanese,,私は昨日早く起きました。,,i|yesterday|early|got,I got up early yesterday.,practice
+2767,1,16,japanese,,妻は昨夜夕食を作りました。,,dinner|night|last,My wife made dinner last night.,practice
+2768,1,16,about,What did you do last weekend?,,,i,I went shopping.|I saw a movie.,practice
+2769,1,16,about,What did you eat for breakfast?,,,i|ate/had,I ate rice.|I had toast and coffee.,practice
+2770,1,16,about,What time did you get up today?,,,got up/at,I got up at seven.,practice
+2771,1,17,cue,How was the movie?,わくわくする,exciting,it|was|exciting,It was exciting.,practice
+2772,1,17,cue,Were you at home last night?,いいえ／仕事,no / at work,no|was|work,"No, I wasn't. I was at work.",practice
+2773,1,17,cue,Were you tired yesterday?,はい,yes,yes|was,"Yes, I was.",practice
+2774,1,17,japanese,,キムさんはソウルで生まれました。,,seoul|born,Mr. Kim was born in Seoul.,practice
+2775,1,17,japanese,,両親は大阪で生まれました。,,parents|osaka|born,My parents were born in Osaka.,practice
+2776,1,17,japanese,,アナはブラジルで育ちました。,,brazil|grew|up,Ana grew up in Brazil.,practice
+2777,1,17,japanese,,ケンは2015年に東京に引っ越しました。,,tokyo|moved|2015,Ken moved to Tokyo in 2015.,practice
+2778,1,17,about,Where were you born?,,,born,I was born in Tokyo.|I was born in Osaka.,practice
+2779,1,17,about,How was your weekend?,,,it was/was,It was fun.|It was relaxing.,practice
+2780,1,17,about,Were you tired yesterday?,,,yes/no,"Yes, I was.|No, I wasn't.",practice

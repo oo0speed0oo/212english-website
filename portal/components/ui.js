@@ -11,21 +11,23 @@ var H212UI = (function () {
     builder:      svg('<rect x="3" y="8" width="5" height="8" rx="1.5"></rect><rect x="10" y="8" width="5" height="8" rx="1.5"></rect><rect x="17" y="8" width="4" height="8" rx="1.5"></rect>'),
     listening:    svg('<path d="M4 10v4h4l5 4V6L8 10z"></path><path d="M16 9a4 4 0 010 6M18.5 6.5a8 8 0 010 11"></path>'),
     conversation: svg('<path d="M4 5h10v7H8l-4 3z"></path><path d="M14 9h6v7l-3-2h-5v-2"></path>'),
+    speaking:     svg('<rect x="9" y="3" width="6" height="11" rx="3"></rect><path d="M5 11a7 7 0 0014 0"></path><path d="M12 18v3M9 21h6"></path>'),
     close:        '<svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"></path></svg>',
     back:         '<svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"></path></svg>'
   };
-  var GROUP_OF = { photo: 'vocabulary', vocabulary: 'vocabulary', grammar: 'grammar', builder: 'grammar', listening: 'listening', conversation: 'listening' };
+  var GROUP_OF = { photo: 'vocabulary', vocabulary: 'vocabulary', grammar: 'grammar', builder: 'grammar', listening: 'listening', conversation: 'listening', speaking: 'speaking' };
 
   function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
 
   // Top of a question screen: close button, progress bar, "3 / 13 · score"
   // o = { onclose: 'js to run', label: 'Back', index: 2, total: 13, score: 1, scoreWord: 'Score' }
+  // Add noScore: true to leave the score off (Speaking practice has no score).
   function qTop(o) {
     var pct = o.total ? Math.round(((o.index + 1) / o.total) * 100) : 0;
     return '<div class="q-top">'
       + '<button type="button" class="q-close" onclick="' + o.onclose + '" aria-label="' + esc(o.label) + '">' + icons.close + '</button>'
       + '<div class="q-bar" role="progressbar" aria-valuemin="0" aria-valuemax="' + o.total + '" aria-valuenow="' + (o.index + 1) + '"><div class="q-bar-fill" style="width:' + pct + '%"></div></div>'
-      + '<div class="q-count">' + (o.index + 1) + ' / ' + o.total + ' <span class="q-score">· ' + esc(o.scoreWord) + ' ' + o.score + '</span></div>'
+      + '<div class="q-count">' + (o.index + 1) + ' / ' + o.total + (o.noScore ? '' : ' <span class="q-score">· ' + esc(o.scoreWord) + ' ' + o.score + '</span>') + '</div>'
       + '</div>';
   }
 

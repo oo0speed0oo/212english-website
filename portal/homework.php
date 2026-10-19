@@ -25,6 +25,11 @@ h212_js_strings( array(
 	'hw.part_photo_sub', 'hw.part_vocabulary_sub', 'hw.part_grammar_sub', 'hw.part_builder_sub', 'hw.part_listening_sub', 'hw.part_conversation_sub',
 	'hw.group_alt_vocabulary', 'hw.group_alt_grammar', 'hw.group_alt_listening',
 	'hw.part_alt_photo', 'hw.part_alt_vocabulary', 'hw.part_alt_grammar', 'hw.part_alt_builder', 'hw.part_alt_listening', 'hw.part_alt_conversation',
+	'hw.speaking', 'hw.group_alt_speaking', 'hw.part_speaking', 'hw.part_alt_speaking', 'hw.part_speaking_sub',
+	'speak.inst_cue', 'speak.inst_japanese', 'speak.inst_about', 'speak.mic', 'speak.mic_stop', 'speak.listening',
+	'speak.no_mic', 'speak.show_answer', 'speak.no_speech', 'speak.mic_blocked', 'speak.error', 'speak.heard',
+	'speak.great', 'speak.close', 'speak.try', 'speak.model_label', 'speak.try_again', 'speak.finish', 'speak.again',
+	'speak.finish_title', 'speak.finish_sub',
 	'hw.coming_parts', 'hw.photos_soon', 'hw.status_done', 'hw.status_new', 'hw.chapter_progress', 'hw.next_open', 'hw.next_locked',
 	'hw.next_level_open', 'hw.next_level_locked', 'hw.just_unlocked', 'hw.just_unlocked_level',
 	'builder.instruction', 'builder.empty', 'builder.check', 'builder.clear', 'builder.wrong_msg', 'conv.prompt', 'conv.text_label', 'listen.play',
@@ -37,7 +42,7 @@ require_once __DIR__ . '/inc/mike.php';
 h212_mike_for_js();
 // Version numbers for the question files, so a browser never shows an old copy after an upload
 $h212_csv_v = array();
-foreach ( array( 'homework' => 'homework-content.csv', 'build' => 'build-content.csv' ) as $k => $f ) {
+foreach ( array( 'homework' => 'homework-content.csv', 'build' => 'build-content.csv', 'speaking' => 'speaking-content.csv' ) as $k => $f ) {
 	$h212_csv_v[ $k ] = file_exists( __DIR__ . '/' . $f ) ? filemtime( __DIR__ . '/' . $f ) . '-' . filesize( __DIR__ . '/' . $f ) : '0';
 }
 echo '<script>window.H212_CSV_V = ' . wp_json_encode( $h212_csv_v ) . ';</script>' . "\n";
@@ -48,6 +53,7 @@ echo '<script>window.H212_IMAGES = ' . ( function_exists( 'h212_vocab_images' ) 
 <script src="components/mike.js?v=<?php echo (int) filemtime( __DIR__ . '/components/mike.js' ); ?>"></script>
 <script src="components/ui.js?v=<?php echo (int) filemtime( __DIR__ . '/components/ui.js' ); ?>"></script>
 <script src="components/builder.js?v=<?php echo (int) filemtime( __DIR__ . '/components/builder.js' ); ?>"></script>
+<script src="components/speaking.js?v=<?php echo (int) filemtime( __DIR__ . '/components/speaking.js' ); ?>"></script>
 <script>window.H212_NONCE = "<?php echo esc_js( wp_create_nonce( 'h212_save_score' ) ); ?>";</script>
 <script>
 
@@ -71,7 +77,7 @@ var AUDIO_FOLDER = 'audio/';
 
 // ── Boot ──────────────────────────────────────────
 window.addEventListener('DOMContentLoaded', function() {
-  Promise.all([ loadCSV(), loadScores(), loadSeen(), loadWrong(), loadProgress() ]).then(openFromLink).catch(renderLevels);
+  Promise.all([ loadCSV(), loadScores(), loadSeen(), loadWrong(), loadProgress(), H212Speak.load(), H212Speak.loadTries() ]).then(openFromLink).catch(renderLevels);
 });
 
 // The dashboard's Continue card links straight to a chapter (?level=1&chapter=4)
@@ -322,8 +328,22 @@ function typeLabel(type) {
 var GROUPS = [
   { key: 'vocabulary', label: 'hw.vocabulary', alt: 'hw.group_alt_vocabulary', parts: ['photo', 'vocabulary'] },
   { key: 'grammar',    label: 'hw.grammar',    alt: 'hw.group_alt_grammar',    parts: ['grammar', 'builder'] },
-  { key: 'listening',  label: 'hw.listening',  alt: 'hw.group_alt_listening',  parts: ['listening', 'conversation'] }
+  { key: 'listening',  label: 'hw.listening',  alt: 'hw.group_alt_listening',  parts: ['listening', 'conversation'] },
+  // Speaking is practice only: its questions live in speaking-content.csv and never count for unlocking or Grades
+  { key: 'speaking',   label: 'hw.speaking',   alt: 'hw.group_alt_speaking',   parts: ['speaking'] }
 ];
+
+// Speaking card: how many of this chapter's speaking questions the student has tried
+function speakStatusHtml(level, chapter) {
+  var total = H212Speak.forChapter(level, chapter).length;
+  var tried = H212Speak.triedCount(level, chapter);
+  if (tried >= total) return '<span class="status done">✓ ' + H212_T['hw.status_done'] + '</span>';
+  if (tried > 0) return '<span class="status part">' + tried + '/' + total + '</span>';
+  return '<span class="status take">' + H212_T['hw.status_new'] + '</span>';
+}
+function startSpeaking() {
+  H212Speak.start(H212Speak.forChapter(currentLevel, currentChapter), { backJs: 'renderTypes(' + currentChapter + ')' });
+}
 
 function renderLevels() {
   currentLevel = null; currentChapter = null; currentType = null;
@@ -371,6 +391,7 @@ function renderChapters(lvl) {
 function renderTypes(ch) {
   if (!isChapterUnlocked(currentLevel, ch)) { renderChapters(currentLevel); return; }
   currentChapter = ch; currentType = null;
+  H212Speak.stop();   // in case the mic was still listening when the student left a Speaking question
   var html = '<div class="chapter-head">'
     + '<button type="button" class="back-btn" onclick="renderChapters(' + currentLevel + ')" aria-label="' + H212_T['hw.back_chapters'] + '">' + H212UI.icons.back + '</button>'
     + '<div><div class="chapter-head-kicker">' + H212_T['hw.level'] + ' ' + currentLevel + ' · ' + H212_T['hw.chapter'] + ' ' + ch + '</div>'
@@ -379,12 +400,14 @@ function renderTypes(ch) {
   GROUPS.forEach(function(g) {
     html += '<div class="part-group grp-' + g.key + '"><h3 class="part-group-title">' + H212_T[g.label].toUpperCase() + ' <span class="alt">· ' + H212_T[g.alt] + '</span></h3><div class="type-grid">';
     g.parts.forEach(function(part) {
-      var has = questionsForType(currentLevel, ch, part).length > 0;
-      html += '<div class="type-btn part-' + part + (has ? '' : ' empty') + '"' + (has ? ' role="button" tabindex="0" onclick="startQuiz(\'' + part + '\')" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();startQuiz(\'' + part + '\');}"' : '') + '>'
+      var isSpeak = (part === 'speaking');
+      var has = isSpeak ? H212Speak.forChapter(currentLevel, ch).length > 0 : questionsForType(currentLevel, ch, part).length > 0;
+      var go = isSpeak ? 'startSpeaking()' : 'startQuiz(\'' + part + '\')';
+      html += '<div class="type-btn part-' + part + (has ? '' : ' empty') + '"' + (has ? ' role="button" tabindex="0" onclick="' + go + '" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();' + go + ';}"' : '') + '>'
         + '<span class="icon">' + H212UI.icons[part] + '</span>'
         + '<span class="lbl">' + H212_T['hw.part_' + part] + ' <span class="alt">· ' + H212_T['hw.part_alt_' + part] + '</span></span>'
         + '<span class="sub">' + (has ? H212_T['hw.part_' + part + '_sub'] : H212_T[part === 'photo' ? 'hw.photos_soon' : 'hw.coming_parts']) + '</span>'
-        + (has ? typeStatusHtml(currentLevel, ch, part) : '') + '</div>';
+        + (has ? (isSpeak ? speakStatusHtml(currentLevel, ch) : typeStatusHtml(currentLevel, ch, part)) : '') + '</div>';
     });
     html += '</div></div>';
   });

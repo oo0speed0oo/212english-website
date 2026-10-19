@@ -380,5 +380,12 @@ var H212Listen = (function () {
     return html;
   }
 
-  return { render: render, play: play, stop: stop, parse: parse, choose: choose, speakText: speakText, reveal: reveal };
+  // Is there an English voice on this device? (Speaking practice shows the prompt as text if not)
+  function canSpeak() {
+    if (!supported()) return false;
+    if (!voices.length) loadVoices();
+    return voices.length > 0;
+  }
+
+  return { render: render, play: play, stop: stop, parse: parse, choose: choose, speakText: speakText, reveal: reveal, canSpeak: canSpeak };
 })();

@@ -140,6 +140,12 @@ $GLOBALS['h212_strings'] = array(
 	'hw.part_alt_builder'      => array( 'en' => '並べ替え',   'ja' => 'Sentence Builder' ),
 	'hw.part_alt_listening'    => array( 'en' => '聞き取り',   'ja' => 'Listen' ),
 	'hw.part_alt_conversation' => array( 'en' => '会話',       'ja' => 'Conversation' ),
+	// Speaking (4th group, practice only)
+	'hw.speaking'              => array( 'en' => 'Speaking',          'ja' => '話す' ),
+	'hw.group_alt_speaking'    => array( 'en' => '話す',              'ja' => 'Speaking' ),
+	'hw.part_speaking'         => array( 'en' => 'Speak out loud',    'ja' => '声に出して話す' ),
+	'hw.part_alt_speaking'     => array( 'en' => '話す練習',          'ja' => 'Speaking practice' ),
+	'hw.part_speaking_sub'     => array( 'en' => 'Practice only · say it out loud', 'ja' => '練習のみ・声に出して言おう' ),
 	'hw.photos_soon'       => array( 'en' => 'Photos are coming soon', 'ja' => '写真は近日追加予定です' ),
 	'hw.coming_parts'      => array( 'en' => 'Coming with new lessons', 'ja' => '新しいレッスンで追加予定' ),
 	'hw.status_done'       => array( 'en' => 'Done',               'ja' => '完了' ),
@@ -176,6 +182,10 @@ $GLOBALS['h212_strings'] = array(
 	'mike.hint_listening'    => array( 'en' => 'Tap Listen as many times as you like.', 'ja' => '「聞く」は何回でも押してOK。' ),
 	'mike.hint_conversation' => array( 'en' => 'Think about what a friend would say back.', 'ja' => '友だちならどう返すか考えてみよう。' ),
 	'mike.hint_test'         => array( 'en' => 'Take your time. You can do it!', 'ja' => 'ゆっくりでOK。きっとできるよ！' ),
+	'mike.hint_speaking'     => array( 'en' => 'Tap the mic and say it out loud. Do not worry about mistakes!', 'ja' => 'マイクを押して声に出そう。間違えてもだいじょうぶ！' ),
+	'mike.speak_great'       => array( 'en' => 'Great speaking!', 'ja' => 'すばらしい発音！' ),
+	'mike.speak_close'       => array( 'en' => 'So close! Listen to the model answer.', 'ja' => 'おしい！お手本を聞いてみよう。' ),
+	'mike.speak_try'         => array( 'en' => 'Good try! Listen, then say it again.', 'ja' => 'いい挑戦！聞いてからもう一度言おう。' ),
 
 	// Sentence Builder and Conversation
 	'builder.instruction' => array( 'en' => 'Put the words in order to say this in English.', 'ja' => '英語で言えるように、語を正しい順に並べましょう。' ),
@@ -185,6 +195,29 @@ $GLOBALS['h212_strings'] = array(
 	'builder.wrong_msg'   => array( 'en' => '❌ Not quite. The correct sentence is:', 'ja' => '❌ 惜しい！正しい文は：' ),
 	'conv.text_label'     => array( 'en' => 'The conversation:',      'ja' => '会話：' ),
 	'conv.prompt'         => array( 'en' => 'Choose the best reply.', 'ja' => '一番よい返事を選んでください。' ),
+
+	// Speaking practice
+	'speak.inst_cue'      => array( 'en' => 'Listen, then answer out loud using the hint.', 'ja' => '聞いて、ヒントを使って声に出して答えましょう。' ),
+	'speak.inst_japanese' => array( 'en' => 'Say this in English.', 'ja' => '英語で言ってみましょう。' ),
+	'speak.inst_about'    => array( 'en' => 'Listen, then answer about yourself.', 'ja' => '聞いて、自分のことを答えましょう。' ),
+	'speak.mic'           => array( 'en' => 'Tap and speak', 'ja' => 'タップして話す' ),
+	'speak.mic_stop'      => array( 'en' => 'Tap when you are done', 'ja' => '話し終わったらタップ' ),
+	'speak.listening'     => array( 'en' => 'Listening… speak now', 'ja' => '聞いています… 話してね' ),
+	'speak.no_mic'        => array( 'en' => 'Say it out loud, then tap to see a good answer.', 'ja' => '声に出して言ってから、タップしてお手本を見ましょう。' ),
+	'speak.show_answer'   => array( 'en' => 'Show a good answer', 'ja' => 'お手本を見る' ),
+	'speak.no_speech'     => array( 'en' => 'We did not hear anything. Tap the mic and try again.', 'ja' => '声が聞こえませんでした。マイクを押してもう一度。' ),
+	'speak.mic_blocked'   => array( 'en' => 'The microphone is blocked. Allow it in your browser settings, or tap "Show a good answer".', 'ja' => 'マイクが許可されていません。ブラウザの設定で許可するか、「お手本を見る」を押してください。' ),
+	'speak.error'         => array( 'en' => 'The mic had a problem. Try again, or tap "Show a good answer".', 'ja' => 'マイクでエラーが出ました。もう一度試すか、「お手本を見る」を押してください。' ),
+	'speak.heard'         => array( 'en' => 'We heard:', 'ja' => '認識結果：' ),
+	'speak.great'         => array( 'en' => 'Great! すばらしい！', 'ja' => 'すばらしい！ Great!' ),
+	'speak.close'         => array( 'en' => 'Close! Try this:', 'ja' => 'おしい！こう言ってみよう：' ),
+	'speak.try'           => array( 'en' => 'Good try! Try this:', 'ja' => 'いい挑戦！こう言ってみよう：' ),
+	'speak.model_label'   => array( 'en' => 'A good answer:', 'ja' => 'お手本：' ),
+	'speak.try_again'     => array( 'en' => 'Try again', 'ja' => 'もう一度' ),
+	'speak.finish'        => array( 'en' => 'Finish', 'ja' => 'おわり' ),
+	'speak.again'         => array( 'en' => 'Practice again', 'ja' => 'もう一度練習' ),
+	'speak.finish_title'  => array( 'en' => 'Speaking practice done!', 'ja' => '話す練習おわり！' ),
+	'speak.finish_sub'    => array( 'en' => 'You practiced {n} questions.', 'ja' => '{n}問に挑戦しました。' ),
 
 	// Robot voice (Listening questions)
 	'listen.who'      => array( 'en' => 'Who do you want to hear?',  'ja' => '誰の声で聞きますか？' ),
