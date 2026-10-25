@@ -1300,3 +1300,211 @@ id,level,chapter,type,question,choice_a,choice_b,choice_c,answer,image,audio,mod
 2608,1,17,conversation,"You hear ""Was the restaurant full?"" ""Yes, it was. There were a lot of people."" What is true?",The restaurant was empty.,The restaurant was full.,The restaurant was closed.,The restaurant was full.,,,homework
 2609,1,17,conversation,"You hear ""Were you nervous at the job interview?"" ""Yes, I was very nervous."" How did the speaker feel?",bored,nervous,angry,nervous,,,homework
 2610,1,17,conversation,"You hear ""Was your grandfather a teacher?"" ""No, he wasn't. He was a mechanic."" What was the grandfather's job?",a mechanic,a teacher,a doctor,a mechanic,,,homework
+2781,2,1,vocabulary,"Which activity means ""talk with friends on the internet""?",go hiking,write,chat online,chat online,,,homework
+2782,2,1,vocabulary,Which activity do you do in the mountains?,go to the mall,go hiking,swim,go hiking,,,homework
+2783,2,1,vocabulary,Which activity do you do in a pool?,drive,swim,plant,swim,,,homework
+2784,2,1,vocabulary,Which activity do you do in a kitchen?,play basketball,go hiking,make pancakes,make pancakes,,,homework
+2785,2,1,vocabulary,You put flowers in the ground. You ___ them.,clean,plant,drive,plant,,,homework
+2786,2,1,vocabulary,Which day comes after Wednesday?,Thursday,Tuesday,Friday,Thursday,,,homework
+2787,2,1,vocabulary,Which month comes after April?,March,June,May,May,,,homework
+2788,2,1,vocabulary,Which month is in winter in Japan?,July,October,January,January,,,homework
+2789,2,1,vocabulary,Which season comes after summer?,spring,winter,fall,fall,,,homework
+2790,2,1,vocabulary,Which season has cherry blossoms in Japan?,spring,fall,winter,spring,,,homework
+2791,2,1,grammar,Ken ___ to play basketball.,like,likes,liking,likes,,,homework
+2792,2,1,grammar,My parents don't ___ to go hiking.,likes,like,liking,like,,,homework
+2793,2,1,grammar,___ Yumi like to cook?,Do,Does,Is,Does,,,homework
+2794,2,1,grammar,Lisa ___ the piano every Sunday.,plays,playing,play,plays,,,homework
+2795,2,1,grammar,Look! Tom ___ pancakes right now.,makes,is making,made,is making,,,homework
+2796,2,1,grammar,Shh! We ___ TV now.,watched,are watching,watch,are watching,,,homework
+2797,2,1,grammar,Ken ___ to the mall last Saturday.,goes,went,is going,went,,,homework
+2798,2,1,grammar,I ___ my grandmother a letter last week.,wrote,writes,write,wrote,,,homework
+2799,2,1,grammar,My brother ___ his old car last month.,sells,is selling,sold,sold,,,homework
+2800,2,1,grammar,"Next summer, we ___ go hiking.",am going to,is going to,are going to,are going to,,,homework
+2801,2,1,grammar,"""Are you going to cook tonight?"" ""Yes, I ___.""",am,is,are,am,,,homework
+2802,2,1,grammar,It was my birthday. My sister gave ___ a sweater.,my,me,I,me,,,homework
+2803,2,1,grammar,Tom's birthday is tomorrow. I'm going to give ___ a watch.,his,he,him,him,,,homework
+2804,2,1,grammar,We were very happy. Our parents sent ___ a card.,us,our,we,us,,,homework
+2805,2,1,grammar,Ken lent me his bicycle ___.,yesterday,tomorrow,next week,yesterday,,,homework
+2806,2,1,grammar,"""When is your birthday?"" ""It's ___ March.""",in,on,at,in,,,homework
+2807,2,1,listening,"You hear ""I'm going to make pancakes tomorrow morning."" When is the speaker going to make pancakes?",this morning,tomorrow morning,yesterday morning,tomorrow morning,,,homework
+2808,2,1,listening,"You hear ""My brother gave me a book for my birthday."" Who got a book?",the brother,the speaker's friend,the speaker,the speaker,,,homework
+2809,2,1,listening,"You hear ""Lisa doesn't like to drive. She likes to swim."" What does Lisa like to do?",drive,cook,swim,swim,,,homework
+2810,2,1,listening,"You hear ""We went hiking last fall."" When did the speaker go hiking?",next fall,last fall,last spring,last fall,,,homework
+2811,2,1,listening,"You hear ""Ken is chatting online right now."" What is Ken doing now?",writing a letter,playing basketball,chatting online,chatting online,,,homework
+2812,2,1,listening,"You hear ""My birthday is in July. It's in the summer."" When is the birthday?",in July,in January,in June,in July,,,homework
+2813,2,1,conversation,"You hear ""What are you going to do this weekend?"" What is the best reply?","Yes, I am.",I went hiking.,I'm going to go hiking.,I'm going to go hiking.,,,homework
+2814,2,1,conversation,"You hear ""Did you like your birthday present?"" What is the best reply?","Yes, I loved it. Thank you!","Yes, my birthday is in May.","Yes, I'm going to buy it.","Yes, I loved it. Thank you!",,,homework
+2815,2,1,conversation,"You hear ""When is your birthday?"" What is the best reply?",I'm twenty-five.,It's a new watch.,It's on October 5th.,It's on October 5th.,,,homework
+2816,2,1,conversation,"You hear ""What did you give your sister?"" What is the best reply?",She gave me a scarf.,I'm going to the mall.,I gave her a scarf.,I gave her a scarf.,,,homework
+2817,2,1,conversation,"You hear ""Where did you go last weekend?"" What is the best reply?",We went to the mall.,We're going to the mall.,Last Saturday.,We went to the mall.,,,homework
+2818,2,1,conversation,"You hear ""What did you get for your birthday?"" ""My parents gave me a bicycle."" What did the parents give?",a bicycle,a book,a watch,a bicycle,,,homework
+2819,2,1,conversation,"You hear ""Is Ken going to play basketball on Saturday?"" ""No, he isn't. He's going to go hiking."" What is Ken going to do on Saturday?",go hiking,go to the mall,play basketball,go hiking,,,homework
+2820,2,1,conversation,"You hear ""Did you write to your grandmother?"" ""Yes, I sent her a card last week."" What did the speaker do?",visited the grandmother,sent the grandmother a card,got a card from the grandmother,sent the grandmother a card,,,homework
+2821,2,1,conversation,"You hear ""Do you like to swim?"" ""Not really. I like to play the piano."" What does the speaker like to do?",play basketball,play the piano,swim,play the piano,,,homework
+2822,2,1,conversation,"You hear ""Why are you at the mall?"" ""I'm buying a present. It's my wife's birthday on Friday."" Who is the present for?",the speaker,the speaker's wife,the speaker's friend,the speaker's wife,,,homework
+2823,2,1,grammar,"Last winter, Kenji ___ in a pool every Saturday.",swam,swims,is swimming,swam,,,test
+2824,2,1,grammar,My sister ___ to chat online. She calls her friends.,don't like,isn't like,doesn't like,doesn't like,,,test
+2825,2,1,grammar,___ your parents going to visit you next month?,Are,Is,Do,Are,,,test
+2826,2,1,grammar,"Mike lent ___ his car, so we drove to the beach.",we,our,us,us,,,test
+2827,2,1,grammar,I can't find my wallet. I think I ___ it yesterday.,lose,lost,am losing,lost,,,test
+2828,2,1,grammar,Look! The children ___ in the yard.,played,play,are playing,are playing,,,test
+2829,2,1,grammar,She ___ her old piano and bought a new one.,is selling,sells,sold,sold,,,test
+2830,2,1,grammar,What ___ you do last weekend?,do,are,did,did,,,test
+2831,2,1,grammar,My birthday is ___ December 3rd.,in,on,at,on,,,test
+2832,2,1,listening,"You hear ""I'm going to send Lisa a present for her birthday."" Who is going to get a present?",Lisa's mother,Lisa,the speaker,Lisa,,,test
+2875,2,2,vocabulary,Which one is a drink?,omelet,meatballs,lemonade,lemonade,,,homework
+2876,2,2,vocabulary,Which one is a fruit?,onions,pears,carrots,pears,,,homework
+2877,2,2,vocabulary,Which one is a vegetable?,grapes,lettuce,bananas,lettuce,,,homework
+2878,2,2,vocabulary,You put ___ on french fries.,flour,sugar,ketchup,ketchup,,,homework
+2879,2,2,vocabulary,You make bread and cake with ___.,flour,pepper,mustard,flour,,,homework
+2880,2,2,vocabulary,Which one is a sauce from Japan?,soy sauce,mayonnaise,mustard,soy sauce,,,homework
+2881,2,2,vocabulary,Which one do people often drink in the morning?,butter,spaghetti,coffee,coffee,,,homework
+2882,2,2,vocabulary,You make an omelet with ___.,eggs,grapes,rice,eggs,,,homework
+2883,2,2,vocabulary,Which one is a dessert?,rice,ice cream,chicken,ice cream,,,homework
+2884,2,2,vocabulary,Which fruit is long and yellow?,tomatoes,bananas,grapes,bananas,,,homework
+2885,2,2,grammar,There isn't any ___.,bread,eggs,apples,bread,,,homework
+2886,2,2,grammar,There aren't any ___.,lemons,flour,milk,lemons,,,homework
+2887,2,2,grammar,How ___ milk do you want?,few,many,much,much,,,homework
+2888,2,2,grammar,How ___ cookies do you want?,much,little,many,many,,,homework
+2889,2,2,grammar,"""Do you want some rice?"" ""Yes, just a ___.""",many,little,few,little,,,homework
+2890,2,2,grammar,"""Do you want some grapes?"" ""Yes, just a ___.""",much,few,little,few,,,homework
+2891,2,2,grammar,There ___ any cheese in the refrigerator.,isn't,don't,aren't,isn't,,,homework
+2892,2,2,grammar,There ___ any oranges in the kitchen.,doesn't,aren't,isn't,aren't,,,homework
+2893,2,2,grammar,"""Do you want some ice cream?"" ""Yes, but not too ___.""",many,few,much,much,,,homework
+2894,2,2,grammar,"I don't want a lot of french fries. Not too ___, please.",much,many,little,many,,,homework
+2895,2,2,grammar,My son ___ to eat pizza.,likes,like,liking,likes,,,homework
+2896,2,2,grammar,There isn't any bread. We ___ to buy some.,having,have,has,have,,,homework
+2897,2,2,grammar,"""Is there any lettuce?"" ""No, there ___.""",aren't,doesn't,isn't,isn't,,,homework
+2898,2,2,grammar,"""Are there any potatoes?"" ""Yes, there ___.""",is,do,are,are,,,homework
+2899,2,2,grammar,How much ___ do you want?,eggs,cookies,coffee,coffee,,,homework
+2900,2,2,grammar,How many ___ do you want?,meatballs,butter,rice,meatballs,,,homework
+2901,2,2,listening,"You hear ""There isn't any milk, but there are some eggs."" What is in the kitchen?",eggs,milk,milk and eggs,eggs,,,homework
+2902,2,2,listening,"You hear ""I want a little rice and a few carrots."" What does the speaker want a few of?",rice,onions,carrots,carrots,,,homework
+2903,2,2,listening,"You hear ""How many cookies do you want?"" ""Just two, please."" How many cookies does the speaker want?",none,a lot,two,two,,,homework
+2904,2,2,listening,"You hear ""We don't have any bread. Let's go to the supermarket."" Why are they going to the supermarket?",to buy milk,to eat pizza,to buy bread,to buy bread,,,homework
+2905,2,2,listening,"You hear ""Do you want more spaghetti?"" ""No, thanks. I'm full."" Does the speaker want more spaghetti?","Yes, a lot.","Yes, a little.",No.,No.,,,homework
+2906,2,2,listening,"You hear ""My daughter likes to eat pears, but she doesn't like bananas."" What doesn't the daughter like?",pears,apples,bananas,bananas,,,homework
+2907,2,2,conversation,"You hear ""Do you want some more chicken?"" What is the best reply?","Yes, please. Just a little.","Yes, I'm going to cook.","Yes, it's in the kitchen.","Yes, please. Just a little.",,,homework
+2908,2,2,conversation,"You hear ""How much coffee do you want?"" What is the best reply?","Not too much, please.","At eight o'clock, please.","Yes, I do.","Not too much, please.",,,homework
+2909,2,2,conversation,"You hear ""Is there any bread?"" What is the best reply?","No, there isn't. Let's buy some.","No, I don't want any.","Yes, I like bread.","No, there isn't. Let's buy some.",,,homework
+2910,2,2,conversation,"You hear ""These cookies are very good!"" What is the best reply?","Yes, I'm full.","No, there aren't any cookies.",Thank you! I made them this morning.,Thank you! I made them this morning.,,,homework
+2911,2,2,conversation,"You hear ""How many eggs do we need?"" What is the best reply?","Yes, we need eggs.",About six.,At the supermarket.,About six.,,,homework
+2912,2,2,conversation,"You hear ""What do we need at the supermarket?"" ""We need some milk and a few apples."" What do they need?",milk and apples,apples and bread,milk and eggs,milk and apples,,,homework
+2913,2,2,conversation,"You hear ""Do you want some more salad?"" ""Just a little, please. It's very good."" Does the guest want more salad?","Yes, a little.","No, not today.","Yes, a lot.","Yes, a little.",,,homework
+2914,2,2,conversation,"You hear ""Are there any lemons?"" ""No, there aren't, but there's some lemonade."" What is there?",lemonade,lemons,orange juice,lemonade,,,homework
+2915,2,2,conversation,"You hear ""How much ice cream do you want?"" ""Not too much. I had cake for lunch."" Why does the speaker want only a little?",The speaker had cake for lunch.,The speaker doesn't like ice cream.,There isn't any ice cream.,The speaker had cake for lunch.,,,homework
+2916,2,2,conversation,"You hear ""Mom, can I have french fries?"" ""Yes, but not too many."" What does Mom mean?",The child can have a lot.,The child can't have any.,The child can have a few.,The child can have a few.,,,homework
+2933,2,2,grammar,"There ___ any flour, so I can't make a cake.",don't,isn't,aren't,isn't,,,test
+2934,2,2,grammar,How ___ bananas did you buy?,many,much,little,many,,,test
+2935,2,2,grammar,I only want a ___ grapes.,few,lot,little,few,,,test
+2936,2,2,grammar,Please don't put too ___ salt on my french fries.,few,much,many,much,,,test
+2937,2,2,grammar,There aren't ___ tomatoes in the refrigerator.,some,any,a little,any,,,test
+2938,2,2,grammar,We need a ___ butter for the cake.,little,many,few,little,,,test
+2939,2,2,grammar,How much ___ do you drink every day?,sandwiches,cookies,tea,tea,,,test
+2940,2,2,grammar,"""Are there any onions?"" ""No, there ___.""",aren't,isn't,don't,aren't,,,test
+2941,2,2,grammar,"My children ___ to eat carrots, but they love potatoes.",aren't like,don't like,doesn't like,don't like,,,test
+2942,2,2,listening,"You hear ""There isn't any cheese, so let's have chicken sandwiches."" What are they going to eat?",chicken sandwiches,pizza,cheese sandwiches,chicken sandwiches,,,test
+2967,2,3,vocabulary,a ___ of bread,bunch,loaf,head,loaf,,,homework
+2968,2,3,vocabulary,a ___ of lettuce,head,jar,loaf,head,,,homework
+2969,2,3,vocabulary,a ___ of bananas,loaf,jar,bunch,bunch,,,homework
+2970,2,3,vocabulary,a ___ of jam,jar,head,loaf,jar,,,homework
+2971,2,3,vocabulary,a ___ of cereal,box,bunch,head,box,,,homework
+2972,2,3,vocabulary,a ___ eggs,pound,gallon,dozen,dozen,,,homework
+2973,2,3,vocabulary,a ___ of milk,head,loaf,gallon,gallon,,,homework
+2974,2,3,vocabulary,a ___ of pizza,bunch,head,slice,slice,,,homework
+2975,2,3,vocabulary,"Which one means the food is very, very good?",very expensive,a little salt,out of this world,out of this world,,,homework
+2976,2,3,vocabulary,Which drink is hot?,hot chocolate,tomato juice,lemonade,hot chocolate,,,homework
+2977,2,3,grammar,Lettuce ___ very expensive this week.,am,is,are,is,,,homework
+2978,2,3,grammar,Carrots ___ very expensive this week.,am,is,are,are,,,homework
+2979,2,3,grammar,Add a ___ salt.,few,many,little,little,,,homework
+2980,2,3,grammar,Add a ___ potatoes.,few,much,little,few,,,homework
+2981,2,3,grammar,I recommend our chocolate ice cream. ___ delicious.,There's,They're,It's,It's,,,homework
+2982,2,3,grammar,I recommend our scrambled eggs. ___ delicious.,They're,It's,There's,They're,,,homework
+2983,2,3,grammar,___ a little butter into a saucepan.,Put,Putting,Puts,Put,,,homework
+2984,2,3,grammar,___ for three hours.,Cooks,Cook,Cooking,Cook,,,homework
+2985,2,3,grammar,Please ___ me a dish of ice cream.,giving,gives,give,give,,,homework
+2986,2,3,grammar,"I'd like a ___ of pizza, please.",head,loaf,slice,slice,,,homework
+2987,2,3,grammar,"I'd like a ___ of chili, please.",bunch,loaf,bowl,bowl,,,homework
+2988,2,3,grammar,Can I have a ___ of hot chocolate?,head,bag,cup,cup,,,homework
+2989,2,3,grammar,Please give me an ___ of scrambled eggs.,loaf,order,bunch,order,,,homework
+2990,2,3,grammar,I'd like a ___ of apple pie.,bunch,head,piece,piece,,,homework
+2991,2,3,grammar,Don't ___ too much sugar.,adds,add,adding,add,,,homework
+2992,2,3,grammar,Apples ___ very cheap today.,am,is,are,are,,,homework
+2993,2,3,listening,"You hear ""I need a loaf of bread and a dozen eggs."" What does the speaker need?",bread and milk,eggs and cheese,bread and eggs,bread and eggs,,,homework
+2994,2,3,listening,"You hear ""Add a little honey and a few raisins."" What do you add a few of?",nuts,honey,raisins,raisins,,,homework
+2995,2,3,listening,"You hear ""The vegetable soup is out of this world!"" What does the speaker think?",The soup is expensive.,The soup is bad.,The soup is very good.,The soup is very good.,,,homework
+2996,2,3,listening,"You hear ""Milk is very expensive this week. Let's buy a quart, not a gallon."" What are they going to buy?",a quart of milk,no milk,a gallon of milk,a quart of milk,,,homework
+2997,2,3,listening,"You hear ""Cook the chicken for three hours."" How long do you cook the chicken?",thirty minutes,three hours,three minutes,three hours,,,homework
+2998,2,3,listening,"You hear ""I'd like a bowl of chicken soup and a glass of water, please."" What does the customer want to drink?",water,tomato juice,chicken soup,water,,,homework
+2999,2,3,conversation,"You hear ""What do you recommend?"" What is the best reply?","Yes, I do.","A pound of fish, please.",I recommend our broiled fish. It's delicious.,I recommend our broiled fish. It's delicious.,,,homework
+3000,2,3,conversation,"You hear ""Can I take your order?"" What is the best reply?","Yes, it's very expensive.","Yes. I'd like a bowl of vegetable soup, please.","Yes, add a little salt.","Yes. I'd like a bowl of vegetable soup, please.",,,homework
+3001,2,3,conversation,"You hear ""How's the apple pie?"" What is the best reply?",It's in the kitchen.,It's out of this world!,It's a piece of apple pie.,It's out of this world!,,,homework
+3002,2,3,conversation,"You hear ""Excuse me. Where's the sugar?"" What is the best reply?",It's very sweet.,It's next to the flour.,Add a little sugar.,It's next to the flour.,,,homework
+3003,2,3,conversation,"You hear ""How much is a head of lettuce?"" What is the best reply?",It's a vegetable.,It's 200 yen.,"Two heads, please.",It's 200 yen.,,,homework
+3004,2,3,conversation,"You hear ""What do we need?"" ""A bag of flour and a jar of jam."" What do they need?",bread and jam,flour and jam,flour and honey,flour and jam,,,homework
+3005,2,3,conversation,"You hear ""How do you make this soup?"" ""Put a little butter into a saucepan. Then add the onions."" What do you put in the saucepan first?",salt,onions,butter,butter,,,homework
+3006,2,3,conversation,"You hear ""What do you want for dessert?"" ""A dish of vanilla ice cream, please."" What does the customer want?",apple pie,chocolate ice cream,vanilla ice cream,vanilla ice cream,,,homework
+3007,2,3,conversation,"You hear ""Carrots are very expensive today."" ""OK. Let's buy potatoes."" What are they going to buy?",potatoes,carrots,onions,potatoes,,,homework
+3008,2,3,conversation,"You hear ""How is the broiled fish?"" ""It's magnificent!"" What does the customer think?",It's too salty.,It's very expensive.,It's very good.,It's very good.,,,homework
+3023,2,3,grammar,Onions ___ very cheap at the supermarket today.,am,is,are,are,,,test
+3024,2,3,grammar,Add a few ___.,salt,honey,nuts,nuts,,,test
+3025,2,3,grammar,Add a little ___.,raisins,potatoes,sugar,sugar,,,test
+3026,2,3,grammar,I need a ___ of cereal and a gallon of milk.,box,head,loaf,box,,,test
+3027,2,3,grammar,Please ___ the soup for twenty minutes.,cooking,cook,cooks,cook,,,test
+3028,2,3,grammar,I recommend the mushrooms. ___ wonderful.,There's,They're,It's,They're,,,test
+3029,2,3,grammar,I'd like a ___ of whole wheat bread.,bunch,head,loaf,loaf,,,test
+3030,2,3,grammar,Don't ___ too much salt into the soup.,put,putting,puts,put,,,test
+3031,2,3,grammar,How much ___ a pound of meat?,are,is,does,is,,,test
+3032,2,3,listening,"You hear ""I'd like an order of scrambled eggs and a cup of coffee, please."" What does the customer order to eat?",a muffin,pancakes,scrambled eggs,scrambled eggs,,,test
+3057,2,4,vocabulary,"On a boat, some people feel sick. They get ___.",a sunburn,the flu,seasick,seasick,,,homework
+3058,2,4,vocabulary,Too much sun gives you a ___.,cold,shock,sunburn,sunburn,,,homework
+3059,2,4,vocabulary,You wear a ___ on your head when you ride a bicycle.,tie,helmet,sweater,helmet,,,homework
+3060,2,4,vocabulary,You wear ___ to protect your eyes.,safety glasses,a helmet,boots,safety glasses,,,homework
+3061,2,4,vocabulary,"The opposite of ""begin"" is ___.",arrive,end,return,end,,,homework
+3062,2,4,vocabulary,"When a train comes to the station, it ___.",ends,arrives,grows up,arrives,,,homework
+3063,2,4,vocabulary,Two people become husband and wife. They get ___.,sick,married,hurt,married,,,homework
+3064,2,4,vocabulary,"If you touch a broken lamp, you might get a ___.",shock,sunburn,cold,shock,,,homework
+3065,2,4,vocabulary,A child becomes an adult. The child ___.,grows up,moves,gets married,grows up,,,homework
+3066,2,4,vocabulary,You go to live in a new apartment. You ___.,name,move,return,move,,,homework
+3067,2,4,grammar,The train ___ arrive soon.,is,does,will,will,,,homework
+3068,2,4,grammar,Take an umbrella. It ___ rain this afternoon.,does,is,might,might,,,homework
+3069,2,4,grammar,"""Will the doctor be back soon?"" ""Yes, she ___.""",will,does,is,will,,,homework
+3070,2,4,grammar,"""Will Ken be here today?"" ""No, he ___. He'll be back tomorrow.""",won't,isn't,will,won't,,,homework
+3071,2,4,grammar,I'll be back ___ a few minutes.,in,on,at,in,,,homework
+3072,2,4,grammar,The concert will end ___ ten o'clock.,in,on,at,at,,,homework
+3073,2,4,grammar,He'll return ___ two or three days.,in,on,at,in,,,homework
+3074,2,4,grammar,___ careful! You might fall.,Is,Are,Be,Be,,,homework
+3075,2,4,grammar,Don't stay in the sun too long. You might ___ a sunburn.,getting,gets,get,get,,,homework
+3076,2,4,grammar,Put on your helmet. You ___ hurt your head.,mights,might,might to,might,,,homework
+3077,2,4,grammar,I'm not sure. I ___ clean my room today.,will,am,might,might,,,homework
+3078,2,4,grammar,She'll ___ home at six.,getting,gets,get,get,,,homework
+3079,2,4,grammar,My sister ___ get married next year.,will,does,is,will,,,homework
+3080,2,4,grammar,Don't use this old lamp. It ___ work.,isn't,won't,will,won't,,,homework
+3081,2,4,grammar,"""When will you be back?"" ""In ___ hour.""",a,an,the,an,,,homework
+3082,2,4,grammar,We'll be back in a little ___.,minute,soon,while,while,,,homework
+3083,2,4,listening,"You hear ""The train will arrive in half an hour."" When will the train arrive?",at half past one,in an hour,in 30 minutes,in 30 minutes,,,homework
+3084,2,4,listening,"You hear ""Careful! You might fall."" What does the speaker mean?",Hurry up.,Good luck.,Be careful.,Be careful.,,,homework
+3085,2,4,listening,"You hear ""I won't be home for dinner. I'll be back at nine."" When will the speaker be back?",in nine days,for dinner,at nine,at nine,,,homework
+3086,2,4,listening,"You hear ""I might go to the beach this weekend, but I'm not sure."" Is the speaker going to the beach?",Maybe.,"Yes, for sure.","No, never.",Maybe.,,,homework
+3087,2,4,listening,"You hear ""My daughter will get married in June."" What will happen in June?",The daughter will move.,The daughter will get married.,The daughter will grow up.,The daughter will get married.,,,homework
+3088,2,4,listening,"You hear ""Wear your safety glasses. You might hurt your eyes."" What might happen?",You might catch a cold.,You might get a sunburn.,You might hurt your eyes.,You might hurt your eyes.,,,homework
+3089,2,4,conversation,"You hear ""Will the movie begin soon?"" What is the best reply?","Yes, it will. In five minutes.","Yes, I like movies.","No, it ended at seven.","Yes, it will. In five minutes.",,,homework
+3090,2,4,conversation,"You hear ""When will you be back?"" What is the best reply?",In a little while.,At the office.,"Yes, I will.",In a little while.,,,homework
+3091,2,4,conversation,"You hear ""I'm going swimming at the beach today."" What is the best reply?",Congratulations!,Be careful! You might get a sunburn.,"No, it won't.",Be careful! You might get a sunburn.,,,homework
+3092,2,4,conversation,"You hear ""Will Ken get married next year?"" What is the best reply?",In a few minutes.,He might. He isn't sure.,"Yes, she will.",He might. He isn't sure.,,,homework
+3093,2,4,conversation,"You hear ""Is the doctor here?"" What is the best reply?","No, she won't. She's here.","No, she isn't. She'll be back in an hour.","Yes, she'll be back in an hour.","No, she isn't. She'll be back in an hour.",,,homework
+3094,2,4,conversation,"You hear ""When will the train arrive?"" ""In a few minutes."" When will the train arrive?",in a few hours,in a few minutes,at seven o'clock,in a few minutes,,,homework
+3095,2,4,conversation,"You hear ""Will you clean your room today?"" ""I might. I'm very tired."" Will the speaker clean the room?","Yes, for sure.","No, never.",Maybe.,Maybe.,,,homework
+3096,2,4,conversation,"You hear ""Put on your helmet. You might get hurt."" ""OK, Dad."" What does Dad want?",He wants the child to ride a bicycle.,He wants the child to wear a helmet.,He wants the child to go to the doctor.,He wants the child to wear a helmet.,,,homework
+3097,2,4,conversation,"You hear ""Where did you grow up?"" ""In Osaka. But I'll move to Tokyo next month."" Where will the speaker live next month?",Tokyo,Osaka,Kyoto,Tokyo,,,homework
+3098,2,4,conversation,"You hear ""Don't go on the boat. You might get seasick."" What might happen on the boat?",The person might get seasick.,The person might catch a cold.,The person might get a sunburn.,The person might get seasick.,,,homework
+3109,2,4,grammar,The meeting ___ end at five o'clock.,does,will,is,will,,,test
+3110,2,4,grammar,Don't worry. I ___ be late.,am not,won't,will,won't,,,test
+3111,2,4,grammar,Be careful! You ___ get a shock.,are might,might to,might,might,,,test
+3112,2,4,grammar,The plane will arrive ___ two hours.,in,on,at,in,,,test
+3113,2,4,grammar,When ___ your parents return from Hawaii?,are,does,will,will,,,test
+3114,2,4,grammar,Wear a coat. You ___ catch a cold.,might,mights,are might,might,,,test
+3115,2,4,grammar,I'll be back ___ seven o'clock.,in,on,at,at,,,test
+3116,2,4,grammar,They ___ name their baby Ken.,will,does,are,will,,,test
+3117,2,4,grammar,"""Will Tom be home soon?"" ""No, he ___.""",doesn't,isn't,won't,won't,,,test
+3118,2,4,listening,"You hear ""Don't touch that! You might get a shock."" What is the speaker doing?",giving a present,giving a warning,asking a question,giving a warning,,,test

@@ -169,3 +169,43 @@ id,level,chapter,kind,prompt_audio,prompt_ja,cue_en,keywords,answers,mode
 2778,1,17,about,Where were you born?,,,born,I was born in Tokyo.|I was born in Osaka.,practice
 2779,1,17,about,How was your weekend?,,,it was/was,It was fun.|It was relaxing.,practice
 2780,1,17,about,Were you tired yesterday?,,,yes/no,"Yes, I was.|No, I wasn't.",practice
+2841,2,1,cue,What are you going to do this weekend?,ハイキング,go hiking,going to|hiking,I'm going to go hiking.,practice
+2842,2,1,cue,What did your brother give you?,時計,a watch,gave|me|watch,He gave me a watch.,practice
+2843,2,1,cue,When is your birthday?,5月,in May,may,It's in May.|My birthday is in May.,practice
+2844,2,1,japanese,,私は日曜日にパンケーキを作るのが好きです。,,i|like to|pancakes,I like to make pancakes on Sunday.,practice
+2845,2,1,japanese,,兄は私に時計をくれました。,,brother|gave|watch,My brother gave me a watch.,practice
+2846,2,1,japanese,,私たちは来月ハイキングに行くつもりです。,,going to|hiking|next month,We are going to go hiking next month.,practice
+2847,2,1,japanese,,ケンは昨日モールに行きました。,,went|mall|yesterday,Ken went to the mall yesterday.,practice
+2848,2,1,about,What do you like to do on the weekend?,,,like to,I like to go to the mall.|I like to cook.,practice
+2849,2,1,about,What did you do last weekend?,,,i,I went hiking.|I watched TV.|I cleaned my house.,practice
+2850,2,1,about,What are you going to do tomorrow?,,,going to,I'm going to work.|I'm going to cook dinner.,practice
+2957,2,2,cue,How much rice do you want?,少し,a little,little,"Just a little, please.",practice
+2958,2,2,cue,How many cookies do you want?,少し（数）,a few,few,"Just a few, please.",practice
+2959,2,2,cue,Is there any bread?,いいえ,no,no|there is not,"No, there isn't.",practice
+2960,2,2,japanese,,パンが全くありません。,,is not|bread|any,There isn't any bread.,practice
+2961,2,2,japanese,,りんごが全くありません。,,are not|apples|any,There aren't any apples.,practice
+2962,2,2,japanese,,牛乳はどのくらいほしいですか。,,milk|much|want,How much milk do you want?,practice
+2963,2,2,japanese,,クッキーはいくつほしいですか。,,cookies|many|want,How many cookies do you want?,practice
+2964,2,2,about,What food do you like?,,,like,I like pizza.|I like rice and fish.,practice
+2965,2,2,about,How much coffee do you drink every day?,,,i,I drink a lot of coffee.|I don't drink coffee.,practice
+2966,2,2,about,What's in your refrigerator now?,,,there,There is some milk.|There are some eggs.,practice
+3047,2,3,cue,What do you recommend?,焼き魚,broiled fish,recommend|fish,I recommend our broiled fish.,practice
+3048,2,3,cue,Can I take your order?,チリ1杯,a bowl of chili,bowl|chili,"I'd like a bowl of chili, please.",practice
+3049,2,3,cue,How's the cake?,おいしい,delicious,delicious,It's delicious!,practice
+3050,2,3,japanese,,バターはとても高いです。,,expensive|butter|very,Butter is very expensive.,practice
+3051,2,3,japanese,,にんじんはとても高いです。,,expensive|carrots|very,Carrots are very expensive.,practice
+3052,2,3,japanese,,塩を少し加えてください。,,little|salt|add,Add a little salt.,practice
+3053,2,3,japanese,,じゃがいもをいくつか加えてください。,,potatoes|few|add,Add a few potatoes.,practice
+3054,2,3,about,What's your favorite food?,,,favorite/like,My favorite food is sushi.|I like ramen.,practice
+3055,2,3,about,What do you buy at the supermarket every week?,,,i,I buy a gallon of milk and a loaf of bread.,practice
+3056,2,3,about,How do you make your favorite breakfast?,,,add/put/cook,Put a little butter in a pan. Add two eggs. Cook for three minutes.,practice
+3133,2,4,cue,When will you be back?,1時間で,in an hour,back|hour,I'll be back in an hour.,practice
+3134,2,4,cue,Will it rain tomorrow?,たぶん,maybe,might,It might rain.,practice
+3135,2,4,cue,When will the train arrive?,7時,at seven o'clock,seven,It will arrive at seven o'clock.,practice
+3136,2,4,japanese,,電車はまもなく着きます。,,arrive|train|soon,The train will arrive soon.,practice
+3137,2,4,japanese,,彼は数分で戻ります。,,he will|minutes|back|few,He'll be back in a few minutes.,practice
+3138,2,4,japanese,,私は今日部屋を掃除するかもしれません。,,today|might|clean,I might clean my room today.,practice
+3139,2,4,japanese,,気をつけて！転ぶかもしれません。,,careful|might|fall,Be careful! You might fall.,practice
+3140,2,4,about,What will you do tomorrow?,,,will,I'll go to work.|I'll study English.,practice
+3141,2,4,about,What might you do this weekend?,,,might,I might go hiking.|I might see a movie.,practice
+3142,2,4,about,Where did you grow up?,,,grew up/in,I grew up in Osaka.,practice
