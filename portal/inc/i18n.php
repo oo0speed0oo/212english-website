@@ -218,6 +218,22 @@ $GLOBALS['h212_strings'] = array(
 	'speak.again'         => array( 'en' => 'Practice again', 'ja' => 'もう一度練習' ),
 	'speak.finish_title'  => array( 'en' => 'Speaking practice done!', 'ja' => '話す練習おわり！' ),
 	'speak.finish_sub'    => array( 'en' => 'You practiced {n} questions.', 'ja' => '{n}問に挑戦しました。' ),
+	'speak.help_works'    => array(
+		'en' => '🎤 Tap the mic and say your answer. / マイクをタップして答えを言ってください。',
+		'ja' => '🎤 Tap the mic and say your answer. / マイクをタップして答えを言ってください。',
+	),
+	'speak.help_no_sr'    => array(
+		'en' => '💡 On iPhone, voice works best in Safari. In Chrome, tap the box, then tap 🎤 on your keyboard and speak. / iPhoneではSafariがおすすめです。Chromeでは、ボックスをタップしてキーボードの🎤で話してください。',
+		'ja' => '💡 On iPhone, voice works best in Safari. In Chrome, tap the box, then tap 🎤 on your keyboard and speak. / iPhoneではSafariがおすすめです。Chromeでは、ボックスをタップしてキーボードの🎤で話してください。',
+	),
+	'speak.help_blocked'  => array(
+		'en' => '🔒 Please allow the microphone: Settings → Safari → Microphone → Allow. / マイクを許可してください：設定 → Safari → マイク → 許可',
+		'ja' => '🔒 Please allow the microphone: Settings → Safari → Microphone → Allow. / マイクを許可してください：設定 → Safari → マイク → 許可',
+	),
+	'speak.help_privacy'  => array(
+		'en' => 'Your voice is not saved. / 音声は保存されません。',
+		'ja' => 'Your voice is not saved. / 音声は保存されません。',
+	),
 
 	// Robot voice (Listening questions)
 	'listen.who'      => array( 'en' => 'Who do you want to hear?',  'ja' => '誰の声で聞きますか？' ),

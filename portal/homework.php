@@ -30,6 +30,7 @@ h212_js_strings( array(
 	'speak.no_mic', 'speak.show_answer', 'speak.no_speech', 'speak.mic_blocked', 'speak.error', 'speak.heard',
 	'speak.great', 'speak.close', 'speak.try', 'speak.model_label', 'speak.try_again', 'speak.finish', 'speak.again',
 	'speak.finish_title', 'speak.finish_sub',
+	'speak.help_works', 'speak.help_no_sr', 'speak.help_blocked', 'speak.help_privacy',
 	'hw.coming_parts', 'hw.photos_soon', 'hw.status_done', 'hw.status_new', 'hw.chapter_progress', 'hw.next_open', 'hw.next_locked',
 	'hw.next_level_open', 'hw.next_level_locked', 'hw.just_unlocked', 'hw.just_unlocked_level',
 	'builder.instruction', 'builder.empty', 'builder.check', 'builder.clear', 'builder.wrong_msg', 'conv.prompt', 'conv.text_label', 'listen.play',

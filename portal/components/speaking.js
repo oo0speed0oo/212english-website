@@ -216,10 +216,35 @@ var H212Speak = (function () {
       + '<div class="speak-actions"><button type="button" class="' + (SR ? 'speak-link' : 'speak-show-big') + '" onclick="H212Speak.reveal()">'
       + esc(T('speak.show_answer')) + '</button></div>'
       + '<button class="next-btn" id="next-btn" onclick="H212Speak.next()">' + esc(last ? T('speak.finish') : T('hw.next_question')) + '</button>'
+      + helpHtml()
       + '</div>' + H212Mike.row();
 
     pc().innerHTML = h;
     H212Mike.say('hint_speaking', st.i === 0);
+    refineHelp(st.token);
+  }
+
+  // Small grey help line at the bottom of every question: which message
+  // shows depends on whether this device can listen at all (SR), and is
+  // refined to the "blocked" message once we know the mic permission is
+  // denied (refineHelp, below). Always ends with the privacy note.
+  function helpHtml() {
+    var main = SR ? T('speak.help_works') : T('speak.help_no_sr');
+    return '<div class="speak-help">'
+      + '<div class="speak-help-main" id="speak-help-main">' + esc(main) + '</div>'
+      + '<div class="speak-help-privacy">' + esc(T('speak.help_privacy')) + '</div>'
+      + '</div>';
+  }
+
+  // If this device can check mic permission state ahead of time, and it's
+  // already denied, swap the help line to the "please allow it" message.
+  function refineHelp(my) {
+    if (!SR || !navigator.permissions || !navigator.permissions.query) return;
+    navigator.permissions.query({ name: 'microphone' }).then(function (status) {
+      if (!st || st.token !== my || status.state !== 'denied') return;
+      var el = document.getElementById('speak-help-main');
+      if (el) el.textContent = T('speak.help_blocked');
+    }).catch(function () {});
   }
 
   function markAttempt() {

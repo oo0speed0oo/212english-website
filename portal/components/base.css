@@ -761,4 +761,7 @@ button, input, select, textarea { font-family: inherit; }
 .speak-retry:hover { border-color: var(--gold); }
 .speak-finish-title { font-size: 22px; font-weight: 700; color: var(--ink); margin-bottom: 6px; }
 .speak-finish-sub { font-size: 14px; color: var(--text-muted); margin-bottom: 20px; }
+.speak-help { margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--line); }
+.speak-help-main { font-size: 12.5px; color: var(--text-muted); line-height: 1.4; }
+.speak-help-privacy { font-size: 11px; color: var(--text-dim); margin-top: 4px; }
 @media (prefers-reduced-motion: reduce) { .speak-mic.listening { animation: none; } }
