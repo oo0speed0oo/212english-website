@@ -175,13 +175,13 @@ add_action( 'admin_post_h212_save_question', function () {
 	$back = admin_url( 'admin.php?page=h212-homework-questions&action=' . ( $is_new ? 'new' : 'edit&id=' . urlencode( $id ) ) );
 
 	$errors = array();
-	if ( $level < 1 || $level > 5 ) {
+	if ( $level < 1 || $level > 99 ) {
 		$errors[] = 'Please choose a level.';
 	}
-	if ( $chapter < 1 || $chapter > 17 ) {
+	if ( $chapter < 1 || $chapter > 99 ) {
 		$errors[] = 'Please choose a chapter.';
 	}
-	if ( ! in_array( $type, array( 'vocabulary', 'grammar', 'listening', 'photo', 'conversation' ), true ) ) {
+	if ( ! in_array( $type, h212_hwadmin_types(), true ) ) {
 		$errors[] = 'Please choose a type.';
 	}
 	if ( '' === $question ) {
@@ -282,6 +282,23 @@ add_action( 'admin_post_h212_delete_question', function () {
 	exit;
 } );
 
+/** The question types this screen edits (Sentence Builder lives in its own file, so it is not here). */
+function h212_hwadmin_types() {
+	return array_values( array_diff( h212_all_parts(), array( 'builder' ) ) );
+}
+
+/** Level numbers to offer: every level that exists, plus the next one so a new level can be started. */
+function h212_hwadmin_level_choices() {
+	$levels = h212_course_levels();
+	$levels[] = $levels ? max( $levels ) + 1 : 1;
+	return $levels;
+}
+
+/** Chapter numbers to offer: 1 up to one past the highest chapter that exists, so a new chapter can be started. */
+function h212_hwadmin_chapter_choices() {
+	return range( 1, max( 1, h212_course_max_chapter() + 1 ) );
+}
+
 // ── Rendering ────────────────────────────────────────
 
 function h212_render_homework_admin_page() {
@@ -344,7 +361,7 @@ function h212_render_question_list() {
 	echo '<form method="get" style="margin:16px 0;display:inline-block;">';
 	echo '<input type="hidden" name="page" value="h212-homework-questions" />';
 	echo '<select name="level" onchange="this.form.submit()"><option value="">All Levels</option>';
-	for ( $l = 1; $l <= 5; $l++ ) {
+	foreach ( h212_course_levels() as $l ) {
 		printf( '<option value="%d" %s>Level %d</option>', $l, selected( $filter_level, $l, false ), $l );
 	}
 	echo '</select> ';
@@ -423,19 +440,19 @@ function h212_render_question_form( $action ) {
 	echo '</select><p class="description">Homework questions are for practice/review. Test questions are a separate, shorter check - they never mix into Homework.</p></td></tr>';
 
 	echo '<tr><th><label>Level</label></th><td><select name="level">';
-	for ( $l = 1; $l <= 5; $l++ ) {
+	foreach ( h212_hwadmin_level_choices() as $l ) {
 		printf( '<option value="%d" %s>Level %d</option>', $l, selected( (int) $row['level'], $l, false ), $l );
 	}
 	echo '</select></td></tr>';
 
 	echo '<tr><th><label>Chapter</label></th><td><select name="chapter">';
-	for ( $c = 1; $c <= 17; $c++ ) {
+	foreach ( h212_hwadmin_chapter_choices() as $c ) {
 		printf( '<option value="%d" %s>Chapter %d</option>', $c, selected( (int) $row['chapter'], $c, false ), $c );
 	}
 	echo '</select></td></tr>';
 
 	echo '<tr><th><label>Type</label></th><td><select name="type">';
-	foreach ( array( 'vocabulary', 'grammar', 'listening', 'photo', 'conversation' ) as $t ) {
+	foreach ( h212_hwadmin_types() as $t ) {
 		printf( '<option value="%s" %s>%s</option>', esc_attr( $t ), selected( $row['type'], $t, false ), esc_html( ucfirst( $t ) ) );
 	}
 	echo '</select><p class="description">"Photo" questions show under Vocabulary and display an image.</p></td></tr>';

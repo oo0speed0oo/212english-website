@@ -28,8 +28,8 @@ if ( $_SERVER['REQUEST_METHOD'] === 'POST' ) {
 	$score   = isset( $body['score'] )   ? intval( $body['score'] )   : -1;
 	$total   = isset( $body['total'] )   ? intval( $body['total'] )   : 0;
 
-	$is_valid = $level >= 1 && $level <= 5
-		&& $chapter >= 1 && $chapter <= 17
+	// Any level and chapter that exists in the content files is accepted - no fixed limit.
+	$is_valid = h212_course_has( $level, $chapter )
 		&& $total > 0 && $score >= 0 && $score <= $total;
 
 	if ( ! $is_valid ) {

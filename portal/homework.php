@@ -39,6 +39,8 @@ h212_js_strings( array(
 ) );
 require_once __DIR__ . '/inc/voices.php';
 h212_voice_script();
+require_once __DIR__ . '/inc/course.php';
+h212_course_script();
 require_once __DIR__ . '/inc/mike.php';
 h212_mike_for_js();
 // Version numbers for the question files, so a browser never shows an old copy after an upload
@@ -50,6 +52,7 @@ echo '<script>window.H212_CSV_V = ' . wp_json_encode( $h212_csv_v ) . ';</script
 // Which question pictures are on the server (a photo question with no picture yet is hidden)
 echo '<script>window.H212_IMAGES = ' . ( function_exists( 'h212_vocab_images' ) ? wp_json_encode( (object) h212_vocab_images() ) : 'null' ) . ';</script>' . "\n";
 ?>
+<script src="components/course.js?v=<?php echo (int) filemtime( __DIR__ . '/components/course.js' ); ?>"></script>
 <script src="components/listen.js?v=<?php echo (int) filemtime( __DIR__ . '/components/listen.js' ); ?>"></script>
 <script src="components/mike.js?v=<?php echo (int) filemtime( __DIR__ . '/components/mike.js' ); ?>"></script>
 <script src="components/ui.js?v=<?php echo (int) filemtime( __DIR__ . '/components/ui.js' ); ?>"></script>
@@ -325,14 +328,13 @@ function typeLabel(type) {
   return H212_T['hw.part_' + type] || type;
 }
 
-// The 6 practice parts of a chapter, in 3 groups
-var GROUPS = [
-  { key: 'vocabulary', label: 'hw.vocabulary', alt: 'hw.group_alt_vocabulary', parts: ['photo', 'vocabulary'] },
-  { key: 'grammar',    label: 'hw.grammar',    alt: 'hw.group_alt_grammar',    parts: ['grammar', 'builder'] },
-  { key: 'listening',  label: 'hw.listening',  alt: 'hw.group_alt_listening',  parts: ['listening', 'conversation'] },
-  // Speaking is practice only: its questions live in speaking-content.csv and never count for unlocking or Grades
-  { key: 'speaking',   label: 'hw.speaking',   alt: 'hw.group_alt_speaking',   parts: ['speaking'] }
-];
+// The practice parts of a chapter, in groups. The groups and their parts come from the
+// course map (h212_part_groups in 212-progress.php), so they are not typed here.
+var GROUPS = Object.keys(H212Course.groups).map(function(k) {
+  return { key: k, label: 'hw.' + k, alt: 'hw.group_alt_' + k, parts: H212Course.groups[k] };
+});
+// Speaking is practice only: its questions live in speaking-content.csv and never count for unlocking or Grades
+GROUPS.push({ key: 'speaking', label: 'hw.speaking', alt: 'hw.group_alt_speaking', parts: ['speaking'] });
 
 // Speaking card: how many of this chapter's speaking questions the student has tried
 function speakStatusHtml(level, chapter) {
@@ -351,7 +353,7 @@ function renderLevels() {
   var html = '<div class="section-header"><h2>' + H212_T['nav.homework'] + '</h2><p>' + H212_T['hw.choose_level'] + '</p></div>'
     + '<div class="breadcrumb"><span>' + H212_T['nav.homework'] + '</span></div>'
     + '<div class="level-grid">';
-  for (var i = 1; i <= 5; i++) {
+  H212Course.levels().forEach(function(i) {
     if (isLevelUnlocked(i)) {
       html += '<div class="level-btn" onclick="renderChapters(' + i + ')">'
         + '<span class="num">' + i + '</span><span class="lbl">' + H212_T['hw.level'] + ' ' + i + '</span></div>';
@@ -359,7 +361,7 @@ function renderLevels() {
       html += '<div class="level-btn locked" title="' + H212_T['hw.locked_level'] + '">'
         + '<span class="lock-icon">🔒</span><span class="num">' + i + '</span><span class="lbl">' + H212_T['hw.level'] + ' ' + i + '</span></div>';
     }
-  }
+  });
   html += '</div>';
   getPC().innerHTML = html;
 }
@@ -371,7 +373,7 @@ function renderChapters(lvl) {
     + '<div class="breadcrumb"><span>' + H212_T['nav.homework'] + '</span><span class="sep">›</span><span>' + H212_T['hw.level'] + ' ' + lvl + '</span></div>'
     + '<button class="back-btn" onclick="renderLevels()">' + H212_T['hw.back_levels'] + '</button>'
     + '<div class="chapter-grid">';
-  for (var c = 1; c <= 17; c++) {
+  H212Course.chapters(lvl).forEach(function(c) {
     if (isChapterUnlocked(lvl, c)) {
       var pct = chapterPercent(lvl, c);
       var badge = pct > 0
@@ -384,7 +386,7 @@ function renderChapters(lvl) {
       html += '<div class="chapter-btn locked" title="' + H212_T['hw.locked_chapter'] + '">'
         + '<span class="lock-icon">🔒</span><span class="num">' + c + '</span><span class="lbl">' + H212_T['hw.chapter'] + ' ' + c + '</span></div>';
     }
-  }
+  });
   html += '</div>';
   getPC().innerHTML = html;
 }
@@ -420,14 +422,13 @@ function chapterBarHtml(level, ch) {
   var pct = chapterPercent(level, ch);
   var next = '';
   var nextOpen = true;
-  if (ch < 17 || level < 5) {
-    var isLevelStep = ch >= 17;
-    var nl = isLevelStep ? level + 1 : level;
-    var nc = isLevelStep ? 1 : ch + 1;
-    var open = isChapterUnlocked(nl, nc);
+  var nx = H212Course.next(level, ch);   // the chapter after this one (null at the very end of the course)
+  if (nx) {
+    var isLevelStep = nx.level !== level;
+    var open = isChapterUnlocked(nx.level, nx.chapter);
     nextOpen = open;
     var key = isLevelStep ? (open ? 'hw.next_level_open' : 'hw.next_level_locked') : (open ? 'hw.next_open' : 'hw.next_locked');
-    next = H212_T[key].replace('{n}', isLevelStep ? nl : nc);
+    next = H212_T[key].replace('{n}', isLevelStep ? nx.level : nx.chapter);
   }
   return '<div class="chapter-bar">'
     + '<div class="chapter-bar-top"><span>' + H212_T['hw.chapter_progress'] + '</span><span>' + pct + '%</span></div>'

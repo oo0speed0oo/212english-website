@@ -15,4 +15,13 @@ if ( ! is_user_logged_in() || ! current_user_can( 'student' ) ) {
 
 $h212_user = wp_get_current_user();
 
+// Student pages and the data they save are private: never let a page cache keep a copy,
+// and note that this student was just active (the teacher sees it as "Last active").
+if ( function_exists( 'h212_no_cache' ) ) {
+	h212_no_cache();
+}
+if ( function_exists( 'h212_touch_activity' ) ) {
+	h212_touch_activity( $h212_user->ID );
+}
+
 require_once __DIR__ . '/i18n.php';

@@ -13,7 +13,8 @@ require __DIR__ . '/auth.php';
 header( 'Content-Type: application/json' );
 
 $h212_scores_meta_key = 'h212_quiz_scores';
-$h212_valid_types     = array( 'photo', 'vocabulary', 'grammar', 'builder', 'listening', 'conversation' );
+// Which parts exist comes from the shared list in 212-progress.php (not typed here).
+$h212_valid_types     = h212_all_parts();
 
 function h212_get_scores( $user_id ) {
 	$scores = get_user_meta( $user_id, 'h212_quiz_scores', true );
@@ -35,8 +36,8 @@ if ( $_SERVER['REQUEST_METHOD'] === 'POST' ) {
 	$score   = isset( $body['score'] )   ? intval( $body['score'] )   : -1;
 	$total   = isset( $body['total'] )   ? intval( $body['total'] )   : 0;
 
-	$is_valid = $level >= 1 && $level <= 5
-		&& $chapter >= 1 && $chapter <= 17
+	// Any level and chapter that exists in the content files is accepted - no fixed limit.
+	$is_valid = h212_course_has( $level, $chapter )
 		&& in_array( $type, $h212_valid_types, true )
 		&& $total > 0 && $score >= 0 && $score <= $total;
 

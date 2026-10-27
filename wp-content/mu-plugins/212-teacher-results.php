@@ -2,12 +2,13 @@
 /**
  * 212 English School - Teacher-facing Student Results page (wp-admin only).
  *
- * Read-only report of each student's homework progress, quiz score
- * history, and wrong-answer log. Sourced from the same per-student data
- * the portal itself already saves (h212_seen_questions, h212_quiz_scores,
- * h212_current_wrong, h212_mistake_log) plus the shared question bank and
- * progress/unlock rules in 212-progress.php (which reads
- * portal/homework-content.csv and portal/build-content.csv, never writes them).
+ * Read-only report of each student's homework progress, quiz and test score
+ * history, wrong-answer log, video sentences and optional practice. It reads
+ * EVERY record the portal saves (h212_seen_questions, h212_quiz_scores,
+ * h212_test_scores, h212_current_wrong, h212_mistake_log, h212_unlocked,
+ * h212_video_sentences, h212_speaking, h212_last_active ...) plus the shared
+ * course map and unlock rules in 212-progress.php, so any new level or chapter
+ * in the content files shows up here by itself. It is never cached.
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -34,6 +35,13 @@ add_action( 'admin_menu', function () {
 	);
 } );
 
+// The teacher screens must always show the newest numbers: no page cache may keep a copy.
+add_action( 'admin_init', function () {
+	if ( isset( $_GET['page'] ) && 0 === strpos( (string) $_GET['page'], 'h212-' ) && function_exists( 'h212_no_cache' ) ) {
+		h212_no_cache();
+	}
+} );
+
 // Marks every question up through a chosen Level/Chapter as seen (and
 // clears any "currently wrong" flags) for one student, so everything up
 // to that point is unlocked - matches how the lock system actually
@@ -46,8 +54,9 @@ add_action( 'admin_post_h212_unlock_student', function () {
 		wp_die( 'Not allowed.' );
 	}
 	$student_id   = isset( $_GET['student_id'] ) ? intval( $_GET['student_id'] ) : 0;
-	$up_to_level   = isset( $_GET['up_to_level'] )   ? intval( $_GET['up_to_level'] )   : 5;
-	$up_to_chapter = isset( $_GET['up_to_chapter'] ) ? intval( $_GET['up_to_chapter'] ) : H212_CHAPTERS;
+	$all_levels    = h212_course_levels();
+	$up_to_level   = isset( $_GET['up_to_level'] )   ? intval( $_GET['up_to_level'] )   : ( $all_levels ? max( $all_levels ) : 1 );
+	$up_to_chapter = isset( $_GET['up_to_chapter'] ) ? intval( $_GET['up_to_chapter'] ) : h212_course_max_chapter();
 	check_admin_referer( 'h212_unlock_student_' . $student_id );
 
 	$bank = h212_progress_bank();
@@ -94,12 +103,14 @@ function h212_render_student_results_page() {
 	echo '<input type="hidden" name="page" value="h212-student-results" />';
 	echo '<select name="student_id" onchange="this.form.submit()">';
 	foreach ( $students as $s ) {
+		$active = h212_last_activity( $s->ID );
 		printf(
-			'<option value="%d" %s>%s (%s)</option>',
+			'<option value="%d" %s>%s (%s) - %s</option>',
 			$s->ID,
 			selected( $selected_id, $s->ID, false ),
 			esc_html( $s->display_name ),
-			esc_html( $s->user_login )
+			esc_html( $s->user_login ),
+			$active ? 'last active ' . esc_html( $active ) : 'not active yet'
 		);
 	}
 	echo '</select>';
@@ -111,13 +122,16 @@ function h212_render_student_results_page() {
 	wp_nonce_field( 'h212_unlock_student_' . $selected_id, '_wpnonce', true, true );
 	echo '<span>Unlock up through</span>';
 	echo '<select name="up_to_level">';
-	for ( $l = 1; $l <= H212_LEVELS; $l++ ) {
-		printf( '<option value="%d" %s>Level %d</option>', $l, selected( $l, H212_LEVELS, false ), $l );
+	$course_levels = h212_course_levels();
+	$last_level    = $course_levels ? max( $course_levels ) : 1;
+	$max_chapter   = h212_course_max_chapter();
+	foreach ( $course_levels as $l ) {
+		printf( '<option value="%d" %s>Level %d</option>', $l, selected( $l, $last_level, false ), $l );
 	}
 	echo '</select>';
 	echo '<select name="up_to_chapter">';
-	for ( $c = 1; $c <= H212_CHAPTERS; $c++ ) {
-		printf( '<option value="%d" %s>Chapter %d</option>', $c, selected( $c, H212_CHAPTERS, false ), $c );
+	for ( $c = 1; $c <= $max_chapter; $c++ ) {
+		printf( '<option value="%d" %s>Chapter %d</option>', $c, selected( $c, $max_chapter, false ), $c );
 	}
 	echo '</select>';
 	echo '<button type="submit" class="button">Unlock</button>';
@@ -148,25 +162,27 @@ function h212_render_student_results_page() {
 	};
 
 	// ── Summary ──
-	$last_active = '';
-	foreach ( array_merge( $scores, $mistakes ) as $row ) {
-		if ( isset( $row['date'] ) && $row['date'] > $last_active ) {
-			$last_active = $row['date'];
-		}
-	}
+	$last_active = h212_last_activity( $selected_id );
+	$test_scores = get_user_meta( $selected_id, 'h212_test_scores', true );
+	$test_scores = is_array( $test_scores ) ? $test_scores : array();
 
 	// ── Progress overview ── (read-only: shows unlocks without saving them)
 	$state = h212_progress_state( $selected_id, false );
 	echo '<h2>Progress</h2>';
+	$max_ch = h212_course_max_chapter();
 	echo '<div style="overflow-x:auto;"><table class="widefat striped" style="min-width:900px;"><thead><tr><th>Level</th>';
-	for ( $c = 1; $c <= H212_CHAPTERS; $c++ ) {
+	for ( $c = 1; $c <= $max_ch; $c++ ) {
 		echo '<th style="text-align:center;">Ch ' . $c . '</th>';
 	}
 	echo '</tr></thead><tbody>';
 	$current_label = 'Level 1';
-	for ( $lvl = 1; $lvl <= H212_LEVELS; $lvl++ ) {
+	foreach ( h212_course_levels() as $lvl ) {
 		echo '<tr><td><strong>Level ' . $lvl . '</strong></td>';
-		for ( $c = 1; $c <= H212_CHAPTERS; $c++ ) {
+		for ( $c = 1; $c <= $max_ch; $c++ ) {
+			if ( ! isset( $state['chapters'][ $lvl . '-' . $c ] ) ) {
+				echo '<td style="text-align:center;color:#ddd;" title="This level has no Chapter ' . $c . '">·</td>';
+				continue;
+			}
 			$ch   = $state['chapters'][ $lvl . '-' . $c ];
 			$lock = $ch['u'] ? 'Open' : 'Locked';
 			if ( 0 === $ch['t'] ) {
@@ -197,6 +213,7 @@ function h212_render_student_results_page() {
 	echo '<div><strong>Furthest open chapter:</strong> ' . esc_html( $current_label ) . '</div>';
 	echo '<div><strong>Last active:</strong> ' . ( $last_active ? esc_html( $last_active ) : '—' ) . '</div>';
 	echo '<div><strong>Quiz attempts:</strong> ' . count( $scores ) . '</div>';
+	echo '<div><strong>Test attempts:</strong> ' . count( $test_scores ) . '</div>';
 	echo '<div><strong>Mistakes logged:</strong> ' . count( $mistakes ) . '</div>';
 	echo '<div><strong>Currently needs review:</strong> ' . count( $wrong ) . '</div>';
 	echo '</div>';
@@ -221,6 +238,35 @@ function h212_render_student_results_page() {
 		}
 		echo '</tbody></table>';
 	}
+
+	// ── Test score history (Tests are saved separately from Homework quizzes) ──
+	echo '<h2 style="margin-top:32px;">Test Score History</h2>';
+	if ( ! $test_scores ) {
+		echo '<p>No tests taken yet.</p>';
+	} else {
+		usort( $test_scores, function ( $a, $b ) { return strcmp( $b['date'], $a['date'] ); } );
+		echo '<table class="widefat striped" style="max-width:700px;"><thead><tr><th>Date</th><th>Level</th><th>Chapter</th><th>Score</th><th>%</th></tr></thead><tbody>';
+		foreach ( $test_scores as $s ) {
+			printf(
+				'<tr><td>%s</td><td>%d</td><td>%d</td><td>%d / %d</td><td>%d%%</td></tr>',
+				esc_html( $s['date'] ),
+				(int) $s['level'],
+				(int) $s['chapter'],
+				(int) $s['score'],
+				(int) $s['total'],
+				$s['total'] ? (int) round( $s['score'] * 100 / $s['total'] ) : 0
+			);
+		}
+		echo '</tbody></table>';
+	}
+
+	// ── Optional practice (never counts for unlocking or Grades) ──
+	echo '<h2 style="margin-top:32px;">Optional Practice</h2>';
+	echo '<table class="widefat striped" style="max-width:700px;"><tbody>';
+	foreach ( h212_practice_summary( $selected_id ) as $label => $text ) {
+		printf( '<tr><td style="width:180px;"><strong>%s</strong></td><td>%s</td></tr>', esc_html( $label ), esc_html( $text ) );
+	}
+	echo '</tbody></table>';
 
 	// ── Video sentences ("Your turn" writing from the video lessons) ──
 	echo '<h2 style="margin-top:32px;">Video Sentences</h2>';

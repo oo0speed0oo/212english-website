@@ -31,15 +31,16 @@ function h212_grades_chapter_status( $bank, $level, $chapter, $lists ) {
 	return h212_chapter_mastered( $stats ) ? 'mastered' : 'progress';
 }
 
+$levels              = h212_course_levels();   // from the content files - any number of levels
 $level_has_content   = array();
 $level_mastered      = array();
 $total_chapters      = 0;
 $total_mastered      = 0;
 
-for ( $lvl = 1; $lvl <= H212_LEVELS; $lvl++ ) {
+foreach ( $levels as $lvl ) {
 	$level_has_content[ $lvl ] = false;
 	$level_mastered[ $lvl ]    = 0;
-	for ( $c = 1; $c <= H212_CHAPTERS; $c++ ) {
+	foreach ( h212_course_chapters( $lvl ) as $c ) {
 		$status = h212_grades_chapter_status( $bank, $lvl, $c, $lists );
 		if ( 'no_content' === $status ) {
 			continue;
@@ -55,14 +56,14 @@ for ( $lvl = 1; $lvl <= H212_LEVELS; $lvl++ ) {
 
 // "Currently on" level: the first level with unfinished content in it,
 // same idea as the level-locking logic in homework.php.
-$current_level = 1;
-for ( $lvl = 1; $lvl <= H212_LEVELS; $lvl++ ) {
+$current_level = $levels ? $levels[0] : 1;
+foreach ( $levels as $lvl ) {
 	if ( ! $level_has_content[ $lvl ] ) {
 		break;
 	}
 	$current_level = $lvl;
 	$chapters_in_level = 0;
-	for ( $c = 1; $c <= H212_CHAPTERS; $c++ ) {
+	foreach ( h212_course_chapters( $lvl ) as $c ) {
 		if ( 'no_content' !== h212_grades_chapter_status( $bank, $lvl, $c, $lists ) ) {
 			$chapters_in_level++;
 		}
@@ -94,14 +95,14 @@ if ( 0 === $total_mastered ) {
   <a class="back-btn" href="homework.php" style="margin:0;"><?php echo esc_html( t( 'grades.go_homework' ) ); ?></a>
 </div>
 
-<?php for ( $lvl = 1; $lvl <= H212_LEVELS; $lvl++ ) : ?>
+<?php foreach ( $levels as $lvl ) : ?>
   <div class="grades-level-block">
     <div class="grades-level-title"><?php echo esc_html( t( 'hw.level' ) ); ?> <?php echo (int) $lvl; ?></div>
     <?php if ( ! $level_has_content[ $lvl ] ) : ?>
       <div class="grades-coming-soon"><?php echo esc_html( t( 'grades.coming_soon_level' ) ); ?></div>
     <?php else : ?>
       <div class="grades-chapter-grid">
-        <?php for ( $c = 1; $c <= H212_CHAPTERS; $c++ ) :
+        <?php foreach ( h212_course_chapters( $lvl ) as $c ) :
           $status = h212_grades_chapter_status( $bank, $lvl, $c, $lists );
           if ( 'no_content' === $status ) {
             continue;
@@ -113,11 +114,11 @@ if ( 0 === $total_mastered ) {
             <span class="gc-num"><?php echo esc_html( t( 'hw.chapter' ) ); ?> <?php echo (int) $c; ?></span>
             <span class="gc-status"><?php echo esc_html( $label ); ?></span>
           </div>
-        <?php endfor; ?>
+        <?php endforeach; ?>
       </div>
     <?php endif; ?>
   </div>
-<?php endfor; ?>
+<?php endforeach; ?>
 </main>
 </div>
 </body>

@@ -23,6 +23,8 @@ h212_js_strings( array(
 ) );
 require_once __DIR__ . '/inc/voices.php';
 h212_voice_script();
+require_once __DIR__ . '/inc/course.php';
+h212_course_script();
 require_once __DIR__ . '/inc/mike.php';
 h212_mike_for_js();
 // Version numbers for the question files, so a browser never shows an old copy after an upload
@@ -32,6 +34,7 @@ foreach ( array( 'homework' => 'homework-content.csv', 'build' => 'build-content
 }
 echo '<script>window.H212_CSV_V = ' . wp_json_encode( $h212_csv_v ) . ';</script>' . "\n";
 ?>
+<script src="components/course.js?v=<?php echo (int) filemtime( __DIR__ . '/components/course.js' ); ?>"></script>
 <script src="components/listen.js?v=<?php echo (int) filemtime( __DIR__ . '/components/listen.js' ); ?>"></script>
 <script src="components/mike.js?v=<?php echo (int) filemtime( __DIR__ . '/components/mike.js' ); ?>"></script>
 <script src="components/ui.js?v=<?php echo (int) filemtime( __DIR__ . '/components/ui.js' ); ?>"></script>
@@ -192,7 +195,7 @@ function renderLevels() {
   var html = '<div class="section-header"><h2>' + H212_T['nav.tests'] + '</h2><p>' + H212_T['tests.choose_level_chapter'] + '</p></div>'
     + '<div class="breadcrumb"><span>' + H212_T['nav.tests'] + '</span></div>'
     + '<div class="level-grid">';
-  for (var i = 1; i <= 5; i++) {
+  H212Course.levels().forEach(function(i) {
     if (isLevelUnlocked(i)) {
       html += '<div class="level-btn" onclick="renderChapters(' + i + ')">'
         + '<span class="num">' + i + '</span><span class="lbl">' + H212_T['hw.level'] + ' ' + i + '</span></div>';
@@ -200,7 +203,7 @@ function renderLevels() {
       html += '<div class="level-btn locked" title="' + H212_T['hw.locked_level'] + '">'
         + '<span class="lock-icon">🔒</span><span class="num">' + i + '</span><span class="lbl">' + H212_T['hw.level'] + ' ' + i + '</span></div>';
     }
-  }
+  });
   html += '</div>';
   getPC().innerHTML = html;
 }
@@ -212,18 +215,18 @@ function renderChapters(lvl) {
     + '<div class="breadcrumb"><span>' + H212_T['nav.tests'] + '</span><span class="sep">›</span><span>' + H212_T['hw.level'] + ' ' + lvl + '</span></div>'
     + '<button class="back-btn" onclick="renderLevels()">' + H212_T['hw.back_levels'] + '</button>'
     + '<div class="chapter-grid">';
-  for (var c = 1; c <= 17; c++) {
+  H212Course.chapters(lvl).forEach(function(c) {
     if (!isChapterUnlocked(lvl, c)) {
       html += '<div class="chapter-btn locked" title="' + H212_T['hw.locked_chapter'] + '">'
         + '<span class="lock-icon">🔒</span><span class="num">' + c + '</span><span class="lbl">' + H212_T['hw.chapter'] + ' ' + c + '</span></div>';
-      continue;
+      return;
     }
     var qs = testQuestionsForChapter(lvl, c);
     if (!qs.length) {
       html += '<div class="chapter-btn" style="opacity:0.6;cursor:default;">'
         + '<span class="num">' + c + '</span><span class="lbl">' + H212_T['hw.chapter'] + ' ' + c + '</span>'
         + '<span class="status muted">' + H212_T['tests.no_content'] + '</span></div>';
-      continue;
+      return;
     }
     var best = bestTestScore(lvl, c);
     var statusHtml = best
@@ -231,7 +234,7 @@ function renderChapters(lvl) {
       : '<span class="status take">' + H212_T['tests.take'] + '</span>';
     html += '<div class="chapter-btn" onclick="openTest(' + c + ')">'
       + '<span class="num">' + c + '</span><span class="lbl">' + H212_T['hw.chapter'] + ' ' + c + '</span>' + statusHtml + '</div>';
-  }
+  });
   html += '</div>';
   getPC().innerHTML = html;
 }

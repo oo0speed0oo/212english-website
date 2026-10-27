@@ -31,8 +31,8 @@ foreach ( $state['chapters'] as $key => $ch ) {
 // Next part to work on = first part (in on-screen order) that has questions and isn't finished.
 $next_part = '';
 if ( $cur ) {
-	foreach ( array( 'photo', 'vocabulary', 'grammar', 'builder', 'listening', 'conversation' ) as $part ) {
-		$p = $cur['parts'][ $part ];
+	foreach ( h212_all_parts() as $part ) {
+		$p = isset( $cur['parts'][ $part ] ) ? $cur['parts'][ $part ] : array( 'total' => 0, 'finished' => 0 );
 		if ( $p['total'] > 0 && $p['finished'] < $p['total'] ) {
 			$next_part = $part;
 			break;

@@ -15,8 +15,8 @@
  *  - Chapter N+1 opens when the student has finished 70% of chapter N's
  *    homework questions (all parts together). "Finished" = answered at least
  *    once and not currently wrong.
- *  - The first chapter of the next level opens after chapter 17 of the level
- *    before it is at 70% (same idea).
+ *  - The first chapter of the next level opens after the LAST chapter of the
+ *    level before it is at 70% (same idea).
  *  - Once a chapter is unlocked it stays unlocked (user meta h212_unlocked),
  *    even if new questions are added later.
  *  - The first time a student's state is computed, every chapter they could
@@ -29,6 +29,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+// H212_LEVELS / H212_CHAPTERS are NOT used by any current file any more - the course
+// map below reads the real levels and chapters from the content files. They only
+// stay defined so an older copy of a portal page that is still on the server
+// during an upload does not crash. Do not use them in new code.
 if ( ! defined( 'H212_LEVELS' ) ) {
 	define( 'H212_LEVELS', 5 );
 }
@@ -184,6 +188,99 @@ function h212_questions_for_part( $bank, $level, $chapter, $part, $mode = 'homew
 	} ) );
 }
 
+/* ============================================================
+ * THE COURSE MAP
+ *
+ * The ONE place that knows which levels, chapters and parts exist. It is read
+ * from the content files (homework-content.csv + build-content.csv), so adding a
+ * new level or chapter to those files is all it takes: the student pages, Grades,
+ * the unlock rules, score saving and the teacher screens all follow it. Nothing
+ * else in the portal may hardcode a number of levels, chapters or a list of
+ * question types.
+ *
+ * Returns array( 'levels' => array( LEVEL => array( CHAPTER => array(
+ *     'parts' => array( part => number of Homework questions ),
+ *     'homework' => number of Homework questions, 'tests' => number of Test questions ) ) ) ),
+ * levels and chapters in order. Cached for the rest of the request.
+ * ============================================================ */
+function h212_course_map() {
+	static $map = null;
+	if ( null !== $map ) {
+		return $map;
+	}
+	$map   = array( 'levels' => array() );
+	$known = h212_all_parts();
+	foreach ( h212_progress_bank() as $q ) {
+		$l = (int) $q['level'];
+		$c = (int) $q['chapter'];
+		if ( $l < 1 || $c < 1 || ! in_array( $q['type'], $known, true ) ) {
+			continue;
+		}
+		if ( ! isset( $map['levels'][ $l ][ $c ] ) ) {
+			$map['levels'][ $l ][ $c ] = array( 'parts' => array(), 'homework' => 0, 'tests' => 0 );
+		}
+		if ( 'test' === $q['mode'] ) {
+			$map['levels'][ $l ][ $c ]['tests']++;
+		} else {
+			$map['levels'][ $l ][ $c ]['homework']++;
+			$map['levels'][ $l ][ $c ]['parts'][ $q['type'] ] = ( $map['levels'][ $l ][ $c ]['parts'][ $q['type'] ] ?? 0 ) + 1;
+		}
+	}
+	ksort( $map['levels'] );
+	foreach ( $map['levels'] as $l => $chs ) {
+		ksort( $map['levels'][ $l ] );
+	}
+	return $map;
+}
+
+/** Every level that has questions, in order: array( 1, 2, ... ) */
+function h212_course_levels() {
+	return array_keys( h212_course_map()['levels'] );
+}
+
+/** Every chapter of one level that has questions, in order: array( 1, 2, ... ) */
+function h212_course_chapters( $level ) {
+	$m = h212_course_map()['levels'];
+	return isset( $m[ (int) $level ] ) ? array_keys( $m[ (int) $level ] ) : array();
+}
+
+/** Does this level + chapter have any questions? */
+function h212_course_has( $level, $chapter ) {
+	$m = h212_course_map()['levels'];
+	return isset( $m[ (int) $level ][ (int) $chapter ] );
+}
+
+/** Every chapter in course order as array( array( level, chapter ), ... ) */
+function h212_course_keys() {
+	$out = array();
+	foreach ( h212_course_map()['levels'] as $l => $chs ) {
+		foreach ( array_keys( $chs ) as $c ) {
+			$out[] = array( (int) $l, (int) $c );
+		}
+	}
+	return $out;
+}
+
+/** The highest chapter number in any level (0 if there are none). */
+function h212_course_max_chapter() {
+	$max = 0;
+	foreach ( h212_course_map()['levels'] as $chs ) {
+		if ( $chs ) {
+			$max = max( $max, max( array_keys( $chs ) ) );
+		}
+	}
+	return $max;
+}
+
+/** What the browser pages need: which chapters each level has, and the part groups. */
+function h212_course_for_js() {
+	$levels = array();
+	foreach ( h212_course_map()['levels'] as $l => $chs ) {
+		$levels[ (string) $l ] = array_keys( $chs );
+	}
+	return array( 'levels' => (object) $levels, 'groups' => h212_part_groups() );
+}
+
 /** How far a student is through one chapter's Homework, part by part. */
 function h212_chapter_stats( $bank, $level, $chapter, $seen_set, $wrong_set ) {
 	$stats = array( 'parts' => array(), 'total' => 0, 'finished' => 0, 'seen' => 0 );
@@ -239,46 +336,53 @@ function h212_legacy_unlocked_keys( $bank, $seen_set, $wrong_set ) {
 		'listening'  => array( 'listening' ),
 	);
 	$finished = array();
-	for ( $l = 1; $l <= H212_LEVELS; $l++ ) {
-		for ( $c = 1; $c <= H212_CHAPTERS; $c++ ) {
-			$ok = true;
-			foreach ( $old_types as $types ) {
-				$qs = array_filter( $bank, function ( $q ) use ( $l, $c, $types ) {
-					return (int) $q['level'] === $l && (int) $q['chapter'] === $c
-						&& 'homework' === $q['mode'] && in_array( $q['type'], $types, true )
-						&& (int) $q['id'] <= H212_LEGACY_MAX_ID;
-				} );
-				if ( ! $qs ) {
+	foreach ( h212_course_keys() as $lc ) {
+		list( $l, $c ) = $lc;
+		$ok = true;
+		foreach ( $old_types as $types ) {
+			$qs = array_filter( $bank, function ( $q ) use ( $l, $c, $types ) {
+				return (int) $q['level'] === $l && (int) $q['chapter'] === $c
+					&& 'homework' === $q['mode'] && in_array( $q['type'], $types, true )
+					&& (int) $q['id'] <= H212_LEGACY_MAX_ID;
+			} );
+			if ( ! $qs ) {
+				$ok = false;
+				break;
+			}
+			foreach ( $qs as $q ) {
+				if ( ! isset( $seen_set[ $q['id'] ] ) || isset( $wrong_set[ $q['id'] ] ) ) {
 					$ok = false;
-					break;
-				}
-				foreach ( $qs as $q ) {
-					if ( ! isset( $seen_set[ $q['id'] ] ) || isset( $wrong_set[ $q['id'] ] ) ) {
-						$ok = false;
-						break 2;
-					}
+					break 2;
 				}
 			}
-			$finished[ $l . '-' . $c ] = $ok;
 		}
+		$finished[ $l . '-' . $c ] = $ok;
 	}
-	$keys        = array();
-	$level_open  = true;
-	for ( $l = 1; $l <= H212_LEVELS; $l++ ) {
-		if ( $l > 1 ) {
-			$level_open = $level_open && ! in_array( false, array_map( function ( $c ) use ( $finished, $l ) {
-				return $finished[ ( $l - 1 ) . '-' . $c ];
-			}, range( 1, H212_CHAPTERS ) ), true );
+	$keys       = array();
+	$level_open = true;
+	$prev_level = null;
+	foreach ( h212_course_levels() as $l ) {
+		if ( null !== $prev_level ) {
+			// the next level needs every chapter of the level before it finished
+			foreach ( h212_course_chapters( $prev_level ) as $pc ) {
+				if ( empty( $finished[ $prev_level . '-' . $pc ] ) ) {
+					$level_open = false;
+					break;
+				}
+			}
 		}
 		if ( ! $level_open ) {
 			break;
 		}
-		for ( $c = 1; $c <= H212_CHAPTERS; $c++ ) {
-			if ( $c > 1 && ! $finished[ $l . '-' . ( $c - 1 ) ] ) {
+		$prev_c = null;
+		foreach ( h212_course_chapters( $l ) as $c ) {
+			if ( null !== $prev_c && empty( $finished[ $l . '-' . $prev_c ] ) ) {
 				break;
 			}
 			$keys[] = $l . '-' . $c;
+			$prev_c = $c;
 		}
+		$prev_level = $l;
 	}
 	return $keys;
 }
@@ -313,28 +417,29 @@ function h212_progress_state( $user_id, $persist = true ) {
 	$chapters    = array();
 	$prev_open   = true;
 	$prev_passed = true;
-	for ( $l = 1; $l <= H212_LEVELS; $l++ ) {
-		for ( $c = 1; $c <= H212_CHAPTERS; $c++ ) {
-			$key   = $l . '-' . $c;
-			$stats = h212_chapter_stats( $bank, $l, $c, $seen, $wrong );
-			if ( 1 === $l && 1 === $c ) {
-				$open = true;
-			} else {
-				$open = isset( $unlocked[ $key ] ) || ( $prev_open && $prev_passed );
-			}
-			if ( $open ) {
-				$unlocked[ $key ] = true;
-			}
-			$chapters[ $key ] = array(
-				'u'     => $open,
-				't'     => $stats['total'],
-				'f'     => $stats['finished'],
-				's'     => $stats['seen'],
-				'parts' => $stats['parts'],
-			);
-			$prev_open   = $open;
-			$prev_passed = h212_chapter_passed( $stats );
+	$is_first    = true;
+	foreach ( h212_course_keys() as $lc ) {
+		list( $l, $c ) = $lc;
+		$key   = $l . '-' . $c;
+		$stats = h212_chapter_stats( $bank, $l, $c, $seen, $wrong );
+		if ( $is_first ) {
+			$open     = true;   // the very first chapter of the course is always open
+			$is_first = false;
+		} else {
+			$open = isset( $unlocked[ $key ] ) || ( $prev_open && $prev_passed );
 		}
+		if ( $open ) {
+			$unlocked[ $key ] = true;
+		}
+		$chapters[ $key ] = array(
+			'u'     => $open,
+			't'     => $stats['total'],
+			'f'     => $stats['finished'],
+			's'     => $stats['seen'],
+			'parts' => $stats['parts'],
+		);
+		$prev_open   = $open;
+		$prev_passed = h212_chapter_passed( $stats );
 	}
 
 	if ( $persist ) {
@@ -345,6 +450,73 @@ function h212_progress_state( $user_id, $persist = true ) {
 	}
 
 	return array( 'chapters' => $chapters, 'first_run' => $first_run );
+}
+
+/* ============================================================
+ * ACTIVITY, CACHING AND THE TEACHER'S "LAST ACTIVE"
+ * ============================================================ */
+
+/**
+ * Tell LiteSpeed Cache (and any other page cache) NOT to keep a copy of this page.
+ * Student pages, the data they save, and the teacher screens are private and must
+ * always be fresh. Safe to call more than once.
+ */
+function h212_no_cache() {
+	if ( ! defined( 'DONOTCACHEPAGE' ) ) {
+		define( 'DONOTCACHEPAGE', true );
+	}
+	if ( ! defined( 'DONOTCACHEOBJECT' ) ) {
+		define( 'DONOTCACHEOBJECT', true );
+	}
+	if ( ! headers_sent() ) {
+		nocache_headers();
+		header( 'X-LiteSpeed-Cache-Control: no-cache, no-store, private' );
+	}
+	do_action( 'litespeed_control_set_nocache', '212 English: private student/teacher page' );
+}
+
+/**
+ * Remember that a student was just active (any portal page or save). Written at most
+ * once every $min_seconds so a busy student does not cause a database write per click.
+ */
+function h212_touch_activity( $user_id, $min_seconds = 60 ) {
+	$user_id = (int) $user_id;
+	if ( $user_id < 1 ) {
+		return;
+	}
+	$last = get_user_meta( $user_id, 'h212_last_active', true );
+	if ( $last && ( current_time( 'timestamp' ) - strtotime( $last ) ) < $min_seconds ) {
+		return;
+	}
+	update_user_meta( $user_id, 'h212_last_active', current_time( 'mysql' ) );
+}
+
+/**
+ * The latest sign of life from a student, as "Y-m-d H:i:s" (or '' if none): the saved
+ * "last active" stamp, and the newest date found in anything the portal records.
+ */
+function h212_last_activity( $user_id ) {
+	$latest = (string) get_user_meta( $user_id, 'h212_last_active', true );
+	foreach ( array( 'h212_quiz_scores', 'h212_test_scores', 'h212_mistake_log', 'h212_video_sentences' ) as $key ) {
+		$rows = get_user_meta( $user_id, $key, true );
+		if ( is_array( $rows ) ) {
+			foreach ( $rows as $r ) {
+				if ( is_array( $r ) && isset( $r['date'] ) && $r['date'] > $latest ) {
+					$latest = $r['date'];
+				}
+			}
+		}
+	}
+	return $latest;
+}
+
+/** The student's optional-practice numbers for the teacher: label => text (grows as sections are added). */
+function h212_practice_summary( $user_id ) {
+	$out    = array();
+	$tries  = get_user_meta( $user_id, 'h212_speaking', true );
+	$tries  = is_array( $tries ) ? $tries : array();
+	$out['Speaking'] = $tries ? count( $tries ) . ' questions tried, ' . array_sum( array_map( 'intval', $tries ) ) . ' tries in total' : 'Nothing yet';
+	return $out;
 }
 
 /* ============================================================

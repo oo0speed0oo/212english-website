@@ -2,6 +2,11 @@
 require_once __DIR__ . '/../wp-load.php';
 require_once __DIR__ . '/inc/i18n.php';
 
+// The login form carries a one-time security token: no page cache may keep a copy of it.
+if ( function_exists( 'h212_no_cache' ) ) {
+	h212_no_cache();
+}
+
 if ( is_user_logged_in() && current_user_can( 'student' ) ) {
 	wp_safe_redirect( home_url( '/portal/dashboard.php' ) );
 	exit;
