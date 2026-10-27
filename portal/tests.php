@@ -19,7 +19,7 @@ h212_js_strings( array(
 	'hw.start_again', 'hw.back_to_topics', 'hw.best_score',
 	'builder.instruction', 'builder.empty', 'builder.check', 'builder.clear', 'builder.wrong_msg', 'conv.prompt', 'conv.text_label', 'listen.play',
 	'listen.who', 'listen.robot', 'listen.button', 'listen.playing', 'listen.no_voice',
-	'listen.mix', 'listen.us_woman', 'listen.us_man', 'listen.uk_woman', 'listen.uk_man',
+	'listen.mix', 'listen.us_woman', 'listen.us_man', 'listen.uk_woman', 'listen.uk_man', 'listen.silent_hint', 'listen.iframe',
 ) );
 require_once __DIR__ . '/inc/voices.php';
 h212_voice_script();

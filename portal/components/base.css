@@ -765,3 +765,19 @@ button, input, select, textarea { font-family: inherit; }
 .speak-help-main { font-size: 12.5px; color: var(--text-muted); line-height: 1.4; }
 .speak-help-privacy { font-size: 11px; color: var(--text-dim); margin-top: 4px; }
 @media (prefers-reduced-motion: reduce) { .speak-mic.listening { animation: none; } }
+
+/* ── iPhone sound hint + typed answers for Speaking ── */
+.sound-hint { font-size: 12px; color: var(--text-muted); margin: -8px 0 14px; max-width: 460px; line-height: 1.5; }
+.speak-type { margin: 4px 0 12px; max-width: 460px; }
+.speak-type[hidden] { display: none; }
+.speak-type-hint { font-size: 13px; font-weight: 600; color: var(--text-muted); margin-bottom: 8px; line-height: 1.5; }
+.speak-type-row { display: flex; gap: 8px; }
+.speak-text {
+  flex: 1; min-width: 0; min-height: 48px; padding: 10px 14px; font-family: inherit; font-size: 16px;
+  color: var(--ink); background: var(--card); border: 1px solid var(--line-strong); border-radius: 14px; outline: none;
+}
+.speak-text:focus { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(var(--accent-rgb), 0.18); }
+.speak-check {
+  flex: none; min-height: 48px; padding: 10px 18px; border: none; border-radius: 14px; cursor: pointer;
+  font-family: inherit; font-size: 15px; font-weight: 700; background: var(--gold-soft); color: var(--on-accent);
+}

@@ -218,6 +218,16 @@ $GLOBALS['h212_strings'] = array(
 	'speak.again'         => array( 'en' => 'Practice again', 'ja' => 'もう一度練習' ),
 	'speak.finish_title'  => array( 'en' => 'Speaking practice done!', 'ja' => '話す練習おわり！' ),
 	'speak.finish_sub'    => array( 'en' => 'You practiced {n} questions.', 'ja' => '{n}問に挑戦しました。' ),
+	'speak.type_hint'     => array(
+		'en' => '⌨️ Type your answer, or tap 🎤 on your keyboard and speak. / 答えを入力するか、キーボードの🎤をタップして話してください。',
+		'ja' => '⌨️ Type your answer, or tap 🎤 on your keyboard and speak. / 答えを入力するか、キーボードの🎤をタップして話してください。',
+	),
+	'speak.type_ph'       => array( 'en' => 'Type or speak your answer…', 'ja' => '答えを入力、または話してください…' ),
+	'speak.type_check'    => array( 'en' => 'Check', 'ja' => '答え合わせ' ),
+	'speak.type_empty'    => array( 'en' => 'Type or speak your answer first.', 'ja' => 'まず答えを入力するか、話してください。' ),
+	'speak.you_wrote'     => array( 'en' => 'You wrote:', 'ja' => '入力：' ),
+	'listen.silent_hint'  => array( 'en' => 'No sound? Check that your iPhone is not on silent mode and the volume is up. / 音が出ないときは、iPhoneがマナーモード（消音）でないか、音量が小さくないか確認してください。', 'ja' => 'No sound? Check that your iPhone is not on silent mode and the volume is up. / 音が出ないときは、iPhoneがマナーモード（消音）でないか、音量が小さくないか確認してください。' ),
+	'listen.iframe'       => array( 'en' => 'Open this page directly in your browser (not inside another page) so sound can play. / 音を出すには、このページを他のページの中ではなく、直接ブラウザで開いてください。', 'ja' => 'Open this page directly in your browser (not inside another page) so sound can play. / 音を出すには、このページを他のページの中ではなく、直接ブラウザで開いてください。' ),
 	'speak.help_works'    => array(
 		'en' => '🎤 Tap the mic and say your answer. / マイクをタップして答えを言ってください。',
 		'ja' => '🎤 Tap the mic and say your answer. / マイクをタップして答えを言ってください。',

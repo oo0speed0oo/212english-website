@@ -10,6 +10,14 @@
 // Conversation questions play a recorded file (audio/conversation/<id>.m4a) when there is one,
 // otherwise the robot voice.
 //
+// iPhone/iPad notes (every iPhone browser, Chrome too, is Apple's WebKit):
+//  - sound only starts from a direct tap, so play() runs inside the tap and the first tap
+//    anywhere "unlocks" recorded audio and the robot voice (unlockSound below);
+//  - the robot voice list is often EMPTY at first on iPhone, so we still speak with just
+//    lang "en-US" instead of giving up;
+//  - speak() straight after cancel() is dropped on iOS, so we wait a moment after a cancel;
+//  - the silent (ringer) switch can mute sound, so iPhone users see a short hint.
+//
 // Voices: a recorded mp3 voice (American/British, woman/man - files in
 // portal/audio/<voice>/<id>.mp3) or, if there is no mp3 or it fails to load,
 // the robot (the device's built-in English voice, no files needed).
@@ -36,6 +44,72 @@ var H212Listen = (function () {
 
   function supported() {
     return typeof window !== 'undefined' && 'speechSynthesis' in window && 'SpeechSynthesisUtterance' in window;
+  }
+
+  function esc(s) {
+    return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  }
+
+  function isIOS() {
+    var ua = (typeof navigator !== 'undefined' && navigator.userAgent) || '';
+    return /iP(hone|ad|od)/.test(ua) || (typeof navigator !== 'undefined' && navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  }
+
+  // Use a chosen voice if we have one; otherwise let the device pick its own English voice.
+  function applyVoice(u, v) {
+    if (v) { u.voice = v; u.lang = v.lang || 'en-US'; }
+    else { u.lang = 'en-US'; }
+  }
+
+  // Run fn() to start speaking. If something is still being spoken, or speech was cancelled a
+  // moment ago, wait a little first: on iPhone a speak() straight after cancel() is silently dropped.
+  var lastCancelAt = 0;
+  function startSpeaking(fn) {
+    var synth = window.speechSynthesis;
+    try { if (synth.paused) synth.resume(); } catch (e) {}
+    var wait = 0;
+    if (synth.speaking || synth.pending) {
+      synth.cancel();
+      lastCancelAt = Date.now();
+      wait = 130;
+    } else if (Date.now() - lastCancelAt < 130) {
+      wait = 130 - (Date.now() - lastCancelAt) + 10;
+    }
+    if (wait) { setTimeout(fn, wait); } else { fn(); }
+  }
+
+  // The first tap anywhere unlocks sound on iPhone/iPad: a silent clip and a silent word, both
+  // started from the tap itself. After that, later plays work reliably.
+  var soundUnlocked = false;
+  function unlockSound() {
+    if (soundUnlocked) return;
+    soundUnlocked = true;
+    try {
+      var a = new Audio('data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQAAAAA=');
+      a.volume = 0;
+      var pr = a.play();
+      if (pr && pr.catch) pr.catch(function () {});
+    } catch (e) {}
+    if (supported()) {
+      try {
+        var u = new SpeechSynthesisUtterance(' ');
+        u.volume = 0;
+        window.speechSynthesis.speak(u);
+      } catch (e) {}
+    }
+  }
+  if (typeof document !== 'undefined' && document.addEventListener) {
+    ['touchend', 'click', 'keydown'].forEach(function (ev) { document.addEventListener(ev, unlockSound, true); });
+  }
+
+  // A short hint under the Listen button: iPhone silent switch / page inside a frame.
+  function soundHint() {
+    var T = window.H212_T || {}, h = '';
+    var framed = false;
+    try { framed = window.top !== window.self; } catch (e) { framed = true; }
+    if (framed && T['listen.iframe']) h += '<div class="sound-hint">' + esc(T['listen.iframe']) + '</div>';
+    if (isIOS() && T['listen.silent_hint']) h += '<div class="sound-hint">🔔 ' + esc(T['listen.silent_hint']) + '</div>';
+    return h;
   }
 
   function score(v) {
@@ -70,6 +144,7 @@ var H212Listen = (function () {
 
   // Pick two different-sounding voices for a two-person dialogue.
   function pickTwo() {
+    if (!voices.length) return [null, null];   // no voice list yet: let the device choose
     var a = voices[0];
     var b = null;
     var wantMale = a && FEMALE.test(a.name);
@@ -115,7 +190,7 @@ var H212Listen = (function () {
     speaking = false;
     playId++;
     if (cur.audio) { try { cur.audio.pause(); } catch (e) {} }
-    if (supported()) window.speechSynthesis.cancel();
+    if (supported()) { window.speechSynthesis.cancel(); lastCancelAt = Date.now(); }
   }
 
   // ── Student's voice choice (cookie) ──
@@ -233,7 +308,7 @@ var H212Listen = (function () {
     if (cur.effective !== 'robot' && a && !a.error) {
       var myId = ++playId;
       setButton(true);
-      a.currentTime = 0;
+      try { a.currentTime = 0; } catch (e) {}
       a.onended = function () { if (myId === playId) setButton(false); };
       a.onerror = function () { if (myId === playId) { setButton(false); speakRobot(); } };
       var pr = a.play();
@@ -252,64 +327,69 @@ var H212Listen = (function () {
   function speakText(text) {
     if (!supported() || !text) return;
     if (!voices.length) loadVoices();
-    if (!voices.length) return;
     var synth = window.speechSynthesis;
-    synth.cancel();
-    var u = new SpeechSynthesisUtterance(text);
-    u.voice = voices[0];
-    u.lang  = voices[0].lang || 'en-US';
-    u.rate  = 0.9;
-    synth.speak(u);
+    startSpeaking(function () {
+      var u = new SpeechSynthesisUtterance(text);
+      applyVoice(u, voices[0]);
+      u.rate  = 0.9;
+      synth.speak(u);
+    });
   }
 
   function speakRobot() {
     if (!supported()) { showFallback(); return; }
-    if (!voices.length) loadVoices();
-    if (!voices.length) { showFallback(); return; }
+    if (!voices.length) loadVoices();   // may still be empty on iPhone: we then speak with lang only
 
     var synth = window.speechSynthesis;
-    synth.cancel();
-    var pair = lines.length > 1 ? pickTwo() : [voices[0], null];
+    var pair = lines.length > 1 ? pickTwo() : [voices[0] || null, null];
     speaking = true;
     var myId = ++playId;
     setButton(true);
 
-    // Conversation: say line 1, wait a moment, then line 2 in the other voice
-    if (cur.type === 'conversation' && lines.length > 1) {
-      var say = function (i) {
-        if (myId !== playId) return;
-        var u = new SpeechSynthesisUtterance(lines[i]);
-        var v = (i % 2 === 1 && pair[1]) ? pair[1] : pair[0];
-        u.voice = v; u.lang = v.lang || 'en-US'; u.rate = 0.9;
-        if (i % 2 === 1 && !pair[1]) u.pitch = 0.75;
-        u.onend = u.onerror = function () {
-          if (myId !== playId) return;
-          if (i + 1 < lines.length) { setTimeout(function () { say(i + 1); }, 500); }
-          else { speaking = false; setButton(false); }
-        };
-        synth.speak(u);
-      };
-      say(0);
-      return;
-    }
+    var finish = function () {
+      if (myId !== playId) return;
+      speaking = false;
+      setButton(false);
+    };
 
-    for (var i = 0; i < lines.length; i++) {
-      var u = new SpeechSynthesisUtterance(lines[i]);
-      var v = (i % 2 === 1 && pair[1]) ? pair[1] : pair[0];
-      u.voice = v;
-      u.lang  = v.lang || 'en-US';
-      u.rate  = 0.9;
-      // Only one English voice on the device: make the second speaker deeper.
-      if (i % 2 === 1 && !pair[1]) u.pitch = 0.75;
-      if (i === lines.length - 1) {
-        u.onend = u.onerror = function () {
+    startSpeaking(function () {
+      if (myId !== playId) return;
+
+      // Conversation: say line 1, wait a moment, then line 2 in the other voice
+      if (cur.type === 'conversation' && lines.length > 1) {
+        var say = function (i) {
           if (myId !== playId) return;
-          speaking = false;
-          setButton(false);
+          var u = new SpeechSynthesisUtterance(lines[i]);
+          var v = (i % 2 === 1 && pair[1]) ? pair[1] : pair[0];
+          applyVoice(u, v);
+          u.rate = 0.9;
+          if (i % 2 === 1 && !pair[1]) u.pitch = 0.75;
+          u.onend = u.onerror = function () {
+            if (myId !== playId) return;
+            if (i + 1 < lines.length) { setTimeout(function () { say(i + 1); }, 500); }
+            else { finish(); }
+          };
+          synth.speak(u);
         };
+        say(0);
+      } else {
+        for (var i = 0; i < lines.length; i++) {
+          var u = new SpeechSynthesisUtterance(lines[i]);
+          var v = (i % 2 === 1 && pair[1]) ? pair[1] : pair[0];
+          applyVoice(u, v);
+          u.rate  = 0.9;
+          // Only one English voice on the device: make the second speaker deeper.
+          if (i % 2 === 1 && !pair[1]) u.pitch = 0.75;
+          if (i === lines.length - 1) { u.onend = u.onerror = finish; }
+          synth.speak(u);
+        }
       }
-      synth.speak(u);
-    }
+
+      // Safety net: if the phone never starts speaking, do not leave the button stuck on "Playing..."
+      setTimeout(function () {
+        if (myId === playId && speaking && !synth.speaking && !synth.pending) finish();
+      }, 2500);
+    });
   }
 
   function chip(key, face, label) {
@@ -347,6 +427,7 @@ var H212Listen = (function () {
         cur.effective = 'file';
       }
       var h = '<button type="button" class="listen-btn listen-btn-big" id="listen-btn" onclick="H212Listen.play()">' + T['listen.play'] + '</button>'
+        + soundHint()
         + '<div class="listen-msg" id="listen-msg" role="status"></div>'
         + '<div class="listen-reveal" id="listen-reveal" hidden></div>';
       if (p.suffix) h += '<div class="question-text listen-suffix">' + p.suffix + '</div>';
@@ -374,18 +455,18 @@ var H212Listen = (function () {
       + '</div></div>';
     if (p.prefix) html += '<div class="question-text listen-prefix">' + p.prefix + '</div>';
     html += '<button type="button" class="listen-btn" id="listen-btn" onclick="H212Listen.play()">' + T['listen.button'] + '</button>'
+      + soundHint()
       + '<div class="listen-msg" id="listen-msg" role="status"></div>'
       + '<div class="listen-reveal" id="listen-reveal" hidden></div>';
     if (p.suffix) html += '<div class="question-text listen-suffix">' + p.suffix + '</div>';
     return html;
   }
 
-  // Is there an English voice on this device? (Speaking practice shows the prompt as text if not)
+  // Can this device speak at all? (If not, Speaking practice shows the prompt as text.)
+  // An empty voice list is NOT a reason to give up - iPhones often report it empty at first.
   function canSpeak() {
-    if (!supported()) return false;
-    if (!voices.length) loadVoices();
-    return voices.length > 0;
+    return supported();
   }
 
-  return { render: render, play: play, stop: stop, parse: parse, choose: choose, speakText: speakText, reveal: reveal, canSpeak: canSpeak };
+  return { render: render, play: play, stop: stop, parse: parse, choose: choose, speakText: speakText, reveal: reveal, canSpeak: canSpeak, soundHint: soundHint };
 })();

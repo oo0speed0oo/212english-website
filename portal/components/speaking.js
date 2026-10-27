@@ -201,6 +201,7 @@ var H212Speak = (function () {
     }
     if (q.prompt_audio) {
       h += '<button type="button" class="listen-btn speak-hear" onclick="H212Speak.hear()">' + esc(T('listen.button')) + '</button>';
+      if (typeof H212Listen !== 'undefined' && H212Listen.soundHint) h += H212Listen.soundHint();
       // No English voice on this device: show the line instead, so nobody is stuck.
       if (!canSpeak()) h += '<div class="speak-line">“' + esc(q.prompt_audio) + '”</div>';
     }
@@ -208,9 +209,10 @@ var H212Speak = (function () {
     if (SR) {
       h += '<button type="button" class="speak-mic" id="speak-mic" onclick="H212Speak.listen()">'
         + '<span class="speak-mic-ico" aria-hidden="true">🎤</span><span id="speak-mic-label">' + esc(T('speak.mic')) + '</span></button>';
-    } else {
-      h += '<div class="speak-note">' + esc(T('speak.no_mic')) + '</div>';
     }
+    // A text box to type (or dictate with the keyboard's 🎤). It is the main way in on devices with
+    // no speech recognition (iPhone Chrome), and appears on other devices if the mic is blocked.
+    h += typeBoxHtml(!SR);
     h += '<div class="speak-status" id="speak-status" role="status"></div>'
       + '<div class="speak-result" id="speak-result" hidden></div>'
       + '<div class="speak-actions"><button type="button" class="' + (SR ? 'speak-link' : 'speak-show-big') + '" onclick="H212Speak.reveal()">'
@@ -245,6 +247,30 @@ var H212Speak = (function () {
       var el = document.getElementById('speak-help-main');
       if (el) el.textContent = T('speak.help_blocked');
     }).catch(function () {});
+  }
+
+  // The "type or dictate" box. visible=false keeps it hidden until needed (showTypeBox).
+  function typeBoxHtml(visible) {
+    return '<div class="speak-type" id="speak-type"' + (visible ? '' : ' hidden') + '>'
+      + '<div class="speak-type-hint">' + esc(T('speak.type_hint')) + '</div>'
+      + '<div class="speak-type-row">'
+      + '<input type="text" id="speak-text" class="speak-text" lang="en-US" autocomplete="off" autocorrect="off" spellcheck="false" enterkeyhint="done"'
+      + ' placeholder="' + esc(T('speak.type_ph')) + '" onkeydown="if(event.key===\'Enter\'){event.preventDefault();H212Speak.checkTyped();}">'
+      + '<button type="button" class="speak-check" onclick="H212Speak.checkTyped()">' + esc(T('speak.type_check')) + '</button>'
+      + '</div></div>';
+  }
+  function showTypeBox() {
+    var b = document.getElementById('speak-type');
+    if (b) b.hidden = false;
+  }
+  // Checks what was typed exactly like a spoken answer (same keywords, same results).
+  function checkTyped() {
+    if (!st) return;
+    var el = document.getElementById('speak-text');
+    var text = el ? el.value.replace(/\s+/g, ' ').trim() : '';
+    if (!text) { setStatus(T('speak.type_empty'), true); return; }
+    setStatus('', false);
+    handle([text], true);
   }
 
   function markAttempt() {
@@ -348,12 +374,12 @@ var H212Speak = (function () {
       setMic(false);
       if (gotResult) return;
       if (errCode === 'aborted') { setStatus('', false); return; }
-      if (errCode === 'not-allowed' || errCode === 'service-not-allowed') setStatus(T('speak.mic_blocked'), true);
+      if (errCode === 'not-allowed' || errCode === 'service-not-allowed') { setStatus(T('speak.mic_blocked'), true); showTypeBox(); }
       else if (errCode === '' || errCode === 'no-speech') setStatus(T('speak.no_speech'), true);
-      else setStatus(T('speak.error'), true);
+      else { setStatus(T('speak.error'), true); showTypeBox(); }
     };
     try { rec.start(); }
-    catch (e) { st.rec = null; setMic(false); setStatus(T('speak.error'), true); }
+    catch (e) { st.rec = null; setMic(false); setStatus(T('speak.error'), true); showTypeBox(); }
   }
 
   function setResultHidden() {
@@ -362,7 +388,7 @@ var H212Speak = (function () {
   }
 
   // Check every alternative the recognizer gave back and use the best one
-  function handle(alts) {
+  function handle(alts, typed) {
     var q = st.qs[st.i], best = null;
     for (var i = 0; i < alts.length; i++) {
       if (!alts[i]) continue;
@@ -377,7 +403,7 @@ var H212Speak = (function () {
     var level = !best.total ? 'try' : (best.passed >= best.total ? 'great' : (best.passed * 2 >= best.total ? 'close' : 'try'));
     var icon = { great: '🟢', close: '🟡', 'try': '🔵' }[level];
     var html = '<div class="speak-badge ' + level + '">' + icon + ' ' + esc(T('speak.' + level)) + '</div>'
-      + '<div class="speak-heard">' + esc(T('speak.heard')) + ' <b>“' + esc(best.heard) + '”</b></div>'
+      + '<div class="speak-heard">' + esc(T(typed ? 'speak.you_wrote' : 'speak.heard')) + ' <b>“' + esc(best.heard) + '”</b></div>'
       + modelBox(q, level === 'great')
       + '<button type="button" class="speak-retry" onclick="H212Speak.retry()">' + esc(T('speak.try_again')) + '</button>';
     var box = document.getElementById('speak-result');
@@ -405,7 +431,7 @@ var H212Speak = (function () {
     markAttempt();
     var html = '<div class="speak-badge model">💡 ' + esc(T('speak.model_label')) + '</div>'
       + modelBox(q, false)
-      + (SR ? '<button type="button" class="speak-retry" onclick="H212Speak.retry()">' + esc(T('speak.try_again')) + '</button>' : '');
+      + '<button type="button" class="speak-retry" onclick="H212Speak.retry()">' + esc(T('speak.try_again')) + '</button>';
     var box = document.getElementById('speak-result');
     if (box) { box.className = 'speak-result model'; box.innerHTML = html; box.hidden = false; }
     showNext();
@@ -418,6 +444,8 @@ var H212Speak = (function () {
     setMic(false);
     setStatus('', false);
     setResultHidden();
+    var t = document.getElementById('speak-text');
+    if (t) { t.value = ''; }
   }
 
   function next() {
@@ -453,7 +481,7 @@ var H212Speak = (function () {
 
   return {
     load: load, loadTries: loadTries, forChapter: forChapter, triedCount: triedCount, start: start,
-    listen: listen, hear: hear, sayModel: sayModel, reveal: reveal, retry: retry, next: next, restart: restart, stop: stop,
+    listen: listen, checkTyped: checkTyped, hear: hear, sayModel: sayModel, reveal: reveal, retry: retry, next: next, restart: restart, stop: stop,
     // exposed so the matching can be checked on its own
     _evaluate: evaluate, _normalize: normalize, _parse: parse
   };
