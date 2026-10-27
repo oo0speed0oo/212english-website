@@ -17,3 +17,7 @@ wp-content/litespeed/
 
 # Claude Code local settings (machine-specific, not shared)
 .claude/settings.local.json
+
+# Mike's work files and set-aside files: never committed, never uploaded
+_work/
+_extra_files/
