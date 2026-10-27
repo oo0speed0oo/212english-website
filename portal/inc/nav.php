@@ -25,6 +25,8 @@ function h212_render_nav( $active ) {
 		array( 'id' => 'homework', 'icon' => '📚', 'label' => t( 'nav.homework' ),  'href' => 'homework.php',  'group' => t( 'nav.group_study' ) ),
 		array( 'id' => 'tests',    'icon' => '📝', 'label' => t( 'nav.tests' ),     'href' => 'tests.php',     'group' => t( 'nav.group_study' ) ),
 		array( 'id' => 'videos',   'icon' => '🎬', 'label' => t( 'nav.videos' ),    'href' => 'videos.php',    'group' => t( 'nav.group_study' ) ),
+		array( 'id' => 'opposites', 'icon' => '↔️', 'label' => t( 'nav.opposites' ), 'href' => 'opposites.php', 'group' => t( 'nav.group_study' ) ),
+		array( 'id' => 'idioms',    'icon' => '💬', 'label' => t( 'nav.idioms' ),    'href' => 'idioms.php',    'group' => t( 'nav.group_study' ) ),
 		array( 'id' => 'grades',   'icon' => '📊', 'label' => t( 'nav.grades' ),    'href' => 'grades.php',    'group' => t( 'nav.group_study' ) ),
 	);
 	$other_lang        = ( 'en' === $GLOBALS['h212_lang'] ) ? 'ja' : 'en';

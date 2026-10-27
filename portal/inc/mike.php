@@ -40,6 +40,8 @@ function h212_mike_for_js() {
 		'hint_conversation' => array( 'mike.hint_conversation' ),
 		'hint_test'         => array( 'mike.hint_test' ),
 		'hint_speaking'     => array( 'mike.hint_speaking' ),
+		'hint_practice'     => array( 'mike.hint_practice' ),
+		'hint_write'        => array( 'mike.hint_write' ),
 		'speak_great'       => array( 'mike.speak_great' ),
 		'speak_close'       => array( 'mike.speak_close' ),
 		'speak_try'         => array( 'mike.speak_try' ),

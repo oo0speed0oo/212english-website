@@ -103,6 +103,16 @@ $vars_alt = array( 'name' => $first, 'n' => $cur['chapter'], 'pct' => $pct, 'par
     <div class="dash-card-title"><?php echo esc_html( t( 'nav.videos' ) ); ?></div>
     <div class="dash-card-sub"><?php echo esc_html( t_other( 'nav.videos' ) . ' · ' . t( 'dash.videos_sub' ) ); ?></div>
   </a>
+  <a class="dash-card dash-opposites" href="opposites.php">
+    <div class="dash-card-icon"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h14M14 4l4 4-4 4"></path><path d="M20 16H6M10 12l-4 4 4 4"></path></svg></div>
+    <div class="dash-card-title"><?php echo esc_html( t( 'nav.opposites' ) ); ?></div>
+    <div class="dash-card-sub"><?php echo esc_html( t_other( 'nav.opposites' ) . ' · ' . t( 'dash.opposites_sub' ) ); ?></div>
+  </a>
+  <a class="dash-card dash-idioms" href="idioms.php">
+    <div class="dash-card-icon"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 5h14a2 2 0 012 2v8a2 2 0 01-2 2h-7l-5 4v-4H5a2 2 0 01-2-2V7a2 2 0 012-2z"></path><path d="M8 10h8M8 13h5"></path></svg></div>
+    <div class="dash-card-title"><?php echo esc_html( t( 'nav.idioms' ) ); ?></div>
+    <div class="dash-card-sub"><?php echo esc_html( t_other( 'nav.idioms' ) . ' · ' . t( 'dash.idioms_sub' ) ); ?></div>
+  </a>
 </div>
 <?php h212_theme_picker(); ?>
 </main>

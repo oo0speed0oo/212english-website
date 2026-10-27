@@ -288,6 +288,40 @@ function h212_render_student_results_page() {
 		echo '</tbody></table></div>';
 	}
 
+	// ── Sentences written in the practice sections (Opposites, Idioms) ──
+	echo '<h2 style="margin-top:32px;">Practice Sentences (Opposites and Idioms)</h2>';
+	$practice_rows = array();
+	foreach ( h212_practice_sections() as $key => $def ) {
+		$pst = h212_practice_state( $selected_id, $key );
+		foreach ( $pst['sentences'] as $ps ) {
+			$q = h212_practice_row( $key, $ps['id'] );
+			$practice_rows[] = array(
+				'date'    => isset( $ps['date'] ) ? $ps['date'] : '',
+				'section' => $def['label'],
+				'set'     => isset( $ps['set'] ) ? (int) $ps['set'] : 0,
+				'item'    => $q ? trim( $q['item'] . ( $q['pair'] ? ' / ' . $q['pair'] : '' ) ) : '',
+				'text'    => isset( $ps['text'] ) ? $ps['text'] : '',
+			);
+		}
+	}
+	if ( ! $practice_rows ) {
+		echo '<p>No practice sentences yet.</p>';
+	} else {
+		usort( $practice_rows, function ( $a, $b ) { return strcmp( $b['date'], $a['date'] ); } );
+		echo '<div style="overflow-x:auto;"><table class="widefat striped" style="min-width:760px;"><thead><tr><th>Date</th><th>Section</th><th>Set</th><th>Words</th><th>Sentence</th></tr></thead><tbody>';
+		foreach ( $practice_rows as $pr ) {
+			printf(
+				'<tr><td style="white-space:nowrap;">%s</td><td>%s</td><td>%d</td><td>%s</td><td>%s</td></tr>',
+				esc_html( $pr['date'] ),
+				esc_html( $pr['section'] ),
+				$pr['set'],
+				esc_html( $pr['item'] ),
+				esc_html( $pr['text'] )
+			);
+		}
+		echo '</tbody></table></div>';
+	}
+
 	// ── Mistake log ──
 	echo '<h2 style="margin-top:32px;">Wrong Answers</h2>';
 	if ( ! $mistakes ) {

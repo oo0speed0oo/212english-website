@@ -497,6 +497,16 @@ function h212_touch_activity( $user_id, $min_seconds = 60 ) {
  */
 function h212_last_activity( $user_id ) {
 	$latest = (string) get_user_meta( $user_id, 'h212_last_active', true );
+	foreach ( h212_practice_sections() as $def ) {
+		$rec = get_user_meta( $user_id, $def['meta'], true );
+		if ( is_array( $rec ) && ! empty( $rec['sentences'] ) && is_array( $rec['sentences'] ) ) {
+			foreach ( $rec['sentences'] as $r ) {
+				if ( is_array( $r ) && isset( $r['date'] ) && $r['date'] > $latest ) {
+					$latest = $r['date'];
+				}
+			}
+		}
+	}
 	foreach ( array( 'h212_quiz_scores', 'h212_test_scores', 'h212_mistake_log', 'h212_video_sentences' ) as $key ) {
 		$rows = get_user_meta( $user_id, $key, true );
 		if ( is_array( $rows ) ) {
@@ -516,7 +526,159 @@ function h212_practice_summary( $user_id ) {
 	$tries  = get_user_meta( $user_id, 'h212_speaking', true );
 	$tries  = is_array( $tries ) ? $tries : array();
 	$out['Speaking'] = $tries ? count( $tries ) . ' questions tried, ' . array_sum( array_map( 'intval', $tries ) ) . ' tries in total' : 'Nothing yet';
+	foreach ( h212_practice_sections() as $key => $def ) {
+		$st    = h212_practice_state( $user_id, $key );
+		$total = count( h212_practice_sets( $key ) );
+		$out[ $def['label'] ] = ( $st['seen'] || $st['sentences'] )
+			? h212_practice_sets_done( $user_id, $key ) . ' of ' . $total . ' sets done, ' . count( $st['seen'] ) . ' questions answered, ' . count( $st['wrong'] ) . ' to review, ' . count( $st['sentences'] ) . ' sentences written'
+			: 'Nothing yet';
+	}
 	return $out;
+}
+
+/* ============================================================
+ * PRACTICE SECTIONS: OPPOSITES and IDIOMS (practice only)
+ *
+ * Both are built the same way: the content file is grouped into numbered SETS of
+ * about ten items; each item has three questions (two multiple-choice, then one
+ * "write your own sentence"). They never count for unlocks, Grades or the chapter
+ * percentage: nothing here touches h212_progress_bank().
+ *
+ * Each section keeps its own record in its own user meta (so it can never affect
+ * Homework): array( 'seen' => ids answered, 'wrong' => ids currently wrong,
+ * 'sentences' => array( array( id, set, text, date ), ... ) ).
+ * ============================================================ */
+
+function h212_practice_sections() {
+	return array(
+		'opposites' => array(
+			'file'      => 'opposites-content.csv',
+			'meta'      => 'h212_opposites',
+			'label'     => 'Opposites',
+			'item'      => 'word',
+			'item_ja'   => 'word_ja',
+			'pair'      => 'opposite',
+			'pair_ja'   => 'opposite_ja',
+			'kinds'     => array( 'choice', 'blank', 'write' ),
+			'min_words' => 4,
+		),
+		'idioms'    => array(
+			'file'      => 'idioms-content.csv',
+			'meta'      => 'h212_idioms',
+			'label'     => 'Idioms',
+			'item'      => 'idiom',
+			'item_ja'   => 'idiom_ja',
+			'pair'      => '',
+			'pair_ja'   => '',
+			'kinds'     => array( 'meaning', 'blank', 'write' ),
+			'min_words' => 4,
+		),
+	);
+}
+
+/** One section's questions as plain rows (id, set, kind, item, item_ja, pair, pair_ja, question, choices, answer, required, example). */
+function h212_practice_rows( $section ) {
+	static $cache = array();
+	$defs = h212_practice_sections();
+	if ( ! isset( $defs[ $section ] ) ) {
+		return array();
+	}
+	if ( isset( $cache[ $section ] ) ) {
+		return $cache[ $section ];
+	}
+	$d    = $defs[ $section ];
+	$rows = array();
+	foreach ( h212_read_csv_rows( ABSPATH . 'portal/' . $d['file'] ) as $r ) {
+		if ( empty( $r['id'] ) || empty( $r['kind'] ) ) {
+			continue;
+		}
+		$required = array();
+		foreach ( explode( '|', (string) ( $r['required_words'] ?? '' ) ) as $w ) {
+			$w = trim( $w );
+			if ( '' !== $w && '-' !== $w ) {
+				$required[] = $w;
+			}
+		}
+		$rows[] = array(
+			'id'       => (string) $r['id'],
+			'set'      => (int) ( $r['set'] ?? 0 ),
+			'kind'     => strtolower( trim( $r['kind'] ) ),
+			'item'     => $r[ $d['item'] ] ?? '',
+			'item_ja'  => $r[ $d['item_ja'] ] ?? '',
+			'pair'     => $d['pair'] ? ( $r[ $d['pair'] ] ?? '' ) : '',
+			'pair_ja'  => $d['pair_ja'] ? ( $r[ $d['pair_ja'] ] ?? '' ) : '',
+			'question' => $r['question'] ?? '',
+			'choices'  => array( $r['choice_a'] ?? '', $r['choice_b'] ?? '', $r['choice_c'] ?? '' ),
+			'answer'   => $r['answer'] ?? '',
+			'required' => $required,
+			'example'  => ( isset( $r['example'] ) && '-' !== trim( $r['example'] ) ) ? $r['example'] : '',
+		);
+	}
+	$cache[ $section ] = $rows;
+	return $rows;
+}
+
+function h212_practice_row( $section, $id ) {
+	foreach ( h212_practice_rows( $section ) as $r ) {
+		if ( (string) $id === $r['id'] ) {
+			return $r;
+		}
+	}
+	return null;
+}
+
+/** The sets in a section: array( set number => array of ids ), in order. */
+function h212_practice_sets( $section ) {
+	$sets = array();
+	foreach ( h212_practice_rows( $section ) as $r ) {
+		$sets[ $r['set'] ][] = $r['id'];
+	}
+	ksort( $sets );
+	return $sets;
+}
+
+/** A student's record for one section (always the same shape, even if nothing is saved yet). */
+function h212_practice_state( $user_id, $section ) {
+	$defs = h212_practice_sections();
+	$raw  = isset( $defs[ $section ] ) ? get_user_meta( $user_id, $defs[ $section ]['meta'], true ) : array();
+	$raw  = is_array( $raw ) ? $raw : array();
+	return array(
+		'seen'      => array_values( array_unique( array_map( 'strval', (array) ( $raw['seen'] ?? array() ) ) ) ),
+		'wrong'     => array_values( array_unique( array_map( 'strval', (array) ( $raw['wrong'] ?? array() ) ) ) ),
+		'sentences' => is_array( $raw['sentences'] ?? null ) ? $raw['sentences'] : array(),
+	);
+}
+
+function h212_practice_save_state( $user_id, $section, $state ) {
+	$defs = h212_practice_sections();
+	if ( ! isset( $defs[ $section ] ) ) {
+		return;
+	}
+	if ( count( $state['sentences'] ) > 1000 ) {
+		$state['sentences'] = array_slice( $state['sentences'], -1000 );
+	}
+	update_user_meta( $user_id, $defs[ $section ]['meta'], $state );
+}
+
+/** How many of a section's sets this student has completely finished (every question answered and not wrong). */
+function h212_practice_sets_done( $user_id, $section ) {
+	$state = h212_practice_state( $user_id, $section );
+	$seen  = array_flip( $state['seen'] );
+	$wrong = array_flip( $state['wrong'] );
+	$done  = 0;
+	foreach ( h212_practice_sets( $section ) as $ids ) {
+		$ok = true;
+		foreach ( $ids as $id ) {
+			if ( ! isset( $seen[ $id ] ) || isset( $wrong[ $id ] ) ) {
+				$ok = false;
+				break;
+			}
+		}
+		if ( $ok ) {
+			$done++;
+		}
+	}
+	return $done;
 }
 
 /* ============================================================
@@ -603,16 +765,16 @@ function h212_video_normalize( $text ) {
 
 /**
  * Checks a student's sentence for one video.
- *  - at least 5 words
+ *  - at least $min_words words (5 for videos; the Opposites and Idioms sections use 4)
  *  - every required word/phrase is used (case-insensitive; a word also matches
  *    when it starts a longer word, so "pamper" matches "pampered"; words of
  *    1-2 letters must match exactly so "to" does not match "today")
  * Returns array( 'ok' => bool, 'short' => bool, 'missing' => array of required items not used ).
  */
-function h212_video_check_sentence( $text, $required ) {
+function h212_video_check_sentence( $text, $required, $min_words = 5 ) {
 	$norm  = h212_video_normalize( $text );
 	$words = preg_split( '/[^a-z0-9\']+/u', $norm, -1, PREG_SPLIT_NO_EMPTY );
-	$short = count( $words ) < 5;
+	$short = count( $words ) < (int) $min_words;
 
 	$missing = array();
 	foreach ( (array) $required as $item ) {

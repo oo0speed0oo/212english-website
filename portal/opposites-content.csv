@@ -1,0 +1,595 @@
+id,set,kind,word,word_ja,opposite,opposite_ja,question,choice_a,choice_b,choice_c,answer,required_words,example,mode
+3143,1,choice,brother,兄弟,sister,姉妹,"What is the opposite of ""brother""? (兄弟)",ceiling,sister,right,sister,-,-,practice
+3144,1,blank,brother,兄弟,sister,姉妹,"Fill in the opposite of ""sister"": I have one ___, but my wife has three sisters.",brother,bottom,right,brother,-,-,practice
+3145,1,write,brother,兄弟,sister,姉妹,"Make your own sentence with ""brother"" and ""sister"". 「brother」と「sister」を使って文を作ろう。",-,-,-,-,brother|sister,"I have one brother, but my wife has three sisters.",practice
+3146,1,choice,husband,夫,wife,妻,"What is the opposite of ""husband""? (夫)",night,bottom,wife,wife,-,-,practice
+3147,1,blank,husband,夫,wife,妻,"Fill in the opposite of ""husband"": Ken is Yumi's husband, and Yumi is Ken's ___.",spring,friend,wife,wife,-,-,practice
+3148,1,write,husband,夫,wife,妻,"Make your own sentence with ""husband"" and ""wife"". 「husband」と「wife」を使って文を作ろう。",-,-,-,-,husband|wife,"Ken is Yumi's husband, and Yumi is Ken's wife.",practice
+3149,1,choice,ahead,前方に,behind,後ろに,"What is the opposite of ""ahead""? (前方に)",behind,that,never,behind,-,-,practice
+3150,1,blank,ahead,前方に,behind,後ろに,"Fill in the opposite of ""ahead"": The red car is ahead of us, and the blue car is ___ us.",inside,behind,in,behind,-,-,practice
+3151,1,write,ahead,前方に,behind,後ろに,"Make your own sentence with ""ahead"" and ""behind"". 「ahead」と「behind」を使って文を作ろう。",-,-,-,-,ahead|behind,"The red car is ahead of us, and the blue car is behind us.",practice
+3152,1,choice,front,前,back,後ろ,"What is the opposite of ""front""? (前)",left,back,girl,back,-,-,practice
+3153,1,blank,front,前,back,後ろ,"Fill in the opposite of ""front"": Sit in the front of the bus, not in the ___.",back,yesterday,brother,back,-,-,practice
+3154,1,write,front,前,back,後ろ,"Make your own sentence with ""front"" and ""back"". 「front」と「back」を使って文を作ろう。",-,-,-,-,front|back,"Sit in the front of the bus, not in the back.",practice
+3155,1,choice,forward,前へ,backward,後ろへ,"What is the opposite of ""forward""? (前へ)",minus,nothing,backward,backward,-,-,practice
+3156,1,blank,forward,前へ,backward,後ろへ,"Fill in the opposite of ""forward"": Take one step forward, then one step ___.",on,backward,already,backward,-,-,practice
+3157,1,write,forward,前へ,backward,後ろへ,"Make your own sentence with ""forward"" and ""backward"". 「forward」と「backward」を使って文を作ろう。",-,-,-,-,forward|backward,"Take one step forward, then one step backward.",practice
+3158,1,choice,melt,溶ける,freeze,凍る,"What is the opposite of ""melt""? (溶ける)",start,freeze,decrease,freeze,-,-,practice
+3159,1,blank,melt,溶ける,freeze,凍る,"Fill in the opposite of ""melt"": Ice cream will melt in the sun, but it will ___ in the freezer.",frown,freeze,talk,freeze,-,-,practice
+3160,1,write,melt,溶ける,freeze,凍る,"Make your own sentence with ""melt"" and ""freeze"". 「melt」と「freeze」を使って文を作ろう。",-,-,-,-,melt|freeze,"Ice cream will melt in the sun, but it will freeze in the freezer.",practice
+3161,1,choice,over,上に,under,下に,"What is the opposite of ""over""? (上に)",under,outside,later,under,-,-,practice
+3162,1,blank,over,上に,under,下に,"Fill in the opposite of ""over"": The lamp is over the table, and the cat is ___ it.",inside,more,under,under,-,-,practice
+3163,1,write,over,上に,under,下に,"Make your own sentence with ""over"" and ""under"". 「over」と「under」を使って文を作ろう。",-,-,-,-,over|under,"The lamp is over the table, and the cat is under it.",practice
+3164,1,choice,up,上へ,down,下へ,"What is the opposite of ""up""? (上へ)",down,now,inside,down,-,-,practice
+3165,1,blank,up,上へ,down,下へ,"Fill in the opposite of ""up"": The elevator is going up, not ___.",after,down,me,down,-,-,practice
+3166,1,write,up,上へ,down,下へ,"Make your own sentence with ""up"" and ""down"". 「up」と「down」を使って文を作ろう。",-,-,-,-,up|down,"The elevator is going up, not down.",practice
+3167,1,choice,top,てっぺん,bottom,底,"What is the opposite of ""top""? (てっぺん)",bottom,north,girl,bottom,-,-,practice
+3168,1,blank,top,てっぺん,bottom,底,"Fill in the opposite of ""top"": The cups are on the top shelf, and the plates are on the ___ shelf.",bottom,husband,expert,bottom,-,-,practice
+3169,1,write,top,てっぺん,bottom,底,"Make your own sentence with ""top"" and ""bottom"". 「top」と「bottom」を使って文を作ろう。",-,-,-,-,top|bottom,"The cups are on the top shelf, and the plates are on the bottom shelf.",practice
+3170,1,choice,sit,座る,stand,立つ,"What is the opposite of ""sit""? (座る)",leave,stand,subtract,stand,-,-,practice
+3171,1,blank,sit,座る,stand,立つ,"Fill in the opposite of ""sit"": Please sit down. You don't need to ___.",stand,save,get off,stand,-,-,practice
+3172,1,write,sit,座る,stand,立つ,"Make your own sentence with ""sit"" and ""stand"". 「sit」と「stand」を使って文を作ろう。",-,-,-,-,sit|stand,Please sit down. You don't need to stand.,practice
+3173,2,choice,tame,人になれた,wild,野生の,"What is the opposite of ""tame""? (人になれた)",possible,soft,wild,wild,-,-,practice
+3174,2,blank,tame,人になれた,wild,野生の,"Fill in the opposite of ""tame"": My cat is tame, but that cat in the park is ___.",full,married,wild,wild,-,-,practice
+3175,2,write,tame,人になれた,wild,野生の,"Make your own sentence with ""tame"" and ""wild"". 「tame」と「wild」を使って文を作ろう。",-,-,-,-,tame|wild,"My cat is tame, but that cat in the park is wild.",practice
+3176,2,choice,deep,深い,shallow,浅い,"What is the opposite of ""deep""? (深い)",false,shallow,shy,shallow,-,-,practice
+3177,2,blank,deep,深い,shallow,浅い,"Fill in the opposite of ""deep"": This side of the pool is deep, but that side is ___.",wild,shallow,brave,shallow,-,-,practice
+3178,2,write,deep,深い,shallow,浅い,"Make your own sentence with ""deep"" and ""shallow"". 「deep」と「shallow」を使って文を作ろう。",-,-,-,-,deep|shallow,"This side of the pool is deep, but that side is shallow.",practice
+3179,2,choice,boy,男の子,girl,女の子,"What is the opposite of ""boy""? (男の子)",girl,individual,country,girl,-,-,practice
+3180,2,blank,boy,男の子,girl,女の子,"Fill in the opposite of ""boy"": They have a boy and a ___.",expert,night,girl,girl,-,-,practice
+3181,2,write,boy,男の子,girl,女の子,"Make your own sentence with ""boy"" and ""girl"". 「boy」と「girl」を使って文を作ろう。",-,-,-,-,boy|girl,They have a boy and a girl.,practice
+3182,2,choice,real,本物の,fake,偽物の,"What is the opposite of ""real""? (本物の)",strong,generous,fake,fake,-,-,practice
+3183,2,blank,real,本物の,fake,偽物の,"Fill in the opposite of ""real"": This bag is real, but that one is ___.",messy,rich,fake,fake,-,-,practice
+3184,2,write,real,本物の,fake,偽物の,"Make your own sentence with ""real"" and ""fake"". 「real」と「fake」を使って文を作ろう。",-,-,-,-,real|fake,"This bag is real, but that one is fake.",practice
+3185,2,choice,fantasy,空想,reality,現実,"What is the opposite of ""fantasy""? (空想)",bottom,reality,husband,reality,-,-,practice
+3186,2,blank,fantasy,空想,reality,現実,"Fill in the opposite of ""fantasy"": Dragons are fantasy, not ___.",future,reality,employee,reality,-,-,practice
+3187,2,write,fantasy,空想,reality,現実,"Make your own sentence with ""fantasy"" and ""reality"". 「fantasy」と「reality」を使って文を作ろう。",-,-,-,-,fantasy|reality,"Dragons are fantasy, not reality.",practice
+3188,2,choice,fiction,フィクション,nonfiction,ノンフィクション,"What is the opposite of ""fiction""? (フィクション)",yesterday,nonfiction,departure,nonfiction,-,-,practice
+3189,2,blank,fiction,フィクション,nonfiction,ノンフィクション,"Fill in the opposite of ""fiction"": I like fiction, but my husband reads ___.",aunt,nonfiction,whole,nonfiction,-,-,practice
+3190,2,write,fiction,フィクション,nonfiction,ノンフィクション,"Make your own sentence with ""fiction"" and ""nonfiction"". 「fiction」と「nonfiction」を使って文を作ろう。",-,-,-,-,fiction|nonfiction,"I like fiction, but my husband reads nonfiction.",practice
+3191,2,choice,big,大きい,small,小さい,"What is the opposite of ""big""? (大きい)",wide,small,same,small,-,-,practice
+3192,2,blank,big,大きい,small,小さい,"Fill in the opposite of ""big"": My house is big, but my apartment in Tokyo was ___.",easy,small,nervous,small,-,-,practice
+3193,2,write,big,大きい,small,小さい,"Make your own sentence with ""big"" and ""small"". 「big」と「small」を使って文を作ろう。",-,-,-,-,big|small,"My house is big, but my apartment in Tokyo was small.",practice
+3194,2,choice,in,中に,out,外に,"What is the opposite of ""in""? (中に)",out,me,no one,out,-,-,practice
+3195,2,blank,in,中に,out,外に,"Fill in the opposite of ""in"": Is Ken in? No, he's ___ right now.",minus,everyone,out,out,-,-,practice
+3196,2,write,in,中に,out,外に,"Make your own sentence with ""in"" and ""out"". 「in」と「out」を使って文を作ろう。",-,-,-,-,in|out,"Is Ken in? No, he's out right now.",practice
+3197,2,choice,inside,内側で,outside,外で,"What is the opposite of ""inside""? (内側で)",ahead,plus,outside,outside,-,-,practice
+3198,2,blank,inside,内側で,outside,外で,"Fill in the opposite of ""inside"": It's raining, so the children are playing inside, not ___.",that,ahead,outside,outside,-,-,practice
+3199,2,write,inside,内側で,outside,外で,"Make your own sentence with ""inside"" and ""outside"". 「inside」と「outside」を使って文を作ろう。",-,-,-,-,inside|outside,"It's raining, so the children are playing inside, not outside.",practice
+3200,2,choice,give,与える,take,取る,"What is the opposite of ""give""? (与える)",take,pack,love,take,-,-,practice
+3201,2,blank,give,与える,take,取る,"Fill in the opposite of ""give"": Please give me the pen, and ___ this paper.",stop,take,sink,take,-,-,practice
+3202,2,write,give,与える,take,取る,"Make your own sentence with ""give"" and ""take"". 「give」と「take」を使って文を作ろう。",-,-,-,-,give|take,"Please give me the pen, and take this paper.",practice
+3203,3,choice,team,チーム,individual,個人,"What is the opposite of ""team""? (チーム)",day,back,individual,individual,-,-,practice
+3204,3,blank,team,チーム,individual,個人,"Fill in the opposite of ""team"": Soccer is a team sport, but tennis can be an ___ sport.",individual,maximum,boy,individual,-,-,practice
+3205,3,write,team,チーム,individual,個人,"Make your own sentence with ""team"" and ""individual"". 「team」と「individual」を使って文を作ろう。",-,-,-,-,team|individual,"Soccer is a team sport, but tennis can be an individual sport.",practice
+3206,3,choice,empty,空の,full,いっぱいの,"What is the opposite of ""empty""? (空の)",deep,full,interesting,full,-,-,practice
+3207,3,blank,empty,空の,full,いっぱいの,"Fill in the opposite of ""empty"": The glass is empty, but the bottle is ___.",bent,stressed,full,full,-,-,practice
+3208,3,write,empty,空の,full,いっぱいの,"Make your own sentence with ""empty"" and ""full"". 「empty」と「full」を使って文を作ろう。",-,-,-,-,empty|full,"The glass is empty, but the bottle is full.",practice
+3209,3,choice,sun,太陽,moon,月,"What is the opposite of ""sun""? (太陽)",exit,ceiling,moon,moon,-,-,practice
+3210,3,blank,sun,太陽,moon,月,"Fill in the opposite of ""sun"": We see the sun in the day and the ___ at night.",back,reality,moon,moon,-,-,practice
+3211,3,write,sun,太陽,moon,月,"Make your own sentence with ""sun"" and ""moon"". 「sun」と「moon」を使って文を作ろう。",-,-,-,-,sun|moon,We see the sun in the day and the moon at night.,practice
+3212,3,choice,near,近い,far,遠い,"What is the opposite of ""near""? (近い)",well,far,tall,far,-,-,practice
+3213,3,blank,near,近い,far,遠い,"Fill in the opposite of ""near"": The station is near, but the airport is ___.",short,brave,far,far,-,-,practice
+3214,3,write,near,近い,far,遠い,"Make your own sentence with ""near"" and ""far"". 「near」と「far」を使って文を作ろう。",-,-,-,-,near|far,"The station is near, but the airport is far.",practice
+3215,3,choice,high,高い,low,低い,"What is the opposite of ""high""? (高い)",low,lucky,difficult,low,-,-,practice
+3216,3,blank,high,高い,low,低い,"Fill in the opposite of ""high"": The price is high in summer and ___ in winter.",low,closed,cool,low,-,-,practice
+3217,3,write,high,高い,low,低い,"Make your own sentence with ""high"" and ""low"". 「high」と「low」を使って文を作ろう。",-,-,-,-,high|low,The price is high in summer and low in winter.,practice
+3218,3,choice,before,前に,after,後に,"What is the opposite of ""before""? (前に)",no one,after,already,after,-,-,practice
+3219,3,blank,before,前に,after,後に,"Fill in the opposite of ""before"": Wash your hands before dinner and brush your teeth ___ dinner.",that,plus,after,after,-,-,practice
+3220,3,write,before,前に,after,後に,"Make your own sentence with ""before"" and ""after"". 「before」と「after」を使って文を作ろう。",-,-,-,-,before|after,Wash your hands before dinner and brush your teeth after dinner.,practice
+3221,3,choice,clean,きれいな,dirty,汚い,"What is the opposite of ""clean""? (きれいな)",dirty,full,young,dirty,-,-,practice
+3222,3,blank,clean,きれいな,dirty,汚い,"Fill in the opposite of ""clean"": My shirt was clean this morning, but now it's ___.",light,lucky,dirty,dirty,-,-,practice
+3223,3,write,clean,きれいな,dirty,汚い,"Make your own sentence with ""clean"" and ""dirty"". 「clean」と「dirty」を使って文を作ろう。",-,-,-,-,clean|dirty,"My shirt was clean this morning, but now it's dirty.",practice
+3224,3,choice,tidy,きちんとした,messy,散らかった,"What is the opposite of ""tidy""? (きちんとした)",honest,messy,shallow,messy,-,-,practice
+3225,3,blank,tidy,きちんとした,messy,散らかった,"Fill in the opposite of ""tidy"": My desk is tidy, but my son's desk is ___.",messy,modern,patient,messy,-,-,practice
+3226,3,write,tidy,きちんとした,messy,散らかった,"Make your own sentence with ""tidy"" and ""messy"". 「tidy」と「messy」を使って文を作ろう。",-,-,-,-,tidy|messy,"My desk is tidy, but my son's desk is messy.",practice
+3227,3,choice,good,良い,bad,悪い,"What is the opposite of ""good""? (良い)",bad,strong,careful,bad,-,-,practice
+3228,3,blank,good,良い,bad,悪い,"Fill in the opposite of ""good"": The food was good, but the service was ___.",cool,bad,busy,bad,-,-,practice
+3229,3,write,good,良い,bad,悪い,"Make your own sentence with ""good"" and ""bad"". 「good」と「bad」を使って文を作ろう。",-,-,-,-,good|bad,"The food was good, but the service was bad.",practice
+3230,3,choice,beautiful,美しい,ugly,醜い,"What is the opposite of ""beautiful""? (美しい)",open,ugly,young,ugly,-,-,practice
+3231,3,blank,beautiful,美しい,ugly,醜い,"Fill in the opposite of ""beautiful"": The flower is beautiful, but the old box is ___.",busy,female,ugly,ugly,-,-,practice
+3232,3,write,beautiful,美しい,ugly,醜い,"Make your own sentence with ""beautiful"" and ""ugly"". 「beautiful」と「ugly」を使って文を作ろう。",-,-,-,-,beautiful|ugly,"The flower is beautiful, but the old box is ugly.",practice
+3233,4,choice,go,進む,stop,止まる,"What is the opposite of ""go""? (進む)",stop,love,disagree,stop,-,-,practice
+3234,4,blank,go,進む,stop,止まる,"Fill in the opposite of ""go"": Green means go, and red means ___.",gain weight,sit,stop,stop,-,-,practice
+3235,4,write,go,進む,stop,止まる,"Make your own sentence with ""go"" and ""stop"". 「go」と「stop」を使って文を作ろう。",-,-,-,-,go|stop,"Green means go, and red means stop.",practice
+3236,4,choice,walk,歩く,run,走る,"What is the opposite of ""walk""? (歩く)",run,rise,fix,run,-,-,practice
+3237,4,blank,walk,歩く,run,走る,"Fill in the opposite of ""run"": I ___ to the station, but my brother runs.",laugh,receive,walk,walk,-,-,practice
+3238,4,write,walk,歩く,run,走る,"Make your own sentence with ""walk"" and ""run"". 「walk」と「run」を使って文を作ろう。",-,-,-,-,walk|run,"I walk to the station, but my brother runs.",practice
+3239,4,choice,black,黒,white,白,"What is the opposite of ""black""? (黒)",white,woman,west,white,-,-,practice
+3240,4,blank,black,黒,white,白,"Fill in the opposite of ""black"": My cat is black, and my dog is ___.",host,friend,white,white,-,-,practice
+3241,4,write,black,黒,white,白,"Make your own sentence with ""black"" and ""white"". 「black」と「white」を使って文を作ろう。",-,-,-,-,black|white,"My cat is black, and my dog is white.",practice
+3242,4,choice,sleep,眠る,wake,目を覚ます,"What is the opposite of ""sleep""? (眠る)",wake,disagree,sell,wake,-,-,practice
+3243,4,blank,sleep,眠る,wake,目を覚ます,"Fill in the opposite of ""sleep"": Babies sleep a lot and ___ many times at night.",wake,download,log in,wake,-,-,practice
+3244,4,write,sleep,眠る,wake,目を覚ます,"Make your own sentence with ""sleep"" and ""wake"". 「sleep」と「wake」を使って文を作ろう。",-,-,-,-,sleep|wake,Babies sleep a lot and wake many times at night.,practice
+3245,4,choice,early,早い,late,遅い,"What is the opposite of ""early""? (早い)",clean,calm,late,late,-,-,practice
+3246,4,blank,early,早い,late,遅い,"Fill in the opposite of ""early"": I came early, but Ken came ___.",absent,hungry,late,late,-,-,practice
+3247,4,write,early,早い,late,遅い,"Make your own sentence with ""early"" and ""late"". 「early」と「late」を使って文を作ろう。",-,-,-,-,early|late,"I came early, but Ken came late.",practice
+3248,4,choice,happy,うれしい,sad,悲しい,"What is the opposite of ""happy""? (うれしい)",boring,sad,lazy,sad,-,-,practice
+3249,4,blank,happy,うれしい,sad,悲しい,"Fill in the opposite of ""happy"": She was happy at the party, but she is ___ today.",near,sad,tiny,sad,-,-,practice
+3250,4,write,happy,うれしい,sad,悲しい,"Make your own sentence with ""happy"" and ""sad"". 「happy」と「sad」を使って文を作ろう。",-,-,-,-,happy|sad,"She was happy at the party, but she is sad today.",practice
+3251,4,choice,straight,まっすぐな,bent,曲がった,"What is the opposite of ""straight""? (まっすぐな)",sad,bent,negative,bent,-,-,practice
+3252,4,blank,straight,まっすぐな,bent,曲がった,"Fill in the opposite of ""straight"": This line is straight, but that one is ___.",poor,bent,loose,bent,-,-,practice
+3253,4,write,straight,まっすぐな,bent,曲がった,"Make your own sentence with ""straight"" and ""bent"". 「straight」と「bent」を使って文を作ろう。",-,-,-,-,straight|bent,"This line is straight, but that one is bent.",practice
+3254,4,choice,yell,叫ぶ,whisper,ささやく,"What is the opposite of ""yell""? (叫ぶ)",push,whisper,come in,whisper,-,-,practice
+3255,4,blank,yell,叫ぶ,whisper,ささやく,"Fill in the opposite of ""yell"": Don't yell in the library. Please ___.",leave,disagree,whisper,whisper,-,-,practice
+3256,4,write,yell,叫ぶ,whisper,ささやく,"Make your own sentence with ""yell"" and ""whisper"". 「yell」と「whisper」を使って文を作ろう。",-,-,-,-,yell|whisper,Don't yell in the library. Please whisper.,practice
+3257,4,choice,awake,起きている,asleep,眠っている,"What is the opposite of ""awake""? (起きている)",same,asleep,present,asleep,-,-,practice
+3258,4,blank,awake,起きている,asleep,眠っている,"Fill in the opposite of ""awake"": I'm awake, but the baby is ___.",asleep,unhealthy,single,asleep,-,-,practice
+3259,4,write,awake,起きている,asleep,眠っている,"Make your own sentence with ""awake"" and ""asleep"". 「awake」と「asleep」を使って文を作ろう。",-,-,-,-,awake|asleep,"I'm awake, but the baby is asleep.",practice
+3260,4,choice,open,開いている,closed,閉まっている,"What is the opposite of ""open""? (開いている)",closed,sad,scared,closed,-,-,practice
+3261,4,blank,open,開いている,closed,閉まっている,"Fill in the opposite of ""open"": The bank is open today, but it's ___ on Sunday.",patient,few,closed,closed,-,-,practice
+3262,4,write,open,開いている,closed,閉まっている,"Make your own sentence with ""open"" and ""closed"". 「open」と「closed」を使って文を作ろう。",-,-,-,-,open|closed,"The bank is open today, but it's closed on Sunday.",practice
+3263,5,choice,lock,鍵をかける,unlock,鍵を開ける,"What is the opposite of ""lock""? (鍵をかける)",export,like,unlock,unlock,-,-,practice
+3264,5,blank,lock,鍵をかける,unlock,鍵を開ける,"Fill in the opposite of ""lock"": Lock the door at night and ___ it in the morning.",unlock,remember,unpack,unlock,-,-,practice
+3265,5,write,lock,鍵をかける,unlock,鍵を開ける,"Make your own sentence with ""lock"" and ""unlock"". 「lock」と「unlock」を使って文を作ろう。",-,-,-,-,lock|unlock,Lock the door at night and unlock it in the morning.,practice
+3266,5,choice,young,若い,old,年をとった,"What is the opposite of ""young""? (若い)",old,simple,same,old,-,-,practice
+3267,5,blank,young,若い,old,年をとった,"Fill in the opposite of ""young"": My son is young, but my grandfather is ___.",low,old,nervous,old,-,-,practice
+3268,5,write,young,若い,old,年をとった,"Make your own sentence with ""young"" and ""old"". 「young」と「old」を使って文を作ろう。",-,-,-,-,young|old,"My son is young, but my grandfather is old.",practice
+3269,5,choice,new,新しい,old,古い,"What is the opposite of ""new""? (新しい)",wide,open,old,old,-,-,practice
+3270,5,blank,new,新しい,old,古い,"Fill in the opposite of ""new"": My phone is new, but my computer is ___.",clean,old,part-time,old,-,-,practice
+3271,5,write,new,新しい,old,古い,"Make your own sentence with ""new"" and ""old"". 「new」と「old」を使って文を作ろう。",-,-,-,-,new|old,"My phone is new, but my computer is old.",practice
+3272,5,choice,entrance,入口,exit,出口,"What is the opposite of ""entrance""? (入口)",exit,employee,east,exit,-,-,practice
+3273,5,blank,entrance,入口,exit,出口,"Fill in the opposite of ""entrance"": The entrance is on the left, and the ___ is on the right.",dad,brother,exit,exit,-,-,practice
+3274,5,write,entrance,入口,exit,出口,"Make your own sentence with ""entrance"" and ""exit"". 「entrance」と「exit」を使って文を作ろう。",-,-,-,-,entrance|exit,"The entrance is on the left, and the exit is on the right.",practice
+3275,5,choice,wet,ぬれた,dry,乾いた,"What is the opposite of ""wet""? (ぬれた)",difficult,clean,dry,dry,-,-,practice
+3276,5,blank,wet,ぬれた,dry,乾いた,"Fill in the opposite of ""wet"": My hair is wet, but my clothes are ___.",careless,fast,dry,dry,-,-,practice
+3277,5,write,wet,ぬれた,dry,乾いた,"Make your own sentence with ""wet"" and ""dry"". 「wet」と「dry」を使って文を作ろう。",-,-,-,-,wet|dry,"My hair is wet, but my clothes are dry.",practice
+3278,5,choice,smile,ほほえむ,frown,顔をしかめる,"What is the opposite of ""smile""? (ほほえむ)",frown,come,put down,frown,-,-,practice
+3279,5,blank,smile,ほほえむ,frown,顔をしかめる,"Fill in the opposite of ""smile"": Please smile for the photo. Don't ___.",show,buy,frown,frown,-,-,practice
+3280,5,write,smile,ほほえむ,frown,顔をしかめる,"Make your own sentence with ""smile"" and ""frown"". 「smile」と「frown」を使って文を作ろう。",-,-,-,-,smile|frown,Please smile for the photo. Don't frown.,practice
+3281,5,choice,work,働く,play,遊ぶ,"What is the opposite of ""work""? (働く)",talk,wake up,play,play,-,-,practice
+3282,5,blank,work,働く,play,遊ぶ,"Fill in the opposite of ""work"": I work on weekdays and ___ on weekends.",play,put down,sleep,play,-,-,practice
+3283,5,write,work,働く,play,遊ぶ,"Make your own sentence with ""work"" and ""play"". 「work」と「play」を使って文を作ろう。",-,-,-,-,work|play,I work on weekdays and play on weekends.,practice
+3284,5,choice,strong,強い,weak,弱い,"What is the opposite of ""strong""? (強い)",weak,expensive,wrong,weak,-,-,practice
+3285,5,blank,strong,強い,weak,弱い,"Fill in the opposite of ""strong"": My father is strong, but I'm ___.",weak,positive,part-time,weak,-,-,practice
+3286,5,write,strong,強い,weak,弱い,"Make your own sentence with ""strong"" and ""weak"". 「strong」と「weak」を使って文を作ろう。",-,-,-,-,strong|weak,"My father is strong, but I'm weak.",practice
+3287,5,choice,start,始める,finish,終える,"What is the opposite of ""start""? (始める)",get on,finish,teach,finish,-,-,practice
+3288,5,blank,start,始める,finish,終える,"Fill in the opposite of ""start"": We start work at nine and ___ at six.",sit,love,finish,finish,-,-,practice
+3289,5,write,start,始める,finish,終える,"Make your own sentence with ""start"" and ""finish"". 「start」と「finish」を使って文を作ろう。",-,-,-,-,start|finish,We start work at nine and finish at six.,practice
+3290,5,choice,friend,友達,enemy,敵,"What is the opposite of ""friend""? (友達)",arrival,enemy,front,enemy,-,-,practice
+3291,5,blank,friend,友達,enemy,敵,"Fill in the opposite of ""friend"": He is my friend, not my ___.",woman,city,enemy,enemy,-,-,practice
+3292,5,write,friend,友達,enemy,敵,"Make your own sentence with ""friend"" and ""enemy"". 「friend」と「enemy」を使って文を作ろう。",-,-,-,-,friend|enemy,"He is my friend, not my enemy.",practice
+3293,6,choice,smart,頭がいい,dumb,ばかな,"What is the opposite of ""smart""? (頭がいい)",few,dumb,fresh,dumb,-,-,practice
+3294,6,blank,smart,頭がいい,dumb,ばかな,"Fill in the opposite of ""smart"": My dog is smart, but my cat is a little ___.",dumb,illegal,tired,dumb,-,-,practice
+3295,6,write,smart,頭がいい,dumb,ばかな,"Make your own sentence with ""smart"" and ""dumb"". 「smart」と「dumb」を使って文を作ろう。",-,-,-,-,smart|dumb,"My dog is smart, but my cat is a little dumb.",practice
+3296,6,choice,sweet,甘い,sour,すっぱい,"What is the opposite of ""sweet""? (甘い)",sour,real,single,sour,-,-,practice
+3297,6,blank,sweet,甘い,sour,すっぱい,"Fill in the opposite of ""sweet"": Sugar is sweet, and lemons are ___.",hard,sour,near,sour,-,-,practice
+3298,6,write,sweet,甘い,sour,すっぱい,"Make your own sentence with ""sweet"" and ""sour"". 「sweet」と「sour」を使って文を作ろう。",-,-,-,-,sweet|sour,"Sugar is sweet, and lemons are sour.",practice
+3299,6,choice,long,長い,short,短い,"What is the opposite of ""long""? (長い)",smooth,short,easy,short,-,-,practice
+3300,6,blank,long,長い,short,短い,"Fill in the opposite of ""long"": Her hair is long, but my hair is ___.",happy,busy,short,short,-,-,practice
+3301,6,write,long,長い,short,短い,"Make your own sentence with ""long"" and ""short"". 「long」と「short」を使って文を作ろう。",-,-,-,-,long|short,"Her hair is long, but my hair is short.",practice
+3302,6,choice,love,大好きだ,hate,大嫌いだ,"What is the opposite of ""love""? (大好きだ)",decrease,hate,go,hate,-,-,practice
+3303,6,blank,love,大好きだ,hate,大嫌いだ,"Fill in the opposite of ""love"": I love summer, but I ___ winter.",throw,start,hate,hate,-,-,practice
+3304,6,write,love,大好きだ,hate,大嫌いだ,"Make your own sentence with ""love"" and ""hate"". 「love」と「hate」を使って文を作ろう。",-,-,-,-,love|hate,"I love summer, but I hate winter.",practice
+3305,6,choice,city,都会,country,田舎,"What is the opposite of ""city""? (都会)",country,daughter,fall,country,-,-,practice
+3306,6,blank,city,都会,country,田舎,"Fill in the opposite of ""city"": I live in the city, but my parents live in the ___.",night,yesterday,country,country,-,-,practice
+3307,6,write,city,都会,country,田舎,"Make your own sentence with ""city"" and ""country"". 「city」と「country」を使って文を作ろう。",-,-,-,-,city|country,"I live in the city, but my parents live in the country.",practice
+3308,6,choice,smooth,なめらかな,rough,ざらざらした,"What is the opposite of ""smooth""? (なめらかな)",dumb,asleep,rough,rough,-,-,practice
+3309,6,blank,smooth,なめらかな,rough,ざらざらした,"Fill in the opposite of ""smooth"": The table is smooth, but the wall is ___.",unhealthy,late,rough,rough,-,-,practice
+3310,6,write,smooth,なめらかな,rough,ざらざらした,"Make your own sentence with ""smooth"" and ""rough"". 「smooth」と「rough」を使って文を作ろう。",-,-,-,-,smooth|rough,"The table is smooth, but the wall is rough.",practice
+3311,6,choice,floor,床,ceiling,天井,"What is the opposite of ""floor""? (床)",man,ceiling,left,ceiling,-,-,practice
+3312,6,blank,floor,床,ceiling,天井,"Fill in the opposite of ""floor"": The rug is on the floor, and the light is on the ___.",friend,ceiling,departure,ceiling,-,-,practice
+3313,6,write,floor,床,ceiling,天井,"Make your own sentence with ""floor"" and ""ceiling"". 「floor」と「ceiling」を使って文を作ろう。",-,-,-,-,floor|ceiling,"The rug is on the floor, and the light is on the ceiling.",practice
+3314,6,choice,correct,正しい,wrong,間違った,"What is the opposite of ""correct""? (正しい)",wrong,generous,last,wrong,-,-,practice
+3315,6,blank,correct,正しい,wrong,間違った,"Fill in the opposite of ""correct"": Your first answer was correct, but the second one was ___.",present,wrong,lucky,wrong,-,-,practice
+3316,6,write,correct,正しい,wrong,間違った,"Make your own sentence with ""correct"" and ""wrong"". 「correct」と「wrong」を使って文を作ろう。",-,-,-,-,correct|wrong,"Your first answer was correct, but the second one was wrong.",practice
+3317,6,choice,talk,話す,listen,聞く,"What is the opposite of ""talk""? (話す)",leave,listen,get on,listen,-,-,practice
+3318,6,blank,talk,話す,listen,聞く,"Fill in the opposite of ""talk"": Please don't talk. ___ to the teacher.",Freeze,Listen,Sleep,Listen,-,-,practice
+3319,6,write,talk,話す,listen,聞く,"Make your own sentence with ""talk"" and ""listen"". 「talk」と「listen」を使って文を作ろう。",-,-,-,-,talk|listen,Please don't talk. Listen to the teacher.,practice
+3320,6,choice,laugh,笑う,cry,泣く,"What is the opposite of ""laugh""? (笑う)",remember,get off,cry,cry,-,-,practice
+3321,6,blank,laugh,笑う,cry,泣く,"Fill in the opposite of ""laugh"": The movie made me laugh, and then it made me ___.",follow,freeze,cry,cry,-,-,practice
+3322,6,write,laugh,笑う,cry,泣く,"Make your own sentence with ""laugh"" and ""cry"". 「laugh」と「cry」を使って文を作ろう。",-,-,-,-,laugh|cry,"The movie made me laugh, and then it made me cry.",practice
+3323,7,choice,man,男性,woman,女性,"What is the opposite of ""man""? (男性)",whole,spring,woman,woman,-,-,practice
+3324,7,blank,man,男性,woman,女性,"Fill in the opposite of ""man"": A man and a ___ are waiting at the bus stop.",woman,day,arrival,woman,-,-,practice
+3325,7,write,man,男性,woman,女性,"Make your own sentence with ""man"" and ""woman"". 「man」と「woman」を使って文を作ろう。",-,-,-,-,man|woman,A man and a woman are waiting at the bus stop.,practice
+3326,7,choice,noisy,うるさい,quiet,静かな,"What is the opposite of ""noisy""? (うるさい)",quiet,big,difficult,quiet,-,-,practice
+3327,7,blank,noisy,うるさい,quiet,静かな,"Fill in the opposite of ""noisy"": The city is noisy, but the country is ___.",beautiful,sick,quiet,quiet,-,-,practice
+3328,7,write,noisy,うるさい,quiet,静かな,"Make your own sentence with ""noisy"" and ""quiet"". 「noisy」と「quiet」を使って文を作ろう。",-,-,-,-,noisy|quiet,"The city is noisy, but the country is quiet.",practice
+3329,7,choice,push,押す,pull,引く,"What is the opposite of ""push""? (押す)",stop,buy,pull,pull,-,-,practice
+3330,7,blank,push,押す,pull,引く,"Fill in the opposite of ""push"": Push the door to go out, and ___ it to come in.",buy,pull,win,pull,-,-,practice
+3331,7,write,push,押す,pull,引く,"Make your own sentence with ""push"" and ""pull"". 「push」と「pull」を使って文を作ろう。",-,-,-,-,push|pull,"Push the door to go out, and pull it to come in.",practice
+3332,7,choice,teacher,先生,student,生徒,"What is the opposite of ""teacher""? (先生)",exit,sunrise,student,student,-,-,practice
+3333,7,blank,teacher,先生,student,生徒,"Fill in the opposite of ""teacher"": Mike is a teacher, and Yuki is a ___.",student,lie,sunset,student,-,-,practice
+3334,7,write,teacher,先生,student,生徒,"Make your own sentence with ""teacher"" and ""student"". 「teacher」と「student」を使って文を作ろう。",-,-,-,-,teacher|student,"Mike is a teacher, and Yuki is a student.",practice
+3335,7,choice,whole,全体,part,一部,"What is the opposite of ""whole""? (全体)",part,daughter,front,part,-,-,practice
+3336,7,blank,whole,全体,part,一部,"Fill in the opposite of ""whole"": I ate the whole pizza, not just a ___.",minimum,part,boss,part,-,-,practice
+3337,7,write,whole,全体,part,一部,"Make your own sentence with ""whole"" and ""part"". 「whole」と「part」を使って文を作ろう。",-,-,-,-,whole|part,"I ate the whole pizza, not just a part.",practice
+3338,7,choice,male,男性の,female,女性の,"What is the opposite of ""male""? (男性の)",cooked,thin,female,female,-,-,practice
+3339,7,blank,male,男性の,female,女性の,"Fill in the opposite of ""male"": We have a male cat and a ___ dog.",correct,lazy,female,female,-,-,practice
+3340,7,write,male,男性の,female,女性の,"Make your own sentence with ""male"" and ""female"". 「male」と「female」を使って文を作ろう。",-,-,-,-,male|female,We have a male cat and a female dog.,practice
+3341,7,choice,fat,太った,thin,やせた,"What is the opposite of ""fat""? (太った)",calm,hungry,thin,thin,-,-,practice
+3342,7,blank,fat,太った,thin,やせた,"Fill in the opposite of ""fat"": My cat is fat, but my dog is ___.",boring,thin,shallow,thin,-,-,practice
+3343,7,write,fat,太った,thin,やせた,"Make your own sentence with ""fat"" and ""thin"". 「fat」と「thin」を使って文を作ろう。",-,-,-,-,fat|thin,"My cat is fat, but my dog is thin.",practice
+3344,7,choice,thick,厚い,thin,薄い,"What is the opposite of ""thick""? (厚い)",thin,illegal,same,thin,-,-,practice
+3345,7,blank,thick,厚い,thin,薄い,"Fill in the opposite of ""thick"": This book is thick, but that magazine is ___.",impatient,old,thin,thin,-,-,practice
+3346,7,write,thick,厚い,thin,薄い,"Make your own sentence with ""thick"" and ""thin"". 「thick」と「thin」を使って文を作ろう。",-,-,-,-,thick|thin,"This book is thick, but that magazine is thin.",practice
+3347,7,choice,sunrise,日の出,sunset,日の入り,"What is the opposite of ""sunrise""? (日の出)",daughter,weekday,sunset,sunset,-,-,practice
+3348,7,blank,sunrise,日の出,sunset,日の入り,"Fill in the opposite of ""sunrise"": We watched the sunrise in the morning and the ___ in the evening.",sunset,lie,brother,sunset,-,-,practice
+3349,7,write,sunrise,日の出,sunset,日の入り,"Make your own sentence with ""sunrise"" and ""sunset"". 「sunrise」と「sunset」を使って文を作ろう。",-,-,-,-,sunrise|sunset,We watched the sunrise in the morning and the sunset in the evening.,practice
+3350,7,choice,fix,直す,break,壊す,"What is the opposite of ""fix""? (直す)",break,lose,import,break,-,-,practice
+3351,7,blank,fix,直す,break,壊す,"Fill in the opposite of ""fix"": Please don't ___ it. It's hard to fix.",decrease,pick up,break,break,-,-,practice
+3352,7,write,fix,直す,break,壊す,"Make your own sentence with ""fix"" and ""break"". 「fix」と「break」を使って文を作ろう。",-,-,-,-,fix|break,Please don't break it. It's hard to fix.,practice
+3353,8,choice,alive,生きている,dead,死んでいる,"What is the opposite of ""alive""? (生きている)",scared,nervous,dead,dead,-,-,practice
+3354,8,blank,alive,生きている,dead,死んでいる,"Fill in the opposite of ""alive"": The fish in the tank is alive, but the plant is ___.",brave,dead,impossible,dead,-,-,practice
+3355,8,write,alive,生きている,dead,死んでいる,"Make your own sentence with ""alive"" and ""dead"". 「alive」と「dead」を使って文を作ろう。",-,-,-,-,alive|dead,"The fish in the tank is alive, but the plant is dead.",practice
+3356,8,choice,well,元気な,sick,病気の,"What is the opposite of ""well""? (元気な)",tall,kind,sick,sick,-,-,practice
+3357,8,blank,well,元気な,sick,病気の,"Fill in the opposite of ""well"": I was ___ last week, but I'm well now.",sick,warm,complicated,sick,-,-,practice
+3358,8,write,well,元気な,sick,病気の,"Make your own sentence with ""well"" and ""sick"". 「well」と「sick」を使って文を作ろう。",-,-,-,-,well|sick,"I was sick last week, but I'm well now.",practice
+3359,8,choice,safe,安全な,dangerous,危険な,"What is the opposite of ""safe""? (安全な)",dangerous,rough,possible,dangerous,-,-,practice
+3360,8,blank,safe,安全な,dangerous,危険な,"Fill in the opposite of ""safe"": This street is safe, but that road is ___.",impatient,dangerous,present,dangerous,-,-,practice
+3361,8,write,safe,安全な,dangerous,危険な,"Make your own sentence with ""safe"" and ""dangerous"". 「safe」と「dangerous」を使って文を作ろう。",-,-,-,-,safe|dangerous,"This street is safe, but that road is dangerous.",practice
+3362,8,choice,present,出席している,absent,欠席の,"What is the opposite of ""present""? (出席している)",fresh,absent,modern,absent,-,-,practice
+3363,8,blank,present,出席している,absent,欠席の,"Fill in the opposite of ""present"": Ken is present today, but Yumi is ___.",generous,absent,local,absent,-,-,practice
+3364,8,write,present,出席している,absent,欠席の,"Make your own sentence with ""present"" and ""absent"". 「present」と「absent」を使って文を作ろう。",-,-,-,-,present|absent,"Ken is present today, but Yumi is absent.",practice
+3365,8,choice,son,息子,daughter,娘,"What is the opposite of ""son""? (息子)",boss,daughter,employee,daughter,-,-,practice
+3366,8,blank,son,息子,daughter,娘,"Fill in the opposite of ""son"": They have a son and a ___.",daughter,tomorrow,weekend,daughter,-,-,practice
+3367,8,write,son,息子,daughter,娘,"Make your own sentence with ""son"" and ""daughter"". 「son」と「daughter」を使って文を作ろう。",-,-,-,-,son|daughter,They have a son and a daughter.,practice
+3368,8,choice,heavy,重い,light,軽い,"What is the opposite of ""heavy""? (重い)",light,soft,dangerous,light,-,-,practice
+3369,8,blank,heavy,重い,light,軽い,"Fill in the opposite of ""heavy"": This box is heavy, but that bag is ___.",light,low,foreign,light,-,-,practice
+3370,8,write,heavy,重い,light,軽い,"Make your own sentence with ""heavy"" and ""light"". 「heavy」と「light」を使って文を作ろう。",-,-,-,-,heavy|light,"This box is heavy, but that bag is light.",practice
+3371,8,choice,cheap,安い,expensive,高い,"What is the opposite of ""cheap""? (安い)",false,deep,expensive,expensive,-,-,practice
+3372,8,blank,cheap,安い,expensive,高い,"Fill in the opposite of ""cheap"": The coffee is cheap, but the cake is ___.",useless,early,expensive,expensive,-,-,practice
+3373,8,write,cheap,安い,expensive,高い,"Make your own sentence with ""cheap"" and ""expensive"". 「cheap」と「expensive」を使って文を作ろう。",-,-,-,-,cheap|expensive,"The coffee is cheap, but the cake is expensive.",practice
+3374,8,choice,mom,お母さん,dad,お父さん,"What is the opposite of ""mom""? (お母さん)",dad,team,truth,dad,-,-,practice
+3375,8,blank,mom,お母さん,dad,お父さん,"Fill in the opposite of ""mom"": My mom cooks, and my ___ washes the dishes.",dad,income,midnight,dad,-,-,practice
+3376,8,write,mom,お母さん,dad,お父さん,"Make your own sentence with ""mom"" and ""dad"". 「mom」と「dad」を使って文を作ろう。",-,-,-,-,mom|dad,"My mom cooks, and my dad washes the dishes.",practice
+3377,8,choice,dark,暗い,light,明るい,"What is the opposite of ""dark""? (暗い)",honest,light,possible,light,-,-,practice
+3378,8,blank,dark,暗い,light,明るい,"Fill in the opposite of ""dark"": It's dark at night and ___ in the day.",tame,light,cheap,light,-,-,practice
+3379,8,write,dark,暗い,light,明るい,"Make your own sentence with ""dark"" and ""light"". 「dark」と「light」を使って文を作ろう。",-,-,-,-,dark|light,It's dark at night and light in the day.,practice
+3380,8,choice,many,多くの,few,少しの,"What is the opposite of ""many""? (多くの)",early,patient,few,few,-,-,practice
+3381,8,blank,many,多くの,few,少しの,"Fill in the opposite of ""many"": Many people live in Tokyo, but ___ people live on that island.",rotten,few,light,few,-,-,practice
+3382,8,write,many,多くの,few,少しの,"Make your own sentence with ""many"" and ""few"". 「many」と「few」を使って文を作ろう。",-,-,-,-,many|few,"Many people live in Tokyo, but few people live on that island.",practice
+3383,9,choice,nervous,緊張した,calm,落ち着いた,"What is the opposite of ""nervous""? (緊張した)",alive,calm,clean,calm,-,-,practice
+3384,9,blank,nervous,緊張した,calm,落ち着いた,"Fill in the opposite of ""nervous"": I was nervous before the test, but I was ___ after.",calm,single,fast,calm,-,-,practice
+3385,9,write,nervous,緊張した,calm,落ち着いた,"Make your own sentence with ""nervous"" and ""calm"". 「nervous」と「calm」を使って文を作ろう。",-,-,-,-,nervous|calm,"I was nervous before the test, but I was calm after.",practice
+3386,9,choice,left,左,right,右,"What is the opposite of ""left""? (左)",whole,friend,right,right,-,-,practice
+3387,9,blank,left,左,right,右,"Fill in the opposite of ""left"": Turn left at the bank, then turn ___ at the park.",right,brother,wife,right,-,-,practice
+3388,9,write,left,左,right,右,"Make your own sentence with ""left"" and ""right"". 「left」と「right」を使って文を作ろう。",-,-,-,-,left|right,"Turn left at the bank, then turn right at the park.",practice
+3389,9,choice,truth,真実,lie,うそ,"What is the opposite of ""truth""? (真実)",bottom,lie,whole,lie,-,-,practice
+3390,9,blank,truth,真実,lie,うそ,"Fill in the opposite of ""truth"": Please tell me the truth, not a ___.",white,south,lie,lie,-,-,practice
+3391,9,write,truth,真実,lie,うそ,"Make your own sentence with ""truth"" and ""lie"". 「truth」と「lie」を使って文を作ろう。",-,-,-,-,truth|lie,"Please tell me the truth, not a lie.",practice
+3392,9,choice,true,本当の,false,うその,"What is the opposite of ""true""? (本当の)",spicy,false,cool,false,-,-,practice
+3393,9,blank,true,本当の,false,うその,"Fill in the opposite of ""true"": Is it true or ___?",relaxed,tidy,false,false,-,-,practice
+3394,9,write,true,本当の,false,うその,"Make your own sentence with ""true"" and ""false"". 「true」と「false」を使って文を作ろう。",-,-,-,-,true|false,Is it true or false?,practice
+3395,9,choice,hard,かたい,soft,やわらかい,"What is the opposite of ""hard""? (かたい)",sad,soft,small,soft,-,-,practice
+3396,9,blank,hard,かたい,soft,やわらかい,"Fill in the opposite of ""hard"": The chair is hard, but the sofa is ___.",careless,soft,old,soft,-,-,practice
+3397,9,write,hard,かたい,soft,やわらかい,"Make your own sentence with ""hard"" and ""soft"". 「hard」と「soft」を使って文を作ろう。",-,-,-,-,hard|soft,"The chair is hard, but the sofa is soft.",practice
+3398,9,choice,warm,暖かい,cool,涼しい,"What is the opposite of ""warm""? (暖かい)",cool,public,full,cool,-,-,practice
+3399,9,blank,warm,暖かい,cool,涼しい,"Fill in the opposite of ""warm"": Spring is warm, and fall is ___.",married,cool,easy,cool,-,-,practice
+3400,9,write,warm,暖かい,cool,涼しい,"Make your own sentence with ""warm"" and ""cool"". 「warm」と「cool」を使って文を作ろう。",-,-,-,-,warm|cool,"Spring is warm, and fall is cool.",practice
+3401,9,choice,he,彼,she,彼女,"What is the opposite of ""he""? (彼)",ahead,that,she,she,-,-,practice
+3402,9,blank,he,彼,she,彼女,"Fill in the opposite of ""he"": He is my brother, and ___ is my sister.",after,everything,she,she,-,-,practice
+3403,9,write,he,彼,she,彼女,"Make your own sentence with ""he"" and ""she"". 「he」と「she」を使って文を作ろう。",-,-,-,-,he|she,"He is my brother, and she is my sister.",practice
+3404,9,choice,me,私,you,あなた,"What is the opposite of ""me""? (私)",minus,she,you,you,-,-,practice
+3405,9,blank,me,私,you,あなた,"Fill in the opposite of ""me"": Can ___ help me? Yes, I can help you.",you,after,no one,you,-,-,practice
+3406,9,write,me,私,you,あなた,"Make your own sentence with ""me"" and ""you"". 「me」と「you」を使って文を作ろう。",-,-,-,-,me|you,"Can you help me? Yes, I can help you.",practice
+3407,9,choice,float,浮く,sink,沈む,"What is the opposite of ""float""? (浮く)",show,sink,sit,sink,-,-,practice
+3408,9,blank,float,浮く,sink,沈む,"Fill in the opposite of ""float"": Wood floats, but stones ___.",sink,talk,walk,sink,-,-,practice
+3409,9,write,float,浮く,sink,沈む,"Make your own sentence with ""float"" and ""sink"". 「float」と「sink」を使って文を作ろう。",-,-,-,-,float|sink,"Wood floats, but stones sink.",practice
+3410,9,choice,tight,きつい,loose,ゆるい,"What is the opposite of ""tight""? (きつい)",loose,busy,asleep,loose,-,-,practice
+3411,9,blank,tight,きつい,loose,ゆるい,"Fill in the opposite of ""tight"": These shoes are tight, but those are ___.",last,loose,nervous,loose,-,-,practice
+3412,9,write,tight,きつい,loose,ゆるい,"Make your own sentence with ""tight"" and ""loose"". 「tight」と「loose」を使って文を作ろう。",-,-,-,-,tight|loose,"These shoes are tight, but those are loose.",practice
+3413,10,choice,uncle,おじ,aunt,おば,"What is the opposite of ""uncle""? (おじ)",maximum,reality,aunt,aunt,-,-,practice
+3414,10,blank,uncle,おじ,aunt,おば,"Fill in the opposite of ""uncle"": My uncle and my ___ live in Osaka.",aunt,fiction,back,aunt,-,-,practice
+3415,10,write,uncle,おじ,aunt,おば,"Make your own sentence with ""uncle"" and ""aunt"". 「uncle」と「aunt」を使って文を作ろう。",-,-,-,-,uncle|aunt,My uncle and my aunt live in Osaka.,practice
+3416,10,choice,more,もっと多く,less,もっと少なく,"What is the opposite of ""more""? (もっと多く)",less,he,not yet,less,-,-,practice
+3417,10,blank,more,もっと多く,less,もっと少なく,"Fill in the opposite of ""more"": Eat more vegetables and ___ sugar.",already,less,forward,less,-,-,practice
+3418,10,write,more,もっと多く,less,もっと少なく,"Make your own sentence with ""more"" and ""less"". 「more」と「less」を使って文を作ろう。",-,-,-,-,more|less,Eat more vegetables and less sugar.,practice
+3419,10,choice,fast,速い,slow,遅い,"What is the opposite of ""fast""? (速い)",calm,rotten,slow,slow,-,-,practice
+3420,10,blank,fast,速い,slow,遅い,"Fill in the opposite of ""fast"": The train is fast, but the bus is ___.",hungry,slow,small,slow,-,-,practice
+3421,10,write,fast,速い,slow,遅い,"Make your own sentence with ""fast"" and ""slow"". 「fast」と「slow」を使って文を作ろう。",-,-,-,-,fast|slow,"The train is fast, but the bus is slow.",practice
+3422,10,choice,same,同じ,different,違う,"What is the opposite of ""same""? (同じ)",fast,scared,different,different,-,-,practice
+3423,10,blank,same,同じ,different,違う,"Fill in the opposite of ""same"": We have the same bag, but ___ shoes.",different,hot,cooked,different,-,-,practice
+3424,10,write,same,同じ,different,違う,"Make your own sentence with ""same"" and ""different"". 「same」と「different」を使って文を作ろう。",-,-,-,-,same|different,"We have the same bag, but different shoes.",practice
+3425,10,choice,yes,はい,no,いいえ,"What is the opposite of ""yes""? (はい)",no,more,inside,no,-,-,practice
+3426,10,blank,yes,はい,no,いいえ,"Fill in the opposite of ""yes"": Say yes or ___.",everyone,now,no,no,-,-,practice
+3427,10,write,yes,はい,no,いいえ,"Make your own sentence with ""yes"" and ""no"". 「yes」と「no」を使って文を作ろう。",-,-,-,-,yes|no,Say yes or no.,practice
+3428,10,choice,hot,暑い,cold,寒い,"What is the opposite of ""hot""? (暑い)",cold,polite,unknown,cold,-,-,practice
+3429,10,blank,hot,暑い,cold,寒い,"Fill in the opposite of ""hot"": Summer is hot, and winter is ___.",cold,single,rotten,cold,-,-,practice
+3430,10,write,hot,暑い,cold,寒い,"Make your own sentence with ""hot"" and ""cold"". 「hot」と「cold」を使って文を作ろう。",-,-,-,-,hot|cold,"Summer is hot, and winter is cold.",practice
+3431,10,choice,morning,朝,night,夜,"What is the opposite of ""morning""? (朝)",floor,night,daughter,night,-,-,practice
+3432,10,blank,morning,朝,night,夜,"Fill in the opposite of ""morning"": I drink coffee in the morning and tea at ___.",back,south,night,night,-,-,practice
+3433,10,write,morning,朝,night,夜,"Make your own sentence with ""morning"" and ""night"". 「morning」と「night」を使って文を作ろう。",-,-,-,-,morning|night,I drink coffee in the morning and tea at night.,practice
+3434,10,choice,on,ついて,off,消えて,"What is the opposite of ""on""? (ついて)",behind,no one,off,off,-,-,practice
+3435,10,blank,on,ついて,off,消えて,"Fill in the opposite of ""on"": The TV is on, but the lights are ___.",off,here,never,off,-,-,practice
+3436,10,write,on,ついて,off,消えて,"Make your own sentence with ""on"" and ""off"". 「on」と「off」を使って文を作ろう。",-,-,-,-,on|off,"The TV is on, but the lights are off.",practice
+3437,10,choice,arrive,着く,leave,出発する,"What is the opposite of ""arrive""? (着く)",leave,fail,begin,leave,-,-,practice
+3438,10,blank,arrive,着く,leave,出発する,"Fill in the opposite of ""arrive"": We arrive at the station at 9:00 and ___ at 9:05.",refuse,leave,cry,leave,-,-,practice
+3439,10,write,arrive,着く,leave,出発する,"Make your own sentence with ""arrive"" and ""leave"". 「arrive」と「leave」を使って文を作ろう。",-,-,-,-,arrive|leave,We arrive at the station at 9:00 and leave at 9:05.,practice
+3440,10,choice,buy,買う,sell,売る,"What is the opposite of ""buy""? (買う)",increase,sell,unlock,sell,-,-,practice
+3441,10,blank,buy,買う,sell,売る,"Fill in the opposite of ""buy"": I buy fruit at the market, and the farmers ___ it.",frown,allow,sell,sell,-,-,practice
+3442,10,write,buy,買う,sell,売る,"Make your own sentence with ""buy"" and ""sell"". 「buy」と「sell」を使って文を作ろう。",-,-,-,-,buy|sell,"I buy fruit at the market, and the farmers sell it.",practice
+3443,11,choice,borrow,借りる,lend,貸す,"What is the opposite of ""borrow""? (借りる)",lend,listen,whisper,lend,-,-,practice
+3444,11,blank,borrow,借りる,lend,貸す,"Fill in the opposite of ""borrow"": Can I borrow your pen? Sure, I can ___ it to you.",sit,lend,unlock,lend,-,-,practice
+3445,11,write,borrow,借りる,lend,貸す,"Make your own sentence with ""borrow"" and ""lend"". 「borrow」と「lend」を使って文を作ろう。",-,-,-,-,borrow|lend,"Can I borrow your pen? Sure, I can lend it to you.",practice
+3446,11,choice,win,勝つ,lose,負ける,"What is the opposite of ""win""? (勝つ)",download,lose,begin,lose,-,-,practice
+3447,11,blank,win,勝つ,lose,負ける,"Fill in the opposite of ""win"": Sometimes we win, and sometimes we ___.",frown,lose,borrow,lose,-,-,practice
+3448,11,write,win,勝つ,lose,負ける,"Make your own sentence with ""win"" and ""lose"". 「win」と「lose」を使って文を作ろう。",-,-,-,-,win|lose,"Sometimes we win, and sometimes we lose.",practice
+3449,11,choice,remember,覚えている,forget,忘れる,"What is the opposite of ""remember""? (覚えている)",forget,get on,whisper,forget,-,-,practice
+3450,11,blank,remember,覚えている,forget,忘れる,"Fill in the opposite of ""remember"": I remember his face, but I ___ his name.",catch,slow down,forget,forget,-,-,practice
+3451,11,write,remember,覚えている,forget,忘れる,"Make your own sentence with ""remember"" and ""forget"". 「remember」と「forget」を使って文を作ろう。",-,-,-,-,remember|forget,"I remember his face, but I forget his name.",practice
+3452,11,choice,ask,質問する,answer,答える,"What is the opposite of ""ask""? (質問する)",accept,answer,dislike,answer,-,-,practice
+3453,11,blank,ask,質問する,answer,答える,"Fill in the opposite of ""answer"": Students ___ questions, and the teacher answers them.",ask,import,hide,ask,-,-,practice
+3454,11,write,ask,質問する,answer,答える,"Make your own sentence with ""ask"" and ""answer"". 「ask」と「answer」を使って文を作ろう。",-,-,-,-,ask|answer,"Students ask questions, and the teacher answers them.",practice
+3455,11,choice,send,送る,receive,受け取る,"What is the opposite of ""send""? (送る)",receive,untie,break,receive,-,-,practice
+3456,11,blank,send,送る,receive,受け取る,"Fill in the opposite of ""send"": I send emails every day, and I ___ many emails too.",stand,receive,decrease,receive,-,-,practice
+3457,11,write,send,送る,receive,受け取る,"Make your own sentence with ""send"" and ""receive"". 「send」と「receive」を使って文を作ろう。",-,-,-,-,send|receive,"I send emails every day, and I receive many emails too.",practice
+3458,11,choice,come,来る,go,行く,"What is the opposite of ""come""? (来る)",gain weight,go,follow,go,-,-,practice
+3459,11,blank,come,来る,go,行く,"Fill in the opposite of ""come"": Come here, please. Don't ___.",wake,go,dislike,go,-,-,practice
+3460,11,write,come,来る,go,行く,"Make your own sentence with ""come"" and ""go"". 「come」と「go」を使って文を作ろう。",-,-,-,-,come|go,"Come here, please. Don't go.",practice
+3461,11,choice,get on,乗る,get off,降りる,"What is the opposite of ""get on""? (乗る)",refuse,get off,increase,get off,-,-,practice
+3462,11,blank,get on,乗る,get off,降りる,"Fill in the opposite of ""get on"": Get on the train at Tokyo and ___ at Osaka.",get off,import,forbid,get off,-,-,practice
+3463,11,write,get on,乗る,get off,降りる,"Make your own sentence with ""get on"" and ""get off"". 「get on」と「get off」を使って文を作ろう。",-,-,-,-,get on|get off,Get on the train at Tokyo and get off at Osaka.,practice
+3464,11,choice,turn on,つける,turn off,消す,"What is the opposite of ""turn on""? (つける)",export,turn off,sell,turn off,-,-,practice
+3465,11,blank,turn on,つける,turn off,消す,"Fill in the opposite of ""turn on"": Turn on the light when you come in, and ___ the light when you leave.",frown,decrease,turn off,turn off,-,-,practice
+3466,11,write,turn on,つける,turn off,消す,"Make your own sentence with ""turn on"" and ""turn off"". 「turn on」と「turn off」を使って文を作ろう。",-,-,-,-,turn on|turn off,"Turn on the light when you come in, and turn off the light when you leave.",practice
+3467,11,choice,begin,始まる,end,終わる,"What is the opposite of ""begin""? (始まる)",end,download,decrease,end,-,-,practice
+3468,11,blank,begin,始まる,end,終わる,"Fill in the opposite of ""begin"": Classes begin at nine and ___ at three.",work,end,pack,end,-,-,practice
+3469,11,write,begin,始まる,end,終わる,"Make your own sentence with ""begin"" and ""end"". 「begin」と「end」を使って文を作ろう。",-,-,-,-,begin|end,Classes begin at nine and end at three.,practice
+3470,11,choice,increase,増える,decrease,減る,"What is the opposite of ""increase""? (増える)",lock,decrease,go to bed,decrease,-,-,practice
+3471,11,blank,increase,増える,decrease,減る,"Fill in the opposite of ""increase"": The number of students will increase this year, and the number of teachers will ___.",get on,log out,decrease,decrease,-,-,practice
+3472,11,write,increase,増える,decrease,減る,"Make your own sentence with ""increase"" and ""decrease"". 「increase」と「decrease」を使って文を作ろう。",-,-,-,-,increase|decrease,"The number of students will increase this year, and the number of teachers will decrease.",practice
+3473,12,choice,add,足す,subtract,引く,"What is the opposite of ""add""? (足す)",lock,ask,subtract,subtract,-,-,practice
+3474,12,blank,add,足す,subtract,引く,"Fill in the opposite of ""add"": Add two and three, then ___ one.",upload,smile,subtract,subtract,-,-,practice
+3475,12,write,add,足す,subtract,引く,"Make your own sentence with ""add"" and ""subtract"". 「add」と「subtract」を使って文を作ろう。",-,-,-,-,add|subtract,"Add two and three, then subtract one.",practice
+3476,12,choice,pass,合格する,fail,不合格になる,"What is the opposite of ""pass""? (合格する)",fail,go,forbid,fail,-,-,practice
+3477,12,blank,pass,合格する,fail,不合格になる,"Fill in the opposite of ""pass"": I hope I pass the test. I don't want to ___.",fail,go,spend,fail,-,-,practice
+3478,12,write,pass,合格する,fail,不合格になる,"Make your own sentence with ""pass"" and ""fail"". 「pass」と「fail」を使って文を作ろう。",-,-,-,-,pass|fail,I hope I pass the test. I don't want to fail.,practice
+3479,12,choice,accept,受け入れる,refuse,断る,"What is the opposite of ""accept""? (受け入れる)",put on,refuse,increase,refuse,-,-,practice
+3480,12,blank,accept,受け入れる,refuse,断る,"Fill in the opposite of ""accept"": Did she accept the job, or did she ___ it?",refuse,hate,walk,refuse,-,-,practice
+3481,12,write,accept,受け入れる,refuse,断る,"Make your own sentence with ""accept"" and ""refuse"". 「accept」と「refuse」を使って文を作ろう。",-,-,-,-,accept|refuse,"Did she accept the job, or did she refuse it?",practice
+3482,12,choice,agree,賛成する,disagree,反対する,"What is the opposite of ""agree""? (賛成する)",disagree,refuse,end,disagree,-,-,practice
+3483,12,blank,agree,賛成する,disagree,反対する,"Fill in the opposite of ""disagree"": I ___ with you, but my wife disagrees.",log out,go to bed,agree,agree,-,-,practice
+3484,12,write,agree,賛成する,disagree,反対する,"Make your own sentence with ""agree"" and ""disagree"". 「agree」と「disagree」を使って文を作ろう。",-,-,-,-,agree|disagree,"I agree with you, but my wife disagrees.",practice
+3485,12,choice,like,好き,dislike,嫌い,"What is the opposite of ""like""? (好き)",listen,lock,dislike,dislike,-,-,practice
+3486,12,blank,like,好き,dislike,嫌い,"Fill in the opposite of ""like"": I like cats, but I ___ spiders.",love,listen,dislike,dislike,-,-,practice
+3487,12,write,like,好き,dislike,嫌い,"Make your own sentence with ""like"" and ""dislike"". 「like」と「dislike」を使って文を作ろう。",-,-,-,-,like|dislike,"I like cats, but I dislike spiders.",practice
+3488,12,choice,hire,雇う,fire,解雇する,"What is the opposite of ""hire""? (雇う)",buy,yell,fire,fire,-,-,practice
+3489,12,blank,hire,雇う,fire,解雇する,"Fill in the opposite of ""hire"": The company will hire ten people, but it won't ___ anyone.",arrive,fire,forget,fire,-,-,practice
+3490,12,write,hire,雇う,fire,解雇する,"Make your own sentence with ""hire"" and ""fire"". 「hire」と「fire」を使って文を作ろう。",-,-,-,-,hire|fire,"The company will hire ten people, but it won't fire anyone.",practice
+3491,12,choice,rich,金持ちの,poor,貧しい,"What is the opposite of ""rich""? (金持ちの)",poor,dark,single,poor,-,-,practice
+3492,12,blank,rich,金持ちの,poor,貧しい,"Fill in the opposite of ""rich"": He was ___ as a child, but now he is rich.",full-time,wide,poor,poor,-,-,practice
+3493,12,write,rich,金持ちの,poor,貧しい,"Make your own sentence with ""rich"" and ""poor"". 「rich」と「poor」を使って文を作ろう。",-,-,-,-,rich|poor,"He was poor as a child, but now he is rich.",practice
+3494,12,choice,busy,忙しい,free,暇な,"What is the opposite of ""busy""? (忙しい)",poor,free,interesting,free,-,-,practice
+3495,12,blank,busy,忙しい,free,暇な,"Fill in the opposite of ""busy"": I'm busy today, but I'm ___ tomorrow.",free,interesting,tidy,free,-,-,practice
+3496,12,write,busy,忙しい,free,暇な,"Make your own sentence with ""busy"" and ""free"". 「busy」と「free」を使って文を作ろう。",-,-,-,-,busy|free,"I'm busy today, but I'm free tomorrow.",practice
+3497,12,choice,easy,簡単な,difficult,難しい,"What is the opposite of ""easy""? (簡単な)",interesting,cool,difficult,difficult,-,-,practice
+3498,12,blank,easy,簡単な,difficult,難しい,"Fill in the opposite of ""easy"": The first question was easy, but the last one was ___.",stingy,traditional,difficult,difficult,-,-,practice
+3499,12,write,easy,簡単な,difficult,難しい,"Make your own sentence with ""easy"" and ""difficult"". 「easy」と「difficult」を使って文を作ろう。",-,-,-,-,easy|difficult,"The first question was easy, but the last one was difficult.",practice
+3500,12,choice,interesting,おもしろい,boring,つまらない,"What is the opposite of ""interesting""? (おもしろい)",patient,boring,full,boring,-,-,practice
+3501,12,blank,interesting,おもしろい,boring,つまらない,"Fill in the opposite of ""interesting"": The book was interesting, but the movie was ___.",boring,patient,unlucky,boring,-,-,practice
+3502,12,write,interesting,おもしろい,boring,つまらない,"Make your own sentence with ""interesting"" and ""boring"". 「interesting」と「boring」を使って文を作ろう。",-,-,-,-,interesting|boring,"The book was interesting, but the movie was boring.",practice
+3503,13,choice,tall,背が高い,short,背が低い,"What is the opposite of ""tall""? (背が高い)",shy,honest,short,short,-,-,practice
+3504,13,blank,tall,背が高い,short,背が低い,"Fill in the opposite of ""tall"": My brother is tall, but I'm ___.",short,honest,false,short,-,-,practice
+3505,13,write,tall,背が高い,short,背が低い,"Make your own sentence with ""tall"" and ""short"". 「tall」と「short」を使って文を作ろう。",-,-,-,-,tall|short,"My brother is tall, but I'm short.",practice
+3506,13,choice,wide,広い,narrow,狭い,"What is the opposite of ""wide""? (広い)",possible,narrow,tiny,narrow,-,-,practice
+3507,13,blank,wide,広い,narrow,狭い,"Fill in the opposite of ""wide"": The main street is wide, but this street is ___.",narrow,bad,early,narrow,-,-,practice
+3508,13,write,wide,広い,narrow,狭い,"Make your own sentence with ""wide"" and ""narrow"". 「wide」と「narrow」を使って文を作ろう。",-,-,-,-,wide|narrow,"The main street is wide, but this street is narrow.",practice
+3509,13,choice,kind,優しい,mean,意地悪な,"What is the opposite of ""kind""? (優しい)",difficult,mean,hard-working,mean,-,-,practice
+3510,13,blank,kind,優しい,mean,意地悪な,"Fill in the opposite of ""kind"": My teacher is kind, but that man is ___.",lucky,ugly,mean,mean,-,-,practice
+3511,13,write,kind,優しい,mean,意地悪な,"Make your own sentence with ""kind"" and ""mean"". 「kind」と「mean」を使って文を作ろう。",-,-,-,-,kind|mean,"My teacher is kind, but that man is mean.",practice
+3512,13,choice,polite,礼儀正しい,rude,失礼な,"What is the opposite of ""polite""? (礼儀正しい)",rude,slow,weak,rude,-,-,practice
+3513,13,blank,polite,礼儀正しい,rude,失礼な,"Fill in the opposite of ""polite"": Say thank you. Be polite, not ___.",sharp,rude,rotten,rude,-,-,practice
+3514,13,write,polite,礼儀正しい,rude,失礼な,"Make your own sentence with ""polite"" and ""rude"". 「polite」と「rude」を使って文を作ろう。",-,-,-,-,polite|rude,"Say thank you. Be polite, not rude.",practice
+3515,13,choice,healthy,健康的な,unhealthy,不健康な,"What is the opposite of ""healthy""? (健康的な)",unhealthy,fat,tame,unhealthy,-,-,practice
+3516,13,blank,healthy,健康的な,unhealthy,不健康な,"Fill in the opposite of ""healthy"": Fruit is healthy, but candy is ___.",unknown,unhealthy,cheap,unhealthy,-,-,practice
+3517,13,write,healthy,健康的な,unhealthy,不健康な,"Make your own sentence with ""healthy"" and ""unhealthy"". 「healthy」と「unhealthy」を使って文を作ろう。",-,-,-,-,healthy|unhealthy,"Fruit is healthy, but candy is unhealthy.",practice
+3518,13,choice,fresh,新鮮な,rotten,腐った,"What is the opposite of ""fresh""? (新鮮な)",correct,alive,rotten,rotten,-,-,practice
+3519,13,blank,fresh,新鮮な,rotten,腐った,"Fill in the opposite of ""fresh"": This fish is fresh, but that banana is ___.",rotten,present,cool,rotten,-,-,practice
+3520,13,write,fresh,新鮮な,rotten,腐った,"Make your own sentence with ""fresh"" and ""rotten"". 「fresh」と「rotten」を使って文を作ろう。",-,-,-,-,fresh|rotten,"This fish is fresh, but that banana is rotten.",practice
+3521,13,choice,cooked,火の通った,raw,生の,"What is the opposite of ""cooked""? (火の通った)",raw,straight,noisy,raw,-,-,practice
+3522,13,blank,cooked,火の通った,raw,生の,"Fill in the opposite of ""cooked"": I like cooked carrots, but my son likes ___ carrots.",raw,tidy,present,raw,-,-,practice
+3523,13,write,cooked,火の通った,raw,生の,"Make your own sentence with ""cooked"" and ""raw"". 「cooked」と「raw」を使って文を作ろう。",-,-,-,-,cooked|raw,"I like cooked carrots, but my son likes raw carrots.",practice
+3524,13,choice,sharp,鋭い,dull,鈍い,"What is the opposite of ""sharp""? (鋭い)",hard,male,dull,dull,-,-,practice
+3525,13,blank,sharp,鋭い,dull,鈍い,"Fill in the opposite of ""sharp"": This knife is sharp, but that one is ___.",dull,difficult,noisy,dull,-,-,practice
+3526,13,write,sharp,鋭い,dull,鈍い,"Make your own sentence with ""sharp"" and ""dull"". 「sharp」と「dull」を使って文を作ろう。",-,-,-,-,sharp|dull,"This knife is sharp, but that one is dull.",practice
+3527,13,choice,hungry,お腹がすいた,full,お腹いっぱい,"What is the opposite of ""hungry""? (お腹がすいた)",full,absent,female,full,-,-,practice
+3528,13,blank,hungry,お腹がすいた,full,お腹いっぱい,"Fill in the opposite of ""hungry"": I was hungry before lunch, and now I'm ___.",sweet,full,wide,full,-,-,practice
+3529,13,write,hungry,お腹がすいた,full,お腹いっぱい,"Make your own sentence with ""hungry"" and ""full"". 「hungry」と「full」を使って文を作ろう。",-,-,-,-,hungry|full,"I was hungry before lunch, and now I'm full.",practice
+3530,13,choice,possible,可能な,impossible,不可能な,"What is the opposite of ""possible""? (可能な)",long,impossible,rotten,impossible,-,-,practice
+3531,13,blank,possible,可能な,impossible,不可能な,"Fill in the opposite of ""possible"": It's possible to walk there, but it's ___ to swim there.",impossible,nervous,dumb,impossible,-,-,practice
+3532,13,write,possible,可能な,impossible,不可能な,"Make your own sentence with ""possible"" and ""impossible"". 「possible」と「impossible」を使って文を作ろう。",-,-,-,-,possible|impossible,"It's possible to walk there, but it's impossible to swim there.",practice
+3533,14,choice,public,公共の,private,私的な,"What is the opposite of ""public""? (公共の)",careful,big,private,private,-,-,practice
+3534,14,blank,public,公共の,private,私的な,"Fill in the opposite of ""public"": This is a public park, but that is a ___ garden.",different,thin,private,private,-,-,practice
+3535,14,write,public,公共の,private,私的な,"Make your own sentence with ""public"" and ""private"". 「public」と「private」を使って文を作ろう。",-,-,-,-,public|private,"This is a public park, but that is a private garden.",practice
+3536,14,choice,positive,前向きな,negative,後ろ向きな,"What is the opposite of ""positive""? (前向きな)",wild,negative,narrow,negative,-,-,practice
+3537,14,blank,positive,前向きな,negative,後ろ向きな,"Fill in the opposite of ""positive"": Ken is always positive, but his brother is ___.",negative,quiet,generous,negative,-,-,practice
+3538,14,write,positive,前向きな,negative,後ろ向きな,"Make your own sentence with ""positive"" and ""negative"". 「positive」と「negative」を使って文を作ろう。",-,-,-,-,positive|negative,"Ken is always positive, but his brother is negative.",practice
+3539,14,choice,married,既婚の,single,独身の,"What is the opposite of ""married""? (既婚の)",wet,single,odd,single,-,-,practice
+3540,14,blank,married,既婚の,single,独身の,"Fill in the opposite of ""married"": My sister is married, but my brother is ___.",single,hot,rich,single,-,-,practice
+3541,14,write,married,既婚の,single,独身の,"Make your own sentence with ""married"" and ""single"". 「married」と「single」を使って文を作ろう。",-,-,-,-,married|single,"My sister is married, but my brother is single.",practice
+3542,14,choice,full-time,正社員の,part-time,パートの,"What is the opposite of ""full-time""? (正社員の)",generous,part-time,shallow,part-time,-,-,practice
+3543,14,blank,full-time,正社員の,part-time,パートの,"Fill in the opposite of ""full-time"": I work full-time, and my wife works ___.",part-time,illegal,many,part-time,-,-,practice
+3544,14,write,full-time,正社員の,part-time,パートの,"Make your own sentence with ""full-time"" and ""part-time"". 「full-time」と「part-time」を使って文を作ろう。",-,-,-,-,full-time|part-time,"I work full-time, and my wife works part-time.",practice
+3545,14,choice,always,いつも,never,決して…ない,"What is the opposite of ""always""? (いつも)",often,never,before,never,-,-,practice
+3546,14,blank,always,いつも,never,決して…ない,"Fill in the opposite of ""always"": I always eat breakfast, but I ___ eat dinner late.",out,in,never,never,-,-,practice
+3547,14,write,always,いつも,never,決して…ない,"Make your own sentence with ""always"" and ""never"". 「always」と「never」を使って文を作ろう。",-,-,-,-,always|never,"I always eat breakfast, but I never eat dinner late.",practice
+3548,14,choice,everything,全部,nothing,何もない,"What is the opposite of ""everything""? (全部)",backward,there,nothing,nothing,-,-,practice
+3549,14,blank,everything,全部,nothing,何もない,"Fill in the opposite of ""everything"": I ate everything. There's ___ left.",no,nothing,now,nothing,-,-,practice
+3550,14,write,everything,全部,nothing,何もない,"Make your own sentence with ""everything"" and ""nothing"". 「everything」と「nothing」を使って文を作ろう。",-,-,-,-,everything|nothing,I ate everything. There's nothing left.,practice
+3551,14,choice,everyone,みんな,no one,誰も…ない,"What is the opposite of ""everyone""? (みんな)",she,forward,no one,no one,-,-,practice
+3552,14,blank,everyone,みんな,no one,誰も…ない,"Fill in the opposite of ""everyone"": Everyone went home. ___ is here.",No,No one,Plus,No one,-,-,practice
+3553,14,write,everyone,みんな,no one,誰も…ない,"Make your own sentence with ""everyone"" and ""no one"". 「everyone」と「no one」を使って文を作ろう。",-,-,-,-,everyone|no one,Everyone went home. No one is here.,practice
+3554,14,choice,above,上に,below,下に,"What is the opposite of ""above""? (上に)",yes,after,below,below,-,-,practice
+3555,14,blank,above,上に,below,下に,"Fill in the opposite of ""above"": The picture is above the sofa, and the cat is ___ the window.",everyone,below,off,below,-,-,practice
+3556,14,write,above,上に,below,下に,"Make your own sentence with ""above"" and ""below"". 「above」と「below」を使って文を作ろう。",-,-,-,-,above|below,"The picture is above the sofa, and the cat is below the window.",practice
+3557,14,choice,upstairs,上の階,downstairs,下の階,"What is the opposite of ""upstairs""? (上の階)",everyone,downstairs,never,downstairs,-,-,practice
+3558,14,blank,upstairs,上の階,downstairs,下の階,"Fill in the opposite of ""upstairs"": My bedroom is upstairs, and the kitchen is ___.",downstairs,there,nothing,downstairs,-,-,practice
+3559,14,write,upstairs,上の階,downstairs,下の階,"Make your own sentence with ""upstairs"" and ""downstairs"". 「upstairs」と「downstairs」を使って文を作ろう。",-,-,-,-,upstairs|downstairs,"My bedroom is upstairs, and the kitchen is downstairs.",practice
+3560,14,choice,first,最初の,last,最後の,"What is the opposite of ""first""? (最初の)",last,negative,patient,last,-,-,practice
+3561,14,blank,first,最初の,last,最後の,"Fill in the opposite of ""first"": Ken was first, and I was ___.",last,quiet,impatient,last,-,-,practice
+3562,14,write,first,最初の,last,最後の,"Make your own sentence with ""first"" and ""last"". 「first」と「last」を使って文を作ろう。",-,-,-,-,first|last,"Ken was first, and I was last.",practice
+3563,15,choice,yesterday,昨日,tomorrow,明日,"What is the opposite of ""yesterday""? (昨日)",tomorrow,bottom,fiction,tomorrow,-,-,practice
+3564,15,blank,yesterday,昨日,tomorrow,明日,"Fill in the opposite of ""yesterday"": It rained yesterday, but it will be sunny ___.",employee,tomorrow,guest,tomorrow,-,-,practice
+3565,15,write,yesterday,昨日,tomorrow,明日,"Make your own sentence with ""yesterday"" and ""tomorrow"". 「yesterday」と「tomorrow」を使って文を作ろう。",-,-,-,-,yesterday|tomorrow,"It rained yesterday, but it will be sunny tomorrow.",practice
+3566,15,choice,past,過去,future,未来,"What is the opposite of ""past""? (過去)",minimum,ceiling,future,future,-,-,practice
+3567,15,blank,past,過去,future,未来,"Fill in the opposite of ""past"": Don't think about the past. Think about the ___.",future,north,boss,future,-,-,practice
+3568,15,write,past,過去,future,未来,"Make your own sentence with ""past"" and ""future"". 「past」と「future」を使って文を作ろう。",-,-,-,-,past|future,Don't think about the past. Think about the future.,practice
+3569,15,choice,day,昼,night,夜,"What is the opposite of ""day""? (昼)",student,teacher,night,night,-,-,practice
+3570,15,blank,day,昼,night,夜,"Fill in the opposite of ""day"": Bats sleep in the day and fly at ___.",night,wife,lie,night,-,-,practice
+3571,15,write,day,昼,night,夜,"Make your own sentence with ""day"" and ""night"". 「day」と「night」を使って文を作ろう。",-,-,-,-,day|night,Bats sleep in the day and fly at night.,practice
+3572,15,choice,north,北,south,南,"What is the opposite of ""north""? (北)",boss,future,south,south,-,-,practice
+3573,15,blank,north,北,south,南,"Fill in the opposite of ""north"": Sapporo is in the north, and Okinawa is in the ___.",back,nonfiction,south,south,-,-,practice
+3574,15,write,north,北,south,南,"Make your own sentence with ""north"" and ""south"". 「north」と「south」を使って文を作ろう。",-,-,-,-,north|south,"Sapporo is in the north, and Okinawa is in the south.",practice
+3575,15,choice,east,東,west,西,"What is the opposite of ""east""? (東)",wife,weekend,west,west,-,-,practice
+3576,15,blank,east,東,west,西,"Fill in the opposite of ""east"": The sun rises in the east and sets in the ___.",husband,part,west,west,-,-,practice
+3577,15,write,east,東,west,西,"Make your own sentence with ""east"" and ""west"". 「east」と「west」を使って文を作ろう。",-,-,-,-,east|west,The sun rises in the east and sets in the west.,practice
+3578,15,choice,arrival,到着,departure,出発,"What is the opposite of ""arrival""? (到着)",guest,sunset,departure,departure,-,-,practice
+3579,15,blank,arrival,到着,departure,出発,"Fill in the opposite of ""arrival"": Check the arrival time and the ___ time.",sun,reality,departure,departure,-,-,practice
+3580,15,write,arrival,到着,departure,出発,"Make your own sentence with ""arrival"" and ""departure"". 「arrival」と「departure」を使って文を作ろう。",-,-,-,-,arrival|departure,Check the arrival time and the departure time.,practice
+3581,15,choice,maximum,最大,minimum,最小,"What is the opposite of ""maximum""? (最大)",minimum,exit,fantasy,minimum,-,-,practice
+3582,15,blank,maximum,最大,minimum,最小,"Fill in the opposite of ""maximum"": The maximum is 100 people, and the ___ is 10.",reality,minimum,moon,minimum,-,-,practice
+3583,15,write,maximum,最大,minimum,最小,"Make your own sentence with ""maximum"" and ""minimum"". 「maximum」と「minimum」を使って文を作ろう。",-,-,-,-,maximum|minimum,"The maximum is 100 people, and the minimum is 10.",practice
+3584,15,choice,plus,プラス,minus,マイナス,"What is the opposite of ""plus""? (プラス)",forward,minus,over,minus,-,-,practice
+3585,15,blank,plus,プラス,minus,マイナス,"Fill in the opposite of ""plus"": Five plus two is seven, and five ___ two is three.",over,never,minus,minus,-,-,practice
+3586,15,write,plus,プラス,minus,マイナス,"Make your own sentence with ""plus"" and ""minus"". 「plus」と「minus」を使って文を作ろう。",-,-,-,-,plus|minus,"Five plus two is seven, and five minus two is three.",practice
+3587,15,choice,catch,捕る,throw,投げる,"What is the opposite of ""catch""? (捕る)",throw,allow,learn,throw,-,-,practice
+3588,15,blank,catch,捕る,throw,投げる,"Fill in the opposite of ""catch"": I ___ the ball, and my dog catches it.",learn,throw,pull,throw,-,-,practice
+3589,15,write,catch,捕る,throw,投げる,"Make your own sentence with ""catch"" and ""throw"". 「catch」と「throw」を使って文を作ろう。",-,-,-,-,catch|throw,"I throw the ball, and my dog catches it.",practice
+3590,15,choice,pick up,拾う,put down,置く,"What is the opposite of ""pick up""? (拾う)",lose,get on,put down,put down,-,-,practice
+3591,15,blank,pick up,拾う,put down,置く,"Fill in the opposite of ""put down"": ___ the box, and put it down here.",Pick up,Allow,Break,Pick up,-,-,practice
+3592,15,write,pick up,拾う,put down,置く,"Make your own sentence with ""pick up"" and ""put down"". 「pick up」と「put down」を使って文を作ろう。",-,-,-,-,pick up|put down,"Pick up the box, and put it down here.",practice
+3593,16,choice,save,貯める,spend,使う,"What is the opposite of ""save""? (貯める)",spend,refuse,show,spend,-,-,practice
+3594,16,blank,save,貯める,spend,使う,"Fill in the opposite of ""save"": I save money every month, but I ___ a lot in December.",begin,spend,sit,spend,-,-,practice
+3595,16,write,save,貯める,spend,使う,"Make your own sentence with ""save"" and ""spend"". 「save」と「spend」を使って文を作ろう。",-,-,-,-,save|spend,"I save money every month, but I spend a lot in December.",practice
+3596,16,choice,teach,教える,learn,学ぶ,"What is the opposite of ""teach""? (教える)",learn,upload,lose,learn,-,-,practice
+3597,16,blank,teach,教える,learn,学ぶ,"Fill in the opposite of ""teach"": Teachers teach, and students ___.",come in,stop,learn,learn,-,-,practice
+3598,16,write,teach,教える,learn,学ぶ,"Make your own sentence with ""teach"" and ""learn"". 「teach」と「learn」を使って文を作ろう。",-,-,-,-,teach|learn,"Teachers teach, and students learn.",practice
+3599,16,choice,lead,先導する,follow,ついていく,"What is the opposite of ""lead""? (先導する)",fall,follow,add,follow,-,-,practice
+3600,16,blank,lead,先導する,follow,ついていく,"Fill in the opposite of ""lead"": The guide will lead, and we will ___.",follow,disagree,fail,follow,-,-,practice
+3601,16,write,lead,先導する,follow,ついていく,"Make your own sentence with ""lead"" and ""follow"". 「lead」と「follow」を使って文を作ろう。",-,-,-,-,lead|follow,"The guide will lead, and we will follow.",practice
+3602,16,choice,rise,上がる,fall,下がる,"What is the opposite of ""rise""? (上がる)",come,fall,take off,fall,-,-,practice
+3603,16,blank,rise,上がる,fall,下がる,"Fill in the opposite of ""rise"": Prices rise in winter and ___ in summer.",learn,fall,forbid,fall,-,-,practice
+3604,16,write,rise,上がる,fall,下がる,"Make your own sentence with ""rise"" and ""fall"". 「rise」と「fall」を使って文を作ろう。",-,-,-,-,rise|fall,Prices rise in winter and fall in summer.,practice
+3605,16,choice,wake up,起きる,go to bed,寝る,"What is the opposite of ""wake up""? (起きる)",take off,unlock,go to bed,go to bed,-,-,practice
+3606,16,blank,wake up,起きる,go to bed,寝る,"Fill in the opposite of ""wake up"": I wake up at six and ___ at eleven.",finish,pull,go to bed,go to bed,-,-,practice
+3607,16,write,wake up,起きる,go to bed,寝る,"Make your own sentence with ""wake up"" and ""go to bed"". 「wake up」と「go to bed」を使って文を作ろう。",-,-,-,-,wake up|go to bed,I wake up at six and go to bed at eleven.,practice
+3608,16,choice,come in,入る,go out,出る,"What is the opposite of ""come in""? (入る)",go out,pick up,cry,go out,-,-,practice
+3609,16,blank,come in,入る,go out,出る,"Fill in the opposite of ""come in"": Come in, please. It's cold, so don't ___.",smile,slow down,go out,go out,-,-,practice
+3610,16,write,come in,入る,go out,出る,"Make your own sentence with ""come in"" and ""go out"". 「come in」と「go out」を使って文を作ろう。",-,-,-,-,come in|go out,"Come in, please. It's cold, so don't go out.",practice
+3611,16,choice,pack,荷造りする,unpack,荷ほどきする,"What is the opposite of ""pack""? (荷造りする)",unpack,cry,lock,unpack,-,-,practice
+3612,16,blank,pack,荷造りする,unpack,荷ほどきする,"Fill in the opposite of ""pack"": I pack my bag before a trip and ___ it after the trip.",pull,remember,unpack,unpack,-,-,practice
+3613,16,write,pack,荷造りする,unpack,荷ほどきする,"Make your own sentence with ""pack"" and ""unpack"". 「pack」と「unpack」を使って文を作ろう。",-,-,-,-,pack|unpack,I pack my bag before a trip and unpack it after the trip.,practice
+3614,16,choice,tie,結ぶ,untie,ほどく,"What is the opposite of ""tie""? (結ぶ)",untie,pick up,slow down,untie,-,-,practice
+3615,16,blank,tie,結ぶ,untie,ほどく,"Fill in the opposite of ""tie"": Tie your shoes before you run, and ___ them when you get home.",allow,untie,ask,untie,-,-,practice
+3616,16,write,tie,結ぶ,untie,ほどく,"Make your own sentence with ""tie"" and ""untie"". 「tie」と「untie」を使って文を作ろう。",-,-,-,-,tie|untie,"Tie your shoes before you run, and untie them when you get home.",practice
+3617,16,choice,hide,隠す,show,見せる,"What is the opposite of ""hide""? (隠す)",show,sell,hire,show,-,-,practice
+3618,16,blank,hide,隠す,show,見せる,"Fill in the opposite of ""hide"": Don't hide your test. ___ it to me.",Sell,Receive,Show,Show,-,-,practice
+3619,16,write,hide,隠す,show,見せる,"Make your own sentence with ""hide"" and ""show"". 「hide」と「show」を使って文を作ろう。",-,-,-,-,hide|show,Don't hide your test. Show it to me.,practice
+3620,16,choice,allow,許す,forbid,禁止する,"What is the opposite of ""allow""? (許す)",melt,disagree,forbid,forbid,-,-,practice
+3621,16,blank,allow,許す,forbid,禁止する,"Fill in the opposite of ""allow"": My parents allow video games but ___ phones at dinner.",forbid,love,leave,forbid,-,-,practice
+3622,16,write,allow,許す,forbid,禁止する,"Make your own sentence with ""allow"" and ""forbid"". 「allow」と「forbid」を使って文を作ろう。",-,-,-,-,allow|forbid,My parents allow video games but forbid phones at dinner.,practice
+3623,17,choice,put on,着る,take off,脱ぐ,"What is the opposite of ""put on""? (着る)",go out,gain weight,take off,take off,-,-,practice
+3624,17,blank,put on,着る,take off,脱ぐ,"Fill in the opposite of ""put on"": Put on your coat outside, and ___ your shoes inside.",take off,refuse,run,take off,-,-,practice
+3625,17,write,put on,着る,take off,脱ぐ,"Make your own sentence with ""put on"" and ""take off"". 「put on」と「take off」を使って文を作ろう。",-,-,-,-,put on|take off,"Put on your coat outside, and take off your shoes inside.",practice
+3626,17,choice,speed up,スピードを上げる,slow down,スピードを落とす,"What is the opposite of ""speed up""? (スピードを上げる)",leave,come in,slow down,slow down,-,-,practice
+3627,17,blank,speed up,スピードを上げる,slow down,スピードを落とす,"Fill in the opposite of ""speed up"": Speed up on the highway, but ___ near the school.",like,slow down,forget,slow down,-,-,practice
+3628,17,write,speed up,スピードを上げる,slow down,スピードを落とす,"Make your own sentence with ""speed up"" and ""slow down"". 「speed up」と「slow down」を使って文を作ろう。",-,-,-,-,speed up|slow down,"Speed up on the highway, but slow down near the school.",practice
+3629,17,choice,gain weight,太る,lose weight,痩せる,"What is the opposite of ""gain weight""? (太る)",lock,lose weight,go to bed,lose weight,-,-,practice
+3630,17,blank,gain weight,太る,lose weight,痩せる,"Fill in the opposite of ""gain weight"": I gain weight in winter and ___ in summer.",lose weight,receive,come in,lose weight,-,-,practice
+3631,17,write,gain weight,太る,lose weight,痩せる,"Make your own sentence with ""gain weight"" and ""lose weight"". 「gain weight」と「lose weight」を使って文を作ろう。",-,-,-,-,gain weight|lose weight,I gain weight in winter and lose weight in summer.,practice
+3632,17,choice,log in,ログインする,log out,ログアウトする,"What is the opposite of ""log in""? (ログインする)",import,talk,log out,log out,-,-,practice
+3633,17,blank,log in,ログインする,log out,ログアウトする,"Fill in the opposite of ""log in"": Log in to the portal, and ___ when you finish.",log out,yell,answer,log out,-,-,practice
+3634,17,write,log in,ログインする,log out,ログアウトする,"Make your own sentence with ""log in"" and ""log out"". 「log in」と「log out」を使って文を作ろう。",-,-,-,-,log in|log out,"Log in to the portal, and log out when you finish.",practice
+3635,17,choice,upload,アップロードする,download,ダウンロードする,"What is the opposite of ""upload""? (アップロードする)",take off,download,save,download,-,-,practice
+3636,17,blank,upload,アップロードする,download,ダウンロードする,"Fill in the opposite of ""upload"": Upload your photo, then ___ the file.",download,work,frown,download,-,-,practice
+3637,17,write,upload,アップロードする,download,ダウンロードする,"Make your own sentence with ""upload"" and ""download"". 「upload」と「download」を使って文を作ろう。",-,-,-,-,upload|download,"Upload your photo, then download the file.",practice
+3638,17,choice,brave,勇敢な,scared,怖がりの,"What is the opposite of ""brave""? (勇敢な)",illegal,first,scared,scared,-,-,practice
+3639,17,blank,brave,勇敢な,scared,怖がりの,"Fill in the opposite of ""brave"": My son is brave, but my daughter is ___ of dogs.",wrong,scared,rich,scared,-,-,practice
+3640,17,write,brave,勇敢な,scared,怖がりの,"Make your own sentence with ""brave"" and ""scared"". 「brave」と「scared」を使って文を作ろう。",-,-,-,-,brave|scared,"My son is brave, but my daughter is scared of dogs.",practice
+3641,17,choice,famous,有名な,unknown,無名の,"What is the opposite of ""famous""? (有名な)",unknown,weak,deep,unknown,-,-,practice
+3642,17,blank,famous,有名な,unknown,無名の,"Fill in the opposite of ""famous"": The singer was ___ last year, but now she is famous.",busy,unknown,huge,unknown,-,-,practice
+3643,17,write,famous,有名な,unknown,無名の,"Make your own sentence with ""famous"" and ""unknown"". 「famous」と「unknown」を使って文を作ろう。",-,-,-,-,famous|unknown,"The singer was unknown last year, but now she is famous.",practice
+3644,17,choice,lucky,運がいい,unlucky,運が悪い,"What is the opposite of ""lucky""? (運がいい)",near,unlucky,far,unlucky,-,-,practice
+3645,17,blank,lucky,運がいい,unlucky,運が悪い,"Fill in the opposite of ""lucky"": I was lucky yesterday, but today I'm ___.",unlucky,hungry,honest,unlucky,-,-,practice
+3646,17,write,lucky,運がいい,unlucky,運が悪い,"Make your own sentence with ""lucky"" and ""unlucky"". 「lucky」と「unlucky」を使って文を作ろう。",-,-,-,-,lucky|unlucky,"I was lucky yesterday, but today I'm unlucky.",practice
+3647,17,choice,careful,注意深い,careless,不注意な,"What is the opposite of ""careful""? (注意深い)",patient,careless,illegal,careless,-,-,practice
+3648,17,blank,careful,注意深い,careless,不注意な,"Fill in the opposite of ""careful"": Be careful with the knife. Don't be ___.",wet,scared,careless,careless,-,-,practice
+3649,17,write,careful,注意深い,careless,不注意な,"Make your own sentence with ""careful"" and ""careless"". 「careful」と「careless」を使って文を作ろう。",-,-,-,-,careful|careless,Be careful with the knife. Don't be careless.,practice
+3650,17,choice,honest,正直な,dishonest,不正直な,"What is the opposite of ""honest""? (正直な)",tall,dishonest,new,dishonest,-,-,practice
+3651,17,blank,honest,正直な,dishonest,不正直な,"Fill in the opposite of ""honest"": He is honest, but his friend is ___.",dirty,dishonest,single,dishonest,-,-,practice
+3652,17,write,honest,正直な,dishonest,不正直な,"Make your own sentence with ""honest"" and ""dishonest"". 「honest」と「dishonest」を使って文を作ろう。",-,-,-,-,honest|dishonest,"He is honest, but his friend is dishonest.",practice
+3653,18,choice,simple,簡単な,complicated,複雑な,"What is the opposite of ""simple""? (簡単な)",complicated,sweet,warm,complicated,-,-,practice
+3654,18,blank,simple,簡単な,complicated,複雑な,"Fill in the opposite of ""simple"": The first map is simple, but the second map is ___.",complicated,young,clean,complicated,-,-,practice
+3655,18,write,simple,簡単な,complicated,複雑な,"Make your own sentence with ""simple"" and ""complicated"". 「simple」と「complicated」を使って文を作ろう。",-,-,-,-,simple|complicated,"The first map is simple, but the second map is complicated.",practice
+3656,18,choice,spicy,辛い,mild,辛くない,"What is the opposite of ""spicy""? (辛い)",careful,mild,modern,mild,-,-,practice
+3657,18,blank,spicy,辛い,mild,辛くない,"Fill in the opposite of ""spicy"": This curry is spicy, but that one is ___.",fat,mild,messy,mild,-,-,practice
+3658,18,write,spicy,辛い,mild,辛くない,"Make your own sentence with ""spicy"" and ""mild"". 「spicy」と「mild」を使って文を作ろう。",-,-,-,-,spicy|mild,"This curry is spicy, but that one is mild.",practice
+3659,18,choice,outgoing,社交的な,shy,恥ずかしがりの,"What is the opposite of ""outgoing""? (社交的な)",shy,wet,mean,shy,-,-,practice
+3660,18,blank,outgoing,社交的な,shy,恥ずかしがりの,"Fill in the opposite of ""outgoing"": My sister is outgoing, but I'm ___.",last,shy,famous,shy,-,-,practice
+3661,18,write,outgoing,社交的な,shy,恥ずかしがりの,"Make your own sentence with ""outgoing"" and ""shy"". 「outgoing」と「shy」を使って文を作ろう。",-,-,-,-,outgoing|shy,"My sister is outgoing, but I'm shy.",practice
+3662,18,choice,hard-working,勤勉な,lazy,怠けた,"What is the opposite of ""hard-working""? (勤勉な)",lazy,well,high,lazy,-,-,practice
+3663,18,blank,hard-working,勤勉な,lazy,怠けた,"Fill in the opposite of ""hard-working"": Ken is hard-working, but his cat is ___.",lazy,huge,thick,lazy,-,-,practice
+3664,18,write,hard-working,勤勉な,lazy,怠けた,"Make your own sentence with ""hard-working"" and ""lazy"". 「hard-working」と「lazy」を使って文を作ろう。",-,-,-,-,hard-working|lazy,"Ken is hard-working, but his cat is lazy.",practice
+3665,18,choice,energetic,元気な,tired,疲れた,"What is the opposite of ""energetic""? (元気な)",foreign,hot,tired,tired,-,-,practice
+3666,18,blank,energetic,元気な,tired,疲れた,"Fill in the opposite of ""energetic"": I'm energetic in the morning, but I'm ___ at night.",tired,even,hard-working,tired,-,-,practice
+3667,18,write,energetic,元気な,tired,疲れた,"Make your own sentence with ""energetic"" and ""tired"". 「energetic」と「tired」を使って文を作ろう。",-,-,-,-,energetic|tired,"I'm energetic in the morning, but I'm tired at night.",practice
+3668,18,choice,relaxed,リラックスした,stressed,ストレスがたまった,"What is the opposite of ""relaxed""? (リラックスした)",thin,dangerous,stressed,stressed,-,-,practice
+3669,18,blank,relaxed,リラックスした,stressed,ストレスがたまった,"Fill in the opposite of ""relaxed"": I'm relaxed on vacation, but I'm ___ at work.",kind,stressed,slow,stressed,-,-,practice
+3670,18,write,relaxed,リラックスした,stressed,ストレスがたまった,"Make your own sentence with ""relaxed"" and ""stressed"". 「relaxed」と「stressed」を使って文を作ろう。",-,-,-,-,relaxed|stressed,"I'm relaxed on vacation, but I'm stressed at work.",practice
+3671,18,choice,patient,我慢強い,impatient,せっかちな,"What is the opposite of ""patient""? (我慢強い)",smooth,impatient,low,impatient,-,-,practice
+3672,18,blank,patient,我慢強い,impatient,せっかちな,"Fill in the opposite of ""patient"": My mother is patient, but my father is ___.",smart,tall,impatient,impatient,-,-,practice
+3673,18,write,patient,我慢強い,impatient,せっかちな,"Make your own sentence with ""patient"" and ""impatient"". 「patient」と「impatient」を使って文を作ろう。",-,-,-,-,patient|impatient,"My mother is patient, but my father is impatient.",practice
+3674,18,choice,generous,気前のいい,stingy,けちな,"What is the opposite of ""generous""? (気前のいい)",stingy,first,busy,stingy,-,-,practice
+3675,18,blank,generous,気前のいい,stingy,けちな,"Fill in the opposite of ""generous"": My boss is generous, but his brother is ___.",stingy,useless,sharp,stingy,-,-,practice
+3676,18,write,generous,気前のいい,stingy,けちな,"Make your own sentence with ""generous"" and ""stingy"". 「generous」と「stingy」を使って文を作ろう。",-,-,-,-,generous|stingy,"My boss is generous, but his brother is stingy.",practice
+3677,18,choice,modern,現代的な,traditional,伝統的な,"What is the opposite of ""modern""? (現代的な)",smooth,traditional,deep,traditional,-,-,practice
+3678,18,blank,modern,現代的な,traditional,伝統的な,"Fill in the opposite of ""modern"": Tokyo has modern buildings and ___ temples.",traditional,tight,happy,traditional,-,-,practice
+3679,18,write,modern,現代的な,traditional,伝統的な,"Make your own sentence with ""modern"" and ""traditional"". 「modern」と「traditional」を使って文を作ろう。",-,-,-,-,modern|traditional,Tokyo has modern buildings and traditional temples.,practice
+3680,18,choice,local,地元の,foreign,外国の,"What is the opposite of ""local""? (地元の)",foreign,clean,rotten,foreign,-,-,practice
+3681,18,blank,local,地元の,foreign,外国の,"Fill in the opposite of ""local"": I like local food, and I like ___ food too.",soft,foreign,scared,foreign,-,-,practice
+3682,18,write,local,地元の,foreign,外国の,"Make your own sentence with ""local"" and ""foreign"". 「local」と「foreign」を使って文を作ろう。",-,-,-,-,local|foreign,"I like local food, and I like foreign food too.",practice
+3683,19,choice,huge,巨大な,tiny,とても小さい,"What is the opposite of ""huge""? (巨大な)",tiny,generous,tired,tiny,-,-,practice
+3684,19,blank,huge,巨大な,tiny,とても小さい,"Fill in the opposite of ""huge"": The elephant is huge, but the mouse is ___.",cooked,tiny,narrow,tiny,-,-,practice
+3685,19,write,huge,巨大な,tiny,とても小さい,"Make your own sentence with ""huge"" and ""tiny"". 「huge」と「tiny」を使って文を作ろう。",-,-,-,-,huge|tiny,"The elephant is huge, but the mouse is tiny.",practice
+3686,19,choice,legal,合法の,illegal,違法の,"What is the opposite of ""legal""? (合法の)",messy,illegal,brave,illegal,-,-,practice
+3687,19,blank,legal,合法の,illegal,違法の,"Fill in the opposite of ""legal"": Parking here is legal, but parking there is ___.",illegal,tiny,full-time,illegal,-,-,practice
+3688,19,write,legal,合法の,illegal,違法の,"Make your own sentence with ""legal"" and ""illegal"". 「legal」と「illegal」を使って文を作ろう。",-,-,-,-,legal|illegal,"Parking here is legal, but parking there is illegal.",practice
+3689,19,choice,useful,役に立つ,useless,役に立たない,"What is the opposite of ""useful""? (役に立つ)",sweet,different,useless,useless,-,-,practice
+3690,19,blank,useful,役に立つ,useless,役に立たない,"Fill in the opposite of ""useful"": This app is useful, but that one is ___.",useless,single,beautiful,useless,-,-,practice
+3691,19,write,useful,役に立つ,useless,役に立たない,"Make your own sentence with ""useful"" and ""useless"". 「useful」と「useless」を使って文を作ろう。",-,-,-,-,useful|useless,"This app is useful, but that one is useless.",practice
+3692,19,choice,even,偶数の,odd,奇数の,"What is the opposite of ""even""? (偶数の)",dry,real,odd,odd,-,-,practice
+3693,19,blank,even,偶数の,odd,奇数の,"Fill in the opposite of ""even"": Two is an even number, and three is an ___ number.",odd,long,dumb,odd,-,-,practice
+3694,19,write,even,偶数の,odd,奇数の,"Make your own sentence with ""even"" and ""odd"". 「even」と「odd」を使って文を作ろう。",-,-,-,-,even|odd,"Two is an even number, and three is an odd number.",practice
+3695,19,choice,here,ここ,there,そこ,"What is the opposite of ""here""? (ここ)",there,everything,less,there,-,-,practice
+3696,19,blank,here,ここ,there,そこ,"Fill in the opposite of ""here"": I'm here, and my bag is over ___.",he,there,in,there,-,-,practice
+3697,19,write,here,ここ,there,そこ,"Make your own sentence with ""here"" and ""there"". 「here」と「there」を使って文を作ろう。",-,-,-,-,here|there,"I'm here, and my bag is over there.",practice
+3698,19,choice,this,これ,that,あれ,"What is the opposite of ""this""? (これ)",after,less,that,that,-,-,practice
+3699,19,blank,this,これ,that,あれ,"Fill in the opposite of ""this"": This is my cup, and ___ is your cup.",under,that,behind,that,-,-,practice
+3700,19,write,this,これ,that,あれ,"Make your own sentence with ""this"" and ""that"". 「this」と「that」を使って文を作ろう。",-,-,-,-,this|that,"This is my cup, and that is your cup.",practice
+3701,19,choice,often,よく,rarely,めったに…ない,"What is the opposite of ""often""? (よく)",out,rarely,more,rarely,-,-,practice
+3702,19,blank,often,よく,rarely,めったに…ない,"Fill in the opposite of ""often"": I often drink coffee, but I ___ drink tea.",forward,rarely,this,rarely,-,-,practice
+3703,19,write,often,よく,rarely,めったに…ない,"Make your own sentence with ""often"" and ""rarely"". 「often」と「rarely」を使って文を作ろう。",-,-,-,-,often|rarely,"I often drink coffee, but I rarely drink tea.",practice
+3704,19,choice,already,もう,not yet,まだ,"What is the opposite of ""already""? (もう)",not yet,backward,upstairs,not yet,-,-,practice
+3705,19,blank,already,もう,not yet,まだ,"Fill in the opposite of ""already"": Did you eat? Yes, I already ate. Did Ken eat? ___.",Me,Up,Not yet,Not yet,-,-,practice
+3706,19,write,already,もう,not yet,まだ,"Make your own sentence with ""already"" and ""not yet"". 「already」と「not yet」を使って文を作ろう。",-,-,-,-,already|not yet,"Did you eat? Yes, I already ate. Did Ken eat? Not yet.",practice
+3707,19,choice,now,今,later,後で,"What is the opposite of ""now""? (今)",over,later,forward,later,-,-,practice
+3708,19,blank,now,今,later,後で,"Fill in the opposite of ""now"": I'm busy now. Can we talk ___?",rarely,up,later,later,-,-,practice
+3709,19,write,now,今,later,後で,"Make your own sentence with ""now"" and ""later"". 「now」と「later」を使って文を作ろう。",-,-,-,-,now|later,I'm busy now. Can we talk later?,practice
+3710,19,choice,noon,正午,midnight,真夜中,"What is the opposite of ""noon""? (正午)",friend,midnight,income,midnight,-,-,practice
+3711,19,blank,noon,正午,midnight,真夜中,"Fill in the opposite of ""noon"": We eat lunch at noon and sleep at ___.",midnight,north,fiction,midnight,-,-,practice
+3712,19,write,noon,正午,midnight,真夜中,"Make your own sentence with ""noon"" and ""midnight"". 「noon」と「midnight」を使って文を作ろう。",-,-,-,-,noon|midnight,We eat lunch at noon and sleep at midnight.,practice
+3713,20,choice,weekday,平日,weekend,週末,"What is the opposite of ""weekday""? (平日)",lie,weekend,dad,weekend,-,-,practice
+3714,20,blank,weekday,平日,weekend,週末,"Fill in the opposite of ""weekday"": I work on weekdays and rest on the ___.",dad,exit,weekend,weekend,-,-,practice
+3715,20,write,weekday,平日,weekend,週末,"Make your own sentence with ""weekday"" and ""weekend"". 「weekday」と「weekend」を使って文を作ろう。",-,-,-,-,weekday|weekend,I work on weekdays and rest on the weekend.,practice
+3716,20,choice,spring,春,fall,秋,"What is the opposite of ""spring""? (春)",moon,fall,fantasy,fall,-,-,practice
+3717,20,blank,spring,春,fall,秋,"Fill in the opposite of ""spring"": Cherry blossoms come in spring, and red leaves come in ___.",fall,husband,tomorrow,fall,-,-,practice
+3718,20,write,spring,春,fall,秋,"Make your own sentence with ""spring"" and ""fall"". 「spring」と「fall」を使って文を作ろう。",-,-,-,-,spring|fall,"Cherry blossoms come in spring, and red leaves come in fall.",practice
+3719,20,choice,land,陸,sea,海,"What is the opposite of ""land""? (陸)",individual,expenses,sea,sea,-,-,practice
+3720,20,blank,land,陸,sea,海,"Fill in the opposite of ""land"": Cars go on land, and ships go on the ___.",uncle,sunrise,sea,sea,-,-,practice
+3721,20,write,land,陸,sea,海,"Make your own sentence with ""land"" and ""sea"". 「land」と「sea」を使って文を作ろう。",-,-,-,-,land|sea,"Cars go on land, and ships go on the sea.",practice
+3722,20,choice,import,輸入する,export,輸出する,"What is the opposite of ""import""? (輸入する)",teach,gain weight,export,export,-,-,practice
+3723,20,blank,import,輸入する,export,輸出する,"Fill in the opposite of ""import"": Many countries import oil and ___ cars.",export,fail,play,export,-,-,practice
+3724,20,write,import,輸入する,export,輸出する,"Make your own sentence with ""import"" and ""export"". 「import」と「export」を使って文を作ろう。",-,-,-,-,import|export,Many countries import oil and export cars.,practice
+3725,20,choice,income,収入,expenses,支出,"What is the opposite of ""income""? (収入)",tomorrow,city,expenses,expenses,-,-,practice
+3726,20,blank,income,収入,expenses,支出,"Fill in the opposite of ""income"": My income is good, but my ___ are high.",daughter,morning,expenses,expenses,-,-,practice
+3727,20,write,income,収入,expenses,支出,"Make your own sentence with ""income"" and ""expenses"". 「income」と「expenses」を使って文を作ろう。",-,-,-,-,income|expenses,"My income is good, but my expenses are high.",practice
+3728,20,choice,boss,上司,employee,社員,"What is the opposite of ""boss""? (上司)",noon,arrival,employee,employee,-,-,practice
+3729,20,blank,boss,上司,employee,社員,"Fill in the opposite of ""boss"": My boss is nice to every ___.",dad,individual,employee,employee,-,-,practice
+3730,20,write,boss,上司,employee,社員,"Make your own sentence with ""boss"" and ""employee"". 「boss」と「employee」を使って文を作ろう。",-,-,-,-,boss|employee,My boss is nice to every employee.,practice
+3731,20,choice,host,主人・ホスト,guest,客,"What is the opposite of ""host""? (主人・ホスト)",arrival,girl,guest,guest,-,-,practice
+3732,20,blank,host,主人・ホスト,guest,客,"Fill in the opposite of ""host"": The host welcomed every ___ at the door.",top,son,guest,guest,-,-,practice
+3733,20,write,host,主人・ホスト,guest,客,"Make your own sentence with ""host"" and ""guest"". 「host」と「guest」を使って文を作ろう。",-,-,-,-,host|guest,The host welcomed every guest at the door.,practice
+3734,20,choice,beginner,初心者,expert,上級者,"What is the opposite of ""beginner""? (初心者)",expert,teacher,girl,expert,-,-,practice
+3735,20,blank,beginner,初心者,expert,上級者,"Fill in the opposite of ""beginner"": I'm a beginner at golf, but my father is an ___.",back,host,expert,expert,-,-,practice
+3736,20,write,beginner,初心者,expert,上級者,"Make your own sentence with ""beginner"" and ""expert"". 「beginner」と「expert」を使って文を作ろう。",-,-,-,-,beginner|expert,"I'm a beginner at golf, but my father is an expert.",practice

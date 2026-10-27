@@ -1,0 +1,367 @@
+id,set,kind,idiom,idiom_ja,question,choice_a,choice_b,choice_c,answer,required_words,example,mode
+3737,1,meaning,look alike,似ている,"What does ""look alike"" mean?",似ている,知る・わかる,散歩する,似ている,-,-,practice
+3738,1,blank,look alike,似ている,Fill in the blank: The twins ___. I can't tell them apart.,give me a hand,play it by ear,look alike,look alike,-,-,practice
+3739,1,write,look alike,似ている,"Make your own sentence with ""look alike"". 「look alike」を使って文を作ろう。",-,-,-,-,alike|look,The twins look alike. I can't tell them apart.,practice
+3740,1,meaning,look at,見る,"What does ""look at"" mean?",折り返し電話する,見る,続ける,見る,-,-,practice
+3741,1,blank,look at,見る,Fill in the blank: Please ___ the board.,look at,get along with,have a sweet tooth,look at,-,-,practice
+3742,1,write,look at,見る,"Make your own sentence with ""look at"". 「look at」を使って文を作ろう。",-,-,-,-,look|at,Please look at the board.,practice
+3743,1,meaning,look out,気をつける,"What does ""look out"" mean?",無理しない・のんびりする,気をつける,仲良くやる,気をつける,-,-,practice
+3744,1,blank,look out,気をつける,Fill in the blank: ___! A car is coming!,Lose track of time,Give up,Look out,Look out,-,-,practice
+3745,1,write,look out,気をつける,"Make your own sentence with ""look out"". 「look out」を使って文を作ろう。",-,-,-,-,look|out,Look out! A car is coming!,practice
+3746,1,meaning,look up,調べる,"What does ""look up"" mean?",握手する,調べる,直接・対面で,調べる,-,-,practice
+3747,1,blank,look up,調べる,Fill in the blank: I don't know this word. I'll ___ the meaning online.,look up,take a walk,keep my chin up,look up,-,-,practice
+3748,1,write,look up,調べる,"Make your own sentence with ""look up"". 「look up」を使って文を作ろう。",-,-,-,-,look|up,I don't know this word. I'll look up the meaning online.,practice
+3749,1,meaning,take out,持ち帰る・取り出す,"What does ""take out"" mean?",持ち帰る・取り出す,間に合って,用事を済ませる,持ち帰る・取り出す,-,-,practice
+3750,1,blank,take out,持ち帰る・取り出す,Fill in the blank: Can I ___ the curry? I want to eat it at home.,sleep on it,see me off,take out,take out,-,-,practice
+3751,1,write,take out,持ち帰る・取り出す,"Make your own sentence with ""take out"". 「take out」を使って文を作ろう。",-,-,-,-,take|out,Can I take out the curry? I want to eat it at home.,practice
+3752,1,meaning,take a walk,散歩する,"What does ""take a walk"" mean?",切らす・なくなる,決心する,散歩する,散歩する,-,-,practice
+3753,1,blank,take a walk,散歩する,Fill in the blank: Let's ___ in the park after dinner.,figure out,put off,take a walk,take a walk,-,-,practice
+3754,1,write,take a walk,散歩する,"Make your own sentence with ""take a walk"". 「take a walk」を使って文を作ろう。",-,-,-,-,take|walk,Let's take a walk in the park after dinner.,practice
+3755,1,meaning,take a seat,席に着く,"What does ""take a seat"" mean?",意見が一致する,現れる・来る,席に着く,席に着く,-,-,practice
+3756,1,blank,take a seat,席に着く,Fill in the blank: Please come in and ___.,look alike,fall in love,take a seat,take a seat,-,-,practice
+3757,1,write,take a seat,席に着く,"Make your own sentence with ""take a seat"". 「take a seat」を使って文を作ろう。",-,-,-,-,take|seat,Please come in and take a seat.,practice
+3758,1,meaning,take down,取り外す,"What does ""take down"" mean?",取り外す,裏返しに,見張る・気をつけて見る,取り外す,-,-,practice
+3759,1,blank,take down,取り外す,"Fill in the blank: After the party, we have to ___ the decorations.",fill out,set up,take down,take down,-,-,practice
+3760,1,write,take down,取り外す,"Make your own sentence with ""take down"". 「take down」を使って文を作ろう。",-,-,-,-,take|down,"After the party, we have to take down the decorations.",practice
+3761,1,meaning,put away,片付ける,"What does ""put away"" mean?",手を貸す,片付ける,待つ,片付ける,-,-,practice
+3762,1,blank,put away,片付ける,Fill in the blank: Please ___ your toys before dinner.,put away,grow up,take off,put away,-,-,practice
+3763,1,write,put away,片付ける,"Make your own sentence with ""put away"". 「put away」を使って文を作ろう。",-,-,-,-,away|put,Please put away your toys before dinner.,practice
+3764,1,meaning,throw away,捨てる,"What does ""throw away"" mean?",用事を済ませる,捨てる,幸運を祈る,捨てる,-,-,practice
+3765,1,blank,throw away,捨てる,Fill in the blank: Don't ___ that box. I need it.,keep my fingers crossed,throw away,waste time,throw away,-,-,practice
+3766,1,write,throw away,捨てる,"Make your own sentence with ""throw away"". 「throw away」を使って文を作ろう。",-,-,-,-,throw|away,Don't throw away that box. I need it.,practice
+3767,2,meaning,wait for,待つ,"What does ""wait for"" mean?",やっぱり・考え直して,暗記して,待つ,待つ,-,-,practice
+3768,2,blank,wait for,待つ,Fill in the blank: I'll ___ you at the station.,look up,sign up,wait for,wait for,-,-,practice
+3769,2,write,wait for,待つ,"Make your own sentence with ""wait for"". 「wait for」を使って文を作ろう。",-,-,-,-,wait|for,I'll wait for you at the station.,practice
+3770,2,meaning,put off,延期する,"What does ""put off"" mean?",幸運を祈る,延期する,時間を無駄にする,延期する,-,-,practice
+3771,2,blank,put off,延期する,"Fill in the blank: It's raining, so let's ___ the picnic until Sunday.",look up,keep in mind,put off,put off,-,-,practice
+3772,2,write,put off,延期する,"Make your own sentence with ""put off"". 「put off」を使って文を作ろう。",-,-,-,-,put|off,"It's raining, so let's put off the picnic until Sunday.",practice
+3773,2,meaning,get sick,病気になる,"What does ""get sick"" mean?",延期する,調べる,病気になる,病気になる,-,-,practice
+3774,2,blank,get sick,病気になる,"Fill in the blank: Wash your hands, or you might ___.",get along with,get sick,be out of this world,get sick,-,-,practice
+3775,2,write,get sick,病気になる,"Make your own sentence with ""get sick"". 「get sick」を使って文を作ろう。",-,-,-,-,sick|get,"Wash your hands, or you might get sick.",practice
+3776,2,meaning,get well,元気になる,"What does ""get well"" mean?",知る・わかる,切らす・なくなる,元気になる,元気になる,-,-,practice
+3777,2,blank,get well,元気になる,Fill in the blank: I hope you ___ soon.,take care of,work out,get well,get well,-,-,practice
+3778,2,write,get well,元気になる,"Make your own sentence with ""get well"". 「get well」を使って文を作ろう。",-,-,-,-,well|get,I hope you get well soon.,practice
+3779,2,meaning,get lost,迷う,"What does ""get lost"" mean?",気をつける,起きる,迷う,迷う,-,-,practice
+3780,2,blank,get lost,迷う,"Fill in the blank: Take a map, so you don't ___.",get lost,get the hang of,play it by ear,get lost,-,-,practice
+3781,2,write,get lost,迷う,"Make your own sentence with ""get lost"". 「get lost」を使って文を作ろう。",-,-,-,-,lost|get,"Take a map, so you don't get lost.",practice
+3782,2,meaning,catch a cold,風邪をひく,"What does ""catch a cold"" mean?",注意を払う,風邪をひく,甘いものが好き,風邪をひく,-,-,practice
+3783,2,blank,catch a cold,風邪をひく,"Fill in the blank: Wear a jacket, or you'll ___.",take down,catch a cold,pick me up,catch a cold,-,-,practice
+3784,2,write,catch a cold,風邪をひく,"Make your own sentence with ""catch a cold"". 「catch a cold」を使って文を作ろう。",-,-,-,-,catch|cold,"Wear a jacket, or you'll catch a cold.",practice
+3785,2,meaning,stay in,家にいる,"What does ""stay in"" mean?",うんざりする,耳が遠い,家にいる,家にいる,-,-,practice
+3786,2,blank,stay in,家にいる,"Fill in the blank: It's raining, so I'll ___ tonight.",fall off,look at,stay in,stay in,-,-,practice
+3787,2,write,stay in,家にいる,"Make your own sentence with ""stay in"". 「stay in」を使って文を作ろう。",-,-,-,-,stay|in,"It's raining, so I'll stay in tonight.",practice
+3788,2,meaning,stay out,外にいる・帰りが遅い,"What does ""stay out"" mean?",やっぱり・考え直して,続ける,外にいる・帰りが遅い,外にいる・帰りが遅い,-,-,practice
+3789,2,blank,stay out,外にいる・帰りが遅い,Fill in the blank: Don't ___ too late. Come home by ten.,stay out,play it by ear,hurry up,stay out,-,-,practice
+3790,2,write,stay out,外にいる・帰りが遅い,"Make your own sentence with ""stay out"". 「stay out」を使って文を作ろう。",-,-,-,-,stay|out,Don't stay out too late. Come home by ten.,practice
+3791,2,meaning,fall behind,遅れる,"What does ""fall behind"" mean?",目の前で,車で迎えに行く,遅れる,遅れる,-,-,practice
+3792,2,blank,fall behind,遅れる,"Fill in the blank: If you miss class, you'll ___.",keep an eye on,keep my fingers crossed,fall behind,fall behind,-,-,practice
+3793,2,write,fall behind,遅れる,"Make your own sentence with ""fall behind"". 「fall behind」を使って文を作ろう。",-,-,-,-,behind|fall,"If you miss class, you'll fall behind.",practice
+3794,2,meaning,fall off,落ちる,"What does ""fall off"" mean?",落ちる,似ている,朝飯前・簡単,落ちる,-,-,practice
+3795,2,blank,fall off,落ちる,Fill in the blank: Be careful! Don't ___ the ladder.,fall off,get the hang of,break the ice,fall off,-,-,practice
+3796,2,write,fall off,落ちる,"Make your own sentence with ""fall off"". 「fall off」を使って文を作ろう。",-,-,-,-,fall|off,Be careful! Don't fall off the ladder.,practice
+3797,3,meaning,dress up,着飾る,"What does ""dress up"" mean?",時々,スピードを落とす,着飾る,着飾る,-,-,practice
+3798,3,blank,dress up,着飾る,Fill in the blank: We need to ___ for the wedding.,dress up,do me a favor,break the ice,dress up,-,-,practice
+3799,3,write,dress up,着飾る,"Make your own sentence with ""dress up"". 「dress up」を使って文を作ろう。",-,-,-,-,dress|up,We need to dress up for the wedding.,practice
+3800,3,meaning,slow down,スピードを落とす,"What does ""slow down"" mean?",外にいる・帰りが遅い,ぱっと思いつくのは,スピードを落とす,スピードを落とす,-,-,practice
+3801,3,blank,slow down,スピードを落とす,Fill in the blank: Please ___. You're driving too fast.,grow up,slow down,look up,slow down,-,-,practice
+3802,3,write,slow down,スピードを落とす,"Make your own sentence with ""slow down"". 「slow down」を使って文を作ろう。",-,-,-,-,slow|down,Please slow down. You're driving too fast.,practice
+3803,3,meaning,wake up,起きる,"What does ""wake up"" mean?",起きる,一晩考える,喉まで出かかって,起きる,-,-,practice
+3804,3,blank,wake up,起きる,Fill in the blank: I ___ at six every morning.,wake up,check out,have cold feet,wake up,-,-,practice
+3805,3,write,wake up,起きる,"Make your own sentence with ""wake up"". 「wake up」を使って文を作ろう。",-,-,-,-,wake|up,I wake up at six every morning.,practice
+3806,3,meaning,drop in,立ち寄る,"What does ""drop in"" mean?",突然,立ち寄る,風邪をひく,立ち寄る,-,-,practice
+3807,3,blank,drop in,立ち寄る,"Fill in the blank: If you're near my house, please ___ for tea.",be out of this world,drop in,waste time,drop in,-,-,practice
+3808,3,write,drop in,立ち寄る,"Make your own sentence with ""drop in"". 「drop in」を使って文を作ろう。",-,-,-,-,drop|in,"If you're near my house, please drop in for tea.",practice
+3809,3,meaning,see someone off,見送る,"What does ""see someone off"" mean?",見送る,現れる・来る,立ち寄る,見送る,-,-,practice
+3810,3,blank,see someone off,見送る,Fill in the blank: I went to the airport to ___.,see my friend off,run out of,look at,see my friend off,-,-,practice
+3811,3,write,see someone off,見送る,"Make your own sentence with ""see someone off"". 「see someone off」を使って文を作ろう。",-,-,-,-,see|off,I went to the airport to see my friend off.,practice
+3812,3,meaning,look forward to,楽しみにする,"What does ""look forward to"" mean?",厄介なもの・人,臨機応変にやる,楽しみにする,楽しみにする,-,-,practice
+3813,3,blank,look forward to,楽しみにする,Fill in the blank: I ___ seeing you next week.,look forward to,hang out,wait for,look forward to,-,-,practice
+3814,3,write,look forward to,楽しみにする,"Make your own sentence with ""look forward to"". 「look forward to」を使って文を作ろう。",-,-,-,-,forward|look,I look forward to seeing you next week.,practice
+3815,3,meaning,look into,調査する,"What does ""look into"" mean?",調査する,着飾る,外にいる・帰りが遅い,調査する,-,-,practice
+3816,3,blank,look into,調査する,Fill in the blank: The police will ___ the problem.,look into,hit the road,see me off,look into,-,-,practice
+3817,3,write,look into,調査する,"Make your own sentence with ""look into"". 「look into」を使って文を作ろう。",-,-,-,-,look|into,The police will look into the problem.,practice
+3818,3,meaning,take off,脱ぐ・離陸する,"What does ""take off"" mean?",友達になる,脱ぐ・離陸する,注意を払う,脱ぐ・離陸する,-,-,practice
+3819,3,blank,take off,脱ぐ・離陸する,Fill in the blank: Please ___ your shoes in the house.,take off,give me a hand,figure out,take off,-,-,practice
+3820,3,write,take off,脱ぐ・離陸する,"Make your own sentence with ""take off"". 「take off」を使って文を作ろう。",-,-,-,-,take|off,Please take off your shoes in the house.,practice
+3821,3,meaning,go wrong,うまくいかない,"What does ""go wrong"" mean?",ゆっくりやる,うまくいかない,片付ける,うまくいかない,-,-,practice
+3822,3,blank,go wrong,うまくいかない,Fill in the blank: Call me if something ___.,keeps an eye on,goes wrong,gets carried away,goes wrong,-,-,practice
+3823,3,write,go wrong,うまくいかない,"Make your own sentence with ""go wrong"". 「go wrong」を使って文を作ろう。",-,-,-,-,wrong|go,Call me if something goes wrong.,practice
+3824,3,meaning,get rid of,処分する,"What does ""get rid of"" mean?",ちょっと待つ,処分する,戻る,処分する,-,-,practice
+3825,3,blank,get rid of,処分する,Fill in the blank: I want to ___ my old sofa.,show up,be scared silly,get rid of,get rid of,-,-,practice
+3826,3,write,get rid of,処分する,"Make your own sentence with ""get rid of"". 「get rid of」を使って文を作ろう。",-,-,-,-,get|rid,I want to get rid of my old sofa.,practice
+3827,4,meaning,go over,見直す・復習する,"What does ""go over"" mean?",見直す・復習する,理解する・解決する,時間を忘れる,見直す・復習する,-,-,practice
+3828,4,blank,go over,見直す・復習する,Fill in the blank: Let's ___ the answers together.,keep my chin up,go over,hang out,go over,-,-,practice
+3829,4,write,go over,見直す・復習する,"Make your own sentence with ""go over"". 「go over」を使って文を作ろう。",-,-,-,-,over|go,Let's go over the answers together.,practice
+3830,4,meaning,put on weight,太る,"What does ""put on weight"" mean?",調子に乗る,太る,遊ぶ・ぶらぶらする,太る,-,-,practice
+3831,4,blank,put on weight,太る,Fill in the blank: I always ___ in winter.,lose track of time,figure out,put on weight,put on weight,-,-,practice
+3832,4,write,put on weight,太る,"Make your own sentence with ""put on weight"". 「put on weight」を使って文を作ろう。",-,-,-,-,weight|put,I always put on weight in winter.,practice
+3833,4,meaning,run errands,用事を済ませる,"What does ""run errands"" mean?",時間通りに,ちょっと待つ,用事を済ませる,用事を済ませる,-,-,practice
+3834,4,blank,run errands,用事を済ませる,"Fill in the blank: I have to ___ after work: the bank, the post office and the supermarket.",look alike,take care of,run errands,run errands,-,-,practice
+3835,4,write,run errands,用事を済ませる,"Make your own sentence with ""run errands"". 「run errands」を使って文を作ろう。",-,-,-,-,errands|run,"I have to run errands after work: the bank, the post office and the supermarket.",practice
+3836,4,meaning,shake hands,握手する,"What does ""shake hands"" mean?",見送る,家にいる,握手する,握手する,-,-,practice
+3837,4,blank,shake hands,握手する,"Fill in the blank: In business, people often ___ when they meet.",shake hands,have a sweet tooth,come up with,shake hands,-,-,practice
+3838,4,write,shake hands,握手する,"Make your own sentence with ""shake hands"". 「shake hands」を使って文を作ろう。",-,-,-,-,shake|hands,"In business, people often shake hands when they meet.",practice
+3839,4,meaning,give someone a hand,手を貸す,"What does ""give someone a hand"" mean?",すぐに,手を貸す,うんざりする,手を貸す,-,-,practice
+3840,4,blank,give someone a hand,手を貸す,Fill in the blank: This box is heavy. Can you ___?,give me a hand,sleep on it,fill out,give me a hand,-,-,practice
+3841,4,write,give someone a hand,手を貸す,"Make your own sentence with ""give someone a hand"". 「give someone a hand」を使って文を作ろう。",-,-,-,-,give|hand,This box is heavy. Can you give me a hand?,practice
+3842,4,meaning,make friends,友達になる,"What does ""make friends"" mean?",恋に落ちる,見送る,友達になる,友達になる,-,-,practice
+3843,4,blank,make friends,友達になる,Fill in the blank: It's easy to ___ at our school events.,be fed up with,try on,make friends,make friends,-,-,practice
+3844,4,write,make friends,友達になる,"Make your own sentence with ""make friends"". 「make friends」を使って文を作ろう。",-,-,-,-,friends|make,It's easy to make friends at our school events.,practice
+3845,4,meaning,fall in love,恋に落ちる,"What does ""fall in love"" mean?",また今度,ひどく怖がる,恋に落ちる,恋に落ちる,-,-,practice
+3846,4,blank,fall in love,恋に落ちる,Fill in the blank: They met in Kyoto and ___.,woke up,got sick,fell in love,fell in love,-,-,practice
+3847,4,write,fall in love,恋に落ちる,"Make your own sentence with ""fall in love"". 「fall in love」を使って文を作ろう。",-,-,-,-,fall|love,They met in Kyoto and fell in love.,practice
+3848,4,meaning,get together,集まる,"What does ""get together"" mean?",集まる,出発する,外にいる・帰りが遅い,集まる,-,-,practice
+3849,4,blank,get together,集まる,Fill in the blank: Let's ___ for dinner on Friday.,get together,get carried away,do me a favor,get together,-,-,practice
+3850,4,write,get together,集まる,"Make your own sentence with ""get together"". 「get together」を使って文を作ろう。",-,-,-,-,together|get,Let's get together for dinner on Friday.,practice
+3851,4,meaning,get along with,仲良くやる,"What does ""get along with"" mean?",元気になる,仲良くやる,時々,仲良くやる,-,-,practice
+3852,4,blank,get along with,仲良くやる,Fill in the blank: I ___ my coworkers very well.,get along with,get sick,break the ice,get along with,-,-,practice
+3853,4,write,get along with,仲良くやる,"Make your own sentence with ""get along with"". 「get along with」を使って文を作ろう。",-,-,-,-,along|with,I get along with my coworkers very well.,practice
+3854,4,meaning,cheer up,元気づける・元気を出す,"What does ""cheer up"" mean?",起きる,取り外す,元気づける・元気を出す,元気づける・元気を出す,-,-,practice
+3855,4,blank,cheer up,元気づける・元気を出す,Fill in the blank: ___! Tomorrow will be a better day.,Hurry up,Cheer up,Slow down,Cheer up,-,-,practice
+3856,4,write,cheer up,元気づける・元気を出す,"Make your own sentence with ""cheer up"". 「cheer up」を使って文を作ろう。",-,-,-,-,cheer|up,Cheer up! Tomorrow will be a better day.,practice
+3857,5,meaning,feel sorry for,かわいそうに思う,"What does ""feel sorry for"" mean?",ゆっくりやる,延期する,かわいそうに思う,かわいそうに思う,-,-,practice
+3858,5,blank,feel sorry for,かわいそうに思う,Fill in the blank: I ___ him. He lost his job.,feel sorry for,take down,take out,feel sorry for,-,-,practice
+3859,5,write,feel sorry for,かわいそうに思う,"Make your own sentence with ""feel sorry for"". 「feel sorry for」を使って文を作ろう。",-,-,-,-,sorry|feel,I feel sorry for him. He lost his job.,practice
+3860,5,meaning,under the weather,体調が悪い,"What does ""under the weather"" mean?",体調が悪い,裏返しに,浮き沈み,体調が悪い,-,-,practice
+3861,5,blank,under the weather,体調が悪い,Fill in the blank: I can't come to class today. I'm feeling ___.,under the weather,ups and downs,face to face,under the weather,-,-,practice
+3862,5,write,under the weather,体調が悪い,"Make your own sentence with ""under the weather"". 「under the weather」を使って文を作ろう。",-,-,-,-,weather|under,I can't come to class today. I'm feeling under the weather.,practice
+3863,5,meaning,take it easy,無理しない・のんびりする,"What does ""take it easy"" mean?",無理しない・のんびりする,ところで,急ぐ,無理しない・のんびりする,-,-,practice
+3864,5,blank,take it easy,無理しない・のんびりする,Fill in the blank: You worked hard this week. ___ this weekend.,Feel sorry for,Wake up,Take it easy,Take it easy,-,-,practice
+3865,5,write,take it easy,無理しない・のんびりする,"Make your own sentence with ""take it easy"". 「take it easy」を使って文を作ろう。",-,-,-,-,take|easy,You worked hard this week. Take it easy this weekend.,practice
+3866,5,meaning,pay attention,注意を払う,"What does ""pay attention"" mean?",注意を払う,仲良くやる,緊張をほぐす,注意を払う,-,-,practice
+3867,5,blank,pay attention,注意を払う,Fill in the blank: Please ___. This is important.,hit the road,be out of this world,pay attention,pay attention,-,-,practice
+3868,5,write,pay attention,注意を払う,"Make your own sentence with ""pay attention"". 「pay attention」を使って文を作ろう。",-,-,-,-,attention|pay,Please pay attention. This is important.,practice
+3869,5,meaning,hold on,ちょっと待つ,"What does ""hold on"" mean?",ちょっと待つ,チェックアウトする,続ける,ちょっと待つ,-,-,practice
+3870,5,blank,hold on,ちょっと待つ,Fill in the blank: ___ a minute. I'll get my bag.,Keep my fingers crossed,Look up,Hold on,Hold on,-,-,practice
+3871,5,write,hold on,ちょっと待つ,"Make your own sentence with ""hold on"". 「hold on」を使って文を作ろう。",-,-,-,-,hold|on,Hold on a minute. I'll get my bag.,practice
+3872,5,meaning,be in a hurry,急いでいる,"What does ""be in a hurry"" mean?",急いでいる,準備する・設定する,続ける,急いでいる,-,-,practice
+3873,5,blank,be in a hurry,急いでいる,"Fill in the blank: Sorry, I can't talk now. I ___.",look into,am in a hurry,go wrong,am in a hurry,-,-,practice
+3874,5,write,be in a hurry,急いでいる,"Make your own sentence with ""be in a hurry"". 「be in a hurry」を使って文を作ろう。",-,-,-,-,hurry|in,"Sorry, I can't talk now. I am in a hurry.",practice
+3875,5,meaning,inside out,裏返しに,"What does ""inside out"" mean?",裏返しに,処分する,元気づける・元気を出す,裏返しに,-,-,practice
+3876,5,blank,inside out,裏返しに,Fill in the blank: Your T-shirt is ___!,under the weather,inside out,ups and downs,inside out,-,-,practice
+3877,5,write,inside out,裏返しに,"Make your own sentence with ""inside out"". 「inside out」を使って文を作ろう。",-,-,-,-,inside|out,Your T-shirt is inside out!,practice
+3878,5,meaning,in time,間に合って,"What does ""in time"" mean?",間に合って,チェックアウトする,遅れる,間に合って,-,-,practice
+3879,5,blank,in time,間に合って,Fill in the blank: We got to the station ___ for the last train.,couch potato,in time,ups and downs,in time,-,-,practice
+3880,5,write,in time,間に合って,"Make your own sentence with ""in time"". 「in time」を使って文を作ろう。",-,-,-,-,time|in,We got to the station in time for the last train.,practice
+3881,5,meaning,take one's time,ゆっくりやる,"What does ""take one's time"" mean?",気をつける,ゆっくりやる,待つ,ゆっくりやる,-,-,practice
+3882,5,blank,take one's time,ゆっくりやる,Fill in the blank: There's no rush. ___.,Figure out,Take your time,Check in,Take your time,-,-,practice
+3883,5,write,take one's time,ゆっくりやる,"Make your own sentence with ""take one's time"". 「take one's time」を使って文を作ろう。",-,-,-,-,take|time,There's no rush. Take your time.,practice
+3884,5,meaning,kill time,時間をつぶす,"What does ""kill time"" mean?",時間をつぶす,意見が一致する,風邪をひく,時間をつぶす,-,-,practice
+3885,5,blank,kill time,時間をつぶす,Fill in the blank: I read a magazine to ___ at the airport.,put on weight,be out of this world,kill time,kill time,-,-,practice
+3886,5,write,kill time,時間をつぶす,"Make your own sentence with ""kill time"". 「kill time」を使って文を作ろう。",-,-,-,-,kill|time,I read a magazine to kill time at the airport.,practice
+3887,6,meaning,on second thought,やっぱり・考え直して,"What does ""on second thought"" mean?",臨機応変にやる,現れる・来る,やっぱり・考え直して,やっぱり・考え直して,-,-,practice
+3888,6,blank,on second thought,やっぱり・考え直して,"Fill in the blank: I'll have coffee. ___, I'll have tea.",By the way,On second thought,Ups and downs,On second thought,-,-,practice
+3889,6,write,on second thought,やっぱり・考え直して,"Make your own sentence with ""on second thought"". 「on second thought」を使って文を作ろう。",-,-,-,-,thought|second,"I'll have coffee. On second thought, I'll have tea.",practice
+3890,6,meaning,have time off,休みがある,"What does ""have time off"" mean?",太る,用事を済ませる,休みがある,休みがある,-,-,practice
+3891,6,blank,have time off,休みがある,"Fill in the blank: I ___ next week, so let's meet.",have time off,calm down,break down,have time off,-,-,practice
+3892,6,write,have time off,休みがある,"Make your own sentence with ""have time off"". 「have time off」を使って文を作ろう。",-,-,-,-,have|time,"I have time off next week, so let's meet.",practice
+3893,6,meaning,keep an eye on,見張る・気をつけて見る,"What does ""keep an eye on"" mean?",見張る・気をつけて見る,うまくいかない,見送る,見張る・気をつけて見る,-,-,practice
+3894,6,blank,keep an eye on,見張る・気をつけて見る,Fill in the blank: Can you ___ my bag for a minute?,lose track of time,keep in mind,keep an eye on,keep an eye on,-,-,practice
+3895,6,write,keep an eye on,見張る・気をつけて見る,"Make your own sentence with ""keep an eye on"". 「keep an eye on」を使って文を作ろう。",-,-,-,-,keep|eye,Can you keep an eye on my bag for a minute?,practice
+3896,6,meaning,see eye to eye,意見が一致する,"What does ""see eye to eye"" mean?",楽しみにする,意見が一致する,記入する,意見が一致する,-,-,practice
+3897,6,blank,see eye to eye,意見が一致する,Fill in the blank: My husband and I don't always ___.,fall behind,see eye to eye,take a seat,see eye to eye,-,-,practice
+3898,6,write,see eye to eye,意見が一致する,"Make your own sentence with ""see eye to eye"". 「see eye to eye」を使って文を作ろう。",-,-,-,-,see|eye,My husband and I don't always see eye to eye.,practice
+3899,6,meaning,play it by ear,臨機応変にやる,"What does ""play it by ear"" mean?",故障する,遊ぶ・ぶらぶらする,臨機応変にやる,臨機応変にやる,-,-,practice
+3900,6,blank,play it by ear,臨機応変にやる,Fill in the blank: I don't have a plan for Saturday. Let's ___.,play it by ear,keep my chin up,waste time,play it by ear,-,-,practice
+3901,6,write,play it by ear,臨機応変にやる,"Make your own sentence with ""play it by ear"". 「play it by ear」を使って文を作ろう。",-,-,-,-,play|ear,I don't have a plan for Saturday. Let's play it by ear.,practice
+3902,6,meaning,be hard of hearing,耳が遠い,"What does ""be hard of hearing"" mean?",朝飯前・簡単,理解する・解決する,耳が遠い,耳が遠い,-,-,practice
+3903,6,blank,be hard of hearing,耳が遠い,Fill in the blank: Please speak loudly. My grandfather ___.,is hard of hearing,grows up,sleeps on it,is hard of hearing,-,-,practice
+3904,6,write,be hard of hearing,耳が遠い,"Make your own sentence with ""be hard of hearing"". 「be hard of hearing」を使って文を作ろう。",-,-,-,-,hearing|hard,Please speak loudly. My grandfather is hard of hearing.,practice
+3905,6,meaning,off the top of one's head,ぱっと思いつくのは,"What does ""off the top of one's head"" mean?",ぱっと思いつくのは,待つ,耳が遠い,ぱっと思いつくのは,-,-,practice
+3906,6,blank,off the top of one's head,ぱっと思いつくのは,"Fill in the blank: I don't know the exact number, but ___, about fifty.",out of order,right off the bat,off the top of my head,off the top of my head,-,-,practice
+3907,6,write,off the top of one's head,ぱっと思いつくのは,"Make your own sentence with ""off the top of one's head"". 「off the top of one's head」を使って文を作ろう。",-,-,-,-,head|off,"I don't know the exact number, but off the top of my head, about fifty.",practice
+3908,6,meaning,under one's nose,目の前で,"What does ""under one's nose"" mean?",臨機応変にやる,目の前で,起きる,目の前で,-,-,practice
+3909,6,blank,under one's nose,目の前で,"Fill in the blank: I looked everywhere for my keys, and they were right ___.",by the way,no big deal,under my nose,under my nose,-,-,practice
+3910,6,write,under one's nose,目の前で,"Make your own sentence with ""under one's nose"". 「under one's nose」を使って文を作ろう。",-,-,-,-,under|nose,"I looked everywhere for my keys, and they were right under my nose.",practice
+3911,6,meaning,a pain in the neck,厄介なもの・人,"What does ""a pain in the neck"" mean?",大したことない,気をつける,厄介なもの・人,厄介なもの・人,-,-,practice
+3912,6,blank,a pain in the neck,厄介なもの・人,Fill in the blank: This traffic is ___.,rain check,a pain in the neck,face to face,a pain in the neck,-,-,practice
+3913,6,write,a pain in the neck,厄介なもの・人,"Make your own sentence with ""a pain in the neck"". 「a pain in the neck」を使って文を作ろう。",-,-,-,-,pain|neck,This traffic is a pain in the neck.,practice
+3914,6,meaning,on the tip of one's tongue,喉まで出かかって,"What does ""on the tip of one's tongue"" mean?",太る,喉まで出かかって,調べる,喉まで出かかって,-,-,practice
+3915,6,blank,on the tip of one's tongue,喉まで出かかって,Fill in the blank: What's his name? It's ___.,on time,on the tip of my tongue,by the way,on the tip of my tongue,-,-,practice
+3916,6,write,on the tip of one's tongue,喉まで出かかって,"Make your own sentence with ""on the tip of one's tongue"". 「on the tip of one's tongue」を使って文を作ろう。",-,-,-,-,tongue|tip,What's his name? It's on the tip of my tongue.,practice
+3917,7,meaning,pull someone's leg,からかう,"What does ""pull someone's leg"" mean?",からかう,世話をする,はっきりさせる,からかう,-,-,practice
+3918,7,blank,pull someone's leg,からかう,"Fill in the blank: Don't worry, I'm just ___.",looking at,pulling your leg,being fed up with,pulling your leg,-,-,practice
+3919,7,write,pull someone's leg,からかう,"Make your own sentence with ""pull someone's leg"". 「pull someone's leg」を使って文を作ろう。",-,-,-,-,pull|leg,"Don't worry, I'm just pulling your leg.",practice
+3920,7,meaning,beat around the bush,遠回しに言う,"What does ""beat around the bush"" mean?",遠回しに言う,取り外す,やっぱり・考え直して,遠回しに言う,-,-,practice
+3921,7,blank,beat around the bush,遠回しに言う,Fill in the blank: Don't ___. Just tell me.,stay out,beat around the bush,be fed up with,beat around the bush,-,-,practice
+3922,7,write,beat around the bush,遠回しに言う,"Make your own sentence with ""beat around the bush"". 「beat around the bush」を使って文を作ろう。",-,-,-,-,around|beat,Don't beat around the bush. Just tell me.,practice
+3923,7,meaning,get carried away,調子に乗る,"What does ""get carried away"" mean?",調子に乗る,怖じ気づく,遠回しに言う,調子に乗る,-,-,practice
+3924,7,blank,get carried away,調子に乗る,Fill in the blank: I ___ and bought ten T-shirts.,had cold feet,got carried away,looked forward to,got carried away,-,-,practice
+3925,7,write,get carried away,調子に乗る,"Make your own sentence with ""get carried away"". 「get carried away」を使って文を作ろう。",-,-,-,-,carried|away,I got carried away and bought ten T-shirts.,practice
+3926,7,meaning,be out of this world,最高だ,"What does ""be out of this world"" mean?",理解する・解決する,世話をする,最高だ,最高だ,-,-,practice
+3927,7,blank,be out of this world,最高だ,Fill in the blank: This ramen ___!,looks at,picks me up,is out of this world,is out of this world,-,-,practice
+3928,7,write,be out of this world,最高だ,"Make your own sentence with ""be out of this world"". 「be out of this world」を使って文を作ろう。",-,-,-,-,world|this,This ramen is out of this world!,practice
+3929,7,meaning,keep one's chin up,元気を出す,"What does ""keep one's chin up"" mean?",連絡を取り合って,元気を出す,怖じ気づく,元気を出す,-,-,practice
+3930,7,blank,keep one's chin up,元気を出す,Fill in the blank: ___. You'll pass next time.,Look out,Look alike,Keep your chin up,Keep your chin up,-,-,practice
+3931,7,write,keep one's chin up,元気を出す,"Make your own sentence with ""keep one's chin up"". 「keep one's chin up」を使って文を作ろう。",-,-,-,-,keep|chin,Keep your chin up. You'll pass next time.,practice
+3932,7,meaning,have cold feet,怖じ気づく,"What does ""have cold feet"" mean?",すぐに,太る,怖じ気づく,怖じ気づく,-,-,practice
+3933,7,blank,have cold feet,怖じ気づく,"Fill in the blank: He wanted to sing, but he ___.",ran errands,lost track of time,had cold feet,had cold feet,-,-,practice
+3934,7,write,have cold feet,怖じ気づく,"Make your own sentence with ""have cold feet"". 「have cold feet」を使って文を作ろう。",-,-,-,-,have|cold,"He wanted to sing, but he had cold feet.",practice
+3935,7,meaning,be scared silly,ひどく怖がる,"What does ""be scared silly"" mean?",からかう,目の前で,ひどく怖がる,ひどく怖がる,-,-,practice
+3936,7,blank,be scared silly,ひどく怖がる,Fill in the blank: I ___ at the haunted house.,was scared silly,had time off,ran out of,was scared silly,-,-,practice
+3937,7,write,be scared silly,ひどく怖がる,"Make your own sentence with ""be scared silly"". 「be scared silly」を使って文を作ろう。",-,-,-,-,scared|silly,I was scared silly at the haunted house.,practice
+3938,7,meaning,keep one's fingers crossed,幸運を祈る,"What does ""keep one's fingers crossed"" mean?",外にいる・帰りが遅い,幸運を祈る,脱ぐ・離陸する,幸運を祈る,-,-,practice
+3939,7,blank,keep one's fingers crossed,幸運を祈る,Fill in the blank: Good luck on your test! I'll ___.,pull my leg,keep my fingers crossed,fall off,keep my fingers crossed,-,-,practice
+3940,7,write,keep one's fingers crossed,幸運を祈る,"Make your own sentence with ""keep one's fingers crossed"". 「keep one's fingers crossed」を使って文を作ろう。",-,-,-,-,fingers|crossed,Good luck on your test! I'll keep my fingers crossed.,practice
+3941,7,meaning,in touch with,連絡を取り合って,"What does ""in touch with"" mean?",連絡を取り合って,かわいそうに思う,調子に乗る,連絡を取り合って,-,-,practice
+3942,7,blank,in touch with,連絡を取り合って,Fill in the blank: I'm still ___ my high school friends.,all of a sudden,in touch with,once in a while,in touch with,-,-,practice
+3943,7,write,in touch with,連絡を取り合って,"Make your own sentence with ""in touch with"". 「in touch with」を使って文を作ろう。",-,-,-,-,touch|with,I'm still in touch with my high school friends.,practice
+3944,7,meaning,make oneself at home,くつろぐ,"What does ""make oneself at home"" mean?",頼みを聞く,耳が遠い,くつろぐ,くつろぐ,-,-,practice
+3945,7,blank,make oneself at home,くつろぐ,Fill in the blank: Come in and ___.,make yourself at home,take it easy,put away,make yourself at home,-,-,practice
+3946,7,write,make oneself at home,くつろぐ,"Make your own sentence with ""make oneself at home"". 「make oneself at home」を使って文を作ろう。",-,-,-,-,make|home,Come in and make yourself at home.,practice
+3947,8,meaning,make it clear,はっきりさせる,"What does ""make it clear"" mean?",外食する,はっきりさせる,楽しみにする,はっきりさせる,-,-,practice
+3948,8,blank,make it clear,はっきりさせる,Fill in the blank: The teacher ___: no phones in class.,got the hang of,did me a favor,made it clear,made it clear,-,-,practice
+3949,8,write,make it clear,はっきりさせる,"Make your own sentence with ""make it clear"". 「make it clear」を使って文を作ろう。",-,-,-,-,clear|make,The teacher made it clear: no phones in class.,practice
+3950,8,meaning,right off the bat,いきなり・すぐさま,"What does ""right off the bat"" mean?",外にいる・帰りが遅い,いきなり・すぐさま,散歩する,いきなり・すぐさま,-,-,practice
+3951,8,blank,right off the bat,いきなり・すぐさま,Fill in the blank: She answered ___.,out of order,on second thought,right off the bat,right off the bat,-,-,practice
+3952,8,write,right off the bat,いきなり・すぐさま,"Make your own sentence with ""right off the bat"". 「right off the bat」を使って文を作ろう。",-,-,-,-,right|off,She answered right off the bat.,practice
+3953,8,meaning,find out,知る・わかる,"What does ""find out"" mean?",知る・わかる,見送る,気をつける,知る・わかる,-,-,practice
+3954,8,blank,find out,知る・わかる,Fill in the blank: I want to ___ the train times.,dress up,find out,waste time,find out,-,-,practice
+3955,8,write,find out,知る・わかる,"Make your own sentence with ""find out"". 「find out」を使って文を作ろう。",-,-,-,-,find|out,I want to find out the train times.,practice
+3956,8,meaning,give up,あきらめる,"What does ""give up"" mean?",からかう,最高だ,あきらめる,あきらめる,-,-,practice
+3957,8,blank,give up,あきらめる,Fill in the blank: Don't ___! You can do it.,be out of this world,make it clear,give up,give up,-,-,practice
+3958,8,write,give up,あきらめる,"Make your own sentence with ""give up"". 「give up」を使って文を作ろう。",-,-,-,-,give|up,Don't give up! You can do it.,practice
+3959,8,meaning,pick someone up,車で迎えに行く,"What does ""pick someone up"" mean?",家にいる,車で迎えに行く,意見が一致する,車で迎えに行く,-,-,practice
+3960,8,blank,pick someone up,車で迎えに行く,Fill in the blank: I'll ___ at the station at seven.,pick you up,set up,look up,pick you up,-,-,practice
+3961,8,write,pick someone up,車で迎えに行く,"Make your own sentence with ""pick someone up"". 「pick someone up」を使って文を作ろう。",-,-,-,-,pick|up,I'll pick you up at the station at seven.,practice
+3962,8,meaning,hang out,遊ぶ・ぶらぶらする,"What does ""hang out"" mean?",太る,遊ぶ・ぶらぶらする,注意を払う,遊ぶ・ぶらぶらする,-,-,practice
+3963,8,blank,hang out,遊ぶ・ぶらぶらする,"Fill in the blank: On weekends, I ___ with my friends.",calm down,play it by ear,hang out,hang out,-,-,practice
+3964,8,write,hang out,遊ぶ・ぶらぶらする,"Make your own sentence with ""hang out"". 「hang out」を使って文を作ろう。",-,-,-,-,hang|out,"On weekends, I hang out with my friends.",practice
+3965,8,meaning,figure out,理解する・解決する,"What does ""figure out"" mean?",思いつく,世話をする,理解する・解決する,理解する・解決する,-,-,practice
+3966,8,blank,figure out,理解する・解決する,Fill in the blank: I can't ___ this math problem.,figure out,fall off,slow down,figure out,-,-,practice
+3967,8,write,figure out,理解する・解決する,"Make your own sentence with ""figure out"". 「figure out」を使って文を作ろう。",-,-,-,-,figure|out,I can't figure out this math problem.,practice
+3968,8,meaning,run out of,切らす・なくなる,"What does ""run out of"" mean?",直接・対面で,切らす・なくなる,運動する,切らす・なくなる,-,-,practice
+3969,8,blank,run out of,切らす・なくなる,Fill in the blank: We ___ milk. Can you buy some?,ran out of,caught a cold,stayed in,ran out of,-,-,practice
+3970,8,write,run out of,切らす・なくなる,"Make your own sentence with ""run out of"". 「run out of」を使って文を作ろう。",-,-,-,-,run|out,We ran out of milk. Can you buy some?,practice
+3971,8,meaning,come back,戻る,"What does ""come back"" mean?",戻る,スピードを落とす,調べる,戻る,-,-,practice
+3972,8,blank,come back,戻る,Fill in the blank: Please ___ by five o'clock.,come back,figure out,sleep on it,come back,-,-,practice
+3973,8,write,come back,戻る,"Make your own sentence with ""come back"". 「come back」を使って文を作ろう。",-,-,-,-,come|back,Please come back by five o'clock.,practice
+3974,8,meaning,check in,チェックインする,"What does ""check in"" mean?",切らす・なくなる,故障する,チェックインする,チェックインする,-,-,practice
+3975,8,blank,check in,チェックインする,Fill in the blank: We can ___ at the hotel at 3 p.m.,get together,check in,put off,check in,-,-,practice
+3976,8,write,check in,チェックインする,"Make your own sentence with ""check in"". 「check in」を使って文を作ろう。",-,-,-,-,check|in,We can check in at the hotel at 3 p.m.,practice
+3977,9,meaning,check out,チェックアウトする,"What does ""check out"" mean?",外にいる・帰りが遅い,チェックアウトする,取り外す,チェックアウトする,-,-,practice
+3978,9,blank,check out,チェックアウトする,Fill in the blank: We have to ___ of the hotel by 10 a.m.,waste time,check out,do me a favor,check out,-,-,practice
+3979,9,write,check out,チェックアウトする,"Make your own sentence with ""check out"". 「check out」を使って文を作ろう。",-,-,-,-,check|out,We have to check out of the hotel by 10 a.m.,practice
+3980,9,meaning,fill out,記入する,"What does ""fill out"" mean?",記入する,覚えておく,育つ,記入する,-,-,practice
+3981,9,blank,fill out,記入する,Fill in the blank: Please ___ this form.,look at,speak up,fill out,fill out,-,-,practice
+3982,9,write,fill out,記入する,"Make your own sentence with ""fill out"". 「fill out」を使って文を作ろう。",-,-,-,-,fill|out,Please fill out this form.,practice
+3983,9,meaning,go on,続ける,"What does ""go on"" mean?",続ける,友達になる,喉まで出かかって,続ける,-,-,practice
+3984,9,blank,go on,続ける,"Fill in the blank: Sorry, I stopped you. Please ___.",go on,hang out,beat around the bush,go on,-,-,practice
+3985,9,write,go on,続ける,"Make your own sentence with ""go on"". 「go on」を使って文を作ろう。",-,-,-,-,go|on,"Sorry, I stopped you. Please go on.",practice
+3986,9,meaning,call back,折り返し電話する,"What does ""call back"" mean?",折り返し電話する,コツをつかむ,調子に乗る,折り返し電話する,-,-,practice
+3987,9,blank,call back,折り返し電話する,Fill in the blank: I'm busy now. Can I ___ later?,change my mind,shake hands,call back,call back,-,-,practice
+3988,9,write,call back,折り返し電話する,"Make your own sentence with ""call back"". 「call back」を使って文を作ろう。",-,-,-,-,call|back,I'm busy now. Can I call back later?,practice
+3989,9,meaning,grow up,育つ,"What does ""grow up"" mean?",怖じ気づく,調子に乗る,育つ,育つ,-,-,practice
+3990,9,blank,grow up,育つ,Fill in the blank: I ___ in Osaka.,ran errands,made up my mind,grew up,grew up,-,-,practice
+3991,9,write,grow up,育つ,"Make your own sentence with ""grow up"". 「grow up」を使って文を作ろう。",-,-,-,-,grow|up,I grew up in Osaka.,practice
+3992,9,meaning,show up,現れる・来る,"What does ""show up"" mean?",現れる・来る,目の前で,最高だ,現れる・来る,-,-,practice
+3993,9,blank,show up,現れる・来る,"Fill in the blank: The party started at seven, but Ken didn't ___ until nine.",show up,get sick,be fed up with,show up,-,-,practice
+3994,9,write,show up,現れる・来る,"Make your own sentence with ""show up"". 「show up」を使って文を作ろう。",-,-,-,-,show|up,"The party started at seven, but Ken didn't show up until nine.",practice
+3995,9,meaning,calm down,落ち着く,"What does ""calm down"" mean?",うんざりする,落ち着く,見張る・気をつけて見る,落ち着く,-,-,practice
+3996,9,blank,calm down,落ち着く,Fill in the blank: ___. Everything is OK.,Keep an eye on,Kill time,Calm down,Calm down,-,-,practice
+3997,9,write,calm down,落ち着く,"Make your own sentence with ""calm down"". 「calm down」を使って文を作ろう。",-,-,-,-,calm|down,Calm down. Everything is OK.,practice
+3998,9,meaning,sign up,申し込む,"What does ""sign up"" mean?",申し込む,耳が遠い,散歩する,申し込む,-,-,practice
+3999,9,blank,sign up,申し込む,Fill in the blank: I want to ___ for the English class.,sign up,waste time,look out,sign up,-,-,practice
+4000,9,write,sign up,申し込む,"Make your own sentence with ""sign up"". 「sign up」を使って文を作ろう。",-,-,-,-,sign|up,I want to sign up for the English class.,practice
+4001,9,meaning,eat out,外食する,"What does ""eat out"" mean?",運動する,外食する,注意を払う,外食する,-,-,practice
+4002,9,blank,eat out,外食する,Fill in the blank: We don't want to cook tonight. Let's ___.,pull my leg,eat out,have time off,eat out,-,-,practice
+4003,9,write,eat out,外食する,"Make your own sentence with ""eat out"". 「eat out」を使って文を作ろう。",-,-,-,-,eat|out,We don't want to cook tonight. Let's eat out.,practice
+4004,9,meaning,take care of,世話をする,"What does ""take care of"" mean?",世話をする,連絡を取り合って,処分する,世話をする,-,-,practice
+4005,9,blank,take care of,世話をする,Fill in the blank: Can you ___ my cat this weekend?,get rid of,take care of,run errands,take care of,-,-,practice
+4006,9,write,take care of,世話をする,"Make your own sentence with ""take care of"". 「take care of」を使って文を作ろう。",-,-,-,-,take|care,Can you take care of my cat this weekend?,practice
+4007,10,meaning,break down,故障する,"What does ""break down"" mean?",故障する,集まる,元気になる,故障する,-,-,practice
+4008,10,blank,break down,故障する,Fill in the blank: My old car might ___ on the highway.,stay out,break down,take out,break down,-,-,practice
+4009,10,write,break down,故障する,"Make your own sentence with ""break down"". 「break down」を使って文を作ろう。",-,-,-,-,break|down,My old car might break down on the highway.,practice
+4010,10,meaning,set up,準備する・設定する,"What does ""set up"" mean?",準備する・設定する,延期する,覚えておく,準備する・設定する,-,-,practice
+4011,10,blank,set up,準備する・設定する,Fill in the blank: Can you help me ___ my new phone?,hit the road,set up,look out,set up,-,-,practice
+4012,10,write,set up,準備する・設定する,"Make your own sentence with ""set up"". 「set up」を使って文を作ろう。",-,-,-,-,set|up,Can you help me set up my new phone?,practice
+4013,10,meaning,work out,運動する,"What does ""work out"" mean?",無理しない・のんびりする,延期する,運動する,運動する,-,-,practice
+4014,10,blank,work out,運動する,Fill in the blank: I ___ at the gym three times a week.,pull my leg,see eye to eye,work out,work out,-,-,practice
+4015,10,write,work out,運動する,"Make your own sentence with ""work out"". 「work out」を使って文を作ろう。",-,-,-,-,work|out,I work out at the gym three times a week.,practice
+4016,10,meaning,try on,試着する,"What does ""try on"" mean?",外食する,休みがある,試着する,試着する,-,-,practice
+4017,10,blank,try on,試着する,Fill in the blank: Can I ___ this jacket?,pay attention,try on,look out,try on,-,-,practice
+4018,10,write,try on,試着する,"Make your own sentence with ""try on"". 「try on」を使って文を作ろう。",-,-,-,-,try|on,Can I try on this jacket?,practice
+4019,10,meaning,hurry up,急ぐ,"What does ""hurry up"" mean?",うまくいかない,突然,急ぐ,急ぐ,-,-,practice
+4020,10,blank,hurry up,急ぐ,Fill in the blank: ___! The train is leaving.,Do me a favor,Hurry up,Break the ice,Hurry up,-,-,practice
+4021,10,write,hurry up,急ぐ,"Make your own sentence with ""hurry up"". 「hurry up」を使って文を作ろう。",-,-,-,-,hurry|up,Hurry up! The train is leaving.,practice
+4022,10,meaning,come up with,思いつく,"What does ""come up with"" mean?",延期する,調査する,思いつく,思いつく,-,-,practice
+4023,10,blank,come up with,思いつく,Fill in the blank: We need to ___ a name for the new cafe.,dress up,break the ice,come up with,come up with,-,-,practice
+4024,10,write,come up with,思いつく,"Make your own sentence with ""come up with"". 「come up with」を使って文を作ろう。",-,-,-,-,come|with,We need to come up with a name for the new cafe.,practice
+4025,10,meaning,a piece of cake,朝飯前・簡単,"What does ""a piece of cake"" mean?",落ちる,朝飯前・簡単,見直す・復習する,朝飯前・簡単,-,-,practice
+4026,10,blank,a piece of cake,朝飯前・簡単,Fill in the blank: The test was ___.,a piece of cake,in touch with,on second thought,a piece of cake,-,-,practice
+4027,10,write,a piece of cake,朝飯前・簡単,"Make your own sentence with ""a piece of cake"". 「a piece of cake」を使って文を作ろう。",-,-,-,-,piece|cake,The test was a piece of cake.,practice
+4028,10,meaning,hit the road,出発する,"What does ""hit the road"" mean?",試着する,家にいる,出発する,出発する,-,-,practice
+4029,10,blank,hit the road,出発する,Fill in the blank: It's late. Let's ___.,sign up,break down,hit the road,hit the road,-,-,practice
+4030,10,write,hit the road,出発する,"Make your own sentence with ""hit the road"". 「hit the road」を使って文を作ろう。",-,-,-,-,road|hit,It's late. Let's hit the road.,practice
+4031,10,meaning,on time,時間通りに,"What does ""on time"" mean?",連絡を取り合って,時間通りに,目の前で,時間通りに,-,-,practice
+4032,10,blank,on time,時間通りに,Fill in the blank: The train in Japan is always ___.,ups and downs,on time,in a minute,on time,-,-,practice
+4033,10,write,on time,時間通りに,"Make your own sentence with ""on time"". 「on time」を使って文を作ろう。",-,-,-,-,time|on,The train in Japan is always on time.,practice
+4034,10,meaning,sleep on it,一晩考える,"What does ""sleep on it"" mean?",持ち帰る・取り出す,一晩考える,切らす・なくなる,一晩考える,-,-,practice
+4035,10,blank,sleep on it,一晩考える,Fill in the blank: I'm not sure about the new job. Let me ___.,throw away,sleep on it,fall off,sleep on it,-,-,practice
+4036,10,write,sleep on it,一晩考える,"Make your own sentence with ""sleep on it"". 「sleep on it」を使って文を作ろう。",-,-,-,-,sleep|on,I'm not sure about the new job. Let me sleep on it.,practice
+4037,11,meaning,no big deal,大したことない,"What does ""no big deal"" mean?",大したことない,ゆっくりやる,コツをつかむ,大したことない,-,-,practice
+4038,11,blank,no big deal,大したことない,Fill in the blank: Don't worry about the mistake. It's ___.,no big deal,inside out,in touch with,no big deal,-,-,practice
+4039,11,write,no big deal,大したことない,"Make your own sentence with ""no big deal"". 「no big deal」を使って文を作ろう。",-,-,-,-,deal|big,Don't worry about the mistake. It's no big deal.,practice
+4040,11,meaning,by the way,ところで,"What does ""by the way"" mean?",元気づける・元気を出す,ところで,元気になる,ところで,-,-,practice
+4041,11,blank,by the way,ところで,"Fill in the blank: Nice to see you. ___, how's your mother?",In touch with,In a minute,By the way,By the way,-,-,practice
+4042,11,write,by the way,ところで,"Make your own sentence with ""by the way"". 「by the way」を使って文を作ろう。",-,-,-,-,way|by,"Nice to see you. By the way, how's your mother?",practice
+4043,11,meaning,out of order,故障中,"What does ""out of order"" mean?",故障中,時々,気をつける,故障中,-,-,practice
+4044,11,blank,out of order,故障中,"Fill in the blank: The elevator is ___, so let's take the stairs.",in time,out of order,on time,out of order,-,-,practice
+4045,11,write,out of order,故障中,"Make your own sentence with ""out of order"". 「out of order」を使って文を作ろう。",-,-,-,-,order|out,"The elevator is out of order, so let's take the stairs.",practice
+4046,11,meaning,once in a while,時々,"What does ""once in a while"" mean?",時々,戻る,握手する,時々,-,-,practice
+4047,11,blank,once in a while,時々,"Fill in the blank: I eat fast food ___, but not often.",once in a while,by the way,off the top of my head,once in a while,-,-,practice
+4048,11,write,once in a while,時々,"Make your own sentence with ""once in a while"". 「once in a while」を使って文を作ろう。",-,-,-,-,while|once,"I eat fast food once in a while, but not often.",practice
+4049,11,meaning,ups and downs,浮き沈み,"What does ""ups and downs"" mean?",手を貸す,浮き沈み,緊張をほぐす,浮き沈み,-,-,practice
+4050,11,blank,ups and downs,浮き沈み,Fill in the blank: Every job has its ___.,on second thought,in time,ups and downs,ups and downs,-,-,practice
+4051,11,write,ups and downs,浮き沈み,"Make your own sentence with ""ups and downs"". 「ups and downs」を使って文を作ろう。",-,-,-,-,downs|ups,Every job has its ups and downs.,practice
+4052,11,meaning,make up one's mind,決心する,"What does ""make up one's mind"" mean?",時間を忘れる,スピードを落とす,決心する,決心する,-,-,practice
+4053,11,blank,make up one's mind,決心する,Fill in the blank: I can't ___. The red one or the blue one?,pull my leg,hold on,make up my mind,make up my mind,-,-,practice
+4054,11,write,make up one's mind,決心する,"Make your own sentence with ""make up one's mind"". 「make up one's mind」を使って文を作ろう。",-,-,-,-,make|mind,I can't make up my mind. The red one or the blue one?,practice
+4055,11,meaning,change one's mind,気が変わる,"What does ""change one's mind"" mean?",気が変わる,故障する,楽しみにする,気が変わる,-,-,practice
+4056,11,blank,change one's mind,気が変わる,"Fill in the blank: I wanted pizza, but I ___. Let's have sushi.",changed my mind,went over,kept an eye on,changed my mind,-,-,practice
+4057,11,write,change one's mind,気が変わる,"Make your own sentence with ""change one's mind"". 「change one's mind」を使って文を作ろう。",-,-,-,-,change|mind,"I wanted pizza, but I changed my mind. Let's have sushi.",practice
+4058,11,meaning,keep in mind,覚えておく,"What does ""keep in mind"" mean?",覚えておく,立ち寄る,すぐに,覚えておく,-,-,practice
+4059,11,blank,keep in mind,覚えておく,Fill in the blank: ___ that the store closes at eight.,Keep in mind,Call back,Sign up,Keep in mind,-,-,practice
+4060,11,write,keep in mind,覚えておく,"Make your own sentence with ""keep in mind"". 「keep in mind」を使って文を作ろう。",-,-,-,-,keep|mind,Keep in mind that the store closes at eight.,practice
+4061,11,meaning,lose track of time,時間を忘れる,"What does ""lose track of time"" mean?",時間を忘れる,立ち寄る,一晩考える,時間を忘れる,-,-,practice
+4062,11,blank,lose track of time,時間を忘れる,Fill in the blank: We were talking so much that we ___.,lost track of time,ran errands,gave me a hand,lost track of time,-,-,practice
+4063,11,write,lose track of time,時間を忘れる,"Make your own sentence with ""lose track of time"". 「lose track of time」を使って文を作ろう。",-,-,-,-,track|lose,We were talking so much that we lost track of time.,practice
+4064,11,meaning,waste time,時間を無駄にする,"What does ""waste time"" mean?",ひどく怖がる,手を貸す,時間を無駄にする,時間を無駄にする,-,-,practice
+4065,11,blank,waste time,時間を無駄にする,Fill in the blank: Don't ___ on your phone. Study!,be hard of hearing,sign up,waste time,waste time,-,-,practice
+4066,11,write,waste time,時間を無駄にする,"Make your own sentence with ""waste time"". 「waste time」を使って文を作ろう。",-,-,-,-,waste|time,Don't waste time on your phone. Study!,practice
+4067,12,meaning,in a minute,もうすぐ・すぐに,"What does ""in a minute"" mean?",緊張をほぐす,持ち帰る・取り出す,もうすぐ・すぐに,もうすぐ・すぐに,-,-,practice
+4068,12,blank,in a minute,もうすぐ・すぐに,"Fill in the blank: Wait, please. I'll be there ___.",face to face,under the weather,in a minute,in a minute,-,-,practice
+4069,12,write,in a minute,もうすぐ・すぐに,"Make your own sentence with ""in a minute"". 「in a minute」を使って文を作ろう。",-,-,-,-,minute|in,"Wait, please. I'll be there in a minute.",practice
+4070,12,meaning,all of a sudden,突然,"What does ""all of a sudden"" mean?",突然,頼みを聞く,見張る・気をつけて見る,突然,-,-,practice
+4071,12,blank,all of a sudden,突然,"Fill in the blank: We were walking, and ___ it started to rain.",all of a sudden,once in a while,off the top of my head,all of a sudden,-,-,practice
+4072,12,write,all of a sudden,突然,"Make your own sentence with ""all of a sudden"". 「all of a sudden」を使って文を作ろう。",-,-,-,-,sudden|all,"We were walking, and all of a sudden it started to rain.",practice
+4073,12,meaning,get the hang of,コツをつかむ,"What does ""get the hang of"" mean?",あきらめる,散歩する,コツをつかむ,コツをつかむ,-,-,practice
+4074,12,blank,get the hang of,コツをつかむ,"Fill in the blank: Driving is hard at first, but you'll ___ it.",make it clear,get the hang of,put on weight,get the hang of,-,-,practice
+4075,12,write,get the hang of,コツをつかむ,"Make your own sentence with ""get the hang of"". 「get the hang of」を使って文を作ろう。",-,-,-,-,hang|get,"Driving is hard at first, but you'll get the hang of it.",practice
+4076,12,meaning,be fed up with,うんざりする,"What does ""be fed up with"" mean?",うんざりする,見張る・気をつけて見る,頼みを聞く,うんざりする,-,-,practice
+4077,12,blank,be fed up with,うんざりする,Fill in the blank: I ___ this rain.,fill out,take off,am fed up with,am fed up with,-,-,practice
+4078,12,write,be fed up with,うんざりする,"Make your own sentence with ""be fed up with"". 「be fed up with」を使って文を作ろう。",-,-,-,-,with|fed,I am fed up with this rain.,practice
+4079,12,meaning,have a sweet tooth,甘いものが好き,"What does ""have a sweet tooth"" mean?",甘いものが好き,急いでいる,うまくいかない,甘いものが好き,-,-,practice
+4080,12,blank,have a sweet tooth,甘いものが好き,Fill in the blank: My daughter ___. She loves cake.,has a sweet tooth,takes out,throws away,has a sweet tooth,-,-,practice
+4081,12,write,have a sweet tooth,甘いものが好き,"Make your own sentence with ""have a sweet tooth"". 「have a sweet tooth」を使って文を作ろう。",-,-,-,-,sweet|tooth,My daughter has a sweet tooth. She loves cake.,practice
+4082,12,meaning,couch potato,ごろごろテレビばかり見る人,"What does ""couch potato"" mean?",ごろごろテレビばかり見る人,病気になる,時間を忘れる,ごろごろテレビばかり見る人,-,-,practice
+4083,12,blank,couch potato,ごろごろテレビばかり見る人,Fill in the blank: My brother watches TV all day. He's a ___.,couch potato,under the weather,a pain in the neck,couch potato,-,-,practice
+4084,12,write,couch potato,ごろごろテレビばかり見る人,"Make your own sentence with ""couch potato"". 「couch potato」を使って文を作ろう。",-,-,-,-,potato|couch,My brother watches TV all day. He's a couch potato.,practice
+4085,12,meaning,break the ice,緊張をほぐす,"What does ""break the ice"" mean?",緊張をほぐす,記入する,出発する,緊張をほぐす,-,-,practice
+4086,12,blank,break the ice,緊張をほぐす,Fill in the blank: The teacher told a joke to ___.,kill time,break the ice,waste time,break the ice,-,-,practice
+4087,12,write,break the ice,緊張をほぐす,"Make your own sentence with ""break the ice"". 「break the ice」を使って文を作ろう。",-,-,-,-,break|ice,The teacher told a joke to break the ice.,practice
+4088,12,meaning,rain check,また今度,"What does ""rain check"" mean?",コツをつかむ,また今度,試着する,また今度,-,-,practice
+4089,12,blank,rain check,また今度,Fill in the blank: I'm busy tonight. Can I take a ___?,rain check,in touch with,a pain in the neck,rain check,-,-,practice
+4090,12,write,rain check,また今度,"Make your own sentence with ""rain check"". 「rain check」を使って文を作ろう。",-,-,-,-,check|rain,I'm busy tonight. Can I take a rain check?,practice
+4091,12,meaning,face to face,直接・対面で,"What does ""face to face"" mean?",育つ,直接・対面で,喉まで出かかって,直接・対面で,-,-,practice
+4092,12,blank,face to face,直接・対面で,"Fill in the blank: I want to talk to you ___, not by email.",face to face,on second thought,on time,face to face,-,-,practice
+4093,12,write,face to face,直接・対面で,"Make your own sentence with ""face to face"". 「face to face」を使って文を作ろう。",-,-,-,-,face,"I want to talk to you face to face, not by email.",practice
+4094,12,meaning,by heart,暗記して,"What does ""by heart"" mean?",暗記して,時間を忘れる,持ち帰る・取り出す,暗記して,-,-,practice
+4095,12,blank,by heart,暗記して,Fill in the blank: I know this song ___.,in a minute,no big deal,by heart,by heart,-,-,practice
+4096,12,write,by heart,暗記して,"Make your own sentence with ""by heart"". 「by heart」を使って文を作ろう。",-,-,-,-,heart|by,I know this song by heart.,practice
+4097,13,meaning,speak up,大きな声で話す,"What does ""speak up"" mean?",チェックアウトする,大きな声で話す,あきらめる,大きな声で話す,-,-,practice
+4098,13,blank,speak up,大きな声で話す,Fill in the blank: Please ___. I can't hear you.,put off,take care of,speak up,speak up,-,-,practice
+4099,13,write,speak up,大きな声で話す,"Make your own sentence with ""speak up"". 「speak up」を使って文を作ろう。",-,-,-,-,speak|up,Please speak up. I can't hear you.,practice
+4100,13,meaning,do someone a favor,頼みを聞く,"What does ""do someone a favor"" mean?",頼みを聞く,臨機応変にやる,厄介なもの・人,頼みを聞く,-,-,practice
+4101,13,blank,do someone a favor,頼みを聞く,Fill in the blank: Can you ___? Please close the window.,do me a favor,be scared silly,keep my fingers crossed,do me a favor,-,-,practice
+4102,13,write,do someone a favor,頼みを聞く,"Make your own sentence with ""do someone a favor"". 「do someone a favor」を使って文を作ろう。",-,-,-,-,favor|do,Can you do me a favor? Please close the window.,practice
