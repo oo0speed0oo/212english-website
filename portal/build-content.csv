@@ -399,3 +399,79 @@ id,level,chapter,mode,source_id,prompt_ja,tiles,extra
 3130,2,4,test,,彼は遅れないでしょう。,He|won't|be late.,isn't|will
 3131,2,4,test,,船酔いするかもしれません。,You|might|get seasick.,gets|will
 3132,2,4,test,,彼らは来月引っ越します。,They|will|move|next month.,moves|last
+2869,2,1,test,,ユミは毎週土曜日に泳ぐのが好きです。,Yumi|likes to|swim|every Saturday.,like to|swam
+2870,2,1,test,,ケンは私にお金を貸してくれました。,Ken|lent|me|some money.,lends|my
+2871,2,1,test,,私は先月、姉にプレゼントを送りました。,I|sent|my sister|a present|last month.,send|next
+2872,2,1,test,,彼らは今バスケットボールをしています。,They|are playing|basketball|now.,play|played
+2873,2,1,test,,母は来週パンケーキを作るつもりです。,My mother|is going to|make|pancakes|next week.,are going to|made
+2874,2,1,test,,私は昨日財布をなくしました。,I|lost|my wallet|yesterday.,lose|tomorrow
+4167,2,5,homework,,私の新しいアパートは前のより広いです。,My new apartment|is|larger|than|my old one.,more large|then
+4168,2,5,homework,,このチリはあのチリより辛いです。,This chili|is|hotter|than|that one.,more hot|then
+4169,2,5,homework,,このソファはあのソファより快適です。,This sofa|is|more comfortable|than|that one.,comfortabler|then
+4170,2,5,homework,,医者に行ったほうがいいですよ。,You|should|see|a doctor.,should to|sees
+4171,2,5,homework,,この傘は私のものです。,This umbrella|is|mine.,my|me
+4172,2,5,homework,,その自転車は彼女のものです。,That bicycle|is|hers.,her|she
+4173,2,5,homework,,私の新しい仕事は前の仕事より良いです。,My new job|is|better|than|my old job.,gooder|then
+4174,2,5,homework,,私もそう思います。,I|agree|with you.,agrees|to
+4175,2,5,test,,彼の車は私の車より速いです。,His car|is|faster|than|mine.,more fast|my
+4176,2,5,test,,私の電話はあなたのより小さいです。,My phone|is|smaller|than|yours.,more small|your
+4177,2,5,test,,今夜は勉強したほうがいいです。,You|should|study|tonight.,studies|should to
+4178,2,5,test,,この辞書は私たちのものです。,This dictionary|is|ours.,our|us
+4179,2,5,test,,東京は大阪よりわくわくすると思います。,I think|Tokyo|is|more exciting|than Osaka.,excitinger|then
+4180,2,5,test,,そのかばんは彼らのものです。,That bag|is|theirs.,their|them
+4253,2,6,homework,,彼は私が知っている中で一番頭がいい人です。,He's|the smartest|person|I know.,smarter|most
+4254,2,6,homework,,彼女は家族で一番親切な人です。,She's|the kindest|person|in my family.,kinder|most kind
+4255,2,6,homework,,これは私たちの店で一番小さいラジオです。,This is|the smallest|radio|we have.,smaller|biggest
+4256,2,6,homework,,祖母は私が知っている中で一番忍耐強い人です。,My grandmother|is|the most patient|person I know.,more patient|patientest
+4257,2,6,homework,,もっと小さいのはありませんか。,Don't you|have|a smaller|one?,smallest|has
+4258,2,6,homework,,8月は一年で一番暑い月です。,August|is|the hottest month|of the year.,hotter|in
+4259,2,6,homework,,彼は私が知っている中で一番おもしろい人です。,He's|the funniest|person|I know.,funnier|most funny
+4260,2,6,homework,,これは町で一番良いレストランです。,This is|the best|restaurant|in town.,better|goodest
+4261,2,6,test,,彼は私が知っている中で一番頑固な人です。,He's|the most stubborn|person|I know.,stubbornest|more
+4262,2,6,test,,富士山は日本で一番高い山です。,Mt. Fuji|is|the highest mountain|in Japan.,higher|most high
+4263,2,6,test,,これは店で一番安いテレビです。,This is|the cheapest TV|in the store.,cheaper|most cheap
+4264,2,6,test,,昨日は今年一番寒い日でした。,Yesterday|was|the coldest day|of the year.,colder|is
+4265,2,6,test,,彼女はクラスで一番人気のある生徒です。,She's|the most popular|student|in the class.,popularest|more
+4266,2,6,test,,それは今年一番悪い映画でした。,That|was|the worst movie|of the year.,baddest|worse
+4343,2,7,homework,,メイン通りを歩いて行ってください。,Walk|up|Main Street.,Walks|off
+4344,2,7,homework,,角で右に曲がってください。,Turn|right|at the corner.,Turns|on
+4345,2,7,homework,,ファースト・アベニューで降りてください。,Get off|at|First Avenue.,Gets off|in
+4346,2,7,homework,,病院は博物館と公園の間にあります。,The hospital|is|between|the museum and the park.,across|next
+4347,2,7,homework,,空港への行き方を教えてくれますか。,Can you|tell me|how to get|to the airport?,telling|for
+4348,2,7,homework,,右側に花屋が見えます。,You'll see|the flower shop|on the right.,in|sees
+4349,2,7,homework,,パン屋は銀行の向かいにあります。,The bakery|is|across from|the bank.,between|next
+4350,2,7,homework,,地下鉄に乗ってください。,Please|take|the subway.,takes|taking
+4351,2,7,test,,博物館への一番早い行き方は何ですか。,What's|the quickest way|to get|to the museum?,quicker|gets
+4352,2,7,test,,二つ目の角で左に曲がってください。,Turn left|at|the second corner.,Turns|in
+4353,2,7,test,,公園はおもちゃ屋のとなりにあります。,The park|is|next to|the toy store.,between|across
+4354,2,7,test,,川通りまでセカンド・アベニューを運転してください。,Drive|along Second Avenue|to River Street.,Drives|between
+4355,2,7,test,,左側に駐車場が見えます。,You'll see|the parking garage|on the left.,in|sees
+4356,2,7,test,,角を曲がったところにあります。,It's|around|the corner.,across|between
+4427,2,8,homework,,彼はとても注意深く運転します。,He|drives|very carefully.,drive|careful
+4428,2,8,homework,,彼女は上手に踊ります。,She|dances|well.,good|dance
+4429,2,8,homework,,もっとゆっくり話したほうがいいです。,You|should|speak|more slowly.,slowlier|speaks
+4430,2,8,homework,,彼は私より速く走ります。,He|runs|faster|than me.,more fast|run
+4431,2,8,homework,,雨が降ったら、家にいます。,"If it rains,|I'll|stay|home.",rained|stays
+4432,2,8,homework,,疲れているなら、早く寝てください。,"If you're tired,|go to sleep|early.",goes|lately
+4433,2,8,homework,,彼は一生懸命働きます。,He|works|hard.,hardly|work
+4434,2,8,homework,,彼女は私より上手に歌います。,She|sings|better|than I do.,gooder|sing
+4435,2,8,test,,彼は不注意に運転します。,He|drives|carelessly.,careless|drive
+4436,2,8,test,,もっと注意深く書いたほうがいいです。,You|should|write|more carefully.,carefuller|writes
+4437,2,8,test,,晴れたら、ビーチに行きます。,"If it's sunny,|we'll|go|to the beach.",went|goes
+4438,2,8,test,,彼女は正確に翻訳します。,She|translates|accurately.,accurate|translate
+4439,2,8,test,,もっと大きな声で話してください。,Please|speak|louder.,speaks|loudest
+4440,2,8,test,,気分が良くなったら、仕事に行きます。,"If I feel better,|I'll|go|to work.",felt|goes
+4513,2,9,homework,,公園でジョギングしている時に財布をなくしました。,I lost my wallet|while|I was jogging|in the park.,during|jogged
+4514,2,9,homework,,彼はひげをそっている時に切りました。,He cut|himself|while|he was shaving.,hisself|during
+4515,2,9,homework,,料理中にやけどしました。,I burned|myself|while|I was cooking.,me|cooked
+4516,2,9,homework,,昨夜9時に何をしていましたか。,What|were you|doing|at nine last night?,was|did
+4517,2,9,homework,,彼らはテレビを見ていました。,They|were|watching TV.,was|watched
+4518,2,9,homework,,彼女は一人でそれを作りました。,She|made it|by herself.,hers|her
+4519,2,9,homework,,バスを降りる時につまずきました。,I tripped|while|I was|getting off the bus.,during|were
+4520,2,9,homework,,誰かが私たちの車に侵入しました。,Someone|broke into|our car.,break into|ours
+4521,2,9,test,,夕食を食べている時に電話が鳴りました。,The phone rang|while|we were|having dinner.,was|during
+4522,2,9,test,,私たちは自分たちでケーキを作りました。,We|made the cake|by ourselves.,ourself|us
+4523,2,9,test,,運転中にパンクしました。,I got|a flat tire|while|I was driving.,during|drove
+4524,2,9,test,,犬が私をかみました。,A dog|bit|me.,bite|my
+4525,2,9,test,,けがをしましたか。,Did you|hurt|yourself?,hurts|you
+4526,2,9,test,,彼女は踊っている時に転びました。,She fell|while|she was|dancing.,were|during

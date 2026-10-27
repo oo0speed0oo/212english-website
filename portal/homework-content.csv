@@ -1508,3 +1508,375 @@ id,level,chapter,type,question,choice_a,choice_b,choice_c,answer,image,audio,mod
 3116,2,4,grammar,They ___ name their baby Ken.,will,does,are,will,,,test
 3117,2,4,grammar,"""Will Tom be home soon?"" ""No, he ___.""",doesn't,isn't,won't,won't,,,test
 3118,2,4,listening,"You hear ""Don't touch that! You might get a shock."" What is the speaker doing?",giving a present,giving a warning,asking a question,giving a warning,,,test
+2851,2,1,photo,What is the person doing?,making pancakes,driving,chatting online,chatting online,l2ch01_chat_online.jpg,,homework
+2852,2,1,photo,What is the person doing?,writing a letter,driving,cleaning,cleaning,l2ch01_clean.jpg,,homework
+2853,2,1,photo,What is the person doing?,playing the piano,chatting online,cooking,cooking,l2ch01_cook.jpg,,homework
+2854,2,1,photo,What is the person doing?,driving,hiking,cleaning,driving,l2ch01_drive.jpg,,homework
+2855,2,1,photo,What is the person doing?,playing the piano,hiking,cleaning,hiking,l2ch01_go_hiking.jpg,,homework
+2856,2,1,photo,What is the person doing?,shopping at the mall,cooking,making pancakes,shopping at the mall,l2ch01_go_to_the_mall.jpg,,homework
+2857,2,1,photo,What is the person doing?,making pancakes,cleaning,shopping at the mall,making pancakes,l2ch01_make_pancakes.jpg,,homework
+2858,2,1,photo,What is the person doing?,playing the piano,planting flowers,writing a letter,planting flowers,l2ch01_plant.jpg,,homework
+2859,2,1,photo,What is the person doing?,planting flowers,cleaning,playing basketball,playing basketball,l2ch01_play_basketball.jpg,,homework
+2860,2,1,photo,What is the person doing?,watching TV,playing the piano,making pancakes,playing the piano,l2ch01_play_the_piano.jpg,,homework
+2861,2,1,photo,What is the person doing?,cleaning,reading,chatting online,reading,l2ch01_read.jpg,,homework
+2862,2,1,photo,What is the person doing?,hiking,driving,swimming,swimming,l2ch01_swim.jpg,,homework
+2863,2,1,photo,What is the person doing?,watching TV,hiking,reading,watching TV,l2ch01_watch_tv.jpg,,homework
+2864,2,1,photo,What is the person doing?,hiking,writing a letter,cooking,writing a letter,l2ch01_write.jpg,,homework
+2865,2,1,photo,What season is it?,summer,spring,winter,spring,ch14_spring.jpg,,homework
+2866,2,1,photo,What season is it?,winter,summer,fall,summer,ch14_summer.jpg,,homework
+2867,2,1,photo,What season is it?,summer,fall,winter,fall,ch14_fall.jpg,,homework
+2868,2,1,photo,What season is it?,fall,spring,winter,winter,ch14_winter.jpg,,homework
+2917,2,2,photo,What food is this?,apples,pizza,eggs,apples,l2ch02_apples.jpg,,homework
+2918,2,2,photo,What food is this?,rice,bananas,cookies,bananas,l2ch02_bananas.jpg,,homework
+2919,2,2,photo,What food is this?,rice,pizza,bread,bread,l2ch02_bread.jpg,,homework
+2920,2,2,photo,What food is this?,carrots,tomatoes,rice,carrots,l2ch02_carrots.jpg,,homework
+2921,2,2,photo,What food is this?,bread,carrots,cheese,cheese,l2ch02_cheese.jpg,,homework
+2922,2,2,photo,What food is this?,hamburgers,tomatoes,cookies,cookies,l2ch02_cookies.jpg,,homework
+2923,2,2,photo,What food is this?,cheese,eggs,tomatoes,eggs,l2ch02_eggs.jpg,,homework
+2924,2,2,photo,What food is this?,lettuce,apples,french fries,french fries,l2ch02_french_fries.jpg,,homework
+2925,2,2,photo,What food is this?,cookies,grapes,hamburgers,grapes,l2ch02_grapes.jpg,,homework
+2926,2,2,photo,What food is this?,cookies,onions,hamburgers,hamburgers,l2ch02_hamburgers.jpg,,homework
+2927,2,2,photo,What food is this?,carrots,tomatoes,lettuce,lettuce,l2ch02_lettuce.jpg,,homework
+2928,2,2,photo,What food is this?,onions,french fries,carrots,onions,l2ch02_onions.jpg,,homework
+2929,2,2,photo,What food is this?,grapes,pizza,hamburgers,pizza,l2ch02_pizza.jpg,,homework
+2930,2,2,photo,What food is this?,rice,onions,hamburgers,rice,l2ch02_rice.jpg,,homework
+2931,2,2,photo,What food is this?,tomatoes,carrots,spaghetti,spaghetti,l2ch02_spaghetti.jpg,,homework
+2932,2,2,photo,What food is this?,tomatoes,lettuce,cheese,tomatoes,l2ch02_tomatoes.jpg,,homework
+3009,2,3,photo,What is this?,a bowl of soup,a bunch of bananas,a bag of flour,a bag of flour,l2ch03_a_bag_of_flour.jpg,,homework
+3010,2,3,photo,What is this?,a box of cereal,a slice of pizza,a bottle of ketchup,a bottle of ketchup,l2ch03_a_bottle_of_ketchup.jpg,,homework
+3011,2,3,photo,What is this?,a can of soup,a bottle of ketchup,a box of cereal,a box of cereal,l2ch03_a_box_of_cereal.jpg,,homework
+3012,2,3,photo,What is this?,a bunch of bananas,a bag of flour,a bottle of ketchup,a bunch of bananas,l2ch03_a_bunch_of_bananas.jpg,,homework
+3013,2,3,photo,What is this?,a bag of flour,a slice of pizza,a can of soup,a can of soup,l2ch03_a_can_of_soup.jpg,,homework
+3014,2,3,photo,What is this?,a jar of jam,a bottle of ketchup,a dozen eggs,a dozen eggs,l2ch03_a_dozen_eggs.jpg,,homework
+3015,2,3,photo,What is this?,a glass of milk,a head of lettuce,a bag of flour,a head of lettuce,l2ch03_a_head_of_lettuce.jpg,,homework
+3016,2,3,photo,What is this?,a jar of jam,a dozen eggs,a cup of hot chocolate,a jar of jam,l2ch03_a_jar_of_jam.jpg,,homework
+3017,2,3,photo,What is this?,a dozen eggs,a can of soup,a loaf of bread,a loaf of bread,l2ch03_a_loaf_of_bread.jpg,,homework
+3018,2,3,photo,What is this?,a bowl of soup,a head of lettuce,a glass of milk,a bowl of soup,l2ch03_a_bowl_of_soup.jpg,,homework
+3019,2,3,photo,What is this?,a piece of apple pie,a dozen eggs,a can of soup,a piece of apple pie,l2ch03_a_piece_of_apple_pie.jpg,,homework
+3020,2,3,photo,What is this?,a loaf of bread,a bag of flour,a glass of milk,a glass of milk,l2ch03_a_glass_of_milk.jpg,,homework
+3021,2,3,photo,What is this?,a box of cereal,a bunch of bananas,a slice of pizza,a slice of pizza,l2ch03_a_slice_of_pizza.jpg,,homework
+3022,2,3,photo,What is this?,a bunch of bananas,a cup of hot chocolate,a loaf of bread,a cup of hot chocolate,l2ch03_a_cup_of_hot_chocolate.jpg,,homework
+3099,2,4,photo,What happened?,fell,caught a cold,got a sunburn,got a sunburn,l2ch04_got_a_sunburn.jpg,,homework
+3100,2,4,photo,What happened?,got a sunburn,got seasick,fell,got seasick,l2ch04_got_seasick.jpg,,homework
+3101,2,4,photo,What happened?,caught a cold,got a shock,got a sunburn,caught a cold,l2ch04_caught_a_cold.jpg,,homework
+3102,2,4,photo,What happened?,caught a cold,broke a leg,got a sunburn,broke a leg,l2ch04_broke_a_leg.jpg,,homework
+3103,2,4,photo,What happened?,fell,got seasick,got a shock,fell,l2ch04_fell.jpg,,homework
+3104,2,4,photo,What happened?,got a shock,got seasick,caught a cold,got a shock,l2ch04_got_a_shock.jpg,,homework
+3105,2,4,photo,What is this?,a hat,a helmet,safety glasses,a helmet,l2ch04_helmet.jpg,,homework
+3106,2,4,photo,What are these?,safety glasses,sunglasses,a helmet,safety glasses,l2ch04_safety_glasses.jpg,,homework
+3107,2,4,photo,What are they doing?,moving,getting married,growing up,getting married,l2ch04_getting_married.jpg,,homework
+3108,2,4,photo,What is the person doing?,growing up,moving,getting married,moving,l2ch04_moving.jpg,,homework
+4103,2,5,vocabulary,Someone who talks a lot is ___.,talkative,polite,lazy,talkative,,,homework
+4104,2,5,vocabulary,Someone who is very good at music or art is ___.,talented,hospitable,friendly,talented,,,homework
+4105,2,5,vocabulary,A family that welcomes guests warmly is ___.,fashionable,hospitable,powerful,hospitable,,,homework
+4106,2,5,vocabulary,Clothes that are in style are ___.,fashionable,talented,delicious,fashionable,,,homework
+4107,2,5,vocabulary,A kitten is very ___.,powerful,cute,talkative,cute,,,homework
+4108,2,5,vocabulary,Food with a lot of chili is ___.,soft,light,spicy,spicy,,,homework
+4109,2,5,vocabulary,Someone who doesn't like to work is ___.,lazy,polite,intelligent,lazy,,,homework
+4110,2,5,vocabulary,A big truck engine is very ___.,soft,powerful,cute,powerful,,,homework
+4111,2,5,vocabulary,A pillow is ___.,talented,spicy,soft,soft,,,homework
+4112,2,5,vocabulary,Someone who says please and thank you is ___.,spicy,polite,lazy,polite,,,homework
+4113,2,5,grammar,My new rug is ___ than my old rug.,more soft,softest,softer,softer,,,homework
+4114,2,5,grammar,This apartment is ___ than that one.,largest,larger,more large,larger,,,homework
+4115,2,5,grammar,My new office is ___ than my old office.,bigger,more big,biger,bigger,,,homework
+4116,2,5,grammar,This chili is ___ than my mother's chili.,hoter,hotter,more hot,hotter,,,homework
+4117,2,5,grammar,Her new car is ___ than her old car.,more fancy,fancyer,fancier,fancier,,,homework
+4118,2,5,grammar,My new sofa is ___ than my old sofa.,more comfortable,comfortabler,most comfortable,more comfortable,,,homework
+4119,2,5,grammar,This book is ___ than that movie.,most interesting,interestinger,more interesting,more interesting,,,homework
+4120,2,5,grammar,My phone is ___ than yours.,smallest,smaller,more small,smaller,,,homework
+4121,2,5,grammar,This isn't my umbrella. ___ is blue.,My,Me,Mine,Mine,,,homework
+4122,2,5,grammar,That's not their car. ___ is red.,Them,Theirs,Their,Theirs,,,homework
+4123,2,5,grammar,"""Is this Ken's jacket?"" ""Yes, it's ___.""",his,he's,him,his,,,homework
+4124,2,5,grammar,This is Yumi's bag. It's ___.,hers,she's,her,hers,,,homework
+4125,2,5,grammar,You ___ study for the test.,should,should to,shoulds,should,,,homework
+4126,2,5,grammar,You look tired. You ___ go to bed early.,should,don't,shouldn't,should,,,homework
+4127,2,5,grammar,"""___ I call the doctor?"" ""Yes, you should.""",Do,Should,Am,Should,,,homework
+4128,2,5,grammar,My new job is ___ than my old job.,more good,better,gooder,better,,,homework
+4129,2,5,listening,"You hear ""My new apartment is bigger than my old one."" Which apartment is bigger?",the new one,the old one,They're the same.,the new one,,,homework
+4130,2,5,listening,"You hear ""Your cell phone is smaller than mine."" Whose phone is smaller?",the speaker's phone,the other person's phone,They're the same.,the other person's phone,,,homework
+4131,2,5,listening,"You hear ""You have a fever. You should stay home today."" What does the speaker think?",The person should go shopping.,The person should stay home.,The person should go to work.,The person should stay home.,,,homework
+4132,2,5,listening,"You hear ""This isn't my umbrella. Mine is black."" What color is the speaker's umbrella?",black,white,blue,black,,,homework
+4133,2,5,listening,"You hear ""I think Tokyo is more exciting than Osaka."" ""I agree."" Does the second person agree?",No.,Yes.,We don't know.,Yes.,,,homework
+4134,2,5,listening,"You hear ""Is this your coat?"" ""No, it's my sister's. Hers is red."" Whose coat is it?",the sister's,the listener's,the speaker's,the sister's,,,homework
+4135,2,5,conversation,"You hear ""I think this restaurant is better than the old one."" What is the best reply?","No, it's mine.",I agree. The food is more delicious.,"Yes, I'm better.",I agree. The food is more delicious.,,,homework
+4136,2,5,conversation,"You hear ""Is this your pen?"" What is the best reply?","No, it's bigger.","No, it isn't mine. It's Ken's.","Yes, I should write.","No, it isn't mine. It's Ken's.",,,homework
+4137,2,5,conversation,"You hear ""Should I bring a jacket?"" What is the best reply?","Yes, it's mine.",It's in the closet.,"Yes, you should. It's cold tonight.","Yes, you should. It's cold tonight.",,,homework
+4138,2,5,conversation,"You hear ""My new car is faster than my old one."" What is the best reply?",Really? That's great!,It's on Tuesday.,"Yes, you should drive.",Really? That's great!,,,homework
+4139,2,5,conversation,"You hear ""Whose bag is this?"" What is the best reply?","Yes, it is.",It's hers. She left it here.,It's very large.,It's hers. She left it here.,,,homework
+4140,2,5,conversation,"You hear ""Which jacket is warmer?"" ""The black one is warmer than the blue one."" Which jacket is warmer?",the black one,They're the same.,the blue one,the black one,,,homework
+4141,2,5,conversation,"You hear ""My back hurts."" ""You should see a doctor."" What advice does the second person give?",See a doctor.,Go to work.,Take a walk.,See a doctor.,,,homework
+4142,2,5,conversation,"You hear ""Is your new office bigger?"" ""Yes, but it's noisier than my old office."" What is true about the new office?",It's smaller and quieter.,It's bigger and noisier.,It's bigger and quieter.,It's bigger and noisier.,,,homework
+4143,2,5,conversation,"You hear ""I think English is easier than Japanese."" ""I don't agree. I think Japanese is easier."" Does the second person agree?",Yes.,We don't know.,No.,No.,,,homework
+4144,2,5,conversation,"You hear ""Are these your keys?"" ""No, they're not ours. Ours are in the car."" Where are their keys?",in the car,at home,on the table,in the car,,,homework
+4145,2,5,photo,Which word describes this picture?,light,cute,delicious,cute,l2ch05_cute.jpg,,homework
+4146,2,5,photo,Which word describes this picture?,fancy,soft,cute,soft,l2ch05_soft.jpg,,homework
+4147,2,5,photo,Which word describes this picture?,spicy,fancy,small,spicy,l2ch05_spicy.jpg,,homework
+4148,2,5,photo,Which word describes this picture?,soft,powerful,fancy,fancy,l2ch05_fancy.jpg,,homework
+4149,2,5,photo,Which word describes this picture?,lazy,soft,light,light,l2ch05_light.jpg,,homework
+4150,2,5,photo,Which word describes this picture?,delicious,friendly,small,small,l2ch05_small.jpg,,homework
+4151,2,5,photo,Which word describes this picture?,soft,light,friendly,friendly,l2ch05_friendly.jpg,,homework
+4152,2,5,photo,Which word describes this picture?,powerful,cute,light,powerful,l2ch05_powerful.jpg,,homework
+4153,2,5,photo,Which word describes this picture?,powerful,friendly,delicious,delicious,l2ch05_delicious.jpg,,homework
+4154,2,5,photo,Which word describes this picture?,friendly,light,fashionable,fashionable,l2ch05_fashionable.jpg,,homework
+4155,2,5,photo,Which word describes this picture?,powerful,delicious,lazy,lazy,l2ch05_lazy.jpg,,homework
+4156,2,5,photo,Which word describes this picture?,cute,lazy,talkative,talkative,l2ch05_talkative.jpg,,homework
+4157,2,5,grammar,My new computer is ___ than my old one.,faster,fastest,more fast,faster,,,test
+4158,2,5,grammar,This sweater is ___ than that one.,prettier,more pretty,prettyer,prettier,,,test
+4159,2,5,grammar,Your idea is ___ than mine.,more good,better,gooder,better,,,test
+4160,2,5,grammar,This neighborhood is ___ than our old neighborhood.,more safe,safer,safest,safer,,,test
+4161,2,5,grammar,The museum is ___ than the zoo.,interestinger,most interesting,more interesting,more interesting,,,test
+4162,2,5,grammar,This isn't your seat. ___ is over there.,Your,You,Yours,Yours,,,test
+4163,2,5,grammar,"""Is this Tom's car?"" ""No, ___ is blue.""",he,him,his,his,,,test
+4164,2,5,grammar,You have a test tomorrow. You ___ study tonight.,should to,shoulds,should,should,,,test
+4165,2,5,grammar,"Our house is small, but ___ (their house) is very large.",theirs,them,their,theirs,,,test
+4166,2,5,listening,"You hear ""I think this sofa is more comfortable than the old one."" What does the speaker think?",The old sofa is more comfortable.,Both sofas are uncomfortable.,The new sofa is more comfortable.,The new sofa is more comfortable.,,,test
+4191,2,6,vocabulary,Someone who gives a lot to other people is ___.,sloppy,generous,stubborn,generous,,,homework
+4192,2,6,vocabulary,Someone who never changes their mind is ___.,popular,generous,stubborn,stubborn,,,homework
+4193,2,6,vocabulary,Someone who makes people laugh is ___.,rude,patient,funny,funny,,,homework
+4194,2,6,vocabulary,Someone who can wait without getting angry is ___.,noisy,sloppy,patient,patient,,,homework
+4195,2,6,vocabulary,Someone who always tells the truth is ___.,honest,obnoxious,energetic,honest,,,homework
+4196,2,6,vocabulary,Someone who has many friends is ___.,popular,lazy,stubborn,popular,,,homework
+4197,2,6,vocabulary,Someone whose room and clothes are messy is ___.,generous,sloppy,honest,sloppy,,,homework
+4198,2,6,vocabulary,Someone with a lot of energy is ___.,lazy,energetic,patient,energetic,,,homework
+4199,2,6,vocabulary,Someone who is very rude and unpleasant is ___.,popular,obnoxious,helpful,obnoxious,,,homework
+4200,2,6,vocabulary,Someone who helps other people is ___.,helpful,mean,stubborn,helpful,,,homework
+4201,2,6,grammar,He's the ___ person I know.,smartest,most smart,smarter,smartest,,,homework
+4202,2,6,grammar,She's the ___ person in our office.,nicest,most nice,nicer,nicest,,,homework
+4203,2,6,grammar,This is the ___ building in the city.,most big,biggest,bigest,biggest,,,homework
+4204,2,6,grammar,August is the ___ month of the year.,hottest,most hot,hotest,hottest,,,homework
+4205,2,6,grammar,My uncle is the ___ person in my family.,funnyest,funniest,most funny,funniest,,,homework
+4206,2,6,grammar,She's the ___ person I know.,more energetic,energeticest,most energetic,most energetic,,,homework
+4207,2,6,grammar,This is the ___ book in the library.,interestingest,more interesting,most interesting,most interesting,,,homework
+4208,2,6,grammar,My grandmother is the ___ person in our family.,more patient,most patient,patientest,most patient,,,homework
+4209,2,6,grammar,My brother is the ___ person I know. He never changes his mind.,more stubborn,stubbornest,most stubborn,most stubborn,,,homework
+4210,2,6,grammar,I'm sorry. This is the ___ radio we have.,smallest,most small,smaller,smallest,,,homework
+4211,2,6,grammar,Don't you have a ___ one?,smaller,most small,smallest,smaller,,,homework
+4212,2,6,grammar,That was the ___ movie of the year.,baddest,worst,most bad,worst,,,homework
+4213,2,6,grammar,Our English teacher is the ___ teacher in the school.,most good,goodest,best,best,,,homework
+4214,2,6,grammar,Mt. Fuji is the ___ mountain in Japan.,most high,higher,highest,highest,,,homework
+4215,2,6,grammar,Which is the ___ store in town?,most cheap,cheapest,cheaper,cheapest,,,homework
+4216,2,6,grammar,"Ken is ___ than Tom, but Mike is the tallest.",tallest,taller,more tall,taller,,,homework
+4217,2,6,listening,"You hear ""My grandfather is the most generous person I know."" What does the speaker think about the grandfather?",He isn't generous.,He's very stubborn.,He's very generous.,He's very generous.,,,homework
+4218,2,6,listening,"You hear ""I'm sorry. This is the smallest radio we have."" Do they have a smaller radio?",Yes.,No.,Maybe.,No.,,,homework
+4219,2,6,listening,"You hear ""Ken is funny, but his brother is the funniest person in the family."" Who is the funniest?",Ken's father,Ken's brother,Ken,Ken's brother,,,homework
+4220,2,6,listening,"You hear ""Our upstairs neighbor is the noisiest person in the building."" Who is the noisiest?",the downstairs neighbor,the upstairs neighbor,the landlord,the upstairs neighbor,,,homework
+4221,2,6,listening,"You hear ""This is the most comfortable chair in the store."" Which chair is the most comfortable?",this chair,the chair at home,every chair,this chair,,,homework
+4222,2,6,listening,"You hear ""I think summer is the best season."" What does the speaker think?",Winter is the best.,Summer is the best.,Summer is the worst.,Summer is the best.,,,homework
+4223,2,6,conversation,"You hear ""May I help you?"" What is the best reply?","Yes, please. I want to buy a small radio.","No, I'm the smallest.","Yes, it's the smallest.","Yes, please. I want to buy a small radio.",,,homework
+4224,2,6,conversation,"You hear ""Don't you have a smaller one?"" What is the best reply?","Yes, it's the biggest one.",Thank you anyway.,I'm sorry. This is the smallest one we have.,I'm sorry. This is the smallest one we have.,,,homework
+4225,2,6,conversation,"You hear ""Who is the most patient person in your family?"" What is the best reply?",My grandmother. She never gets angry.,"Yes, she's patient.",In the living room.,My grandmother. She never gets angry.,,,homework
+4226,2,6,conversation,"You hear ""This is the cheapest TV in the store."" What is the best reply?","No, I don't have a TV.","Yes, it's the most expensive.",Great! I'll take it.,Great! I'll take it.,,,homework
+4227,2,6,conversation,"You hear ""What do you think of your new roommate?"" What is the best reply?",He's the sloppiest person I know!,He's in the kitchen.,"Yes, he's my roommate.",He's the sloppiest person I know!,,,homework
+4228,2,6,conversation,"You hear ""Is this the lightest computer you have?"" ""Yes, it is. It's only one kilogram."" How heavy is the computer?",two kilograms,ten kilograms,one kilogram,one kilogram,,,homework
+4229,2,6,conversation,"You hear ""Who is the most popular student in your class?"" ""Yumi. Everyone likes her."" Why is Yumi popular?",She's the funniest.,She's the tallest.,Everyone likes her.,Everyone likes her.,,,homework
+4230,2,6,conversation,"You hear ""I want a bigger TV."" ""I'm sorry. This is the biggest one we have."" Can the customer buy a bigger TV here?",No.,Yes.,Maybe tomorrow.,No.,,,homework
+4231,2,6,conversation,"You hear ""What's your brother like?"" ""He's the most stubborn person I know."" What is the brother like?",generous,stubborn,funny,stubborn,,,homework
+4232,2,6,conversation,"You hear ""Which restaurant is the best?"" ""I think the Italian restaurant is the best, but it's the most expensive."" What is true about the Italian restaurant?",It's the best and the most expensive.,It's the worst.,It's the cheapest.,It's the best and the most expensive.,,,homework
+4233,2,6,photo,What is this person like?,popular,energetic,lazy,energetic,l2ch06_energetic.jpg,,homework
+4234,2,6,photo,What is this person like?,noisy,generous,funny,funny,l2ch06_funny.jpg,,homework
+4235,2,6,photo,What is this person like?,sloppy,generous,patient,generous,l2ch06_generous.jpg,,homework
+4236,2,6,photo,What is this person like?,patient,helpful,funny,helpful,l2ch06_helpful.jpg,,homework
+4237,2,6,photo,What is this person like?,helpful,generous,lazy,lazy,l2ch06_lazy.jpg,,homework
+4238,2,6,photo,What is this person like?,energetic,helpful,noisy,noisy,l2ch06_noisy.jpg,,homework
+4239,2,6,photo,What is this person like?,patient,funny,rude,patient,l2ch06_patient.jpg,,homework
+4240,2,6,photo,What is this person like?,helpful,popular,sloppy,popular,l2ch06_popular.jpg,,homework
+4241,2,6,photo,What is this person like?,rude,lazy,funny,rude,l2ch06_rude.jpg,,homework
+4242,2,6,photo,What is this person like?,patient,popular,sloppy,sloppy,l2ch06_sloppy.jpg,,homework
+4243,2,6,grammar,Yesterday was the ___ day of the year.,hotter,most hot,hottest,hottest,,,test
+4244,2,6,grammar,She is the ___ singer in the group.,talentedest,most talented,more talented,most talented,,,test
+4245,2,6,grammar,This is the ___ sofa in the store.,comfortablest,most comfortable,more comfortable,most comfortable,,,test
+4246,2,6,grammar,Ken is the ___ worker in our office.,lazyest,most lazy,laziest,laziest,,,test
+4247,2,6,grammar,That's the ___ restaurant in town.,most bad,baddest,worst,worst,,,test
+4248,2,6,grammar,My sister is the ___ person in our family.,prettiest,prettyest,most pretty,prettiest,,,test
+4249,2,6,grammar,This is the ___ shirt we have.,cheapest,most cheap,cheaper,cheapest,,,test
+4250,2,6,grammar,Who is the ___ person in your class?,funniest,most funny,funnier,funniest,,,test
+4251,2,6,grammar,Our landlord is the ___ person I know.,meanest,most mean,meaner,meanest,,,test
+4252,2,6,listening,"You hear ""I'm sorry. This is the largest size we have."" Do they have a larger size?",No.,Maybe next week.,Yes.,No.,,,test
+4277,2,7,vocabulary,You can buy flowers at a ___.,hardware store,courthouse,flower shop,flower shop,,,homework
+4278,2,7,vocabulary,You can buy tools and nails at a ___.,hardware store,pet shop,shoe store,hardware store,,,homework
+4279,2,7,vocabulary,You can see old paintings at a ___.,playground,museum,motel,museum,,,homework
+4280,2,7,vocabulary,Children play on swings at a ___.,courthouse,parking garage,playground,playground,,,homework
+4281,2,7,vocabulary,You can park your car in a ___.,concert hall,parking garage,university,parking garage,,,homework
+4282,2,7,vocabulary,You can buy a puppy at a ___.,pet shop,toy store,flower shop,pet shop,,,homework
+4283,2,7,vocabulary,You can listen to an orchestra at a ___.,pet shop,concert hall,courthouse,concert hall,,,homework
+4284,2,7,vocabulary,Judges work at a ___.,museum,motel,courthouse,courthouse,,,homework
+4285,2,7,vocabulary,You can watch a baseball game at a ___.,playground,concert hall,baseball stadium,baseball stadium,,,homework
+4286,2,7,vocabulary,A cheap hotel near the highway is a ___.,museum,university,motel,motel,,,homework
+4287,2,7,grammar,___ up Main Street.,Walk,Walking,Walks,Walk,,,homework
+4288,2,7,grammar,___ right at the corner.,Turns,Turn,Turning,Turn,,,homework
+4289,2,7,grammar,___ along Second Avenue to River Street.,Drives,Drive,Driving,Drive,,,homework
+4290,2,7,grammar,Take the bus and get ___ at First Avenue.,off,up,on,off,,,homework
+4291,2,7,grammar,The hospital is ___ the museum and the park.,between,across,next,between,,,homework
+4292,2,7,grammar,The bakery is ___ from the bank.,between,next,across,across,,,homework
+4293,2,7,grammar,The flower shop is next ___ the toy store.,from,of,to,to,,,homework
+4294,2,7,grammar,You'll see the museum ___ the right.,in,on,at,on,,,homework
+4295,2,7,grammar,Excuse me. Can you tell me how ___ get to the airport?,for,at,to,to,,,homework
+4296,2,7,grammar,What's the quickest way to ___ to the university?,get,gets,getting,get,,,homework
+4297,2,7,grammar,"Walk ___ Main Street, and you'll see the bank.",up,on,off,up,,,homework
+4298,2,7,grammar,Don't ___ left here. Turn right.,turns,turn,turning,turn,,,homework
+4299,2,7,grammar,Please ___ the subway at Central Station.,taking,take,takes,take,,,homework
+4300,2,7,grammar,Get off the bus ___ Park Street.,in,on,at,at,,,homework
+4301,2,7,grammar,The library is ___ the corner from the school.,between,across,around,around,,,homework
+4302,2,7,grammar,"Walk up First Avenue, and ___ see the pet shop on the left.",you'll,you,you're,you'll,,,homework
+4303,2,7,listening,"You hear ""Walk up Main Street, and you'll see the laundromat on the right."" Where is the laundromat?",on the right side of Main Street,on the left side of Main Street,on River Street,on the right side of Main Street,,,homework
+4304,2,7,listening,"You hear ""The hospital is between the museum and the park."" Where is the hospital?",between the museum and the park,next to the bank,across from the museum,between the museum and the park,,,homework
+4305,2,7,listening,"You hear ""Take the Main Street bus and get off at First Avenue."" Where do you get off the bus?",at First Avenue,at Central Station,at Main Street,at First Avenue,,,homework
+4306,2,7,listening,"You hear ""Turn left at the bank. The pet shop is across from the playground."" What is across from the playground?",the bank,the pet shop,the museum,the pet shop,,,homework
+4307,2,7,listening,"You hear ""The quickest way is the subway. Take the Red Line."" How should the person go?",on foot,by bus,by subway,by subway,,,homework
+4308,2,7,listening,"You hear ""Drive along Second Avenue to River Street, and turn right."" Where do you turn right?",at Main Street,at River Street,at Second Avenue,at River Street,,,homework
+4309,2,7,conversation,"You hear ""Excuse me. Can you tell me how to get to the museum?"" What is the best reply?",Sure. It's very interesting.,"Yes, I went there yesterday.",Sure. Walk up Main Street. It's on the left.,Sure. Walk up Main Street. It's on the left.,,,homework
+4310,2,7,conversation,"You hear ""Is the shoe store far from here?"" What is the best reply?","Yes, the shoes are expensive.","No, I don't need shoes.","No, it's just around the corner.","No, it's just around the corner.",,,homework
+4311,2,7,conversation,"You hear ""Thank you very much."" What is the best reply?","Yes, please.",Turn right.,You're welcome.,You're welcome.,,,homework
+4312,2,7,conversation,"You hear ""What's the quickest way to get to the airport?"" What is the best reply?",The airport is very big.,Take the express train.,At three o'clock.,Take the express train.,,,homework
+4313,2,7,conversation,"You hear ""Where should I get off the bus?"" What is the best reply?",The bus is blue.,"Yes, you should.",Get off at Park Street.,Get off at Park Street.,,,homework
+4314,2,7,conversation,"You hear ""How do I get to the university?"" ""Take the number 5 bus and get off at College Avenue."" Which bus should the person take?",the number 15 bus,the College Avenue bus,the number 5 bus,the number 5 bus,,,homework
+4315,2,7,conversation,"You hear ""Is there a parking garage near here?"" ""Yes. Drive along River Street. It's on the right, next to the hotel."" What is next to the parking garage?",the bank,the hotel,the museum,the hotel,,,homework
+4316,2,7,conversation,"You hear ""Excuse me. Where's the ice cream shop?"" ""It's across from the playground."" Where is the ice cream shop?",across from the playground,behind the playground,next to the playground,across from the playground,,,homework
+4317,2,7,conversation,"You hear ""Walk down Central Avenue and turn left at the corner. The toy store is on the right."" Where is the toy store after you turn left?",at the corner,on the right,on the left,on the right,,,homework
+4318,2,7,conversation,"You hear ""Can you tell me how to get to the concert hall?"" ""Sorry, I'm not from here."" Can the second person help?",No.,Yes.,Later.,No.,,,homework
+4319,2,7,photo,Where is this?,a pet shop,a baseball stadium,an ice cream shop,a baseball stadium,l2ch07_a_baseball_stadium.jpg,,homework
+4320,2,7,photo,Where is this?,a concert hall,a flower shop,a pet shop,a concert hall,l2ch07_a_concert_hall.jpg,,homework
+4321,2,7,photo,Where is this?,a courthouse,an ice cream shop,a flower shop,a courthouse,l2ch07_a_courthouse.jpg,,homework
+4322,2,7,photo,Where is this?,a shoe store,a flower shop,a parking garage,a flower shop,l2ch07_a_flower_shop.jpg,,homework
+4323,2,7,photo,Where is this?,a playground,a hardware store,a baseball stadium,a hardware store,l2ch07_a_hardware_store.jpg,,homework
+4324,2,7,photo,Where is this?,an ice cream shop,a concert hall,a toy store,an ice cream shop,l2ch07_an_ice_cream_shop.jpg,,homework
+4325,2,7,photo,Where is this?,a courthouse,a flower shop,a motel,a motel,l2ch07_a_motel.jpg,,homework
+4326,2,7,photo,Where is this?,a museum,an ice cream shop,a playground,a museum,l2ch07_a_museum.jpg,,homework
+4327,2,7,photo,Where is this?,a baseball stadium,a parking garage,a university,a parking garage,l2ch07_a_parking_garage.jpg,,homework
+4328,2,7,photo,Where is this?,a pet shop,a playground,a baseball stadium,a pet shop,l2ch07_a_pet_shop.jpg,,homework
+4329,2,7,photo,Where is this?,an ice cream shop,a parking garage,a playground,a playground,l2ch07_a_playground.jpg,,homework
+4330,2,7,photo,Where is this?,a shoe store,a museum,a toy store,a shoe store,l2ch07_a_shoe_store.jpg,,homework
+4331,2,7,photo,Where is this?,a toy store,a playground,a motel,a toy store,l2ch07_a_toy_store.jpg,,homework
+4332,2,7,photo,Where is this?,a university,a pet shop,a concert hall,a university,l2ch07_a_university.jpg,,homework
+4333,2,7,grammar,___ the train to Shinjuku and get off at the second stop.,Takes,Take,Taking,Take,,,test
+4334,2,7,grammar,Walk ___ Elm Street and turn left.,between,along,across,along,,,test
+4335,2,7,grammar,The pet shop is ___ the flower shop and the toy store.,next,across,between,between,,,test
+4336,2,7,grammar,Please ___ left at the next corner.,turning,turn,turns,turn,,,test
+4337,2,7,grammar,Get ___ the bus at the museum.,up,out,off,off,,,test
+4338,2,7,grammar,The courthouse is ___ from the police station.,between,next,across,across,,,test
+4339,2,7,grammar,You'll see the stadium ___ your left.,in,on,at,on,,,test
+4340,2,7,grammar,Can you tell me how to ___ to the motel?,got,get,gets,get,,,test
+4341,2,7,grammar,Don't ___ the highway. It's very busy now.,takes,taking,take,take,,,test
+4342,2,7,listening,"You hear ""Walk along Park Avenue, and you'll see the hardware store on the left, next to the bank."" What is next to the hardware store?",the bus stop,the bank,the park,the bank,,,test
+4367,2,8,vocabulary,A person who drives is a ___.,painter,driver,dancer,driver,,,homework
+4368,2,8,vocabulary,A person who skis is a ___.,player,skier,runner,skier,,,homework
+4369,2,8,vocabulary,A person who translates languages is a ___.,worker,translator,teacher,translator,,,homework
+4370,2,8,vocabulary,A person who paints pictures is a ___.,painter,skier,singer,painter,,,homework
+4371,2,8,vocabulary,A person who runs in races is a ___.,dancer,runner,driver,runner,,,homework
+4372,2,8,vocabulary,"Someone who moves in a beautiful, smooth way moves ___.",gracefully,awkwardly,sloppily,gracefully,,,homework
+4373,2,8,vocabulary,Someone who makes no mistakes works ___.,awkwardly,accurately,carelessly,accurately,,,homework
+4374,2,8,vocabulary,"The opposite of ""loudly"" is ___.",quickly,softly,neatly,softly,,,homework
+4375,2,8,vocabulary,"If you do things in a messy way, you do them ___.",politely,accurately,sloppily,sloppily,,,homework
+4376,2,8,vocabulary,"He isn't comfortable, so he moves ___.",gracefully,neatly,awkwardly,awkwardly,,,homework
+4377,2,8,grammar,He's a careless driver. He drives very ___.,more careless,carelessly,careless,carelessly,,,homework
+4378,2,8,grammar,She's a graceful dancer. She dances very ___.,grace,gracefully,graceful,gracefully,,,homework
+4379,2,8,grammar,He's a good teacher. He teaches very ___.,good,well,goodly,well,,,homework
+4380,2,8,grammar,She's a hard worker. She works very ___.,hard,hardly,harding,hard,,,homework
+4381,2,8,grammar,He's a fast runner. He runs very ___.,fast,fastly,faster,fast,,,homework
+4382,2,8,grammar,Please speak ___. I can't hear you.,more loud,loudest,louder,louder,,,homework
+4383,2,8,grammar,Please drive ___. The road is wet.,more carefully,carefuller,most carefully,more carefully,,,homework
+4384,2,8,grammar,You should work ___. We're late.,more fast,fastest,faster,faster,,,homework
+4385,2,8,grammar,Am I typing fast ___?,enough,too,very,enough,,,homework
+4386,2,8,grammar,He should try to speak ___.,more slow,slowest,slower,slower,,,homework
+4387,2,8,grammar,She paints ___ than her brother.,better,more good,gooder,better,,,homework
+4388,2,8,grammar,"If it rains tomorrow, I ___ stay home.",will,would,am,will,,,homework
+4389,2,8,grammar,"If you ___ tired, go to sleep early.",will be,be,are,are,,,homework
+4390,2,8,grammar,"If she ___ better tomorrow, she'll go to work.",feels,feel,will feel,feels,,,homework
+4391,2,8,grammar,"If we're late, the teacher ___ be angry.",does,is,will,will,,,homework
+4392,2,8,grammar,He works ___ than I do.,hardest,more hard,harder,harder,,,homework
+4393,2,8,listening,"You hear ""He's a careless driver. He drives very carelessly."" How does he drive?",carelessly,carefully,slowly,carelessly,,,homework
+4394,2,8,listening,"You hear ""You should speak more slowly. I can't understand you."" What should the person do?",speak more slowly,speak faster,speak louder,speak more slowly,,,homework
+4395,2,8,listening,"You hear ""If it's sunny tomorrow, we'll go to the beach."" When will they go to the beach?",if it rains,if it's sunny,every day,if it's sunny,,,homework
+4396,2,8,listening,"You hear ""My sister is a better singer than I am. She sings beautifully."" Who sings better?",They sing the same.,the sister,the speaker,the sister,,,homework
+4397,2,8,listening,"You hear ""Am I working fast enough?"" ""Actually, you should work faster."" Is the person working fast enough?",Maybe.,Yes.,No.,No.,,,homework
+4398,2,8,listening,"You hear ""If you're tired, go to sleep early."" What should you do if you're tired?",drink coffee,work harder,go to sleep early,go to sleep early,,,homework
+4399,2,8,conversation,"You hear ""Am I painting carefully enough?"" What is the best reply?","Yes, I paint every day.","Actually, you're a painter.","Actually, you should paint more carefully.","Actually, you should paint more carefully.",,,homework
+4400,2,8,conversation,"You hear ""I think he's a careless driver."" What is the best reply?","Yes, he's a driver.",I agree. He drives very carefully.,I agree. He drives very carelessly.,I agree. He drives very carelessly.,,,homework
+4401,2,8,conversation,"You hear ""What will you do if it rains tomorrow?"" What is the best reply?","Yes, I will.",It rained yesterday.,"If it rains, I'll stay home and read.","If it rains, I'll stay home and read.",,,homework
+4402,2,8,conversation,"You hear ""Bob speaks very quickly."" What is the best reply?",You're right. He should try to speak slower.,You're right. He should speak faster.,"Yes, he's a fast runner.",You're right. He should try to speak slower.,,,homework
+4403,2,8,conversation,"You hear ""Is Yumi a good dancer?"" What is the best reply?","No, she dances very well.","Yes, she dances beautifully.","Yes, she's at the dance.","Yes, she dances beautifully.",,,homework
+4404,2,8,conversation,"You hear ""How does Ken work?"" ""He works very hard. He's the hardest worker in the office."" What is true about Ken?",He works hard.,He's lazy.,He works slowly.,He works hard.,,,homework
+4405,2,8,conversation,"You hear ""If I finish my homework, I'll call you."" ""OK."" When will the speaker call?",after finishing the homework,tomorrow morning,before the homework,after finishing the homework,,,homework
+4406,2,8,conversation,"You hear ""Can you type faster?"" ""Sorry, I'll try. I'm a slow typist."" Is the speaker a fast typist?",Very fast.,No.,Yes.,No.,,,homework
+4407,2,8,conversation,"You hear ""Does Tom play the piano well?"" ""Not really. He plays badly, but he plays loudly!"" How does Tom play?",badly and softly,badly and loudly,well and softly,badly and loudly,,,homework
+4408,2,8,conversation,"You hear ""If you're hungry, there's pizza in the refrigerator."" What can the person do if hungry?",cook dinner,buy a pizza,eat the pizza,eat the pizza,,,homework
+4409,2,8,photo,Who is this?,a painter,a runner,a dancer,a dancer,l2ch08_a_dancer.jpg,,homework
+4410,2,8,photo,Who is this?,a singer,a runner,a driver,a driver,l2ch08_a_driver.jpg,,homework
+4411,2,8,photo,Who is this?,a painter,a runner,a teacher,a painter,l2ch08_a_painter.jpg,,homework
+4412,2,8,photo,Who is this?,a teacher,a runner,a chess player,a runner,l2ch08_a_runner.jpg,,homework
+4413,2,8,photo,Who is this?,a chess player,a skier,a painter,a skier,l2ch08_a_skier.jpg,,homework
+4414,2,8,photo,Who is this?,a singer,a skier,a driver,a singer,l2ch08_a_singer.jpg,,homework
+4415,2,8,photo,Who is this?,a chess player,a skier,a teacher,a chess player,l2ch08_a_chess_player.jpg,,homework
+4416,2,8,photo,Who is this?,a chess player,a teacher,a driver,a teacher,l2ch08_a_teacher.jpg,,homework
+4417,2,8,grammar,She's an accurate translator. She translates ___.,accurately,accurate,more accurate,accurately,,,test
+4418,2,8,grammar,He's a bad painter. He paints ___.,badly,bad,worse,badly,,,test
+4419,2,8,grammar,You should drive ___ in the snow.,most slowly,more slowly,slowlier,more slowly,,,test
+4420,2,8,grammar,Can you speak ___? I can't hear you.,more loud,loudlier,louder,louder,,,test
+4421,2,8,grammar,My brother skis ___ than I do.,gooder,better,more good,better,,,test
+4422,2,8,grammar,"If he ___ late again, the boss will be angry.",be,is,will be,is,,,test
+4423,2,8,grammar,"If it's cold, we ___ stay inside.",would,are,will,will,,,test
+4424,2,8,grammar,She sings ___ than her sister.,more beautifully,most beautifully,beautifuller,more beautifully,,,test
+4425,2,8,grammar,He's a ___ worker. He always works carefully.,carefully,care,careful,careful,,,test
+4426,2,8,listening,"You hear ""If you practice every day, you'll speak English better."" What will happen if you practice every day?",You'll forget English.,You'll be tired.,You'll speak better.,You'll speak better.,,,test
+4451,2,9,vocabulary,"When a dog uses its teeth on you, it ___ you.",bites,spills,drops,bites,,,homework
+4452,2,9,vocabulary,A thief goes into a house to steal. He ___ the house.,gets out of,crashes into,breaks into,breaks into,,,homework
+4453,2,9,vocabulary,A car hits a tree. It ___ the tree.,crashes into,breaks into,gets off,crashes into,,,homework
+4454,2,9,vocabulary,Your foot hits something and you almost fall. You ___.,spill,trip,faint,trip,,,homework
+4455,2,9,vocabulary,"You suddenly feel weak and fall down, and you can't see or hear for a moment. You ___.",bite,faint,trip,faint,,,homework
+4456,2,9,vocabulary,Coffee comes out of your cup by accident. You ___ it.,spill,cut,drop,spill,,,homework
+4457,2,9,vocabulary,Something falls out of your hand. You ___ it.,spill,bite,drop,drop,,,homework
+4458,2,9,vocabulary,You leave a taxi. You get ___ of the taxi.,on,out,off,out,,,homework
+4459,2,9,vocabulary,Your car tire has no air. You get a ___.,cold,flat tire,sunburn,flat tire,,,homework
+4460,2,9,vocabulary,You touch a hot pan. You ___ yourself.,burn,cut,poke,burn,,,homework
+4461,2,9,grammar,I ___ jogging when I lost my wallet.,was,were,am,was,,,homework
+4462,2,9,grammar,They ___ eating dinner when the phone rang.,are,was,were,were,,,homework
+4463,2,9,grammar,He cut himself while he was ___.,shave,shaving,shaved,shaving,,,homework
+4464,2,9,grammar,She burned ___ while she was cooking.,herself,himself,hers,herself,,,homework
+4465,2,9,grammar,We hurt ___ while we were skiing.,ourselves,us,ourself,ourselves,,,homework
+4466,2,9,grammar,Did you hurt ___?,you,yours,yourself,yourself,,,homework
+4467,2,9,grammar,The children cleaned the room by ___.,themselves,theirselves,them,themselves,,,homework
+4468,2,9,grammar,My cat took a walk by ___.,its,it,itself,itself,,,homework
+4469,2,9,grammar,I lost my keys ___ I was walking home.,for,during,while,while,,,homework
+4470,2,9,grammar,What ___ you doing at 8 p.m. last night?,was,did,were,were,,,homework
+4471,2,9,grammar,He ___ a flat tire while he was driving to work.,got,gets,get,got,,,homework
+4472,2,9,grammar,I was riding my bicycle when I ___.,fall,fell,falls,fell,,,homework
+4473,2,9,grammar,She tripped and ___ while she was dancing.,fell,fall,falls,fell,,,homework
+4474,2,9,grammar,He ___ coffee on his shirt while he was eating breakfast.,spilled,spills,spill,spilled,,,homework
+4475,2,9,grammar,"While I ___ the dishes, I dropped a plate.",am washing,was washing,wash,was washing,,,homework
+4476,2,9,grammar,Ken and Yumi ___ TV when the lights went out.,were watching,was watching,are watching,were watching,,,homework
+4477,2,9,listening,"You hear ""I lost my wallet while I was jogging through the park."" What was the speaker doing?",jogging,shopping,sleeping,jogging,,,homework
+4478,2,9,listening,"You hear ""Harry cut himself while he was shaving."" What happened to Harry?",He burned himself.,He cut himself.,He fell.,He cut himself.,,,homework
+4479,2,9,listening,"You hear ""We were having dinner when someone broke into our car."" What were they doing?",driving,having dinner,sleeping,having dinner,,,homework
+4480,2,9,listening,"You hear ""My sister tripped and fell while she was getting off the bus."" When did the sister fall?",while getting off the bus,while running,while getting on the train,while getting off the bus,,,homework
+4481,2,9,listening,"You hear ""A dog bit me while I was delivering the mail."" What bit the speaker?",a bird,a dog,a cat,a dog,,,homework
+4482,2,9,listening,"You hear ""I hurt myself while I was playing tennis."" When did the speaker get hurt?",while playing soccer,while jogging,while playing tennis,while playing tennis,,,homework
+4483,2,9,conversation,"You hear ""You look upset."" What is the best reply?","Yes, I'm looking.",Thank you. I bought it yesterday.,I had a bad day. I lost my wallet.,I had a bad day. I lost my wallet.,,,homework
+4484,2,9,conversation,"You hear ""Why? What happened?"" What is the best reply?",I'm cooking right now.,It's in the kitchen.,I burned myself while I was cooking.,I burned myself while I was cooking.,,,homework
+4485,2,9,conversation,"You hear ""I cut myself while I was slicing tomatoes."" What is the best reply?",That's a good idea.,Me too. I love tomatoes.,I'm sorry to hear that. Are you OK?,I'm sorry to hear that. Are you OK?,,,homework
+4486,2,9,conversation,"You hear ""What were you doing at nine last night?"" What is the best reply?",I study every night.,I'll study tonight.,I was studying for my test.,I was studying for my test.,,,homework
+4487,2,9,conversation,"You hear ""Did you hurt yourself?"" What is the best reply?","Yes, I hurt you.","Yes, I hurt my knee.","No, it's mine.","Yes, I hurt my knee.",,,homework
+4488,2,9,conversation,"You hear ""What happened to your car?"" ""I got a flat tire while I was driving to work."" When did it happen?",while driving to work,while parking,while driving home,while driving to work,,,homework
+4489,2,9,conversation,"You hear ""Harry looks upset."" ""He fell while he was skating."" What was Harry doing?",skating,skiing,swimming,skating,,,homework
+4490,2,9,conversation,"You hear ""Why is your shirt dirty?"" ""I spilled coffee on it while I was eating breakfast."" What did the speaker spill?",juice,coffee,soup,coffee,,,homework
+4491,2,9,conversation,"You hear ""Did your son make this cake?"" ""Yes, he made it by himself."" Who helped the son?",No one.,His friend.,His mother.,No one.,,,homework
+4492,2,9,conversation,"You hear ""What were you doing when the earthquake happened?"" ""I was taking a shower."" What was the speaker doing?",taking a shower,sleeping,cooking,taking a shower,,,homework
+4493,2,9,photo,What happened?,tripped,cut a finger,spilled the coffee,spilled the coffee,l2ch09_spilled_the_coffee.jpg,,homework
+4494,2,9,photo,What happened?,tripped,dropped a plate,got a flat tire,dropped a plate,l2ch09_dropped_a_plate.jpg,,homework
+4495,2,9,photo,What happened?,burned a hand,dropped a plate,tripped,tripped,l2ch09_tripped.jpg,,homework
+4496,2,9,photo,What happened?,got a flat tire,fainted,crashed into a tree,fainted,l2ch09_fainted.jpg,,homework
+4497,2,9,photo,What happened?,fainted,cut a finger,got a flat tire,got a flat tire,l2ch09_got_a_flat_tire.jpg,,homework
+4498,2,9,photo,What happened?,crashed into a tree,fainted,tripped,crashed into a tree,l2ch09_crashed_into_a_tree.jpg,,homework
+4499,2,9,photo,What happened?,spilled the coffee,cut a finger,crashed into a tree,cut a finger,l2ch09_cut_a_finger.jpg,,homework
+4500,2,9,photo,What happened?,tripped,burned a hand,dropped a plate,burned a hand,l2ch09_burned_a_hand.jpg,,homework
+4501,2,9,photo,What happened?,lost a wallet,fainted,got a flat tire,lost a wallet,l2ch09_lost_a_wallet.jpg,,homework
+4502,2,9,photo,What happened?,spilled the coffee,crashed into a tree,fell off a ladder,fell off a ladder,l2ch09_fell_off_a_ladder.jpg,,homework
+4503,2,9,grammar,She ___ reading when the doorbell rang.,is,was,were,was,,,test
+4504,2,9,grammar,We ___ walking to the station when it started to rain.,are,was,were,were,,,test
+4505,2,9,grammar,He dropped his phone while he ___ off the bus.,is getting,was getting,gets,was getting,,,test
+4506,2,9,grammar,I taught ___ to play the guitar.,myself,me,mine,myself,,,test
+4507,2,9,grammar,They hurt ___ while they were playing soccer.,theirselves,them,themselves,themselves,,,test
+4508,2,9,grammar,Be careful! Don't cut ___.,yours,you,yourself,yourself,,,test
+4509,2,9,grammar,Someone broke ___ our house while we were on vacation.,in,at,into,into,,,test
+4510,2,9,grammar,What ___ he doing when the accident happened?,did,was,were,was,,,test
+4511,2,9,grammar,A car crashed ___ a tree on my street.,into,in,on,into,,,test
+4512,2,9,listening,"You hear ""I tripped and hurt myself while I was running for the bus."" Why did the speaker get hurt?",The speaker fainted.,The speaker tripped.,A dog bit the speaker.,The speaker tripped.,,,test

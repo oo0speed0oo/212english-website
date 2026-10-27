@@ -437,7 +437,20 @@ var H212Listen = (function () {
     cur.id = q.id;
     cur.avail = availableVoices(q.id);
     cur.mixPick = null;
-    resolve();
+    // Level 2 listening questions have ONE recorded file each, in audio/conversation/<id>.m4a
+    // (the same folder Conversation uses). If that file exists it plays; if it is missing or will
+    // not load, play() falls back to the robot voice. The choose-a-voice faces are only for
+    // questions that have the four-voice mp3 set.
+    var cv2 = window.H212_VOICES && window.H212_VOICES.conv;
+    var recorded = !cur.avail.length && cv2 && cv2[q.id] && typeof Audio !== 'undefined';
+    if (recorded) {
+      var ra = new Audio();
+      ra.preload = 'auto';
+      ra.src = 'audio/conversation/' + q.id + '.m4a?v=' + cv2[q.id];
+      cur.audio = ra; cur.sel = 'file'; cur.effective = 'file';
+    } else {
+      resolve();
+    }
 
     var chips = [];
     if (cur.avail.length > 1) chips.push(chip('mix', '<span class="listen-face listen-face-emoji">🎲</span>', T['listen.mix']));
@@ -448,7 +461,7 @@ var H212Listen = (function () {
         '<img class="listen-face" src="images/voices/' + VOICE_KEYS[i] + '.svg" alt="" width="48" height="48">',
         T['listen.' + VOICE_KEYS[i]]));
     }
-    var html = '<div class="listen-who">'
+    var html = recorded ? '' : '<div class="listen-who">'
       + '<div class="listen-who-title">' + T['listen.who'] + '</div>'
       + '<div class="listen-who-options" role="radiogroup" aria-label="' + T['listen.who'] + '">'
       + chips.join('')

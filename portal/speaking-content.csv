@@ -209,3 +209,53 @@ id,level,chapter,kind,prompt_audio,prompt_ja,cue_en,keywords,answers,mode
 3140,2,4,about,What will you do tomorrow?,,,will,I'll go to work.|I'll study English.,practice
 3141,2,4,about,What might you do this weekend?,,,might,I might go hiking.|I might see a movie.,practice
 3142,2,4,about,Where did you grow up?,,,grew up/in,I grew up in Osaka.,practice
+4181,2,5,cue,"Which is bigger, Tokyo or Osaka?",東京,Tokyo,tokyo|bigger,Tokyo is bigger than Osaka.,practice
+4182,2,5,cue,Should I take an umbrella?,はい,yes,yes|should,"Yes, you should.",practice
+4183,2,5,cue,Whose bag is this?,私の,mine,mine,It's mine.,practice
+4184,2,5,japanese,,私の新しいアパートは前のより広いです。,,apartment|larger|than,My new apartment is larger than my old one.,practice
+4185,2,5,japanese,,このチリはあのチリより辛いです。,,hotter|chili|than,This chili is hotter than that one.,practice
+4186,2,5,japanese,,このソファはあのソファより快適です。,,comfortable|sofa|than,This sofa is more comfortable than that one.,practice
+4187,2,5,japanese,,医者に行ったほうがいいですよ。,,doctor|should|see,You should see a doctor.,practice
+4188,2,5,about,"Which is better, summer or winter?",,,better,Summer is better than winter.|I think winter is better.,practice
+4189,2,5,about,What should I see in your city?,,,should,You should see the castle.|You should visit the old temple.,practice
+4190,2,5,about,Is your new phone better than your old one?,,,yes/no,"Yes, it's faster.|No, my old one was better.",practice
+4267,2,6,cue,Who is the funniest person in your family?,おじ,my uncle,uncle|funniest,My uncle is the funniest person in my family.,practice
+4268,2,6,cue,Do you have a smaller one?,これが一番小さい,the smallest,smallest,I'm sorry. This is the smallest one we have.,practice
+4269,2,6,cue,What's the tallest building in Tokyo?,東京スカイツリー,Tokyo Skytree,skytree/sky tree|tallest,Tokyo Skytree is the tallest building in Tokyo.,practice
+4270,2,6,japanese,,彼は私が知っている中で一番頭がいい人です。,,smartest|person|know,He's the smartest person I know.,practice
+4271,2,6,japanese,,彼女は家族で一番親切な人です。,,kindest|family|person,She's the kindest person in my family.,practice
+4272,2,6,japanese,,これは私たちの店で一番小さいラジオです。,,smallest|radio|have,This is the smallest radio we have.,practice
+4273,2,6,japanese,,祖母は私が知っている中で一番忍耐強い人です。,,grandmother|patient|person,My grandmother is the most patient person I know.,practice
+4274,2,6,about,Who is the kindest person you know?,,,kindest/most,My mother is the kindest person I know.,practice
+4275,2,6,about,What's the best restaurant in your town?,,,best,The best restaurant in my town is a small ramen shop.,practice
+4276,2,6,about,What's the most interesting place in Japan?,,,most interesting,I think Kyoto is the most interesting place in Japan.,practice
+4357,2,7,cue,Excuse me. Where's the museum?,公園のとなり,next to the park,next to|park,It's next to the park.,practice
+4358,2,7,cue,How do I get to the station?,メイン通りを歩く,walk up Main Street,walk|main street,Walk up Main Street.,practice
+4359,2,7,cue,Where should I get off the bus?,ファースト・アベニュー,First Avenue,get off|first,Get off at First Avenue.,practice
+4360,2,7,japanese,,メイン通りを歩いて行ってください。,,street|walk|main,Walk up Main Street.,practice
+4361,2,7,japanese,,角で右に曲がってください。,,corner|right|turn,Turn right at the corner.,practice
+4362,2,7,japanese,,ファースト・アベニューで降りてください。,,avenue|first|off,Get off at First Avenue.,practice
+4363,2,7,japanese,,病院は博物館と公園の間にあります。,,hospital|between|museum,The hospital is between the museum and the park.,practice
+4364,2,7,about,How do you get to work or school?,,,take/walk/drive/ride/by,I take the train.|I walk to work.,practice
+4365,2,7,about,What's near your house?,,,there/next to/near/across,There's a park near my house.|My house is next to a convenience store.,practice
+4366,2,7,about,How do I get to the nearest station from your house?,,,walk/turn/go/take,"Walk straight, then turn left. The station is on the right.",practice
+4441,2,8,cue,How does she dance?,優雅に,gracefully,gracefully,She dances gracefully.,practice
+4442,2,8,cue,What will you do if it rains?,家にいる,stay home,if|rains|stay,"If it rains, I'll stay home.",practice
+4443,2,8,cue,Am I speaking slowly enough?,もっとゆっくり,slower,should|slower/more slowly,"Actually, you should speak slower.",practice
+4444,2,8,japanese,,彼はとても注意深く運転します。,,carefully|drives|very,He drives very carefully.,practice
+4445,2,8,japanese,,彼女は上手に踊ります。,,dances|well,She dances well.,practice
+4446,2,8,japanese,,もっとゆっくり話したほうがいいです。,,should|slowly|speak,You should speak more slowly.,practice
+4447,2,8,japanese,,彼は私より速く走ります。,,faster|than|runs,He runs faster than me.,practice
+4448,2,8,about,What do you do well?,,,well,I cook well.|I swim well.,practice
+4449,2,8,about,What will you do if you have free time this weekend?,,,if|will,"If I have free time, I'll go hiking.",practice
+4450,2,8,about,"Who works harder, you or your friend?",,,harder,I work harder than my friend.|My friend works harder than me.,practice
+4527,2,9,cue,What happened?,切った,cut myself,cut|myself,I cut myself.,practice
+4528,2,9,cue,What were you doing at eight last night?,テレビを見ていた,watching TV,was|watching|tv,I was watching TV.,practice
+4529,2,9,cue,Did you make this by yourself?,はい,yes,yes|myself,"Yes, I made it by myself.",practice
+4530,2,9,japanese,,公園でジョギングしている時に財布をなくしました。,,jogging|wallet|while,I lost my wallet while I was jogging in the park.,practice
+4531,2,9,japanese,,彼はひげをそっている時に切りました。,,himself|shaving|while,He cut himself while he was shaving.,practice
+4532,2,9,japanese,,料理中にやけどしました。,,cooking|burned|myself,I burned myself while I was cooking.,practice
+4533,2,9,japanese,,昨夜9時に何をしていましたか。,,doing|night|what,What were you doing at nine last night?,practice
+4534,2,9,about,What were you doing at seven this morning?,,,was|*ing,I was eating breakfast.|I was sleeping.,practice
+4535,2,9,about,What do you like to do by yourself?,,,myself,I like to read by myself.,practice
+4536,2,9,about,What were you doing last Sunday afternoon?,,,was|*ing,I was shopping with my family.,practice
