@@ -1,0 +1,101 @@
+{
+  "_help": [
+    "212 Kids menu. Change this file to add months, lessons, themes and game tiles. No code changes needed.",
+    "levels > months > lessons.  A level with \"same_as\" uses another level's months (e.g. K uses Pre-K for now).",
+    "themes > games.  Each tile: id, english, japanese, icon, color, month (optional: nov, dec ...).",
+    "ids: short words with a-z, 0-9 and -. Never reuse an id. (Future kids question ids start at 100000.)",
+    "icons: apple, banana, pizza, music, speaker, cards, bubbles, yesno, sack, gift, letter, bell, tree, star, smile, sad, shapes, circle, colors, numbers, abc, class, backpack",
+    "colors: any #RRGGBB. Nice ones: #FF9E94 #FFE27A #FFB46B #9FD3FF #C9B8FF #8ED6A0 #FF7DA8"
+  ],
+
+  "homework": { "english": "Mike's homework", "japanese": "せんせいのしゅくだい" },
+
+  "class": { "english": "Class", "japanese": "じゅぎょう", "icon": "class", "background": "#FFE6B3" },
+
+  "levels": [
+    {
+      "id": "prek", "english": "Pre-K", "japanese": "ねんしょう・ねんちゅう", "color": "#4DA3FF",
+      "months": [
+        {
+          "id": "nov", "english": "Nov", "japanese": "11がつ",
+          "title_english": "Harvest Festival", "title_japanese": "しゅうかくさい", "icon": "apple",
+          "lessons": [
+            { "id": "nov-1", "number": 1, "english": "Fruits", "japanese": "くだもの", "icon": "apple", "color": "#FF9E94" },
+            { "id": "nov-2", "number": 2, "english": "How many?", "japanese": "いくつ？", "icon": "banana", "color": "#FFE27A" },
+            { "id": "nov-3", "number": 3, "english": "Pizza Shop", "japanese": "ピザやさん", "icon": "pizza", "color": "#FFB46B" },
+            { "id": "nov-4", "number": 4, "english": "Freeze Dance", "japanese": "フリーズダンス", "icon": "music", "color": "#9FD3FF" }
+          ]
+        },
+        {
+          "id": "dec", "english": "Dec", "japanese": "12がつ",
+          "title_english": "Santa's Workshop", "title_japanese": "サンタのこうぼう", "icon": "tree",
+          "lessons": [
+            { "id": "dec-1", "number": 1, "english": "Santa's Sack", "japanese": "サンタのふくろ", "icon": "sack", "color": "#FF9E94" },
+            { "id": "dec-2", "number": 2, "english": "Elf Workshop", "japanese": "こびとのこうぼう", "icon": "colors", "color": "#8ED6A0" },
+            { "id": "dec-3", "number": 3, "english": "Dear Santa", "japanese": "サンタへのてがみ", "icon": "letter", "color": "#FFE27A" },
+            { "id": "dec-4", "number": 4, "english": "Pass the Present", "japanese": "プレゼントまわし", "icon": "gift", "color": "#C9B8FF" }
+          ]
+        }
+      ]
+    },
+    { "id": "k", "english": "K", "japanese": "ねんちょう", "color": "#5CC98B", "same_as": "prek" },
+    { "id": "1", "english": "Grade 1", "japanese": "1ねんせい", "color": "#FFB46B", "same_as": "prek" },
+    { "id": "2", "english": "Grade 2", "japanese": "2ねんせい", "color": "#FF7DA8", "same_as": "prek" },
+    { "id": "3", "english": "Grade 3", "japanese": "3ねんせい", "color": "#C9B8FF", "same_as": "prek" },
+    { "id": "4", "english": "Grade 4", "japanese": "4ねんせい", "color": "#FFD24D", "same_as": "prek" }
+  ],
+
+  "themes": [
+    {
+      "id": "food", "english": "Food", "japanese": "たべもの", "icon": "apple", "background": "#D8F1DD",
+      "games": [
+        { "id": "food-tap", "english": "Tap it", "japanese": "きいてタップ", "icon": "speaker", "color": "#FFE27A", "month": "nov" },
+        { "id": "food-memory", "english": "Memory", "japanese": "ペアさがし", "icon": "cards", "color": "#9FD3FF", "month": "nov" },
+        { "id": "food-pop", "english": "Pop it", "japanese": "バブルポップ", "icon": "bubbles", "color": "#C9B8FF", "month": "nov" },
+        { "id": "food-yesno", "english": "Yes or No", "japanese": "すき？きらい？", "icon": "yesno", "color": "#FF9E94", "month": "nov" },
+        { "id": "food-shopping", "english": "Shopping", "japanese": "おかいもの", "icon": "banana", "color": "#FFE27A", "month": "nov" },
+        { "id": "food-pizza", "english": "Pizza Shop", "japanese": "ピザやさん", "icon": "pizza", "color": "#FFB46B", "month": "nov" }
+      ]
+    },
+    {
+      "id": "feelings", "english": "Feelings", "japanese": "きもち", "icon": "smile", "background": "#FFF3B8",
+      "games": [
+        { "id": "feelings-tap", "english": "Tap it", "japanese": "きいてタップ", "icon": "speaker", "color": "#FFE27A" },
+        { "id": "feelings-faces", "english": "Happy or Sad", "japanese": "うれしい？かなしい？", "icon": "sad", "color": "#9FD3FF" },
+        { "id": "feelings-memory", "english": "Memory", "japanese": "ペアさがし", "icon": "cards", "color": "#FF9E94" }
+      ]
+    },
+    {
+      "id": "shapes", "english": "Shapes", "japanese": "かたち", "icon": "shapes", "background": "#E3DBFF",
+      "games": [
+        { "id": "shapes-tap", "english": "Tap it", "japanese": "きいてタップ", "icon": "speaker", "color": "#FFE27A" },
+        { "id": "shapes-match", "english": "Match it", "japanese": "おなじかたち", "icon": "circle", "color": "#9FD3FF" },
+        { "id": "shapes-memory", "english": "Memory", "japanese": "ペアさがし", "icon": "cards", "color": "#FF9E94" }
+      ]
+    },
+    {
+      "id": "colors", "english": "Colors", "japanese": "いろ", "icon": "colors", "background": "#FFE0EC",
+      "games": [
+        { "id": "colors-tap", "english": "Tap it", "japanese": "きいてタップ", "icon": "speaker", "color": "#FFE27A", "month": "dec" },
+        { "id": "colors-pop", "english": "Pop it", "japanese": "バブルポップ", "icon": "bubbles", "color": "#C9B8FF", "month": "dec" },
+        { "id": "colors-elves", "english": "Elf Workshop", "japanese": "こびとのこうぼう", "icon": "gift", "color": "#8ED6A0", "month": "dec" }
+      ]
+    },
+    {
+      "id": "numbers", "english": "Numbers", "japanese": "かず", "icon": "numbers", "background": "#DDF0FF",
+      "games": [
+        { "id": "numbers-howmany", "english": "How many?", "japanese": "いくつ？", "icon": "banana", "color": "#FFE27A", "month": "nov" },
+        { "id": "numbers-pop", "english": "Pop it", "japanese": "バブルポップ", "icon": "bubbles", "color": "#C9B8FF" },
+        { "id": "numbers-tap", "english": "Tap it", "japanese": "きいてタップ", "icon": "speaker", "color": "#9FD3FF" }
+      ]
+    },
+    {
+      "id": "abc", "english": "ABC", "japanese": "アルファベット", "icon": "abc", "background": "#FFE6D6",
+      "games": [
+        { "id": "abc-sounds-nov", "english": "H · T · i", "japanese": "おとをきこう", "icon": "speaker", "color": "#FF9E94", "month": "nov" },
+        { "id": "abc-sounds-dec", "english": "J · K · P", "japanese": "おとをきこう", "icon": "speaker", "color": "#8ED6A0", "month": "dec" },
+        { "id": "abc-pop", "english": "Pop it", "japanese": "バブルポップ", "icon": "bubbles", "color": "#C9B8FF" }
+      ]
+    }
+  ]
+}
