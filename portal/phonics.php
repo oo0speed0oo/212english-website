@@ -35,6 +35,8 @@ h212_js_strings( array(
 	'phonics.read_inst', 'phonics.read_said', 'phonics.read_try', 'phonics.read_type_hint', 'phonics.read_type_ph', 'phonics.read_done_sub', 'phonics.read_more',
 	'speak.mic', 'speak.mic_stop', 'speak.listening', 'speak.no_speech', 'speak.mic_blocked', 'speak.error', 'speak.great', 'speak.try_again', 'speak.type_check', 'speak.type_empty',
 	'speak.help_works', 'speak.help_no_sr', 'speak.help_blocked', 'speak.help_privacy', 'speak.heard', 'speak.you_wrote',
+	'phonics.print_btn', 'phonics.ws_print', 'phonics.ws_again', 'phonics.ws_hint', 'phonics.ws_name', 'phonics.ws_date', 'phonics.ws_s1', 'phonics.ws_s2', 'phonics.ws_s2c',
+	'phonics.ws_s3', 'phonics.ws_s4', 'phonics.ws_key', 'phonics.ws_say', 'phonics.ws_say_sounds',
 	'phonics.q_sentence', 'phonics.sentence_was',
 	'phonics.blend_hint', 'phonics.blend_btn', 'phonics.blend_next', 'phonics.blend_say', 'phonics.blend_done_sub', 'phonics.blend_more',
 ) );

@@ -1,7 +1,7 @@
 // Phonics screens. Practice only: it never counts for unlocking chapters or for Grades.
 //
 //   Steps (9)  ->  Lessons of a step  ->  one lesson's parts  ->  a part
-//   Parts so far: A. Sound Board, B. Blend it, C. Listen & pick (three games), D. Read aloud, E. Listening sentences.
+//   Parts so far: A. Sound Board, B. Blend it, C. Listen & pick (three games), D. Read aloud, E. Listening sentences, F. print worksheet.
 //
 // Page setup (phonics.php) sets window.H212_PHONICS (steps, lessons, sounds, progress, audio),
 // window.H212_T (phonics.* strings) and window.H212_NONCE, and loads listen.js (robot voice) and ui.js.
@@ -228,6 +228,9 @@ var H212Phonics = (function () {
         + status + '</div>';
     });
     h += '</div></div>';
+    if (hasWorksheet(n)) {
+      h += '<div class="grp-phonics" style="margin-top:6px"><button type="button" class="next-btn ph-blend-skip" style="display:inline-flex;margin-top:0" onclick="H212Phonics.worksheet(' + n + ')">' + esc(T('phonics.print_btn')) + '</button></div>';
+    }
     pc().innerHTML = h;
   }
 
@@ -971,6 +974,82 @@ var H212Phonics = (function () {
     window.scrollTo(0, 0);
   }
 
+  // ── F. Worksheet (print) ────────────────────────────
+  // A clean A4 page built from the same word lists as the games: 1 circle the word you hear, 2 read the words,
+  // 3 blend lines, 4 which word begins with the sound. "New sheet" makes different questions. The teacher's key is
+  // printed small at the bottom. Nothing is saved: it is only a printout.
+  var WS_ROWS = 6, WS_WORDS = 24, WS_CHALLENGE = 6;
+  function worksheetData(n) {
+    var d = readData(n);
+    return {
+      listen: build(n, 'word').slice(0, WS_ROWS),
+      begin: build(n, 'begin').slice(0, WS_ROWS),
+      blend: blendRound(n).slice(0, WS_ROWS),
+      read: d.w.slice(0, WS_WORDS),
+      challenge: d.c.slice(0, WS_CHALLENGE)
+    };
+  }
+  function hasWorksheet(n) {
+    var d = worksheetData(n);
+    return !!(d.listen.length || d.begin.length || d.blend.length || d.read.length);
+  }
+  function wsRows(qs) {
+    return qs.map(function (q, i) {
+      return '<div class="ws-row"><span class="ws-no">' + (i + 1) + '</span>'
+        + q.choices.map(function (c) { return '<span class="ws-opt">' + esc(c) + '</span>'; }).join('') + '</div>';
+    }).join('');
+  }
+  function showWorksheet(n) {
+    stopAudio();
+    var l = P.lessons[n];
+    if (!l) return showSteps();
+    var d = worksheetData(n), key = [];
+    var h = '<div class="ws-toolbar grp-phonics">'
+      + '<button type="button" class="back-btn" onclick="H212Phonics.lesson(' + n + ')" aria-label="' + esc(T('phonics.back_parts')) + '">' + H212UI.icons.back + '</button>'
+      + '<button type="button" class="next-btn" style="display:inline-flex;margin-top:0" onclick="window.print()">' + esc(T('phonics.ws_print')) + '</button>'
+      + '<button type="button" class="next-btn ph-blend-skip" style="display:inline-flex;margin-top:0" onclick="H212Phonics.worksheet(' + n + ')">' + esc(T('phonics.ws_again')) + '</button>'
+      + '<div class="ws-hint">' + esc(T('phonics.ws_hint')) + '</div></div>'
+      + '<div class="ws-sheet">'
+      + '<div class="ws-head"><div class="ws-title"><small>212 English · ' + esc(T('nav.phonics')) + ' · ' + esc(lessonLabel(l)) + '</small>' + esc(l.title) + '</div>'
+      + '<div class="ws-fill"><span>' + esc(T('phonics.ws_name')) + '</span><span>' + esc(T('phonics.ws_date')) + '</span></div></div>';
+    // Page 1: the two listening exercises (the teacher reads). Page 2: reading and writing.
+    if (d.listen.length) {
+      h += '<div class="ws-sec"><h3>' + esc(T('phonics.ws_s1')) + '</h3>' + wsRows(d.listen) + '</div>';
+      key.push('<b>1.</b> ' + esc(T('phonics.ws_say')) + ': ' + d.listen.map(function (q, i) { return (i + 1) + ' ' + q.choices[q.answer]; }).join(' · '));
+    }
+    if (d.begin.length) {
+      h += '<div class="ws-sec"><h3>' + esc(T('phonics.ws_s2')) + '</h3>' + wsRows(d.begin) + '</div>';
+      key.push('<b>2.</b> ' + esc(T('phonics.ws_say_sounds')) + ': ' + d.begin.map(function (q, i) {
+        var s = P.sounds[q.audio.sound];
+        return (i + 1) + ' “' + esc(s.sound) + '” (' + esc(s.parts[0].key_word) + ') → ' + esc(q.choices[q.answer]);
+      }).join(' · '));
+    }
+    if (d.blend.length) key.push('<b>4.</b> ' + d.blend.map(function (b) { return esc(b.w); }).join(' · '));
+    if (key.length) h += '<div class="ws-key"><b>' + esc(T('phonics.ws_key')) + '</b><br>' + key.join('<br>') + '</div>';
+    var page2 = '';
+    if (d.read.length) {
+      page2 += '<div class="ws-sec"><h3>' + esc(T('phonics.ws_s3')) + '</h3><div class="ws-words">'
+        + d.read.map(function (w) { return '<span>' + esc(w) + '</span>'; }).join('') + '</div>';
+      if (d.challenge.length) {
+        page2 += '<div class="ws-sub">' + esc(T('phonics.ws_s2c')) + '</div><div class="ws-words ws-challenge">'
+          + d.challenge.map(function (c) { return '<span>' + esc(c[1] ? c[0].charAt(0).toUpperCase() + c[0].slice(1) : c[0]) + '</span>'; }).join('') + '</div>';
+      }
+      page2 += '</div>';
+    }
+    if (d.blend.length) {
+      page2 += '<div class="ws-sec"><h3>' + esc(T('phonics.ws_s4')) + '</h3>'
+        + d.blend.map(function (b) {
+          return '<div class="ws-blend"><span class="ws-tiles">' + b.t.map(function (t) { return esc(t.s); }).join(' · ') + '</span><span>→</span><span class="ws-line"></span></div>';
+        }).join('') + '</div>';
+    }
+    if (page2) {
+      h += '<div class="ws-page2"><div class="ws-head"><div class="ws-title"><small>212 English · ' + esc(T('nav.phonics')) + ' · ' + esc(lessonLabel(l)) + '</small>' + esc(l.title) + '</div>'
+        + '<div class="ws-fill"><span>' + esc(T('phonics.ws_name')) + '</span><span>' + esc(T('phonics.ws_date')) + '</span></div></div>' + page2 + '</div>';
+    }
+    h += '</div>';
+    pc().innerHTML = h;
+  }
+
   // ── Navigation ──────────────────────────────────────
   function goTop() { window.scrollTo(0, 0); }
   function init() { showSteps(); }
@@ -996,6 +1075,8 @@ var H212Phonics = (function () {
     blend: blendGo,
     read: function (n) { showRead(n); goTop(); },
     challenge: function (n) { showChallenge(n); goTop(); },
+    worksheet: function (n) { showWorksheet(n); goTop(); },
+    _worksheet: worksheetData,
     hearWord: playWord,
     readMic: readMic,
     readTyped: readTyped,
