@@ -1,7 +1,7 @@
 // Phonics screens. Practice only: it never counts for unlocking chapters or for Grades.
 //
 //   Steps (9)  ->  Lessons of a step  ->  one lesson's parts  ->  a part
-//   Parts so far: A. Sound Board, B. Blend it, C. Listen & pick (three games), D. Read aloud.
+//   Parts so far: A. Sound Board, B. Blend it, C. Listen & pick (three games), D. Read aloud, E. Listening sentences.
 //
 // Page setup (phonics.php) sets window.H212_PHONICS (steps, lessons, sounds, progress, audio),
 // window.H212_T (phonics.* strings) and window.H212_NONCE, and loads listen.js (robot voice) and ui.js.
@@ -22,11 +22,11 @@
 // are never offered together. A finished round ticks the game; the lesson's "Listen & pick" is ticked
 // when every game this lesson can play is ticked.
 var H212Phonics = (function () {
-  var P = window.H212_PHONICS || { steps: [], lessons: {}, sounds: {}, progress: {}, audio: { v: 0, sounds: [], alone: [], words: [] }, game: [], blend: {}, read: {}, homo: [] };
+  var P = window.H212_PHONICS || { steps: [], lessons: {}, sounds: {}, progress: {}, audio: { v: 0, sounds: [], alone: [], words: [], sentences: [] }, game: [], blend: {}, read: {}, sent: [], homo: [] };
   var player = null;      // the recorded clip that is playing, if any
   var picked = null;      // Sound Board: the sound shown in the card { no, part }
-  // Parts that exist so far, in menu order. Add 'sentences' when it is built.
-  var READY = ['board', 'blend', 'listen', 'read'];
+  // Parts that exist so far, in menu order.
+  var READY = ['board', 'blend', 'listen', 'read', 'sentences'];
   var PARTS = ['board', 'blend', 'listen', 'read', 'sentences'];
   var GAMES = ['sound', 'word', 'begin'];
   var G = null;           // Listen & pick: the round in progress { n, game, qs, i, correct, locked }
@@ -58,6 +58,7 @@ var H212Phonics = (function () {
     if (part === 'listen') return GAMES.some(function (g) { return gameAvailable(n, g); });
     if (part === 'blend') return blendPool(n).length >= 2;
     if (part === 'read') { var r = P.read && P.read[n]; return !!(r && (r.w.length || r.c.length)); }
+    if (part === 'sentences') return sentencePool(n).length >= 3;
     return true;
   }
   // A lesson is finished when every part it can play is ticked
@@ -719,6 +720,24 @@ var H212Phonics = (function () {
     return shuffle(qs);
   }
 
+  // Two wrong words for `t`, from `pool`: one sound different when possible (cat / cot / cut), never the same sound
+  function alike(t, pool) {
+    var cands = pool.filter(function (x) { return x.w !== t.w && !sameSound(x.w, t.w); });
+    var tier1 = shuffle(cands.filter(function (x) { return diffCount(x.w, t.w) === 1; }));
+    var tier2 = shuffle(cands.filter(function (x) { return x.w.length === t.w.length && diffCount(x.w, t.w) > 1; }));
+    var tier3 = shuffle(cands.filter(function (x) { return x.w.charAt(0) === t.w.charAt(0); }));
+    var tier4 = shuffle(cands);
+    var picked = [];
+    [tier1, tier2, tier3, tier4].forEach(function (list) {
+      list.forEach(function (x) {
+        if (picked.length >= 2) return;
+        if (picked.some(function (p) { return sameSound(p.w, x.w); })) return;
+        picked.push(x);
+      });
+    });
+    return picked;
+  }
+
   // Game 2: hear a word, pick it. Wrong answers differ by one sound when possible (cat / cot / cut).
   function buildWord(n) {
     var pool = poolWords(n);
@@ -727,19 +746,7 @@ var H212Phonics = (function () {
     var rest = shuffle(pool.filter(function (x) { return x.l !== n; }));
     var qs = [];
     own.concat(rest).slice(0, 10).forEach(function (t) {
-      var cands = pool.filter(function (x) { return x.w !== t.w && !sameSound(x.w, t.w); });
-      var tier1 = shuffle(cands.filter(function (x) { return diffCount(x.w, t.w) === 1; }));
-      var tier2 = shuffle(cands.filter(function (x) { return x.w.length === t.w.length && diffCount(x.w, t.w) > 1; }));
-      var tier3 = shuffle(cands.filter(function (x) { return x.w.charAt(0) === t.w.charAt(0); }));
-      var tier4 = shuffle(cands);
-      var picked = [];
-      [tier1, tier2, tier3, tier4].forEach(function (list) {
-        list.forEach(function (x) {
-          if (picked.length >= 2) return;
-          if (picked.some(function (p) { return sameSound(p.w, x.w); })) return;
-          picked.push(x);
-        });
-      });
+      var picked = alike(t, pool);
       if (picked.length < 2) return;
       var choices = shuffle([t].concat(picked));
       qs.push({ audio: { word: t.w }, choices: choices.map(function (c) { return c.w; }), answer: choices.map(function (c) { return c.w; }).indexOf(t.w) });
@@ -840,7 +847,8 @@ var H212Phonics = (function () {
   function playQ() {
     if (!G) return;
     var q = G.qs[G.i];
-    if (q.audio.sound) playSound(q.audio.sound, 0); else playWord(q.audio.word);
+    if (q.audio.sentence) playSentence(q.audio.sentence, q.text);
+    else if (q.audio.sound) playSound(q.audio.sound, 0); else playWord(q.audio.word);
   }
 
   function showQ() {
@@ -849,8 +857,9 @@ var H212Phonics = (function () {
     stopAudio();
     if (typeof H212Listen !== 'undefined') H212Listen.stop();
     var last = G.i + 1 >= G.qs.length;
-    var h = H212UI.qTop({ onclose: 'H212Phonics.listenMenu(' + G.n + ')', label: T('phonics.back_games'), index: G.i, total: G.qs.length, noScore: true })
-      + '<div class="grp-phonics"><div class="q-label">' + esc(T('nav.phonics')) + ' · ' + esc(lessonLabel(l)) + ' · ' + esc(T('phonics.game_' + G.game)) + '</div></div>'
+    var sen = G.game === 'sentence';
+    var h = H212UI.qTop({ onclose: sen ? 'H212Phonics.lesson(' + G.n + ')' : 'H212Phonics.listenMenu(' + G.n + ')', label: T(sen ? 'phonics.back_parts' : 'phonics.back_games'), index: G.i, total: G.qs.length, noScore: true })
+      + '<div class="grp-phonics"><div class="q-label">' + esc(T('nav.phonics')) + ' · ' + esc(lessonLabel(l)) + ' · ' + esc(sen ? T('phonics.part_sentences') : T('phonics.game_' + G.game)) + '</div></div>'
       + '<div class="question-card">'
       + '<button type="button" class="listen-btn listen-btn-big" id="listen-btn" onclick="H212Phonics.hear()">' + esc(T('listen.play')) + '</button>'
       + ((typeof H212Listen !== 'undefined' && H212Listen.soundHint) ? H212Listen.soundHint() : '')
@@ -887,8 +896,12 @@ var H212Phonics = (function () {
     msg.style.display = 'block';
     var nb = document.getElementById('next-btn');
     if (nb) nb.style.display = 'inline-flex';
-    // say the answer again: the word, or the sound
-    if (q.audio.word) playWord(q.audio.word);
+    // say the answer again: the sentence (and show it), the word, or the sound
+    if (q.audio.sentence) {
+      msg.innerHTML = esc(msg.textContent) + '<br>' + esc(T('phonics.sentence_was')) + ' <b>“' + esc(q.text) + '”</b>';
+      playSentence(q.audio.sentence, q.text);
+    }
+    else if (q.audio.word) playWord(q.audio.word);
     else if (q.word) playWord(q.word);
     else playSound(q.audio.sound, 0);
   }
@@ -901,17 +914,61 @@ var H212Phonics = (function () {
 
   function finishGame() {
     var pct = Math.round(G.correct * 100 / G.qs.length);
-    save(G.n, 'listen_' + G.game, pct);
+    var sen = G.game === 'sentence';
+    save(G.n, sen ? 'sentences' : 'listen_' + G.game, pct);
     var h = '<div class="question-card" style="text-align:center">'
       + '<div style="font-size:48px;margin-bottom:16px">🎉</div>'
       + '<div class="speak-finish-title">' + esc(T('phonics.finish_title')) + '</div>'
       + '<div class="speak-finish-sub">' + esc(fill(T('phonics.finish_sub'), { c: G.correct, t: G.qs.length })) + '</div>'
       + '<div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">'
-      + '<button class="next-btn" style="display:inline-flex" onclick="H212Phonics.game(' + G.n + ',\'' + G.game + '\')">' + esc(T('phonics.again')) + '</button>'
-      + '<button class="next-btn" style="display:inline-flex" onclick="H212Phonics.listenMenu(' + G.n + ')">' + esc(T('phonics.back_games')) + '</button>'
+      + (sen ? '' : '<button class="next-btn" style="display:inline-flex" onclick="H212Phonics.game(' + G.n + ',\'' + G.game + '\')">' + esc(T('phonics.again')) + '</button>')
+      + (sen ? '<button class="next-btn" style="display:inline-flex" onclick="H212Phonics.part(' + G.n + ',\'sentences\')">' + esc(T('phonics.again')) + '</button>'
+        + '<button class="next-btn" style="display:inline-flex" onclick="H212Phonics.lesson(' + G.n + ')">' + esc(T('phonics.back_parts')) + '</button>'
+        : '<button class="next-btn" style="display:inline-flex" onclick="H212Phonics.listenMenu(' + G.n + ')">' + esc(T('phonics.back_games')) + '</button>')
       + '</div></div>';
     pc().innerHTML = h;
     stopAudio();
+  }
+
+  // ── E. Listening sentences ──────────────────────────
+  // Hear a short sentence (audio/phonics/sentences/<id>.m4a, else the robot voice), then pick the word you heard:
+  // 3 words from the same lessons that sound alike. The sentence is hidden until the answer. Sentences come from
+  // portal/phonics/phonics-sentences.csv (P.sent: [id, lesson, target, sentence]); only sounds taught by that lesson
+  // plus a few sight words are used. A round is up to 6 sentences: this lesson's first, then earlier lessons'.
+  var SENT_MAX = 6;
+  function sentencePool(n) {
+    var words = {};
+    P.game.forEach(function (x) { if (x.l <= n) words[x.w] = x; });
+    return (P.sent || []).filter(function (r) { return r[1] <= n && words[r[2]]; })
+      .map(function (r) { return { id: r[0], l: r[1], t: r[2], s: r[3] }; });
+  }
+  function buildSentences(n) {
+    var pool = poolWords(n), byWord = {};
+    pool.forEach(function (x) { byWord[x.w] = x; });
+    var all = sentencePool(n);
+    var own = shuffle(all.filter(function (x) { return x.l === n; }));
+    var rest = shuffle(all.filter(function (x) { return x.l !== n; }));
+    var qs = [], used = {};
+    own.concat(rest).forEach(function (x) {
+      if (qs.length >= SENT_MAX || used[x.t]) return;            // each target word once per round
+      var t = byWord[x.t], picked = alike(t, pool);
+      if (picked.length < 2) return;
+      used[x.t] = true;
+      var choices = shuffle([t].concat(picked)).map(function (c) { return c.w; });
+      qs.push({ audio: { sentence: x.id }, text: x.s, choices: choices, answer: choices.indexOf(x.t) });
+    });
+    return qs;
+  }
+  function playSentence(id, text) {
+    if (has(P.audio.sentences, id)) clip('audio/phonics/sentences/' + id + '.m4a?v=' + (P.audio.v || 0), text);
+    else clip('', text);
+  }
+  function startSentences(n) {
+    var qs = buildSentences(n);
+    if (!qs.length) return showLesson(n);
+    G = { n: n, game: 'sentence', qs: qs, i: 0, correct: 0, locked: false };
+    showQ();
+    window.scrollTo(0, 0);
   }
 
   // ── Navigation ──────────────────────────────────────
@@ -927,6 +984,7 @@ var H212Phonics = (function () {
       if (p === 'board') { showBoard(n); goTop(); }
       else if (p === 'blend') { showBlend(n); goTop(); }
       else if (p === 'read') { showReadMenu(n); goTop(); }
+      else if (p === 'sentences') { startSentences(n); goTop(); }
       else if (p === 'listen') { showListenMenu(n); goTop(); }
     },
     listenMenu: function (n) { showListenMenu(n); goTop(); },
@@ -948,6 +1006,8 @@ var H212Phonics = (function () {
     blendNext: blendNext,
     _blendPool: blendPool,
     _build: build,
+    _sentences: buildSentences,
+    _sentencePool: sentencePool,
     _state: function () { return P; }
   };
 })();

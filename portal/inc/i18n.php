@@ -275,6 +275,8 @@ $GLOBALS['h212_strings'] = array(
 	'phonics.read_type_ph'   => array( 'en' => 'Say the word with 🎤 on the keyboard…', 'ja' => 'キーボードの🎤で単語を言ってください…' ),
 	'phonics.read_done_sub'  => array( 'en' => 'You practised {c} of {t} words.', 'ja' => '{t}語中{c}語に挑戦しました。' ),
 	'phonics.read_more'      => array( 'en' => 'Try at least half of the words to finish this part.', 'ja' => 'このパートを完了するには、半分以上の単語に挑戦してください。' ),
+	'phonics.q_sentence'     => array( 'en' => 'Listen to the sentence. Which word did you hear?', 'ja' => '文を聞いてください。どの単語が聞こえましたか？' ),
+	'phonics.sentence_was'   => array( 'en' => 'The sentence:', 'ja' => '文：' ),
 	'phonics.words_n'        => array( 'en' => '{n} words', 'ja' => '{n}語' ),
 	'phonics.silent_hint'    => array( 'en' => 'No sound? Turn off the silent switch and turn up the volume.', 'ja' => '音が出ない場合は、サイレントスイッチをオフにして音量を上げてください。' ),
 	'practice.loading'     => array( 'en' => '⏳ Loading…', 'ja' => '⏳ 読み込み中…' ),

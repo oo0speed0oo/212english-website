@@ -377,10 +377,38 @@ function h212_phonics_read() {
 	return $read;
 }
 
+/**
+ * Listening sentences (phonics-sentences.csv): [ id, lesson, target word, sentence ]. A sentence is kept only if its
+ * lesson exists and its target is a clean common word of that lesson (the same words the listening games use).
+ */
+function h212_phonics_sentences() {
+	static $out = null;
+	if ( null !== $out ) {
+		return $out;
+	}
+	$out   = array();
+	$games = array();
+	foreach ( h212_phonics_words() as $w ) {
+		if ( $w['game'] ) {
+			$games[ $w['lesson'] ][ $w['word'] ] = true;
+		}
+	}
+	foreach ( h212_phonics_read_csv( 'phonics-sentences.csv' ) as $r ) {
+		$n = (int) $r['lesson'];
+		$t = strtolower( trim( $r['target'] ) );
+		$s = trim( $r['sentence'] );
+		if ( ! preg_match( '/^PS\d+$/', trim( $r['id'] ) ) || '' === $s || ! isset( $games[ $n ][ $t ] ) ) {
+			continue;
+		}
+		$out[] = array( trim( $r['id'] ), $n, $t, $s );
+	}
+	return $out;
+}
+
 /** Which recorded voices exist (portal/audio/phonics/...). The page uses the robot voice for anything missing. */
 function h212_phonics_audio() {
 	$base = dirname( __DIR__ ) . '/audio/phonics/';
-	$out  = array( 'v' => 0, 'sounds' => array(), 'alone' => array(), 'words' => array() );
+	$out  = array( 'v' => 0, 'sounds' => array(), 'alone' => array(), 'words' => array(), 'sentences' => array() );
 	foreach ( (array) glob( $base . 'sounds/*.m4a' ) as $f ) {
 		$out['sounds'][] = (int) basename( $f, '.m4a' );
 		$out['v']        = max( $out['v'], (int) filemtime( $f ) );
@@ -389,12 +417,17 @@ function h212_phonics_audio() {
 		$out['alone'][] = basename( $f, '.m4a' );                         // "23" = first sound, "23-2" = second sound
 		$out['v']       = max( $out['v'], (int) filemtime( $f ) );
 	}
+	foreach ( (array) glob( $base . 'sentences/*.m4a' ) as $f ) {
+		$out['sentences'][] = basename( $f, '.m4a' );
+		$out['v']           = max( $out['v'], (int) filemtime( $f ) );
+	}
 	foreach ( (array) glob( $base . 'words/*.m4a' ) as $f ) {
 		$out['words'][] = basename( $f, '.m4a' );
 		$out['v']       = max( $out['v'], (int) filemtime( $f ) );
 	}
 	sort( $out['sounds'] );
 	sort( $out['alone'] );
+	sort( $out['sentences'] );
 	sort( $out['words'] );
 	return $out;
 }
@@ -501,6 +534,7 @@ function h212_phonics_for_js( $user_id ) {
 		'game'     => h212_phonics_game_words(),
 		'blend'    => (object) h212_phonics_blend(),
 		'read'     => (object) h212_phonics_read(),
+		'sent'     => h212_phonics_sentences(),
 		'homo'     => h212_phonics_homophones(),
 	);
 }
