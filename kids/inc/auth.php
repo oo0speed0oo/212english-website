@@ -4,46 +4,8 @@
  * Include this at the very top of a page, before any HTML is echoed.
  */
 
-if ( ! defined( 'ABSPATH' ) ) {
-	require_once __DIR__ . '/../../wp-load.php';
-}
+require_once __DIR__ . '/boot.php';
 
-/*
- * WHO CAN OPEN /kids/  (the one easy setting)
- *   'admins'   = only administrators (testing, now)
- *   'everyone' = any logged-in account (parents and students)
- */
-if ( ! defined( 'H212_KIDS_WHO' ) ) {
-	define( 'H212_KIDS_WHO', 'admins' );
-}
-
-// Kids pages are private and change per account: no page cache may keep a copy (LiteSpeed included).
-function h212_kids_no_cache() {
-	if ( ! defined( 'DONOTCACHEPAGE' ) ) {
-		define( 'DONOTCACHEPAGE', true );
-	}
-	if ( ! defined( 'DONOTCACHEOBJECT' ) ) {
-		define( 'DONOTCACHEOBJECT', true );
-	}
-	if ( ! headers_sent() ) {
-		nocache_headers();
-		header( 'X-LiteSpeed-Cache-Control: no-cache, no-store, private' );
-	}
-	do_action( 'litespeed_control_set_nocache', '212 Kids: private page' );
-}
-h212_kids_no_cache();
-
-function h212_kids_can_open() {
-	if ( ! is_user_logged_in() ) {
-		return false;
-	}
-	if ( 'everyone' === H212_KIDS_WHO ) {
-		return true;
-	}
-	return current_user_can( 'administrator' );
-}
-
-// Not allowed (yet): show the simple "Coming soon" page and stop.
 if ( ! h212_kids_can_open() ) {
 	// A JSON request (saving) gets a plain error instead of a page.
 	if ( defined( 'H212_KIDS_JSON' ) ) {
@@ -52,10 +14,20 @@ if ( ! h212_kids_can_open() ) {
 		echo wp_json_encode( array( 'error' => 'Please log in again.' ) );
 		exit;
 	}
+	// Not logged in: the kids login page. Logged in with an account that may not come in: "Coming soon".
+	if ( ! is_user_logged_in() ) {
+		wp_safe_redirect( h212_kids_url( 'login.php' ) );
+		exit;
+	}
 	require __DIR__ . '/coming-soon.php';
 	exit;
 }
 
 $h212_user = wp_get_current_user();
+
+// Note that this account was just active (the same "Last active" the teacher screen shows for students).
+if ( function_exists( 'h212_touch_activity' ) ) {
+	h212_touch_activity( $h212_user->ID );
+}
 
 require_once __DIR__ . '/children.php';

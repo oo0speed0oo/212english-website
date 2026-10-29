@@ -628,6 +628,14 @@ button:focus-visible, a:focus-visible, input:focus-visible {
 .k-privacy p { margin: 0; }
 .k-privacy p + p { margin-top: 6px; font-family: 'Baloo 2', sans-serif; font-size: 15px; }
 
+/* ---------- Grown-ups login page ---------- */
+
+.k-login { max-width: 480px; margin-top: 16px; }
+.k-login-lion { width: 120px; height: auto; display: block; margin: 0 auto 4px; }
+.k-login .k-title { font-size: 44px; }
+.k-login .k-sub { font-size: 20px; margin-bottom: 0; }
+.k-login .k-gate-note a { color: var(--ink); font-weight: 700; }
+
 /* ---------- Smaller screens ---------- */
 
 /* Tablet portrait and small laptops: narrower rail. */

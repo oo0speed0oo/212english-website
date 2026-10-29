@@ -30,6 +30,63 @@ function h212_kids_save_children( $user_id, $list ) {
 	update_user_meta( $user_id, 'h212_kids_children', array_values( $list ) );
 }
 
+/*
+ * Progress per child (user meta h212_kids_progress):
+ *   { child id: { stars: 0, played: { tile id: times opened }, last: 'Y-m-d H:i' } }
+ * Stars stay 0 until the games exist and award them.
+ */
+function h212_kids_get_progress( $user_id ) {
+	$all = get_user_meta( $user_id, 'h212_kids_progress', true );
+	return is_array( $all ) ? $all : array();
+}
+
+function h212_kids_child_progress( $all, $child_id ) {
+	$p = isset( $all[ $child_id ] ) && is_array( $all[ $child_id ] ) ? $all[ $child_id ] : array();
+	return array(
+		'stars'  => isset( $p['stars'] ) ? (int) $p['stars'] : 0,
+		'played' => isset( $p['played'] ) && is_array( $p['played'] ) ? $p['played'] : array(),
+		'last'   => isset( $p['last'] ) ? (string) $p['last'] : '',
+	);
+}
+
+// Remember that a child opened a tile.
+function h212_kids_record_play( $user_id, $child_id, $tile_id ) {
+	$all = h212_kids_get_progress( $user_id );
+	$p   = h212_kids_child_progress( $all, $child_id );
+	$p['played'][ $tile_id ] = ( isset( $p['played'][ $tile_id ] ) ? (int) $p['played'][ $tile_id ] : 0 ) + 1;
+	$p['last'] = current_time( 'Y-m-d H:i' );
+	$all[ $child_id ] = $p;
+	update_user_meta( $user_id, 'h212_kids_progress', $all );
+	return $p;
+}
+
+function h212_kids_forget_progress( $user_id, $child_id ) {
+	$all = h212_kids_get_progress( $user_id );
+	unset( $all[ $child_id ] );
+	update_user_meta( $user_id, 'h212_kids_progress', $all );
+}
+
+// Every tile id in kids-menu.json (lessons and theme games), plus the homework tile.
+function h212_kids_tile_ids() {
+	$menu = json_decode( (string) file_get_contents( __DIR__ . '/../kids-menu.json' ), true );
+	$ids  = array( 'homework' );
+	if ( is_array( $menu ) ) {
+		foreach ( (array) ( $menu['levels'] ?? array() ) as $lv ) {
+			foreach ( (array) ( $lv['months'] ?? array() ) as $m ) {
+				foreach ( (array) ( $m['lessons'] ?? array() ) as $l ) {
+					$ids[] = (string) $l['id'];
+				}
+			}
+		}
+		foreach ( (array) ( $menu['themes'] ?? array() ) as $t ) {
+			foreach ( (array) ( $t['games'] ?? array() ) as $g ) {
+				$ids[] = (string) $g['id'];
+			}
+		}
+	}
+	return $ids;
+}
+
 // Clean one child from the browser. Returns null if anything is not allowed.
 function h212_kids_clean_child( $raw ) {
 	if ( ! is_array( $raw ) ) {

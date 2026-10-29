@@ -13,6 +13,8 @@
   var app = document.getElementById('kids-app');
   var menu = null;
   var children = BOOT.children || [];
+  var progress = BOOT.progress || {};
+  var currentChild = null;
 
   // TEMPORARY: every tile opens this test page until its real game exists (see play.php).
   var TEMP_PLAY_PAGE = 'play.php';
@@ -194,7 +196,8 @@
       });
       top += '</div>';
     }
-    top += '<div class="k-stars" aria-label="Stars: 0">' + star(34, true) + '<span>0</span></div></div>';
+    var stars = (progress[child.id] && progress[child.id].stars) || 0;
+    top += '<div class="k-stars" aria-label="Stars: ' + stars + '">' + star(34, true) + '<span>' + stars + '</span></div></div>';
 
     // Mike's homework (placeholder: opens the temporary page).
     var hw = '<div class="k-homework"><div class="k-homework-icon">' + icon('backpack', 52) + '</div>' +
@@ -392,6 +395,34 @@
     });
   }
 
+  // Save "this child opened this tile" (for the teacher screen), then open it.
+  // A slow or failed save never stops the child: we go on after at most 1.5 seconds.
+  function openTile(tile) {
+    var url = TEMP_PLAY_PAGE + '?tile=' + encodeURIComponent(tile) +
+      '&from=' + encodeURIComponent(app.getAttribute('data-here') || '/');
+    var gone = false;
+    function leave() {
+      if (!gone) {
+        gone = true;
+        location.href = url;
+      }
+    }
+    if (!currentChild) return leave();
+    setTimeout(leave, 1500);
+    fetch('save-progress.php', {
+      method: 'POST',
+      credentials: 'same-origin',
+      keepalive: true,
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ nonce: BOOT.nonce, child: currentChild.id, tile: tile })
+    }).then(function (r) { return r.json(); })
+      .then(function (data) {
+        if (data && data.progress) progress[currentChild.id] = data.progress;
+      })
+      .catch(function () {})
+      .then(leave);
+  }
+
   // ---------- taps and routing ----------
 
   app.addEventListener('click', function (e) {
@@ -399,11 +430,7 @@
     if (!b) return;
     if (b.hasAttribute('data-go')) return go(b.getAttribute('data-go'));
     if (b.hasAttribute('data-kid')) return go('/c/' + b.getAttribute('data-kid'));
-    if (b.hasAttribute('data-tile')) {
-      location.href = TEMP_PLAY_PAGE + '?tile=' + encodeURIComponent(b.getAttribute('data-tile')) +
-        '&from=' + encodeURIComponent(app.getAttribute('data-here') || '/');
-      return;
-    }
+    if (b.hasAttribute('data-tile')) return openTile(b.getAttribute('data-tile'));
     var act = b.getAttribute('data-act');
     if (act === 'add') return parentGate(function () { childForm(); });
     if (act === 'grownups') return parentGate(grownUps);
@@ -416,9 +443,11 @@
   function route() {
     var parts = location.hash.replace(/^#\/?/, '').split('/').filter(Boolean);
     app.removeAttribute('data-here');
+    currentChild = null;
     if (parts[0] === 'c' && parts[1]) {
       var child = findById(children, parts[1]);
       if (child) {
+        currentChild = child;
         renderMenu(child, parts[2] === 't' ? 't' : 'class', parts[3] || '');
         window.scrollTo(0, 0);
         return;

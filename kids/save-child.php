@@ -47,6 +47,7 @@ if ( 'add' === $action ) {
 			$found = true;
 			if ( 'remove' === $action ) {
 				unset( $children[ $i ] );
+				h212_kids_forget_progress( $h212_user->ID, $child_id );
 			} else {
 				$child = h212_kids_clean_child( $raw );
 				if ( ! $child ) {
