@@ -27,6 +27,12 @@ $h212_kids_base = home_url( '/kids/' );
 		<a class="k-pill-btn" href="<?php echo esc_url( wp_login_url( $h212_kids_base ) ); ?>">
 			<span class="k-two"><b>Grown-ups: log in</b><small>おとなのかた：ログイン</small></span>
 		</a>
+	<?php else : ?>
+		<?php // Logged in, but this account may not open /kids/ yet: offer to switch to another account. ?>
+		<p class="k-gate-note jp">Logged in as <?php echo esc_html( wp_get_current_user()->user_login ); ?></p>
+		<a class="k-pill-btn" href="<?php echo esc_url( wp_logout_url( wp_login_url( $h212_kids_base ) ) ); ?>">
+			<span class="k-two"><b>Grown-ups: use another account</b><small>おとなのかた：べつのアカウントでログイン</small></span>
+		</a>
 	<?php endif; ?>
 </main>
 </body>
