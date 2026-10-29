@@ -1,0 +1,68 @@
+sound_no,sound,key_word,ipa,tip_ja
+1,c,cat,k,口の奥で息だけ「k」。「ク」の「ウ」を付けない。
+2,o,octopus,ɑ,口を縦に大きく開けて「ア」に近い音（アメリカ英語）。
+3,a,apple,æ,「エ」の口のまま「ア」と言う。口を横に開く。
+4,d,dog,d,舌先を上の歯ぐきに付けて「d」。「ド」にしない。
+5,g,go,ɡ,のどの奥で「g」。「グ」にしない。
+6,m,moon,m,唇を閉じて鼻から「ン〜」。
+7,l,log,l,舌先を上の歯ぐきに付けたまま声を出す。日本語のラ行とは違う。
+8,h,hat,h,息だけ「ハッ」。声は出さない。
+9,t,turtle,t,舌先を歯ぐきに付けて息で「t」。「ト」にしない。
+10,i,igloo,ɪ,「イ」と「エ」の間の短い音。力を抜く。
+11,j,jug,ʤ,「ヂュ」に近い。唇を少し前に出す。
+12,k,kettle,k,c と同じ音。
+13,ch,chair,ʧ,唇を前に出して「チ」。息を強く。
+14,p,pig,p,唇を閉じて息でパッと開く。「プ」にしない。
+15,u,umbrella,ʌ,力を抜いた短い「ア」。口はあまり開けない。
+16,b,bat,b,唇を閉じて声を出してパッと開く。v とは違う。
+17,r,rabbit,ɹ,舌先はどこにも付けず、少し後ろへ。唇を丸めて「ウ」から始める感じ。L とは違う。
+18,f,fish,f,上の歯を下唇に軽く当てて息を出す。日本語の「フ」とは違う。
+19,n,nail,n,舌先を歯ぐきに付けて鼻から「ン」。
+20,e,elephant,ɛ,日本語の「エ」に近い短い音。
+21,s,sun,s,息だけ「スー」。「ウ」を付けない。
+22,sh,shoe,ʃ,唇を丸めて「シー」（静かに、の音）。
+23,th,that / thumb,ð / θ,舌先を上下の歯で軽くはさむ。that は声あり、thumb は息だけ。「ザ」「サ」にしない。
+24,w,wag,w,唇を丸めて前に出し、「ウ」から開く。
+25,wh,whale,w,今はほとんど w と同じ音。
+26,y,yarn,j,「ヤ」の最初の音。「イ」から始める感じ。
+27,v,vase,v,f の口で声を出す。b とは違う。
+28,x,box,ks,母音を付けずに「ks」。
+29,z,zebra,z,s の口で声を出す。「ズ」の「ウ」を付けない。
+30,qu,queen,kw,k のあとすぐ唇を丸めて「kw」。
+31,ph,phone,f,f と同じ音。
+32,ck,black,k,k と同じ音。短い母音のあとに使う。
+33,ea,eat,i,長い「イー」。口を横に引く。
+34,oa,soap,O,「オウ」。「オー」にしない。
+35,ai,mail,A,「エイ」。「エー」にしない。
+36,ee,tree,i,長い「イー」。ea と同じ音。
+37,ay,play,A,ai と同じ「エイ」。単語の最後に来ることが多い。
+38,oe,toe,O,oa と同じ「オウ」。
+39,er,fern,ɜɹ,口をあまり開けずに舌を引いて「アー」。r を響かせる。
+40,ir,bird,ɜɹ,er と同じ音。
+41,ur,burn,ɜɹ,er と同じ音。
+42,ow,clown,W,「アウ」（痛いときの「アウ！」）。
+43,ou,cloud,W,clown の ow と同じ「アウ」。
+44,igh,light,I,「アイ」。gh は読まない。
+45,ar,star,ɑɹ,口を大きく開けて「アー」、最後に舌を引いて r。
+46,or,horn,ɔɹ,「オー」、最後に舌を引いて r。
+47,oo,zoo,u,唇を丸めて長い「ウー」。
+48,aw,straw,ɔ,口を縦に開けて「オー」と「アー」の間。
+49,au,august,ɔ,aw と同じ音。
+50,a,ball,ɔ,aw と同じ音（l や w の近くで）。
+51,oi,oil,Y,「オイ」。
+52,oy,boy,Y,oi と同じ「オイ」。単語の最後に来ることが多い。
+53,tch,catch,ʧ,ch と同じ音。短い母音のあとに使う。
+54,ew,grew / few,u / ju,「ウー」（grew）か「ユー」（few）。
+55,eu,feud / neutral,ju / u,「ユー」（feud）か「ウー」（neutral）。
+56,eigh,eight,A,「エイ」。gh は読まない。
+57,ei,vein / ceiling,A / i,「エイ」（vein）か「イー」（ceiling）。
+58,ie,chief,i,長い「イー」。
+59,ue,rescue / true,ju / u,「ユー」（rescue）か「ウー」（true）。
+60,tion,action,ʃən,「ション」。
+61,sion,division / mansion,ʒən / ʃən,「ジョン」（division）か「ション」（mansion）。
+62,ow,snow,O,「オウ」。clown の ow とは違う！
+63,ea,head / great,ɛ / A,短い「エ」（head）。great は「エイ」。eat の ea とは違う。
+64,oo,good,ʊ,短く力を抜いた「ウ」。zoo の oo より短い。
+65,ou,group,u,「ウー」。cloud の ou とは違う。
+66,ch,school / machine,k / ʃ,school は「k」、machine は「sh」。chair の ch とは違う。
+67,s,is,z,"「z」の音。is, his, dogs。"

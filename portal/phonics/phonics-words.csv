@@ -1,0 +1,1176 @@
+lesson,group,word,status,note,source
+4,d,cod,common,,Mike
+4,d,cad,rare,,Mike
+4,d,dad,common,,Mike
+5,g,dog,common,,Mike
+5,g,cog,rare,,Mike
+5,g,cod,common,,Mike
+5,g,cad,rare,,Mike
+6,m,mad,common,,Mike
+6,m,dam,rare,,Mike
+6,m,cam,rare,,Mike
+6,m,mod,rare,,Mike
+7,l,lad,rare,,Mike
+7,l,log,common,,Mike
+7,l,lam,rare,,Mike
+8,h,ham,common,,Mike
+8,h,had,common,,Mike
+8,h,hog,common,,Mike
+8,h,hal,name,,Mike
+9,t,tag,common,,Mike
+9,t,cat,common,,Mike
+9,t,hot,common,,Mike
+9,t,tom,name,,Mike
+10,review-cvc,dad,common,,Mike
+10,review-cvc,tam,rare,,Mike
+10,review-cvc,at,common,,Mike
+10,review-cvc,mad,common,,Mike
+10,review-cvc,hog,common,,Mike
+10,review-cvc,dom,rare,,Mike
+10,review-cvc,cod,common,,Mike
+10,review-cvc,mag,rare,,Mike
+10,review-cvc,lam,rare,,Mike
+10,review-cvc,had,common,,Mike
+10,review-cvc,tad,rare,,Mike
+10,review-cvc,cam,rare,,Mike
+10,review-cvc,mat,common,,Mike
+10,review-cvc,got,common,,Mike
+10,review-cvc,hot,common,,Mike
+10,review-cvc,cog,rare,,Mike
+10,review-cvc,lad,rare,,Mike
+10,review-cvc,dog,common,,Mike
+10,review-cvc,am,common,,Mike
+10,review-cvc,hag,removed,removed: not suitable / not a real word,Mike
+10,review-cvc,ham,common,,Mike
+10,review-cvc,hat,common,,Mike
+10,review-cvc,tod,rare,,Mike
+10,review-cvc,hod,rare,,Mike
+10,review-cvc,mom,common,,Mike
+10,review-cvc,log,common,,Mike
+10,review-cvc,tot,rare,,Mike
+10,review-cvc,cat,common,,Mike
+10,review-cvc,tag,common,,Mike
+10,review-cvc,dam,rare,,Mike
+10,review-cvc,cad,rare,,Mike
+10,review-cvc,dot,common,,Mike
+10,review-cvc,cot,rare,,Mike
+10,review-cvc,tom,name,,Mike
+10,review-cvc,lot,common,,Mike
+10,review-cvc,gag,rare,,Mike
+11,i,hit,common,,Mike
+11,i,dig,common,,Mike
+11,i,him,common,,Mike
+11,i,lid,common,,Mike
+11,i,dim,common,,Mike
+11,i,did,common,,Mike
+11,i,it,common,,Mike
+11,i,mid,common,,Mike
+11,i,lit,common,,Mike
+11,i,tim,name,,Mike
+11,i,hid,common,,Mike
+11,i,mig,removed,removed: not suitable / not a real word,Mike
+12,j,jam,common,,Mike
+12,j,jog,common,,Mike
+12,j,jim,name,,Mike
+12,j,jot,rare,,Mike
+12,j,jag,rare,,Mike
+12,j,jig,rare,,Mike
+13,k,kid,common,,Mike
+13,k,kit,common,,Mike
+13,k,kim,name,,Mike
+14,ch,chad,name,,Mike
+14,ch,chat,common,,Mike
+14,ch,chit,rare,,Mike
+15,p,kip,rare,moved from k (uses a sound taught later),Mike
+15,p,pig,common,,Mike
+15,p,hip,common,,Mike
+15,p,pod,rare,,Mike
+15,p,top,common,,Mike
+15,p,pompom,common,,Mike
+15,p,gap,common,,Mike
+15,p,cap,common,,Mike
+15,p,tap,common,,Mike
+15,p,pot,common,,Mike
+15,p,cop,common,,Mike
+15,p,pad,common,,Mike
+15,p,pat,common,,Mike
+15,p,jip,removed,removed: not suitable / not a real word,Mike
+15,p,hop,common,,Mike
+15,p,lip,common,,Mike
+15,p,pam,name,,Mike
+15,p,lop,rare,,Mike
+15,p,hap,rare,,Mike
+15,p,mop,common,,Mike
+15,p,lap,common,,Mike
+15,p,chop,common,moved from ch (uses a sound taught later),Mike
+15,p,chap,rare,moved from ch (uses a sound taught later),Mike
+15,p,chip,common,moved from ch (uses a sound taught later),Mike
+16,u,gum,common,,Mike
+16,u,hug,common,,Mike
+16,u,pug,common,,Mike
+16,u,hum,rare,,Mike
+16,u,gut,rare,,Mike
+16,u,mug,common,,Mike
+16,u,dud,rare,,Mike
+16,u,hut,common,,Mike
+16,u,chug,common,,Mike
+16,u,tug,common,,Mike
+16,u,cud,rare,,Mike
+16,u,up,common,,Mike
+16,u,dug,common,,Mike
+16,u,mud,common,,Mike
+16,u,cut,common,,Mike
+16,u,much,common,,Mike
+16,u,chum,rare,,Mike
+16,u,jut,rare,,Mike
+17,b,bag,common,,Mike
+17,b,cob,rare,,Mike
+17,b,bid,common,,Mike
+17,b,tab,common,,Mike
+17,b,bug,common,,Mike
+17,b,bob,name,,Mike
+17,b,bad,common,,Mike
+17,b,bog,rare,,Mike
+17,b,jab,common,,Mike
+17,b,dub,rare,,Mike
+17,b,pub,common,,Mike
+17,b,lob,rare,,Mike
+17,b,bit,common,,Mike
+17,b,bat,common,,Mike
+17,b,bud,common,,Mike
+17,b,hub,rare,,Mike
+17,b,tub,common,,Mike
+18,r,ram,common,,Mike
+18,r,rip,common,,Mike
+18,r,rot,common,,Mike
+18,r,rub,common,,Mike
+18,r,rim,common,,Mike
+18,r,rib,common,,Mike
+18,r,rag,common,,Mike
+18,r,rod,common,,Mike
+18,r,rap,rare,,Mike
+18,r,rig,rare,,Mike
+18,r,rut,rare,,Mike
+18,r,rug,common,,Mike
+18,r,rat,common,,Mike
+18,r,rob,common,,Mike
+18,r,rich,common,,Mike
+19,f,fib,rare,,Mike
+19,f,fat,common,,Mike
+19,f,fad,rare,,Mike
+19,f,fig,common,,Mike
+19,f,fit,common,,Mike
+19,f,fog,common,,Mike
+19,f,fob,rare,,Mike
+20,n,on,common,,Mike
+20,n,don,name,,Mike
+20,n,ran,common,,Mike
+20,n,din,rare,,Mike
+20,n,pin,common,,Mike
+20,n,bun,common,,Mike
+20,n,not,common,,Mike
+20,n,nod,common,,Mike
+20,n,man,common,,Mike
+20,n,chin,common,,Mike
+20,n,bin,common,,Mike
+20,n,nut,common,,Mike
+20,n,pan,common,,Mike
+20,n,jan,name,,Mike
+20,n,nob,rare,,Mike
+21,e,get,common,ok: hard g,Mike
+21,e,den,common,,Mike
+21,e,fed,common,,Mike
+21,e,ten,common,,Mike
+21,e,men,common,,Mike
+21,e,bet,common,,Mike
+21,e,hen,common,,Mike
+21,e,net,common,,Mike
+21,e,ben,name,,Mike
+21,e,bed,common,,Mike
+21,e,let,common,,Mike
+21,e,pen,common,,Mike
+21,e,keg,rare,,Mike
+21,e,beg,common,,Mike
+21,e,hem,rare,,Mike
+21,e,meg,name,,Mike
+21,e,deb,name,,Mike
+21,e,peg,common,,Mike
+21,e,leg,common,,Mike
+21,e,met,common,,Mike
+22,s,such,common,moved from u (uses a sound taught later),Mike
+22,s,sag,common,,Mike
+22,s,sit,common,,Mike
+22,s,sop,rare,,Mike
+22,s,sun,common,,Mike
+22,s,sad,common,,Mike
+22,s,sup,rare,,Mike
+22,s,sid,name,,Mike
+22,s,sam,name,,Mike
+22,s,sap,rare,,Mike
+22,s,sub,common,,Mike
+22,s,sal,name,,Mike
+22,s,sat,common,,Mike
+22,s,sip,common,,Mike
+23,sh,shad,rare,,Mike
+23,sh,shot,common,,Mike
+23,sh,shim,rare,,Mike
+23,sh,ship,common,,Mike
+23,sh,cash,common,,Mike
+23,sh,lash,common,,Mike
+23,sh,josh,name,,Mike
+23,sh,shun,rare,,Mike
+23,sh,shag,removed,removed: not suitable / not a real word,Mike
+23,sh,shin,common,,Mike
+23,sh,shod,rare,,Mike
+23,sh,bash,common,,Mike
+23,sh,gash,removed,removed: not suitable / not a real word,Mike
+23,sh,mesh,rare,,Mike
+23,sh,sham,rare,,Mike
+23,sh,mash,common,,Mike
+23,sh,dish,common,,Mike
+23,sh,shut,common,,Mike
+23,sh,hash,rare,,Mike
+23,sh,gosh,rare,,Mike
+23,sh,mush,rare,,Mike
+23,sh,shop,common,,Mike
+23,sh,shed,common,,Mike
+23,sh,dash,common,,Mike
+23,sh,sash,rare,,Mike
+23,sh,rash,common,,Mike
+24,th,that,common,moved from th-voiced,Mike
+24,th,then,common,moved from th-voiced,Mike
+24,th,than,common,moved from th-voiced,Mike
+24,th,thus,rare,moved from th-voiced,Mike
+24,th,them,common,moved from th-voiced,Mike
+24,th,this,common,moved from th-voiced,Mike
+24,th,path,common,moved from th-voiced,Mike
+24,th,math,common,moved from th-voiced,Mike
+24,th,thin,common,moved from th-unvoiced,Mike
+24,th,beth,name,moved from th-unvoiced,Mike
+24,th,thud,common,moved from th-unvoiced,Mike
+24,th,bath,common,moved from th-unvoiced,Mike
+24,th,lath,rare,moved from th-unvoiced,Mike
+24,th,thug,common,moved from th-unvoiced,Mike
+24,th,kith,rare,moved from th-unvoiced,Mike
+24,th,seth,name,moved from th-unvoiced,Mike
+25,w,win,common,,Mike
+25,w,web,common,,Mike
+25,w,with,common,,Mike
+25,w,wit,common,,Mike
+25,w,wag,common,,Mike
+25,w,wish,common,,Mike
+25,w,wet,common,,Mike
+26,wh,when,common,,Mike
+26,wh,whim,rare,,Mike
+26,wh,whit,rare,,Mike
+26,wh,whop,rare,,Mike
+26,wh,which,common,,Mike
+26,wh,whip,common,,Mike
+26,wh,whin,rare,,Mike
+26,wh,whet,rare,,Mike
+27,y,yes,common,,Mike
+27,y,yon,rare,,Mike
+27,y,yap,common,,Mike
+27,y,yam,common,,Mike
+27,y,yip,rare,,Mike
+27,y,yet,common,,Mike
+27,y,yak,common,,Mike
+27,y,yen,common,,Mike
+28,v,van,common,,Mike
+28,v,rev,common,,Mike
+28,v,vat,common,,Mike
+28,v,vet,common,,Mike
+28,v,vim,rare,,Mike
+28,v,val,name,,Mike
+29,x,ax,common,,Mike
+29,x,fox,common,,Mike
+29,x,wax,common,,Mike
+29,x,vex,rare,,Mike
+29,x,box,common,,Mike
+29,x,tax,common,,Mike
+29,x,lux,rare,,Mike
+29,x,pax,rare,,Mike
+29,x,sax,common,,Mike
+29,x,rex,name,,Mike
+29,x,fix,common,,Mike
+29,x,lax,common,,Mike
+29,x,ox,common,,Mike
+29,x,nix,rare,,Mike
+29,x,tux,common,,Mike
+29,x,pox,removed,removed: not suitable / not a real word,Mike
+29,x,mix,common,,Mike
+29,x,six,common,,Mike
+29,x,max,name,,Mike
+30,z,whiz,rare,,Mike
+30,z,zed,rare,,Mike
+30,z,zip,common,,Mike
+30,z,zax,rare,,Mike
+30,z,zigzag,common,,Mike
+31,qu,quit,common,,Mike
+31,qu,quid,rare,,Mike
+31,qu,quiz,common,,Mike
+31,qu,quag,rare,,Mike
+31,qu,quip,rare,,Mike
+32,ff-ll-ss-zz,doll,common,,Mike
+32,ff-ll-ss-zz,null,rare,,Mike
+32,ff-ll-ss-zz,off,common,,Mike
+32,ff-ll-ss-zz,miff,rare,,Mike
+32,ff-ll-ss-zz,bill,common,,Mike
+32,ff-ll-ss-zz,muff,rare,,Mike
+32,ff-ll-ss-zz,dell,rare,,Mike
+32,ff-ll-ss-zz,well,common,,Mike
+32,ff-ll-ss-zz,doff,rare,,Mike
+32,ff-ll-ss-zz,mull,rare,,Mike
+32,ff-ll-ss-zz,chaff,rare,,Mike
+32,ff-ll-ss-zz,fell,common,,Mike
+32,ff-ll-ss-zz,hill,common,,Mike
+32,ff-ll-ss-zz,less,common,,Mike
+32,ff-ll-ss-zz,muss,rare,,Mike
+32,ff-ll-ss-zz,bass,rare,,Mike
+32,ff-ll-ss-zz,moss,common,,Mike
+32,ff-ll-ss-zz,pill,common,,Mike
+32,ff-ll-ss-zz,lull,rare,,Mike
+32,ff-ll-ss-zz,sill,rare,,Mike
+32,ff-ll-ss-zz,fuss,rare,,Mike
+32,ff-ll-ss-zz,fill,common,,Mike
+32,ff-ll-ss-zz,dull,common,,Mike
+32,ff-ll-ss-zz,quell,rare,,Mike
+32,ff-ll-ss-zz,gull,rare,,Mike
+32,ff-ll-ss-zz,hull,rare,,Mike
+32,ff-ll-ss-zz,dill,rare,,Mike
+32,ff-ll-ss-zz,will,common,,Mike
+32,ff-ll-ss-zz,sell,common,,Mike
+32,ff-ll-ss-zz,kiss,common,,Mike
+32,ff-ll-ss-zz,ill,rare,,Mike
+32,ff-ll-ss-zz,fizz,rare,,Mike
+32,ff-ll-ss-zz,jazz,common,,Mike
+32,ff-ll-ss-zz,pass,common,,Mike
+32,ff-ll-ss-zz,sass,rare,,Mike
+32,ff-ll-ss-zz,fuzz,rare,,Mike
+32,ff-ll-ss-zz,buzz,common,,Mike
+32,ff-ll-ss-zz,gaff,rare,,Mike
+32,ff-ll-ss-zz,razz,rare,,Mike
+32,ff-ll-ss-zz,whiff,common,,Mike
+32,ff-ll-ss-zz,chess,common,,Mike
+32,ff-ll-ss-zz,cuff,common,,Mike
+33,ph,phone,common,has magic e (not taught yet),Mike
+33,ph,phil,name,,Mike
+33,ph,elephant,common,,Mike
+33,ph,photo,common,,Mike
+33,ph,phoneme,rare,has magic e,Mike
+33,ph,ralph,name,,Mike
+33,ph,prophet,common,,Mike
+33,ph,phrase,common,has magic e,Mike
+33,ph,phantom,common,,Mike
+33,ph,photograph,common,,Mike
+33,ph,graph,common,,Mike
+33,ph,pamphlet,common,,Mike
+33,ph,phase,common,has magic e,Mike
+33,ph,phlox,rare,,Mike
+34,ck,tack,common,,Mike
+34,ck,back,common,,Mike
+34,ck,sack,common,,Mike
+34,ck,sick,common,,Mike
+34,ck,hack,common,,Mike
+34,ck,tick,common,,Mike
+34,ck,lick,common,,Mike
+34,ck,chick,common,,Mike
+34,ck,backlash,common,,Mike
+34,ck,rack,common,,Mike
+34,ck,dock,common,,Mike
+34,ck,luck,common,,Mike
+34,ck,duck,common,,Mike
+34,ck,puck,common,,Mike
+34,ck,trick,common,,Mike
+34,ck,quick,common,,Mike
+34,ck,chuck,name,,Mike
+34,ck,crack,common,,Mike
+34,ck,truck,common,,Mike
+34,ck,track,common,,Mike
+34,ck,crock,common,,Mike
+34,ck,smack,common,,Mike
+34,ck,pick,common,,Mike
+34,ck,snack,common,,Mike
+34,ck,whack,common,,Mike
+35,ea,eat,common,,Mike
+35,ea,ear,common,ea + r sounds different,Mike
+35,ea,each,common,,Mike
+35,ea,mean,common,,Mike
+35,ea,dear,common,ea + r sounds different,Mike
+35,ea,leaf,common,,Mike
+35,ea,weak,common,,Mike
+35,ea,east,common,,Mike
+35,ea,team,common,,Mike
+35,ea,leak,common,,Mike
+35,ea,heal,common,,Mike
+35,ea,seam,common,,Mike
+35,ea,reach,common,,Mike
+35,ea,peach,common,,Mike
+35,ea,beach,common,,Mike
+35,ea,wheat,common,,Mike
+35,ea,clean,common,,Mike
+35,ea,sneak,common,,Mike
+35,ea,squeak,common,,Mike
+35,ea,steam,common,,Mike
+35,ea,dream,common,,Mike
+35,ea,cream,common,,Mike
+35,ea,treat,common,,Mike
+35,ea,beast,common,,Mike
+35,ea,feast,common,,Mike
+35,ea,yeast,common,,Mike
+36,oa,oat,common,,Mike
+36,oa,oak,common,,Mike
+36,oa,roam,common,,Mike
+36,oa,boat,common,,Mike
+36,oa,load,common,,Mike
+36,oa,goat,common,,Mike
+36,oa,coat,common,,Mike
+36,oa,soak,common,,Mike
+36,oa,moan,common,,Mike
+36,oa,foam,common,,Mike
+36,oa,toad,common,,Mike
+36,oa,loan,common,,Mike
+36,oa,cloak,common,,Mike
+36,oa,groan,common,,Mike
+36,oa,goad,common,,Mike
+36,oa,soap,common,,Mike
+36,oa,croak,common,,Mike
+36,oa,float,common,,Mike
+36,oa,toast,common,,Mike
+36,oa,coast,common,,Mike
+36,oa,boast,common,,Mike
+36,oa,throat,common,,Mike
+37,ai,ail,rare,,Mike
+37,ai,aid,rare,,Mike
+37,ai,paid,common,,Mike
+37,ai,jail,common,,Mike
+37,ai,mail,common,,Mike
+37,ai,chain,common,,Mike
+37,ai,braid,common,,Mike
+37,ai,plain,common,,Mike
+37,ai,snail,common,,Mike
+37,ai,drain,common,,Mike
+37,ai,grain,common,,Mike
+37,ai,sprain,common,,Mike
+37,ai,paint,common,,Mike
+37,ai,quaint,rare,,Mike
+37,ai,quail,rare,,Mike
+37,ai,trail,common,,Mike
+38,ee,see,common,,Mike
+38,ee,fee,common,,Mike
+38,ee,eel,common,,Mike
+38,ee,bee,common,,Mike
+38,ee,wee,rare,,Mike
+38,ee,heed,rare,,Mike
+38,ee,peep,common,,Mike
+38,ee,seed,common,,Mike
+38,ee,beet,common,,Mike
+38,ee,peek,common,,Mike
+38,ee,seen,common,,Mike
+38,ee,heel,common,,Mike
+38,ee,deer,common,,Mike
+38,ee,jeep,common,,Mike
+38,ee,need,common,,Mike
+38,ee,flee,common,,Mike
+38,ee,tree,common,,Mike
+38,ee,bleed,common,,Mike
+38,ee,beech,rare,,Mike
+38,ee,speech,common,,Mike
+38,ee,greed,common,,Mike
+38,ee,screech,common,,Mike
+38,ee,queen,common,,Mike
+38,ee,green,common,,Mike
+38,ee,steep,common,,Mike
+38,ee,fleet,common,,Mike
+38,ee,greet,common,,Mike
+39,ay,gay,removed,removed: not suitable / not a real word,Mike
+39,ay,jay,name,,Mike
+39,ay,bay,common,,Mike
+39,ay,day,common,,Mike
+39,ay,way,common,,Mike
+39,ay,ray,common,,Mike
+39,ay,may,common,,Mike
+39,ay,lay,common,,Mike
+39,ay,fray,rare,,Mike
+39,ay,sway,rare,,Mike
+39,ay,clay,common,,Mike
+39,ay,gray,common,,Mike
+39,ay,play,common,,Mike
+39,ay,stay,common,,Mike
+39,ay,tray,common,,Mike
+39,ay,bray,rare,,Mike
+39,ay,pray,rare,,Mike
+39,ay,stray,common,,Mike
+40,oe,toe,common,,Mike
+40,oe,woe,rare,,Mike
+40,oe,hoe,common,,Mike
+40,oe,foe,common,,Mike
+40,oe,doe,common,,Mike
+40,oe,joe,name,,Mike
+40,oe,floe,rare,,Mike
+40,oe,sloe,rare,,Mike
+40,oe,throe,rare,,Mike
+40,oe,moe,name,,Mike
+40,oe,roe,rare,,Mike
+41,er,fern,common,,Mike
+41,er,her,common,,Mike
+41,er,bert,name,,Mike
+41,er,singer,common,ng,Mike
+41,er,silver,common,,Mike
+41,er,temper,rare,,Mike
+41,er,perch,common,,Mike
+41,er,pert,rare,,Mike
+41,er,berth,rare,,Mike
+41,er,term,common,,Mike
+41,er,master,common,,Mike
+41,er,enter,common,,Mike
+41,er,winter,common,,Mike
+41,er,hunter,common,,Mike
+41,er,tender,common,,Mike
+41,er,jerk,common,,Mike
+41,er,herd,common,,Mike
+41,er,permit,common,,Mike
+41,er,thunder,common,,Mike
+41,er,finger,common,ng,Mike
+41,er,whisker,common,,Mike
+41,er,whisper,common,,Mike
+41,er,shelter,common,,Mike
+41,er,timber,common,,Mike
+41,er,stern,rare,,Mike
+42,ir,sir,common,,Mike
+42,ir,third,common,,Mike
+42,ir,squirm,rare,,Mike
+42,ir,squirt,common,,Mike
+42,ir,dirt,common,,Mike
+42,ir,swirl,common,,Mike
+42,ir,stir,common,,Mike
+42,ir,fir,common,,Mike
+42,ir,bird,common,,Mike
+42,ir,firm,common,,Mike
+42,ir,girl,common,ok: hard g,Mike
+42,ir,skirmish,rare,,Mike
+42,ir,whirl,common,,Mike
+42,ir,birch,common,,Mike
+42,ir,chirp,common,,Mike
+42,ir,shirt,common,,Mike
+42,ir,birth,common,,Mike
+42,ir,birthday,common,,Mike
+42,ir,thirst,common,,Mike
+42,ir,first,common,,Mike
+42,ir,skirt,common,,Mike
+42,ir,smirk,rare,,Mike
+42,ir,twirl,common,,Mike
+42,ir,confirm,common,,Mike
+43,ur,cur,rare,,Mike
+43,ur,fur,common,,Mike
+43,ur,blur,common,,Mike
+43,ur,burn,common,,Mike
+43,ur,spur,common,,Mike
+43,ur,hurt,common,,Mike
+43,ur,purl,rare,,Mike
+43,ur,lurk,rare,,Mike
+43,ur,hurl,rare,,Mike
+43,ur,blurt,rare,,Mike
+43,ur,curl,common,,Mike
+43,ur,churn,common,,Mike
+43,ur,church,common,,Mike
+43,ur,slur,rare,,Mike
+43,ur,burst,common,,Mike
+43,ur,curd,rare,,Mike
+43,ur,burp,common,,Mike
+43,ur,curb,common,,Mike
+43,ur,turn,common,,Mike
+43,ur,thursday,common,,Mike
+44,ow-clown,owl,common,,Mike
+44,ow-clown,bow,common,two sounds (bow down / bow and arrow); skip in listening games,Mike
+44,ow-clown,how,common,,Mike
+44,ow-clown,cow,common,,Mike
+44,ow-clown,now,common,,Mike
+44,ow-clown,shower,common,,Mike
+44,ow-clown,howl,common,,Mike
+44,ow-clown,down,common,,Mike
+44,ow-clown,town,common,,Mike
+44,ow-clown,brow,rare,,Mike
+44,ow-clown,power,common,,Mike
+44,ow-clown,flower,common,,Mike
+44,ow-clown,plow,rare,,Mike
+44,ow-clown,scowl,rare,,Mike
+44,ow-clown,growl,common,,Mike
+44,ow-clown,clown,common,,Mike
+44,ow-clown,frown,common,,Mike
+44,ow-clown,tower,common,,Mike
+44,ow-clown,prowler,rare,,Mike
+44,ow-clown,crown,common,,Mike
+44,ow-clown,brown,common,,Mike
+44,ow-clown,drown,common,,Mike
+44,ow-clown,crowd,common,,Mike
+44,ow-clown,prowl,rare,,Mike
+44,ow-clown,powder,common,,Mike
+45,ou,out,common,,Mike
+45,ou,our,common,,Mike
+45,ou,ouch,common,,Mike
+45,ou,couch,common,,Mike
+45,ou,pouch,common,,Mike
+45,ou,loud,common,,Mike
+45,ou,sour,common,,Mike
+45,ou,scour,rare,,Mike
+45,ou,flour,common,,Mike
+45,ou,spout,common,,Mike
+45,ou,trout,common,,Mike
+45,ou,sprout,rare,,Mike
+45,ou,crouch,rare,,Mike
+45,ou,cloud,common,,Mike
+45,ou,snout,rare,,Mike
+45,ou,bound,common,,Mike
+45,ou,found,common,,Mike
+45,ou,round,common,,Mike
+45,ou,count,common,,Mike
+45,ou,hound,rare,,Mike
+45,ou,wound,common,two sounds (wound up / a wound); skip in listening games,Mike
+45,ou,ground,common,,Mike
+46,igh,nigh,rare,,Mike
+46,igh,sigh,common,,Mike
+46,igh,sight,common,,Mike
+46,igh,spotlight,rare,,Mike
+46,igh,brighten,rare,,Mike
+46,igh,limelight,rare,,Mike
+46,igh,fight,common,,Mike
+46,igh,might,common,,Mike
+46,igh,night,common,,Mike
+46,igh,flashlight,common,,Mike
+46,igh,frighten,rare,,Mike
+46,igh,twilight,rare,,Mike
+46,igh,right,common,,Mike
+46,igh,tight,common,,Mike
+46,igh,insight,rare,,Mike
+46,igh,highway,common,,Mike
+46,igh,flight,common,,Mike
+46,igh,plight,rare,,Mike
+46,igh,delight,common,,Mike
+46,igh,highness,rare,,Mike
+46,igh,nightmare,common,"""are"" not taught yet",Mike
+47,consonant-le,stumble,common,,Mike
+47,consonant-le,battle,common,,Mike
+47,consonant-le,jungle,common,,Mike
+47,consonant-le,simple,common,,Mike
+47,consonant-le,sniffle,common,,Mike
+47,consonant-le,handle,common,,Mike
+47,consonant-le,rankle,rare,,Mike
+47,consonant-le,dazzle,common,,Mike
+47,consonant-le,muddle,rare,,Mike
+47,consonant-le,apple,common,,Mike
+47,consonant-le,riddle,common,,Mike
+47,consonant-le,settle,common,,Mike
+47,consonant-le,ruffle,rare,,Mike
+47,consonant-le,middle,common,,Mike
+47,consonant-le,little,common,,Mike
+47,consonant-le,cripple,removed,removed: not suitable / not a real word,Mike
+47,consonant-le,giggle,common,ok: hard g,Mike
+47,consonant-le,cuddle,rare,,Mike
+47,consonant-le,peddle,rare,,Mike
+47,consonant-le,cattle,common,,Mike
+47,consonant-le,paddle,common,,Mike
+47,consonant-le,sizzle,common,,Mike
+47,consonant-le,bottle,common,,Mike
+47,consonant-le,wiggle,common,,Mike
+47,consonant-le,muffle,common,,Mike
+47,consonant-le,saddle,common,,Mike
+47,consonant-le,guzzle,rare,,Mike
+47,consonant-le,fizzle,rare,,Mike
+47,consonant-le,waggle,rare,,Mike
+47,consonant-le,fiddle,rare,,Mike
+47,consonant-le,kettle,common,,Mike
+47,consonant-le,hobble,rare,,Mike
+47,consonant-le,tattle,rare,,Mike
+47,consonant-le,grizzle,rare,,Mike
+47,consonant-le,bundle,common,,Mike
+47,consonant-le,humble,common,,Mike
+47,consonant-le,rumble,common,,Mike
+47,consonant-le,jumble,common,,Mike
+47,consonant-le,ankle,common,,Mike
+47,consonant-le,sample,common,,Mike
+47,consonant-le,dimple,common,,Mike
+47,consonant-le,fondle,removed,removed: not suitable / not a real word,Mike
+47,consonant-le,candle,common,,Mike
+47,consonant-le,grumble,common,,Mike
+47,consonant-le,crumble,common,,Mike
+47,consonant-le,ramble,common,,Mike
+47,consonant-le,bumble,common,,Mike
+47,consonant-le,fumble,common,,Mike
+47,consonant-le,gamble,common,,Mike
+47,consonant-le,tremble,rare,,Mike
+47,consonant-le,nimble,common,,Mike
+47,consonant-le,tangle,common,,Mike
+47,consonant-le,bungle,rare,,Mike
+47,consonant-le,tumble,common,,Mike
+47,consonant-le,spindle,rare,,Mike
+48,ly-pairs,bad,common,,Mike
+48,ly-pairs,badly,common,,Mike
+48,ly-pairs,trim,common,,Mike
+48,ly-pairs,trimly,rare,,Mike
+48,ly-pairs,fond,common,,Mike
+48,ly-pairs,fondly,rare,,Mike
+48,ly-pairs,dim,common,,Mike
+48,ly-pairs,dimly,rare,,Mike
+48,ly-pairs,glad,common,,Mike
+48,ly-pairs,gladly,common,"fixed spelling from ""glady""",Mike
+48,ly-pairs,grave,common,magic e,Mike
+48,ly-pairs,gravely,rare,magic e,Mike
+48,ly-pairs,tame,common,magic e,Mike
+48,ly-pairs,tamely,rare,magic e,Mike
+48,ly-pairs,grim,common,,Mike
+48,ly-pairs,grimly,rare,,Mike
+48,ly-pairs,grand,common,,Mike
+48,ly-pairs,grandly,common,,Mike
+48,ly-pairs,limp,common,,Mike
+48,ly-pairs,limply,rare,,Mike
+48,ly-pairs,crisp,common,"fixed spelling from ""crip""",Mike
+48,ly-pairs,crisply,common,,Mike
+48,ly-pairs,close,common,magic e,Mike
+48,ly-pairs,closely,common,magic e,Mike
+48,ly-pairs,safe,common,magic e,Mike
+48,ly-pairs,safely,common,magic e,Mike
+49,y-ending,dusty,common,,Mike
+49,y-ending,rusty,common,,Mike
+49,y-ending,randy,name,,Mike
+49,y-ending,madly,common,,Mike
+49,y-ending,chunky,common,,Mike
+49,y-ending,lately,common,magic e,Mike
+49,y-ending,sweetly,common,,Mike
+49,y-ending,story,common,,Mike
+49,y-ending,badly,common,,Mike
+49,y-ending,runty,rare,,Mike
+49,y-ending,fifty,common,,Mike
+49,y-ending,misty,common,,Mike
+49,y-ending,dusky,rare,,Mike
+49,y-ending,sandy,common,,Mike
+49,y-ending,beastly,common,,Mike
+49,y-ending,nearly,common,,Mike
+49,y-ending,thirty,common,,Mike
+49,y-ending,crusty,rare,,Mike
+49,y-ending,grumpy,common,,Mike
+49,y-ending,frisky,rare,,Mike
+49,y-ending,crispy,common,,Mike
+49,y-ending,merry,common,,Mike
+49,y-ending,fairy,common,"fixed spelling from ""fiary""; uses ai + r",Mike
+49,y-ending,twenty,common,,Mike
+49,y-ending,berry,common,,Mike
+49,y-ending,deeply,common,,Mike
+49,y-ending,ninety,common,"fixed spelling from ""nintey""",Mike
+49,y-ending,stately,common,magic e,Mike
+49,y-ending,dandy,rare,,Mike
+49,y-ending,handy,common,,Mike
+49,y-ending,candy,common,,Mike
+49,y-ending,forty,common,,Mike
+49,y-ending,scurry,rare,,Mike
+49,y-ending,sixty,common,,Mike
+49,y-ending,muddy,common,,Mike
+49,y-ending,stubby,rare,,Mike
+49,y-ending,funny,common,,Mike
+49,y-ending,mommy,common,,Mike
+49,y-ending,hurry,common,,Mike
+49,y-ending,scruffy,rare,,Mike
+49,y-ending,penny,common,,Mike
+49,y-ending,hobby,common,,Mike
+49,y-ending,sammy,name,,Mike
+49,y-ending,caddy,rare,,Mike
+49,y-ending,benny,name,,Mike
+49,y-ending,witty,rare,,Mike
+49,y-ending,betty,name,,Mike
+49,y-ending,ferry,common,,Mike
+49,y-ending,daddy,common,,Mike
+49,y-ending,happy,common,,Mike
+49,y-ending,snappy,rare,,Mike
+49,y-ending,sloppy,common,,Mike
+49,y-ending,puppy,common,,Mike
+49,y-ending,baby,common,,Mike
+49,y-ending,gravy,common,,Mike
+49,y-ending,lazy,common,,Mike
+49,y-ending,davy,name,,Mike
+49,y-ending,suzy,name,,Mike
+49,y-ending,pony,common,,Mike
+49,y-ending,navy,common,,Mike
+49,y-ending,zany,rare,,Mike
+49,y-ending,slimy,rare,,Mike
+49,y-ending,phony,rare,,Mike
+49,y-ending,lady,common,,Mike
+49,y-ending,holy,rare,,Mike
+49,y-ending,shaky,rare,,Mike
+49,y-ending,tiny,common,,Mike
+49,y-ending,shady,common,,Mike
+49,y-ending,hazy,rare,,Mike
+49,y-ending,nosy,rare,,Mike
+49,y-ending,posy,rare,,Mike
+49,y-ending,cozy,rare,,Mike
+49,y-ending,rosy,rare,,Mike
+50,ild,child,common,,Mike
+50,ild,mild,common,,Mike
+50,ild,wild,common,,Mike
+50,ild,milder,rare,,Mike
+50,ild,wilder,rare,,Mike
+50,ild,wildness,rare,,Mike
+51,old,old,common,,Mike
+51,old,bold,common,,Mike
+51,old,fold,common,,Mike
+51,old,gold,common,,Mike
+51,old,hold,common,,Mike
+51,old,mold,common,,Mike
+51,old,scold,common,,Mike
+51,old,told,common,,Mike
+51,old,olden,rare,,Mike
+51,old,golden,common,,Mike
+52,ind,bind,common,,Mike
+52,ind,find,common,,Mike
+52,ind,grind,common,,Mike
+52,ind,hind,rare,,Mike
+52,ind,kind,common,,Mike
+52,ind,mind,common,,Mike
+52,ind,rind,rare,,Mike
+52,ind,wind,common,,Mike
+52,ind,behind,common,,Mike
+52,ind,remind,common,,Mike
+53,olt,bolt,rare,,Mike
+53,olt,colt,rare,,Mike
+53,olt,jolt,rare,,Mike
+53,olt,volt,rare,,Mike
+53,olt,dolt,rare,,Mike
+53,olt,molt,rare,,Mike
+53,olt,molten,rare,,Mike
+54,ost,most,common,,Mike
+54,ost,mostly,common,"fixed spelling from ""motly""",Mike
+54,ost,post,common,,Mike
+54,ost,almost,common,,Mike
+54,ost,hostess,rare,,Mike
+55,ar,art,common,,Mike
+55,ar,bar,common,,Mike
+55,ar,car,common,,Mike
+55,ar,tar,common,,Mike
+55,ar,far,common,,Mike
+55,ar,part,common,,Mike
+55,ar,star,common,,Mike
+55,ar,spark,common,,Mike
+55,ar,cart,common,,Mike
+55,ar,marlin,rare,,Mike
+55,ar,discard,rare,,Mike
+55,ar,gargle,rare,,Mike
+55,ar,harvest,common,,Mike
+55,ar,starter,rare,,Mike
+55,ar,card,common,,Mike
+55,ar,hard,common,,Mike
+55,ar,dark,common,,Mike
+55,ar,mark,common,,Mike
+55,ar,snarl,rare,,Mike
+55,ar,harp,common,,Mike
+55,ar,artist,common,,Mike
+55,ar,garden,common,,Mike
+55,ar,partner,common,,Mike
+55,ar,barb,rare,,Mike
+55,ar,chart,common,,Mike
+55,ar,charm,rare,,Mike
+55,ar,arch,common,,Mike
+55,ar,marsh,rare,,Mike
+55,ar,spar,rare,,Mike
+55,ar,farm,common,,Mike
+55,ar,bombard,rare,,Mike
+55,ar,startle,rare,,Mike
+55,ar,marvel,common,,Mike
+55,ar,market,common,,Mike
+55,ar,arm,common,,Mike
+55,ar,tart,common,,Mike
+55,ar,dart,common,,Mike
+55,ar,lark,rare,,Mike
+55,ar,start,common,,Mike
+55,ar,barn,common,,Mike
+55,ar,garlic,common,,Mike
+55,ar,sparkle,common,,Mike
+55,ar,carbon,rare,,Mike
+55,ar,garment,rare,,Mike
+56,or,or,common,,Mike
+56,or,sort,rare,,Mike
+56,or,fork,common,,Mike
+56,or,cord,rare,,Mike
+56,or,born,common,,Mike
+56,or,form,common,,Mike
+56,or,storm,common,,Mike
+56,or,forty,common,,Mike
+56,or,forlorn,rare,,Mike
+56,or,orbit,rare,,Mike
+56,or,hornet,rare,,Mike
+56,or,morn,rare,,Mike
+56,or,thorn,common,,Mike
+56,or,north,common,,Mike
+56,or,pork,common,,Mike
+56,or,lord,rare,,Mike
+56,or,horn,common,,Mike
+56,or,worn,common,,Mike
+56,or,stormy,rare,,Mike
+56,or,order,common,,Mike
+56,or,northern,rare,,Mike
+56,or,northwest,rare,,Mike
+56,or,forgave,rare,magic e,Mike
+56,or,corner,common,,Mike
+56,or,torchlight,rare,,Mike
+56,or,short,common,,Mike
+57,oo-zoo,too,common,,Mike
+57,oo-zoo,coo,rare,,Mike
+57,oo-zoo,zoo,common,,Mike
+57,oo-zoo,coop,rare,,Mike
+57,oo-zoo,moon,common,,Mike
+57,oo-zoo,booth,rare,,Mike
+57,oo-zoo,cool,common,,Mike
+57,oo-zoo,pool,common,,Mike
+57,oo-zoo,noodle,common,,Mike
+57,oo-zoo,mushroom,common,,Mike
+57,oo-zoo,room,common,,Mike
+57,oo-zoo,boom,common,,Mike
+57,oo-zoo,soon,common,,Mike
+57,oo-zoo,hoop,common,,Mike
+57,oo-zoo,shoot,common,,Mike
+57,oo-zoo,broom,common,,Mike
+57,oo-zoo,proof,rare,,Mike
+57,oo-zoo,swoop,rare,,Mike
+57,oo-zoo,igloo,common,,Mike
+57,oo-zoo,cartoon,common,,Mike
+57,oo-zoo,spool,rare,,Mike
+57,oo-zoo,bloom,common,,Mike
+57,oo-zoo,gloom,rare,,Mike
+57,oo-zoo,spoon,common,,Mike
+57,oo-zoo,stoop,rare,,Mike
+57,oo-zoo,droop,rare,,Mike
+57,oo-zoo,scoop,common,,Mike
+57,oo-zoo,brood,rare,,Mike
+57,oo-zoo,baboon,rare,,Mike
+57,oo-zoo,hoot,rare,,Mike
+57,oo-zoo,boost,common,,Mike
+57,oo-zoo,harpoon,rare,,Mike
+57,oo-zoo,lampoon,rare,,Mike
+58,aw,law,common,,Mike
+58,aw,paw,common,,Mike
+58,aw,thaw,common,,Mike
+58,aw,caw,rare,,Mike
+58,aw,jaw,common,,Mike
+58,aw,raw,common,,Mike
+58,aw,draw,common,,Mike
+58,aw,seesaw,common,,Mike
+58,aw,flaw,common,,Mike
+58,aw,straw,common,,Mike
+58,aw,hawk,common,,Mike
+58,aw,pawn,rare,,Mike
+58,aw,awl,rare,,Mike
+58,aw,outlaw,rare,,Mike
+58,aw,shawl,common,,Mike
+58,aw,dawn,common,,Mike
+58,aw,drawl,rare,,Mike
+58,aw,squawk,rare,,Mike
+58,aw,prawn,rare,,Mike
+58,aw,crawfish,rare,,Mike
+58,aw,dawdle,rare,,Mike
+58,aw,slaw,rare,,Mike
+59,au,paul,name,,Mike
+59,au,saul,name,,Mike
+59,au,taut,rare,,Mike
+59,au,maul,rare,,Mike
+59,au,auto,common,,Mike
+59,au,autumn,common,,Mike
+59,au,daub,rare,,Mike
+59,au,fraud,rare,,Mike
+59,au,flaunt,rare,,Mike
+59,au,gauze,rare,magic e,Mike
+59,au,laurel,rare,,Mike
+59,au,autograph,rare,,Mike
+59,au,gaunt,rare,,Mike
+59,au,daunt,rare,,Mike
+59,au,haunt,common,,Mike
+59,au,vault,rare,,Mike
+59,au,august,common,,Mike
+59,au,austere,rare,magic e,Mike
+59,au,automatic,common,,Mike
+59,au,haunch,rare,,Mike
+59,au,launch,common,,Mike
+59,au,jaunty,rare,,Mike
+59,au,saucer,rare,soft c (says s),Mike
+59,au,pauper,rare,,Mike
+60,a-ball,ball,common,,Mike
+60,a-ball,all,common,,Mike
+60,a-ball,call,common,,Mike
+60,a-ball,salt,common,,Mike
+60,a-ball,malt,rare,,Mike
+60,a-ball,warm,common,ar says or,Mike
+60,a-ball,bald,rare,,Mike
+60,a-ball,war,common,ar says or,Mike
+60,a-ball,walk,common,,Mike
+60,a-ball,water,common,a says aw,Mike
+60,a-ball,walrus,rare,,Mike
+60,a-ball,walnut,rare,,Mike
+60,a-ball,talk,common,,Mike
+61,oi,oil,common,,Claude draft (Mike check)
+61,oi,coin,common,,Claude draft (Mike check)
+61,oi,join,common,,Claude draft (Mike check)
+61,oi,soil,common,,Claude draft (Mike check)
+61,oi,boil,common,,Claude draft (Mike check)
+61,oi,foil,common,,Claude draft (Mike check)
+61,oi,point,common,,Claude draft (Mike check)
+61,oi,joint,common,,Claude draft (Mike check)
+61,oi,moist,common,,Claude draft (Mike check)
+61,oi,spoil,common,,Claude draft (Mike check)
+61,oi,toilet,common,,Claude draft (Mike check)
+61,oi,avoid,common,,Claude draft (Mike check)
+62,oy,boy,common,,Claude draft (Mike check)
+62,oy,toy,common,,Claude draft (Mike check)
+62,oy,joy,common,,Claude draft (Mike check)
+62,oy,soy,common,,Claude draft (Mike check)
+62,oy,enjoy,common,,Claude draft (Mike check)
+62,oy,annoy,common,,Claude draft (Mike check)
+62,oy,oyster,common,,Claude draft (Mike check)
+62,oy,royal,common,,Claude draft (Mike check)
+62,oy,loyal,common,,Claude draft (Mike check)
+62,oy,cowboy,common,,Claude draft (Mike check)
+63,tch,catch,common,,Claude draft (Mike check)
+63,tch,match,common,,Claude draft (Mike check)
+63,tch,itch,common,,Claude draft (Mike check)
+63,tch,patch,common,,Claude draft (Mike check)
+63,tch,fetch,common,,Claude draft (Mike check)
+63,tch,kitchen,common,,Claude draft (Mike check)
+63,tch,sketch,common,,Claude draft (Mike check)
+63,tch,stretch,common,,Claude draft (Mike check)
+63,tch,ditch,common,,Claude draft (Mike check)
+63,tch,switch,common,,Claude draft (Mike check)
+63,tch,hutch,common,,Claude draft (Mike check)
+63,tch,notch,common,,Claude draft (Mike check)
+63,tch,pitch,common,,Claude draft (Mike check)
+63,tch,witch,common,,Claude draft (Mike check)
+64,ew,grew,common,,Claude draft (Mike check)
+64,ew,new,common,,Claude draft (Mike check)
+64,ew,few,common,,Claude draft (Mike check)
+64,ew,chew,common,,Claude draft (Mike check)
+64,ew,drew,common,,Claude draft (Mike check)
+64,ew,flew,common,,Claude draft (Mike check)
+64,ew,crew,common,,Claude draft (Mike check)
+64,ew,stew,common,,Claude draft (Mike check)
+64,ew,blew,common,,Claude draft (Mike check)
+64,ew,screw,common,,Claude draft (Mike check)
+64,ew,threw,common,,Claude draft (Mike check)
+64,ew,nephew,common,ph = f,Claude draft (Mike check)
+65,eu,feud,common,,Claude draft (Mike check)
+65,eu,neutral,common,,Claude draft (Mike check)
+65,eu,sleuth,common,,Claude draft (Mike check)
+65,eu,euro,common,,Claude draft (Mike check)
+66,eigh,eight,common,,Claude draft (Mike check)
+66,eigh,weigh,common,,Claude draft (Mike check)
+66,eigh,sleigh,common,,Claude draft (Mike check)
+66,eigh,neigh,common,,Claude draft (Mike check)
+66,eigh,freight,common,,Claude draft (Mike check)
+66,eigh,weight,common,,Claude draft (Mike check)
+66,eigh,eighty,common,y = ee,Claude draft (Mike check)
+66,eigh,neighbor,common,ei+gh,Claude draft (Mike check)
+67,ei,vein,common,,Claude draft (Mike check)
+67,ei,rein,common,,Claude draft (Mike check)
+67,ei,reindeer,common,,Claude draft (Mike check)
+67,ei,veil,common,,Claude draft (Mike check)
+67,ei,ceiling,common,soft c (says s),Claude draft (Mike check)
+67,ei,receipt,common,soft c; p is silent,Claude draft (Mike check)
+68,ie,chief,common,,Claude draft (Mike check)
+68,ie,field,common,,Claude draft (Mike check)
+68,ie,thief,common,,Claude draft (Mike check)
+68,ie,shield,common,,Claude draft (Mike check)
+68,ie,brief,common,,Claude draft (Mike check)
+68,ie,grief,common,,Claude draft (Mike check)
+68,ie,yield,common,,Claude draft (Mike check)
+68,ie,shriek,common,,Claude draft (Mike check)
+69,ue,true,common,,Claude draft (Mike check)
+69,ue,blue,common,,Claude draft (Mike check)
+69,ue,glue,common,,Claude draft (Mike check)
+69,ue,clue,common,,Claude draft (Mike check)
+69,ue,due,common,,Claude draft (Mike check)
+69,ue,rescue,common,,Claude draft (Mike check)
+69,ue,argue,common,,Claude draft (Mike check)
+69,ue,value,common,,Claude draft (Mike check)
+69,ue,statue,common,,Claude draft (Mike check)
+69,ue,tissue,common,,Claude draft (Mike check)
+70,tion,action,common,,Claude draft (Mike check)
+70,tion,nation,common,,Claude draft (Mike check)
+70,tion,station,common,,Claude draft (Mike check)
+70,tion,lotion,common,,Claude draft (Mike check)
+70,tion,motion,common,,Claude draft (Mike check)
+70,tion,fiction,common,,Claude draft (Mike check)
+70,tion,function,common,,Claude draft (Mike check)
+70,tion,mention,common,,Claude draft (Mike check)
+70,tion,portion,common,,Claude draft (Mike check)
+70,tion,addition,common,,Claude draft (Mike check)
+70,tion,attention,common,,Claude draft (Mike check)
+70,tion,question,common,,Claude draft (Mike check)
+71,sion,mansion,common,,Claude draft (Mike check)
+71,sion,tension,common,,Claude draft (Mike check)
+71,sion,pension,common,,Claude draft (Mike check)
+71,sion,division,common,,Claude draft (Mike check)
+71,sion,vision,common,,Claude draft (Mike check)
+71,sion,television,common,,Claude draft (Mike check)
+71,sion,confusion,common,,Claude draft (Mike check)
+71,sion,version,common,,Claude draft (Mike check)
+71,sion,mission,common,,Claude draft (Mike check)
+72,ow-snow,flow,common,moved from ow-clown,Mike
+72,ow-snow,grown,common,moved from ow-clown,Mike
+72,ow-snow,snow,common,,Claude draft (Mike check)
+72,ow-snow,grow,common,,Claude draft (Mike check)
+72,ow-snow,show,common,,Claude draft (Mike check)
+72,ow-snow,slow,common,,Claude draft (Mike check)
+72,ow-snow,blow,common,,Claude draft (Mike check)
+72,ow-snow,low,common,,Claude draft (Mike check)
+72,ow-snow,row,common,,Claude draft (Mike check)
+72,ow-snow,own,common,,Claude draft (Mike check)
+72,ow-snow,bowl,common,,Claude draft (Mike check)
+72,ow-snow,window,common,,Claude draft (Mike check)
+72,ow-snow,yellow,common,,Claude draft (Mike check)
+72,ow-snow,pillow,common,,Claude draft (Mike check)
+72,ow-snow,elbow,common,,Claude draft (Mike check)
+72,ow-snow,throw,common,,Claude draft (Mike check)
+73,ea-head,head,common,,Claude draft (Mike check)
+73,ea-head,bread,common,,Claude draft (Mike check)
+73,ea-head,dead,common,,Claude draft (Mike check)
+73,ea-head,deaf,common,,Claude draft (Mike check)
+73,ea-head,heavy,common,,Claude draft (Mike check)
+73,ea-head,ready,common,,Claude draft (Mike check)
+73,ea-head,spread,common,,Claude draft (Mike check)
+73,ea-head,thread,common,,Claude draft (Mike check)
+73,ea-head,sweat,common,,Claude draft (Mike check)
+73,ea-head,breath,common,,Claude draft (Mike check)
+73,ea-head,weather,common,,Claude draft (Mike check)
+73,ea-head,feather,common,,Claude draft (Mike check)
+73,ea-head,sweater,common,,Claude draft (Mike check)
+73,ea-head,breakfast,common,,Claude draft (Mike check)
+74,oo-good,good,common,,Claude draft (Mike check)
+74,oo-good,book,common,,Claude draft (Mike check)
+74,oo-good,look,common,,Claude draft (Mike check)
+74,oo-good,cook,common,,Claude draft (Mike check)
+74,oo-good,foot,common,,Claude draft (Mike check)
+74,oo-good,hook,common,,Claude draft (Mike check)
+74,oo-good,wood,common,,Claude draft (Mike check)
+74,oo-good,wool,common,,Claude draft (Mike check)
+74,oo-good,hood,common,,Claude draft (Mike check)
+74,oo-good,took,common,,Claude draft (Mike check)
+74,oo-good,stood,common,,Claude draft (Mike check)
+74,oo-good,shook,common,,Claude draft (Mike check)
+75,ou-group,group,common,,Claude draft (Mike check)
+75,ou-group,soup,common,,Claude draft (Mike check)
+75,ou-group,you,common,sight word,Claude draft (Mike check)
+75,ou-group,youth,common,,Claude draft (Mike check)
+75,ou-group,coupon,common,,Claude draft (Mike check)
+76,ch-school,school,common,,Claude draft (Mike check)
+76,ch-school,chorus,common,,Claude draft (Mike check)
+76,ch-school,chemist,common,,Claude draft (Mike check)
+76,ch-school,echo,common,,Claude draft (Mike check)
+76,ch-school,stomach,common,,Claude draft (Mike check)
+76,ch-school,anchor,common,,Claude draft (Mike check)
+76,ch-school,character,common,,Claude draft (Mike check)
+76,ch-school,christmas,common,t is silent,Claude draft (Mike check)
+76,ch-school,chord,common,,Claude draft (Mike check)
+77,s-is,is,common,,Claude draft (Mike check)
+77,s-is,his,common,,Claude draft (Mike check)
+77,s-is,has,common,,Claude draft (Mike check)
+77,s-is,as,common,,Claude draft (Mike check)
+77,s-is,was,common,a says o (sight word),Claude draft (Mike check)
+77,s-is,dogs,common,,Claude draft (Mike check)
+77,s-is,beds,common,,Claude draft (Mike check)
+77,s-is,pens,common,,Claude draft (Mike check)
+77,s-is,legs,common,,Claude draft (Mike check)
+77,s-is,bags,common,,Claude draft (Mike check)
