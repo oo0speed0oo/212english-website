@@ -161,7 +161,9 @@ var H212Builder = (function () {
     draw();
     var ans = document.getElementById('builder-answer');
     if (ans) ans.classList.add(correct ? 'is-correct' : 'is-wrong');
-    if (typeof H212Listen !== 'undefined' && H212Listen.speakText) H212Listen.speakText(answer);
+    // A page can take over saying the sentence (e.g. to play a recorded voice); otherwise the robot says it.
+    if (typeof H212Builder.speakAnswer === 'function') H212Builder.speakAnswer(answer, st.q);
+    else if (typeof H212Listen !== 'undefined' && H212Listen.speakText) H212Listen.speakText(answer);
     if (typeof H212Builder.onChecked === 'function') {
       H212Builder.onChecked({ correct: correct, chosen: chosen, answer: answer });
     }
@@ -171,5 +173,5 @@ var H212Builder = (function () {
   // drawn right after (next tick) once those elements exist.
   function afterRender() { draw(); }
 
-  return { parse: parse, render: render, afterRender: afterRender, tap: tap, clear: clear, check: check, onChecked: null };
+  return { parse: parse, render: render, afterRender: afterRender, tap: tap, clear: clear, check: check, onChecked: null, speakAnswer: null };
 })();

@@ -48,7 +48,7 @@ if ( ! defined( 'H212_UNLOCK_PERCENT' ) ) {
 // Question ids up to this number are used OR were skipped on purpose. Never hand
 // them out again (the Homework Questions screen starts new ids above this).
 if ( ! defined( 'H212_RESERVED_MAX_ID' ) ) {
-	define( 'H212_RESERVED_MAX_ID', 4536 );
+	define( 'H212_RESERVED_MAX_ID', 5496 );
 }
 if ( ! defined( 'H212_LEGACY_MAX_ID' ) ) {
 	define( 'H212_LEGACY_MAX_ID', 1409 );
@@ -553,6 +553,7 @@ function h212_practice_sections() {
 	return array(
 		'opposites' => array(
 			'file'      => 'opposites-content.csv',
+			'modes_file'=> 'opposites-modes.csv',
 			'meta'      => 'h212_opposites',
 			'label'     => 'Opposites',
 			'item'      => 'word',
@@ -564,6 +565,7 @@ function h212_practice_sections() {
 		),
 		'idioms'    => array(
 			'file'      => 'idioms-content.csv',
+			'modes_file'=> 'idioms-modes.csv',
 			'meta'      => 'h212_idioms',
 			'label'     => 'Idioms',
 			'item'      => 'idiom',
@@ -588,31 +590,52 @@ function h212_practice_rows( $section ) {
 	}
 	$d    = $defs[ $section ];
 	$rows = array();
-	foreach ( h212_read_csv_rows( ABSPATH . 'portal/' . $d['file'] ) as $r ) {
-		if ( empty( $r['id'] ) || empty( $r['kind'] ) ) {
-			continue;
-		}
-		$required = array();
-		foreach ( explode( '|', (string) ( $r['required_words'] ?? '' ) ) as $w ) {
-			$w = trim( $w );
-			if ( '' !== $w && '-' !== $w ) {
-				$required[] = $w;
+	// The original file (multiple choice, fill in the blank, "write your own sentence") and the
+	// modes file (Sentence Builder, Listening, Conversation) are read the same way.
+	$files = array( $d['file'] );
+	if ( ! empty( $d['modes_file'] ) ) {
+		$files[] = $d['modes_file'];
+	}
+	foreach ( $files as $file ) {
+		foreach ( h212_read_csv_rows( ABSPATH . 'portal/' . $file ) as $r ) {
+			if ( empty( $r['id'] ) || empty( $r['kind'] ) ) {
+				continue;
 			}
+			$required = array();
+			foreach ( explode( '|', (string) ( $r['required_words'] ?? '' ) ) as $w ) {
+				$w = trim( $w );
+				if ( '' !== $w && '-' !== $w ) {
+					$required[] = $w;
+				}
+			}
+			$kind  = strtolower( trim( $r['kind'] ) );
+			$tiles = array();
+			foreach ( explode( '|', (string) ( $r['tiles'] ?? '' ) ) as $t ) {
+				$t = trim( $t );
+				if ( '' !== $t && '-' !== $t ) {
+					$tiles[] = $t;
+				}
+			}
+			$extra = isset( $r['extra'] ) && '-' !== trim( $r['extra'] ) ? trim( $r['extra'] ) : '';
+			$rows[] = array(
+				'id'         => (string) $r['id'],
+				'set'        => (int) ( $r['set'] ?? 0 ),
+				'kind'       => $kind,
+				'item'       => $r[ $d['item'] ] ?? '',
+				'item_ja'    => $r[ $d['item_ja'] ] ?? '',
+				'pair'       => $d['pair'] ? ( $r[ $d['pair'] ] ?? '' ) : '',
+				'pair_ja'    => $d['pair_ja'] ? ( $r[ $d['pair_ja'] ] ?? '' ) : '',
+				'question'   => $r['question'] ?? '',
+				'choices'    => array( $r['choice_a'] ?? '', $r['choice_b'] ?? '', $r['choice_c'] ?? '' ),
+				// A Sentence Builder answer is the tiles in order, joined with spaces (exactly what the builder screen builds).
+				'answer'     => ( 'builder' === $kind && $tiles ) ? implode( ' ', $tiles ) : ( $r['answer'] ?? '' ),
+				'tiles'      => $tiles,
+				'extra'      => $extra,
+				'audio_text' => isset( $r['audio_text'] ) && '-' !== trim( $r['audio_text'] ) ? $r['audio_text'] : '',
+				'required'   => $required,
+				'example'    => ( isset( $r['example'] ) && '-' !== trim( $r['example'] ) ) ? $r['example'] : '',
+			);
 		}
-		$rows[] = array(
-			'id'       => (string) $r['id'],
-			'set'      => (int) ( $r['set'] ?? 0 ),
-			'kind'     => strtolower( trim( $r['kind'] ) ),
-			'item'     => $r[ $d['item'] ] ?? '',
-			'item_ja'  => $r[ $d['item_ja'] ] ?? '',
-			'pair'     => $d['pair'] ? ( $r[ $d['pair'] ] ?? '' ) : '',
-			'pair_ja'  => $d['pair_ja'] ? ( $r[ $d['pair_ja'] ] ?? '' ) : '',
-			'question' => $r['question'] ?? '',
-			'choices'  => array( $r['choice_a'] ?? '', $r['choice_b'] ?? '', $r['choice_c'] ?? '' ),
-			'answer'   => $r['answer'] ?? '',
-			'required' => $required,
-			'example'  => ( isset( $r['example'] ) && '-' !== trim( $r['example'] ) ) ? $r['example'] : '',
-		);
 	}
 	$cache[ $section ] = $rows;
 	return $rows;
@@ -631,6 +654,9 @@ function h212_practice_row( $section, $id ) {
 function h212_practice_sets( $section ) {
 	$sets = array();
 	foreach ( h212_practice_rows( $section ) as $r ) {
+		if ( 'write' === $r['kind'] ) {
+			continue;   // "Make your own sentence" is hidden for now (saved for later)
+		}
 		$sets[ $r['set'] ][] = $r['id'];
 	}
 	ksort( $sets );

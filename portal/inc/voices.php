@@ -28,5 +28,10 @@ function h212_voice_script() {
 	foreach ( (array) glob( $base . 'speaking/*.m4a' ) as $file ) {
 		$speak[ basename( $file, '.m4a' ) ] = max( 1, (int) filemtime( $file ) );
 	}
-	echo '<script>window.H212_VOICES = ' . wp_json_encode( array( 'v' => $latest, 'ids' => $ids, 'conv' => (object) $conv, 'speak' => (object) $speak ) ) . ';</script>' . "\n";
+	// Opposites / Idioms practice modes (Listening, Conversation, Sentence Builder): audio/modes/<id>.m4a
+	$modes = array();
+	foreach ( (array) glob( $base . 'modes/*.m4a' ) as $file ) {
+		$modes[ basename( $file, '.m4a' ) ] = max( 1, (int) filemtime( $file ) );
+	}
+	echo '<script>window.H212_VOICES = ' . wp_json_encode( array( 'v' => $latest, 'ids' => $ids, 'conv' => (object) $conv, 'speak' => (object) $speak, 'modes' => (object) $modes ) ) . ';</script>' . "\n";
 }
