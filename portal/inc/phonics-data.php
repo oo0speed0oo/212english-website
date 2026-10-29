@@ -344,6 +344,39 @@ function h212_phonics_blend() {
 	return $blend;
 }
 
+/**
+ * Read aloud: for each lesson, the COMMON words the mic can check ('w') and the rare words and names
+ * that are tap-to-hear only ('c', each [ word, isName ]). Words moved or flagged are still included here:
+ * reading is the one place where magic e, soft c and silent letters belong.
+ */
+function h212_phonics_read() {
+	static $read = null;
+	if ( null !== $read ) {
+		return $read;
+	}
+	$read = array();
+	foreach ( h212_phonics_words() as $w ) {
+		$n = $w['lesson'];
+		if ( ! isset( $read[ $n ] ) ) {
+			$read[ $n ] = array( 'w' => array(), 'c' => array() );
+		}
+		if ( $w['mic'] ) {
+			if ( ! in_array( $w['word'], $read[ $n ]['w'], true ) ) {
+				$read[ $n ]['w'][] = $w['word'];
+			}
+		} else {
+			$seen = false;
+			foreach ( $read[ $n ]['c'] as $c ) {
+				$seen = $seen || $c[0] === $w['word'];
+			}
+			if ( ! $seen ) {
+				$read[ $n ]['c'][] = array( $w['word'], 'name' === $w['status'] ? 1 : 0 );
+			}
+		}
+	}
+	return $read;
+}
+
 /** Which recorded voices exist (portal/audio/phonics/...). The page uses the robot voice for anything missing. */
 function h212_phonics_audio() {
 	$base = dirname( __DIR__ ) . '/audio/phonics/';
@@ -467,6 +500,7 @@ function h212_phonics_for_js( $user_id ) {
 		'audio'    => h212_phonics_audio(),
 		'game'     => h212_phonics_game_words(),
 		'blend'    => (object) h212_phonics_blend(),
+		'read'     => (object) h212_phonics_read(),
 		'homo'     => h212_phonics_homophones(),
 	);
 }

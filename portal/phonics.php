@@ -31,6 +31,10 @@ h212_js_strings( array(
 	'phonics.choose_game', 'phonics.back_games', 'phonics.game_sound', 'phonics.game_sound_sub', 'phonics.game_word', 'phonics.game_word_sub',
 	'phonics.game_begin', 'phonics.game_begin_sub', 'phonics.game_locked', 'phonics.q_sound', 'phonics.q_word', 'phonics.q_begin',
 	'phonics.right', 'phonics.wrong_is', 'phonics.finish_title', 'phonics.finish_sub', 'phonics.again', 'phonics.best',
+	'phonics.choose_read', 'phonics.read_words', 'phonics.read_words_sub', 'phonics.read_challenge', 'phonics.read_challenge_sub', 'phonics.read_challenge_intro',
+	'phonics.read_inst', 'phonics.read_said', 'phonics.read_try', 'phonics.read_type_hint', 'phonics.read_type_ph', 'phonics.read_done_sub', 'phonics.read_more',
+	'speak.mic', 'speak.mic_stop', 'speak.listening', 'speak.no_speech', 'speak.mic_blocked', 'speak.error', 'speak.great', 'speak.try_again', 'speak.type_check', 'speak.type_empty',
+	'speak.help_works', 'speak.help_no_sr', 'speak.help_blocked', 'speak.help_privacy', 'speak.heard', 'speak.you_wrote',
 	'phonics.blend_hint', 'phonics.blend_btn', 'phonics.blend_next', 'phonics.blend_say', 'phonics.blend_done_sub', 'phonics.blend_more',
 ) );
 echo '<script>window.H212_PHONICS = ' . wp_json_encode( h212_phonics_for_js( $h212_user->ID ) ) . ';</script>' . "\n";

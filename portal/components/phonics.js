@@ -1,7 +1,7 @@
 // Phonics screens. Practice only: it never counts for unlocking chapters or for Grades.
 //
 //   Steps (9)  ->  Lessons of a step  ->  one lesson's parts  ->  a part
-//   Parts so far: A. Sound Board, B. Blend it, C. Listen & pick (three games).
+//   Parts so far: A. Sound Board, B. Blend it, C. Listen & pick (three games), D. Read aloud.
 //
 // Page setup (phonics.php) sets window.H212_PHONICS (steps, lessons, sounds, progress, audio),
 // window.H212_T (phonics.* strings) and window.H212_NONCE, and loads listen.js (robot voice) and ui.js.
@@ -22,14 +22,16 @@
 // are never offered together. A finished round ticks the game; the lesson's "Listen & pick" is ticked
 // when every game this lesson can play is ticked.
 var H212Phonics = (function () {
-  var P = window.H212_PHONICS || { steps: [], lessons: {}, sounds: {}, progress: {}, audio: { v: 0, sounds: [], alone: [], words: [] }, game: [], blend: {}, homo: [] };
+  var P = window.H212_PHONICS || { steps: [], lessons: {}, sounds: {}, progress: {}, audio: { v: 0, sounds: [], alone: [], words: [] }, game: [], blend: {}, read: {}, homo: [] };
   var player = null;      // the recorded clip that is playing, if any
   var picked = null;      // Sound Board: the sound shown in the card { no, part }
-  // Parts that exist so far, in menu order. Add 'read', 'sentences' as they are built.
-  var READY = ['board', 'blend', 'listen'];
+  // Parts that exist so far, in menu order. Add 'sentences' when it is built.
+  var READY = ['board', 'blend', 'listen', 'read'];
   var PARTS = ['board', 'blend', 'listen', 'read', 'sentences'];
   var GAMES = ['sound', 'word', 'begin'];
   var G = null;           // Listen & pick: the round in progress { n, game, qs, i, correct, locked }
+  var SR = window.SpeechRecognition || window.webkitSpeechRecognition;   // none on iPhone Chrome
+  var R = null;           // Read aloud: the round in progress { n, words, i, tried: {word: true}, rec, token }
   var B = null;           // Blend it: the round in progress { n, words, i, blended: {word: true}, token }
   var ICONS = { board: 'vocabulary', blend: 'builder', listen: 'listening', read: 'speaking', sentences: 'conversation' };
 
@@ -55,13 +57,16 @@ var H212Phonics = (function () {
   function partAvailable(n, part) {
     if (part === 'listen') return GAMES.some(function (g) { return gameAvailable(n, g); });
     if (part === 'blend') return blendPool(n).length >= 2;
+    if (part === 'read') { var r = P.read && P.read[n]; return !!(r && (r.w.length || r.c.length)); }
     return true;
   }
   // A lesson is finished when every part it can play is ticked
+  // (Read aloud only counts when the lesson has common words: a lesson with only rare words and names has nothing to tick)
+  function partCounts(n, p) { return partAvailable(n, p) && (p !== 'read' || P.read[n].w.length > 0); }
   function lessonDone(n) {
-    return READY.every(function (p) { return !partAvailable(n, p) || partDone(n, p); });
+    return READY.every(function (p) { return !partCounts(n, p) || partDone(n, p); });
   }
-  function doneCount(n) { return READY.filter(function (p) { return partAvailable(n, p) && partDone(n, p); }).length; }
+  function doneCount(n) { return READY.filter(function (p) { return partCounts(n, p) && partDone(n, p); }).length; }
 
   // The first lesson (in Mike's order) that is not finished: "Recommended next"
   function nextLesson() {
@@ -95,6 +100,7 @@ var H212Phonics = (function () {
   // ── Sound ───────────────────────────────────────────
   function stopAudio() {
     if (player) { try { player.pause(); } catch (e) {} player = null; }
+    stopRec();
   }
   function has(list, v) { return (list || []).indexOf(v) !== -1; }
 
@@ -208,7 +214,7 @@ var H212Phonics = (function () {
           var got = avail.filter(function (g) { return P.progress[n] && P.progress[n]['listen_' + g]; }).length;
           status = partDone(n, p) ? '<span class="status done">✓ ' + esc(T('phonics.done')) + '</span>'
             : (got ? '<span class="status part">' + got + '/' + avail.length + '</span>' : '<span class="status take">' + esc(T('phonics.new')) + '</span>');
-        } else {
+        } else if (partCounts(n, p)) {
           status = partDone(n, p) ? '<span class="status done">✓ ' + esc(T('phonics.done')) + '</span>' : '<span class="status take">' + esc(T('phonics.new')) + '</span>';
         }
       } else if (inBuild) {
@@ -412,6 +418,234 @@ var H212Phonics = (function () {
       + '<div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">'
       + '<button class="next-btn" style="display:inline-flex" onclick="H212Phonics.part(' + B.n + ',\'blend\')">' + esc(T('phonics.again')) + '</button>'
       + '<button class="next-btn" style="display:inline-flex" onclick="H212Phonics.lesson(' + B.n + ')">' + esc(T('phonics.back_parts')) + '</button>'
+      + '</div></div>';
+    pc().innerHTML = h;
+  }
+
+  // ── D. Read aloud ───────────────────────────────────
+  // A word on the screen: the student says it, then checks. Checking uses the browser's speech recognition
+  // (the same as the Speaking screens; no audio is stored) or, where there is none (iPhone Chrome), a box the
+  // keyboard's 🎤 can fill. Only COMMON words are checked (the mic cannot judge rare words or names): those
+  // are a separate "Challenge words" list, tap to hear only. Words that sound the same (to / two) both pass.
+  var READ_MAX = 10;
+  var NUMBER_WORDS = { zero: '0', one: '1', two: '2', three: '3', four: '4', five: '5', six: '6', seven: '7', eight: '8', nine: '9', ten: '10', eleven: '11', twelve: '12' };
+  function readData(n) { return (P.read && P.read[n]) || { w: [], c: [] }; }
+
+  function stopRec() {
+    if (R && R.rec) {
+      var r = R.rec;
+      R.rec = null;
+      r.onresult = r.onerror = r.onend = null;
+      try { r.abort(); } catch (e) {}
+    }
+  }
+
+  // Does what was heard (or typed) contain the word, or a word that sounds the same?
+  function sameWord(heard, word) {
+    var tokens = String(heard).toLowerCase().replace(/[^a-z0-9' ]+/g, ' ').split(/\s+/).filter(Boolean);
+    var ok = [word];
+    (P.homo || []).forEach(function (g) { if (g.indexOf(word) !== -1) ok = ok.concat(g); });
+    if (NUMBER_WORDS[word]) ok.push(NUMBER_WORDS[word]);
+    return tokens.some(function (t) { return ok.indexOf(t) !== -1; });
+  }
+
+  function showReadMenu(n) {
+    stopAudio();
+    var l = P.lessons[n], d = readData(n);
+    if (!l) return showSteps();
+    if (!d.c.length) return showRead(n);                       // only common words: straight in
+    if (!d.w.length) return showChallenge(n);                  // only rare words and names
+    var h = '<div class="chapter-head">'
+      + '<button type="button" class="back-btn" onclick="H212Phonics.lesson(' + n + ')" aria-label="' + esc(T('phonics.back_parts')) + '">' + H212UI.icons.back + '</button>'
+      + '<div><div class="chapter-head-kicker">' + esc(lessonLabel(l)) + ' · ' + esc(T('phonics.part_read')) + '</div>'
+      + '<div class="chapter-head-title">' + esc(l.title) + '</div></div></div>'
+      + '<div class="practice-choose">' + esc(T('phonics.choose_read')) + '</div>'
+      + '<div class="part-group grp-phonics"><div class="type-grid">'
+      + '<div class="type-btn"' + key(0, 'H212Phonics.read(' + n + ')') + '><span class="icon">' + H212UI.icons.speaking + '</span>'
+      + '<span class="lbl">' + esc(T('phonics.read_words')) + '</span><span class="sub">' + esc(T('phonics.read_words_sub')) + '</span>'
+      + (partDone(n, 'read') ? '<span class="status done">✓ ' + esc(T('phonics.done')) + '</span>' : '<span class="status take">' + esc(T('phonics.new')) + '</span>') + '</div>'
+      + '<div class="type-btn"' + key(0, 'H212Phonics.challenge(' + n + ')') + '><span class="icon">' + H212UI.icons.vocabulary + '</span>'
+      + '<span class="lbl">' + esc(T('phonics.read_challenge')) + '</span><span class="sub">' + esc(T('phonics.read_challenge_sub')) + '</span></div>'
+      + '</div></div>';
+    pc().innerHTML = h;
+  }
+
+  function showChallenge(n) {
+    stopAudio();
+    var l = P.lessons[n], d = readData(n);
+    var back = d.w.length ? 'H212Phonics.part(' + n + ',\'read\')' : 'H212Phonics.lesson(' + n + ')';
+    var h = '<div class="chapter-head">'
+      + '<button type="button" class="back-btn" onclick="' + back + '" aria-label="' + esc(T('phonics.back_parts')) + '">' + H212UI.icons.back + '</button>'
+      + '<div><div class="chapter-head-kicker">' + esc(lessonLabel(l)) + ' · ' + esc(T('phonics.part_read')) + '</div>'
+      + '<div class="chapter-head-title">' + esc(T('phonics.read_challenge')) + '</div></div></div>'
+      + '<div class="ph-note">' + esc(T('phonics.read_challenge_intro')) + '</div>'
+      + '<div class="ph-grid grp-phonics">';
+    d.c.forEach(function (c) {
+      var shown = c[1] ? c[0].charAt(0).toUpperCase() + c[0].slice(1) : c[0];
+      h += '<div class="ph-tile"' + key(0, 'H212Phonics.hearWord(\'' + c[0] + '\')') + '><span class="ph-letter">' + esc(shown) + '</span></div>';
+    });
+    h += '</div>';
+    pc().innerHTML = h;
+  }
+
+  function showRead(n) {
+    stopAudio();
+    var l = P.lessons[n], d = readData(n);
+    if (!l || !d.w.length) return showLesson(n);
+    R = { n: n, words: shuffle(d.w.slice()).slice(0, READ_MAX), i: 0, tried: {}, rec: null, token: 0 };
+    showReadWord();
+  }
+
+  function showReadWord() {
+    var w = R.words[R.i], l = P.lessons[R.n], d = readData(R.n);
+    R.token++;
+    var last = R.i + 1 >= R.words.length;
+    var back = d.c.length ? 'H212Phonics.part(' + R.n + ',\'read\')' : 'H212Phonics.lesson(' + R.n + ')';
+    var h = H212UI.qTop({ onclose: back, label: T('phonics.back_parts'), index: R.i, total: R.words.length, noScore: true })
+      + '<div class="grp-phonics"><div class="q-label">' + esc(T('nav.phonics')) + ' · ' + esc(lessonLabel(l)) + ' · ' + esc(T('phonics.part_read')) + '</div></div>'
+      + '<div class="question-card grp-phonics">'
+      + '<div class="speak-inst">' + esc(T('phonics.read_inst')) + '</div>'
+      + '<div class="ph-blend-word" style="margin-bottom:14px">' + esc(w) + '</div>'
+      + '<button type="button" class="listen-btn speak-hear" onclick="H212Phonics.hearWord(\'' + w + '\')">' + esc(T('listen.button')) + '</button>'
+      + ((typeof H212Listen !== 'undefined' && H212Listen.soundHint) ? H212Listen.soundHint() : '');
+    if (SR) {
+      h += '<button type="button" class="speak-mic" id="speak-mic" onclick="H212Phonics.readMic()">'
+        + '<span class="speak-mic-ico" aria-hidden="true">🎤</span><span id="speak-mic-label">' + esc(T('speak.mic')) + '</span></button>';
+    }
+    h += '<div class="speak-type" id="speak-type"' + (SR ? ' hidden' : '') + '>'
+      + '<div class="speak-type-hint">' + esc(T('phonics.read_type_hint')) + '</div>'
+      + '<div class="speak-type-row"><input type="text" id="speak-text" class="speak-text" lang="en-US" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" enterkeyhint="done"'
+      + ' placeholder="' + esc(T('phonics.read_type_ph')) + '" onkeydown="if(event.key===\'Enter\'){event.preventDefault();H212Phonics.readTyped();}">'
+      + '<button type="button" class="speak-check" onclick="H212Phonics.readTyped()">' + esc(T('speak.type_check')) + '</button></div></div>'
+      + '<div class="speak-status" id="speak-status" role="status"></div>'
+      + '<div class="speak-result" id="speak-result" hidden></div>'
+      + '<div class="speak-actions"><button type="button" class="speak-link" onclick="H212Phonics.readSaid()">' + esc(T('phonics.read_said')) + '</button></div>'
+      + '<button class="next-btn" id="next-btn" style="display:inline-flex" onclick="H212Phonics.readNext()">' + esc(last ? T('hw.see_results') : T('phonics.blend_next')) + '</button>'
+      + '<div class="speak-help"><div class="speak-help-main">' + esc(SR ? T('speak.help_works') : T('speak.help_no_sr')) + '</div>'
+      + '<div class="speak-help-privacy">' + esc(T('speak.help_privacy')) + '</div></div>'
+      + '</div>';
+    pc().innerHTML = h;
+    // If the mic is already blocked on this device, say so now
+    if (SR && navigator.permissions && navigator.permissions.query) {
+      var my = R.token;
+      navigator.permissions.query({ name: 'microphone' }).then(function (st) {
+        if (!R || R.token !== my || st.state !== 'denied') return;
+        var el = document.querySelector('.speak-help-main');
+        if (el) el.textContent = T('speak.help_blocked');
+      }).catch(function () {});
+    }
+  }
+
+  function readStatus(msg, isErr) {
+    var s = document.getElementById('speak-status');
+    if (!s) return;
+    s.textContent = msg || '';
+    s.classList[isErr ? 'add' : 'remove']('err');
+  }
+  function readMicOn(on) {
+    var b = document.getElementById('speak-mic'), l = document.getElementById('speak-mic-label');
+    if (b) b.classList[on ? 'add' : 'remove']('listening');
+    if (l) l.textContent = on ? T('speak.mic_stop') : T('speak.mic');
+  }
+
+  // The big mic button: first tap starts listening, a second tap means "I am done"
+  function readMic() {
+    if (!R || !SR) return;
+    if (R.rec) { try { R.rec.stop(); } catch (e) {} return; }
+    stopAudio();
+    if (typeof H212Listen !== 'undefined') H212Listen.stop();     // never listen to our own voice
+    var my = R.token, rec = new SR(), got = false, err = '';
+    rec.lang = 'en-US';
+    rec.maxAlternatives = 5;
+    rec.interimResults = false;
+    rec.continuous = false;
+    R.rec = rec;
+    var box = document.getElementById('speak-result');
+    if (box) { box.hidden = true; box.textContent = ''; }
+    readStatus(T('speak.listening'), false);
+    readMicOn(true);
+    rec.onresult = function (e) {
+      if (!R || R.token !== my) return;
+      got = true;
+      var alts = [], r = e.results[0];
+      for (var j = 0; r && j < r.length; j++) alts.push(r[j].transcript);
+      readCheck(alts, false);
+    };
+    rec.onerror = function (e) { err = (e && e.error) || ''; };
+    rec.onend = function () {
+      if (!R || R.token !== my) return;
+      R.rec = null;
+      readMicOn(false);
+      if (got) return;
+      if (err === 'aborted') { readStatus('', false); return; }
+      if (err === 'not-allowed' || err === 'service-not-allowed') { readStatus(T('speak.mic_blocked'), true); var tb = document.getElementById('speak-type'); if (tb) tb.hidden = false; }
+      else if (err === '' || err === 'no-speech') readStatus(T('speak.no_speech'), true);
+      else { readStatus(T('speak.error'), true); var tb2 = document.getElementById('speak-type'); if (tb2) tb2.hidden = false; }
+    };
+    try { rec.start(); }
+    catch (e) { R.rec = null; readMicOn(false); readStatus(T('speak.error'), true); var tb3 = document.getElementById('speak-type'); if (tb3) tb3.hidden = false; }
+  }
+
+  function readTyped() {
+    if (!R) return;
+    var el = document.getElementById('speak-text');
+    var text = el ? el.value.replace(/\s+/g, ' ').trim() : '';
+    if (!text) { readStatus(T('speak.type_empty'), true); return; }
+    readStatus('', false);
+    readCheck([text], true);
+  }
+
+  function readCheck(alts, typed) {
+    var w = R.words[R.i], pass = false, heard = alts[0] || '';
+    stopRec();                                  // we have the answer: the mic is done
+    readMicOn(false);
+    alts.forEach(function (a) { if (a && sameWord(a, w)) { pass = true; heard = a; } });
+    if (!heard) { readStatus(T('speak.no_speech'), true); return; }
+    readStatus('', false);
+    R.tried[w] = true;
+    var level = pass ? 'great' : 'try';
+    var box = document.getElementById('speak-result');
+    if (box) {
+      box.className = 'speak-result ' + level;
+      box.innerHTML = '<div class="speak-badge ' + level + '">' + (pass ? '🟢 ' + esc(T('speak.great')) : '🔵 ' + esc(T('phonics.read_try'))) + '</div>'
+        + '<div class="speak-heard">' + esc(T(typed ? 'speak.you_wrote' : 'speak.heard')) + ' <b>“' + esc(heard) + '”</b></div>'
+        + (pass ? '' : '<button type="button" class="speak-retry" onclick="H212Phonics.readMic()">' + esc(T('speak.try_again')) + '</button>');
+      box.hidden = false;
+    }
+    if (pass) playWord(w);
+  }
+
+  // "I read it": counts as a try and plays the word
+  function readSaid() {
+    if (!R) return;
+    var w = R.words[R.i];
+    stopRec();
+    readMicOn(false);
+    readStatus('', false);
+    R.tried[w] = true;
+    playWord(w);
+  }
+
+  function readNext() {
+    if (!R) return;
+    if (R.i + 1 < R.words.length) { R.i++; showReadWord(); window.scrollTo(0, 0); }
+    else finishRead();
+  }
+
+  function finishRead() {
+    var total = R.words.length, got = Object.keys(R.tried).length, enough = got * 2 >= total;
+    if (enough) save(R.n, 'read', Math.round(got * 100 / total));
+    R.token++;
+    stopAudio();
+    var d = readData(R.n);
+    var h = '<div class="question-card" style="text-align:center">'
+      + '<div style="font-size:48px;margin-bottom:16px">' + (enough ? '🎉' : '👆') + '</div>'
+      + '<div class="speak-finish-title">' + esc(enough ? T('phonics.finish_title') : T('phonics.read_more')) + '</div>'
+      + '<div class="speak-finish-sub">' + esc(fill(T('phonics.read_done_sub'), { c: got, t: total })) + '</div>'
+      + '<div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">'
+      + '<button class="next-btn" style="display:inline-flex" onclick="H212Phonics.read(' + R.n + ')">' + esc(T('phonics.again')) + '</button>'
+      + (d.c.length ? '<button class="next-btn" style="display:inline-flex" onclick="H212Phonics.challenge(' + R.n + ')">' + esc(T('phonics.read_challenge')) + '</button>' : '')
+      + '<button class="next-btn" style="display:inline-flex" onclick="H212Phonics.lesson(' + R.n + ')">' + esc(T('phonics.back_parts')) + '</button>'
       + '</div></div>';
     pc().innerHTML = h;
   }
@@ -692,6 +926,7 @@ var H212Phonics = (function () {
     part: function (n, p) {
       if (p === 'board') { showBoard(n); goTop(); }
       else if (p === 'blend') { showBlend(n); goTop(); }
+      else if (p === 'read') { showReadMenu(n); goTop(); }
       else if (p === 'listen') { showListenMenu(n); goTop(); }
     },
     listenMenu: function (n) { showListenMenu(n); goTop(); },
@@ -701,6 +936,14 @@ var H212Phonics = (function () {
     next: next,
     tap: tap,
     blend: blendGo,
+    read: function (n) { showRead(n); goTop(); },
+    challenge: function (n) { showChallenge(n); goTop(); },
+    hearWord: playWord,
+    readMic: readMic,
+    readTyped: readTyped,
+    readSaid: readSaid,
+    readNext: readNext,
+    _same: sameWord,
     blendTile: blendTile,
     blendNext: blendNext,
     _blendPool: blendPool,
