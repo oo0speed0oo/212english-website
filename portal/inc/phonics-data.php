@@ -244,3 +244,56 @@ function h212_phonics_audio() {
 function h212_phonics_audio_script() {
 	echo '<script>window.H212_PHONICS_AUDIO = ' . wp_json_encode( h212_phonics_audio() ) . ';</script>' . "\n";
 }
+
+/** The parts of a lesson that can be marked done (A Sound Board, B Blend, C Listen & pick, D Read aloud, E Sentences). */
+function h212_phonics_parts() {
+	return array( 'board', 'blend', 'listen', 'read', 'sentences' );
+}
+
+/** This student's Phonics progress: { lessons: { "4": { board: 1, ... } }, last: "time" }. Practice only: it never counts for unlocks or Grades. */
+function h212_phonics_state( $user_id ) {
+	$raw     = get_user_meta( $user_id, 'h212_phonics', true );
+	$raw     = is_array( $raw ) ? $raw : array();
+	$lessons = array();
+	foreach ( (array) ( isset( $raw['lessons'] ) ? $raw['lessons'] : array() ) as $n => $parts ) {
+		if ( ! is_array( $parts ) || ! isset( h212_phonics_lessons()[ (int) $n ] ) ) {
+			continue;
+		}
+		foreach ( h212_phonics_parts() as $p ) {
+			if ( ! empty( $parts[ $p ] ) ) {
+				$lessons[ (int) $n ][ $p ] = (int) $parts[ $p ];
+			}
+		}
+	}
+	return array( 'lessons' => $lessons, 'last' => isset( $raw['last'] ) ? (string) $raw['last'] : '' );
+}
+
+/** Marks one part of one lesson done (or raises its best score). Returns the new state, or false for an unknown lesson/part. */
+function h212_phonics_mark( $user_id, $lesson, $part, $score = 1 ) {
+	$lesson = (int) $lesson;
+	if ( ! isset( h212_phonics_lessons()[ $lesson ] ) || ! in_array( $part, h212_phonics_parts(), true ) ) {
+		return false;
+	}
+	$state = h212_phonics_state( $user_id );
+	$old   = isset( $state['lessons'][ $lesson ][ $part ] ) ? $state['lessons'][ $lesson ][ $part ] : 0;
+	$state['lessons'][ $lesson ][ $part ] = max( $old, max( 1, min( 100, (int) $score ) ) );
+	$state['last'] = current_time( 'mysql' );
+	update_user_meta( $user_id, 'h212_phonics', $state );
+	return $state;
+}
+
+/** Everything the page's JavaScript needs for the Steps, Lessons and Sound Board screens. */
+function h212_phonics_for_js( $user_id ) {
+	$lessons = array();
+	foreach ( h212_phonics_lessons() as $n => $l ) {
+		$lessons[ $n ] = array( 'n' => $n, 'sound_no' => $l['sound_no'], 'title' => $l['title'], 'step' => $l['step'], 'kind' => $l['kind'], 'words' => $l['words'] );
+	}
+	$state = h212_phonics_state( $user_id );
+	return array(
+		'steps'    => array_values( h212_phonics_steps() ),
+		'lessons'  => $lessons,
+		'sounds'   => h212_phonics_sounds(),
+		'progress' => (object) $state['lessons'],
+		'audio'    => h212_phonics_audio(),
+	);
+}

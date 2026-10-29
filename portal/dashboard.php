@@ -113,6 +113,11 @@ $vars_alt = array( 'name' => $first, 'n' => $cur['chapter'], 'pct' => $pct, 'par
     <div class="dash-card-title"><?php echo esc_html( t( 'nav.idioms' ) ); ?></div>
     <div class="dash-card-sub"><?php echo esc_html( t_other( 'nav.idioms' ) . ' · ' . t( 'dash.idioms_sub' ) ); ?></div>
   </a>
+  <a class="dash-card dash-phonics" href="phonics.php">
+    <div class="dash-card-icon"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 18l4.5-12L13 18M5.7 14h5.6"></path><path d="M16 9.5a3.5 3.5 0 010 5M18.5 7a7 7 0 010 10"></path></svg></div>
+    <div class="dash-card-title"><?php echo esc_html( t( 'nav.phonics' ) ); ?></div>
+    <div class="dash-card-sub"><?php echo esc_html( t_other( 'nav.phonics' ) . ' · ' . t( 'dash.phonics_sub' ) ); ?></div>
+  </a>
 </div>
 <?php h212_theme_picker(); ?>
 </main>
