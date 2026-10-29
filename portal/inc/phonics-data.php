@@ -247,7 +247,51 @@ function h212_phonics_audio_script() {
 
 /** The parts of a lesson that can be marked done (A Sound Board, B Blend, C Listen & pick, D Read aloud, E Sentences). */
 function h212_phonics_parts() {
-	return array( 'board', 'blend', 'listen', 'read', 'sentences' );
+	return array( 'board', 'blend', 'listen', 'read', 'sentences', 'listen_sound', 'listen_word', 'listen_begin' );
+}
+
+/**
+ * Words that sound the same. The listening games never offer two of these together
+ * (hearing "sail" with "sail" and "sale" on screen would be a trick question).
+ */
+function h212_phonics_homophones() {
+	$groups = array(
+		'ate eight', 'be bee', 'bare bear', 'beat beet', 'blew blue', 'board bored', 'brake break', 'buy by bye', 'cell sell',
+		'cent scent sent', 'claws clause', 'dear deer', 'die dye', 'fair fare', 'feat feet', 'flew flu', 'flour flower', 'for four fore',
+		'groan grown', 'hair hare', 'heal heel', 'hear here', 'hi high', 'hole whole', 'hour our', 'idle idol', 'knew new', 'knight night',
+		'know no', 'made maid', 'mail male', 'main mane', 'meat meet', 'one won', 'pail pale', 'pain pane', 'pair pear pare', 'peace piece',
+		'plain plane', 'poor pour', 'pray prey', 'rain reign rein', 'read reed', 'right write rite', 'road rode', 'role roll', 'root route',
+		'sail sale', 'sea see', 'seam seem', 'sew so sow', 'sight site cite', 'soar sore', 'sole soul', 'some sum', 'son sun', 'stair stare',
+		'stake steak', 'steal steel', 'tail tale', 'their there', 'tide tied', 'to too two', 'toe tow', 'vain vein vane', 'waist waste',
+		'wait weight', 'way weigh whey', 'weak week', 'weather whether', 'which witch', 'wood would', 'yoke yolk', 'tire tyre', 'bored board',
+		'wail whale wale', 'wear where ware', 'wine whine', 'wheel weal', 'lone loan', 'mind mined', 'knot not', 'knead need', 'nose knows',
+		'haul hall', 'ball bawl', 'cheap cheep', 'chews choose', 'coarse course', 'cord chord', 'creak creek', 'days daze', 'dew due do',
+		'ewe you yew', 'gait gate', 'gilt guilt', 'grate great', 'hay hey', 'heard herd', 'him hymn', 'in inn', 'lead led', 'lessen lesson',
+		'links lynx', 'loot lute', 'mall maul', 'mist missed', 'moan mown', 'morn mourn', 'muscle mussel', 'oar or ore', 'paws pause pours',
+		'pea pee', 'peak peek pique', 'pedal peddle', 'pole poll', 'praise prays preys', 'rap wrap', 'raw roar', 'ring wring', 'rose rows',
+		'rye wry', 'sac sack', 'seas sees seize', 'serial cereal', 'shoe shoo', 'side sighed', 'sighs size', 'slay sleigh', 'sold soled',
+		'stalk stork', 'straight strait', 'suite sweet', 'tacks tax', 'team teem', 'tear tier', 'tense tents', 'throne thrown', 'thyme time',
+		'toad towed', 'told tolled', 'waive wave', 'war wore', 'whirl whorl', 'wrote rote', 'yore your', 'bury berry', 'dessert desert',
+	);
+	$out = array();
+	foreach ( $groups as $g ) {
+		$out[] = explode( ' ', $g );
+	}
+	return $out;
+}
+
+/** Words the listening games may use (common, clean notes), each once, with the lesson it is taught in. */
+function h212_phonics_game_words() {
+	$seen = array();
+	$out  = array();
+	foreach ( h212_phonics_words() as $w ) {
+		if ( ! $w['game'] || isset( $seen[ $w['word'] ] ) ) {
+			continue;
+		}
+		$seen[ $w['word'] ] = true;
+		$out[]              = array( 'w' => $w['word'], 'l' => $w['lesson'] );
+	}
+	return $out;
 }
 
 /** This student's Phonics progress: { lessons: { "4": { board: 1, ... } }, last: "time" }. Practice only: it never counts for unlocks or Grades. */
@@ -295,5 +339,7 @@ function h212_phonics_for_js( $user_id ) {
 		'sounds'   => h212_phonics_sounds(),
 		'progress' => (object) $state['lessons'],
 		'audio'    => h212_phonics_audio(),
+		'game'     => h212_phonics_game_words(),
+		'homo'     => h212_phonics_homophones(),
 	);
 }

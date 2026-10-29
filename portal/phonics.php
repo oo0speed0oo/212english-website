@@ -27,7 +27,10 @@ h212_js_strings( array(
 	'phonics.part_listen', 'phonics.part_listen_sub', 'phonics.part_read', 'phonics.part_read_sub',
 	'phonics.part_sentences', 'phonics.part_sentences_sub', 'phonics.board_hint', 'phonics.board_new',
 	'phonics.board_before', 'phonics.board_none', 'phonics.sound_second', 'phonics.words_n', 'phonics.silent_hint',
-	'listen.silent_hint',
+	'listen.silent_hint', 'listen.iframe', 'listen.play', 'listen.button', 'hw.next_question', 'hw.see_results',
+	'phonics.choose_game', 'phonics.back_games', 'phonics.game_sound', 'phonics.game_sound_sub', 'phonics.game_word', 'phonics.game_word_sub',
+	'phonics.game_begin', 'phonics.game_begin_sub', 'phonics.game_locked', 'phonics.q_sound', 'phonics.q_word', 'phonics.q_begin',
+	'phonics.right', 'phonics.wrong_is', 'phonics.finish_title', 'phonics.finish_sub', 'phonics.again', 'phonics.best',
 ) );
 echo '<script>window.H212_PHONICS = ' . wp_json_encode( h212_phonics_for_js( $h212_user->ID ) ) . ';</script>' . "\n";
 echo '<script>window.H212_NONCE = "' . esc_js( wp_create_nonce( 'h212_phonics' ) ) . '";</script>' . "\n";

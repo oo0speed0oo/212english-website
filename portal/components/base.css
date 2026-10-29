@@ -855,3 +855,5 @@ button, input, select, textarea { font-family: inherit; }
 .ph-card-ipa { font-size: 14px; color: var(--text-muted); margin-top: 2px; }
 .ph-card-tip { font-size: 14px; color: var(--ink); margin-top: 6px; line-height: 1.5; }
 .ph-note { max-width: 640px; margin: 0 0 18px; font-size: 14px; color: var(--text-muted); }
+
+.ph-choices .choice-btn { font-size: 20px; font-weight: 700; text-align: center; }
