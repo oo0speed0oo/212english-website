@@ -31,6 +31,7 @@ h212_js_strings( array(
 	'phonics.choose_game', 'phonics.back_games', 'phonics.game_sound', 'phonics.game_sound_sub', 'phonics.game_word', 'phonics.game_word_sub',
 	'phonics.game_begin', 'phonics.game_begin_sub', 'phonics.game_locked', 'phonics.q_sound', 'phonics.q_word', 'phonics.q_begin',
 	'phonics.right', 'phonics.wrong_is', 'phonics.finish_title', 'phonics.finish_sub', 'phonics.again', 'phonics.best',
+	'phonics.blend_hint', 'phonics.blend_btn', 'phonics.blend_next', 'phonics.blend_say', 'phonics.blend_done_sub', 'phonics.blend_more',
 ) );
 echo '<script>window.H212_PHONICS = ' . wp_json_encode( h212_phonics_for_js( $h212_user->ID ) ) . ';</script>' . "\n";
 echo '<script>window.H212_NONCE = "' . esc_js( wp_create_nonce( 'h212_phonics' ) ) . '";</script>' . "\n";

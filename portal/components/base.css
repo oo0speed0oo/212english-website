@@ -857,3 +857,16 @@ button, input, select, textarea { font-family: inherit; }
 .ph-note { max-width: 640px; margin: 0 0 18px; font-size: 14px; color: var(--text-muted); }
 
 .ph-choices .choice-btn { font-size: 20px; font-weight: 700; text-align: center; }
+.ph-blend-hint { margin: 0 0 14px; font-size: 14px; color: var(--text-muted); text-align: center; }
+.ph-blend-tiles { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin: 6px 0 18px; }
+.ph-bt {
+  min-width: 64px; min-height: 76px; padding: 8px 14px; font-family: inherit; font-size: 38px; font-weight: 800; color: var(--c);
+  background: var(--card); border: 2px solid var(--line-strong); border-radius: 16px; cursor: pointer; -webkit-tap-highlight-color: transparent;
+}
+.ph-bt:active { transform: scale(0.96); }
+.ph-bt.is-lit { background: var(--bg); border-color: var(--c); box-shadow: 0 0 0 3px var(--bg); }
+.ph-blend-word { min-height: 52px; margin: 0 0 10px; text-align: center; font-size: 40px; font-weight: 800; color: var(--ink); letter-spacing: 0.04em; }
+.ph-blend-say { min-height: 22px; margin: 0 0 12px; text-align: center; font-size: 14px; color: var(--text-muted); }
+.ph-blend-go { background: var(--c); display: inline-flex; align-items: center; justify-content: center; gap: 8px; margin: 0 auto 6px; }
+.ph-blend-skip { background: var(--card); color: var(--c); border: 2px solid var(--c); }
+.ph-blend-row { display: flex; flex-direction: column; align-items: center; gap: 12px; }

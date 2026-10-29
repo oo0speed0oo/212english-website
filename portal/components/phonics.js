@@ -1,7 +1,7 @@
 // Phonics screens. Practice only: it never counts for unlocking chapters or for Grades.
 //
 //   Steps (9)  ->  Lessons of a step  ->  one lesson's parts  ->  a part
-//   Parts so far: A. Sound Board, C. Listen & pick (three games).
+//   Parts so far: A. Sound Board, B. Blend it, C. Listen & pick (three games).
 //
 // Page setup (phonics.php) sets window.H212_PHONICS (steps, lessons, sounds, progress, audio),
 // window.H212_T (phonics.* strings) and window.H212_NONCE, and loads listen.js (robot voice) and ui.js.
@@ -22,14 +22,15 @@
 // are never offered together. A finished round ticks the game; the lesson's "Listen & pick" is ticked
 // when every game this lesson can play is ticked.
 var H212Phonics = (function () {
-  var P = window.H212_PHONICS || { steps: [], lessons: {}, sounds: {}, progress: {}, audio: { v: 0, sounds: [], words: [] }, game: [], homo: [] };
+  var P = window.H212_PHONICS || { steps: [], lessons: {}, sounds: {}, progress: {}, audio: { v: 0, sounds: [], alone: [], words: [] }, game: [], blend: {}, homo: [] };
   var player = null;      // the recorded clip that is playing, if any
   var picked = null;      // Sound Board: the sound shown in the card { no, part }
-  // Parts that exist so far, in menu order. Add 'blend', 'listen', 'read', 'sentences' as they are built.
-  var READY = ['board', 'listen'];
+  // Parts that exist so far, in menu order. Add 'read', 'sentences' as they are built.
+  var READY = ['board', 'blend', 'listen'];
   var PARTS = ['board', 'blend', 'listen', 'read', 'sentences'];
   var GAMES = ['sound', 'word', 'begin'];
-  var G = null;           // the round in progress: { n, game, qs, i, correct, locked }
+  var G = null;           // Listen & pick: the round in progress { n, game, qs, i, correct, locked }
+  var B = null;           // Blend it: the round in progress { n, words, i, blended: {word: true}, token }
   var ICONS = { board: 'vocabulary', blend: 'builder', listen: 'listening', read: 'speaking', sentences: 'conversation' };
 
   function esc(s) {
@@ -53,6 +54,7 @@ var H212Phonics = (function () {
   }
   function partAvailable(n, part) {
     if (part === 'listen') return GAMES.some(function (g) { return gameAvailable(n, g); });
+    if (part === 'blend') return blendPool(n).length >= 2;
     return true;
   }
   // A lesson is finished when every part it can play is ticked
@@ -280,6 +282,138 @@ var H212Phonics = (function () {
     var n = window.__phBoard, l = P.lessons[n];
     // The board counts as done when the student has tried the new sound (or any tile in a Review / Bonus lesson)
     if (l && !partDone(n, 'board') && (l.kind !== 'sound' || no === l.sound_no)) save(n, 'board', 1);
+  }
+
+  // ── B. Blend it ─────────────────────────────────────
+  // A word as tiles (d | o | g). Tap a tile: you hear that one sound (audio/phonics/alone/<sound_no>.m4a, "-2" = the
+  // second sound of th / ew...). "Blend" lights the tiles one after another and then says the whole word.
+  // The words and their sounds come from the server (P.blend: lesson -> [ [word, [[spelling, sound_no, part], ...]] ]).
+  // A round is up to 8 words: this lesson's own words first, then words from earlier lessons.
+  var BLEND_MAX = 8;
+  function blendPool(n) {
+    var out = [];
+    Object.keys(P.blend || {}).forEach(function (k) {
+      if (+k > n) return;
+      P.blend[k].forEach(function (e) {
+        out.push({ w: e[0], t: e[1].map(function (x) { return { s: x[0], no: x[1], part: x[2] || 0 }; }), l: +k });
+      });
+    });
+    return out;
+  }
+  function blendRound(n) {
+    var pool = blendPool(n);
+    var own = shuffle(pool.filter(function (x) { return x.l === n; }));
+    var rest = shuffle(pool.filter(function (x) { return x.l !== n; }));
+    return own.concat(rest).slice(0, BLEND_MAX);
+  }
+
+  // Plays one clip and calls done() when it has finished (or straight away if it cannot play)
+  function playUrl(url, done) {
+    stopAudio();
+    if (typeof H212Listen !== 'undefined') H212Listen.stop();
+    if (!url || typeof Audio === 'undefined') { setTimeout(done, 500); return; }
+    var a = new Audio(url), over = false;
+    player = a;
+    var end = function () { if (over) return; over = true; if (player === a) player = null; done(); };
+    a.onended = end;
+    a.onerror = end;
+    var pr = a.play();
+    if (pr && pr.catch) pr.catch(function (e) { if (e && e.name === 'AbortError') return; end(); });
+  }
+  function aloneUrl(tile) {
+    var id = tile.no + (tile.part ? '-' + (tile.part + 1) : '');
+    return has(P.audio.alone, id) ? 'audio/phonics/alone/' + id + '.m4a?v=' + (P.audio.v || 0) : '';
+  }
+  function lit(k) {
+    var tiles = document.querySelectorAll('.ph-bt');
+    for (var i = 0; i < tiles.length; i++) tiles[i].classList[i === k ? 'add' : 'remove']('is-lit');
+  }
+
+  function showBlend(n) {
+    stopAudio();
+    var l = P.lessons[n];
+    if (!l) return showSteps();
+    B = { n: n, words: blendRound(n), i: 0, blended: {}, token: 0 };
+    if (!B.words.length) return showLesson(n);
+    showBlendWord();
+  }
+
+  function showBlendWord() {
+    var w = B.words[B.i], l = P.lessons[B.n];
+    B.token++;
+    var last = B.i + 1 >= B.words.length;
+    var h = H212UI.qTop({ onclose: 'H212Phonics.lesson(' + B.n + ')', label: T('phonics.back_parts'), index: B.i, total: B.words.length, noScore: true })
+      + '<div class="grp-phonics"><div class="q-label">' + esc(T('nav.phonics')) + ' · ' + esc(lessonLabel(l)) + ' · ' + esc(T('phonics.part_blend')) + '</div></div>'
+      + '<div class="question-card grp-phonics">'
+      + '<div class="ph-blend-hint">' + esc(T('phonics.blend_hint')) + '</div>'
+      + '<div class="ph-blend-tiles">';
+    w.t.forEach(function (t, k) {
+      h += '<button type="button" class="ph-bt" onclick="H212Phonics.blendTile(' + k + ')">' + esc(t.s) + '</button>';
+    });
+    h += '</div><div class="ph-blend-row">'
+      + '<div class="ph-blend-word" id="ph-blend-word">' + (B.blended[w.w] ? esc(w.w) : '') + '</div>'
+      + '<button type="button" class="next-btn ph-blend-go" style="display:inline-flex" onclick="H212Phonics.blend()">▶ ' + esc(T('phonics.blend_btn')) + '</button>'
+      + '<div class="ph-blend-say" id="ph-blend-say"></div>'
+      + '<button type="button" class="next-btn ph-blend-skip" id="next-btn" style="display:inline-flex" onclick="H212Phonics.blendNext()">'
+      + esc(last ? T('hw.see_results') : T('phonics.blend_next')) + '</button>'
+      + '</div></div>';
+    pc().innerHTML = h;
+  }
+
+  function blendTile(k) {
+    if (!B) return;
+    var t = B.words[B.i].t[k];
+    if (!t) return;
+    B.token++;
+    lit(k);
+    var done = function () { lit(-1); };
+    var url = aloneUrl(t);
+    if (url) playUrl(url, done);
+    else { playSound(t.no, t.part); setTimeout(done, 900); }       // no bare-sound file: the sound-and-key-word clip
+  }
+
+  function blendGo() {
+    if (!B) return;
+    var w = B.words[B.i], tok = ++B.token;
+    function step(k) {
+      if (!B || tok !== B.token) return;
+      if (k >= w.t.length) {
+        lit(-1);
+        B.blended[w.w] = true;
+        var el = document.getElementById('ph-blend-word');
+        if (el) el.textContent = w.w;
+        var say = document.getElementById('ph-blend-say');
+        if (say) say.textContent = T('phonics.blend_say');
+        playWord(w.w);
+        return;
+      }
+      lit(k);
+      playUrl(aloneUrl(w.t[k]), function () { setTimeout(function () { step(k + 1); }, 120); });
+    }
+    step(0);
+  }
+
+  function blendNext() {
+    if (!B) return;
+    if (B.i + 1 < B.words.length) { B.i++; showBlendWord(); window.scrollTo(0, 0); }
+    else finishBlend();
+  }
+
+  function finishBlend() {
+    var total = B.words.length, got = Object.keys(B.blended).length;
+    var enough = got * 2 >= total;
+    if (enough) save(B.n, 'blend', Math.round(got * 100 / total));
+    B.token++;
+    stopAudio();
+    var h = '<div class="question-card" style="text-align:center">'
+      + '<div style="font-size:48px;margin-bottom:16px">' + (enough ? '🎉' : '👆') + '</div>'
+      + '<div class="speak-finish-title">' + esc(enough ? T('phonics.finish_title') : T('phonics.blend_more')) + '</div>'
+      + '<div class="speak-finish-sub">' + esc(fill(T('phonics.blend_done_sub'), { c: got, t: total })) + '</div>'
+      + '<div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">'
+      + '<button class="next-btn" style="display:inline-flex" onclick="H212Phonics.part(' + B.n + ',\'blend\')">' + esc(T('phonics.again')) + '</button>'
+      + '<button class="next-btn" style="display:inline-flex" onclick="H212Phonics.lesson(' + B.n + ')">' + esc(T('phonics.back_parts')) + '</button>'
+      + '</div></div>';
+    pc().innerHTML = h;
   }
 
   // ── C. Listen & pick ────────────────────────────────
@@ -557,6 +691,7 @@ var H212Phonics = (function () {
     lesson: function (n) { showLesson(n); goTop(); },
     part: function (n, p) {
       if (p === 'board') { showBoard(n); goTop(); }
+      else if (p === 'blend') { showBlend(n); goTop(); }
       else if (p === 'listen') { showListenMenu(n); goTop(); }
     },
     listenMenu: function (n) { showListenMenu(n); goTop(); },
@@ -565,6 +700,10 @@ var H212Phonics = (function () {
     answer: answer,
     next: next,
     tap: tap,
+    blend: blendGo,
+    blendTile: blendTile,
+    blendNext: blendNext,
+    _blendPool: blendPool,
     _build: build,
     _state: function () { return P; }
   };

@@ -223,19 +223,145 @@ function h212_phonics_steps() {
 	return $steps;
 }
 
+/**
+ * Words that use the SECOND sound of their lesson's spelling (th = thumb, ew = few, ...).
+ * Everything else uses the first. Used by Blend it to pick the right bare sound for the tile.
+ */
+function h212_phonics_second_sound_words() {
+	return array(
+		'thin', 'path', 'math', 'thud', 'bath', 'thug',   // th as in thumb
+		'few', 'nephew',                                   // ew as in few
+		'neutral', 'sleuth',                               // eu as in neutral
+		'ceiling', 'receipt',                              // ei as in ceiling
+		'true', 'blue', 'glue', 'clue', 'due',             // ue as in true
+		'mansion', 'tension', 'pension',                   // sion as in mansion
+	);
+}
+
+/**
+ * Splits a word into its sounds for Blend it: d | o | g.
+ * Each tile is array( spelling, sound_no, part ) where part 0 is the first sound of that spelling
+ * and 1 the second (th = thumb). Only sounds taught up to the word's lesson are used, the lesson's own
+ * spelling comes first, and a doubled consonant (ll, tt, bb) is one tile. Returns null when the word
+ * cannot be shown as clean sounds (silent letters, y or e at the end, soft c, a second-sound spelling
+ * that is not this lesson's own, ...): such words stay in the other parts.
+ */
+function h212_phonics_split_word( $word, $lesson ) {
+	$lessons = h212_phonics_lessons();
+	if ( ! isset( $lessons[ (int) $lesson ] ) ) {
+		return null;
+	}
+	$l      = $lessons[ (int) $lesson ];
+	$sounds = h212_phonics_sounds();
+	$spell  = array();
+	foreach ( $sounds as $no => $s ) {
+		if ( $no > $l['sound_no'] ) {
+			break;
+		}
+		if ( ! isset( $spell[ $s['sound'] ] ) ) {
+			$spell[ $s['sound'] ] = $no;
+		}
+	}
+	$own = '';
+	if ( 'sound' === $l['kind'] && isset( $sounds[ $l['sound_no'] ] ) ) {
+		$own                = $sounds[ $l['sound_no'] ]['sound'];
+		$spell[ $own ]      = $l['sound_no'];
+	}
+	if ( in_array( $word, array( 'walk', 'talk', 'chalk', 'half', 'calf', 'calm', 'folk', 'could', 'would', 'should' ), true ) ) {
+		return null;                                                           // silent l
+	}
+	$second = in_array( $word, h212_phonics_second_sound_words(), true );
+	$tiles  = array();
+	$len    = strlen( $word );
+	for ( $i = 0; $i < $len; ) {
+		$found = null;
+		foreach ( array( 4, 3, 2 ) as $n ) {
+			$t = substr( $word, $i, $n );
+			if ( strlen( $t ) === $n && isset( $spell[ $t ] ) ) {
+				$found = array( $t, $spell[ $t ] );
+				break;
+			}
+		}
+		if ( ! $found && $i + 1 < $len && $word[ $i ] === $word[ $i + 1 ] && isset( $spell[ $word[ $i ] ] ) && ! in_array( $word[ $i ], array( 'a', 'e', 'i', 'o', 'u' ), true ) ) {
+			$found = array( $word[ $i ] . $word[ $i ], $spell[ $word[ $i ] ] );
+		}
+		if ( ! $found && isset( $spell[ $word[ $i ] ] ) ) {
+			$found = array( $word[ $i ], $spell[ $word[ $i ] ] );
+		}
+		if ( ! $found ) {
+			return null;
+		}
+		$tiles[] = $found;
+		$i      += strlen( $found[0] );
+	}
+	$out      = array();
+	$ownSeen  = ( '' === $own );
+	$last     = count( $tiles ) - 1;
+	foreach ( $tiles as $k => $t ) {
+		$sp    = $t[0];
+		$no    = $t[1];
+		$multi = count( $sounds[ $no ]['parts'] ) > 1;
+		$isOwn = ( '' !== $own && $no === $l['sound_no'] );
+		if ( $multi && ! $isOwn ) {
+			return null;
+		}
+		if ( $isOwn ) {
+			$ownSeen = true;
+		}
+		if ( 'y' === $sp && $k > 0 ) {
+			return null;                                                   // y as a vowel: "happy", "my"
+		}
+		if ( 'c' === $sp && isset( $tiles[ $k + 1 ] ) && in_array( $tiles[ $k + 1 ][0][0], array( 'e', 'i', 'y' ), true ) ) {
+			return null;                                                   // soft c
+		}
+		if ( $k === $last && in_array( $sp, array( 'e', 'i', 'o', 'u' ), true ) ) {
+			return null;                                                   // silent e, "go", "he", "hi"
+		}
+		$out[] = array( $sp, $no, ( $isOwn && $multi && $second ) ? 1 : 0 );
+	}
+	return $ownSeen ? $out : null;
+}
+
+/** Blend it: for each lesson, its common words split into sounds. [ lesson => [ [ word, [ [spelling, sound_no, part], ... ] ], ... ] ] */
+function h212_phonics_blend() {
+	static $blend = null;
+	if ( null !== $blend ) {
+		return $blend;
+	}
+	$blend = array();
+	foreach ( h212_phonics_words() as $w ) {
+		if ( ! $w['game'] || strlen( $w['word'] ) < 2 || isset( $blend[ $w['lesson'] ][ $w['word'] ] ) ) {
+			continue;
+		}
+		$tiles = h212_phonics_split_word( $w['word'], $w['lesson'] );
+		if ( $tiles && count( $tiles ) >= 2 ) {
+			$blend[ $w['lesson'] ][ $w['word'] ] = array( $w['word'], $tiles );
+		}
+	}
+	foreach ( $blend as $n => $list ) {
+		$blend[ $n ] = array_values( $list );
+	}
+	return $blend;
+}
+
 /** Which recorded voices exist (portal/audio/phonics/...). The page uses the robot voice for anything missing. */
 function h212_phonics_audio() {
 	$base = dirname( __DIR__ ) . '/audio/phonics/';
-	$out  = array( 'v' => 0, 'sounds' => array(), 'words' => array() );
+	$out  = array( 'v' => 0, 'sounds' => array(), 'alone' => array(), 'words' => array() );
 	foreach ( (array) glob( $base . 'sounds/*.m4a' ) as $f ) {
 		$out['sounds'][] = (int) basename( $f, '.m4a' );
 		$out['v']        = max( $out['v'], (int) filemtime( $f ) );
+	}
+	foreach ( (array) glob( $base . 'alone/*.m4a' ) as $f ) {
+		$out['alone'][] = basename( $f, '.m4a' );                         // "23" = first sound, "23-2" = second sound
+		$out['v']       = max( $out['v'], (int) filemtime( $f ) );
 	}
 	foreach ( (array) glob( $base . 'words/*.m4a' ) as $f ) {
 		$out['words'][] = basename( $f, '.m4a' );
 		$out['v']       = max( $out['v'], (int) filemtime( $f ) );
 	}
 	sort( $out['sounds'] );
+	sort( $out['alone'] );
 	sort( $out['words'] );
 	return $out;
 }
@@ -340,6 +466,7 @@ function h212_phonics_for_js( $user_id ) {
 		'progress' => (object) $state['lessons'],
 		'audio'    => h212_phonics_audio(),
 		'game'     => h212_phonics_game_words(),
+		'blend'    => (object) h212_phonics_blend(),
 		'homo'     => h212_phonics_homophones(),
 	);
 }
