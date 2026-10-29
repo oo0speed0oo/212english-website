@@ -518,6 +518,86 @@ function h212_phonics_mark( $user_id, $lesson, $part, $score = 1 ) {
 	return $state;
 }
 
+/**
+ * The progress keys a student needs for a lesson to count as DONE (the same rules the Phonics page uses to
+ * tick a lesson): Sound Board always; Blend it when there are 2+ blendable words up to this lesson; Listen & pick
+ * games (sound from lesson 3, word from 5, begin from 6); Read aloud when the lesson has common words;
+ * Listening when 3+ sentences are available up to this lesson. Used by the teacher's Student Results.
+ */
+function h212_phonics_needed( $lesson ) {
+	$lesson  = (int) $lesson;
+	$lessons = h212_phonics_lessons();
+	if ( ! isset( $lessons[ $lesson ] ) ) {
+		return array();
+	}
+	$need = array( 'board' );
+	$blend = 0;
+	foreach ( h212_phonics_blend() as $n => $list ) {
+		if ( $n <= $lesson ) {
+			$blend += count( $list );
+		}
+	}
+	if ( $blend >= 2 ) {
+		$need[] = 'blend';
+	}
+	if ( $lesson >= 3 ) {
+		$need[] = 'listen_sound';
+	}
+	if ( $lesson >= 5 ) {
+		$need[] = 'listen_word';
+	}
+	if ( $lesson >= 6 ) {
+		$need[] = 'listen_begin';
+	}
+	$read = h212_phonics_read();
+	if ( ! empty( $read[ $lesson ]['w'] ) ) {
+		$need[] = 'read';
+	}
+	$sent = 0;
+	foreach ( h212_phonics_sentences() as $r ) {
+		if ( $r[1] <= $lesson ) {
+			$sent++;
+		}
+	}
+	if ( $sent >= 3 ) {
+		$need[] = 'sentences';
+	}
+	return $need;
+}
+
+/** One student's Phonics progress for the teacher: lessons done / started per Step, parts ticked, last practised. */
+function h212_phonics_summary( $user_id ) {
+	$state   = h212_phonics_state( $user_id );
+	$lessons = h212_phonics_lessons();
+	$out     = array( 'last' => $state['last'], 'done' => 0, 'started' => 0, 'total' => count( $lessons ), 'parts' => 0, 'steps' => array() );
+	foreach ( h212_phonics_step_ranges() as $step => $range ) {
+		$out['steps'][ $step ] = array( 'first' => $range[0], 'last' => $range[1], 'lessons' => array() );
+	}
+	foreach ( $lessons as $n => $l ) {
+		$got  = isset( $state['lessons'][ $n ] ) ? $state['lessons'][ $n ] : array();
+		$need = h212_phonics_needed( $n );
+		$have = 0;
+		foreach ( $need as $k ) {
+			$have += empty( $got[ $k ] ) ? 0 : 1;
+		}
+		$out['parts'] += count( $got );
+		$status = 'none';
+		if ( $need && $have === count( $need ) ) {
+			$status = 'done';
+			$out['done']++;
+		} elseif ( $got ) {
+			$status = 'part';
+		}
+		if ( $got ) {
+			$out['started']++;
+		}
+		if ( $l['step'] ) {
+			$out['steps'][ $l['step'] ]['lessons'][ $n ] = array( 'title' => $l['title'], 'status' => $status, 'have' => $have, 'need' => count( $need ), 'got' => $got );
+		}
+	}
+	return $out;
+}
+
 /** Everything the page's JavaScript needs for the Steps, Lessons and Sound Board screens. */
 function h212_phonics_for_js( $user_id ) {
 	$lessons = array();

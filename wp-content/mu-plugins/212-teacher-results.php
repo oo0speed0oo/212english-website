@@ -6,7 +6,7 @@
  * history, wrong-answer log, video sentences and optional practice. It reads
  * EVERY record the portal saves (h212_seen_questions, h212_quiz_scores,
  * h212_test_scores, h212_current_wrong, h212_mistake_log, h212_unlocked,
- * h212_video_sentences, h212_speaking, h212_last_active ...) plus the shared
+ * h212_video_sentences, h212_speaking, h212_phonics, h212_last_active ...) plus the shared
  * course map and unlock rules in 212-progress.php, so any new level or chapter
  * in the content files shows up here by itself. It is never cached.
  */
@@ -268,6 +268,9 @@ function h212_render_student_results_page() {
 	}
 	echo '</tbody></table>';
 
+	// ── Phonics (practice only: it never counts for unlocking or Grades) ──
+	h212_render_phonics_results( $selected_id );
+
 	// ── Video sentences ("Your turn" writing from the video lessons) ──
 	echo '<h2 style="margin-top:32px;">Video Sentences</h2>';
 	$video_sentences = function_exists( 'h212_video_sentences' ) ? h212_video_sentences( $selected_id ) : array();
@@ -350,4 +353,66 @@ function h212_render_student_results_page() {
 	}
 
 	echo '</div>';
+}
+
+/**
+ * Phonics section of Student Results: lessons done per Step, with a coloured chip for every lesson
+ * (green = every part done, yellow = started, grey = not started; hover for the scores).
+ * The lists live in portal/inc/phonics-data.php; if that file is not on the site yet the section is skipped.
+ */
+function h212_render_phonics_results( $student_id ) {
+	$file = ABSPATH . 'portal/inc/phonics-data.php';
+	echo '<h2 style="margin-top:32px;">Phonics</h2>';
+	if ( ! is_readable( $file ) ) {
+		echo '<p>Phonics is not on the site yet.</p>';
+		return;
+	}
+	require_once $file;
+	$sum = h212_phonics_summary( $student_id );
+	if ( ! $sum['started'] ) {
+		echo '<p>No Phonics practice yet.</p>';
+		return;
+	}
+	$labels = array(
+		'board'        => 'Sound Board',
+		'blend'        => 'Blend it',
+		'listen_sound' => 'Hear a sound',
+		'listen_word'  => 'Hear a word',
+		'listen_begin' => 'Which begins',
+		'read'         => 'Read aloud',
+		'sentences'    => 'Listening',
+	);
+	echo '<div style="display:flex;gap:24px;flex-wrap:wrap;margin:8px 0 14px;padding:14px 20px;background:#f6f7f7;border:1px solid #dcdcde;border-radius:4px;">';
+	echo '<div><strong>Lessons done:</strong> ' . (int) $sum['done'] . ' of ' . (int) $sum['total'] . '</div>';
+	echo '<div><strong>Lessons started:</strong> ' . (int) $sum['started'] . '</div>';
+	echo '<div><strong>Parts ticked:</strong> ' . (int) $sum['parts'] . '</div>';
+	echo '<div><strong>Last practised:</strong> ' . ( $sum['last'] ? esc_html( $sum['last'] ) : '—' ) . '</div>';
+	echo '</div>';
+	echo '<table class="widefat striped" style="max-width:900px;"><thead><tr><th style="width:90px;">Step</th><th style="width:110px;">Lessons done</th><th>Lessons</th></tr></thead><tbody>';
+	foreach ( $sum['steps'] as $step => $st ) {
+		$done = 0;
+		foreach ( $st['lessons'] as $l ) {
+			$done += 'done' === $l['status'] ? 1 : 0;
+		}
+		echo '<tr><td><strong>Step ' . (int) $step . '</strong><br><span style="color:#666;font-size:12px;">lessons ' . (int) $st['first'] . '–' . (int) $st['last'] . '</span></td>';
+		echo '<td>' . $done . ' of ' . count( $st['lessons'] ) . '</td><td>';
+		foreach ( $st['lessons'] as $n => $l ) {
+			$bg  = 'done' === $l['status'] ? '#d7f0dd' : ( 'part' === $l['status'] ? '#fff3cd' : '#f0f0f1' );
+			$tip = array( 'Lesson ' . $n . ' ' . $l['title'] . ' (' . $l['have'] . ' of ' . $l['need'] . ' parts)' );
+			foreach ( $labels as $k => $label ) {
+				if ( ! empty( $l['got'][ $k ] ) ) {
+					$tip[] = $label . ( $l['got'][ $k ] > 1 ? ' ' . (int) $l['got'][ $k ] . '%' : ' ✓' );
+				}
+			}
+			printf(
+				'<span title="%s" style="display:inline-block;min-width:30px;margin:2px;padding:3px 6px;text-align:center;font-size:12px;border-radius:4px;background:%s;cursor:default;">%d</span>',
+				esc_attr( implode( ' · ', $tip ) ),
+				$bg,
+				$n
+			);
+		}
+		echo '</td></tr>';
+	}
+	echo '</tbody></table>';
+	echo '<p style="color:#666;font-size:13px;">Green = every part of the lesson done &nbsp;·&nbsp; yellow = started &nbsp;·&nbsp; grey = not started. Hover a lesson to see which parts and best scores. Phonics is practice only and does not change unlocks or Grades.</p>';
 }
