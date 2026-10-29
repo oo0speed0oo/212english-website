@@ -21,3 +21,6 @@ wp-content/litespeed/
 # Mike's work files and set-aside files: never committed, never uploaded
 _work/
 _extra_files/
+
+# Hosting-provider private folder: never commit
+.private/
