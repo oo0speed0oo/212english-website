@@ -39,7 +39,7 @@ function h212_practice_page( $section ) {
 		'practice.finish_title', 'practice.finish_sub', 'practice.again',
 		'practice.kind_choice', 'practice.kind_blank', 'practice.kind_meaning', 'practice.kind_write',
 		'practice.choose_mode', 'practice.back_modes', 'practice.finish_sub2',
-		'practice.line_heard', 'practice.line_said', 'practice.line_best',
+		'practice.line_heard', 'practice.line_said', 'practice.line_best', 'practice.hear_sentence',
 		'practice.mode_choice', 'practice.mode_blank', 'practice.mode_builder', 'practice.mode_listen', 'practice.mode_convo',
 		'practice.mode_choice_alt', 'practice.mode_blank_alt', 'practice.mode_builder_alt', 'practice.mode_listen_alt', 'practice.mode_convo_alt',
 		'practice.mode_choice_sub', 'practice.mode_blank_sub', 'practice.mode_builder_sub', 'practice.mode_listen_sub', 'practice.mode_convo_sub',

@@ -320,6 +320,7 @@ $GLOBALS['h212_strings'] = array(
 	'practice.finish_sub2' => array( 'en' => '{c} of {t} correct', 'ja' => '{t}問中{c}問正解' ),
 	'practice.line_heard'  => array( 'en' => 'What you heard:', 'ja' => '聞こえた文：' ),
 	'practice.line_said'   => array( 'en' => 'What you heard:', 'ja' => '聞こえた言葉：' ),
+	'practice.hear_sentence' => array( 'en' => 'Hear the sentence / 文を聞く', 'ja' => 'Hear the sentence / 文を聞く' ),
 	'practice.line_best'   => array( 'en' => 'Best reply:', 'ja' => 'いちばんよい返事：' ),
 	'practice.mode_choice'      => array( 'en' => 'Multiple choice',   'ja' => '選択問題' ),
 	'practice.mode_blank'       => array( 'en' => 'Fill in the blank', 'ja' => '穴うめ' ),

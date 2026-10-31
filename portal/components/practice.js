@@ -296,11 +296,26 @@ var H212Practice = (function () {
     playMode(q.id, q.audio_text);
   }
 
-  // Say the word and its opposite ("brother, sister"), or the idiom, with the robot voice
+  // Say the word and its opposite ("brother, sister"), or the idiom: the recorded clip (audio/modes/<id>.m4a),
+  // or the robot voice if there is none
   function say() {
-    if (!st || typeof H212Listen === 'undefined') return;
+    if (!st) return;
     var q = cur();
-    H212Listen.speakText(C.mode === 'pair' ? q.item + ', ' + q.pair : q.item);
+    playMode(q.id, C.mode === 'pair' ? q.item + ', ' + q.pair : q.item);
+  }
+
+  // A Fill-in-the-blank question as one sentence with the answer in it
+  // ('Fill in the opposite of "sister": I have one ___, ...' -> 'I have one brother, ...')
+  function sentenceOf(q) {
+    var i = q.question.lastIndexOf('": '), j = q.question.indexOf(': ');
+    var s = i >= 0 ? q.question.slice(i + 3) : (j >= 0 ? q.question.slice(j + 2) : q.question);
+    return s.replace(/_{2,}/g, q.answer);
+  }
+  // The whole sentence, read out: the recorded clip (audio/modes/<id>-s.m4a), or the robot voice
+  function saySentence() {
+    if (!st) return;
+    var q = cur();
+    playMode(q.id + '-s', sentenceOf(q));
   }
 
   function pairHtml(q) {
@@ -359,7 +374,9 @@ var H212Practice = (function () {
       rv.hidden = false;
     } else {
       var pr = document.getElementById('pr-pair');
-      if (pr) pr.innerHTML = pairHtml(q);
+      if (pr) pr.innerHTML = pairHtml(q)
+        + (q.kind === 'blank' ? '<button type="button" class="speak-retry" onclick="H212Practice.saySentence()">🔊 ' + esc(T('practice.hear_sentence')) + '</button>' : '');
+      if (q.kind === 'blank') saySentence();      // read the finished sentence once, straight away
     }
     record(q, correct, chosen);
     showNext();
@@ -404,6 +421,6 @@ var H212Practice = (function () {
     window.addEventListener('pagehide', function () { stopAudio(); });
   }
 
-  return { start: start, startMode: startMode, answer: answer, next: next, hear: hear, say: say, exit: exit, exitMode: exitMode,
-           _parse: parse, _init: init };
+  return { start: start, startMode: startMode, answer: answer, next: next, hear: hear, say: say, saySentence: saySentence, exit: exit, exitMode: exitMode,
+           _parse: parse, _init: init, _sentenceOf: sentenceOf };
 })();
