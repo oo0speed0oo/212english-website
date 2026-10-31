@@ -40,7 +40,7 @@ id,level,chapter,mode,source_id,prompt_ja,tiles,extra
 1448,1,3,homework,135,彼女は寝室で寝ています。,She|is|sleeping|in|the|bedroom.,cooking|planting
 1449,1,3,homework,136,彼らは庭で植物を植えています。,They|are|planting|in|the|yard.,reading|singing
 1450,1,3,homework,137,私たちはリビングでテレビを見ています。,We|are|watching|TV|in|the|living room.,teaching|swimming
-1451,1,3,homework,138,あなたは図書館で本を読んでいます。,You|are|reading|in|the|library.,planting|swimming
+1451,1,3,homework,138,あなたは図書館で本を読んでいます。,You|are|reading|a|book|in|the|library.,planting|swimming
 1452,1,3,homework,139,私は台所で料理をしています。,I|am|cooking|in|the|kitchen.,singing|sleeping
 1453,1,3,test,1021,ケンとマリはトランプをしています。,Ken and Mari|are|playing|cards.,is|am
 1454,1,3,test,1022,彼女は寝ています。,She|is|sleeping.,sleep|are
