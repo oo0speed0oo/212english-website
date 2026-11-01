@@ -32,8 +32,8 @@ function h212_kids_save_children( $user_id, $list ) {
 
 /*
  * Progress per child (user meta h212_kids_progress):
- *   { child id: { stars: 0, played: { tile id: times opened }, last: 'Y-m-d H:i' } }
- * Stars stay 0 until the games exist and award them.
+ *   { child id: { stars: total, played: { tile id: times opened }, best: { game id: stars },
+ *                 stickers: [ sticker names ], last: 'Y-m-d H:i' } }
  */
 function h212_kids_get_progress( $user_id ) {
 	$all = get_user_meta( $user_id, 'h212_kids_progress', true );
@@ -43,10 +43,46 @@ function h212_kids_get_progress( $user_id ) {
 function h212_kids_child_progress( $all, $child_id ) {
 	$p = isset( $all[ $child_id ] ) && is_array( $all[ $child_id ] ) ? $all[ $child_id ] : array();
 	return array(
-		'stars'  => isset( $p['stars'] ) ? (int) $p['stars'] : 0,
-		'played' => isset( $p['played'] ) && is_array( $p['played'] ) ? $p['played'] : array(),
-		'last'   => isset( $p['last'] ) ? (string) $p['last'] : '',
+		'stars'    => isset( $p['stars'] ) ? (int) $p['stars'] : 0,
+		'played'   => isset( $p['played'] ) && is_array( $p['played'] ) ? $p['played'] : array(),
+		'best'     => isset( $p['best'] ) && is_array( $p['best'] ) ? $p['best'] : array(),
+		'stickers' => isset( $p['stickers'] ) && is_array( $p['stickers'] ) ? array_values( $p['stickers'] ) : array(),
+		'last'     => isset( $p['last'] ) ? (string) $p['last'] : '',
 	);
+}
+
+// A child finished a game: add its stars, remember the best score and give its sticker.
+function h212_kids_record_finish( $user_id, $child_id, $game_id, $stars, $sticker ) {
+	$all   = h212_kids_get_progress( $user_id );
+	$p     = h212_kids_child_progress( $all, $child_id );
+	$stars = max( 0, min( 3, (int) $stars ) );
+	$p['stars'] += $stars;
+	$p['best'][ $game_id ] = max( $stars, isset( $p['best'][ $game_id ] ) ? (int) $p['best'][ $game_id ] : 0 );
+	if ( $sticker && ! in_array( $sticker, $p['stickers'], true ) ) {
+		$p['stickers'][] = $sticker;
+	}
+	$p['last'] = current_time( 'Y-m-d H:i' );
+	$all[ $child_id ] = $p;
+	update_user_meta( $user_id, 'h212_kids_progress', $all );
+	return $p;
+}
+
+function h212_kids_games() {
+	static $games = null;
+	if ( null === $games ) {
+		$games = json_decode( (string) file_get_contents( __DIR__ . '/../games.json' ), true );
+		$games = is_array( $games ) ? $games : array();
+	}
+	return $games;
+}
+
+function h212_kids_find_child( $user_id, $child_id ) {
+	foreach ( h212_kids_get_children( $user_id ) as $c ) {
+		if ( $c['id'] === $child_id ) {
+			return $c;
+		}
+	}
+	return null;
 }
 
 // Remember that a child opened a tile.

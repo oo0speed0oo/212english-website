@@ -1,0 +1,70 @@
+{
+  "_help": [
+    "212 Kids games. A game is a list of rounds; each round uses question items from \"items\".",
+    "Round types: yesno (\"Do you like ...?\" - any answer is right) and tap (hear a word, tap its picture; 3 choices).",
+    "Item ids start at 100000 and are never reused or renumbered (one id sequence for all kids content).",
+    "picture: a picture name drawn by the site (apple, banana, orange, grapes, strawberry, watermelon).",
+    "  To use a real picture later, add \"image\": \"kids_nov_banana.jpg\" to the word (file goes in kids/images/).",
+    "  To use a recorded voice later, add \"audio\": \"100003.m4a\" to an item (file goes in kids/audio/). Without it the browser voice speaks.",
+    "Every game always ends with 3 stars and its sticker. Wrong taps only wiggle (\"Try again!\")."
+  ],
+
+  "words": {
+    "apple":      { "english": "apple",      "plural": "apples",       "japanese": "りんご",   "picture": "apple" },
+    "banana":     { "english": "banana",     "plural": "bananas",      "japanese": "バナナ",   "picture": "banana" },
+    "orange":     { "english": "orange",     "plural": "oranges",      "japanese": "オレンジ", "picture": "orange" },
+    "grapes":     { "english": "grapes",     "plural": "grapes",       "japanese": "ぶどう",   "picture": "grapes" },
+    "strawberry": { "english": "strawberry", "plural": "strawberries", "japanese": "いちご",   "picture": "strawberry" },
+    "watermelon": { "english": "watermelon", "plural": "watermelon",   "japanese": "すいか",   "picture": "watermelon" }
+  },
+
+  "items": {
+    "100000": { "type": "yesno", "word": "apple",      "english": "Do you like apples?",       "japanese": "りんごは すき？" },
+    "100001": { "type": "yesno", "word": "banana",     "english": "Do you like bananas?",      "japanese": "バナナは すき？" },
+    "100002": { "type": "yesno", "word": "orange",     "english": "Do you like oranges?",      "japanese": "オレンジは すき？" },
+    "100003": { "type": "yesno", "word": "grapes",     "english": "Do you like grapes?",       "japanese": "ぶどうは すき？" },
+    "100004": { "type": "yesno", "word": "strawberry", "english": "Do you like strawberries?", "japanese": "いちごは すき？" },
+    "100005": { "type": "yesno", "word": "watermelon", "english": "Do you like watermelon?",   "japanese": "すいかは すき？" },
+
+    "100006": { "type": "tap", "word": "apple",      "english": "Apple!",      "japanese": "りんご",   "choices": ["apple", "banana", "grapes"] },
+    "100007": { "type": "tap", "word": "banana",     "english": "Banana!",     "japanese": "バナナ",   "choices": ["banana", "grapes", "watermelon"] },
+    "100008": { "type": "tap", "word": "orange",     "english": "Orange!",     "japanese": "オレンジ", "choices": ["orange", "grapes", "banana"] },
+    "100009": { "type": "tap", "word": "grapes",     "english": "Grapes!",     "japanese": "ぶどう",   "choices": ["grapes", "apple", "banana"] },
+    "100010": { "type": "tap", "word": "strawberry", "english": "Strawberry!", "japanese": "いちご",   "choices": ["strawberry", "banana", "grapes"] },
+    "100011": { "type": "tap", "word": "watermelon", "english": "Watermelon!", "japanese": "すいか",   "choices": ["watermelon", "banana", "grapes"] }
+  },
+
+  "answers": {
+    "yes": { "english": "Yes, I do!",  "japanese": "うん、すき！" },
+    "no":  { "english": "No, I don't.", "japanese": "ううん、すきじゃない。" }
+  },
+
+  "praise": [
+    { "english": "Great job!", "japanese": "よくできました！" },
+    { "english": "You did it!", "japanese": "できたね！" },
+    { "english": "Super!", "japanese": "すごい！" },
+    { "english": "Wow!", "japanese": "わあ！" }
+  ],
+
+  "games": {
+    "fruits-lesson": {
+      "english": "Fruits", "japanese": "くだもの", "sticker": "apple",
+      "rounds": [
+        { "type": "yesno", "english": "Do you like…?", "japanese": "すき？", "items": ["100000", "100001", "100002", "100003", "100004", "100005"] },
+        { "type": "tap", "english": "Tap it!", "japanese": "きいてタップ", "items": ["100006", "100007", "100008", "100009", "100010", "100011"] }
+      ]
+    },
+    "fruits-yesno": {
+      "english": "Yes or No", "japanese": "すき？きらい？", "sticker": "strawberry",
+      "rounds": [
+        { "type": "yesno", "english": "Do you like…?", "japanese": "すき？", "items": ["100000", "100001", "100002", "100003", "100004", "100005"] }
+      ]
+    },
+    "fruits-tap": {
+      "english": "Tap it", "japanese": "きいてタップ", "sticker": "banana",
+      "rounds": [
+        { "type": "tap", "english": "Tap it!", "japanese": "きいてタップ", "items": ["100006", "100007", "100008", "100009", "100010", "100011"] }
+      ]
+    }
+  }
+}

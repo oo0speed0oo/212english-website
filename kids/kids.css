@@ -628,6 +628,180 @@ button:focus-visible, a:focus-visible, input:focus-visible {
 .k-privacy p { margin: 0; }
 .k-privacy p + p { margin-top: 6px; font-family: 'Baloo 2', sans-serif; font-size: 15px; }
 
+/* ---------- Games (game.php + game.js) ---------- */
+
+.g-wrap {
+	position: relative;
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+	padding: 16px 24px 28px;
+	max-width: 1000px;
+	margin: 0 auto;
+	overflow: hidden;
+}
+
+.g-top { display: flex; align-items: center; gap: 14px; margin-bottom: 10px; }
+.g-round-btn {
+	width: 64px;
+	height: 64px;
+	flex: none;
+	border-radius: 50%;
+	background: var(--white);
+	border: var(--line-thin);
+	box-shadow: var(--lift-small);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 0;
+}
+.g-round-spacer { width: 64px; flex: none; }
+.g-dots { flex: 1; display: flex; justify-content: center; flex-wrap: wrap; gap: 8px; }
+.g-dot { width: 18px; height: 18px; border-radius: 50%; background: var(--white); border: 3px solid var(--ink); }
+.g-dot-on { background: var(--yellow); }
+
+.g-mike { display: flex; align-items: center; justify-content: center; gap: 18px; margin: 4px 0 14px; }
+.g-mike img { width: 130px; height: auto; flex: none; }
+.g-bubble { min-width: 0; }
+.g-bubble b { font-size: clamp(30px, 4.5vw, 44px); }
+.g-bubble small { font-size: clamp(16px, 2.2vw, 22px); }
+
+.g-center {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 8px;
+	text-align: center;
+}
+.g-play { margin-top: 12px; min-height: 96px; font-size: 44px; padding: 0 40px; }
+.g-play .k-two small { font-size: 20px; }
+.g-round-label { margin: 0; font-size: 34px; font-weight: 800; }
+.g-round-label small { font-size: 18px; }
+
+.g-stage { flex: 1; display: flex; align-items: center; justify-content: center; }
+
+.g-card {
+	background: var(--white);
+	border: var(--line);
+	border-radius: 36px;
+	box-shadow: var(--lift);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.g-card-big { width: 300px; height: 280px; max-width: 80vw; }
+.g-pic { display: block; max-width: 100%; height: auto; }
+
+.g-choices { display: flex; justify-content: center; flex-wrap: wrap; gap: 24px; }
+.g-choice { width: 210px; height: 210px; padding: 0; }
+.g-choice:disabled { cursor: default; }
+.g-right { background: #D8F1DD; animation: g-pop .45s ease; }
+.g-glow { animation: g-glow 1.1s ease-in-out infinite; }
+.g-wiggle { animation: g-wiggle .5s ease; }
+
+.g-answers { display: flex; justify-content: center; flex-wrap: wrap; gap: 22px; margin-top: 18px; }
+.g-answer {
+	min-height: 110px;
+	min-width: 260px;
+	display: flex;
+	align-items: center;
+	gap: 14px;
+	padding: 10px 28px 10px 20px;
+	border: var(--line);
+	border-radius: 999px;
+	box-shadow: var(--lift);
+	text-align: left;
+}
+.g-answer .k-two b { font-size: 36px; }
+.g-answer .k-two small { font-size: 17px; }
+.g-thumb { font-size: 52px; line-height: 1; }
+.g-yes { background: var(--green); }
+.g-no { background: var(--orange); }
+.g-answer:disabled { opacity: .55; cursor: default; }
+.g-answer.g-picked { opacity: 1; animation: g-pop .45s ease; }
+
+.g-star-pop {
+	position: absolute;
+	left: 50%;
+	top: 45%;
+	pointer-events: none;
+	animation: g-star-pop 1.1s ease forwards;
+}
+
+.g-end-stars { display: flex; gap: 14px; margin: 6px 0 10px; }
+.g-end-star { animation: g-pop .6s ease backwards; }
+.g-end-star:nth-child(2) { animation-delay: .25s; }
+.g-end-star:nth-child(3) { animation-delay: .5s; }
+
+.g-sticker {
+	display: flex;
+	align-items: center;
+	gap: 14px;
+	padding: 10px 22px 10px 12px;
+	background: var(--white);
+	border: 4px dashed var(--ink);
+	border-radius: 999px;
+	text-align: left;
+}
+.g-sticker-pic {
+	width: 104px;
+	height: 104px;
+	border-radius: 50%;
+	background: #FFF3B8;
+	border: var(--line-thin);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.g-sticker .k-two b { font-size: 30px; }
+.g-sticker .k-two small { font-size: 16px; }
+
+@keyframes g-pop {
+	0% { transform: scale(.6); }
+	60% { transform: scale(1.12); }
+	100% { transform: scale(1); }
+}
+@keyframes g-wiggle {
+	0%, 100% { transform: rotate(0); }
+	20% { transform: rotate(-7deg); }
+	40% { transform: rotate(6deg); }
+	60% { transform: rotate(-4deg); }
+	80% { transform: rotate(3deg); }
+}
+@keyframes g-glow {
+	0%, 100% { box-shadow: var(--lift), 0 0 0 0 rgba(255, 201, 51, .9); }
+	50% { box-shadow: var(--lift), 0 0 0 16px rgba(255, 201, 51, .55); }
+}
+@keyframes g-star-pop {
+	0% { transform: translate(-50%, -50%) scale(.3); opacity: 0; }
+	30% { transform: translate(-50%, -50%) scale(1.3); opacity: 1; }
+	100% { transform: translate(-50%, -160%) scale(.8); opacity: 0; }
+}
+
+@media (max-width: 640px) {
+	.g-wrap { padding: 12px 16px 24px; }
+	.g-mike { gap: 10px; }
+	.g-mike img { width: 84px; }
+	.g-bubble { padding: 10px 16px 12px; }
+	.g-card-big { width: 240px; height: 220px; }
+	.g-card-big .g-pic { width: 170px; height: 170px; }
+	.g-choices { gap: 14px; }
+	.g-choice { width: 150px; height: 150px; }
+	.g-choice .g-pic { width: 108px; height: 108px; }
+	.g-answer { min-width: 0; width: 100%; min-height: 92px; }
+	.g-answer .k-two b { font-size: 30px; }
+	.g-thumb { font-size: 42px; }
+	.g-end-stars svg { width: 72px; height: 72px; }
+	.g-play { font-size: 38px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.g-right, .g-glow, .g-wiggle, .g-answer.g-picked, .g-end-star, .g-star-pop { animation: none; }
+	.g-glow { box-shadow: var(--lift), 0 0 0 10px rgba(255, 201, 51, .7); }
+}
+
 /* ---------- Grown-ups login page ---------- */
 
 .k-login { max-width: 480px; margin-top: 16px; }

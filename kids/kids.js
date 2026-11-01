@@ -196,7 +196,8 @@
       });
       top += '</div>';
     }
-    var stars = (progress[child.id] && progress[child.id].stars) || 0;
+    var p = progress[child.id] || {};
+    var stars = p.stars || 0;
     top += '<div class="k-stars" aria-label="Stars: ' + stars + '">' + star(34, true) + '<span>' + stars + '</span></div></div>';
 
     // Mike's homework (placeholder: opens the temporary page).
@@ -208,7 +209,7 @@
     var body = '';
     if (theme) {
       body = '<div class="k-games">' + (theme.games || []).map(function (g) {
-        return '<button class="k-game k-press" data-tile="' + esc(g.id) + '">' +
+        return '<button class="k-game k-press" data-tile="' + esc(g.id) + '"' + (g.game ? ' data-game="' + esc(g.game) + '"' : '') + '>' +
           '<span class="k-game-pic" style="background:' + color(g.color, '#FFE27A') + '">' + icon(g.icon, 50) + '</span>' +
           two(g.english, g.japanese) +
           (g.month ? '<span class="k-month-tag">' + esc(monthLabel(g.month)) + '</span>' : '') +
@@ -217,9 +218,11 @@
     } else if (month) {
       body = '<div class="k-heading">' + icon(month.icon, 46) + '<h2>' + esc(month.title_english) + '</h2><span class="jp">' + esc(month.title_japanese) + '</span></div>' +
         '<div class="k-lessons">' + (month.lessons || []).map(function (l) {
-          return '<button class="k-lesson k-press" data-tile="' + esc(l.id) + '">' +
+          // The lesson's stars fill in with the best score from its game.
+          var best = (l.game && p.best && p.best[l.game]) || 0;
+          return '<button class="k-lesson k-press" data-tile="' + esc(l.id) + '"' + (l.game ? ' data-game="' + esc(l.game) + '"' : '') + '>' +
             '<span class="k-lesson-pic" style="background:' + color(l.color, '#FFE27A') + '"><span class="k-lesson-num">' + esc(l.number) + '</span>' + icon(l.icon, 62) + '</span>' +
-            two(l.english, l.japanese).replace('</span>', '<span class="k-row-stars">' + star(32, false) + star(32, false) + star(32, false) + '</span></span>') +
+            two(l.english, l.japanese).replace('</span>', '<span class="k-row-stars">' + star(32, best > 0) + star(32, best > 1) + star(32, best > 2) + '</span></span>') +
             '</button>';
         }).join('') + '</div>';
     } else {
@@ -395,11 +398,14 @@
     });
   }
 
-  // Save "this child opened this tile" (for the teacher screen), then open it.
+  // Save "this child opened this tile" (for the teacher screen), then open it:
+  // its game if it has one, otherwise the temporary "being made" page.
   // A slow or failed save never stops the child: we go on after at most 1.5 seconds.
-  function openTile(tile) {
-    var url = TEMP_PLAY_PAGE + '?tile=' + encodeURIComponent(tile) +
-      '&from=' + encodeURIComponent(app.getAttribute('data-here') || '/');
+  function openTile(tile, game) {
+    var from = encodeURIComponent(app.getAttribute('data-here') || '/');
+    var url = game && currentChild
+      ? 'game.php?g=' + encodeURIComponent(game) + '&c=' + encodeURIComponent(currentChild.id) + '&from=' + from
+      : TEMP_PLAY_PAGE + '?tile=' + encodeURIComponent(tile) + '&from=' + from;
     var gone = false;
     function leave() {
       if (!gone) {
@@ -430,7 +436,7 @@
     if (!b) return;
     if (b.hasAttribute('data-go')) return go(b.getAttribute('data-go'));
     if (b.hasAttribute('data-kid')) return go('/c/' + b.getAttribute('data-kid'));
-    if (b.hasAttribute('data-tile')) return openTile(b.getAttribute('data-tile'));
+    if (b.hasAttribute('data-tile')) return openTile(b.getAttribute('data-tile'), b.getAttribute('data-game'));
     var act = b.getAttribute('data-act');
     if (act === 'add') return parentGate(function () { childForm(); });
     if (act === 'grownups') return parentGate(grownUps);

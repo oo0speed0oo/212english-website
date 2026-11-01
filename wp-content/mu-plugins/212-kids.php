@@ -8,7 +8,7 @@
  *
  * What is saved (user meta on the grown-up's account, nothing else about a child):
  *   h212_kids_children  list of { id, name (nickname), color, level }
- *   h212_kids_progress  { child id: { stars, played: { tile id: times }, last } }
+ *   h212_kids_progress  { child id: { stars, played: { tile id: times }, best: { game id: stars }, stickers, last } }
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -108,7 +108,7 @@ function h212_kids_render_admin_page() {
 			&nbsp;·&nbsp; Kids Parent accounts: <strong><?php echo count( $parents ); ?></strong>
 			&nbsp;·&nbsp; <a href="<?php echo esc_url( admin_url( 'user-new.php' ) ); ?>">Add a parent account</a> (Role: <em>Kids Parent</em>)
 		</p>
-		<p class="description">Who can open /kids/ is set in <code>kids/inc/boot.php</code> (H212_KIDS_ROLES). Stars stay 0 until the games are built; "Played" counts every tile a child opens.</p>
+		<p class="description">Who can open /kids/ is set in <code>kids/inc/boot.php</code> (H212_KIDS_ROLES). Every finished game gives 3 stars and its sticker; "Played" counts every tile a child opens.</p>
 
 		<?php if ( ! $users ) : ?>
 			<p><em>No children added yet.</em></p>
@@ -153,7 +153,13 @@ function h212_kids_render_admin_page() {
 							<strong><?php echo esc_html( $c['name'] ); ?></strong>
 						</td>
 						<td><?php echo esc_html( $levels[ (string) $c['level'] ] ?? $c['level'] ); ?></td>
-						<td><?php echo (int) ( $p['stars'] ?? 0 ); ?> ⭐</td>
+						<td>
+							<?php echo (int) ( $p['stars'] ?? 0 ); ?> ⭐
+							<?php $stickers = isset( $p['stickers'] ) && is_array( $p['stickers'] ) ? $p['stickers'] : array(); ?>
+							<?php if ( $stickers ) : ?>
+								<br><span class="description">Stickers: <?php echo esc_html( implode( ', ', $stickers ) ); ?></span>
+							<?php endif; ?>
+						</td>
 						<td>
 							<?php if ( ! $played ) : ?>
 								<span class="description">Nothing yet</span>

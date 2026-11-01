@@ -3,6 +3,7 @@
     "212 Kids menu. Change this file to add months, lessons, themes and game tiles. No code changes needed.",
     "levels > months > lessons.  A level with \"same_as\" uses another level's months (e.g. K uses Pre-K for now).",
     "themes > games.  Each tile: id, english, japanese, icon, color, month (optional: nov, dec ...).",
+    "game (optional): a game id from games.json. Tiles with a game open it; tiles without one open the temporary \"being made\" page.",
     "ids: short words with a-z, 0-9 and -. Never reuse an id. (Future kids question ids start at 100000.)",
     "icons: apple, banana, pizza, music, speaker, cards, bubbles, yesno, sack, gift, letter, bell, tree, star, smile, sad, shapes, circle, colors, numbers, abc, class, backpack",
     "colors: any #RRGGBB. Nice ones: #FF9E94 #FFE27A #FFB46B #9FD3FF #C9B8FF #8ED6A0 #FF7DA8"
@@ -20,7 +21,7 @@
           "id": "nov", "english": "Nov", "japanese": "11がつ",
           "title_english": "Harvest Festival", "title_japanese": "しゅうかくさい", "icon": "apple",
           "lessons": [
-            { "id": "nov-1", "number": 1, "english": "Fruits", "japanese": "くだもの", "icon": "apple", "color": "#FF9E94" },
+            { "id": "nov-1", "number": 1, "english": "Fruits", "japanese": "くだもの", "icon": "apple", "color": "#FF9E94", "game": "fruits-lesson" },
             { "id": "nov-2", "number": 2, "english": "How many?", "japanese": "いくつ？", "icon": "banana", "color": "#FFE27A" },
             { "id": "nov-3", "number": 3, "english": "Pizza Shop", "japanese": "ピザやさん", "icon": "pizza", "color": "#FFB46B" },
             { "id": "nov-4", "number": 4, "english": "Freeze Dance", "japanese": "フリーズダンス", "icon": "music", "color": "#9FD3FF" }
@@ -49,10 +50,10 @@
     {
       "id": "food", "english": "Food", "japanese": "たべもの", "icon": "apple", "background": "#D8F1DD",
       "games": [
-        { "id": "food-tap", "english": "Tap it", "japanese": "きいてタップ", "icon": "speaker", "color": "#FFE27A", "month": "nov" },
+        { "id": "food-tap", "english": "Tap it", "japanese": "きいてタップ", "icon": "speaker", "color": "#FFE27A", "month": "nov", "game": "fruits-tap" },
         { "id": "food-memory", "english": "Memory", "japanese": "ペアさがし", "icon": "cards", "color": "#9FD3FF", "month": "nov" },
         { "id": "food-pop", "english": "Pop it", "japanese": "バブルポップ", "icon": "bubbles", "color": "#C9B8FF", "month": "nov" },
-        { "id": "food-yesno", "english": "Yes or No", "japanese": "すき？きらい？", "icon": "yesno", "color": "#FF9E94", "month": "nov" },
+        { "id": "food-yesno", "english": "Yes or No", "japanese": "すき？きらい？", "icon": "yesno", "color": "#FF9E94", "month": "nov", "game": "fruits-yesno" },
         { "id": "food-shopping", "english": "Shopping", "japanese": "おかいもの", "icon": "banana", "color": "#FFE27A", "month": "nov" },
         { "id": "food-pizza", "english": "Pizza Shop", "japanese": "ピザやさん", "icon": "pizza", "color": "#FFB46B", "month": "nov" }
       ]
