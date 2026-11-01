@@ -86,6 +86,7 @@
   }
 
   var currentAudio = null;
+  var lastUtterance = null; // kept so the browser doesn't throw it away mid-sentence (a Chrome bug)
   function say(text, audioFile) {
     return new Promise(function (resolve) {
       var done = false;
@@ -95,18 +96,32 @@
       // Never let a missing voice stop the game.
       setTimeout(finish, 600 + text.length * 120);
       if (currentAudio) currentAudio.pause();
-      if ('speechSynthesis' in window) speechSynthesis.cancel();
 
-      function robot() {
-        if (!('speechSynthesis' in window)) return finish();
+      function speakNow() {
         var u = new SpeechSynthesisUtterance(text);
         u.lang = 'en-US';
         u.rate = 0.85;
         u.pitch = 1.1;
+        u.volume = 1;
         if (voice) u.voice = voice;
         u.onend = finish;
         u.onerror = finish;
+        lastUtterance = u;
+        speechSynthesis.resume();
         speechSynthesis.speak(u);
+      }
+      function robot() {
+        if (!('speechSynthesis' in window)) return finish();
+        // Safari and Chrome can silently drop a sentence started right after stopping another,
+        // so only stop when something is playing, and wait a moment before speaking again.
+        // The very first sentence (nothing playing) is spoken at once, inside the child's tap,
+        // which iPhone/iPad need before they allow sound.
+        if (speechSynthesis.speaking || speechSynthesis.pending) {
+          speechSynthesis.cancel();
+          setTimeout(speakNow, 150);
+        } else {
+          speakNow();
+        }
       }
       if (audioFile) {
         currentAudio = new Audio('audio/' + audioFile);
