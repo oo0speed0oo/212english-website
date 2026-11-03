@@ -27,13 +27,14 @@ var H212Phonics = (function () {
   var picked = null;      // Sound Board: the sound shown in the card { no, part }
   // Parts that exist so far, in menu order.
   var READY = ['board', 'blend', 'listen', 'read', 'sentences'];
-  var PARTS = ['board', 'blend', 'listen', 'read', 'sentences'];
+  var PARTS = ['board', 'blend', 'listen', 'read', 'sentences', 'games'];
+  var OPTIONAL = ['games'];       // extra parts: they show a tick but never decide whether a lesson is done
   var GAMES = ['sound', 'word', 'begin'];
   var G = null;           // Listen & pick: the round in progress { n, game, qs, i, correct, locked }
   var SR = window.SpeechRecognition || window.webkitSpeechRecognition;   // none on iPhone Chrome
   var R = null;           // Read aloud: the round in progress { n, words, i, tried: {word: true}, rec, token }
   var B = null;           // Blend it: the round in progress { n, words, i, blended: {word: true}, token }
-  var ICONS = { board: 'vocabulary', blend: 'builder', listen: 'listening', read: 'speaking', sentences: 'conversation' };
+  var ICONS = { board: 'vocabulary', blend: 'builder', listen: 'listening', read: 'speaking', sentences: 'conversation', games: 'grammar' };
 
   function esc(s) {
     return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
@@ -59,6 +60,7 @@ var H212Phonics = (function () {
     if (part === 'blend') return blendPool(n).length >= 2;
     if (part === 'read') { var r = P.read && P.read[n]; return !!(r && (r.w.length || r.c.length)); }
     if (part === 'sentences') return sentencePool(n).length >= 3;
+    if (part === 'games') return WG.some(function (g) { return wgAvailable(n, g); });
     return true;
   }
   // A lesson is finished when every part it can play is ticked
@@ -150,6 +152,7 @@ var H212Phonics = (function () {
 
   function showSteps() {
     stopAudio();
+    if (typeof H212WordGames !== 'undefined') H212WordGames.stop();
     var rec = nextLesson(), recStep = rec ? P.lessons[rec].step : 0;
     var h = '<div class="section-header"><h2>' + esc(T('nav.phonics')) + '</h2><p>' + esc(T('phonics.subtitle')) + '</p></div>'
       + '<div class="practice-choose">' + esc(T('phonics.choose_step')) + '</div>'
@@ -196,6 +199,7 @@ var H212Phonics = (function () {
   // ── One lesson: its parts ───────────────────────────
   function showLesson(n) {
     stopAudio();
+    if (typeof H212WordGames !== 'undefined') H212WordGames.stop();
     var l = P.lessons[n];
     if (!l) return showSteps();
     var h = '<div class="chapter-head">'
@@ -205,7 +209,7 @@ var H212Phonics = (function () {
       + '<div class="practice-choose">' + esc(T('phonics.choose_part')) + (l.words ? ' · ' + esc(fill(T('phonics.words_n'), { n: l.words })) : '') + '</div>'
       + '<div class="part-group grp-phonics"><div class="type-grid">';
     PARTS.forEach(function (p) {
-      var inBuild = READY.indexOf(p) !== -1;
+      var inBuild = READY.indexOf(p) !== -1 || OPTIONAL.indexOf(p) !== -1;
       var ready = inBuild && partAvailable(n, p);
       var status = '', sub = T('phonics.coming');
       if (ready) {
@@ -215,6 +219,11 @@ var H212Phonics = (function () {
           var got = avail.filter(function (g) { return P.progress[n] && P.progress[n]['listen_' + g]; }).length;
           status = partDone(n, p) ? '<span class="status done">✓ ' + esc(T('phonics.done')) + '</span>'
             : (got ? '<span class="status part">' + got + '/' + avail.length + '</span>' : '<span class="status take">' + esc(T('phonics.new')) + '</span>');
+        } else if (p === 'games') {
+          var wa = WG.filter(function (g) { return wgAvailable(n, g); });
+          var wgot = wa.filter(function (g) { return P.progress[n] && P.progress[n]['game_' + g]; }).length;
+          status = wgot === wa.length ? '<span class="status done">✓ ' + esc(T('phonics.done')) + '</span>'
+            : (wgot ? '<span class="status part">' + wgot + '/' + wa.length + '</span>' : '<span class="status take">' + esc(T('phonics.new')) + '</span>');
         } else if (partCounts(n, p)) {
           status = partDone(n, p) ? '<span class="status done">✓ ' + esc(T('phonics.done')) + '</span>' : '<span class="status take">' + esc(T('phonics.new')) + '</span>';
         }
@@ -974,6 +983,131 @@ var H212Phonics = (function () {
     window.scrollTo(0, 0);
   }
 
+  // ── G / H / I. Word games: Missing Letters, Word Search, Crossword (wordgames.js) on this lesson's words ──
+  // Easy only, kids first. The clue is always the recorded word (audio/phonics/words/<word>.m4a): no reading needed.
+  // Words: this lesson's common words first, then earlier lessons'. Optional: they never decide whether a lesson is done.
+  var WG = ['missing', 'search', 'cross'];
+  var wgCache = {};
+  function learnedUnits(n) {
+    var seen = {}, out = [];
+    knownNos(n).forEach(function (no) { var sp = P.sounds[no].sound; if (!seen[sp]) { seen[sp] = 1; out.push(sp); } });
+    return out;
+  }
+  function learnedLetters(n) {
+    var seen = {}, out = '';
+    learnedUnits(n).forEach(function (u) { u.split('').forEach(function (c) { if (!seen[c]) { seen[c] = 1; out += c; } }); });
+    return out;
+  }
+  function wordsOrdered(n, minLen, maxLen) {
+    var fit = function (x) { return x.l <= n && x.w.length >= minLen && x.w.length <= maxLen; };
+    var own = shuffle(P.game.filter(function (x) { return fit(x) && x.l === n; }));
+    var rest = shuffle(P.game.filter(function (x) { return fit(x) && x.l !== n; }));
+    return own.concat(rest).map(function (x) { return { w: x.w, ja: '', img: '' }; });
+  }
+  function gameCfg(n, g) {
+    var l = P.lessons[n];
+    var cfg = {
+      group: 'phonics', mode: 'easy', clue: 'sound',
+      kicker: lessonLabel(l) + ' (' + lessonBig(l) + ')',
+      back: 'H212Phonics.gamesMenu(' + n + ')',
+      again: 'H212Phonics.playGame(' + n + ',\'' + g + '\')',
+      hear: function (word) { playWord(word); },
+      done: function (pct) { save(n, 'game_' + g, pct); }
+    };
+    if (g === 'missing') {
+      // each word cut into its sounds (sh | i | p); the blank is usually the lesson's new sound
+      var all = blendPool(n);
+      var own = shuffle(all.filter(function (x) { return x.l === n; })), rest = shuffle(all.filter(function (x) { return x.l !== n; }));
+      cfg.words = own.concat(rest).map(function (x) { return { w: x.w, units: x.t.map(function (t) { return t.s; }), ja: '', img: '' }; });
+      cfg.keepOrder = true;
+      cfg.focus = l.kind === 'sound' && P.sounds[l.sound_no] ? P.sounds[l.sound_no].sound : '';
+      cfg.unitPool = learnedUnits(n);
+    } else if (g === 'search') {
+      var size = l.step <= 3 ? 5 : 6;
+      cfg.words = wordsOrdered(n, 3, size);
+      cfg.search = { size: size, count: size === 5 ? 4 : 5, fill: learnedLetters(n), ordered: true };
+    } else {
+      cfg.words = wordsOrdered(n, 3, 4);
+      cfg.cross = { minLen: 3, maxLen: 4, maxDim: 5, target: 4, least: 3 };
+    }
+    return cfg;
+  }
+  function wgAvailable(n, g) {
+    var k = n + ':' + g;
+    if (wgCache[k] !== undefined) return wgCache[k];
+    var ok = false;
+    if (typeof H212WordGames === 'undefined' || !P.lessons[n]) { return false; }
+    var cfg = gameCfg(n, g);
+    if (g === 'missing') ok = cfg.words.length >= 3;
+    else if (g === 'search') ok = cfg.words.length >= 4 && !!H212WordGames._makeSearch(cfg.words, 'easy', cfg.search);
+    else {
+      for (var t = 0; t < 3 && !ok; t++) { var b = H212WordGames._buildCross(cfg.words, 'easy', cfg.cross); ok = !!(b && b.items.length >= 3); }
+    }
+    wgCache[k] = ok;
+    return ok;
+  }
+
+  function showGamesMenu(n) {
+    stopAudio();
+    if (typeof H212WordGames !== 'undefined') H212WordGames.stop();
+    var l = P.lessons[n];
+    if (!l) return showSteps();
+    var h = '<div class="chapter-head">'
+      + '<button type="button" class="back-btn" onclick="H212Phonics.lesson(' + n + ')" aria-label="' + esc(T('phonics.back_parts')) + '">' + H212UI.icons.back + '</button>'
+      + '<div><div class="chapter-head-kicker">' + esc(lessonLabel(l)) + ' · ' + esc(T('phonics.part_games')) + '</div>'
+      + '<div class="chapter-head-title">' + esc(l.title) + '</div></div></div>'
+      + '<div class="practice-choose">' + esc(T('phonics.choose_game')) + '</div>'
+      + '<div class="part-group grp-phonics"><div class="type-grid">';
+    var icons = { missing: 'builder', search: 'vocabulary', cross: 'grammar' };
+    WG.forEach(function (g) {
+      var ok = wgAvailable(n, g), best = P.progress[n] && P.progress[n]['game_' + g];
+      h += '<div class="type-btn' + (ok ? '' : ' empty') + '"' + (ok ? key(0, 'H212Phonics.playGame(' + n + ',\'' + g + '\')') : '') + '>'
+        + '<span class="icon">' + H212UI.icons[icons[g]] + '</span>'
+        + '<span class="lbl">' + esc(T('spell.game_' + g)) + '</span>'
+        + '<span class="sub">' + esc(ok ? T('spell.game_' + g + '_sub') : T('phonics.game_locked')) + '</span>'
+        + (ok ? (best ? '<span class="status done">✓ ' + esc(fill(T('phonics.best'), { n: best })) + '</span>' : '<span class="status take">' + esc(T('phonics.new')) + '</span>') : '')
+        + '</div>';
+    });
+    h += '</div></div>';
+    pc().innerHTML = h;
+  }
+
+  function playGame(n, g) {
+    if (WG.indexOf(g) === -1 || !wgAvailable(n, g)) return showGamesMenu(n);
+    stopAudio();
+    var cfg = gameCfg(n, g), ok = false;
+    if (g === 'missing') ok = H212WordGames.missing(cfg);
+    else if (g === 'search') ok = H212WordGames.search(cfg);
+    else ok = H212WordGames.cross(cfg);
+    if (!ok) return showGamesMenu(n);
+    window.scrollTo(0, 0);
+  }
+
+  // The same three games as an A4 worksheet (teacher reads the words; answers on page 2)
+  function showGameSheet(n, g) {
+    stopAudio();
+    var l = P.lessons[n];
+    if (!l || WG.indexOf(g) === -1) return showWorksheet(n);
+    var cfg = gameCfg(n, g);
+    cfg.imgUrl = null;
+    var sheet = H212WordGames.sheet(cfg);
+    pc().innerHTML = sheetToolbar(n, g) + (sheet || '<div class="ws-hint">' + esc(T('phonics.game_locked')) + '</div>');
+  }
+  function sheetToolbar(n, active) {
+    function chip(id, label, js) {
+      return '<button type="button" class="sp-mode' + (active === id ? ' is-on' : '') + '" aria-pressed="' + (active === id) + '" onclick="' + js + '">' + esc(label) + '</button>';
+    }
+    var again = active === 'sheet' ? 'H212Phonics.worksheet(' + n + ')' : 'H212Phonics.gameSheet(' + n + ',\'' + active + '\')';
+    var chips = chip('sheet', T('phonics.ws_chip_sheet'), 'H212Phonics.worksheet(' + n + ')');
+    WG.forEach(function (g) { if (wgAvailable(n, g)) chips += chip(g, T('spell.game_' + g), 'H212Phonics.gameSheet(' + n + ',\'' + g + '\')'); });
+    return '<div class="ws-toolbar grp-phonics">'
+      + '<button type="button" class="back-btn" onclick="H212Phonics.lesson(' + n + ')" aria-label="' + esc(T('phonics.back_parts')) + '">' + H212UI.icons.back + '</button>'
+      + '<button type="button" class="next-btn" style="display:inline-flex;margin-top:0" onclick="window.print()">' + esc(T('phonics.ws_print')) + '</button>'
+      + '<button type="button" class="next-btn ph-blend-skip" style="display:inline-flex;margin-top:0" onclick="' + again + '">' + esc(T('phonics.ws_again')) + '</button>'
+      + '<div class="pr-chips">' + chips + '</div>'
+      + '<div class="ws-hint">' + esc(T('phonics.ws_hint')) + '</div></div>';
+  }
+
   // ── F. Worksheet (print) ────────────────────────────
   // A clean A4 page built from the same word lists as the games: 1 circle the word you hear, 2 read the words,
   // 3 blend lines, 4 which word begins with the sound. "New sheet" makes different questions. The teacher's key is
@@ -1004,11 +1138,7 @@ var H212Phonics = (function () {
     var l = P.lessons[n];
     if (!l) return showSteps();
     var d = worksheetData(n), key = [];
-    var h = '<div class="ws-toolbar grp-phonics">'
-      + '<button type="button" class="back-btn" onclick="H212Phonics.lesson(' + n + ')" aria-label="' + esc(T('phonics.back_parts')) + '">' + H212UI.icons.back + '</button>'
-      + '<button type="button" class="next-btn" style="display:inline-flex;margin-top:0" onclick="window.print()">' + esc(T('phonics.ws_print')) + '</button>'
-      + '<button type="button" class="next-btn ph-blend-skip" style="display:inline-flex;margin-top:0" onclick="H212Phonics.worksheet(' + n + ')">' + esc(T('phonics.ws_again')) + '</button>'
-      + '<div class="ws-hint">' + esc(T('phonics.ws_hint')) + '</div></div>'
+    var h = sheetToolbar(n, 'sheet')
       + '<div class="ws-sheet">'
       + '<div class="ws-head"><div class="ws-title"><small>212 English · ' + esc(T('nav.phonics')) + ' · ' + esc(lessonLabel(l)) + '</small>' + esc(l.title) + '</div>'
       + '<div class="ws-fill"><span>' + esc(T('phonics.ws_name')) + '</span><span>' + esc(T('phonics.ws_date')) + '</span></div></div>';
@@ -1065,7 +1195,13 @@ var H212Phonics = (function () {
       else if (p === 'read') { showReadMenu(n); goTop(); }
       else if (p === 'sentences') { startSentences(n); goTop(); }
       else if (p === 'listen') { showListenMenu(n); goTop(); }
+      else if (p === 'games') { showGamesMenu(n); goTop(); }
     },
+    gamesMenu: function (n) { showGamesMenu(n); goTop(); },
+    playGame: playGame,
+    gameSheet: function (n, g) { showGameSheet(n, g); goTop(); },
+    _gameCfg: gameCfg,
+    _wgAvailable: wgAvailable,
     listenMenu: function (n) { showListenMenu(n); goTop(); },
     game: startGame,
     hear: playQ,

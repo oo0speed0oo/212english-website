@@ -1065,3 +1065,9 @@ button, input, select, textarea { font-family: inherit; }
   .pr-box.pr-blank, .pr-card { border-color: #000; }
 }
 @media (max-width: 600px) { .pr-sheet { padding: 14px; } .pr-box { width: 24px; height: 32px; font-size: 18px; } .pr-keys, .pr-clues { grid-template-columns: minmax(0, 1fr); } .pr-grid { grid-template-columns: repeat(var(--n), 36px); } .pr-grid.pr-grid-big { grid-template-columns: repeat(var(--n), 46px); } }
+
+.pr-note { margin: -6px 0 12px; padding: 6px 10px; font-size: 13px; background: #f2f2f2; border-left: 4px solid #000; }
+.pr-wordkey { display: flex; flex-wrap: wrap; gap: 8px 24px; font-size: 20px; }
+.cw-clues-sound { flex-direction: row; flex-wrap: wrap; }
+.cw-clues-sound .cw-clue { flex: 1 1 130px; justify-content: space-between; }
+.cw-clues-sound .cw-qt, .cw-clues-sound .cw-qlen { display: none; }

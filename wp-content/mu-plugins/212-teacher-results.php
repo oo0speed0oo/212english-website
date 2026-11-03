@@ -381,6 +381,9 @@ function h212_render_phonics_results( $student_id ) {
 		'listen_begin' => 'Which begins',
 		'read'         => 'Read aloud',
 		'sentences'    => 'Listening',
+		'game_missing' => 'Missing Letters game',
+		'game_search'  => 'Word Search game',
+		'game_cross'   => 'Crossword game',
 	);
 	echo '<div style="display:flex;gap:24px;flex-wrap:wrap;margin:8px 0 14px;padding:14px 20px;background:#f6f7f7;border:1px solid #dcdcde;border-radius:4px;">';
 	echo '<div><strong>Lessons done:</strong> ' . (int) $sum['done'] . ' of ' . (int) $sum['total'] . '</div>';

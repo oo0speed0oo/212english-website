@@ -39,6 +39,8 @@ var H212WordGames = (function () {
     return a;
   }
   function isVowel(c) { return VOWELS.indexOf(c) !== -1; }
+  function grp(cfg) { return 'grp-' + ((cfg && cfg.group) || 'spelling'); }          // colours: Spelling blue, Phonics teal
+  function isVowelUnit(u) { return /^[aeiou]+$/.test(u); }
 
   // ── Building a round ────────────────────────────────
   // Easy uses the shortest 8 words of the set; Normal can use any word of it.
@@ -65,36 +67,56 @@ var H212WordGames = (function () {
     return out;
   }
 
-  function question(item, mode) {
-    var w = item.w, n = w.length, spots = [];
+  // Wrong tiles for a blank when the tiles are sound-spellings (a, sh, ai...): other spellings the student has met, of the same kind.
+  function extraUnits(correct, count, unitPool) {
+    var want = correct.map(function (u) { return isVowelUnit(u); }), out = [], tries = 0;
+    var same = shuffle(unitPool.filter(function (u) { return correct.indexOf(u) === -1; }));
+    while (out.length < count && tries++ < 300) {
+      var vowelish = want[out.length % want.length];
+      var cand = same.filter(function (u) { return isVowelUnit(u) === vowelish && out.indexOf(u) === -1; })[0] || same.filter(function (u) { return out.indexOf(u) === -1; })[0];
+      if (!cand) break;
+      out.push(cand);
+    }
+    return out;
+  }
+
+  // One question. item.units (optional) = the word cut into sounds, e.g. ['sh','i','p']; otherwise its letters.
+  // cfg.focus = a spelling to blank out when the word has it (Phonics: the lesson's new sound); cfg.unitPool = spellings to use as wrong tiles.
+  function question(item, mode, cfg) {
+    cfg = cfg || {};
+    var w = item.w, units = item.units || w.split(''), n = units.length, spots = [];
     var k = mode === 'easy' ? 1 : (n <= 4 ? 2 : 3);
     var idx = [];
     for (var i = 0; i < n; i++) idx.push(i);
     if (mode === 'easy') {
-      // one missing letter: a vowel when the word has one (the hard bit of most words), else any letter
-      var vs = idx.filter(function (i) { return isVowel(w.charAt(i)); });
-      spots = [ (vs.length ? vs : idx)[Math.floor(Math.random() * (vs.length || idx.length))] ];
+      // one missing sound: the lesson's focus sound if the word has it, else a vowel (the hard bit of most words), else any
+      var fs = cfg.focus ? idx.filter(function (i) { return units[i] === cfg.focus; }) : [];
+      var vs = idx.filter(function (i) { return isVowelUnit(units[i]); });
+      var from = fs.length ? fs : (vs.length ? vs : idx);
+      spots = [ from[Math.floor(Math.random() * from.length)] ];
     } else {
       spots = shuffle(idx).slice(0, k).sort(function (a, b) { return a - b; });
     }
-    var need = spots.map(function (i) { return w.charAt(i); });
-    var tiles = mode === 'easy'
-      ? shuffle(need.concat(extras(need, 2)))
-      : shuffle(need.concat(extras(need, Math.min(3, 8 - need.length))));
-    return { w: w, ja: item.ja || '', img: item.img || '', spots: spots, filled: {}, tiles: tiles, used: {}, mistakes: 0, done: false };
+    var need = spots.map(function (i) { return units[i]; });
+    var more = cfg.unitPool ? extraUnits(need, mode === 'easy' ? 2 : Math.min(3, 8 - need.length), cfg.unitPool) : extras(need, mode === 'easy' ? 2 : Math.min(3, 8 - need.length));
+    if (cfg.unitPool && more.length < (mode === 'easy' ? 2 : 1)) more = more.concat(extras(need, (mode === 'easy' ? 2 : 1) - more.length).filter(function (c) { return more.indexOf(c) === -1 && need.indexOf(c) === -1; }));
+    var tiles = shuffle(need.concat(more));
+    return { w: w, units: units, ja: item.ja || '', img: item.img || '', spots: spots, filled: {}, tiles: tiles, used: {}, mistakes: 0, done: false };
   }
 
   function build(cfg) {
-    var items = shuffle(pool(cfg.words, cfg.mode)).slice(0, ROUND);
-    return items.map(function (it) { return question(it, cfg.mode); });
+    var items;
+    if (cfg.keepOrder) items = cfg.words.slice(0, ROUND);                    // the caller already put the words in the order to use
+    else items = shuffle(pool(cfg.words, cfg.mode)).slice(0, ROUND);
+    return items.map(function (it) { return question(it, cfg.mode, cfg); });
   }
 
   // ── Screens ─────────────────────────────────────────
   function wordHtml(q) {
     var h = '<div class="wg-word" aria-label="' + esc(q.w) + '">';
-    for (var i = 0; i < q.w.length; i++) {
+    for (var i = 0; i < q.units.length; i++) {
       var isSpot = q.spots.indexOf(i) !== -1;
-      if (!isSpot) h += '<span class="wg-l">' + esc(q.w.charAt(i)) + '</span>';
+      if (!isSpot) h += '<span class="wg-l">' + esc(q.units[i]) + '</span>';
       else if (q.filled[i]) h += '<span class="wg-l wg-ok">' + esc(q.filled[i]) + '</span>';
       else h += '<span class="wg-l wg-blank">&nbsp;</span>';
     }
@@ -123,8 +145,8 @@ var H212WordGames = (function () {
     var q = G.qs[G.i], cfg = G.cfg, last = G.i + 1 >= G.qs.length;
     G.locked = false;
     var h = H212UI.qTop({ onclose: cfg.back, label: T('wg.back'), index: G.i, total: G.qs.length, noScore: true })
-      + '<div class="grp-spelling"><div class="q-label">' + esc(cfg.kicker) + ' · ' + esc(T('wg.game_missing')) + '</div></div>'
-      + '<div class="question-card grp-spelling">'
+      + '<div class="' + grp(cfg) + '"><div class="q-label">' + esc(cfg.kicker) + ' · ' + esc(T('wg.game_missing')) + '</div></div>'
+      + '<div class="question-card ' + grp(cfg) + '">'
       + '<div class="wg-inst">' + esc(T(cfg.mode === 'easy' ? 'wg.inst_easy' : 'wg.inst_normal')) + '</div>'
       + '<div id="wg-clue">' + clueHtml(q) + '</div>'
       + '<div id="wg-word">' + wordHtml(q) + '</div>'
@@ -149,7 +171,7 @@ var H212WordGames = (function () {
     if (q.used[i]) return;
     var c = q.tiles[i], slot = -1;
     for (var k = 0; k < q.spots.length; k++) {
-      if (!q.filled[q.spots[k]] && q.w.charAt(q.spots[k]) === c) { slot = q.spots[k]; break; }
+      if (!q.filled[q.spots[k]] && q.units[q.spots[k]] === c) { slot = q.spots[k]; break; }
     }
     var btn = document.getElementById('wg-t' + i);
     if (slot < 0) {
@@ -200,7 +222,7 @@ var H212WordGames = (function () {
     var total = G.qs.length, right = G.qs.filter(function (q) { return q.mistakes === 0; }).length;
     var pct = Math.max(1, Math.round(right * 100 / total));
     if (G.cfg.done) G.cfg.done(pct, right, total);
-    var h = '<div class="question-card grp-spelling" style="text-align:center">'
+    var h = '<div class="question-card ' + grp(G.cfg) + '" style="text-align:center">'
       + '<div class="wg-cheer" aria-hidden="true">🎉</div>'
       + '<div class="speak-finish-title">' + esc(T('wg.finish_title')) + '</div>'
       + '<div class="speak-finish-sub">' + esc(fill(T('wg.finish_sub'), { c: right, t: total })) + '</div>'
@@ -232,9 +254,29 @@ var H212WordGames = (function () {
   var ALL8 = [[0, 1], [1, 0], [1, 1], [0, -1], [-1, 0], [-1, -1], [-1, 1], [1, -1]];
 
   // The words and the grid size for a search: Easy 4-5 short words in 5x5 / 6x6, Normal up to 8 words in 8x8.
-  function searchWords(words, mode) {
+  // Never use a word together with its own reverse (dim / mid, tap / pat) or with a word hidden inside it (all / ball):
+  // the puzzle would then contain the same word twice.
+  function noReverses(list) {
+    var kept = [];
+    list.forEach(function (x) {
+      var rev = x.w.split('').reverse().join('');
+      var clash = kept.some(function (k) {
+        var kr = k.w.split('').reverse().join('');
+        return k.w.indexOf(x.w) !== -1 || x.w.indexOf(k.w) !== -1 || k.w.indexOf(rev) !== -1 || rev.indexOf(k.w) !== -1 || kr.indexOf(x.w) !== -1;
+      });
+      if (!clash) kept.push(x);
+    });
+    return kept;
+  }
+
+  function searchWords(words, mode, opts) {
+    if (opts && opts.size) {
+      // fixed grid size and word count (Phonics): words short enough for the grid, in the order given or shuffled
+      var fit = noReverses(words.filter(function (x) { return x.w.length <= opts.size && x.w.length >= 2; }));
+      return { items: (opts.ordered ? fit : shuffle(fit)).slice(0, opts.count || 4), size: opts.size };
+    }
     var max = mode === 'easy' ? 6 : 8;
-    var list = shuffle(pool(words, mode).filter(function (x) { return x.w.length <= max; }));
+    var list = noReverses(shuffle(pool(words, mode).filter(function (x) { return x.w.length <= max; })));
     var out = [];
     if (mode === 'easy') {
       // the shortest words of the set; if the set has too few, borrow more short words from it
@@ -301,22 +343,23 @@ var H212WordGames = (function () {
     return n;
   }
 
-  function makeSearch(words, mode) {
-    var sw = searchWords(words, mode), dirs = mode === 'easy' ? DIRS_EASY : DIRS_NORMAL;
+  function makeSearch(words, mode, opts) {
+    var sw = searchWords(words, mode, opts), dirs = mode === 'easy' ? DIRS_EASY : DIRS_NORMAL;
     if (!sw.items.length) return null;
     var letters = sw.items.map(function (x) { return x.w; }).join('');
+    var fillAlpha = (opts && opts.fill) || ALPHA;                              // Phonics: only letters the student has learned
     for (var attempt = 0; attempt < 160; attempt++) {
       var items = sw.items;
       var drop = Math.floor(attempt / 40);                                                   // a crowded grid: one word fewer every 40 tries
       if (drop > 0) items = items.slice(0, Math.max(3, items.length - drop));
       var pl = placeWords(items, sw.size, dirs);
       if (!pl) continue;
-      for (var fillTry = 0; fillTry < 12; fillTry++) {
+      for (var fillTry = 0; fillTry < (opts && opts.fill ? 60 : 12); fillTry++) {
         var g = pl.grid.map(function (row) { return row.slice(); });
         for (var r = 0; r < sw.size; r++) for (var c = 0; c < sw.size; c++) {
           if (g[r][c] === '') {
             // half of the filler letters come from the words themselves so the grid is not obvious
-            g[r][c] = Math.random() < 0.5 ? letters.charAt(Math.floor(Math.random() * letters.length)) : ALPHA.charAt(Math.floor(Math.random() * 26));
+            g[r][c] = Math.random() < 0.5 ? letters.charAt(Math.floor(Math.random() * letters.length)) : fillAlpha.charAt(Math.floor(Math.random() * fillAlpha.length));
           }
         }
         // a word is found once (a palindrome like mom reads the same both ways, so it counts twice)
@@ -349,8 +392,8 @@ var H212WordGames = (function () {
   function searchHtml() {
     var cfg = W.cfg, n = W.size;
     var h = H212UI.qTop({ onclose: cfg.back, label: T('wg.back'), index: foundCount() - 1, total: W.items.length, noScore: true })
-      + '<div class="grp-spelling"><div class="q-label">' + esc(cfg.kicker) + ' · ' + esc(T('wg.game_search')) + '</div></div>'
-      + '<div class="question-card grp-spelling">'
+      + '<div class="' + grp(cfg) + '"><div class="q-label">' + esc(cfg.kicker) + ' · ' + esc(T('wg.game_search')) + '</div></div>'
+      + '<div class="question-card ' + grp(cfg) + '">'
       + '<div class="wg-inst">' + esc(T(cfg.mode === 'easy' ? 'wg.inst_search_easy' : 'wg.inst_search_normal')) + '</div>'
       + '<div class="ws-wrap">'
       + '<div class="ws-board" id="ws-board" style="--n:' + n + '" onpointerdown="H212WordGames.pd(event)" onpointermove="H212WordGames.pm(event)" onpointerup="H212WordGames.pu(event)" onpointercancel="H212WordGames.pc(event)">';
@@ -375,7 +418,7 @@ var H212WordGames = (function () {
   function search(cfg) {
     cfg.mode = cfg.mode === 'normal' ? 'normal' : 'easy';
     var built = null;
-    for (var tries = 0; tries < 6 && !built; tries++) built = makeSearch(cfg.words, cfg.mode);     // a very crowded grid is rare: just try again
+    for (var tries = 0; tries < 6 && !built; tries++) built = makeSearch(cfg.words, cfg.mode, cfg.search);     // a very crowded grid is rare: just try again
     if (!built) return false;
     W = { cfg: cfg, grid: built.grid, size: built.size, items: built.items, anchor: null, down: null, moved: false, hintEl: null, over: false };
     pc().innerHTML = searchHtml();
@@ -479,7 +522,7 @@ var H212WordGames = (function () {
     if (!W) return;
     var n = W.items.length;
     if (W.cfg.done) W.cfg.done(100, n, n);
-    var h = '<div class="question-card grp-spelling" style="text-align:center">'
+    var h = '<div class="question-card ' + grp(W.cfg) + '" style="text-align:center">'
       + '<div class="wg-cheer" aria-hidden="true">🎉</div>'
       + '<div class="speak-finish-title">' + esc(T('wg.finish_title')) + '</div>'
       + '<div class="speak-finish-sub">' + esc(fill(T('wg.finish_search'), { n: n })) + '</div>'
@@ -538,10 +581,12 @@ var H212WordGames = (function () {
     return crossings > 0;
   }
 
-  function buildCross(words, mode) {
-    var maxDim = CW_MAX[mode], target = mode === 'easy' ? 4 : 6, least = mode === 'easy' ? 3 : 5;
-    var base = pool(words, mode).filter(function (x) { return x.w.length >= 3 && x.w.length <= (mode === 'easy' ? 7 : 9); });
-    var wide = words.filter(function (x) { return x.w.length >= 3 && x.w.length <= 9; });     // used when the first choice has too few words that cross
+  function buildCross(words, mode, opts) {
+    opts = opts || {};
+    var maxDim = opts.maxDim || CW_MAX[mode], target = opts.target || (mode === 'easy' ? 4 : 6), least = opts.least || (mode === 'easy' ? 3 : 5);
+    var lo = opts.minLen || 3, hi = opts.maxLen || (mode === 'easy' ? 7 : 9);
+    var base = (opts.minLen || opts.maxLen ? words : pool(words, mode)).filter(function (x) { return x.w.length >= lo && x.w.length <= hi; });
+    var wide = opts.maxLen ? [] : words.filter(function (x) { return x.w.length >= 3 && x.w.length <= 9; });     // used when the first choice has too few words that cross
     if (base.length < 2) return null;
     var best = null;
     for (var attempt = 0; attempt < 600; attempt++) {
@@ -609,12 +654,13 @@ var H212WordGames = (function () {
   }
 
   function crossCluesHtml() {
-    var h = '<ol class="cw-clues" id="cw-clues">';
+    var soundOnly = X.cfg.clue === 'sound';          // Phonics: the clue is only a number and a 🔊 (no reading needed)
+    var h = '<ol class="cw-clues' + (soundOnly ? ' cw-clues-sound' : '') + '" id="cw-clues">';
     X.items.forEach(function (it, i) {
       h += '<li class="cw-clue" id="cw-q' + i + '" onclick="H212WordGames.crossSelect(' + i + ')">'
         + '<span class="cw-qn">' + it.num + (it.down ? '↓' : '→') + '</span>'
-        + (it.img && X.cfg.imgUrl ? '<img class="ws-thumb" src="' + esc(X.cfg.imgUrl(it.img)) + '" alt="" onerror="this.parentNode.removeChild(this)">' : '')
-        + '<span class="cw-qt">' + (it.ja ? '<span lang="ja">' + esc(it.ja) + '</span>' : '<span class="cw-len">' + it.w.length + '</span>') + '</span>'
+        + (!soundOnly && it.img && X.cfg.imgUrl ? '<img class="ws-thumb" src="' + esc(X.cfg.imgUrl(it.img)) + '" alt="" onerror="this.parentNode.removeChild(this)">' : '')
+        + (soundOnly ? '<span class="cw-qt"></span>' : '<span class="cw-qt">' + (it.ja ? '<span lang="ja">' + esc(it.ja) + '</span>' : '<span class="cw-len">' + it.w.length + '</span>') + '</span>')
         + '<span class="cw-qlen">' + it.w.length + '</span>'
         + '<button type="button" class="ws-hear" onclick="event.stopPropagation();H212WordGames.crossHear(' + i + ')" aria-label="' + esc(T('listen.button')) + '">🔊</button>'
         + '<span class="cw-qok" id="cw-ok' + i + '"></span></li>';
@@ -625,9 +671,9 @@ var H212WordGames = (function () {
   function crossScreen() {
     var cfg = X.cfg;
     var h = H212UI.qTop({ onclose: cfg.back, label: T('wg.back'), index: crossDone() - 1, total: X.items.length, noScore: true })
-      + '<div class="grp-spelling"><div class="q-label">' + esc(cfg.kicker) + ' · ' + esc(T('wg.game_cross')) + '</div></div>'
-      + '<div class="question-card grp-spelling">'
-      + '<div class="wg-inst">' + esc(T(cfg.mode === 'easy' ? 'wg.inst_cross_easy' : 'wg.inst_cross_normal')) + '</div>'
+      + '<div class="' + grp(cfg) + '"><div class="q-label">' + esc(cfg.kicker) + ' · ' + esc(T('wg.game_cross')) + '</div></div>'
+      + '<div class="question-card ' + grp(cfg) + '">'
+      + '<div class="wg-inst">' + esc(T(cfg.clue === 'sound' ? 'wg.inst_cross_sound' : (cfg.mode === 'easy' ? 'wg.inst_cross_easy' : 'wg.inst_cross_normal'))) + '</div>'
       + crossGridHtml()
       + '<div class="wg-tiles" id="cw-tiles"></div>'
       + '<div class="result-msg" id="cw-msg" role="status"></div>'
@@ -640,7 +686,7 @@ var H212WordGames = (function () {
   function cross(cfg) {
     cfg.mode = cfg.mode === 'normal' ? 'normal' : 'easy';
     var built = null;
-    for (var t = 0; t < 8 && !built; t++) built = buildCross(cfg.words, cfg.mode);
+    for (var t = 0; t < 8 && !built; t++) built = buildCross(cfg.words, cfg.mode, cfg.cross);
     if (!built) return false;
     X = { cfg: cfg, rows: built.rows, cols: built.cols, items: built.items, numAt: built.numAt, letters: {}, sel: -1, over: false };
     if (cfg.mode === 'easy') {
@@ -690,6 +736,15 @@ var H212WordGames = (function () {
   }
 
   function tilesFor(it) {
+    if (X.cfg.clue === 'sound') {
+      // the letters of the whole puzzle plus 2 extra (the same buttons for every word)
+      if (!X.allTiles) {
+        var all = [];
+        X.items.forEach(function (w2) { w2.w.split('').forEach(function (c) { if (all.indexOf(c) === -1) all.push(c); }); });
+        X.allTiles = shuffle(all.concat(extras(all, 2)));
+      }
+      return X.allTiles;
+    }
     if (!it.tiles) {
       var letters = [];
       it.w.split('').forEach(function (c) { if (letters.indexOf(c) === -1) letters.push(c); });
@@ -796,7 +851,7 @@ var H212WordGames = (function () {
     if (!X) return;
     var n = X.items.length;
     if (X.cfg.done) X.cfg.done(100, n, n);
-    var h = '<div class="question-card grp-spelling" style="text-align:center">'
+    var h = '<div class="question-card ' + grp(X.cfg) + '" style="text-align:center">'
       + '<div class="wg-cheer" aria-hidden="true">🎉</div>'
       + '<div class="speak-finish-title">' + esc(T('wg.finish_title')) + '</div>'
       + '<div class="speak-finish-sub">' + esc(T('wg.finish_cross')) + '</div>'
@@ -829,9 +884,9 @@ var H212WordGames = (function () {
       page += '<div class="pr-card"><span class="pr-no">' + (i + 1) + '</span>' + prPic(q.img, cfg, 'pr-pic')
         + '<div class="pr-mid">' + (q.ja ? '<div class="pr-ja" lang="ja">' + esc(q.ja) + '</div>' : '') + '<div class="pr-boxes">';
       var ans = '';
-      for (var k = 0; k < q.w.length; k++) {
-        if (q.spots.indexOf(k) !== -1) { page += '<span class="pr-box pr-blank"></span>'; ans += '<u>' + esc(q.w.charAt(k)) + '</u>'; }
-        else { page += '<span class="pr-box">' + esc(q.w.charAt(k)) + '</span>'; ans += esc(q.w.charAt(k)); }
+      for (var k = 0; k < q.units.length; k++) {
+        if (q.spots.indexOf(k) !== -1) { page += '<span class="pr-box pr-blank"></span>'; ans += '<u>' + esc(q.units[k]) + '</u>'; }
+        else { page += '<span class="pr-box">' + esc(q.units[k]) + '</span>'; ans += esc(q.units[k]); }
       }
       page += '</div></div></div>';
       key += '<div class="pr-key-item"><span class="pr-no">' + (i + 1) + '</span><span class="pr-ans">' + ans + '</span>' + (q.ja ? '<small lang="ja">' + esc(q.ja) + '</small>' : '') + '</div>';
@@ -848,7 +903,7 @@ var H212WordGames = (function () {
   }
   function sheetSearch(cfg) {
     var built = null;
-    for (var t = 0; t < 6 && !built; t++) built = makeSearch(cfg.words, cfg.mode);
+    for (var t = 0; t < 6 && !built; t++) built = makeSearch(cfg.words, cfg.mode, cfg.search);
     if (!built) return null;
     var list = '<ul class="pr-words">';
     var hit = {};
@@ -867,7 +922,7 @@ var H212WordGames = (function () {
 
   function sheetCross(cfg) {
     var built = null;
-    for (var t = 0; t < 8 && !built; t++) built = buildCross(cfg.words, cfg.mode);
+    for (var t = 0; t < 8 && !built; t++) built = buildCross(cfg.words, cfg.mode, cfg.cross);
     if (!built) return null;
     var isLetter = {}, solved = {}, given = {};
     built.items.forEach(function (it) {
@@ -891,7 +946,8 @@ var H212WordGames = (function () {
       return h + '</div>';
     }
     var cl = '<div class="pr-clues">' + clues(false) + clues(true) + '</div>';
-    return { page: '<div class="pr-crosswrap">' + grid(given) + '</div>' + cl, key: '<div class="pr-crosswrap">' + grid(solved) + '</div>' + cl.replace(/<img[^>]*>/g, ''), n: built.items.length };
+    var wordList = cfg.clue === 'sound' ? '<div class="pr-wordkey">' + built.items.map(function (it) { return '<span><b>' + it.num + (it.down ? '↓' : '→') + '</b> ' + esc(it.w) + '</span>'; }).join('') + '</div>' : '';
+    return { page: '<div class="pr-crosswrap">' + grid(given) + '</div>' + cl, key: '<div class="pr-crosswrap">' + grid(solved) + '</div>' + (cfg.clue === 'sound' ? wordList : cl.replace(/<img[^>]*>/g, '')), n: built.items.length };
   }
 
   function sheet(cfg) {
@@ -899,8 +955,9 @@ var H212WordGames = (function () {
     var game = cfg.game === 'search' ? 'search' : (cfg.game === 'cross' ? 'cross' : 'missing');
     var made = game === 'search' ? sheetSearch(cfg) : (game === 'cross' ? sheetCross(cfg) : sheetMissing(cfg));
     if (!made || !made.n) return '';
+    var note = cfg.clue === 'sound' && game !== 'search' ? '<div class="pr-note">' + esc(T('pr.teacher_reads')) + '</div>' : '';
     return '<div class="pr-sheet">'
-      + prHead(cfg, game, false) + prInst(game) + made.page
+      + prHead(cfg, game, false) + prInst(game) + note + made.page
       + '<div class="pr-page2">' + prHead(cfg, game, true) + made.key + '</div></div>';
   }
 

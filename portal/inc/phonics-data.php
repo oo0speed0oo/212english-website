@@ -437,9 +437,9 @@ function h212_phonics_audio_script() {
 	echo '<script>window.H212_PHONICS_AUDIO = ' . wp_json_encode( h212_phonics_audio() ) . ';</script>' . "\n";
 }
 
-/** The parts of a lesson that can be marked done (A Sound Board, B Blend, C Listen & pick, D Read aloud, E Sentences). */
+/** The parts of a lesson that can be marked done (A Sound Board, B Blend, C Listen & pick, D Read aloud, E Sentences) and the optional word games (G Word Search, H Crossword, I Missing Letters: game_*). */
 function h212_phonics_parts() {
-	return array( 'board', 'blend', 'listen', 'read', 'sentences', 'listen_sound', 'listen_word', 'listen_begin' );
+	return array( 'board', 'blend', 'listen', 'read', 'sentences', 'listen_sound', 'listen_word', 'listen_begin', 'game_missing', 'game_search', 'game_cross' );
 }
 
 /**
