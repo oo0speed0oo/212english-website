@@ -6,7 +6,7 @@
  * history, wrong-answer log, video sentences and optional practice. It reads
  * EVERY record the portal saves (h212_seen_questions, h212_quiz_scores,
  * h212_test_scores, h212_current_wrong, h212_mistake_log, h212_unlocked,
- * h212_video_sentences, h212_speaking, h212_phonics, h212_last_active ...) plus the shared
+ * h212_video_sentences, h212_speaking, h212_phonics, h212_spelling, h212_last_active ...) plus the shared
  * course map and unlock rules in 212-progress.php, so any new level or chapter
  * in the content files shows up here by itself. It is never cached.
  */
@@ -268,8 +268,9 @@ function h212_render_student_results_page() {
 	}
 	echo '</tbody></table>';
 
-	// ── Phonics (practice only: it never counts for unlocking or Grades) ──
+	// ── Phonics and Spelling (practice only: they never count for unlocking or Grades) ──
 	h212_render_phonics_results( $selected_id );
+	h212_render_spelling_results( $selected_id );
 
 	// ── Video sentences ("Your turn" writing from the video lessons) ──
 	echo '<h2 style="margin-top:32px;">Video Sentences</h2>';
@@ -418,4 +419,58 @@ function h212_render_phonics_results( $student_id ) {
 	}
 	echo '</tbody></table>';
 	echo '<p style="color:#666;font-size:13px;">Green = every part of the lesson done &nbsp;·&nbsp; yellow = started &nbsp;·&nbsp; grey = not started. Hover a lesson to see which parts and best scores. Phonics is practice only and does not change unlocks or Grades.</p>';
+}
+
+/**
+ * Spelling section of Student Results: sets done per group, with a coloured chip for every set
+ * (green = all three games done, yellow = started, grey = not started; hover for the best scores).
+ * The word list lives in portal/spelling/ and is read by portal/inc/spelling-data.php; if that file is not on the site yet the section is skipped.
+ */
+function h212_render_spelling_results( $student_id ) {
+	$file = ABSPATH . 'portal/inc/spelling-data.php';
+	echo '<h2 style="margin-top:32px;">Spelling</h2>';
+	if ( ! is_readable( $file ) ) {
+		echo '<p>Spelling is not on the site yet.</p>';
+		return;
+	}
+	require_once $file;
+	$sum = h212_spelling_summary( $student_id );
+	if ( ! $sum['started'] ) {
+		echo '<p>No Spelling practice yet.</p>';
+		return;
+	}
+	$labels = array( 'missing' => 'Missing Letters', 'search' => 'Word Search', 'cross' => 'Crossword' );
+	echo '<div style="display:flex;gap:24px;flex-wrap:wrap;margin:8px 0 14px;padding:14px 20px;background:#f6f7f7;border:1px solid #dcdcde;border-radius:4px;">';
+	echo '<div><strong>Sets done:</strong> ' . (int) $sum['done'] . ' of ' . (int) $sum['total'] . '</div>';
+	echo '<div><strong>Sets started:</strong> ' . (int) $sum['started'] . '</div>';
+	echo '<div><strong>Games finished:</strong> ' . (int) $sum['games'] . '</div>';
+	echo '<div><strong>Level chosen:</strong> ' . ( $sum['mode'] ? esc_html( ucfirst( $sum['mode'] ) ) : '—' ) . '</div>';
+	echo '<div><strong>Last practised:</strong> ' . ( $sum['last'] ? esc_html( $sum['last'] ) : '—' ) . '</div>';
+	echo '</div>';
+	echo '<table class="widefat striped" style="max-width:900px;"><thead><tr><th style="width:110px;">Words</th><th style="width:110px;">Sets done</th><th>Sets</th></tr></thead><tbody>';
+	foreach ( $sum['groups'] as $g ) {
+		$done = 0;
+		foreach ( $g['sets'] as $set ) {
+			$done += 'done' === $set['status'] ? 1 : 0;
+		}
+		echo '<tr><td><strong>' . esc_html( $g['name'] ) . '</strong></td><td>' . $done . ' of ' . count( $g['sets'] ) . '</td><td>';
+		foreach ( $g['sets'] as $id => $set ) {
+			$bg  = 'done' === $set['status'] ? '#d7f0dd' : ( 'part' === $set['status'] ? '#fff3cd' : '#f0f0f1' );
+			$tip = array( $set['title'] );
+			foreach ( $labels as $k => $label ) {
+				if ( ! empty( $set['got'][ $k ] ) ) {
+					$tip[] = $label . ' ' . (int) $set['got'][ $k ] . '%';
+				}
+			}
+			printf(
+				'<span title="%s" style="display:inline-block;min-width:30px;margin:2px;padding:3px 6px;text-align:center;font-size:12px;border-radius:4px;background:%s;cursor:default;">%d</span>',
+				esc_attr( implode( ' · ', $tip ) ),
+				$bg,
+				(int) $set['num']
+			);
+		}
+		echo '</td></tr>';
+	}
+	echo '</tbody></table>';
+	echo '<p style="color:#666;font-size:13px;">Green = Missing Letters, Word Search and Crossword all done &nbsp;·&nbsp; yellow = started &nbsp;·&nbsp; grey = not started. Hover a set to see the best scores. Spelling is practice only and does not change unlocks or Grades.</p>';
 }

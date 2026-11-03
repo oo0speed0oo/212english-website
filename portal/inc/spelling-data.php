@@ -211,6 +211,33 @@ function h212_spelling_set_mode( $user_id, $mode ) {
 	return h212_spelling_save_state( $user_id, $state );
 }
 
+/**
+ * One student's Spelling progress for the teacher: sets done (all three games ticked) and started, per group,
+ * with each set's best scores. Used by the teacher's Student Results.
+ */
+function h212_spelling_summary( $user_id ) {
+	$state = h212_spelling_state( $user_id );
+	$out   = array( 'last' => $state['last'], 'mode' => $state['mode'], 'done' => 0, 'started' => 0, 'total' => 0, 'games' => 0, 'groups' => array() );
+	foreach ( h212_spelling_groups() as $key => $g ) {
+		$out['groups'][ $key ] = array( 'name' => $g['name'], 'sets' => array() );
+	}
+	foreach ( h212_spelling_sets() as $id => $s ) {
+		$got    = isset( $state['sets'][ $id ] ) ? $state['sets'][ $id ] : array();
+		$status = 'none';
+		if ( count( $got ) >= count( h212_spelling_parts() ) ) {
+			$status = 'done';
+			$out['done']++;
+		} elseif ( $got ) {
+			$status = 'part';
+		}
+		$out['total']++;
+		$out['started'] += $got ? 1 : 0;
+		$out['games']   += count( $got );
+		$out['groups'][ $s['group'] ]['sets'][ $id ] = array( 'num' => $s['num'], 'title' => $s['title'], 'status' => $status, 'got' => $got );
+	}
+	return $out;
+}
+
 /** Everything the Spelling page's JavaScript needs. */
 function h212_spelling_for_js( $user_id ) {
 	$state = h212_spelling_state( $user_id );
