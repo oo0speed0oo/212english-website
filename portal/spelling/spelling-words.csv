@@ -1,0 +1,662 @@
+set,level,chapter,word,word_ja,image,set_title
+L1-01,1,1,student,学生,ch01_student.jpg,Level 1 Chapter 1
+L1-01,1,1,teacher,先生,ch01_teacher.jpg,Level 1 Chapter 1
+L1-01,1,1,doctor,医者,ch01_doctor.jpg,Level 1 Chapter 1
+L1-01,1,1,nurse,看護師,ch01_nurse.jpg,Level 1 Chapter 1
+L1-01,1,1,man,男性,ch01_man.jpg,Level 1 Chapter 1
+L1-01,1,1,woman,女性,ch01_woman.jpg,Level 1 Chapter 1
+L1-01,1,1,cat,猫,ch01_cat.jpg,Level 1 Chapter 1
+L1-01,1,1,dog,犬,ch01_dog.jpg,Level 1 Chapter 1
+L1-02,1,2,pencil,鉛筆,pencil.png,Level 1 Chapter 2
+L1-02,1,2,book,本,book.png,Level 1 Chapter 2
+L1-02,1,2,desk,机,desk.png,Level 1 Chapter 2
+L1-02,1,2,pen,ペン,pen.png,Level 1 Chapter 2
+L1-02,1,2,notebook,ノート,notebook.png,Level 1 Chapter 2
+L1-02,1,2,dictionary,辞書,dictionary.png,Level 1 Chapter 2
+L1-02,1,2,computer,コンピューター,computer.png,Level 1 Chapter 2
+L1-02,1,2,chair,いす,ch02_chair.jpg,Level 1 Chapter 2
+L1-02,1,2,table,テーブル,ch02_table.jpg,Level 1 Chapter 2
+L1-02,1,2,bookshelf,本棚,ch02_bookshelf_with_books.jpg,Level 1 Chapter 2
+L1-02,1,2,globe,地球儀,ch02_globe.jpg,Level 1 Chapter 2
+L1-02,1,2,map,地図,ch02_world_map_on_a_wall.jpg,Level 1 Chapter 2
+L1-02,1,2,clock,時計,ch02_clock_on_a_wall.jpg,Level 1 Chapter 2
+L1-02,1,2,kitchen,台所,ch02_kitchen.jpg,Level 1 Chapter 2
+L1-02,1,2,bedroom,寝室,ch02_bedroom.jpg,Level 1 Chapter 2
+L1-02,1,2,bathroom,浴室,ch02_bathroom.jpg,Level 1 Chapter 2
+L1-02,1,2,attic,屋根裏部屋,ch02_attic.jpg,Level 1 Chapter 2
+L1-02,1,2,garage,車庫,ch02_garage.jpg,Level 1 Chapter 2
+L1-02,1,2,basement,地下室,ch02_basement.jpg,Level 1 Chapter 2
+L1-02,1,2,yard,庭,ch02_yard.jpg,Level 1 Chapter 2
+L1-02,1,2,bank,銀行,ch02_bank.jpg,Level 1 Chapter 2
+L1-02,1,2,supermarket,スーパー,ch02_supermarket.jpg,Level 1 Chapter 2
+L1-02,1,2,restaurant,レストラン,ch02_restaurant.jpg,Level 1 Chapter 2
+L1-02,1,2,library,図書館,ch02_library.jpg,Level 1 Chapter 2
+L1-03,1,3,drinking,飲んでいる,ch03_drinking_water.jpg,Level 1 Chapter 3
+L1-03,1,3,reading,読んでいる,ch03_reading_a_book.jpg,Level 1 Chapter 3
+L1-03,1,3,studying,勉強している,ch03_studying_at_a_desk.jpg,Level 1 Chapter 3
+L1-03,1,3,singing,歌っている,ch03_singing.jpg,Level 1 Chapter 3
+L1-03,1,3,sleeping,寝ている,ch03_sleeping_in_bed.jpg,Level 1 Chapter 3
+L1-03,1,3,swimming,泳いでいる,ch03_swimming_in_a_pool.jpg,Level 1 Chapter 3
+L1-03,1,3,watching,見ている,ch03_watching_tv.jpg,Level 1 Chapter 3
+L1-03,1,3,listening,聞いている,ch03_listening_to_music_with_headphones.jpg,Level 1 Chapter 3
+L1-03,1,3,cards,トランプ,ch03_playing_cards.jpg,Level 1 Chapter 3
+L1-03,1,3,piano,ピアノ,ch03_playing_the_piano.jpg,Level 1 Chapter 3
+L1-03,1,3,teaching,教えている,ch03_teaching.jpg,Level 1 Chapter 3
+L1-04,1,4,brushing,みがいている,ch04_brushing_teeth.jpg,Level 1 Chapter 4
+L1-04,1,4,cleaning,掃除している,ch04_cleaning_a_room_with_a_cloth.jpg,Level 1 Chapter 4
+L1-04,1,4,fixing,直している,ch04_fixing_a_car_with_tools.jpg,Level 1 Chapter 4
+L1-04,1,4,painting,塗っている,ch04_painting_a_wall_with_a_roller.jpg,Level 1 Chapter 4
+L1-04,1,4,washing,洗っている,ch04_washing_a_car_with_a_sponge.jpg,Level 1 Chapter 4
+L1-04,1,4,teeth,歯,ch04_brushing_teeth.jpg,Level 1 Chapter 4
+L1-04,1,4,car,車,ch04_fixing_a_car_with_tools.jpg,Level 1 Chapter 4
+L1-04,1,4,wall,壁,ch04_painting_a_wall_with_a_roller.jpg,Level 1 Chapter 4
+L1-05,1,5,tall,背が高い,ch05_tall.jpg,Level 1 Chapter 5
+L1-05,1,5,young,若い,ch05_young.jpg,Level 1 Chapter 5
+L1-05,1,5,old,古い・年をとった,ch05_old_car.jpg,Level 1 Chapter 5
+L1-05,1,5,new,新しい,ch05_new_car.jpg,Level 1 Chapter 5
+L1-05,1,5,large,大きい,ch05_large_house.jpg,Level 1 Chapter 5
+L1-05,1,5,small,小さい,ch05_small_house.jpg,Level 1 Chapter 5
+L1-05,1,5,noisy,うるさい,ch05_noisy.jpg,Level 1 Chapter 5
+L1-05,1,5,quiet,静かな,ch05_quiet.jpg,Level 1 Chapter 5
+L1-05,1,5,expensive,値段が高い,ch05_expensive.jpg,Level 1 Chapter 5
+L1-05,1,5,cheap,安い,ch05_cheap.jpg,Level 1 Chapter 5
+L1-05,1,5,sunny,晴れの,ch05_sunny.jpg,Level 1 Chapter 5
+L1-05,1,5,rainy,雨の,ch05_rainy.jpg,Level 1 Chapter 5
+L1-05,1,5,cloudy,くもりの,ch05_cloudy.jpg,Level 1 Chapter 5
+L1-05,1,5,snowy,雪の,ch05_snowy.jpg,Level 1 Chapter 5
+L1-06,1,6,acting,演技している,ch06_acting_on_a_stage.jpg,Level 1 Chapter 6
+L1-06,1,6,baking,焼いている,ch06_baking_bread.jpg,Level 1 Chapter 6
+L1-06,1,6,dancing,踊っている,ch06_dancing.jpg,Level 1 Chapter 6
+L1-06,1,6,laughing,笑っている,ch06_laughing.jpg,Level 1 Chapter 6
+L1-06,1,6,vacuuming,掃除機をかけている,ch06_vacuuming_a_carpet.jpg,Level 1 Chapter 6
+L1-06,1,6,dinner,夕食,ch06_having_dinner_at_a_table_with_family.jpg,Level 1 Chapter 6
+L1-06,1,6,bicycle,自転車,ch06_riding_a_bicycle.jpg,Level 1 Chapter 6
+L1-06,1,6,phone,電話,ch06_talking_on_the_phone.jpg,Level 1 Chapter 6
+L1-06,1,6,sofa,ソファー,ch06_on_the_sofa.jpg,Level 1 Chapter 6
+L1-06,1,6,bag,かばん,ch06_in_the_bag.jpg,Level 1 Chapter 6
+L1-07,1,7,airport,空港,ch07_airport.jpg,Level 1 Chapter 7
+L1-07,1,7,bakery,パン屋,ch07_bakery.jpg,Level 1 Chapter 7
+L1-07,1,7,cafeteria,カフェテリア,ch07_cafeteria.jpg,Level 1 Chapter 7
+L1-07,1,7,church,教会,ch07_church.jpg,Level 1 Chapter 7
+L1-07,1,7,clinic,診療所,ch07_clinic.jpg,Level 1 Chapter 7
+L1-07,1,7,hospital,病院,ch07_hospital.jpg,Level 1 Chapter 7
+L1-07,1,7,hotel,ホテル,ch07_hotel.jpg,Level 1 Chapter 7
+L1-07,1,7,laundromat,コインランドリー,ch07_laundromat.jpg,Level 1 Chapter 7
+L1-07,1,7,park,公園,ch07_park.jpg,Level 1 Chapter 7
+L1-07,1,7,elevator,エレベーター,ch07_elevator.jpg,Level 1 Chapter 7
+L1-07,1,7,mailbox,郵便受け,ch07_mailbox.jpg,Level 1 Chapter 7
+L1-07,1,7,stove,コンロ,ch07_kitchen_stove.jpg,Level 1 Chapter 7
+L1-07,1,7,refrigerator,冷蔵庫,ch07_refrigerator.jpg,Level 1 Chapter 7
+L1-07,1,7,closet,クローゼット,ch07_closet_with_clothes.jpg,Level 1 Chapter 7
+L1-08,1,8,belt,ベルト,ch08_belt.jpg,Level 1 Chapter 8
+L1-08,1,8,blouse,ブラウス,ch08_blouse.jpg,Level 1 Chapter 8
+L1-08,1,8,boots,ブーツ,ch08_pair_of_boots.jpg,Level 1 Chapter 8
+L1-08,1,8,bracelet,ブレスレット,ch08_bracelet.jpg,Level 1 Chapter 8
+L1-08,1,8,briefcase,書類かばん,ch08_briefcase.jpg,Level 1 Chapter 8
+L1-08,1,8,coat,コート,ch08_coat.jpg,Level 1 Chapter 8
+L1-08,1,8,dress,ドレス,ch08_dress.jpg,Level 1 Chapter 8
+L1-08,1,8,earrings,イヤリング,ch08_pair_of_earrings.jpg,Level 1 Chapter 8
+L1-08,1,8,glasses,めがね,ch08_pair_of_glasses.jpg,Level 1 Chapter 8
+L1-08,1,8,gloves,手袋,ch08_pair_of_gloves.jpg,Level 1 Chapter 8
+L1-08,1,8,hat,帽子,ch08_hat.jpg,Level 1 Chapter 8
+L1-08,1,8,jacket,ジャケット,ch08_jacket.jpg,Level 1 Chapter 8
+L1-08,1,8,jeans,ジーンズ,ch08_pair_of_jeans.jpg,Level 1 Chapter 8
+L1-08,1,8,mittens,ミトン,ch08_pair_of_mittens.jpg,Level 1 Chapter 8
+L1-08,1,8,necklace,ネックレス,ch08_necklace.jpg,Level 1 Chapter 8
+L1-08,1,8,pajamas,パジャマ,ch08_pajamas.jpg,Level 1 Chapter 8
+L1-08,1,8,pants,ズボン,ch08_pair_of_pants.jpg,Level 1 Chapter 8
+L1-08,1,8,purse,ハンドバッグ,ch08_purse.jpg,Level 1 Chapter 8
+L1-08,1,8,raincoat,レインコート,ch08_raincoat.jpg,Level 1 Chapter 8
+L1-08,1,8,shirt,シャツ,ch08_shirt.jpg,Level 1 Chapter 8
+L1-08,1,8,skirt,スカート,ch08_skirt.jpg,Level 1 Chapter 8
+L1-08,1,8,socks,靴下,ch08_pair_of_socks.jpg,Level 1 Chapter 8
+L1-08,1,8,suit,スーツ,ch08_suit.jpg,Level 1 Chapter 8
+L1-08,1,8,sunglasses,サングラス,ch08_pair_of_sunglasses.jpg,Level 1 Chapter 8
+L1-08,1,8,sweater,セーター,ch08_sweater.jpg,Level 1 Chapter 8
+L1-08,1,8,tie,ネクタイ,ch08_tie.jpg,Level 1 Chapter 8
+L1-08,1,8,umbrella,傘,ch08_umbrella.jpg,Level 1 Chapter 8
+L1-08,1,8,wristwatch,腕時計,ch08_wristwatch.jpg,Level 1 Chapter 8
+L1-09,1,9,painting,絵を描いている,ch09_painting_a_picture.jpg,Level 1 Chapter 9
+L1-09,1,9,shopping,買い物している,ch09_shopping_with_bags.jpg,Level 1 Chapter 9
+L1-09,1,9,working,働いている,ch09_working_at_an_office_desk.jpg,Level 1 Chapter 9
+L1-09,1,9,fruit,果物,ch09_selling_fruit_at_a_market_stall.jpg,Level 1 Chapter 9
+L1-09,1,9,speech,スピーチ,ch09_speaking_to_a_group.jpg,Level 1 Chapter 9
+L1-09,1,9,grandparents,祖父母,ch09_visiting_grandparents.jpg,Level 1 Chapter 9
+L1-10,1,10,babysitting,子守りをしている,ch10_babysitting_a_child.jpg,Level 1 Chapter 10
+L1-10,1,10,dancing,踊っている,ch10_dancing_at_a_party.jpg,Level 1 Chapter 10
+L1-10,1,10,jogging,ジョギングしている,ch10_jogging_in_a_park.jpg,Level 1 Chapter 10
+L1-10,1,10,volleyball,バレーボール,ch10_playing_volleyball.jpg,Level 1 Chapter 10
+L1-10,1,10,bike,自転車,ch10_riding_a_bicycle.jpg,Level 1 Chapter 10
+L1-10,1,10,movie,映画,ch10_watching_a_movie_in_a_theater.jpg,Level 1 Chapter 10
+L1-10,1,10,play,劇,ch10_watching_a_play_on_a_stage.jpg,Level 1 Chapter 10
+L1-11,1,11,long,長い,ch11_long_hair.jpg,Level 1 Chapter 11
+L1-11,1,11,short,短い,ch11_short_hair.jpg,Level 1 Chapter 11
+L1-11,1,11,morning,朝,ch11_morning.jpg,Level 1 Chapter 11
+L1-11,1,11,afternoon,午後,ch11_afternoon.jpg,Level 1 Chapter 11
+L1-11,1,11,evening,夕方,ch11_evening.jpg,Level 1 Chapter 11
+L1-11,1,11,night,夜,ch11_night.jpg,Level 1 Chapter 11
+L1-11,1,11,weekend,週末,ch11_weekend.jpg,Level 1 Chapter 11
+L1-12,1,12,happy,うれしい,ch12_happy.jpg,Level 1 Chapter 12
+L1-12,1,12,sad,悲しい,ch12_sad.jpg,Level 1 Chapter 12
+L1-12,1,12,hot,暑い,ch12_hot.jpg,Level 1 Chapter 12
+L1-12,1,12,cold,寒い,ch12_cold.jpg,Level 1 Chapter 12
+L1-12,1,12,sick,具合が悪い,ch12_sick.jpg,Level 1 Chapter 12
+L1-12,1,12,angry,怒っている,ch12_angry.jpg,Level 1 Chapter 12
+L1-12,1,12,nervous,緊張している,ch12_nervous.jpg,Level 1 Chapter 12
+L1-12,1,12,blushing,顔が赤くなっている,ch12_blushing.jpg,Level 1 Chapter 12
+L1-12,1,12,crying,泣いている,ch12_crying.jpg,Level 1 Chapter 12
+L1-12,1,12,sweating,汗をかいている,ch12_sweating.jpg,Level 1 Chapter 12
+L1-12,1,12,shivering,震えている,ch12_shivering.jpg,Level 1 Chapter 12
+L1-12,1,12,smiling,ほほえんでいる,ch12_smiling.jpg,Level 1 Chapter 12
+L1-12,1,12,yawning,あくびをしている,ch12_yawning.jpg,Level 1 Chapter 12
+L1-12,1,12,nails,爪,ch12_biting_nails.jpg,Level 1 Chapter 12
+L1-13,1,13,actor,俳優,ch13_actor.jpg,Level 1 Chapter 13
+L1-13,1,13,actress,女優,ch13_actress.jpg,Level 1 Chapter 13
+L1-13,1,13,baker,パン職人,ch13_baker.jpg,Level 1 Chapter 13
+L1-13,1,13,chef,シェフ,ch13_chef.jpg,Level 1 Chapter 13
+L1-13,1,13,dancer,ダンサー,ch13_dancer.jpg,Level 1 Chapter 13
+L1-13,1,13,mechanic,整備士,ch13_mechanic.jpg,Level 1 Chapter 13
+L1-13,1,13,salesperson,販売員,ch13_salesperson.jpg,Level 1 Chapter 13
+L1-13,1,13,secretary,秘書,ch13_secretary.jpg,Level 1 Chapter 13
+L1-13,1,13,singer,歌手,ch13_singer.jpg,Level 1 Chapter 13
+L1-13,1,13,superintendent,管理人,ch13_superintendent.jpg,Level 1 Chapter 13
+L1-13,1,13,teacher,先生,ch13_teacher.jpg,Level 1 Chapter 13
+L1-13,1,13,driver,運転手,ch13_truck_driver.jpg,Level 1 Chapter 13
+L1-13,1,13,worker,作業員,ch13_construction_worker.jpg,Level 1 Chapter 13
+L1-14,1,14,spring,春,ch14_spring.jpg,Level 1 Chapter 14
+L1-14,1,14,summer,夏,ch14_summer.jpg,Level 1 Chapter 14
+L1-14,1,14,fall,秋,ch14_fall.jpg,Level 1 Chapter 14
+L1-14,1,14,winter,冬,ch14_winter.jpg,Level 1 Chapter 14
+L1-14,1,14,three,3,ch14_3_00.jpg,Level 1 Chapter 14
+L1-14,1,14,six,6,ch14_6_15.jpg,Level 1 Chapter 14
+L1-14,1,14,nine,9,ch14_9_30.jpg,Level 1 Chapter 14
+L1-14,1,14,four,4,ch14_4_45.jpg,Level 1 Chapter 14
+L1-14,1,14,seven,7,ch14_7_45.jpg,Level 1 Chapter 14
+L1-14,1,14,eleven,11,ch14_11_30.jpg,Level 1 Chapter 14
+L1-14,1,14,two,2,ch14_2_45.jpg,Level 1 Chapter 14
+L1-14,1,14,eight,8,ch14_8_30.jpg,Level 1 Chapter 14
+L1-15,1,15,headache,頭痛,ch15_headache.jpg,Level 1 Chapter 15
+L1-15,1,15,stomachache,腹痛,ch15_stomachache.jpg,Level 1 Chapter 15
+L1-15,1,15,toothache,歯痛,ch15_toothache.jpg,Level 1 Chapter 15
+L1-15,1,15,backache,腰痛,ch15_backache.jpg,Level 1 Chapter 15
+L1-15,1,15,earache,耳の痛み,ch15_earache.jpg,Level 1 Chapter 15
+L1-15,1,15,cold,風邪,ch15_cold.jpg,Level 1 Chapter 15
+L1-15,1,15,fever,熱,ch15_fever.jpg,Level 1 Chapter 15
+L1-15,1,15,throat,のど,ch15_sore_throat.jpg,Level 1 Chapter 15
+L1-16,1,16,bath,お風呂,ch16_taking_a_bath.jpg,Level 1 Chapter 16
+L1-16,1,16,newspaper,新聞,ch16_reading_the_newspaper.jpg,Level 1 Chapter 16
+L1-16,1,16,exercises,運動,ch16_doing_exercises.jpg,Level 1 Chapter 16
+L1-16,1,16,groceries,食料品,ch16_buying_groceries.jpg,Level 1 Chapter 16
+L1-16,1,16,dinner,夕食,ch16_making_dinner.jpg,Level 1 Chapter 16
+L1-16,1,16,sleep,眠る,ch16_going_to_sleep.jpg,Level 1 Chapter 16
+L1-17,1,17,dirty,汚い,ch17_dirty.jpg,Level 1 Chapter 17
+L1-17,1,17,shiny,ぴかぴかの,ch17_shiny.jpg,Level 1 Chapter 17
+L1-17,1,17,dull,くすんだ,ch17_dull.jpg,Level 1 Chapter 17
+L1-17,1,17,tiny,とても小さい,ch17_tiny.jpg,Level 1 Chapter 17
+L1-17,1,17,enormous,巨大な,ch17_enormous.jpg,Level 1 Chapter 17
+L1-17,1,17,comfortable,快適な,ch17_comfortable.jpg,Level 1 Chapter 17
+L1-17,1,17,energetic,元気な,ch17_energetic.jpg,Level 1 Chapter 17
+L1-17,1,17,full,満腹の,ch17_full.jpg,Level 1 Chapter 17
+L1-17,1,17,baby,赤ちゃん,ch17_baby.jpg,Level 1 Chapter 17
+L2-01,2,1,chatting,チャットしている,l2ch01_chat_online.jpg,Level 2 Chapter 1
+L2-01,2,1,cleaning,掃除している,l2ch01_clean.jpg,Level 2 Chapter 1
+L2-01,2,1,cooking,料理している,l2ch01_cook.jpg,Level 2 Chapter 1
+L2-01,2,1,driving,運転している,l2ch01_drive.jpg,Level 2 Chapter 1
+L2-01,2,1,hiking,ハイキングしている,l2ch01_go_hiking.jpg,Level 2 Chapter 1
+L2-01,2,1,mall,ショッピングモール,l2ch01_go_to_the_mall.jpg,Level 2 Chapter 1
+L2-01,2,1,pancakes,パンケーキ,l2ch01_make_pancakes.jpg,Level 2 Chapter 1
+L2-01,2,1,flowers,花,l2ch01_plant.jpg,Level 2 Chapter 1
+L2-01,2,1,basketball,バスケットボール,l2ch01_play_basketball.jpg,Level 2 Chapter 1
+L2-01,2,1,piano,ピアノ,l2ch01_play_the_piano.jpg,Level 2 Chapter 1
+L2-01,2,1,reading,読んでいる,l2ch01_read.jpg,Level 2 Chapter 1
+L2-01,2,1,swimming,泳いでいる,l2ch01_swim.jpg,Level 2 Chapter 1
+L2-01,2,1,letter,手紙,l2ch01_write.jpg,Level 2 Chapter 1
+L2-01,2,1,spring,春,ch14_spring.jpg,Level 2 Chapter 1
+L2-01,2,1,summer,夏,ch14_summer.jpg,Level 2 Chapter 1
+L2-01,2,1,fall,秋,ch14_fall.jpg,Level 2 Chapter 1
+L2-01,2,1,winter,冬,ch14_winter.jpg,Level 2 Chapter 1
+L2-02,2,2,apples,りんご,l2ch02_apples.jpg,Level 2 Chapter 2
+L2-02,2,2,bananas,バナナ,l2ch02_bananas.jpg,Level 2 Chapter 2
+L2-02,2,2,bread,パン,l2ch02_bread.jpg,Level 2 Chapter 2
+L2-02,2,2,carrots,にんじん,l2ch02_carrots.jpg,Level 2 Chapter 2
+L2-02,2,2,cheese,チーズ,l2ch02_cheese.jpg,Level 2 Chapter 2
+L2-02,2,2,cookies,クッキー,l2ch02_cookies.jpg,Level 2 Chapter 2
+L2-02,2,2,eggs,卵,l2ch02_eggs.jpg,Level 2 Chapter 2
+L2-02,2,2,fries,フライドポテト,l2ch02_french_fries.jpg,Level 2 Chapter 2
+L2-02,2,2,grapes,ぶどう,l2ch02_grapes.jpg,Level 2 Chapter 2
+L2-02,2,2,hamburgers,ハンバーガー,l2ch02_hamburgers.jpg,Level 2 Chapter 2
+L2-02,2,2,lettuce,レタス,l2ch02_lettuce.jpg,Level 2 Chapter 2
+L2-02,2,2,onions,玉ねぎ,l2ch02_onions.jpg,Level 2 Chapter 2
+L2-02,2,2,pizza,ピザ,l2ch02_pizza.jpg,Level 2 Chapter 2
+L2-02,2,2,rice,ご飯・米,l2ch02_rice.jpg,Level 2 Chapter 2
+L2-02,2,2,spaghetti,スパゲッティ,l2ch02_spaghetti.jpg,Level 2 Chapter 2
+L2-02,2,2,tomatoes,トマト,l2ch02_tomatoes.jpg,Level 2 Chapter 2
+L2-03,2,3,flour,小麦粉,l2ch03_a_bag_of_flour.jpg,Level 2 Chapter 3
+L2-03,2,3,ketchup,ケチャップ,l2ch03_a_bottle_of_ketchup.jpg,Level 2 Chapter 3
+L2-03,2,3,cereal,シリアル,l2ch03_a_box_of_cereal.jpg,Level 2 Chapter 3
+L2-03,2,3,bunch,房,l2ch03_a_bunch_of_bananas.jpg,Level 2 Chapter 3
+L2-03,2,3,soup,スープ,l2ch03_a_can_of_soup.jpg,Level 2 Chapter 3
+L2-03,2,3,dozen,ダース（12個）,l2ch03_a_dozen_eggs.jpg,Level 2 Chapter 3
+L2-03,2,3,jam,ジャム,l2ch03_a_jar_of_jam.jpg,Level 2 Chapter 3
+L2-03,2,3,loaf,（パン）一斤,l2ch03_a_loaf_of_bread.jpg,Level 2 Chapter 3
+L2-03,2,3,bowl,おわん・ボウル,l2ch03_a_bowl_of_soup.jpg,Level 2 Chapter 3
+L2-03,2,3,pie,パイ,l2ch03_a_piece_of_apple_pie.jpg,Level 2 Chapter 3
+L2-03,2,3,milk,牛乳,l2ch03_a_glass_of_milk.jpg,Level 2 Chapter 3
+L2-03,2,3,slice,一切れ,l2ch03_a_slice_of_pizza.jpg,Level 2 Chapter 3
+L2-03,2,3,chocolate,チョコレート,l2ch03_a_cup_of_hot_chocolate.jpg,Level 2 Chapter 3
+L2-04,2,4,sunburn,日焼け,l2ch04_got_a_sunburn.jpg,Level 2 Chapter 4
+L2-04,2,4,seasick,船酔いの,l2ch04_got_seasick.jpg,Level 2 Chapter 4
+L2-04,2,4,cold,風邪,l2ch04_caught_a_cold.jpg,Level 2 Chapter 4
+L2-04,2,4,leg,脚,l2ch04_broke_a_leg.jpg,Level 2 Chapter 4
+L2-04,2,4,shock,感電・ショック,l2ch04_got_a_shock.jpg,Level 2 Chapter 4
+L2-04,2,4,helmet,ヘルメット,l2ch04_helmet.jpg,Level 2 Chapter 4
+L2-04,2,4,married,結婚した,l2ch04_getting_married.jpg,Level 2 Chapter 4
+L2-04,2,4,moving,引っ越し,l2ch04_moving.jpg,Level 2 Chapter 4
+L2-05,2,5,cute,かわいい,l2ch05_cute.jpg,Level 2 Chapter 5
+L2-05,2,5,soft,やわらかい,l2ch05_soft.jpg,Level 2 Chapter 5
+L2-05,2,5,spicy,辛い,l2ch05_spicy.jpg,Level 2 Chapter 5
+L2-05,2,5,fancy,豪華な,l2ch05_fancy.jpg,Level 2 Chapter 5
+L2-05,2,5,light,軽い,l2ch05_light.jpg,Level 2 Chapter 5
+L2-05,2,5,small,小さい,l2ch05_small.jpg,Level 2 Chapter 5
+L2-05,2,5,friendly,親しみやすい,l2ch05_friendly.jpg,Level 2 Chapter 5
+L2-05,2,5,powerful,力強い,l2ch05_powerful.jpg,Level 2 Chapter 5
+L2-05,2,5,delicious,とてもおいしい,l2ch05_delicious.jpg,Level 2 Chapter 5
+L2-05,2,5,fashionable,おしゃれな,l2ch05_fashionable.jpg,Level 2 Chapter 5
+L2-05,2,5,lazy,怠けた,l2ch05_lazy.jpg,Level 2 Chapter 5
+L2-05,2,5,talkative,おしゃべりな,l2ch05_talkative.jpg,Level 2 Chapter 5
+L2-06,2,6,energetic,元気な,l2ch06_energetic.jpg,Level 2 Chapter 6
+L2-06,2,6,funny,おもしろい,l2ch06_funny.jpg,Level 2 Chapter 6
+L2-06,2,6,generous,気前がいい,l2ch06_generous.jpg,Level 2 Chapter 6
+L2-06,2,6,helpful,役に立つ・親切な,l2ch06_helpful.jpg,Level 2 Chapter 6
+L2-06,2,6,noisy,うるさい,l2ch06_noisy.jpg,Level 2 Chapter 6
+L2-06,2,6,popular,人気のある,l2ch06_popular.jpg,Level 2 Chapter 6
+L2-06,2,6,sloppy,だらしない,l2ch06_sloppy.jpg,Level 2 Chapter 6
+L2-06,2,6,lazy,怠けた,l2ch06_lazy.jpg,Level 2 Chapter 6
+L2-06,2,6,patient,我慢強い,l2ch06_patient.jpg,Level 2 Chapter 6
+L2-06,2,6,rude,失礼な,l2ch06_rude.jpg,Level 2 Chapter 6
+L2-07,2,7,stadium,スタジアム,l2ch07_a_baseball_stadium.jpg,Level 2 Chapter 7
+L2-07,2,7,courthouse,裁判所,l2ch07_a_courthouse.jpg,Level 2 Chapter 7
+L2-07,2,7,motel,モーテル,l2ch07_a_motel.jpg,Level 2 Chapter 7
+L2-07,2,7,museum,博物館,l2ch07_a_museum.jpg,Level 2 Chapter 7
+L2-07,2,7,playground,遊び場,l2ch07_a_playground.jpg,Level 2 Chapter 7
+L2-07,2,7,university,大学,l2ch07_a_university.jpg,Level 2 Chapter 7
+L2-08,2,8,dancer,ダンサー,l2ch08_a_dancer.jpg,Level 2 Chapter 8
+L2-08,2,8,runner,ランナー,l2ch08_a_runner.jpg,Level 2 Chapter 8
+L2-08,2,8,skier,スキーヤー,l2ch08_a_skier.jpg,Level 2 Chapter 8
+L2-08,2,8,singer,歌手,l2ch08_a_singer.jpg,Level 2 Chapter 8
+L2-08,2,8,player,選手,l2ch08_a_chess_player.jpg,Level 2 Chapter 8
+L2-08,2,8,teacher,先生,l2ch08_a_teacher.jpg,Level 2 Chapter 8
+L2-08,2,8,driver,運転手,l2ch08_a_driver.jpg,Level 2 Chapter 8
+L2-08,2,8,painter,画家,l2ch08_a_painter.jpg,Level 2 Chapter 8
+L2-09,2,9,coffee,コーヒー,l2ch09_spilled_the_coffee.jpg,Level 2 Chapter 9
+L2-09,2,9,plate,皿,l2ch09_dropped_a_plate.jpg,Level 2 Chapter 9
+L2-09,2,9,tripped,つまずいた,l2ch09_tripped.jpg,Level 2 Chapter 9
+L2-09,2,9,ladder,はしご,l2ch09_fell_off_a_ladder.jpg,Level 2 Chapter 9
+L2-09,2,9,fainted,気を失った,l2ch09_fainted.jpg,Level 2 Chapter 9
+L2-09,2,9,tire,タイヤ,l2ch09_got_a_flat_tire.jpg,Level 2 Chapter 9
+L2-09,2,9,tree,木,l2ch09_crashed_into_a_tree.jpg,Level 2 Chapter 9
+L2-09,2,9,finger,指,l2ch09_cut_a_finger.jpg,Level 2 Chapter 9
+L2-09,2,9,hand,手,l2ch09_burned_a_hand.jpg,Level 2 Chapter 9
+L2-09,2,9,wallet,財布,l2ch09_lost_a_wallet.jpg,Level 2 Chapter 9
+OPP-01,,,brother,兄弟,,Opposites Set 1
+OPP-01,,,sister,姉妹,,Opposites Set 1
+OPP-01,,,husband,夫,,Opposites Set 1
+OPP-01,,,wife,妻,,Opposites Set 1
+OPP-01,,,ahead,前方に,,Opposites Set 1
+OPP-01,,,behind,後ろに,,Opposites Set 1
+OPP-01,,,front,前,,Opposites Set 1
+OPP-01,,,back,後ろ,,Opposites Set 1
+OPP-01,,,forward,前へ,,Opposites Set 1
+OPP-01,,,backward,後ろへ,,Opposites Set 1
+OPP-01,,,melt,溶ける,,Opposites Set 1
+OPP-01,,,freeze,凍る,,Opposites Set 1
+OPP-01,,,over,上に,,Opposites Set 1
+OPP-01,,,under,下に,,Opposites Set 1
+OPP-01,,,down,下へ,,Opposites Set 1
+OPP-01,,,top,てっぺん,,Opposites Set 1
+OPP-01,,,bottom,底,,Opposites Set 1
+OPP-01,,,sit,座る,,Opposites Set 1
+OPP-01,,,stand,立つ,,Opposites Set 1
+OPP-02,,,tame,人になれた,,Opposites Set 2
+OPP-02,,,wild,野生の,,Opposites Set 2
+OPP-02,,,deep,深い,,Opposites Set 2
+OPP-02,,,shallow,浅い,,Opposites Set 2
+OPP-02,,,boy,男の子,,Opposites Set 2
+OPP-02,,,girl,女の子,,Opposites Set 2
+OPP-02,,,real,本物の,,Opposites Set 2
+OPP-02,,,fake,偽物の,,Opposites Set 2
+OPP-02,,,fantasy,空想,,Opposites Set 2
+OPP-02,,,reality,現実,,Opposites Set 2
+OPP-02,,,fiction,フィクション,,Opposites Set 2
+OPP-02,,,nonfiction,ノンフィクション,,Opposites Set 2
+OPP-02,,,big,大きい,,Opposites Set 2
+OPP-02,,,small,小さい,,Opposites Set 2
+OPP-02,,,out,外に,,Opposites Set 2
+OPP-02,,,inside,内側で,,Opposites Set 2
+OPP-02,,,outside,外で,,Opposites Set 2
+OPP-02,,,give,与える,,Opposites Set 2
+OPP-02,,,take,取る,,Opposites Set 2
+OPP-03,,,team,チーム,,Opposites Set 3
+OPP-03,,,individual,個人,,Opposites Set 3
+OPP-03,,,empty,空の,,Opposites Set 3
+OPP-03,,,full,いっぱいの,,Opposites Set 3
+OPP-03,,,sun,太陽,,Opposites Set 3
+OPP-03,,,moon,月,,Opposites Set 3
+OPP-03,,,near,近い,,Opposites Set 3
+OPP-03,,,far,遠い,,Opposites Set 3
+OPP-03,,,high,高い,,Opposites Set 3
+OPP-03,,,low,低い,,Opposites Set 3
+OPP-03,,,before,前に,,Opposites Set 3
+OPP-03,,,after,後に,,Opposites Set 3
+OPP-03,,,clean,きれいな,,Opposites Set 3
+OPP-03,,,dirty,汚い,,Opposites Set 3
+OPP-03,,,tidy,きちんとした,,Opposites Set 3
+OPP-03,,,messy,散らかった,,Opposites Set 3
+OPP-03,,,good,良い,,Opposites Set 3
+OPP-03,,,bad,悪い,,Opposites Set 3
+OPP-03,,,beautiful,美しい,,Opposites Set 3
+OPP-03,,,ugly,醜い,,Opposites Set 3
+OPP-04,,,stop,止まる,,Opposites Set 4
+OPP-04,,,walk,歩く,,Opposites Set 4
+OPP-04,,,run,走る,,Opposites Set 4
+OPP-04,,,black,黒,,Opposites Set 4
+OPP-04,,,white,白,,Opposites Set 4
+OPP-04,,,sleep,眠る,,Opposites Set 4
+OPP-04,,,wake,目を覚ます,,Opposites Set 4
+OPP-04,,,early,早い,,Opposites Set 4
+OPP-04,,,late,遅い,,Opposites Set 4
+OPP-04,,,happy,うれしい,,Opposites Set 4
+OPP-04,,,sad,悲しい,,Opposites Set 4
+OPP-04,,,straight,まっすぐな,,Opposites Set 4
+OPP-04,,,bent,曲がった,,Opposites Set 4
+OPP-04,,,yell,叫ぶ,,Opposites Set 4
+OPP-04,,,whisper,ささやく,,Opposites Set 4
+OPP-04,,,awake,起きている,,Opposites Set 4
+OPP-04,,,asleep,眠っている,,Opposites Set 4
+OPP-04,,,open,開いている,,Opposites Set 4
+OPP-04,,,closed,閉まっている,,Opposites Set 4
+OPP-05,,,lock,鍵をかける,,Opposites Set 5
+OPP-05,,,unlock,鍵を開ける,,Opposites Set 5
+OPP-05,,,young,若い,,Opposites Set 5
+OPP-05,,,old,年をとった,,Opposites Set 5
+OPP-05,,,new,新しい,,Opposites Set 5
+OPP-05,,,entrance,入口,,Opposites Set 5
+OPP-05,,,exit,出口,,Opposites Set 5
+OPP-05,,,wet,ぬれた,,Opposites Set 5
+OPP-05,,,dry,乾いた,,Opposites Set 5
+OPP-05,,,smile,ほほえむ,,Opposites Set 5
+OPP-05,,,frown,顔をしかめる,,Opposites Set 5
+OPP-05,,,work,働く,,Opposites Set 5
+OPP-05,,,play,遊ぶ,,Opposites Set 5
+OPP-05,,,strong,強い,,Opposites Set 5
+OPP-05,,,weak,弱い,,Opposites Set 5
+OPP-05,,,start,始める,,Opposites Set 5
+OPP-05,,,finish,終える,,Opposites Set 5
+OPP-05,,,friend,友達,,Opposites Set 5
+OPP-05,,,enemy,敵,,Opposites Set 5
+OPP-06,,,smart,頭がいい,,Opposites Set 6
+OPP-06,,,dumb,ばかな,,Opposites Set 6
+OPP-06,,,sweet,甘い,,Opposites Set 6
+OPP-06,,,sour,すっぱい,,Opposites Set 6
+OPP-06,,,long,長い,,Opposites Set 6
+OPP-06,,,short,短い,,Opposites Set 6
+OPP-06,,,love,大好きだ,,Opposites Set 6
+OPP-06,,,hate,大嫌いだ,,Opposites Set 6
+OPP-06,,,city,都会,,Opposites Set 6
+OPP-06,,,country,田舎,,Opposites Set 6
+OPP-06,,,smooth,なめらかな,,Opposites Set 6
+OPP-06,,,rough,ざらざらした,,Opposites Set 6
+OPP-06,,,floor,床,,Opposites Set 6
+OPP-06,,,ceiling,天井,,Opposites Set 6
+OPP-06,,,correct,正しい,,Opposites Set 6
+OPP-06,,,wrong,間違った,,Opposites Set 6
+OPP-06,,,talk,話す,,Opposites Set 6
+OPP-06,,,listen,聞く,,Opposites Set 6
+OPP-06,,,laugh,笑う,,Opposites Set 6
+OPP-06,,,cry,泣く,,Opposites Set 6
+OPP-07,,,man,男性,,Opposites Set 7
+OPP-07,,,woman,女性,,Opposites Set 7
+OPP-07,,,noisy,うるさい,,Opposites Set 7
+OPP-07,,,quiet,静かな,,Opposites Set 7
+OPP-07,,,push,押す,,Opposites Set 7
+OPP-07,,,pull,引く,,Opposites Set 7
+OPP-07,,,teacher,先生,,Opposites Set 7
+OPP-07,,,student,生徒,,Opposites Set 7
+OPP-07,,,whole,全体,,Opposites Set 7
+OPP-07,,,part,一部,,Opposites Set 7
+OPP-07,,,male,男性の,,Opposites Set 7
+OPP-07,,,female,女性の,,Opposites Set 7
+OPP-07,,,fat,太った,,Opposites Set 7
+OPP-07,,,thin,やせた,,Opposites Set 7
+OPP-07,,,thick,厚い,,Opposites Set 7
+OPP-07,,,sunrise,日の出,,Opposites Set 7
+OPP-07,,,sunset,日の入り,,Opposites Set 7
+OPP-07,,,fix,直す,,Opposites Set 7
+OPP-07,,,break,壊す,,Opposites Set 7
+OPP-08,,,alive,生きている,,Opposites Set 8
+OPP-08,,,dead,死んでいる,,Opposites Set 8
+OPP-08,,,well,元気な,,Opposites Set 8
+OPP-08,,,sick,病気の,,Opposites Set 8
+OPP-08,,,safe,安全な,,Opposites Set 8
+OPP-08,,,dangerous,危険な,,Opposites Set 8
+OPP-08,,,present,出席している,,Opposites Set 8
+OPP-08,,,absent,欠席の,,Opposites Set 8
+OPP-08,,,son,息子,,Opposites Set 8
+OPP-08,,,daughter,娘,,Opposites Set 8
+OPP-08,,,heavy,重い,,Opposites Set 8
+OPP-08,,,light,軽い,,Opposites Set 8
+OPP-08,,,cheap,安い,,Opposites Set 8
+OPP-08,,,expensive,高い,,Opposites Set 8
+OPP-08,,,mom,お母さん,,Opposites Set 8
+OPP-08,,,dad,お父さん,,Opposites Set 8
+OPP-08,,,dark,暗い,,Opposites Set 8
+OPP-08,,,many,多くの,,Opposites Set 8
+OPP-08,,,few,少しの,,Opposites Set 8
+OPP-09,,,nervous,緊張した,,Opposites Set 9
+OPP-09,,,calm,落ち着いた,,Opposites Set 9
+OPP-09,,,left,左,,Opposites Set 9
+OPP-09,,,right,右,,Opposites Set 9
+OPP-09,,,truth,真実,,Opposites Set 9
+OPP-09,,,lie,うそ,,Opposites Set 9
+OPP-09,,,true,本当の,,Opposites Set 9
+OPP-09,,,false,うその,,Opposites Set 9
+OPP-09,,,hard,かたい,,Opposites Set 9
+OPP-09,,,soft,やわらかい,,Opposites Set 9
+OPP-09,,,warm,暖かい,,Opposites Set 9
+OPP-09,,,cool,涼しい,,Opposites Set 9
+OPP-09,,,she,彼女,,Opposites Set 9
+OPP-09,,,you,あなた,,Opposites Set 9
+OPP-09,,,float,浮く,,Opposites Set 9
+OPP-09,,,sink,沈む,,Opposites Set 9
+OPP-09,,,tight,きつい,,Opposites Set 9
+OPP-09,,,loose,ゆるい,,Opposites Set 9
+OPP-10,,,uncle,おじ,,Opposites Set 10
+OPP-10,,,aunt,おば,,Opposites Set 10
+OPP-10,,,more,もっと多く,,Opposites Set 10
+OPP-10,,,less,もっと少なく,,Opposites Set 10
+OPP-10,,,fast,速い,,Opposites Set 10
+OPP-10,,,slow,遅い,,Opposites Set 10
+OPP-10,,,same,同じ,,Opposites Set 10
+OPP-10,,,different,違う,,Opposites Set 10
+OPP-10,,,yes,はい,,Opposites Set 10
+OPP-10,,,hot,暑い,,Opposites Set 10
+OPP-10,,,cold,寒い,,Opposites Set 10
+OPP-10,,,morning,朝,,Opposites Set 10
+OPP-10,,,night,夜,,Opposites Set 10
+OPP-10,,,off,消えて,,Opposites Set 10
+OPP-10,,,arrive,着く,,Opposites Set 10
+OPP-10,,,leave,出発する,,Opposites Set 10
+OPP-10,,,buy,買う,,Opposites Set 10
+OPP-10,,,sell,売る,,Opposites Set 10
+OPP-11,,,borrow,借りる,,Opposites Set 11
+OPP-11,,,lend,貸す,,Opposites Set 11
+OPP-11,,,win,勝つ,,Opposites Set 11
+OPP-11,,,lose,負ける,,Opposites Set 11
+OPP-11,,,remember,覚えている,,Opposites Set 11
+OPP-11,,,forget,忘れる,,Opposites Set 11
+OPP-11,,,ask,質問する,,Opposites Set 11
+OPP-11,,,answer,答える,,Opposites Set 11
+OPP-11,,,send,送る,,Opposites Set 11
+OPP-11,,,receive,受け取る,,Opposites Set 11
+OPP-11,,,come,来る,,Opposites Set 11
+OPP-11,,,begin,始まる,,Opposites Set 11
+OPP-11,,,end,終わる,,Opposites Set 11
+OPP-11,,,increase,増える,,Opposites Set 11
+OPP-11,,,decrease,減る,,Opposites Set 11
+OPP-12,,,add,足す,,Opposites Set 12
+OPP-12,,,subtract,引く,,Opposites Set 12
+OPP-12,,,pass,合格する,,Opposites Set 12
+OPP-12,,,fail,不合格になる,,Opposites Set 12
+OPP-12,,,accept,受け入れる,,Opposites Set 12
+OPP-12,,,refuse,断る,,Opposites Set 12
+OPP-12,,,agree,賛成する,,Opposites Set 12
+OPP-12,,,disagree,反対する,,Opposites Set 12
+OPP-12,,,like,好き,,Opposites Set 12
+OPP-12,,,dislike,嫌い,,Opposites Set 12
+OPP-12,,,hire,雇う,,Opposites Set 12
+OPP-12,,,fire,解雇する,,Opposites Set 12
+OPP-12,,,rich,金持ちの,,Opposites Set 12
+OPP-12,,,poor,貧しい,,Opposites Set 12
+OPP-12,,,busy,忙しい,,Opposites Set 12
+OPP-12,,,free,暇な,,Opposites Set 12
+OPP-12,,,easy,簡単な,,Opposites Set 12
+OPP-12,,,difficult,難しい,,Opposites Set 12
+OPP-12,,,interesting,おもしろい,,Opposites Set 12
+OPP-12,,,boring,つまらない,,Opposites Set 12
+OPP-13,,,tall,背が高い,,Opposites Set 13
+OPP-13,,,short,背が低い,,Opposites Set 13
+OPP-13,,,wide,広い,,Opposites Set 13
+OPP-13,,,narrow,狭い,,Opposites Set 13
+OPP-13,,,kind,優しい,,Opposites Set 13
+OPP-13,,,mean,意地悪な,,Opposites Set 13
+OPP-13,,,polite,礼儀正しい,,Opposites Set 13
+OPP-13,,,rude,失礼な,,Opposites Set 13
+OPP-13,,,healthy,健康的な,,Opposites Set 13
+OPP-13,,,unhealthy,不健康な,,Opposites Set 13
+OPP-13,,,fresh,新鮮な,,Opposites Set 13
+OPP-13,,,rotten,腐った,,Opposites Set 13
+OPP-13,,,cooked,火の通った,,Opposites Set 13
+OPP-13,,,raw,生の,,Opposites Set 13
+OPP-13,,,sharp,鋭い,,Opposites Set 13
+OPP-13,,,dull,鈍い,,Opposites Set 13
+OPP-13,,,hungry,お腹がすいた,,Opposites Set 13
+OPP-13,,,full,お腹いっぱい,,Opposites Set 13
+OPP-13,,,possible,可能な,,Opposites Set 13
+OPP-13,,,impossible,不可能な,,Opposites Set 13
+OPP-14,,,public,公共の,,Opposites Set 14
+OPP-14,,,private,私的な,,Opposites Set 14
+OPP-14,,,positive,前向きな,,Opposites Set 14
+OPP-14,,,negative,後ろ向きな,,Opposites Set 14
+OPP-14,,,married,既婚の,,Opposites Set 14
+OPP-14,,,single,独身の,,Opposites Set 14
+OPP-14,,,always,いつも,,Opposites Set 14
+OPP-14,,,never,決して…ない,,Opposites Set 14
+OPP-14,,,everything,全部,,Opposites Set 14
+OPP-14,,,nothing,何もない,,Opposites Set 14
+OPP-14,,,everyone,みんな,,Opposites Set 14
+OPP-14,,,above,上に,,Opposites Set 14
+OPP-14,,,below,下に,,Opposites Set 14
+OPP-14,,,upstairs,上の階,,Opposites Set 14
+OPP-14,,,downstairs,下の階,,Opposites Set 14
+OPP-14,,,first,最初の,,Opposites Set 14
+OPP-14,,,last,最後の,,Opposites Set 14
+OPP-15,,,yesterday,昨日,,Opposites Set 15
+OPP-15,,,tomorrow,明日,,Opposites Set 15
+OPP-15,,,past,過去,,Opposites Set 15
+OPP-15,,,future,未来,,Opposites Set 15
+OPP-15,,,day,昼,,Opposites Set 15
+OPP-15,,,night,夜,,Opposites Set 15
+OPP-15,,,north,北,,Opposites Set 15
+OPP-15,,,south,南,,Opposites Set 15
+OPP-15,,,east,東,,Opposites Set 15
+OPP-15,,,west,西,,Opposites Set 15
+OPP-15,,,arrival,到着,,Opposites Set 15
+OPP-15,,,departure,出発,,Opposites Set 15
+OPP-15,,,maximum,最大,,Opposites Set 15
+OPP-15,,,minimum,最小,,Opposites Set 15
+OPP-15,,,plus,プラス,,Opposites Set 15
+OPP-15,,,minus,マイナス,,Opposites Set 15
+OPP-15,,,catch,捕る,,Opposites Set 15
+OPP-15,,,throw,投げる,,Opposites Set 15
+OPP-16,,,save,貯める,,Opposites Set 16
+OPP-16,,,spend,使う,,Opposites Set 16
+OPP-16,,,teach,教える,,Opposites Set 16
+OPP-16,,,learn,学ぶ,,Opposites Set 16
+OPP-16,,,lead,先導する,,Opposites Set 16
+OPP-16,,,follow,ついていく,,Opposites Set 16
+OPP-16,,,rise,上がる,,Opposites Set 16
+OPP-16,,,fall,下がる,,Opposites Set 16
+OPP-16,,,pack,荷造りする,,Opposites Set 16
+OPP-16,,,unpack,荷ほどきする,,Opposites Set 16
+OPP-16,,,tie,結ぶ,,Opposites Set 16
+OPP-16,,,untie,ほどく,,Opposites Set 16
+OPP-16,,,hide,隠す,,Opposites Set 16
+OPP-16,,,show,見せる,,Opposites Set 16
+OPP-16,,,allow,許す,,Opposites Set 16
+OPP-16,,,forbid,禁止する,,Opposites Set 16
+OPP-17,,,upload,アップロードする,,Opposites Set 17
+OPP-17,,,download,ダウンロードする,,Opposites Set 17
+OPP-17,,,brave,勇敢な,,Opposites Set 17
+OPP-17,,,scared,怖がりの,,Opposites Set 17
+OPP-17,,,famous,有名な,,Opposites Set 17
+OPP-17,,,unknown,無名の,,Opposites Set 17
+OPP-17,,,lucky,運がいい,,Opposites Set 17
+OPP-17,,,unlucky,運が悪い,,Opposites Set 17
+OPP-17,,,careful,注意深い,,Opposites Set 17
+OPP-17,,,careless,不注意な,,Opposites Set 17
+OPP-17,,,honest,正直な,,Opposites Set 17
+OPP-17,,,dishonest,不正直な,,Opposites Set 17
+OPP-18,,,simple,簡単な,,Opposites Set 18
+OPP-18,,,complicated,複雑な,,Opposites Set 18
+OPP-18,,,spicy,辛い,,Opposites Set 18
+OPP-18,,,mild,辛くない,,Opposites Set 18
+OPP-18,,,outgoing,社交的な,,Opposites Set 18
+OPP-18,,,shy,恥ずかしがりの,,Opposites Set 18
+OPP-18,,,lazy,怠けた,,Opposites Set 18
+OPP-18,,,energetic,元気な,,Opposites Set 18
+OPP-18,,,tired,疲れた,,Opposites Set 18
+OPP-18,,,relaxed,リラックスした,,Opposites Set 18
+OPP-18,,,stressed,ストレスがたまった,,Opposites Set 18
+OPP-18,,,patient,我慢強い,,Opposites Set 18
+OPP-18,,,impatient,せっかちな,,Opposites Set 18
+OPP-18,,,generous,気前のいい,,Opposites Set 18
+OPP-18,,,stingy,けちな,,Opposites Set 18
+OPP-18,,,modern,現代的な,,Opposites Set 18
+OPP-18,,,traditional,伝統的な,,Opposites Set 18
+OPP-18,,,local,地元の,,Opposites Set 18
+OPP-18,,,foreign,外国の,,Opposites Set 18
+OPP-19,,,huge,巨大な,,Opposites Set 19
+OPP-19,,,tiny,とても小さい,,Opposites Set 19
+OPP-19,,,legal,合法の,,Opposites Set 19
+OPP-19,,,illegal,違法の,,Opposites Set 19
+OPP-19,,,useful,役に立つ,,Opposites Set 19
+OPP-19,,,useless,役に立たない,,Opposites Set 19
+OPP-19,,,even,偶数の,,Opposites Set 19
+OPP-19,,,odd,奇数の,,Opposites Set 19
+OPP-19,,,here,ここ,,Opposites Set 19
+OPP-19,,,there,そこ,,Opposites Set 19
+OPP-19,,,this,これ,,Opposites Set 19
+OPP-19,,,that,あれ,,Opposites Set 19
+OPP-19,,,often,よく,,Opposites Set 19
+OPP-19,,,rarely,めったに…ない,,Opposites Set 19
+OPP-19,,,already,もう,,Opposites Set 19
+OPP-19,,,now,今,,Opposites Set 19
+OPP-19,,,later,後で,,Opposites Set 19
+OPP-19,,,noon,正午,,Opposites Set 19
+OPP-19,,,midnight,真夜中,,Opposites Set 19
+OPP-20,,,weekday,平日,,Opposites Set 20
+OPP-20,,,weekend,週末,,Opposites Set 20
+OPP-20,,,spring,春,,Opposites Set 20
+OPP-20,,,fall,秋,,Opposites Set 20
+OPP-20,,,land,陸,,Opposites Set 20
+OPP-20,,,sea,海,,Opposites Set 20
+OPP-20,,,import,輸入する,,Opposites Set 20
+OPP-20,,,export,輸出する,,Opposites Set 20
+OPP-20,,,income,収入,,Opposites Set 20
+OPP-20,,,expenses,支出,,Opposites Set 20
+OPP-20,,,boss,上司,,Opposites Set 20
+OPP-20,,,employee,社員,,Opposites Set 20
+OPP-20,,,host,主人・ホスト,,Opposites Set 20
+OPP-20,,,guest,客,,Opposites Set 20
+OPP-20,,,beginner,初心者,,Opposites Set 20
+OPP-20,,,expert,上級者,,Opposites Set 20
