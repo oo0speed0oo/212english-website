@@ -1,7 +1,7 @@
 // Word games for the Spelling section (and, later, Phonics): one engine, any word list.
 //   H212WordGames.missing(cfg)   Missing Letters (Easy: 1 letter, 3 big tiles. Normal: 2-3 letters, a tile bank or the keyboard)
 //   H212WordGames.search(cfg)    Word Search (Easy: 5x5 or 6x6, 4-5 words, right and down. Normal: 8x8, 6-8 words, right, down and diagonal)
-// Crossword is added in a later step.
+//   H212WordGames.cross(cfg)     Crossword (Easy: 3-4 words, first letters given, picture clues. Normal: 5-6 words, Japanese clues)
 //
 // cfg: {
 //   words:   [ { w: 'cat', ja: '猫', img: 'ch01_cat.jpg' (or '') } ],   the word list (lower-case letters only)
@@ -20,6 +20,7 @@ var H212WordGames = (function () {
   var VOWELS = 'aeiou', ALPHA = 'abcdefghijklmnopqrstuvwxyz';
   var G = null;                   // the Missing Letters round in progress
   var W = null;                   // the Word Search in progress
+  var X = null;                   // the Crossword in progress
 
   function esc(s) {
     return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
@@ -176,6 +177,10 @@ var H212WordGames = (function () {
 
   // The keyboard (Mac): a typed letter taps the first unused tile with that letter
   function onKey(e) {
+    if (X && !X.over && e && e.key && e.key.length === 1 && !e.ctrlKey && !e.metaKey && !e.altKey && ALPHA.indexOf(e.key.toLowerCase()) !== -1) {
+      crossLetter(e.key.toLowerCase());
+      return;
+    }
     if (!G || G.locked || !e || !e.key || e.key.length !== 1 || e.ctrlKey || e.metaKey || e.altKey) return;
     var c = e.key.toLowerCase();
     if (ALPHA.indexOf(c) === -1) return;
@@ -484,6 +489,323 @@ var H212WordGames = (function () {
     pc().innerHTML = h;
   }
 
+
+  // ══ Crossword ═══════════════════════════════════════
+  // Built from the set's own words: they are placed so that they cross on shared letters (tried again until enough cross).
+  // Tap a clue (or a box), then tap the big letter buttons (or type on a Mac). A wrong letter turns red; there is no penalty.
+  // Easy gives the first letter of every word and a picture/sound for each clue; Normal gives nothing but the sound and the Japanese.
+  var CW_MAX = { easy: 7, normal: 10 };
+
+  // Tries to put word `w` into the grid so that it crosses a placed word. Returns the possible places.
+  function crossOptions(cells, dirOf, placed, w, maxDim) {
+    var opts = [];
+    placed.forEach(function (p) {
+      for (var i = 0; i < p.w.length; i++) for (var j = 0; j < w.length; j++) {
+        if (p.w.charAt(i) !== w.charAt(j)) continue;
+        // the new word runs the other way, through letter i of p and its own letter j
+        var dr = p.dr ? 0 : 1, dc = p.dr ? 1 : 0;
+        var r0 = p.r + p.dr * i - dr * j, c0 = p.c + p.dc * i - dc * j;
+        if (canPlace(cells, dirOf, w, r0, c0, dr, dc, maxDim, placed)) opts.push({ r: r0, c: c0, dr: dr, dc: dc });
+      }
+    });
+    return opts;
+  }
+  function canPlace(cells, dirOf, w, r0, c0, dr, dc, maxDim, placed) {
+    var n = w.length, i, key;
+    // stay inside the size limit (measured on all placed words plus this one)
+    var minR = r0, maxR = r0 + dr * (n - 1), minC = c0, maxC = c0 + dc * (n - 1);
+    placed.forEach(function (p) {
+      minR = Math.min(minR, p.r); maxR = Math.max(maxR, p.r + p.dr * (p.w.length - 1));
+      minC = Math.min(minC, p.c); maxC = Math.max(maxC, p.c + p.dc * (p.w.length - 1));
+    });
+    if (maxR - minR + 1 > maxDim || maxC - minC + 1 > maxDim) return false;
+    // the squares just before and after the word must be empty
+    if (cells[(r0 - dr) + ',' + (c0 - dc)] || cells[(r0 + dr * n) + ',' + (c0 + dc * n)]) return false;
+    var crossings = 0;
+    for (i = 0; i < n; i++) {
+      var r = r0 + dr * i, c = c0 + dc * i;
+      key = r + ',' + c;
+      if (cells[key]) {
+        if (cells[key] !== w.charAt(i)) return false;
+        if (dirOf[key] === (dr ? 'd' : 'a') || dirOf[key] === 'x') return false;   // it would run along another word
+        crossings++;
+      } else {
+        // a new letter must not touch other words sideways
+        if (cells[(r + dc) + ',' + (c + dr)] || cells[(r - dc) + ',' + (c - dr)]) return false;
+      }
+    }
+    return crossings > 0;
+  }
+
+  function buildCross(words, mode) {
+    var maxDim = CW_MAX[mode], target = mode === 'easy' ? 4 : 6, least = mode === 'easy' ? 3 : 5;
+    var base = pool(words, mode).filter(function (x) { return x.w.length >= 3 && x.w.length <= (mode === 'easy' ? 7 : 9); });
+    var wide = words.filter(function (x) { return x.w.length >= 3 && x.w.length <= 9; });     // used when the first choice has too few words that cross
+    if (base.length < 2) return null;
+    var best = null;
+    for (var attempt = 0; attempt < 600; attempt++) {
+      if (attempt === 300 && (!best || best.length < least) && wide.length > base.length) base = wide;
+      var order = shuffle(base.slice());
+      if (attempt % 2 === 0) order.sort(function (a, b) { return b.w.length - a.w.length + (Math.random() - 0.5) * 2; });   // longer words first helps them cross
+      var cells = {}, dirOf = {}, placed = [];
+      function put(it, r, c, dr, dc) {
+        for (var i = 0; i < it.w.length; i++) {
+          var key = (r + dr * i) + ',' + (c + dc * i), d = dr ? 'd' : 'a';
+          dirOf[key] = dirOf[key] ? 'x' : d;
+          cells[key] = it.w.charAt(i);
+        }
+        placed.push({ w: it.w, ja: it.ja || '', img: it.img || '', r: r, c: c, dr: dr, dc: dc });
+      }
+      put(order[0], 0, 0, 0, 1);
+      for (var k = 1; k < order.length && placed.length < target; k++) {
+        var opts = crossOptions(cells, dirOf, placed, order[k].w, maxDim);
+        if (opts.length) { var o = opts[Math.floor(Math.random() * opts.length)]; put(order[k], o.r, o.c, o.dr, o.dc); }
+      }
+      if (!best || placed.length > best.length) best = placed;
+      if (placed.length >= target) break;
+    }
+    if (!best || best.length < 2) return null;
+    // shift to the top-left corner and number the words
+    var minR = Infinity, minC = Infinity, maxR = -Infinity, maxC = -Infinity;
+    best.forEach(function (p) {
+      minR = Math.min(minR, p.r); minC = Math.min(minC, p.c);
+      maxR = Math.max(maxR, p.r + p.dr * (p.w.length - 1)); maxC = Math.max(maxC, p.c + p.dc * (p.w.length - 1));
+    });
+    var rows = maxR - minR + 1, cols = maxC - minC + 1;
+    var items = best.map(function (p) {
+      var cs = [];
+      for (var i = 0; i < p.w.length; i++) cs.push([p.r - minR + p.dr * i, p.c - minC + p.dc * i]);
+      return { w: p.w, ja: p.ja, img: p.img, cells: cs, down: !!p.dr, done: false, tiles: null, num: 0 };
+    });
+    items.sort(function (a, b) { return a.cells[0][0] - b.cells[0][0] || a.cells[0][1] - b.cells[0][1]; });
+    var num = 0, numAt = {};
+    items.forEach(function (it) {
+      var k = it.cells[0][0] + ',' + it.cells[0][1];
+      if (!numAt[k]) numAt[k] = ++num;
+      it.num = numAt[k];
+    });
+    return { rows: rows, cols: cols, items: items, numAt: numAt };
+  }
+
+  function crossCellEl(r, c) { return document.getElementById('cw-' + r + '-' + c); }
+  function crossWordAt(r, c) {
+    return X.items.map(function (it, i) { return it.cells.some(function (rc) { return rc[0] === r && rc[1] === c; }) ? i : -1; }).filter(function (i) { return i >= 0; });
+  }
+  function crossFilled(r, c) { return X.letters[r + ',' + c] || ''; }
+
+  function crossGridHtml() {
+    var h = '<div class="cw-grid" id="cw-grid" style="--cols:' + X.cols + '">';
+    var isLetter = {};
+    X.items.forEach(function (it) { it.cells.forEach(function (rc) { isLetter[rc[0] + ',' + rc[1]] = true; }); });
+    for (var r = 0; r < X.rows; r++) for (var c = 0; c < X.cols; c++) {
+      var k = r + ',' + c;
+      if (!isLetter[k]) { h += '<div class="cw-void"></div>'; continue; }
+      h += '<div class="cw-cell" id="cw-' + r + '-' + c + '" onclick="H212WordGames.crossTap(' + r + ',' + c + ')">'
+        + (X.numAt[k] ? '<span class="cw-num">' + X.numAt[k] + '</span>' : '')
+        + '<span class="cw-ch" id="cw-ch-' + r + '-' + c + '">' + esc(crossFilled(r, c).toUpperCase()) + '</span></div>';
+    }
+    return h + '</div>';
+  }
+
+  function crossCluesHtml() {
+    var h = '<ol class="cw-clues" id="cw-clues">';
+    X.items.forEach(function (it, i) {
+      h += '<li class="cw-clue" id="cw-q' + i + '" onclick="H212WordGames.crossSelect(' + i + ')">'
+        + '<span class="cw-qn">' + it.num + (it.down ? '↓' : '→') + '</span>'
+        + (it.img && X.cfg.imgUrl ? '<img class="ws-thumb" src="' + esc(X.cfg.imgUrl(it.img)) + '" alt="" onerror="this.parentNode.removeChild(this)">' : '')
+        + '<span class="cw-qt">' + (it.ja ? '<span lang="ja">' + esc(it.ja) + '</span>' : '<span class="cw-len">' + it.w.length + '</span>') + '</span>'
+        + '<span class="cw-qlen">' + it.w.length + '</span>'
+        + '<button type="button" class="ws-hear" onclick="event.stopPropagation();H212WordGames.crossHear(' + i + ')" aria-label="' + esc(T('listen.button')) + '">🔊</button>'
+        + '<span class="cw-qok" id="cw-ok' + i + '"></span></li>';
+    });
+    return h + '</ol>';
+  }
+
+  function crossScreen() {
+    var cfg = X.cfg;
+    var h = H212UI.qTop({ onclose: cfg.back, label: T('wg.back'), index: crossDone() - 1, total: X.items.length, noScore: true })
+      + '<div class="grp-spelling"><div class="q-label">' + esc(cfg.kicker) + ' · ' + esc(T('wg.game_cross')) + '</div></div>'
+      + '<div class="question-card grp-spelling">'
+      + '<div class="wg-inst">' + esc(T(cfg.mode === 'easy' ? 'wg.inst_cross_easy' : 'wg.inst_cross_normal')) + '</div>'
+      + crossGridHtml()
+      + '<div class="wg-tiles" id="cw-tiles"></div>'
+      + '<div class="result-msg" id="cw-msg" role="status"></div>'
+      + crossCluesHtml()
+      + '</div>';
+    pc().innerHTML = h;
+  }
+  function crossDone() { return X ? X.items.filter(function (x) { return x.done; }).length : 0; }
+
+  function cross(cfg) {
+    cfg.mode = cfg.mode === 'normal' ? 'normal' : 'easy';
+    var built = null;
+    for (var t = 0; t < 8 && !built; t++) built = buildCross(cfg.words, cfg.mode);
+    if (!built) return false;
+    X = { cfg: cfg, rows: built.rows, cols: built.cols, items: built.items, numAt: built.numAt, letters: {}, sel: -1, over: false };
+    if (cfg.mode === 'easy') {
+      // the first letter of every word is given
+      X.items.forEach(function (it) { X.letters[it.cells[0][0] + ',' + it.cells[0][1]] = it.w.charAt(0); });
+    }
+    X.items.forEach(function (it) { checkWord(it, true); });
+    crossScreen();
+    var first = X.items.map(function (it, i) { return it.done ? -1 : i; }).filter(function (i) { return i >= 0; })[0];
+    crossSelect(first === undefined ? 0 : first, true);
+    window.scrollTo(0, 0);
+    return true;
+  }
+
+  function checkWord(it, quiet) {
+    if (it.done) return false;
+    var ok = it.cells.every(function (rc, i) { return X.letters[rc[0] + ',' + rc[1]] === it.w.charAt(i); });
+    if (ok) it.done = true;
+    return ok;
+  }
+
+  function showSelection() {
+    var all = document.querySelectorAll('.cw-cell');
+    for (var i = 0; i < all.length; i++) all[i].classList.remove('cw-sel', 'cw-active');
+    var clues = document.querySelectorAll('.cw-clue');
+    for (var j = 0; j < clues.length; j++) clues[j].classList.remove('cw-clue-on');
+    X.items.forEach(function (it, i) {
+      var q = document.getElementById('cw-q' + i), ok = document.getElementById('cw-ok' + i);
+      if (q) q.classList[it.done ? 'add' : 'remove']('cw-clue-done');
+      if (ok) ok.textContent = it.done ? '✓' : '';
+      if (it.done) it.cells.forEach(function (rc) { var e = crossCellEl(rc[0], rc[1]); if (e) e.classList.add('cw-solved'); });
+    });
+    if (X.sel < 0) return;
+    var cur = X.items[X.sel], q2 = document.getElementById('cw-q' + X.sel);
+    if (q2) q2.classList.add('cw-clue-on');
+    var active = nextEmpty(cur);
+    cur.cells.forEach(function (rc) {
+      var e = crossCellEl(rc[0], rc[1]);
+      if (!e) return;
+      e.classList.add('cw-sel');
+      if (active && active[0] === rc[0] && active[1] === rc[1]) e.classList.add('cw-active');
+    });
+  }
+  function nextEmpty(it) {
+    for (var i = 0; i < it.cells.length; i++) if (!crossFilled(it.cells[i][0], it.cells[i][1])) return it.cells[i];
+    return null;
+  }
+
+  function tilesFor(it) {
+    if (!it.tiles) {
+      var letters = [];
+      it.w.split('').forEach(function (c) { if (letters.indexOf(c) === -1) letters.push(c); });
+      it.tiles = shuffle(letters.concat(extras(letters, 2)));
+    }
+    return it.tiles;
+  }
+  function drawTiles() {
+    var box = document.getElementById('cw-tiles');
+    if (!box) return;
+    if (X.sel < 0 || X.items[X.sel].done) { box.innerHTML = ''; return; }
+    var h = '';
+    tilesFor(X.items[X.sel]).forEach(function (c, i) {
+      h += '<button type="button" class="wg-tile cw-tile" id="cw-t' + i + '" onclick="H212WordGames.crossPick(' + i + ')">' + esc(c.toUpperCase()) + '</button>';
+    });
+    box.innerHTML = h;
+  }
+
+  function crossSelect(i, quiet) {
+    if (!X || X.over || !X.items[i]) return;
+    X.sel = i;
+    showSelection();
+    drawTiles();
+    if (!quiet && X.cfg.hear) X.cfg.hear(X.items[i].w);
+  }
+
+  // A square was tapped: select the word through it (a second tap on a crossing square switches direction)
+  function crossTap(r, c) {
+    if (!X || X.over) return;
+    var ws = crossWordAt(r, c);
+    if (!ws.length) return;
+    var pick = ws[0];
+    if (ws.length > 1) {
+      var undone = ws.filter(function (i) { return !X.items[i].done; });
+      var cur = ws.indexOf(X.sel);
+      if (cur >= 0) pick = ws[(cur + 1) % ws.length];       // already selected: switch to the other word
+      else pick = (undone.length ? undone : ws)[0];
+    }
+    crossSelect(pick);
+  }
+
+  function crossHear(i) { if (X && X.items[i] && X.cfg.hear) X.cfg.hear(X.items[i].w); }
+
+  // A letter button (or key): it goes in the first empty square of the chosen word that wants this letter
+  function crossLetter(c, tileIdx) {
+    if (!X || X.over || X.sel < 0) return;
+    var it = X.items[X.sel];
+    if (it.done) return;
+    var cell = null;
+    for (var i = 0; i < it.cells.length; i++) {
+      var rc = it.cells[i];
+      if (!crossFilled(rc[0], rc[1]) && it.w.charAt(i) === c) { cell = rc; break; }
+    }
+    if (!cell) {
+      // wrong letter: red for a moment, nothing is lost
+      var tb = tileIdx !== undefined ? document.getElementById('cw-t' + tileIdx) : null;
+      if (tb) { tb.classList.add('wg-bad'); setTimeout(function () { tb.classList.remove('wg-bad'); }, 600); }
+      return;
+    }
+    X.letters[cell[0] + ',' + cell[1]] = c;
+    var ch = document.getElementById('cw-ch-' + cell[0] + '-' + cell[1]);
+    if (ch) ch.textContent = c.toUpperCase();
+    var ce = crossCellEl(cell[0], cell[1]);
+    if (ce) { ce.classList.add('cw-new'); setTimeout(function () { ce.classList.remove('cw-new'); }, 350); }
+    // this letter may finish this word and/or the word crossing it
+    var finished = [];
+    X.items.forEach(function (w2, i2) { if (!w2.done && checkWord(w2)) finished.push(i2); });
+    if (finished.length) wordsDone(finished);
+    else showSelection();
+  }
+  function crossPick(i) {
+    if (!X || X.sel < 0) return;
+    crossLetter(tilesFor(X.items[X.sel])[i], i);
+  }
+
+  function wordsDone(list) {
+    var n = crossDone(), total = X.items.length;
+    var cnt = document.querySelector('.q-count'), bar = document.querySelector('.q-bar-fill');
+    if (cnt) cnt.textContent = n + ' / ' + total;
+    if (bar) bar.style.width = Math.round(n * 100 / total) + '%';
+    var last = X.items[list[list.length - 1]];
+    var msg = document.getElementById('cw-msg');
+    if (msg) { msg.textContent = T('wg.right') + ' ' + last.w; msg.className = 'result-msg correct'; msg.style.display = 'block'; }
+    if (X.cfg.hear) X.cfg.hear(last.w);
+    if (n >= total) {
+      X.over = true;
+      showSelection();
+      drawTiles();
+      setTimeout(finishCross, 1400);
+      return;
+    }
+    // on to the next word that is not finished
+    var nextIdx = -1;
+    for (var k = 1; k <= total; k++) {
+      var j = (Math.max(X.sel, 0) + k) % total;
+      if (!X.items[j].done) { nextIdx = j; break; }
+    }
+    X.sel = nextIdx;
+    showSelection();
+    drawTiles();
+  }
+
+  function finishCross() {
+    if (!X) return;
+    var n = X.items.length;
+    if (X.cfg.done) X.cfg.done(100, n, n);
+    var h = '<div class="question-card grp-spelling" style="text-align:center">'
+      + '<div class="wg-cheer" aria-hidden="true">🎉</div>'
+      + '<div class="speak-finish-title">' + esc(T('wg.finish_title')) + '</div>'
+      + '<div class="speak-finish-sub">' + esc(T('wg.finish_cross')) + '</div>'
+      + '<div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">'
+      + '<button class="next-btn" style="display:inline-flex" onclick="' + X.cfg.again + '">' + esc(T('wg.again')) + '</button>'
+      + '<button class="next-btn" style="display:inline-flex" onclick="' + X.cfg.back + '">' + esc(T('wg.back')) + '</button>'
+      + '</div></div>';
+    pc().innerHTML = h;
+  }
+
   function noPic(img) {
     if (img && img.parentNode) img.parentNode.removeChild(img);
     var b = document.querySelector('.wg-hear');
@@ -493,7 +815,9 @@ var H212WordGames = (function () {
   if (typeof document !== 'undefined' && document.addEventListener) document.addEventListener('keydown', onKey);
 
   return {
-    missing: missing, pick: pick, next: next, hear: hear, noPic: noPic, stop: function () { G = null; W = null; },
+    missing: missing, pick: pick, next: next, hear: hear, noPic: noPic, stop: function () { G = null; W = null; X = null; },
+    cross: cross, crossTap: crossTap, crossSelect: crossSelect, crossPick: crossPick, crossHear: crossHear, crossLetter: crossLetter,
+    _buildCross: buildCross, _cross: function () { return X; },
     search: search, pd: pd, pm: pm, pu: pu, pc: pc2, hint: hint, hearItem: hearItem, tapCell: tapCell, trySelect: trySelect,
     _makeSearch: makeSearch, _search: function () { return W; },
     _build: build, _pool: pool, _state: function () { return G; }

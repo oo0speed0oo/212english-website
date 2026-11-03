@@ -5,11 +5,11 @@
 // window.H212_T (spell.* and wg.* strings) and window.H212_NONCE, and loads listen.js (robot voice),
 // ui.js and wordgames.js (the games). The word list is portal/spelling/spelling-words.csv, read by inc/spelling-data.php.
 //
-// Games so far: Missing Letters, Word Search. Easy (かんたん) or Normal (ふつう): the choice is remembered (user meta h212_spelling).
+// Games so far: Missing Letters, Word Search, Crossword. Easy (かんたん) or Normal (ふつう): the choice is remembered (user meta h212_spelling).
 // The clue for every word is the picture (when the file is on the site), a 🔊 button and the Japanese meaning.
 var H212Spelling = (function () {
   var P = window.H212_SPELLING || { groups: [], sets: [], words: [], imgv: {}, audio: { v: 0, words: [] }, progress: {}, mode: '' };
-  var READY = ['missing', 'search'];            // games that exist so far; add 'cross' and 'print' as they are built
+  var READY = ['missing', 'search', 'cross'];   // games that exist so far; add 'print' when it is built
   var GAMES = ['missing', 'search', 'cross', 'print'];
   var ICONS = { missing: 'builder', search: 'vocabulary', cross: 'grammar', print: 'conversation' };
   var player = null;
@@ -178,6 +178,7 @@ var H212Spelling = (function () {
     };
     if (game === 'missing') H212WordGames.missing(cfg);
     else if (game === 'search') H212WordGames.search(cfg);
+    else if (game === 'cross') H212WordGames.cross(cfg);
   }
 
   function goTop() { window.scrollTo(0, 0); }
