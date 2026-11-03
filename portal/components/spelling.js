@@ -5,11 +5,11 @@
 // window.H212_T (spell.* and wg.* strings) and window.H212_NONCE, and loads listen.js (robot voice),
 // ui.js and wordgames.js (the games). The word list is portal/spelling/spelling-words.csv, read by inc/spelling-data.php.
 //
-// Games so far: Missing Letters, Word Search, Crossword. Easy (かんたん) or Normal (ふつう): the choice is remembered (user meta h212_spelling).
+// Games: Missing Letters, Word Search, Crossword. Print: each game as an A4 worksheet with an answer page. Easy (かんたん) or Normal (ふつう): the choice is remembered (user meta h212_spelling).
 // The clue for every word is the picture (when the file is on the site), a 🔊 button and the Japanese meaning.
 var H212Spelling = (function () {
   var P = window.H212_SPELLING || { groups: [], sets: [], words: [], imgv: {}, audio: { v: 0, words: [] }, progress: {}, mode: '' };
-  var READY = ['missing', 'search', 'cross'];   // games that exist so far; add 'print' when it is built
+  var READY = ['missing', 'search', 'cross', 'print'];   // all four exist now
   var GAMES = ['missing', 'search', 'cross', 'print'];
   var ICONS = { missing: 'builder', search: 'vocabulary', cross: 'grammar', print: 'conversation' };
   var player = null;
@@ -162,10 +162,47 @@ var H212Spelling = (function () {
     pc().innerHTML = h;
   }
 
+
+  // ── Print: a worksheet of one game (page 1) with its answers (page 2) ──
+  function wordsForPrint(id) { return wordsOf(id); }
+  function showPrint(id, game) {
+    stopAudio();
+    if (typeof H212WordGames !== 'undefined') H212WordGames.stop();
+    var s = setById(id);
+    if (!s) return showHome();
+    game = ['missing', 'search', 'cross'].indexOf(game) !== -1 ? game : 'missing';
+    function chip(g, label) {
+      return '<button type="button" class="sp-mode' + (game === g ? ' is-on' : '') + '" aria-pressed="' + (game === g) + '" onclick="H212Spelling.print(\'' + id + '\',\'' + g + '\')">' + esc(label) + '</button>';
+    }
+    function lvl(m, label) {
+      return '<button type="button" class="sp-mode' + (mode === m ? ' is-on' : '') + '" aria-pressed="' + (mode === m) + '" onclick="H212Spelling.printMode(\'' + id + '\',\'' + game + '\',\'' + m + '\')">' + esc(label) + '</button>';
+    }
+    var sheet = H212WordGames.sheet({
+      game: game, mode: mode, words: wordsForPrint(id), kicker: s.title,
+      imgUrl: function (f) { return 'images/vocab/' + f + (P.imgv && P.imgv[f] > 1 ? '?v=' + P.imgv[f] : ''); }
+    });
+    var h = '<div class="pr-toolbar grp-spelling">'
+      + '<button type="button" class="back-btn" onclick="H212Spelling.set(\'' + id + '\')" aria-label="' + esc(T('spell.back_games')) + '">' + H212UI.icons.back + '</button>'
+      + '<button type="button" class="next-btn" style="display:inline-flex;margin-top:0" onclick="window.print()">' + esc(T('spell.pr_print')) + '</button>'
+      + '<button type="button" class="next-btn ph-blend-skip" style="display:inline-flex;margin-top:0" onclick="H212Spelling.print(\'' + id + '\',\'' + game + '\')">' + esc(T('spell.pr_again')) + '</button>'
+      + '<div class="pr-chips">' + chip('missing', T('spell.game_missing')) + chip('search', T('spell.game_search')) + chip('cross', T('spell.game_cross')) + '</div>'
+      + '<div class="pr-chips">' + lvl('easy', T('spell.easy')) + lvl('normal', T('spell.normal')) + '</div>'
+      + '<div class="pr-hint">' + esc(T('spell.pr_hint')) + '</div></div>'
+      + (sheet || '<div class="pr-hint">' + esc(T('spell.pr_none')) + '</div>');
+    pc().innerHTML = h;
+  }
+  function printMode(id, game, m) {
+    if (m !== 'easy' && m !== 'normal') return;
+    mode = m; P.mode = m;
+    post({ action: 'mode', mode: m });
+    showPrint(id, game);
+  }
+
   // ── Playing a game ──────────────────────────────────
   function play(id, game) {
     var s = setById(id);
     if (!s || READY.indexOf(game) === -1) return;
+    if (game === 'print') { showPrint(id, 'missing'); window.scrollTo(0, 0); return; }
     stopAudio();
     var cfg = {
       words: wordsOf(id), mode: mode,
@@ -190,6 +227,8 @@ var H212Spelling = (function () {
     group: function (k) { showGroup(k); goTop(); },
     set: function (id) { showSet(id); goTop(); },
     play: play,
+    print: function (id, g) { showPrint(id, g); window.scrollTo(0, 0); },
+    printMode: printMode,
     setMode: setMode,
     _state: function () { return P; }
   };

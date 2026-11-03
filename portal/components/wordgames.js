@@ -1,6 +1,7 @@
 // Word games for the Spelling section (and, later, Phonics): one engine, any word list.
 //   H212WordGames.missing(cfg)   Missing Letters (Easy: 1 letter, 3 big tiles. Normal: 2-3 letters, a tile bank or the keyboard)
 //   H212WordGames.search(cfg)    Word Search (Easy: 5x5 or 6x6, 4-5 words, right and down. Normal: 8x8, 6-8 words, right, down and diagonal)
+//   H212WordGames.sheet(cfg)     the same three games as a printable A4 worksheet (page 1) with the answers (page 2): returns HTML
 //   H212WordGames.cross(cfg)     Crossword (Easy: 3-4 words, first letters given, picture clues. Normal: 5-6 words, Japanese clues)
 //
 // cfg: {
@@ -806,6 +807,103 @@ var H212WordGames = (function () {
     pc().innerHTML = h;
   }
 
+
+  // ══ Printable worksheets ═════════════════════════════
+  // sheet({ game: 'missing'|'search'|'cross', mode, words, kicker, imgUrl }) -> the HTML of an A4 worksheet: page 1 to write on,
+  // page 2 the answers. Made from the same generators as the games, so "New sheet" gives different puzzles.
+  function prPic(img, cfg, cls) {
+    return img && cfg.imgUrl ? '<img class="' + cls + '" src="' + esc(cfg.imgUrl(img)) + '" alt="" onerror="this.parentNode.removeChild(this)">' : '';
+  }
+  function prHead(cfg, game, answers) {
+    return '<div class="pr-head"><div class="pr-title"><small>212 English · ' + esc(T('nav.spelling')) + (answers ? ' · ' + esc(T('pr.answers')) : '') + '</small>'
+      + esc(cfg.kicker) + ' · ' + esc(T('wg.game_' + game)) + '</div>'
+      + (answers ? '' : '<div class="pr-fill"><span>' + esc(T('pr.name')) + '</span><span>' + esc(T('pr.date')) + '</span></div>') + '</div>';
+  }
+  function prInst(game) {
+    return '<div class="pr-inst"><b lang="ja">' + esc(T('pr.ja_' + game)) + '</b><span>' + esc(T('pr.en_' + game)) + '</span></div>';
+  }
+
+  function sheetMissing(cfg) {
+    var qs = build(cfg), page = '', key = '';
+    qs.forEach(function (q, i) {
+      page += '<div class="pr-card"><span class="pr-no">' + (i + 1) + '</span>' + prPic(q.img, cfg, 'pr-pic')
+        + '<div class="pr-mid">' + (q.ja ? '<div class="pr-ja" lang="ja">' + esc(q.ja) + '</div>' : '') + '<div class="pr-boxes">';
+      var ans = '';
+      for (var k = 0; k < q.w.length; k++) {
+        if (q.spots.indexOf(k) !== -1) { page += '<span class="pr-box pr-blank"></span>'; ans += '<u>' + esc(q.w.charAt(k)) + '</u>'; }
+        else { page += '<span class="pr-box">' + esc(q.w.charAt(k)) + '</span>'; ans += esc(q.w.charAt(k)); }
+      }
+      page += '</div></div></div>';
+      key += '<div class="pr-key-item"><span class="pr-no">' + (i + 1) + '</span><span class="pr-ans">' + ans + '</span>' + (q.ja ? '<small lang="ja">' + esc(q.ja) + '</small>' : '') + '</div>';
+    });
+    return { page: '<div class="pr-cards">' + page + '</div>', key: '<div class="pr-keys">' + key + '</div>', n: qs.length };
+  }
+
+  function prGrid(grid, size, hit, easy) {
+    var h = '<div class="pr-grid' + (easy ? ' pr-grid-big' : '') + '" style="--n:' + size + '">';
+    for (var r = 0; r < size; r++) for (var c = 0; c < size; c++) {
+      h += '<div class="pr-cell' + (hit && hit[r + ',' + c] ? ' pr-hit' : '') + '">' + esc(grid[r][c].toUpperCase()) + '</div>';
+    }
+    return h + '</div>';
+  }
+  function sheetSearch(cfg) {
+    var built = null;
+    for (var t = 0; t < 6 && !built; t++) built = makeSearch(cfg.words, cfg.mode);
+    if (!built) return null;
+    var list = '<ul class="pr-words">';
+    var hit = {};
+    built.items.forEach(function (it) {
+      list += '<li>' + prPic(it.img, cfg, 'pr-thumb') + '<span class="pr-w">' + esc(it.w) + '</span>' + (it.ja ? '<small lang="ja">' + esc(it.ja) + '</small>' : '') + '</li>';
+      it.cells.forEach(function (rc) { hit[rc[0] + ',' + rc[1]] = true; });
+    });
+    list += '</ul>';
+    var easy = cfg.mode === 'easy';
+    return {
+      page: '<div class="pr-search">' + prGrid(built.grid, built.size, null, easy) + '<div class="pr-side"><div class="pr-sub">' + esc(T('pr.words')) + '</div>' + list + '</div></div>',
+      key: '<div class="pr-search">' + prGrid(built.grid, built.size, hit, easy) + '<div class="pr-side">' + list + '</div></div>',
+      n: built.items.length
+    };
+  }
+
+  function sheetCross(cfg) {
+    var built = null;
+    for (var t = 0; t < 8 && !built; t++) built = buildCross(cfg.words, cfg.mode);
+    if (!built) return null;
+    var isLetter = {}, solved = {}, given = {};
+    built.items.forEach(function (it) {
+      it.cells.forEach(function (rc, i) { isLetter[rc[0] + ',' + rc[1]] = true; solved[rc[0] + ',' + rc[1]] = it.w.charAt(i); });
+      if (cfg.mode === 'easy') given[it.cells[0][0] + ',' + it.cells[0][1]] = it.w.charAt(0);
+    });
+    function grid(letters) {
+      var h = '<div class="pr-cross' + (cfg.mode === 'easy' ? ' pr-cross-big' : '') + '" style="--cols:' + built.cols + '">';
+      for (var r = 0; r < built.rows; r++) for (var c = 0; c < built.cols; c++) {
+        var k = r + ',' + c;
+        if (!isLetter[k]) { h += '<div class="pr-void"></div>'; continue; }
+        h += '<div class="pr-ccell">' + (built.numAt[k] ? '<span class="pr-cn">' + built.numAt[k] + '</span>' : '') + esc((letters[k] || '').toUpperCase()) + '</div>';
+      }
+      return h + '</div>';
+    }
+    function clues(dir) {
+      var h = '<div class="pr-clue-col"><div class="pr-sub">' + esc(T(dir ? 'pr.down' : 'pr.across')) + '</div>';
+      built.items.filter(function (it) { return it.down === dir; }).forEach(function (it) {
+        h += '<div class="pr-clue"><b>' + it.num + '</b>' + prPic(it.img, cfg, 'pr-thumb') + '<span class="pr-ct">' + (it.ja ? '<span lang="ja">' + esc(it.ja) + '</span>' : '') + '<small>' + it.w.length + '</small></span></div>';
+      });
+      return h + '</div>';
+    }
+    var cl = '<div class="pr-clues">' + clues(false) + clues(true) + '</div>';
+    return { page: '<div class="pr-crosswrap">' + grid(given) + '</div>' + cl, key: '<div class="pr-crosswrap">' + grid(solved) + '</div>' + cl.replace(/<img[^>]*>/g, ''), n: built.items.length };
+  }
+
+  function sheet(cfg) {
+    cfg.mode = cfg.mode === 'normal' ? 'normal' : 'easy';
+    var game = cfg.game === 'search' ? 'search' : (cfg.game === 'cross' ? 'cross' : 'missing');
+    var made = game === 'search' ? sheetSearch(cfg) : (game === 'cross' ? sheetCross(cfg) : sheetMissing(cfg));
+    if (!made || !made.n) return '';
+    return '<div class="pr-sheet">'
+      + prHead(cfg, game, false) + prInst(game) + made.page
+      + '<div class="pr-page2">' + prHead(cfg, game, true) + made.key + '</div></div>';
+  }
+
   function noPic(img) {
     if (img && img.parentNode) img.parentNode.removeChild(img);
     var b = document.querySelector('.wg-hear');
@@ -817,6 +915,7 @@ var H212WordGames = (function () {
   return {
     missing: missing, pick: pick, next: next, hear: hear, noPic: noPic, stop: function () { G = null; W = null; X = null; },
     cross: cross, crossTap: crossTap, crossSelect: crossSelect, crossPick: crossPick, crossHear: crossHear, crossLetter: crossLetter,
+    sheet: sheet,
     _buildCross: buildCross, _cross: function () { return X; },
     search: search, pd: pd, pm: pm, pu: pu, pc: pc2, hint: hint, hearItem: hearItem, tapCell: tapCell, trySelect: trySelect,
     _makeSearch: makeSearch, _search: function () { return W; },
