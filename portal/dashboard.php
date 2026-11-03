@@ -118,6 +118,11 @@ $vars_alt = array( 'name' => $first, 'n' => $cur['chapter'], 'pct' => $pct, 'par
     <div class="dash-card-title"><?php echo esc_html( t( 'nav.phonics' ) ); ?></div>
     <div class="dash-card-sub"><?php echo esc_html( t_other( 'nav.phonics' ) . ' · ' . t( 'dash.phonics_sub' ) ); ?></div>
   </a>
+  <a class="dash-card dash-spelling" href="spelling.php">
+    <div class="dash-card-icon"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"></path><path d="M16.5 3.5a2.1 2.1 0 013 3L7 19l-4 1 1-4z"></path></svg></div>
+    <div class="dash-card-title"><?php echo esc_html( t( 'nav.spelling' ) ); ?></div>
+    <div class="dash-card-sub"><?php echo esc_html( t_other( 'nav.spelling' ) . ' · ' . t( 'dash.spelling_sub' ) ); ?></div>
+  </a>
 </div>
 <?php h212_theme_picker(); ?>
 </main>
