@@ -949,3 +949,30 @@ button, input, select, textarea { font-family: inherit; }
 @keyframes wgPop { 0% { transform: scale(0.6); } 100% { transform: scale(1); } }
 @keyframes wgShake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-5px); } 75% { transform: translateX(5px); } }
 @keyframes wgBounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-14px); } }
+
+/* ── Word Search ── */
+.ws-wrap { display: flex; flex-wrap: wrap; gap: 16px; align-items: flex-start; justify-content: center; }
+.ws-board {
+  --n: 6; display: grid; grid-template-columns: repeat(var(--n), 1fr); gap: 3px; width: min(100%, 380px);
+  padding: 6px; background: var(--bg); border: 2px solid var(--c); border-radius: 16px; touch-action: none; user-select: none; -webkit-user-select: none;
+}
+.ws-cell {
+  aspect-ratio: 1 / 1; display: flex; align-items: center; justify-content: center; border-radius: 8px; cursor: pointer;
+  font-size: clamp(18px, calc(150px / var(--n) + 4px), 36px); font-weight: 800; color: var(--ink); background: #fff;
+  -webkit-tap-highlight-color: transparent;
+}
+.ws-cell.ws-sel { background: var(--c); color: #fff; }
+.ws-cell.ws-bad { background: #C0392B; color: #fff; }
+.ws-cell.ws-found { color: var(--ink); }
+.ws-cell.ws-hintcell { animation: wsBlink 0.7s ease-in-out 4; outline: 3px solid var(--c); }
+@keyframes wsBlink { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.18); } }
+.ws-side { flex: 1 1 200px; min-width: 200px; max-width: 380px; }
+.ws-list { list-style: none; margin: 0 0 12px; padding: 0; display: flex; flex-direction: column; gap: 6px; }
+.ws-item { display: flex; align-items: center; gap: 8px; padding: 6px 8px; background: #fff; border: 1px solid var(--line); border-radius: 12px; min-height: 48px; }
+.ws-item.ws-done .ws-word { text-decoration: line-through; color: var(--text-muted); }
+.ws-thumb { width: 40px; height: 40px; object-fit: cover; border-radius: 8px; flex: none; }
+.ws-dot { flex: none; width: 24px; height: 24px; border-radius: 50%; border: 2px solid var(--line-strong); text-align: center; font-size: 14px; line-height: 20px; font-weight: 800; color: var(--ink); }
+.ws-word { flex: 1; font-size: 20px; font-weight: 700; color: var(--ink); }
+.ws-word small { display: block; font-size: 12px; font-weight: 500; color: var(--text-muted); }
+.ws-hear { flex: none; width: 44px; height: 44px; font-size: 20px; border: none; border-radius: 50%; color: #fff; background: var(--c); cursor: pointer; }
+.ws-hint { min-height: 44px; padding: 8px 16px; font-family: inherit; font-size: 15px; font-weight: 700; color: var(--c); background: var(--card); border: 2px solid var(--c); border-radius: 999px; cursor: pointer; }

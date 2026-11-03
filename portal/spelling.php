@@ -24,7 +24,8 @@ h212_js_strings( array(
 	'nav.spelling', 'spell.subtitle', 'spell.level', 'spell.easy', 'spell.normal', 'spell.choose_group', 'spell.choose_set', 'spell.choose_game',
 	'spell.group_L1', 'spell.group_L2', 'spell.group_OPP', 'spell.sets_n', 'spell.words_n', 'spell.chapter', 'spell.set', 'spell.done', 'spell.new', 'spell.best',
 	'spell.back_groups', 'spell.back_sets', 'spell.coming',
-	'spell.game_missing', 'spell.game_missing_sub', 'spell.game_search', 'spell.game_cross', 'spell.game_print',
+	'spell.game_missing', 'spell.game_missing_sub', 'spell.game_search', 'spell.game_search_sub', 'spell.game_cross', 'spell.game_print',
+	'wg.game_search', 'wg.inst_search_easy', 'wg.inst_search_normal', 'wg.hint', 'wg.found', 'wg.left', 'wg.finish_search',
 	'wg.game_missing', 'wg.inst_easy', 'wg.inst_normal', 'wg.right', 'wg.next', 'wg.see_results', 'wg.back', 'wg.again', 'wg.finish_title', 'wg.finish_sub',
 	'listen.button', 'listen.silent_hint', 'listen.iframe', 'listen.play',
 ) );
