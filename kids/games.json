@@ -12,11 +12,12 @@
     "cross questions (word games, tiny): one puzzle = \"words\" [across, down] that share a letter. Picture clues; every letter is given except 1 per word (Pre-K, K) or 2 (Grade 1+). Letter tiles = the missing letters + 1 extra.",
     "worksheets: printable A4 sheets for grown-ups (kids/print.php?set=fruits): Missing Letters, Word Search, Crossword + answer pages. \"words\" = the set's words (up to 6 letters); \"pairs\" = crossword pairs (they must share a letter).",
     "A question can be for some levels only: \"levels\": [\"k\", \"1\"]. Default: every level.",
-    "Item ids start at 100000 and are never reused or renumbered (one id sequence for all kids content). Next free id: 100123.",
-    "picture: a picture name drawn by the site (fruits; pizza toppings cheese, mushrooms, tomato, corn, onion, pineapple, broccoli; pizza).",
+    "Item ids start at 100000 and are never reused or renumbered (one id sequence for all kids content). Next free id: 100166.",
+    "picture: a picture name drawn by the site (kids/pictures.js: fruits; pizza toppings cheese, mushrooms, tomato, corn, onion, pineapple, broccoli; pizza; music; paint_red, paint_yellow, paint_blue, paint_green, paint_purple, paint_orange).",
     "  To use a real picture later, add \"image\": \"kids_nov_banana.jpg\" to the word (file goes in kids/images/).",
     "  To use a recorded voice later, add \"audio\": \"100003.m4a\" to an item (file goes in kids/audio/). Without it the browser voice speaks.",
-    "Every game always ends with 3 stars and its sticker. Wrong answers only wiggle (\"Try again!\"); after 2 tries the right one glows."
+    "Every game always ends with 3 stars and its sticker. Wrong answers only wiggle (\"Try again!\"); after 2 tries the right one glows.",
+    "Word games (missing, search, cross) and worksheets: any theme with 3+ short words (up to 6 letters, with a picture). Food: fruits + pizza toppings (the pools named fruits-* hold both). Colors: colors-*."
   ],
 
   "words": {
@@ -32,7 +33,12 @@
     "corn": {"english": "corn", "plural": "corn", "japanese": "コーン", "picture": "corn"},
     "onion": {"english": "onion", "plural": "onions", "japanese": "たまねぎ", "picture": "onion"},
     "pineapple": {"english": "pineapple", "plural": "pineapple", "japanese": "パイナップル", "picture": "pineapple"},
-    "broccoli": {"english": "broccoli", "plural": "broccoli", "japanese": "ブロッコリー", "picture": "broccoli"}
+    "broccoli": {"english": "broccoli", "plural": "broccoli", "japanese": "ブロッコリー", "picture": "broccoli"},
+    "red": {"english": "red", "plural": "red", "japanese": "あか", "picture": "paint_red"},
+    "yellow": {"english": "yellow", "plural": "yellow", "japanese": "きいろ", "picture": "paint_yellow"},
+    "blue": {"english": "blue", "plural": "blue", "japanese": "あお", "picture": "paint_blue"},
+    "green": {"english": "green", "plural": "green", "japanese": "みどり", "picture": "paint_green"},
+    "purple": {"english": "purple", "plural": "purple", "japanese": "むらさき", "picture": "paint_purple"}
   },
 
   "items": {
@@ -158,7 +164,50 @@
     "100119": {"type": "cross", "english": "Fill in the letters!", "japanese": "もじを いれよう！", "words": ["apple", "grapes"]},
     "100120": {"type": "cross", "english": "Fill in the letters!", "japanese": "もじを いれよう！", "words": ["banana", "orange"]},
     "100121": {"type": "cross", "english": "Fill in the letters!", "japanese": "もじを いれよう！", "words": ["grapes", "orange"]},
-    "100122": {"type": "cross", "english": "Fill in the letters!", "japanese": "もじを いれよう！", "words": ["orange", "apple"]}
+    "100122": {"type": "cross", "english": "Fill in the letters!", "japanese": "もじを いれよう！", "words": ["orange", "apple"]},
+    "100123": {"type": "missing", "word": "cheese", "english": "Cheese.", "japanese": "チーズ", "at": 0, "other": "m"},
+    "100124": {"type": "missing", "word": "tomato", "english": "Tomato.", "japanese": "トマト", "at": 0, "other": "k"},
+    "100125": {"type": "missing", "word": "corn", "english": "Corn.", "japanese": "コーン", "at": 0, "other": "t"},
+    "100126": {"type": "missing", "word": "onion", "english": "Onion.", "japanese": "たまねぎ", "at": 0, "other": "k"},
+    "100127": {"type": "missing", "word": "cheese", "english": "Cheese.", "japanese": "チーズ", "at": 5, "other": "d", "levels": ["k", "1", "2", "3", "4"]},
+    "100128": {"type": "missing", "word": "tomato", "english": "Tomato.", "japanese": "トマト", "at": 5, "other": "w", "levels": ["k", "1", "2", "3", "4"]},
+    "100129": {"type": "missing", "word": "corn", "english": "Corn.", "japanese": "コーン", "at": 3, "other": "d", "levels": ["k", "1", "2", "3", "4"]},
+    "100130": {"type": "missing", "word": "onion", "english": "Onion.", "japanese": "たまねぎ", "at": 4, "other": "w", "levels": ["k", "1", "2", "3", "4"]},
+    "100131": {"type": "missing", "word": "cheese", "english": "Cheese.", "japanese": "チーズ", "at": 3, "other": "r", "levels": ["1", "2", "3", "4"]},
+    "100132": {"type": "missing", "word": "tomato", "english": "Tomato.", "japanese": "トマト", "at": 3, "other": "l", "levels": ["1", "2", "3", "4"]},
+    "100133": {"type": "missing", "word": "corn", "english": "Corn.", "japanese": "コーン", "at": 2, "other": "l", "levels": ["1", "2", "3", "4"]},
+    "100134": {"type": "missing", "word": "onion", "english": "Onion.", "japanese": "たまねぎ", "at": 2, "other": "l", "levels": ["1", "2", "3", "4"]},
+    "100135": {"type": "search", "english": "Find the words!", "japanese": "ことばを さがそう！", "words": ["cheese", "tomato", "corn"]},
+    "100136": {"type": "search", "english": "Find the words!", "japanese": "ことばを さがそう！", "words": ["tomato", "onion", "cheese"]},
+    "100137": {"type": "search", "english": "Find the words!", "japanese": "ことばを さがそう！", "words": ["corn", "onion", "tomato"]},
+    "100138": {"type": "search", "english": "Find the words!", "japanese": "ことばを さがそう！", "words": ["onion", "cheese", "corn"]},
+    "100139": {"type": "cross", "english": "Fill in the letters!", "japanese": "もじを いれよう！", "words": ["onion", "corn"]},
+    "100140": {"type": "cross", "english": "Fill in the letters!", "japanese": "もじを いれよう！", "words": ["tomato", "onion"]},
+    "100141": {"type": "cross", "english": "Fill in the letters!", "japanese": "もじを いれよう！", "words": ["corn", "tomato"]},
+    "100142": {"type": "cross", "english": "Fill in the letters!", "japanese": "もじを いれよう！", "words": ["cheese", "corn"]},
+    "100143": {"type": "missing", "word": "red", "english": "Red.", "japanese": "あか", "at": 0, "other": "m"},
+    "100144": {"type": "missing", "word": "yellow", "english": "Yellow.", "japanese": "きいろ", "at": 0, "other": "s"},
+    "100145": {"type": "missing", "word": "blue", "english": "Blue.", "japanese": "あお", "at": 0, "other": "t"},
+    "100146": {"type": "missing", "word": "green", "english": "Green.", "japanese": "みどり", "at": 0, "other": "k"},
+    "100147": {"type": "missing", "word": "purple", "english": "Purple.", "japanese": "むらさき", "at": 0, "other": "f"},
+    "100148": {"type": "missing", "word": "red", "english": "Red.", "japanese": "あか", "at": 2, "other": "h", "levels": ["k", "1", "2", "3", "4"]},
+    "100149": {"type": "missing", "word": "yellow", "english": "Yellow.", "japanese": "きいろ", "at": 5, "other": "d", "levels": ["k", "1", "2", "3", "4"]},
+    "100150": {"type": "missing", "word": "blue", "english": "Blue.", "japanese": "あお", "at": 3, "other": "w", "levels": ["k", "1", "2", "3", "4"]},
+    "100151": {"type": "missing", "word": "green", "english": "Green.", "japanese": "みどり", "at": 4, "other": "p", "levels": ["k", "1", "2", "3", "4"]},
+    "100152": {"type": "missing", "word": "purple", "english": "Purple.", "japanese": "むらさき", "at": 5, "other": "n", "levels": ["k", "1", "2", "3", "4"]},
+    "100153": {"type": "missing", "word": "red", "english": "Red.", "japanese": "あか", "at": 1, "other": "n", "levels": ["1", "2", "3", "4"]},
+    "100154": {"type": "missing", "word": "yellow", "english": "Yellow.", "japanese": "きいろ", "at": 3, "other": "g", "levels": ["1", "2", "3", "4"]},
+    "100155": {"type": "missing", "word": "blue", "english": "Blue.", "japanese": "あお", "at": 2, "other": "z", "levels": ["1", "2", "3", "4"]},
+    "100156": {"type": "missing", "word": "green", "english": "Green.", "japanese": "みどり", "at": 2, "other": "y", "levels": ["1", "2", "3", "4"]},
+    "100157": {"type": "missing", "word": "purple", "english": "Purple.", "japanese": "むらさき", "at": 3, "other": "s", "levels": ["1", "2", "3", "4"]},
+    "100158": {"type": "search", "english": "Find the words!", "japanese": "ことばを さがそう！", "words": ["red", "blue", "green"]},
+    "100159": {"type": "search", "english": "Find the words!", "japanese": "ことばを さがそう！", "words": ["yellow", "purple", "red"]},
+    "100160": {"type": "search", "english": "Find the words!", "japanese": "ことばを さがそう！", "words": ["blue", "green", "yellow"]},
+    "100161": {"type": "search", "english": "Find the words!", "japanese": "ことばを さがそう！", "words": ["purple", "red", "blue"]},
+    "100162": {"type": "cross", "english": "Fill in the letters!", "japanese": "もじを いれよう！", "words": ["green", "red"]},
+    "100163": {"type": "cross", "english": "Fill in the letters!", "japanese": "もじを いれよう！", "words": ["purple", "blue"]},
+    "100164": {"type": "cross", "english": "Fill in the letters!", "japanese": "もじを いれよう！", "words": ["yellow", "blue"]},
+    "100165": {"type": "cross", "english": "Fill in the letters!", "japanese": "もじを いれよう！", "words": ["purple", "red"]}
   },
 
   "answers": {
@@ -187,7 +236,10 @@
     "freeze-dance": {"english": "Freeze Dance", "japanese": "フリーズダンス", "sticker": "music", "rounds": [{"pool": "fruits-freeze"}]},
     "fruits-missing": {"english": "Missing Letters", "japanese": "たりない もじ", "sticker": "grapes", "rounds": [{"pool": "fruits-missing"}]},
     "fruits-search": {"english": "Word Search", "japanese": "ことば さがし", "sticker": "orange", "rounds": [{"pool": "fruits-search"}]},
-    "fruits-cross": {"english": "Crossword", "japanese": "クロスワード", "sticker": "strawberry", "rounds": [{"pool": "fruits-cross"}]}
+    "fruits-cross": {"english": "Crossword", "japanese": "クロスワード", "sticker": "strawberry", "rounds": [{"pool": "fruits-cross"}]},
+    "colors-missing": {"english": "Missing Letters", "japanese": "たりない もじ", "sticker": "paint_red", "rounds": [{"pool": "colors-missing"}]},
+    "colors-search": {"english": "Word Search", "japanese": "ことば さがし", "sticker": "paint_blue", "rounds": [{"pool": "colors-search"}]},
+    "colors-cross": {"english": "Crossword", "japanese": "クロスワード", "sticker": "paint_green", "rounds": [{"pool": "colors-cross"}]}
   },
 
   "colors": {
@@ -220,9 +272,12 @@
     "pizza-customer": {"type": "pizza", "english": "You are the customer!", "japanese": "あなたは おきゃくさん！", "items": ["100082"]},
     "pizza-shopkeeper": {"type": "pizza", "english": "Now you are the shopkeeper!", "japanese": "こんどは おみせやさん！", "items": ["100083", "100084", "100085", "100086", "100087", "100088", "100089", "100090", "100091", "100092"]},
     "fruits-freeze": {"type": "freeze", "english": "Freeze Dance!", "japanese": "フリーズダンス！", "items": ["100093", "100094", "100095", "100096", "100097", "100098", "100099", "100100", "100101", "100102"]},
-    "fruits-missing": {"type": "missing", "english": "What's missing?", "japanese": "たりない もじは？", "per_play": 5, "items": ["100103", "100104", "100105", "100106", "100107", "100108", "100109", "100110", "100111", "100112", "100113", "100114"]},
-    "fruits-search": {"type": "search", "english": "Find the words!", "japanese": "ことばを さがそう！", "per_play": 2, "items": ["100115", "100116", "100117", "100118"]},
-    "fruits-cross": {"type": "cross", "english": "Fill in the letters!", "japanese": "もじを いれよう！", "per_play": 2, "items": ["100119", "100120", "100121", "100122"]}
+    "fruits-missing": {"type": "missing", "english": "What's missing?", "japanese": "たりない もじは？", "per_play": 5, "items": ["100103", "100104", "100105", "100106", "100107", "100108", "100109", "100110", "100111", "100112", "100113", "100114", "100123", "100124", "100125", "100126", "100127", "100128", "100129", "100130", "100131", "100132", "100133", "100134"]},
+    "fruits-search": {"type": "search", "english": "Find the words!", "japanese": "ことばを さがそう！", "per_play": 2, "items": ["100115", "100116", "100117", "100118", "100135", "100136", "100137", "100138"]},
+    "fruits-cross": {"type": "cross", "english": "Fill in the letters!", "japanese": "もじを いれよう！", "per_play": 2, "items": ["100119", "100120", "100121", "100122", "100139", "100140", "100141", "100142"]},
+    "colors-missing": {"type": "missing", "english": "What's missing?", "japanese": "たりない もじは？", "per_play": 5, "items": ["100143", "100144", "100145", "100146", "100147", "100148", "100149", "100150", "100151", "100152", "100153", "100154", "100155", "100156", "100157"]},
+    "colors-search": {"type": "search", "english": "Find the words!", "japanese": "ことばを さがそう！", "per_play": 2, "items": ["100158", "100159", "100160", "100161"]},
+    "colors-cross": {"type": "cross", "english": "Fill in the letters!", "japanese": "もじを いれよう！", "per_play": 2, "items": ["100162", "100163", "100164", "100165"]}
   },
 
   "count_max": {
@@ -245,6 +300,8 @@
   },
 
   "worksheets": {
-    "fruits": {"english": "Fruits", "japanese": "くだもの", "month": "nov", "words": ["apple", "banana", "orange", "grapes"], "pairs": [["apple", "grapes"], ["banana", "orange"], ["grapes", "orange"], ["orange", "apple"]]}
+    "fruits": {"english": "Fruits", "japanese": "くだもの", "month": "nov", "words": ["apple", "banana", "orange", "grapes"], "pairs": [["apple", "grapes"], ["banana", "orange"], ["grapes", "orange"], ["orange", "apple"]]},
+    "toppings": {"english": "Pizza toppings", "japanese": "ピザの トッピング", "month": "nov", "words": ["cheese", "tomato", "corn", "onion"], "pairs": [["onion", "corn"], ["tomato", "onion"], ["corn", "tomato"], ["cheese", "corn"]]},
+    "colors": {"english": "Colors", "japanese": "いろ", "month": "dec", "words": ["red", "yellow", "blue", "green", "purple"], "pairs": [["green", "red"], ["purple", "blue"], ["yellow", "blue"], ["purple", "red"]]}
   }
 }

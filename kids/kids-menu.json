@@ -5,7 +5,7 @@
     "themes > games.  Each tile: id, english, japanese, icon, color, month (optional: nov, dec ...).",
     "game (optional): a game id from games.json. Tiles with a game open it; tiles without one open the temporary \"being made\" page.",
     "ids: short words with a-z, 0-9 and -. Never reuse an id. (Future kids question ids start at 100000.)",
-    "icons: apple, banana, pizza, music, speaker, cards, bubbles, yesno, sack, gift, letter, bell, tree, star, smile, sad, shapes, circle, colors, numbers, abc, class, backpack",
+    "icons: apple, banana, pizza, music, speaker, cards, bubbles, yesno, sack, gift, letter, bell, tree, star, smile, sad, shapes, circle, colors, numbers, abc, missing, search, cross, class, backpack",
     "colors: any #RRGGBB. Nice ones: #FF9E94 #FFE27A #FFB46B #9FD3FF #C9B8FF #8ED6A0 #FF7DA8"
   ],
 
@@ -87,7 +87,10 @@
       "games": [
         { "id": "colors-tap", "english": "Tap it", "japanese": "きいてタップ", "icon": "speaker", "color": "#FFE27A", "month": "dec" },
         { "id": "colors-pop", "english": "Pop it", "japanese": "バブルポップ", "icon": "bubbles", "color": "#C9B8FF", "month": "dec" },
-        { "id": "colors-elves", "english": "Elf Workshop", "japanese": "こびとのこうぼう", "icon": "gift", "color": "#8ED6A0", "month": "dec" }
+        { "id": "colors-elves", "english": "Elf Workshop", "japanese": "こびとのこうぼう", "icon": "gift", "color": "#8ED6A0", "month": "dec" },
+        { "id": "colors-missing", "english": "Missing Letters", "japanese": "たりない もじ", "icon": "missing", "color": "#FFB46B", "month": "dec", "game": "colors-missing" },
+        { "id": "colors-search", "english": "Word Search", "japanese": "ことば さがし", "icon": "search", "color": "#9FD3FF", "month": "dec", "game": "colors-search" },
+        { "id": "colors-cross", "english": "Crossword", "japanese": "クロスワード", "icon": "cross", "color": "#8ED6A0", "month": "dec", "game": "colors-cross" }
       ]
     },
     {

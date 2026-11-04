@@ -3,7 +3,7 @@
  *   Missing Letters  each word: big picture, the word in 2 cm boxes with one empty, a light word to trace.
  *                    Easy: the first letter is missing. A bit harder: the last or a middle letter.
  *   Word Search      pictures of the words to find; the words read left to right, one per row.
- *                    Easy: 3 words. A bit harder: all the set's words.
+ *                    Easy: 3 words. A bit harder: 4 words. (Every sheet uses at most 4 words, so it fits on A4.)
  *   Crossword        2 crossing words, picture clues (1 → across, 2 ↓ down).
  *                    Easy: 1 empty box per word. A bit harder: 2.
  * The answer pages (for the teacher) use the same puzzles, with the answers in red.
@@ -46,11 +46,12 @@
   function make() {
     var words = PZ.shuffle(P.set.words.filter(function (k) { return P.words[k]; }));
     var easy = state.level === 'easy';
-    var missing = words.map(function (k, i) {
+    // At most 4 words on a sheet, so every page fits on A4 (a set with more words picks 4 at random).
+    var missing = words.slice(0, 4).map(function (k, i) {
       var t = text(k);
       return { key: k, text: t, at: PZ.missing(t, easy ? 0 : (i % 2 ? 1 : 2)) };
     });
-    var findKeys = easy ? words.slice(0, 3) : words;
+    var findKeys = words.slice(0, easy ? 3 : 4);
     var search = PZ.search(findKeys.map(text));
     if (search) search.words.forEach(function (w, i) { w.key = findKeys[i]; });
     var pair = (P.set.pairs && P.set.pairs.length) ? P.set.pairs[Math.floor(Math.random() * P.set.pairs.length)] : words.slice(0, 2);
@@ -118,7 +119,7 @@
         var blank = w.blanks.indexOf(k) !== -1;
         if (!at[key]) at[key] = { ch: w.text.charAt(k), blank: false, num: '' };
         if (blank) at[key].blank = true;
-        if (k === 0) at[key].num = String(wi + 1);
+        if (k === 0) at[key].num += (at[key].num ? ' ' : '') + (wi + 1);
       });
     });
     var cells = '';

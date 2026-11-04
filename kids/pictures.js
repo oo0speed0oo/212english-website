@@ -23,4 +23,13 @@
     broccoli: ['0 0 100 100', '<path d="M42 58 L40 90 H60 L58 58 Z" fill="#8ED6A0" stroke="' + INK + '" stroke-width="5" stroke-linejoin="round"/><g fill="#3FA864" stroke="' + INK + '" stroke-width="5"><circle cx="32" cy="48" r="16"/><circle cx="68" cy="48" r="16"/><circle cx="50" cy="34" r="20"/><circle cx="50" cy="56" r="14"/></g>'],
     pizza: ['0 0 100 100', '<circle cx="50" cy="50" r="44" fill="#E8B465" stroke="' + INK + '" stroke-width="6"/><circle cx="50" cy="50" r="35" fill="#E8453C"/><path d="M22 46 Q30 24 52 20 Q76 24 80 48 Q78 74 54 80 Q28 78 22 46 Z" fill="#FFD84D"/><g fill="#B8322C" stroke="' + INK + '" stroke-width="3"><circle cx="38" cy="40" r="7"/><circle cx="62" cy="38" r="7"/><circle cx="56" cy="62" r="7"/><circle cx="36" cy="62" r="6"/></g>']
   };
+
+  // Paint splashes for the color words (paint_red, paint_yellow ...), in the same colors as games.json "colors".
+  var PAINT = { red: '#FF4D4D', yellow: '#FFD84D', orange: '#FF9F2E', purple: '#9B6BD6', green: '#5CC98B', blue: '#4DA3FF' };
+  Object.keys(PAINT).forEach(function (c) {
+    window.H212_KIDS_PICTURES['paint_' + c] = ['0 0 100 100',
+      '<path d="M50 10 C64 10 68 24 80 24 C94 24 94 42 86 50 C80 58 94 70 84 82 C74 92 62 82 52 90 C42 98 26 92 24 80 C22 70 8 66 10 52 C12 40 24 38 26 28 C28 16 38 10 50 10 Z" fill="' + PAINT[c] + '" stroke="' + INK + '" stroke-width="6" stroke-linejoin="round"/>' +
+      '<circle cx="88" cy="12" r="6" fill="' + PAINT[c] + '" stroke="' + INK + '" stroke-width="4"/>' +
+      '<ellipse cx="38" cy="38" rx="9" ry="5.5" fill="#FFFFFF" opacity=".5" transform="rotate(-35 38 38)"/>'];
+  });
 })();
