@@ -84,6 +84,13 @@ $h212_kids_game = array(
 		'dancers' => (int) ( $games['freeze']['dancers'][ $level ] ?? 3 ),
 		'seconds' => $games['freeze']['dance_seconds'] ?? array( 5, 9 ),
 	),
+	// Board games (memory, bubble, match, sort, hidden): how big a board is for this child's level.
+	'boards'   => array_map(
+		function ( $by_level ) use ( $level ) {
+			return (int) ( is_array( $by_level ) ? ( $by_level[ $level ] ?? 0 ) : $by_level );
+		},
+		(array) ( $games['boards'] ?? array() )
+	),
 	'answers'  => $games['answers'],
 	'praise'   => $games['praise'],
 	'child'    => $child,

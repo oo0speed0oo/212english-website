@@ -1,7 +1,7 @@
 {
   "_help": [
     "212 Kids games. A game is a list of rounds; each round asks questions from \"items\".",
-    "Round types: yesno, tap, count, pizza, freeze, missing, search and cross. See the top of kids/game.js for every option.",
+    "Round types: yesno, tap, count, pizza, freeze, missing, search, cross, memory, bubble, oddout, match, sort and hidden. See the top of kids/game.js for every option.",
     "A round can use a shared question pool: { \"pool\": \"fruits-what\" }. Pools are in \"pools\".",
     "Each play picks a random set of questions: \"per_play\" by level (6 to 10), or the round's own \"per_play\" (1 to 10). \"split\": true shares that number across a game's rounds.",
     "count questions: \"count\": how many to put in the basket. \"count_max\" (by level) skips bigger numbers: Pre-K 1-5, K 1-7, Grades 1-4 1-10.",
@@ -12,12 +12,19 @@
     "cross questions (word games, tiny): one puzzle = \"words\" [across, down] that share a letter. Picture clues; every letter is given except 1 per word (Pre-K, K) or 2 (Grade 1+). Letter tiles = the missing letters + 1 extra.",
     "worksheets: printable A4 sheets for grown-ups (kids/print.php?set=fruits): Missing Letters, Word Search, Crossword + answer pages. \"words\" = the set's words (up to 6 letters); \"pairs\" = crossword pairs (they must share a letter).",
     "A question can be for some levels only: \"levels\": [\"k\", \"1\"]. Default: every level.",
-    "Item ids start at 100000 and are never reused or renumbered (one id sequence for all kids content). Next free id: 100166.",
+    "Item ids start at 100000 and are never reused or renumbered (one id sequence for all kids content). Next free id: 100222.",
     "picture: a picture name drawn by the site (kids/pictures.js: fruits; pizza toppings cheese, mushrooms, tomato, corn, onion, pineapple, broccoli; pizza; music; paint_red, paint_yellow, paint_blue, paint_green, paint_purple, paint_orange).",
     "  To use a real picture later, add \"image\": \"kids_nov_banana.jpg\" to the word (file goes in kids/images/).",
     "  To use a recorded voice later, add \"audio\": \"100003.m4a\" to an item (file goes in kids/audio/). Without it the browser voice speaks.",
     "Every game always ends with 3 stars and its sticker. Wrong answers only wiggle (\"Try again!\"); after 2 tries the right one glows.",
-    "Word games (missing, search, cross) and worksheets: any theme with 3+ short words (up to 6 letters, with a picture). Food: fruits + pizza toppings (the pools named fruits-* hold both). Colors: colors-*."
+    "Word games (missing, search, cross) and worksheets: any theme with 3+ short words (up to 6 letters, with a picture). Food: fruits + pizza toppings (the pools named fruits-* hold both). Colors: colors-*.",
+    "memory questions (one board): flip 2 cards to find pairs. \"words\" + \"match\": picture (same picture twice) or word (picture + its word); or \"pairs\": [[\"red\", \"apple\"]] (2 different pictures). \"opinion\": true = not in the teacher's accuracy (it's memory, not English).",
+    "bubble questions (Pop it): bubbles float up; pop the one the lion says (\"word\"). The other bubbles are other words from the same pool. Missed bubbles come back from the bottom. No timer.",
+    "oddout questions: 4 pictures (\"choices\"), tap the one that doesn't belong (\"answer\"); \"after_correct\" says why.",
+    "match questions (one board): drag each picture onto its pair. \"mode\": shadow (its gray shadow) or word (its written word); or \"pairs\" (drag apple onto red). A tap on a picture, then on a pair, works too.",
+    "sort questions (one board): 2 baskets (\"groups\": english, japanese, color, words); drag each picture into the right basket. A word must be in only one group.",
+    "hidden questions (one board): a picnic picture with things hidden around it; the lion says \"Find the banana!\" for each word in \"find\"; \"others\" are the extra things in the picture.",
+    "boards: how big each board is, by level (memory pairs, bubbles, match pictures, sort pictures, hidden: how many to find, hidden_things: how many things in the picture)."
   ],
 
   "words": {
@@ -207,7 +214,63 @@
     "100162": {"type": "cross", "english": "Fill in the letters!", "japanese": "もじを いれよう！", "words": ["green", "red"]},
     "100163": {"type": "cross", "english": "Fill in the letters!", "japanese": "もじを いれよう！", "words": ["purple", "blue"]},
     "100164": {"type": "cross", "english": "Fill in the letters!", "japanese": "もじを いれよう！", "words": ["yellow", "blue"]},
-    "100165": {"type": "cross", "english": "Fill in the letters!", "japanese": "もじを いれよう！", "words": ["purple", "red"]}
+    "100165": {"type": "cross", "english": "Fill in the letters!", "japanese": "もじを いれよう！", "words": ["purple", "red"]},
+    "100166": {"type": "memory", "words": ["apple", "banana", "orange", "grapes", "strawberry", "watermelon"], "match": "picture", "levels": ["prek", "k"], "opinion": true, "english": "Find the pairs!", "japanese": "おなじ えを さがそう！"},
+    "100167": {"type": "memory", "words": ["cheese", "mushrooms", "tomato", "corn", "onion", "pineapple", "broccoli"], "match": "picture", "levels": ["prek", "k"], "opinion": true, "english": "Find the pairs!", "japanese": "おなじ えを さがそう！"},
+    "100168": {"type": "memory", "words": ["apple", "banana", "orange", "grapes", "strawberry", "watermelon"], "match": "word", "levels": ["1", "2", "3", "4"], "opinion": true, "english": "Find the pairs!", "japanese": "えと ことばの ペアを さがそう！"},
+    "100169": {"type": "memory", "words": ["cheese", "mushrooms", "tomato", "corn", "onion", "pineapple", "broccoli"], "match": "word", "levels": ["1", "2", "3", "4"], "opinion": true, "english": "Find the pairs!", "japanese": "えと ことばの ペアを さがそう！"},
+    "100170": {"type": "memory", "words": ["red", "yellow", "blue", "green", "purple"], "match": "picture", "levels": ["prek", "k"], "opinion": true, "english": "Find the pairs!", "japanese": "おなじ いろを さがそう！"},
+    "100171": {"type": "memory", "words": ["red", "yellow", "blue", "green", "purple"], "match": "word", "levels": ["1", "2", "3", "4"], "opinion": true, "english": "Find the pairs!", "japanese": "いろと ことばの ペアを さがそう！"},
+    "100172": {"type": "memory", "pairs": [["red", "apple"], ["yellow", "banana"], ["green", "broccoli"], ["purple", "grapes"]], "opinion": true, "english": "Match the colors!", "japanese": "おなじ いろの ものを さがそう！"},
+    "100173": {"type": "bubble", "word": "apple", "english": "Pop the apple!", "japanese": "りんごを わろう！"},
+    "100174": {"type": "bubble", "word": "banana", "english": "Pop the banana!", "japanese": "バナナを わろう！"},
+    "100175": {"type": "bubble", "word": "orange", "english": "Pop the orange!", "japanese": "オレンジを わろう！"},
+    "100176": {"type": "bubble", "word": "grapes", "english": "Pop the grapes!", "japanese": "ぶどうを わろう！"},
+    "100177": {"type": "bubble", "word": "strawberry", "english": "Pop the strawberry!", "japanese": "いちごを わろう！"},
+    "100178": {"type": "bubble", "word": "watermelon", "english": "Pop the watermelon!", "japanese": "すいかを わろう！"},
+    "100179": {"type": "bubble", "word": "cheese", "english": "Pop the cheese!", "japanese": "チーズを わろう！"},
+    "100180": {"type": "bubble", "word": "mushrooms", "english": "Pop the mushrooms!", "japanese": "マッシュルームを わろう！"},
+    "100181": {"type": "bubble", "word": "tomato", "english": "Pop the tomato!", "japanese": "トマトを わろう！"},
+    "100182": {"type": "bubble", "word": "corn", "english": "Pop the corn!", "japanese": "コーンを わろう！"},
+    "100183": {"type": "bubble", "word": "onion", "english": "Pop the onion!", "japanese": "たまねぎを わろう！"},
+    "100184": {"type": "bubble", "word": "pineapple", "english": "Pop the pineapple!", "japanese": "パイナップルを わろう！"},
+    "100185": {"type": "bubble", "word": "broccoli", "english": "Pop the broccoli!", "japanese": "ブロッコリーを わろう！"},
+    "100186": {"type": "bubble", "word": "red", "english": "Pop red!", "japanese": "あかを わろう！"},
+    "100187": {"type": "bubble", "word": "yellow", "english": "Pop yellow!", "japanese": "きいろを わろう！"},
+    "100188": {"type": "bubble", "word": "blue", "english": "Pop blue!", "japanese": "あおを わろう！"},
+    "100189": {"type": "bubble", "word": "green", "english": "Pop green!", "japanese": "みどりを わろう！"},
+    "100190": {"type": "bubble", "word": "purple", "english": "Pop purple!", "japanese": "むらさきを わろう！"},
+    "100191": {"type": "oddout", "choices": ["apple", "banana", "grapes", "broccoli"], "answer": "broccoli", "english": "Which one is different?", "japanese": "ひとつだけ ちがうのは どれ？", "after_correct": {"english": "Broccoli! It's a vegetable.", "japanese": "ブロッコリー！やさいだね。"}},
+    "100192": {"type": "oddout", "choices": ["orange", "strawberry", "watermelon", "corn"], "answer": "corn", "english": "Which one is different?", "japanese": "ひとつだけ ちがうのは どれ？", "after_correct": {"english": "Corn! It's a vegetable.", "japanese": "コーン！やさいだね。"}},
+    "100193": {"type": "oddout", "choices": ["banana", "pineapple", "apple", "onion"], "answer": "onion", "english": "Which one is different?", "japanese": "ひとつだけ ちがうのは どれ？", "after_correct": {"english": "Onion! It's a vegetable.", "japanese": "たまねぎ！やさいだね。"}},
+    "100194": {"type": "oddout", "choices": ["grapes", "orange", "watermelon", "mushrooms"], "answer": "mushrooms", "english": "Which one is different?", "japanese": "ひとつだけ ちがうのは どれ？", "after_correct": {"english": "Mushrooms! They're not fruit.", "japanese": "マッシュルーム！くだものじゃないね。"}},
+    "100195": {"type": "oddout", "choices": ["broccoli", "corn", "onion", "apple"], "answer": "apple", "english": "Which one is different?", "japanese": "ひとつだけ ちがうのは どれ？", "after_correct": {"english": "Apple! It's a fruit.", "japanese": "りんご！くだものだね。"}},
+    "100196": {"type": "oddout", "choices": ["onion", "mushrooms", "broccoli", "banana"], "answer": "banana", "english": "Which one is different?", "japanese": "ひとつだけ ちがうのは どれ？", "after_correct": {"english": "Banana! It's a fruit.", "japanese": "バナナ！くだものだね。"}},
+    "100197": {"type": "oddout", "choices": ["corn", "broccoli", "mushrooms", "strawberry"], "answer": "strawberry", "english": "Which one is different?", "japanese": "ひとつだけ ちがうのは どれ？", "after_correct": {"english": "Strawberry! It's a fruit.", "japanese": "いちご！くだものだね。"}},
+    "100198": {"type": "oddout", "choices": ["onion", "corn", "broccoli", "grapes"], "answer": "grapes", "english": "Which one is different?", "japanese": "ひとつだけ ちがうのは どれ？", "after_correct": {"english": "Grapes! They're fruit.", "japanese": "ぶどう！くだものだね。"}},
+    "100199": {"type": "oddout", "choices": ["red", "yellow", "blue", "apple"], "answer": "apple", "english": "Which one is different?", "japanese": "ひとつだけ ちがうのは どれ？", "after_correct": {"english": "Apple! It's a fruit.", "japanese": "りんご！くだものだね。"}},
+    "100200": {"type": "oddout", "choices": ["green", "purple", "red", "banana"], "answer": "banana", "english": "Which one is different?", "japanese": "ひとつだけ ちがうのは どれ？", "after_correct": {"english": "Banana! It's a fruit.", "japanese": "バナナ！くだものだね。"}},
+    "100201": {"type": "oddout", "choices": ["blue", "yellow", "green", "grapes"], "answer": "grapes", "english": "Which one is different?", "japanese": "ひとつだけ ちがうのは どれ？", "after_correct": {"english": "Grapes! They're fruit.", "japanese": "ぶどう！くだものだね。"}},
+    "100202": {"type": "oddout", "choices": ["apple", "strawberry", "tomato", "banana"], "answer": "banana", "english": "Which one is different?", "japanese": "ひとつだけ ちがうのは どれ？", "after_correct": {"english": "Banana! It's yellow.", "japanese": "バナナ！きいろだね。"}},
+    "100203": {"type": "oddout", "choices": ["banana", "corn", "cheese", "apple"], "answer": "apple", "english": "Which one is different?", "japanese": "ひとつだけ ちがうのは どれ？", "after_correct": {"english": "Apple! It's red.", "japanese": "りんご！あかだね。"}},
+    "100204": {"type": "oddout", "choices": ["tomato", "apple", "strawberry", "broccoli"], "answer": "broccoli", "english": "Which one is different?", "japanese": "ひとつだけ ちがうのは どれ？", "after_correct": {"english": "Broccoli! It's green.", "japanese": "ブロッコリー！みどりだね。"}},
+    "100205": {"type": "oddout", "choices": ["corn", "banana", "cheese", "grapes"], "answer": "grapes", "english": "Which one is different?", "japanese": "ひとつだけ ちがうのは どれ？", "after_correct": {"english": "Grapes! They're purple.", "japanese": "ぶどう！むらさきだね。"}},
+    "100206": {"type": "oddout", "choices": ["strawberry", "tomato", "apple", "corn"], "answer": "corn", "english": "Which one is different?", "japanese": "ひとつだけ ちがうのは どれ？", "after_correct": {"english": "Corn! It's yellow.", "japanese": "コーン！きいろだね。"}},
+    "100207": {"type": "match", "words": ["apple", "banana", "orange", "grapes", "strawberry", "watermelon"], "mode": "shadow", "levels": ["prek", "k"], "english": "Match the shadows!", "japanese": "かげに あわせよう！"},
+    "100208": {"type": "match", "words": ["cheese", "mushrooms", "tomato", "corn", "onion", "pineapple", "broccoli"], "mode": "shadow", "levels": ["prek", "k"], "english": "Match the shadows!", "japanese": "かげに あわせよう！"},
+    "100209": {"type": "match", "words": ["apple", "banana", "orange", "grapes", "strawberry", "watermelon"], "mode": "word", "levels": ["1", "2", "3", "4"], "english": "Match the words!", "japanese": "ことばに あわせよう！"},
+    "100210": {"type": "match", "words": ["cheese", "mushrooms", "tomato", "corn", "onion", "pineapple", "broccoli"], "mode": "word", "levels": ["1", "2", "3", "4"], "english": "Match the words!", "japanese": "ことばに あわせよう！"},
+    "100211": {"type": "match", "pairs": [["red", "tomato"], ["yellow", "cheese"], ["green", "broccoli"], ["purple", "grapes"]], "english": "Match the colors!", "japanese": "おなじ いろに あわせよう！"},
+    "100212": {"type": "match", "pairs": [["red", "strawberry"], ["yellow", "corn"], ["green", "broccoli"], ["purple", "grapes"]], "english": "Match the colors!", "japanese": "おなじ いろに あわせよう！"},
+    "100213": {"type": "match", "words": ["red", "yellow", "blue", "green", "purple"], "mode": "word", "levels": ["1", "2", "3", "4"], "english": "Match the words!", "japanese": "ことばに あわせよう！"},
+    "100214": {"type": "sort", "groups": [{"english": "fruit", "japanese": "くだもの", "color": "#FF9E94", "words": ["apple", "banana", "orange", "grapes", "strawberry", "watermelon", "pineapple"]}, {"english": "vegetable", "japanese": "やさい", "color": "#8ED6A0", "words": ["broccoli", "corn", "onion", "mushrooms"]}], "english": "Fruit or vegetable?", "japanese": "くだもの？ やさい？"},
+    "100215": {"type": "sort", "groups": [{"english": "fruit", "japanese": "くだもの", "color": "#FF9E94", "words": ["apple", "banana", "orange", "grapes", "strawberry", "watermelon", "pineapple"]}, {"english": "vegetable", "japanese": "やさい", "color": "#8ED6A0", "words": ["broccoli", "corn", "onion", "mushrooms"]}], "english": "Fruit or vegetable?", "japanese": "くだもの？ やさい？"},
+    "100216": {"type": "sort", "groups": [{"english": "red", "japanese": "あか", "color": "#FF6B6B", "words": ["apple", "strawberry", "tomato"]}, {"english": "yellow", "japanese": "きいろ", "color": "#FFD84D", "words": ["banana", "corn", "cheese", "pineapple"]}], "english": "Red or yellow?", "japanese": "あか？ きいろ？"},
+    "100217": {"type": "sort", "groups": [{"english": "red", "japanese": "あか", "color": "#FF6B6B", "words": ["apple", "strawberry", "tomato"]}, {"english": "yellow", "japanese": "きいろ", "color": "#FFD84D", "words": ["banana", "corn", "cheese", "pineapple"]}], "english": "Red or yellow?", "japanese": "あか？ きいろ？"},
+    "100218": {"type": "hidden", "find": ["banana", "corn", "grapes"], "others": ["apple", "orange", "strawberry", "watermelon", "cheese", "mushrooms", "tomato", "onion", "pineapple", "broccoli"], "english": "Find them!", "japanese": "みつけてね！"},
+    "100219": {"type": "hidden", "find": ["apple", "cheese", "onion"], "others": ["banana", "orange", "grapes", "strawberry", "watermelon", "mushrooms", "tomato", "corn", "pineapple", "broccoli"], "english": "Find them!", "japanese": "みつけてね！"},
+    "100220": {"type": "hidden", "find": ["strawberry", "broccoli", "orange"], "others": ["apple", "banana", "grapes", "watermelon", "cheese", "mushrooms", "tomato", "corn", "onion", "pineapple"], "english": "Find them!", "japanese": "みつけてね！"},
+    "100221": {"type": "hidden", "find": ["tomato", "watermelon", "mushrooms"], "others": ["apple", "banana", "orange", "grapes", "strawberry", "cheese", "corn", "onion", "pineapple", "broccoli"], "english": "Find them!", "japanese": "みつけてね！"}
   },
 
   "answers": {
@@ -239,7 +302,18 @@
     "fruits-cross": {"english": "Crossword", "japanese": "クロスワード", "sticker": "strawberry", "rounds": [{"pool": "fruits-cross"}]},
     "colors-missing": {"english": "Missing Letters", "japanese": "たりない もじ", "sticker": "paint_red", "rounds": [{"pool": "colors-missing"}]},
     "colors-search": {"english": "Word Search", "japanese": "ことば さがし", "sticker": "paint_blue", "rounds": [{"pool": "colors-search"}]},
-    "colors-cross": {"english": "Crossword", "japanese": "クロスワード", "sticker": "paint_green", "rounds": [{"pool": "colors-cross"}]}
+    "colors-cross": {"english": "Crossword", "japanese": "クロスワード", "sticker": "paint_green", "rounds": [{"pool": "colors-cross"}]},
+    "food-memory": {"english": "Memory", "japanese": "ペアさがし", "sticker": "cheese", "rounds": [{"pool": "food-memory"}]},
+    "food-pop": {"english": "Pop it", "japanese": "バブルポップ", "sticker": "grapes", "rounds": [{"pool": "food-pop"}]},
+    "food-oddout": {"english": "Odd one out", "japanese": "なかまはずれ", "sticker": "broccoli", "rounds": [{"pool": "food-oddout"}]},
+    "food-match": {"english": "Match it", "japanese": "あわせよう", "sticker": "pineapple", "rounds": [{"pool": "food-match"}]},
+    "food-sort": {"english": "Sort it", "japanese": "わけよう", "sticker": "corn", "rounds": [{"pool": "food-sort"}]},
+    "food-hidden": {"english": "Find it", "japanese": "みつけよう", "sticker": "watermelon", "rounds": [{"pool": "food-hidden"}]},
+    "colors-memory": {"english": "Memory", "japanese": "ペアさがし", "sticker": "paint_purple", "rounds": [{"pool": "colors-memory"}]},
+    "colors-pop": {"english": "Pop it", "japanese": "バブルポップ", "sticker": "paint_yellow", "rounds": [{"pool": "colors-pop"}]},
+    "colors-oddout": {"english": "Odd one out", "japanese": "なかまはずれ", "sticker": "paint_orange", "rounds": [{"pool": "colors-oddout"}]},
+    "colors-match": {"english": "Match it", "japanese": "あわせよう", "sticker": "tomato", "rounds": [{"pool": "colors-match"}]},
+    "colors-sort": {"english": "Sort it", "japanese": "わけよう", "sticker": "banana", "rounds": [{"pool": "colors-sort"}]}
   },
 
   "colors": {
@@ -277,7 +351,18 @@
     "fruits-cross": {"type": "cross", "english": "Fill in the letters!", "japanese": "もじを いれよう！", "per_play": 2, "items": ["100119", "100120", "100121", "100122", "100139", "100140", "100141", "100142"]},
     "colors-missing": {"type": "missing", "english": "What's missing?", "japanese": "たりない もじは？", "per_play": 5, "items": ["100143", "100144", "100145", "100146", "100147", "100148", "100149", "100150", "100151", "100152", "100153", "100154", "100155", "100156", "100157"]},
     "colors-search": {"type": "search", "english": "Find the words!", "japanese": "ことばを さがそう！", "per_play": 2, "items": ["100158", "100159", "100160", "100161"]},
-    "colors-cross": {"type": "cross", "english": "Fill in the letters!", "japanese": "もじを いれよう！", "per_play": 2, "items": ["100162", "100163", "100164", "100165"]}
+    "colors-cross": {"type": "cross", "english": "Fill in the letters!", "japanese": "もじを いれよう！", "per_play": 2, "items": ["100162", "100163", "100164", "100165"]},
+    "food-memory": {"type": "memory", "english": "Memory!", "japanese": "ペアさがし！", "per_play": 2, "items": ["100166", "100167", "100168", "100169"]},
+    "colors-memory": {"type": "memory", "english": "Memory!", "japanese": "ペアさがし！", "per_play": 2, "items": ["100170", "100171", "100172"]},
+    "food-pop": {"type": "bubble", "english": "Pop it!", "japanese": "バブルポップ！", "items": ["100173", "100174", "100175", "100176", "100177", "100178", "100179", "100180", "100181", "100182", "100183", "100184", "100185"]},
+    "colors-pop": {"type": "bubble", "english": "Pop it!", "japanese": "バブルポップ！", "items": ["100186", "100187", "100188", "100189", "100190"]},
+    "food-oddout": {"type": "oddout", "english": "Odd one out!", "japanese": "なかまはずれ！", "per_play": 5, "items": ["100191", "100192", "100193", "100194", "100195", "100196", "100197", "100198"]},
+    "colors-oddout": {"type": "oddout", "english": "Odd one out!", "japanese": "なかまはずれ！", "per_play": 5, "items": ["100199", "100200", "100201", "100202", "100203", "100204", "100205", "100206"]},
+    "food-match": {"type": "match", "english": "Match it!", "japanese": "あわせよう！", "per_play": 2, "items": ["100207", "100208", "100209", "100210"]},
+    "colors-match": {"type": "match", "english": "Match it!", "japanese": "あわせよう！", "per_play": 2, "items": ["100211", "100212", "100213"]},
+    "food-sort": {"type": "sort", "english": "Sort it!", "japanese": "わけよう！", "per_play": 2, "items": ["100214", "100215"]},
+    "colors-sort": {"type": "sort", "english": "Sort it!", "japanese": "わけよう！", "per_play": 2, "items": ["100216", "100217"]},
+    "food-hidden": {"type": "hidden", "english": "Find it!", "japanese": "みつけよう！", "per_play": 2, "items": ["100218", "100219", "100220", "100221"]}
   },
 
   "count_max": {
@@ -303,5 +388,14 @@
     "fruits": {"english": "Fruits", "japanese": "くだもの", "month": "nov", "words": ["apple", "banana", "orange", "grapes"], "pairs": [["apple", "grapes"], ["banana", "orange"], ["grapes", "orange"], ["orange", "apple"]]},
     "toppings": {"english": "Pizza toppings", "japanese": "ピザの トッピング", "month": "nov", "words": ["cheese", "tomato", "corn", "onion"], "pairs": [["onion", "corn"], ["tomato", "onion"], ["corn", "tomato"], ["cheese", "corn"]]},
     "colors": {"english": "Colors", "japanese": "いろ", "month": "dec", "words": ["red", "yellow", "blue", "green", "purple"], "pairs": [["green", "red"], ["purple", "blue"], ["yellow", "blue"], ["purple", "red"]]}
+  },
+
+  "boards": {
+    "memory": {"prek": 3, "k": 4, "1": 4, "2": 5, "3": 6, "4": 6},
+    "bubbles": {"prek": 3, "k": 4, "1": 4, "2": 5, "3": 5, "4": 5},
+    "match": {"prek": 3, "k": 3, "1": 4, "2": 4, "3": 4, "4": 4},
+    "sort": {"prek": 4, "k": 6, "1": 6, "2": 8, "3": 8, "4": 8},
+    "hidden": {"prek": 2, "k": 3, "1": 3, "2": 3, "3": 3, "4": 3},
+    "hidden_things": {"prek": 6, "k": 8, "1": 9, "2": 10, "3": 10, "4": 10}
   }
 }

@@ -1374,3 +1374,228 @@ button:focus-visible, a:focus-visible, input:focus-visible {
 
 /* "reduce motion" for Freeze Dance: a gentle sway only. */
 @keyframes g-sway { from { transform: rotate(-4deg); } to { transform: rotate(4deg); } }
+
+/* ---------- Batch 2: Memory, Pop it, Odd one out, Match it, Sort it, Find it ---------- */
+
+/* Memory: cards flip to show a picture or a word. */
+.g-mem {
+	--mc: min(140px, calc((100vw - 64px - (var(--cols) - 1) * 12px) / var(--cols)), calc((100vh - 300px) / 3.4));
+	display: grid;
+	grid-template-columns: repeat(var(--cols), var(--mc));
+	gap: 12px;
+	justify-content: center;
+}
+.g-mem-card {
+	width: var(--mc);
+	height: calc(var(--mc) * 1.1);
+	padding: 0;
+	border: var(--line);
+	border-radius: 22px;
+	background: #FFB0C8;
+	box-shadow: var(--lift);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-family: inherit;
+	color: var(--ink);
+}
+.g-mem-back { font-size: calc(var(--mc) * .5); font-weight: 800; line-height: 1; color: #FFFFFF; -webkit-text-stroke: 3px var(--ink); paint-order: stroke; }
+.g-mem-front { display: none; align-items: center; justify-content: center; width: 100%; height: 100%; }
+.g-mem-front .g-pic { width: 72%; height: auto; }
+.g-mem-front .g-word { font-size: calc(var(--mc) * .26); }
+.g-mem-open { background: var(--white); animation: g-flip .3s ease; }
+.g-mem-open .g-mem-back { display: none; }
+.g-mem-open .g-mem-front { display: flex; }
+.g-mem-done { background: #D8F1DD; animation: g-pop .45s ease; }
+.g-mem-card:disabled { cursor: default; }
+@keyframes g-flip { 0% { transform: scaleX(.1); } 100% { transform: scaleX(1); } }
+
+/* Pop it: bubbles float up slowly; a missed bubble comes back from the bottom. */
+.g-bub-sky {
+	position: relative;
+	width: min(100%, 860px);
+	height: max(300px, calc(100vh - 290px));
+	max-height: 520px;
+	border: var(--line);
+	border-radius: 32px;
+	background: linear-gradient(#CFEAFF, #EAF6FF);
+	overflow: hidden;
+}
+.g-bub-lane {
+	position: absolute;
+	top: 100%;
+	width: 0;
+	animation: g-bub-up 9s linear infinite;
+}
+.g-bub-stop { animation-play-state: paused; }
+.g-bub {
+	position: absolute;
+	left: -64px;
+	width: 128px;
+	height: 128px;
+	border-radius: 50%;
+	padding: 0;
+	background: radial-gradient(circle at 32% 28%, #FFFFFF 0 12%, rgba(255, 255, 255, .55) 13% 100%);
+	border: 4px solid #4DA3FF;
+	box-shadow: inset 0 0 18px rgba(77, 163, 255, .35);
+}
+.g-bub .g-pic { width: 76px; height: 76px; }
+.g-bub.g-bub-popped { border-color: transparent; background: transparent; box-shadow: none; animation: g-pop .45s ease; }
+.g-bub.g-bub-popped .g-pic { width: 100px; height: 100px; }
+@keyframes g-bub-up { from { top: 100%; } to { top: -150px; } }
+
+/* Odd one out: 4 in a row on a big screen, 2 × 2 on a smaller one. */
+.g-choices.g-odd { display: grid; grid-template-columns: repeat(2, auto); }
+@media (min-width: 1000px) { .g-choices.g-odd { grid-template-columns: repeat(4, auto); } }
+.g-odd .g-choice { width: 180px; height: 180px; }
+.g-odd .g-choice .g-pic { width: 130px; height: 130px; }
+
+/* Match it and Sort it: pictures in a tray, dragged onto targets. */
+.g-pieces { display: flex; justify-content: center; flex-wrap: wrap; gap: 14px; max-width: 760px; }
+.g-drag {
+	width: 112px;
+	height: 112px;
+	padding: 0;
+	border: var(--line);
+	border-radius: 26px;
+	background: var(--white);
+	box-shadow: var(--lift);
+	touch-action: none;
+	cursor: grab;
+	transition: transform .25s ease;
+}
+.g-drag .g-pic { width: 82px; height: 82px; pointer-events: none; }
+.g-drag.g-dragging { position: relative; z-index: 20; transition: none; cursor: grabbing; box-shadow: 0 10px 18px rgba(43, 35, 80, .25); }
+.g-drag.g-picked-up { background: #FFF3B8; box-shadow: var(--lift), 0 0 0 8px rgba(255, 201, 51, .7); }
+.g-drag-gone { display: none; }
+.g-target { font-family: inherit; color: var(--ink); padding: 0; }
+.g-drop-hover { box-shadow: var(--lift), 0 0 0 10px rgba(77, 163, 255, .55); }
+
+.g-mt-targets { display: flex; justify-content: center; flex-wrap: wrap; gap: 18px; }
+.g-mt-target {
+	min-width: 150px;
+	height: 150px;
+	padding: 0 14px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 8px;
+	border: 5px dashed var(--ink);
+	border-radius: 30px;
+	background: rgba(255, 255, 255, .75);
+}
+.g-mt-target .g-pic { width: 96px; height: 96px; }
+.g-mt-word { min-width: 200px; }
+.g-mt-done { border-style: solid; background: #D8F1DD; animation: g-pop .45s ease; }
+.g-mt-target:disabled { cursor: default; }
+.g-shadow .g-pic { filter: brightness(0); opacity: .28; }
+.g-mt-target { position: relative; }
+.g-mt-in { position: absolute; right: -16px; top: -18px; width: 64px; height: 64px; display: flex; align-items: center; justify-content: center; background: var(--white); border: var(--line-thin); border-radius: 50%; animation: g-pop .45s ease; }
+.g-mt-in .g-pic { width: 46px; height: 46px; }
+
+.g-sort-baskets { display: flex; justify-content: center; gap: 24px; width: 100%; }
+.g-sort-basket {
+	flex: 0 1 340px;
+	min-height: 210px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 8px;
+	padding: 12px 12px 16px;
+	border: var(--line);
+	border-radius: 30px 30px 44px 44px;
+	background: var(--bc);
+	box-shadow: var(--lift);
+}
+.g-sort-label { background: var(--white); border: var(--line-thin); border-radius: 999px; padding: 4px 22px 6px; }
+.g-sort-label .k-two b { font-size: 34px; }
+.g-sort-label .k-two small { font-size: 16px; }
+.g-sort-in { flex: 1; display: flex; flex-wrap: wrap; justify-content: center; align-content: center; gap: 4px; }
+.g-sort-thing { width: 62px; height: 62px; display: flex; align-items: center; justify-content: center; background: rgba(255, 255, 255, .8); border-radius: 50%; animation: g-pop .4s ease; }
+.g-sort-thing .g-pic { width: 50px; height: 50px; }
+.g-pop-in { animation: g-pop .4s ease; }
+
+/* Find it: the picnic picture with things around it. */
+.g-hd-stage { gap: 12px; }
+.g-hd-list { display: flex; justify-content: center; gap: 12px; }
+.g-hd-find {
+	position: relative;
+	width: 84px;
+	height: 84px;
+	padding: 0;
+	border: var(--line-thin);
+	border-radius: 22px;
+	background: var(--white);
+	box-shadow: var(--lift);
+}
+.g-hd-find .g-pic { width: 60px; height: 60px; }
+.g-hd-now { background: #FFF3B8; box-shadow: var(--lift), 0 0 0 7px rgba(255, 201, 51, .7); }
+.g-hd-check { position: absolute; right: -10px; top: -10px; width: 34px; height: 34px; border-radius: 50%; border: 3px solid var(--ink); background: var(--white); display: none; }
+.g-hd-done { opacity: .6; }
+.g-hd-done .g-hd-check { display: block; background: #5CC98B url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M5 12 L10 17 L19 7' stroke='%232B2350' stroke-width='3.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / 24px no-repeat; }
+.g-scene {
+	position: relative;
+	width: min(100%, 900px, calc((100vh - 400px) * 1.6));
+	min-width: 280px;
+	aspect-ratio: 16 / 10;
+	border: var(--line);
+	border-radius: 28px;
+	overflow: hidden;
+	background: #BDE6FF;
+}
+.g-scene-bg { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.g-hide-at { position: absolute; width: 0; height: 0; }
+.g-hide {
+	position: absolute;
+	left: calc(var(--hs, 88px) / -2);
+	top: calc(var(--hs, 88px) / -2);
+	width: var(--hs, 88px);
+	height: var(--hs, 88px);
+	padding: 0;
+	border: 0;
+	border-radius: 50%;
+	background: transparent;
+	--hs: clamp(52px, 10vw, 92px);
+}
+.g-hide .g-pic { width: 100%; height: 100%; transform: rotate(var(--rot)); }
+.g-leaves { position: absolute; right: -16%; bottom: -14%; width: 78%; height: auto; pointer-events: none; }
+.g-hide-found { background: rgba(255, 255, 255, .8); box-shadow: 0 0 0 6px #5CC98B; animation: g-pop .45s ease; }
+.g-hide-found .g-leaves { display: none; }
+.g-hide:disabled { cursor: default; }
+
+@media (max-width: 640px) {
+	.g-mem { gap: 8px; --mc: min(120px, calc((100vw - 48px - (var(--cols) - 1) * 8px) / var(--cols))); }
+	.g-mem-card { border-width: 3px; border-radius: 16px; }
+	.g-bub-sky { height: max(300px, calc(100vh - 250px)); border-radius: 24px; }
+	.g-bub { left: -48px; width: 96px; height: 96px; }
+	.g-bub .g-pic { width: 58px; height: 58px; }
+	.g-odd .g-choice { width: 140px; height: 140px; }
+	.g-odd .g-choice .g-pic { width: 100px; height: 100px; }
+	.g-pieces { gap: 8px; }
+	.g-drag { width: 80px; height: 80px; border-width: 3px; border-radius: 18px; }
+	.g-drag .g-pic { width: 58px; height: 58px; }
+	.g-mt-targets { gap: 8px; }
+	.g-mt-target { min-width: 74px; height: 88px; padding: 0 6px; border-width: 4px; border-radius: 20px; }
+	.g-mt-target .g-pic { width: 54px; height: 54px; }
+	.g-mt-word { min-width: 0; width: 100%; max-width: 300px; height: 76px; }
+	.g-mt-in { width: 46px; height: 46px; right: -10px; top: -12px; }
+	.g-mt-in .g-pic { width: 34px; height: 34px; }
+	.g-sort-baskets { gap: 10px; }
+	.g-sort-basket { min-height: 170px; padding: 8px 6px 10px; border-radius: 22px 22px 32px 32px; }
+	.g-sort-label { padding: 2px 12px 4px; }
+	.g-sort-label .k-two b { font-size: 24px; }
+	.g-sort-label .k-two small { font-size: 12px; }
+	.g-sort-thing { width: 46px; height: 46px; }
+	.g-sort-thing .g-pic { width: 38px; height: 38px; }
+	.g-hd-find { width: 64px; height: 64px; }
+	.g-hd-find .g-pic { width: 46px; height: 46px; }
+	.g-hd-check { width: 28px; height: 28px; }
+	.g-scene { width: 100%; aspect-ratio: 1 / 1; border-radius: 22px; }
+	.g-hide { --hs: 58px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.g-mem-open, .g-mem-done, .g-mt-done, .g-sort-thing, .g-pop-in, .g-hide-found, .g-bub.g-bub-popped { animation: none; }
+	.g-bub-lane { animation-duration: 20s !important; }
+	.g-drag { transition: none; }
+}

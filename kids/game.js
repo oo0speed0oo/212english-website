@@ -28,6 +28,17 @@
  *   cross  Crossword (word games, tiny): `words` [across, down] that share a letter. Picture clues (tap = hear).
  *          Every letter is given except 1 per word (Pre-K, K) or 2 (Grade 1+), never the first letter or the
  *          crossing. Letter tiles = that word's missing letters + 1 extra. Across first, then down.
+ *   memory Memory (Batch 2): flip 2 cards to find a pair. `words` + `match` picture | word, or `pairs`
+ *          [["red", "apple"]]. Board size by level (boards.memory = pairs). Mismatches flip back; nothing else.
+ *   bubble Pop it: bubbles with pictures float up slowly and come back from the bottom; pop the one the lion
+ *          says (`word`). The others are other words of the round (boards.bubbles = how many). No timer.
+ *   oddout Odd one out: 4 pictures (`choices`); tap the one that doesn't belong (`answer`, `after_correct`).
+ *   match  Match it: drag each picture onto its pair: `mode` shadow (its gray shadow) | word, or `pairs`
+ *          (drag the apple onto red). Tap a picture, then its pair, works too. Wrong = it slides back.
+ *   sort   Sort it: 2 baskets (`groups`); drag each picture into the right one ("Apple! Fruit!").
+ *   hidden Find it: a picnic picture with things around it; "Find the banana!" for each word in `find`
+ *          (boards.hidden), among `others` (boards.hidden_things in all). A few are half behind leaves.
+ * Board games (memory, match, sort, hidden, search, cross) save one record per board: tries = misses + 1.
  * Wrong = gentle wiggle + "Try again!" + the question again; after 2 wrong tries the right one glows.
  * game.php already picked this play's questions (per_play for the child's level).
  * Every game ends with 3 stars and the game's sticker, no matter what.
@@ -161,7 +172,7 @@
   var rounds = G.rounds.filter(function (r) { return r.items && r.items.length; }).map(function (r) {
     var items = shuffle(r.items).slice(0, r.per_play || r.items.length);
     if (r.type === 'missing') items.sort(function (a, b) { return missingStep(a) - missingStep(b); });
-    return { type: r.type, english: r.english, japanese: r.japanese, avatar_pose: r.avatar_pose, items: items };
+    return { type: r.type, english: r.english, japanese: r.japanese, avatar_pose: r.avatar_pose, items: items, all: r.items };
   });
 
   // Missing Letters gets harder inside a play: first letter (0), then the last letter (1), then a middle one (2).
@@ -329,7 +340,8 @@
     return '<button class="g-card g-choice g-choice-' + kind + ' k-press" data-choice="' + esc(key) + '">' + inner + '</button>';
   }
 
-  function tapScreen(item) {
+  // extra: a class for the choices (oddout: 'g-odd' = 4 in a row, or 2 × 2 on a narrow screen).
+  function tapScreen(item, extra) {
     var show = item.show || 'none';
     var shown = '';
     if (show === 'picture') {
@@ -339,7 +351,7 @@
     }
     var cards = shuffle(item.choices).map(function (key) { return choiceButton(item, key); }).join('');
     frame(lion(item.english, item.japanese) +
-      '<div class="g-stage g-stage-col">' + shown + '<div class="g-choices">' + cards + '</div></div>', { replay: true });
+      '<div class="g-stage g-stage-col">' + shown + '<div class="g-choices' + (extra ? ' ' + extra : '') + '">' + cards + '</div></div>', { replay: true });
     askTap(item);
   }
 
@@ -1148,6 +1160,405 @@
     say(ans.english).then(praise).then(function () { return wait(250); }).then(next);
   }
 
+  // ---------- Batch 2: memory, bubble, oddout, match, sort, hidden ----------
+  // A board (memory, match, sort, hidden) is one question: it saves one record when it is finished.
+
+  var BOARDS = G.boards || {};
+  function boardSize(name, dflt, lo, hi) {
+    return Math.max(lo, Math.min(hi, BOARDS[name] || dflt));
+  }
+  function cap(s) {
+    s = String(s);
+    return s.charAt(0).toUpperCase() + s.slice(1);
+  }
+  function wordJa(key) {
+    return (G.words[key] && G.words[key].japanese) || '';
+  }
+  function wiggle(el) {
+    el.classList.remove('g-wiggle');
+    void el.offsetWidth;
+    el.classList.add('g-wiggle');
+  }
+  function boardDone(item, misses) {
+    busy = true;
+    saveAnswer(item, Math.min(9, misses + 1));
+    return wait(300).then(praise).then(function () { return wait(400); }).then(next);
+  }
+
+  // ----- memory: flip two cards, find the pairs -----
+  var mem = null;
+
+  function memoryScreen(item) {
+    var n = boardSize('memory', 4, 2, 8);
+    var cards = [];
+    if (item.pairs) {
+      shuffle(item.pairs).slice(0, n).forEach(function (p, i) {
+        cards.push({ pair: i, key: p[0], face: 'picture', first: true }, { pair: i, key: p[1], face: 'picture' });
+      });
+    } else {
+      shuffle(item.words).slice(0, n).forEach(function (k, i) {
+        cards.push({ pair: i, key: k, face: 'picture', first: true }, { pair: i, key: k, face: item.match === 'word' ? 'word' : 'picture' });
+      });
+    }
+    cards = shuffle(cards);
+    mem = { item: item, cards: cards, open: [], left: cards.length / 2, misses: 0 };
+    var cols = cards.length <= 6 ? 3 : (cards.length === 10 ? 5 : 4);
+    var html = cards.map(function (c, i) {
+      var front = c.face === 'word' ? bigWord(c.key) : picture(c.key, 110);
+      return '<button class="g-mem-card k-press" data-mem="' + i + '" aria-label="Card ' + (i + 1) + '">' +
+        '<span class="g-mem-back" aria-hidden="true">?</span><span class="g-mem-front">' + front + '</span></button>';
+    }).join('');
+    frame(lion(item.english, item.japanese) +
+      '<div class="g-stage"><div class="g-mem" style="--cols:' + cols + '">' + html + '</div></div>', { replay: true });
+    say(item.english, item.audio);
+  }
+
+  function tapMemory(btn) {
+    var m = mem;
+    var i = +btn.getAttribute('data-mem');
+    var c = m.cards[i];
+    if (c.open || m.open.length >= 2) return;
+    c.open = true;
+    btn.classList.add('g-mem-open');
+    m.open.push(i);
+    if (m.open.length < 2) return say(wordText(c.key));
+    var a = m.cards[m.open[0]];
+    var b = m.cards[m.open[1]];
+    var els = m.open.map(function (k) { return root.querySelector('[data-mem="' + k + '"]'); });
+    if (a.pair !== b.pair) {
+      m.misses++;
+      say(wordText(c.key));
+      return wait(1300).then(function () {
+        if (mem !== m) return;
+        a.open = b.open = false;
+        els.forEach(function (e) { e.classList.remove('g-mem-open'); });
+        m.open = [];
+      });
+    }
+    // A pair: "Banana!" or, for 2 different pictures, "Red apple!".
+    m.open = [];
+    m.left--;
+    els.forEach(function (e) { e.classList.add('g-mem-done'); e.disabled = true; });
+    var one = a.first ? a : b;
+    var two_ = a.first ? b : a;
+    var en = one.key === two_.key ? cap(wordText(one.key)) + '!' : cap(wordText(one.key)) + ' ' + wordText(two_.key) + '!';
+    var jp = one.key === two_.key ? wordJa(one.key) : wordJa(one.key) + '・' + wordJa(two_.key);
+    setBubble(en, jp);
+    // Only the LAST pair ends the board (an earlier pair's sentence may still be playing).
+    var last = m.left === 0;
+    if (last) busy = true;
+    say(en).then(function () {
+      if (last && mem === m) boardDone(m.item, m.misses);
+    });
+  }
+
+  // ----- bubble: Pop it -----
+
+  function bubbleScreen(item) {
+    var n = boardSize('bubbles', 4, 2, 6);
+    var others = [];
+    rounds[ri].all.forEach(function (it) {
+      if (it.word && it.word !== item.word && others.indexOf(it.word) === -1) others.push(it.word);
+    });
+    var keys = shuffle([item.word].concat(shuffle(others).slice(0, n - 1)));
+    var html = keys.map(function (k, i) {
+      var secs = 8 + Math.random() * 3;
+      return '<span class="g-bub-lane" style="left:' + ((i + 0.5) / keys.length * 100).toFixed(1) + '%;animation-duration:' + secs.toFixed(1) +
+        's;animation-delay:-' + (Math.random() * secs * 0.7).toFixed(1) + 's">' +
+        '<button class="g-choice g-bub" data-choice="' + esc(k) + '" aria-label="' + esc(wordText(k)) + '">' + picture(k, 96) + '</button></span>';
+    }).join('');
+    frame(lion(item.english, item.japanese) + '<div class="g-stage"><div class="g-bub-sky">' + html + '</div></div>', { replay: true });
+    say(item.english, item.audio);
+  }
+
+  function answerBubble(b) {
+    var item = currentItem();
+    if (b.getAttribute('data-choice') !== item.word) return wrongAnswer(b, item, '[data-choice="' + item.word + '"]');
+    b.parentNode.classList.add('g-bub-stop');
+    b.classList.add('g-bub-popped');
+    rightAnswer(b, cap(wordText(item.word)) + '!', wordJa(item.word));
+  }
+
+  // ----- match and sort: drag a picture (.g-drag) onto a target (.g-target) -----
+  // A short touch picks the picture up (it says its word); then a tap on a target puts it there.
+  var mt = null;
+  var st = null;
+  var pd = null;
+  var picked = null;
+
+  function pieces(keys) {
+    return '<div class="g-pieces">' + keys.map(function (k) {
+      return '<button class="g-drag" data-drag="' + esc(k) + '" aria-label="' + esc(wordText(k)) + '">' + picture(k, 80) + '</button>';
+    }).join('') + '</div>';
+  }
+
+  function matchScreen(item) {
+    var n = boardSize('match', 3, 2, 5);
+    var answer = {};
+    var targets = [];
+    var drags = [];
+    if (item.pairs) {
+      shuffle(item.pairs).slice(0, n).forEach(function (p) {
+        answer[p[1]] = p[0];
+        targets.push(p[0]);
+        drags.push(p[1]);
+      });
+    } else {
+      shuffle(item.words).slice(0, n).forEach(function (k) {
+        answer[k] = k;
+        targets.push(k);
+        drags.push(k);
+      });
+    }
+    var mode = item.pairs ? 'pairs' : (item.mode || 'shadow');
+    mt = { item: item, answer: answer, mode: mode, left: drags.length, misses: 0, wrong: {} };
+    var html = shuffle(targets).map(function (k) {
+      var inner = mode === 'word' ? bigWord(k) : '<span class="' + (mode === 'shadow' ? 'g-shadow' : '') + '">' + picture(k, 96) + '</span>';
+      return '<button class="g-target g-mt-target g-mt-' + mode + '" data-target="' + esc(k) + '" aria-label="' + esc(wordText(k)) + '">' + inner + '</button>';
+    }).join('');
+    frame(lion(item.english, item.japanese) +
+      '<div class="g-stage g-stage-col"><div class="g-mt-targets">' + html + '</div>' + pieces(shuffle(drags)) + '</div>', { replay: true });
+    say(item.english, item.audio);
+  }
+
+  function sortScreen(item) {
+    var n = boardSize('sort', 6, 2, 10);
+    var g = item.groups;
+    var a = shuffle(g[0].words);
+    var b = shuffle(g[1].words);
+    var nb = Math.min(b.length, Math.floor(n / 2));
+    var na = Math.min(a.length, n - nb);
+    nb = Math.min(b.length, n - na);
+    var group = {};
+    a.forEach(function (k) { group[k] = 0; });
+    b.forEach(function (k) { group[k] = 1; });
+    st = { item: item, group: group, left: na + nb, misses: 0, wrong: {} };
+    var baskets = g.map(function (gr, i) {
+      return '<button class="g-target g-sort-basket" data-target="' + i + '" style="--bc:' + esc(gr.color || '#FFFFFF') + '">' +
+        '<span class="g-sort-label">' + two(cap(gr.english), gr.japanese) + '</span><span class="g-sort-in"></span></button>';
+    }).join('');
+    frame(lion(item.english, item.japanese) +
+      '<div class="g-stage g-stage-col"><div class="g-sort-baskets">' + baskets + '</div>' +
+      pieces(shuffle(a.slice(0, na).concat(b.slice(0, nb)))) + '</div>', { replay: true });
+    say(item.english, item.audio);
+  }
+
+  function rightTarget(key) {
+    if (mt) return root.querySelector('.g-target[data-target="' + mt.answer[key] + '"]');
+    return root.querySelector('.g-target[data-target="' + st.group[key] + '"]');
+  }
+
+  function dropPiece(el, t) {
+    unpick();
+    var key = el.getAttribute('data-drag');
+    var b = mt || st;
+    var good = rightTarget(key) === t;
+    el.style.transform = '';
+    if (!good) {
+      b.misses++;
+      b.wrong[key] = (b.wrong[key] || 0) + 1;
+      wiggle(el);
+      setBubble('Try again!', 'もういちど！');
+      say('Try again!').then(function () {
+        if ((mt || st) === b && !busy) setBubble(b.item.english, b.item.japanese);
+      });
+      if (b.wrong[key] >= 2) rightTarget(key).classList.add('g-glow');
+      return;
+    }
+    root.querySelectorAll('.g-target.g-glow').forEach(function (x) { x.classList.remove('g-glow'); });
+    el.disabled = true;
+    el.classList.add('g-drag-gone');
+    b.left--;
+    var en;
+    var jp;
+    if (mt) {
+      t.disabled = true;
+      t.classList.add('g-mt-done');
+      if (mt.mode === 'shadow') {
+        var sh = t.querySelector('.g-shadow');
+        if (sh) sh.className = 'g-unshadow';
+      } else {
+        t.insertAdjacentHTML('beforeend', '<span class="g-mt-in">' + picture(key, 70) + '</span>');
+      }
+      var tk = mt.answer[key];
+      en = mt.mode === 'pairs' ? cap(wordText(tk)) + ' ' + wordText(key) + '!' : cap(wordText(key)) + '!';
+      jp = mt.mode === 'pairs' ? wordJa(tk) + '・' + wordJa(key) : wordJa(key);
+    } else {
+      var gr = st.item.groups[st.group[key]];
+      t.querySelector('.g-sort-in').insertAdjacentHTML('beforeend', '<span class="g-sort-thing">' + picture(key, 54) + '</span>');
+      t.classList.remove('g-pop-in');
+      void t.offsetWidth;
+      t.classList.add('g-pop-in');
+      en = cap(wordText(key)) + '! ' + cap(gr.english) + '!';
+      jp = wordJa(key) + '・' + gr.japanese;
+    }
+    setBubble(en, jp);
+    // Only the LAST picture ends the board (an earlier picture's sentence may still be playing).
+    var last = b.left === 0;
+    if (last) busy = true;
+    say(en).then(function () {
+      if (last && (mt || st) === b) boardDone(b.item, b.misses);
+    });
+  }
+
+  function pickPiece(el) {
+    unpick();
+    picked = el;
+    el.classList.add('g-picked-up');
+    say(wordText(el.getAttribute('data-drag')));
+  }
+  function unpick() {
+    if (picked) picked.classList.remove('g-picked-up');
+    picked = null;
+  }
+
+  function tapTarget(t) {
+    if (picked && !picked.disabled) return dropPiece(picked, t);
+    if (st) {
+      var gr = st.item.groups[+t.getAttribute('data-target')];
+      return say(cap(gr.english) + '.');
+    }
+    if (mt && mt.mode !== 'shadow') say(wordText(t.getAttribute('data-target')) + '.');
+  }
+
+  function targetAt(e) {
+    var hit = null;
+    root.querySelectorAll('.g-target').forEach(function (t) {
+      if (t.disabled) return;
+      var r = t.getBoundingClientRect();
+      if (e.clientX > r.left - 12 && e.clientX < r.right + 12 && e.clientY > r.top - 12 && e.clientY < r.bottom + 12) hit = t;
+    });
+    return hit;
+  }
+  function hoverTarget(t) {
+    root.querySelectorAll('.g-target.g-drop-hover').forEach(function (x) { if (x !== t) x.classList.remove('g-drop-hover'); });
+    if (t) t.classList.add('g-drop-hover');
+  }
+
+  root.addEventListener('pointerdown', function (e) {
+    var el = e.target.closest('.g-drag');
+    if (!el || el.disabled || busy) return;
+    e.preventDefault();
+    pd = { el: el, x: e.clientX, y: e.clientY, moved: false, id: e.pointerId };
+    try { el.setPointerCapture(e.pointerId); } catch (err) {}
+  });
+  root.addEventListener('pointermove', function (e) {
+    if (!pd || e.pointerId !== pd.id) return;
+    var dx = e.clientX - pd.x;
+    var dy = e.clientY - pd.y;
+    if (!pd.moved && Math.abs(dx) + Math.abs(dy) < 10) return;
+    if (!pd.moved) unpick();
+    pd.moved = true;
+    pd.el.classList.add('g-dragging');
+    pd.el.style.transform = 'translate(' + dx + 'px,' + dy + 'px) scale(1.12)';
+    hoverTarget(targetAt(e));
+  });
+  function endPieceDrag(e, cancelled) {
+    if (!pd || e.pointerId !== pd.id) return;
+    var d = pd;
+    pd = null;
+    d.el.classList.remove('g-dragging');
+    hoverTarget(null);
+    if (cancelled || busy) {
+      d.el.style.transform = '';
+      return;
+    }
+    if (!d.moved) return pickPiece(d.el);
+    var t = targetAt(e);
+    if (t) return dropPiece(d.el, t);
+    d.el.style.transform = ''; // not on a target: it slides back
+  }
+  root.addEventListener('pointerup', function (e) { endPieceDrag(e, false); });
+  root.addEventListener('pointercancel', function (e) { endPieceDrag(e, true); });
+
+  // ----- hidden: Find it in the picnic picture -----
+  var hd = null;
+  // Where things can be (percent of the picture, the middle of the thing): grass, blanket, tree, bushes.
+  var HIDE_SPOTS = [[12, 30], [24, 46], [8, 66], [30, 70], [44, 56], [56, 74], [70, 58], [84, 72], [40, 86], [62, 90],
+    [78, 88], [20, 86], [92, 50], [52, 40], [88, 30], [34, 40]];
+  var LEAVES = '<svg class="g-leaves" viewBox="0 0 100 80" aria-hidden="true">' +
+    '<path d="M10 70 C0 40 30 20 50 40 C60 10 95 20 90 50 C100 60 90 80 70 78 Z" fill="#5CC98B" stroke="' + INK + '" stroke-width="5" stroke-linejoin="round"/>' +
+    '<path d="M30 70 Q45 50 52 42 M70 74 Q72 58 78 46" stroke="#3E9E68" stroke-width="5" fill="none" stroke-linecap="round"/></svg>';
+  var PICNIC = '<svg class="g-scene-bg" viewBox="0 0 1000 640" preserveAspectRatio="xMidYMid slice" aria-hidden="true">' +
+    '<rect width="1000" height="640" fill="#BDE6FF"/>' +
+    '<circle cx="890" cy="86" r="52" fill="#FFD24D" stroke="' + INK + '" stroke-width="6"/>' +
+    '<g fill="#FFFFFF" stroke="' + INK + '" stroke-width="5"><path d="M470 96 a34 34 0 0 1 60 -20 a40 40 0 0 1 72 18 a28 28 0 0 1 -6 54 H476 a28 28 0 0 1 -6 -52Z"/>' +
+    '<path d="M640 190 a24 24 0 0 1 44 -12 a28 28 0 0 1 52 14 a20 20 0 0 1 -4 38 H646 a20 20 0 0 1 -6 -40Z"/></g>' +
+    '<path d="M0 300 Q250 220 520 296 T1000 262 V640 H0Z" fill="#A6E3A0" stroke="' + INK + '" stroke-width="6"/>' +
+    '<path d="M0 380 Q500 330 1000 392 V640 H0Z" fill="#7CCB78" stroke="' + INK + '" stroke-width="6"/>' +
+    '<rect x="96" y="150" width="50" height="250" rx="12" fill="#A86E35" stroke="' + INK + '" stroke-width="6"/>' +
+    '<g fill="#5CC98B" stroke="' + INK + '" stroke-width="6"><circle cx="70" cy="190" r="72"/><circle cx="190" cy="180" r="74"/><circle cx="124" cy="110" r="88"/></g>' +
+    '<path d="M330 470 L770 440 L840 620 L260 640 Z" fill="#FF8FA8" stroke="' + INK + '" stroke-width="6" stroke-linejoin="round"/>' +
+    '<path d="M400 465 L360 636 M500 458 L480 632 M600 451 L600 628 M700 445 L720 624 M300 548 L800 528" stroke="#FFFFFF" stroke-width="12" opacity=".75"/>' +
+    '<g fill="#8ED6A0" stroke="' + INK + '" stroke-width="6"><circle cx="890" cy="420" r="62"/><circle cx="960" cy="440" r="56"/><circle cx="40" cy="470" r="58"/></g>' +
+    '<g stroke="' + INK + '" stroke-width="4"><circle cx="230" cy="560" r="11" fill="#FFD24D"/><circle cx="905" cy="560" r="11" fill="#FF7DA8"/><circle cx="560" cy="380" r="10" fill="#FFFFFF"/><circle cx="300" cy="400" r="10" fill="#C9B8FF"/></g></svg>';
+
+  function hiddenScreen(item) {
+    var nf = Math.max(1, Math.min(item.find.length, boardSize('hidden', 3, 1, 5)));
+    var find = shuffle(item.find).slice(0, nf);
+    var total = Math.max(nf + 2, boardSize('hidden_things', 8, 3, HIDE_SPOTS.length));
+    var others = shuffle((item.others || []).filter(function (k) { return find.indexOf(k) === -1; })).slice(0, total - nf);
+    var things = shuffle(find.concat(others));
+    var spots = shuffle(HIDE_SPOTS).slice(0, things.length);
+    // About 1 in 4 things are half behind leaves (still easy to tap: the leaves are part of the button).
+    var covered = shuffle(things.map(function (_, i) { return i; })).slice(0, Math.floor(things.length / 4));
+    hd = { item: item, find: find, at: 0, misses: 0, wrong: 0 };
+    var html = things.map(function (k, i) {
+      var s = spots[i];
+      return '<span class="g-hide-at" style="left:' + s[0] + '%;top:' + s[1] + '%">' +
+        '<button class="g-hide" data-hide="' + esc(k) + '" aria-label="' + esc(wordText(k)) + '" style="--rot:' + Math.round(Math.random() * 40 - 20) + 'deg">' +
+        picture(k, 90) + (covered.indexOf(i) !== -1 ? LEAVES : '') + '</button></span>';
+    }).join('');
+    var list = find.map(function (k, i) {
+      return '<button class="g-hd-find" data-hdfind="' + i + '" aria-label="' + esc(wordText(k)) + '">' + picture(k, 54) + '<span class="g-hd-check" aria-hidden="true"></span></button>';
+    }).join('');
+    frame(lion(item.english, item.japanese) +
+      '<div class="g-stage g-stage-col g-hd-stage"><div class="g-hd-list">' + list + '</div>' +
+      '<div class="g-scene">' + PICNIC + html + '</div></div>', { replay: true });
+    hiddenAsk();
+  }
+
+  function hiddenAsk(before) {
+    var k = hd.find[hd.at];
+    var en = 'Find the ' + wordText(k) + '!';
+    setBubble(en, wordJa(k) + 'を さがして！');
+    root.querySelectorAll('.g-hd-find').forEach(function (b, i) { b.classList.toggle('g-hd-now', i === hd.at); });
+    return say((before ? before + ' ' : '') + en);
+  }
+
+  function tapHidden(b) {
+    var h = hd;
+    var key = b.getAttribute('data-hide');
+    var want = h.find[h.at];
+    if (key !== want) {
+      h.misses++;
+      h.wrong++;
+      wiggle(b);
+      setBubble('Try again!', 'もういちど！');
+      say(cap(wordText(key)) + '? Try again! Find the ' + wordText(want) + '!').then(function () {
+        if (hd === h && !busy && h.find[h.at] === want) setBubble('Find the ' + wordText(want) + '!', wordJa(want) + 'を さがして！');
+      });
+      if (h.wrong >= 2) {
+        var right = root.querySelector('.g-hide[data-hide="' + want + '"]');
+        if (right) right.classList.add('g-glow');
+      }
+      return;
+    }
+    b.classList.remove('g-glow');
+    b.classList.add('g-hide-found');
+    b.disabled = true;
+    var card = root.querySelector('[data-hdfind="' + h.at + '"]');
+    if (card) card.classList.add('g-hd-done');
+    h.at++;
+    h.wrong = 0;
+    var en = cap(wordText(key)) + '!';
+    if (h.at < h.find.length) return hiddenAsk(en);
+    root.querySelectorAll('.g-hd-find').forEach(function (x) { x.classList.remove('g-hd-now'); });
+    busy = true;
+    setBubble(en, wordJa(key));
+    say(en).then(function () { boardDone(h.item, h.misses); });
+  }
+
   // ---------- flow ----------
 
   var ri = 0;
@@ -1170,6 +1581,7 @@
     if (ws) clearTimeout(ws.hint);
     ws = null;
     cw = null;
+    mem = mt = st = hd = pd = picked = null;
     if (!item) return endScreen();
     if (rounds[ri].type === 'yesno') yesnoScreen(item);
     else if (rounds[ri].type === 'count') countScreen(item);
@@ -1178,6 +1590,12 @@
     else if (rounds[ri].type === 'missing') missingScreen(item);
     else if (rounds[ri].type === 'search') searchScreen(item);
     else if (rounds[ri].type === 'cross') crossScreen(item);
+    else if (rounds[ri].type === 'memory') memoryScreen(item);
+    else if (rounds[ri].type === 'bubble') bubbleScreen(item);
+    else if (rounds[ri].type === 'oddout') tapScreen(item, 'g-odd');
+    else if (rounds[ri].type === 'match') matchScreen(item);
+    else if (rounds[ri].type === 'sort') sortScreen(item);
+    else if (rounds[ri].type === 'hidden') hiddenScreen(item);
     else tapScreen(item);
   }
 
@@ -1262,6 +1680,7 @@
         else if (freeze && freeze.phase === 'like') say(item.like.english);
         else if (freeze && freeze.phase !== 'pick') say(freeze.phase === 'dance' ? 'Dance!' : 'Freeze!');
         else if (cw) say(cw.b.words[cw.active].text + '.');
+        else if (hd) hiddenAsk();
         else say(item.english, item.audio);
       }
       return;
@@ -1269,7 +1688,11 @@
     if (act === 'freeze') return tapFreeze(b);
     if (busy) return;
     if (b.hasAttribute('data-answer')) return answerYesNo(b);
-    if (b.hasAttribute('data-choice')) return answerTap(b);
+    if (b.hasAttribute('data-choice')) return rounds[ri].type === 'bubble' ? answerBubble(b) : answerTap(b);
+    if (b.hasAttribute('data-mem') && mem) return tapMemory(b);
+    if (b.hasAttribute('data-hide') && hd) return tapHidden(b);
+    if (b.hasAttribute('data-hdfind') && hd) return say(cap(wordText(hd.find[+b.getAttribute('data-hdfind')])) + '.');
+    if (b.hasAttribute('data-target') && (mt || st)) return tapTarget(b);
     if (b.hasAttribute('data-dancer')) return tapDancer(b);
     if (b.hasAttribute('data-like')) return answerLike(b);
     if (b.hasAttribute('data-letter')) return answerLetter(b);
