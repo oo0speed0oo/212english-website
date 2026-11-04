@@ -10,6 +10,7 @@
     "missing questions (word games, tiny): the picture, the word said aloud, ONE letter missing (\"at\": 0 = first letter), and 2 letter tiles (the right one and \"other\"). Shown first letter first, then last, then middle.",
     "search questions (word games, tiny): one puzzle = \"words\" (3) hidden left to right, one per row, in a grid as wide as the longest word. Pictures show what to find. Drag across a word, or tap its first and last letter.",
     "cross questions (word games, tiny): one puzzle = \"words\" [across, down] that share a letter. Picture clues; every letter is given except 1 per word (Pre-K, K) or 2 (Grade 1+). Letter tiles = the missing letters + 1 extra.",
+    "worksheets: printable A4 sheets for grown-ups (kids/print.php?set=fruits): Missing Letters, Word Search, Crossword + answer pages. \"words\" = the set's words (up to 6 letters); \"pairs\" = crossword pairs (they must share a letter).",
     "A question can be for some levels only: \"levels\": [\"k\", \"1\"]. Default: every level.",
     "Item ids start at 100000 and are never reused or renumbered (one id sequence for all kids content). Next free id: 100123.",
     "picture: a picture name drawn by the site (fruits; pizza toppings cheese, mushrooms, tomato, corn, onion, pineapple, broccoli; pizza).",
@@ -241,5 +242,9 @@
   "freeze": {
     "dancers": {"prek": 3, "k": 4, "1": 4, "2": 4, "3": 4, "4": 4},
     "dance_seconds": [5, 9]
+  },
+
+  "worksheets": {
+    "fruits": {"english": "Fruits", "japanese": "くだもの", "month": "nov", "words": ["apple", "banana", "orange", "grapes"], "pairs": [["apple", "grapes"], ["banana", "orange"], ["grapes", "orange"], ["orange", "apple"]]}
   }
 }

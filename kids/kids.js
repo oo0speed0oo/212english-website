@@ -383,6 +383,7 @@
       '<div class="k-sheet-btns">' +
       (children.length ? '<button class="k-small-btn k-press k-how-btn" data-act="how">How is my child doing?<small>こどもの ようす</small></button>' : '') +
       '<button class="k-small-btn k-press" data-act="add">+ Add a child<small>こどもを ついか</small></button>' +
+      '<a class="k-small-btn k-press" style="display:inline-flex;flex-direction:column;justify-content:center;text-decoration:none;color:inherit" href="print.php">🖨 Print worksheets<small>プリント</small></a>' +
       '<a class="k-small-btn k-press" style="display:inline-flex;flex-direction:column;justify-content:center;text-decoration:none;color:inherit" href="' + esc(BOOT.logoutUrl) + '">Log out<small>ログアウト</small></a>' +
       '</div>' +
       '<div class="k-privacy"><p>保存するのは、お子さまのニックネーム・アバターの色・レベルと、どのゲームをいつあそんだか、いくつ正解したかだけです。誕生日・写真・学校名・音声などは保存しません。正解の数は先生だけが見ます。広告・チャット・外部リンクはありません。</p>' +

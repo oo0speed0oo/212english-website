@@ -105,6 +105,8 @@ $h212_kids_game = array(
 <div id="kids-game" aria-live="polite"></div>
 <script>window.H212_KIDS_GAME = <?php echo wp_json_encode( $h212_kids_game ); ?>;</script>
 <script src="music.js?v=<?php echo h212_kids_asset_v( 'music.js' ); ?>"></script>
+<script src="pictures.js?v=<?php echo h212_kids_asset_v( 'pictures.js' ); ?>"></script>
+<script src="puzzles.js?v=<?php echo h212_kids_asset_v( 'puzzles.js' ); ?>"></script>
 <script src="game.js?v=<?php echo h212_kids_asset_v( 'game.js' ); ?>"></script>
 </body>
 </html>

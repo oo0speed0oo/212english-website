@@ -178,6 +178,7 @@ function h212_kids_render_admin_page() {
 			&nbsp;·&nbsp; Kids Parent accounts: <strong><?php echo count( $parents ); ?></strong>
 			&nbsp;·&nbsp; Children: <strong><?php echo count( $all ); ?></strong>
 			&nbsp;·&nbsp; <a href="<?php echo esc_url( admin_url( 'user-new.php' ) ); ?>">Add a parent account</a> (Role: <em>Kids Parent</em>)
+			&nbsp;·&nbsp; <a href="<?php echo esc_url( home_url( '/kids/print.php' ) ); ?>" target="_blank">🖨 Printable worksheets</a>
 		</p>
 
 		<?php if ( isset( $_GET['hw_saved'] ) ) : ?>
