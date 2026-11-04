@@ -172,6 +172,11 @@
   var done = 0;
   var busy = false;
 
+  // The music on/off button (top bar). Freeze Dance has its own beat, so background music waits.
+  var musicBtn = window.H212Music && window.H212Music.bg ? window.H212Music.bg.button() : '';
+  var hasDance = !!musicBtn && G.rounds.some(function (r) { return r.type === 'freeze'; });
+  if (hasDance) window.H212Music.bg.pause();
+
   function frame(inner, opts) {
     opts = opts || {};
     var dots = '';
@@ -184,6 +189,7 @@
       '<a class="g-round-btn k-press" href="' + esc(G.back) + '" aria-label="Back to the menu">' +
       '<svg width="28" height="28" viewBox="0 0 26 30" aria-hidden="true"><path d="M22 3 L3 15 L22 27Z" fill="' + INK + '" stroke="' + INK + '" stroke-width="4" stroke-linejoin="round"/></svg></a>' +
       '<div class="g-dots" aria-label="' + done + ' of ' + total + '">' + dots + '</div>' +
+      musicBtn +
       (opts.replay ? '<button class="g-round-btn k-press" data-act="replay" aria-label="Hear it again">' +
         '<svg width="32" height="32" viewBox="0 0 36 36" aria-hidden="true"><path d="M5 14 H12 L21 6 V30 L12 22 H5Z" fill="' + INK + '"/><path d="M26 12 Q31 18 26 24 M29 8 Q37 18 29 28" stroke="' + INK + '" stroke-width="3.5" fill="none" stroke-linecap="round"/></svg></button>'
         : '<span class="g-round-spacer"></span>') +
@@ -351,7 +357,11 @@
   }
 
   function endScreen() {
-    if (window.H212Music) window.H212Music.stop();
+    // Freeze Dance is over: its beat stops and the calm background music may come back.
+    if (hasDance) {
+      window.H212Music.stop();
+      window.H212Music.bg.resume();
+    }
     var stars = '';
     for (var i = 0; i < STARS_PER_GAME; i++) stars += star(96, 'g-end-star');
     frame('<div class="g-center">' + lion('You did it!', 'できたね！') +

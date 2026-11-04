@@ -129,6 +129,11 @@
     return id;
   }
 
+  // The music on/off button (music.js). Empty if this browser can't play music.
+  function musicBtn() {
+    return window.H212Music && window.H212Music.bg ? window.H212Music.bg.button() : '';
+  }
+
   // ---------- Screen 1: Who is playing? ----------
 
   function renderHome() {
@@ -149,6 +154,7 @@
       '<div class="k-home-foot">' +
       '<div class="k-mike"><img src="lion.svg" alt="Teacher Mike the lion">' +
       '<div class="k-bubble"><b>Hello! Let\'s play!</b><small>こんにちは！あそぼう！</small></div></div>' +
+      musicBtn() +
       '<button class="k-pill-btn k-press" data-act="grownups">' +
       svg(26, 26, '0 0 26 26', '<rect x="4" y="11" width="18" height="12" rx="3" fill="' + INK + '"/><path d="M8 11 V8 a5 5 0 0 1 10 0 V11" stroke="' + INK + '" stroke-width="3" fill="none"/>') +
       two('Grown-ups', 'おとなのかた') + '</button>' +
@@ -198,7 +204,7 @@
     }
     var p = progress[child.id] || {};
     var stars = p.stars || 0;
-    top += '<div class="k-stars" aria-label="Stars: ' + stars + '">' + star(34, true) + '<span>' + stars + '</span></div></div>';
+    top += '<div class="k-stars" aria-label="Stars: ' + stars + '">' + star(34, true) + '<span>' + stars + '</span></div>' + musicBtn() + '</div>';
 
     // Mike's homework (placeholder: opens the temporary page).
     var hw = '<div class="k-homework"><div class="k-homework-icon">' + icon('backpack', 52) + '</div>' +

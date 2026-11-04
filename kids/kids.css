@@ -693,6 +693,25 @@ button:focus-visible, a:focus-visible, input:focus-visible {
 	padding: 0;
 }
 .g-round-spacer { width: 64px; flex: none; }
+
+/* The music on/off button (menu and every game). Yellow = music on; white with a red line = off. */
+.k-music-btn {
+	width: 64px;
+	height: 64px;
+	flex: none;
+	border-radius: 50%;
+	background: #FFD24D;
+	border: var(--line-thin);
+	box-shadow: var(--lift-small);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 0;
+	cursor: pointer;
+}
+.k-music-btn.k-music-off { background: var(--white); }
+.k-music-btn svg { width: 34px; height: 34px; }
+.k-home-foot .k-music-btn { margin-left: auto; align-self: center; }
 .g-dots { flex: 1; display: flex; justify-content: center; flex-wrap: wrap; gap: 8px; }
 .g-dot { width: 18px; height: 18px; border-radius: 50%; background: var(--white); border: 3px solid var(--ink); }
 .g-dot-on { background: var(--yellow); }
@@ -1055,6 +1074,11 @@ button:focus-visible, a:focus-visible, input:focus-visible {
 	.g-piece { margin: -19px 0 0 -19px; }
 	.g-piece .g-pic { width: 38px; height: 38px; }
 	.g-tray { grid-template-columns: repeat(4, 76px); gap: 6px; }
+	.g-top { gap: 8px; }
+	.g-round-btn, .g-top .k-music-btn { width: 54px; height: 54px; }
+	.g-round-spacer { width: 54px; }
+	.g-dots { gap: 6px; }
+	.g-dot { width: 15px; height: 15px; }
 	.g-topping { width: 76px; height: 84px; border-width: 3px; border-radius: 18px; }
 	.g-topping .g-pic { width: 44px; height: 44px; }
 	.g-topping span { font-size: 12px; }
