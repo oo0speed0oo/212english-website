@@ -19,6 +19,14 @@ if ( ! defined( 'H212_KIDS_ROLES' ) ) {
 	define( 'H212_KIDS_ROLES', 'administrator,kids_parent,student' );
 }
 
+/*
+ * Parents' "How is my child doing?" screen shows what was played, DONE and stars.
+ * true = also show how many answers were right on the first try (the teacher always sees it).
+ */
+if ( ! defined( 'H212_KIDS_PARENTS_SEE_RIGHT' ) ) {
+	define( 'H212_KIDS_PARENTS_SEE_RIGHT', false );
+}
+
 // Kids pages are private and change per account: no page cache may keep a copy (LiteSpeed included).
 function h212_kids_no_cache() {
 	if ( ! defined( 'DONOTCACHEPAGE' ) ) {

@@ -470,6 +470,27 @@ button:focus-visible, a:focus-visible, input:focus-visible {
 	line-height: 1.3;
 }
 
+/* DONE check on a finished game's tile (the child can still replay it). */
+.k-game, .k-lesson { position: relative; }
+.k-done {
+	position: absolute;
+	top: -12px;
+	right: -8px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 4px 12px 5px;
+	background: var(--green);
+	border: var(--line-thin);
+	border-radius: 999px;
+	box-shadow: 0 3px 0 var(--ink);
+	font-size: 16px;
+	font-weight: 800;
+	line-height: 1;
+	transform: rotate(6deg);
+}
+.k-done small { font-size: 10px; margin-top: 1px; }
+
 /* ---------- Pop-ups: parent gate, add a child, grown-ups ---------- */
 
 .k-modal {
@@ -627,6 +648,22 @@ button:focus-visible, a:focus-visible, input:focus-visible {
 }
 .k-privacy p { margin: 0; }
 .k-privacy p + p { margin-top: 6px; font-family: 'Baloo 2', sans-serif; font-size: 15px; }
+
+/* Parents: "How is my child doing?" */
+.k-how-btn { background: var(--yellow); }
+.k-how-child { margin-top: 22px; text-align: left; }
+.k-how-child h3 { display: flex; align-items: center; gap: 10px; margin: 0 0 8px; font-size: 28px; font-weight: 800; }
+.k-how-total { margin-left: auto; display: flex; align-items: center; gap: 4px; font-size: 24px; }
+.k-how-list { list-style: none; margin: 0; padding: 0; border: var(--line-thin); border-radius: 20px; overflow: hidden; }
+.k-how-list li { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; padding: 10px 14px; font-size: 18px; font-weight: 700; }
+.k-how-list li + li { border-top: 2px dashed #D9D3EA; }
+.k-how-date { min-width: 74px; font-family: 'M PLUS Rounded 1c', sans-serif; font-size: 15px; }
+.k-how-game { flex: 1; min-width: 140px; }
+.k-how-game small { font-size: 13px; }
+.k-how-done { background: var(--green); border: 3px solid var(--ink); border-radius: 999px; padding: 0 10px; font-size: 14px; font-weight: 800; }
+.k-how-stars { display: flex; align-items: center; gap: 2px; }
+.k-how-open { color: #8A84A3; }
+.k-how-right { font-size: 15px; }
 
 /* ---------- Games (game.php + game.js) ---------- */
 

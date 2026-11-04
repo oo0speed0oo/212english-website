@@ -14,6 +14,8 @@ if ( 'POST' === $_SERVER['REQUEST_METHOD'] ) {
 	if ( ! wp_verify_nonce( $_POST['h212_kids_login_nonce'] ?? '', 'h212_kids_login' ) ) {
 		$error = 'Please try again. もういちど おためしください。';
 	} else {
+		// Lets 212-kids.php count this as a grown-up login to 212 Kids.
+		define( 'H212_KIDS_LOGIN', true );
 		$user = wp_signon( array(
 			'user_login'    => sanitize_text_field( wp_unslash( $_POST['username'] ?? '' ) ),
 			'user_password' => $_POST['password'] ?? '',

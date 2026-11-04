@@ -10,12 +10,38 @@ $h212_kids_all      = h212_kids_get_progress( $h212_user->ID );
 foreach ( h212_kids_get_children( $h212_user->ID ) as $c ) {
 	$h212_kids_progress[ $c['id'] ] = h212_kids_child_progress( $h212_kids_all, $c['id'] );
 }
+// For the parents' "How is my child doing?" screen: each child's latest plays (needs the records in 212-kids.php).
+$h212_kids_recent = array();
+if ( function_exists( 'h212_kids_recent_plays' ) ) {
+	$h212_kids_games = h212_kids_games();
+	foreach ( h212_kids_recent_plays( $h212_user->ID ) as $cid => $plays ) {
+		foreach ( $plays as $r ) {
+			$g     = $h212_kids_games['games'][ $r->game ] ?? array();
+			$entry = array(
+				'date'     => substr( (string) $r->started, 0, 16 ),
+				'english'  => $g['english'] ?? $r->game,
+				'japanese' => $g['japanese'] ?? '',
+				'done'     => ! empty( $r->finished ),
+				'stars'    => (int) $r->stars,
+			);
+			// Right answers are shown to parents only if H212_KIDS_PARENTS_SEE_RIGHT is switched on (boot.php).
+			if ( H212_KIDS_PARENTS_SEE_RIGHT ) {
+				$entry['right']   = (int) $r->first_right;
+				$entry['counted'] = (int) $r->counted;
+			}
+			$h212_kids_recent[ $cid ][] = $entry;
+		}
+	}
+}
+
 $h212_kids_boot = array(
 	'nonce'     => wp_create_nonce( 'h212_kids_children' ),
 	'children'  => h212_kids_get_children( $h212_user->ID ),
 	'progress'  => (object) $h212_kids_progress,
+	'recent'    => (object) $h212_kids_recent,
 	'menuUrl'   => 'kids-menu.json?v=' . h212_kids_asset_v( 'kids-menu.json' ),
-	'logoutUrl' => wp_logout_url( h212_kids_url( 'login.php' ) ),
+	// wp_logout_url() returns "&amp;" for HTML; kids.js escapes the link itself, so give it plain "&".
+	'logoutUrl' => html_entity_decode( wp_logout_url( h212_kids_url( 'login.php' ) ) ),
 );
 ?>
 <!DOCTYPE html>

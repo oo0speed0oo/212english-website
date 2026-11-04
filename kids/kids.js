@@ -206,10 +206,15 @@
       '<button class="k-big-btn k-green k-press" data-tile="homework">' +
       svg(26, 30, '0 0 26 30', '<path d="M4 3 L23 15 L4 27Z" fill="' + INK + '" stroke="' + INK + '" stroke-width="4" stroke-linejoin="round"/>') + 'Go!</button></div>';
 
+    // A game this child has finished at least once gets a DONE check (they can still play it again).
+    function doneBadge(game) {
+      return game && p.best && p.best[game] ? '<span class="k-done">✓ DONE<small>できた</small></span>' : '';
+    }
+
     var body = '';
     if (theme) {
       body = '<div class="k-games">' + (theme.games || []).map(function (g) {
-        return '<button class="k-game k-press" data-tile="' + esc(g.id) + '"' + (g.game ? ' data-game="' + esc(g.game) + '"' : '') + '>' +
+        return '<button class="k-game k-press" data-tile="' + esc(g.id) + '"' + (g.game ? ' data-game="' + esc(g.game) + '"' : '') + '>' + doneBadge(g.game) +
           '<span class="k-game-pic" style="background:' + color(g.color, '#FFE27A') + '">' + icon(g.icon, 50) + '</span>' +
           two(g.english, g.japanese) +
           (g.month ? '<span class="k-month-tag">' + esc(monthLabel(g.month)) + '</span>' : '') +
@@ -220,7 +225,7 @@
         '<div class="k-lessons">' + (month.lessons || []).map(function (l) {
           // The lesson's stars fill in with the best score from its game.
           var best = (l.game && p.best && p.best[l.game]) || 0;
-          return '<button class="k-lesson k-press" data-tile="' + esc(l.id) + '"' + (l.game ? ' data-game="' + esc(l.game) + '"' : '') + '>' +
+          return '<button class="k-lesson k-press" data-tile="' + esc(l.id) + '"' + (l.game ? ' data-game="' + esc(l.game) + '"' : '') + '>' + doneBadge(l.game) +
             '<span class="k-lesson-pic" style="background:' + color(l.color, '#FFE27A') + '"><span class="k-lesson-num">' + esc(l.number) + '</span>' + icon(l.icon, 62) + '</span>' +
             two(l.english, l.japanese).replace('</span>', '<span class="k-row-stars">' + star(32, best > 0) + star(32, best > 1) + star(32, best > 2) + '</span></span>') +
             '</button>';
@@ -357,14 +362,16 @@
       '<ul class="k-grown-list">' + (list || '<li>No children yet. まだ いません。</li>') + '</ul>' +
       '<p class="k-error" role="alert"></p>' +
       '<div class="k-sheet-btns">' +
+      (children.length ? '<button class="k-small-btn k-press k-how-btn" data-act="how">How is my child doing?<small>こどもの ようす</small></button>' : '') +
       '<button class="k-small-btn k-press" data-act="add">+ Add a child<small>こどもを ついか</small></button>' +
       '<a class="k-small-btn k-press" style="display:inline-flex;flex-direction:column;justify-content:center;text-decoration:none;color:inherit" href="' + esc(BOOT.logoutUrl) + '">Log out<small>ログアウト</small></a>' +
       '</div>' +
-      '<div class="k-privacy"><p>保存するのは、お子さまのニックネーム・アバターの色・レベルだけです。誕生日・写真・学校名・音声などは保存しません。広告・チャット・外部リンクはありません。</p>' +
-      '<p>We only save each child\'s nickname, avatar color and level. Nothing else. No ads, no chat, no links out.</p></div>',
+      '<div class="k-privacy"><p>保存するのは、お子さまのニックネーム・アバターの色・レベルと、どのゲームをいつあそんだか、いくつ正解したかだけです。誕生日・写真・学校名・音声などは保存しません。正解の数は先生だけが見ます。広告・チャット・外部リンクはありません。</p>' +
+      '<p>We save each child\'s nickname, avatar color and level, which games they played and when, and how many answers were right. Nothing else. Only the teacher sees the right answers. No ads, no chat, no links out.</p></div>',
       function (e) {
         var b = e.target.closest('button');
         if (!b) return;
+        if (b.getAttribute('data-act') === 'how') return howAreTheyDoing();
         if (b.getAttribute('data-act') === 'add') return childForm();
         if (b.hasAttribute('data-edit')) return childForm(findById(children, b.getAttribute('data-edit')));
         if (b.hasAttribute('data-remove')) {
@@ -376,6 +383,32 @@
           }
           save('remove', { id: b.getAttribute('data-remove') }, modal.querySelector('.k-error'), true);
         }
+      });
+  }
+
+  // Parents: what each child played, when, DONE and stars. No percentages and no wrong answers
+  // (right answers appear only if the teacher switched that on: H212_KIDS_PARENTS_SEE_RIGHT).
+  function howAreTheyDoing() {
+    var recent = BOOT.recent || {};
+    var html = children.map(function (c) {
+      var p = progress[c.id] || {};
+      var rows = (recent[c.id] || []).map(function (r) {
+        return '<li><span class="k-how-date">' + esc(r.date.slice(5).replace('-', '/')) + '</span>' +
+          '<span class="k-how-game">' + esc(r.english) + ' <small>' + esc(r.japanese) + '</small></span>' +
+          (r.counted ? '<span class="k-how-right">' + r.right + ' / ' + r.counted + '</span>' : '') +
+          (r.done ? '<span class="k-how-done">✓ DONE</span><span class="k-how-stars">' + star(22, true) + ' ' + r.stars + '</span>' : '<span class="k-how-open">Not finished とちゅう</span>') +
+          '</li>';
+      }).join('');
+      return '<section class="k-how-child"><h3>' + avatar(c.color, 40) + ' ' + esc(c.name) +
+        '<span class="k-how-total">' + star(26, true) + ' ' + (p.stars || 0) + '</span></h3>' +
+        (rows ? '<ul class="k-how-list">' + rows + '</ul>' : '<p class="k-gate-note jp">Nothing played yet. まだ あそんでいません。</p>') +
+        '</section>';
+    }).join('');
+    openModal('<h2>How is my child doing?</h2><span class="jp">こどもの ようす</span>' + html +
+      '<div class="k-sheet-btns"><button class="k-small-btn k-press" data-act="back">Back<small>もどる</small></button></div>',
+      function (e) {
+        var b = e.target.closest('button');
+        if (b && b.getAttribute('data-act') === 'back') grownUps();
       });
   }
 
@@ -435,7 +468,17 @@
     var b = e.target.closest('button, a');
     if (!b) return;
     if (b.hasAttribute('data-go')) return go(b.getAttribute('data-go'));
-    if (b.hasAttribute('data-kid')) return go('/c/' + b.getAttribute('data-kid'));
+    if (b.hasAttribute('data-kid')) {
+      // The child's "login": recorded for the teacher. Never waits for the save.
+      fetch('save-progress.php', {
+        method: 'POST',
+        credentials: 'same-origin',
+        keepalive: true,
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ nonce: BOOT.nonce, child: b.getAttribute('data-kid'), action: 'pick' })
+      }).catch(function () {});
+      return go('/c/' + b.getAttribute('data-kid'));
+    }
     if (b.hasAttribute('data-tile')) return openTile(b.getAttribute('data-tile'), b.getAttribute('data-game'));
     var act = b.getAttribute('data-act');
     if (act === 'add') return parentGate(function () { childForm(); });

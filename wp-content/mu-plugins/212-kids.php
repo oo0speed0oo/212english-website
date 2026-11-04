@@ -4,11 +4,18 @@
  *
  * - Adds the "Kids Parent" role: make one in wp-admin > Users > Add New, Role "Kids Parent".
  *   Kids Parents can open /kids/ only (not the adult portal, not wp-admin).
- * - Adds wp-admin > 212 English > 212 Kids: every account's children and their progress.
+ * - Keeps the RECORDS the teacher sees (wp-admin > 212 English > 212 Kids, in 212-kids-teacher.php).
  *
- * What is saved (user meta on the grown-up's account, nothing else about a child):
- *   h212_kids_children  list of { id, name (nickname), color, level }
- *   h212_kids_progress  { child id: { stars, played: { tile id: times }, best: { game id: stars }, stickers, last } }
+ * What is saved, nothing else about a child:
+ *   user meta on the grown-up's account
+ *     h212_kids_children     list of { id, name (nickname), color, level }
+ *     h212_kids_progress     { child id: { stars, played: { tile id: times }, best: { game id: stars }, stickers, last } }
+ *     h212_kids_login_count  how many times this grown-up logged in to /kids/, and h212_kids_last_login
+ *   three database tables (made automatically, see h212_kids_install_tables)
+ *     wp_h212_kids_plays     one row per game played: who, which game, started, finished, questions, first-try right, stars
+ *     wp_h212_kids_answers   one row per question answered: which question, word, first try right?, tries, did it glow?
+ *     wp_h212_kids_events    one row each time a child is picked on "Who is playing?", and each grown-up login
+ * A child's rows are deleted when the child is removed; the teacher can delete records older than 12 months.
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -52,137 +59,201 @@ add_filter( 'login_redirect', function ( $redirect_to, $requested, $user ) {
 	return $redirect_to;
 }, 10, 3 );
 
-// ---------- wp-admin > 212 English > 212 Kids ----------
+// ---------- the record tables ----------
 
-add_action( 'admin_menu', function () {
-	global $admin_page_hooks;
-	// Sits under the "212 English" menu (212-teacher-results.php); stands alone if that menu is missing.
-	if ( isset( $admin_page_hooks['h212-student-results'] ) ) {
-		add_submenu_page( 'h212-student-results', '212 Kids', '212 Kids', 'manage_options', 'h212-kids', 'h212_kids_render_admin_page' );
-	} else {
-		add_menu_page( '212 Kids', '212 Kids', 'manage_options', 'h212-kids', 'h212_kids_render_admin_page', 'dashicons-smiley', 27 );
-	}
-}, 20 );
+define( 'H212_KIDS_DB_VERSION', '1' );
 
-function h212_kids_admin_menu_titles() {
-	$file  = ABSPATH . 'kids/kids-menu.json';
-	$menu  = is_readable( $file ) ? json_decode( (string) file_get_contents( $file ), true ) : null;
-	$names = array( 'homework' => "Mike's homework" );
-	$levels = array();
-	if ( is_array( $menu ) ) {
-		foreach ( (array) ( $menu['levels'] ?? array() ) as $lv ) {
-			$levels[ (string) $lv['id'] ] = $lv['english'];
-			foreach ( (array) ( $lv['months'] ?? array() ) as $m ) {
-				foreach ( (array) ( $m['lessons'] ?? array() ) as $l ) {
-					$names[ $l['id'] ] = $m['english'] . ' ' . $l['number'] . ': ' . $l['english'];
-				}
-			}
-		}
-		foreach ( (array) ( $menu['themes'] ?? array() ) as $t ) {
-			foreach ( (array) ( $t['games'] ?? array() ) as $g ) {
-				$names[ $g['id'] ] = $t['english'] . ': ' . $g['english'];
-			}
-		}
-	}
-	return array( $names, $levels );
+function h212_kids_table( $name ) {
+	global $wpdb;
+	return $wpdb->prefix . 'h212_kids_' . $name;
 }
 
-function h212_kids_render_admin_page() {
-	if ( ! current_user_can( 'manage_options' ) ) {
+// Makes (or updates) the three tables once; afterwards it only reads one saved option.
+function h212_kids_install_tables() {
+	if ( get_option( 'h212_kids_db_version' ) === H212_KIDS_DB_VERSION ) {
 		return;
 	}
-	list( $tiles, $levels ) = h212_kids_admin_menu_titles();
-	$colors = array( 'pink' => '#FF7DA8', 'blue' => '#4DA3FF', 'green' => '#5CC98B', 'yellow' => '#FFD24D', 'orange' => '#FFB46B', 'purple' => '#C9B8FF' );
+	global $wpdb;
+	require_once ABSPATH . 'wp-admin/includes/upgrade.php';
+	$charset = $wpdb->get_charset_collate();
+	dbDelta( 'CREATE TABLE ' . h212_kids_table( 'plays' ) . " (
+		id bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+		user_id bigint(20) unsigned NOT NULL,
+		child_id varchar(20) NOT NULL,
+		level varchar(8) NOT NULL DEFAULT '',
+		game varchar(64) NOT NULL,
+		started datetime NOT NULL,
+		finished datetime DEFAULT NULL,
+		asked smallint(5) unsigned NOT NULL DEFAULT 0,
+		counted smallint(5) unsigned NOT NULL DEFAULT 0,
+		first_right smallint(5) unsigned NOT NULL DEFAULT 0,
+		stars tinyint(3) unsigned NOT NULL DEFAULT 0,
+		PRIMARY KEY  (id),
+		KEY child (user_id,child_id),
+		KEY started (started)
+	) $charset;" );
+	dbDelta( 'CREATE TABLE ' . h212_kids_table( 'answers' ) . " (
+		id bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+		play_id bigint(20) unsigned NOT NULL,
+		user_id bigint(20) unsigned NOT NULL,
+		child_id varchar(20) NOT NULL,
+		level varchar(8) NOT NULL DEFAULT '',
+		game varchar(64) NOT NULL,
+		item_id varchar(12) NOT NULL,
+		round_type varchar(16) NOT NULL DEFAULT '',
+		word varchar(40) NOT NULL DEFAULT '',
+		counted tinyint(1) unsigned NOT NULL DEFAULT 1,
+		first_right tinyint(1) unsigned NOT NULL DEFAULT 0,
+		tries tinyint(3) unsigned NOT NULL DEFAULT 1,
+		glowed tinyint(1) unsigned NOT NULL DEFAULT 0,
+		created datetime NOT NULL,
+		PRIMARY KEY  (id),
+		KEY play (play_id),
+		KEY child (user_id,child_id),
+		KEY created (created),
+		KEY word (word)
+	) $charset;" );
+	dbDelta( 'CREATE TABLE ' . h212_kids_table( 'events' ) . " (
+		id bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+		user_id bigint(20) unsigned NOT NULL,
+		child_id varchar(20) NOT NULL DEFAULT '',
+		kind varchar(16) NOT NULL,
+		created datetime NOT NULL,
+		PRIMARY KEY  (id),
+		KEY child (user_id,child_id),
+		KEY created (created)
+	) $charset;" );
+	update_option( 'h212_kids_db_version', H212_KIDS_DB_VERSION );
+}
+add_action( 'init', 'h212_kids_install_tables' );
 
-	$users = get_users( array(
-		'meta_key'     => 'h212_kids_children',
-		'meta_compare' => 'EXISTS',
-		'orderby'      => 'display_name',
+// ---------- saving records (called by kids/save-progress.php) ----------
+
+function h212_kids_now() {
+	return current_time( 'mysql' );
+}
+
+// "pick" = a child was chosen on "Who is playing?" (the child's login); "login" = a grown-up logged in.
+function h212_kids_rec_event( $user_id, $child_id, $kind ) {
+	global $wpdb;
+	$t = h212_kids_table( 'events' );
+	// The same child picked again within 10 minutes is the same visit: don't count it twice.
+	if ( 'pick' === $kind ) {
+		$recent = $wpdb->get_var( $wpdb->prepare(
+			"SELECT id FROM $t WHERE user_id = %d AND child_id = %s AND kind = 'pick' AND created > %s LIMIT 1",
+			$user_id, $child_id, gmdate( 'Y-m-d H:i:s', current_time( 'timestamp' ) - 600 )
+		) );
+		if ( $recent ) {
+			return;
+		}
+	}
+	$wpdb->insert( $t, array( 'user_id' => $user_id, 'child_id' => $child_id, 'kind' => $kind, 'created' => h212_kids_now() ) );
+}
+
+function h212_kids_rec_start( $user_id, $child_id, $level, $game ) {
+	global $wpdb;
+	$wpdb->insert( h212_kids_table( 'plays' ), array(
+		'user_id'  => $user_id,
+		'child_id' => $child_id,
+		'level'    => $level,
+		'game'     => $game,
+		'started'  => h212_kids_now(),
 	) );
-	$parents = get_users( array( 'role' => 'kids_parent', 'fields' => array( 'ID' ) ) );
-	?>
-	<div class="wrap">
-		<h1>212 Kids</h1>
-		<p>
-			Kids area: <a href="<?php echo esc_url( home_url( '/kids/' ) ); ?>" target="_blank"><?php echo esc_html( home_url( '/kids/' ) ); ?></a>
-			&nbsp;·&nbsp; Kids Parent accounts: <strong><?php echo count( $parents ); ?></strong>
-			&nbsp;·&nbsp; <a href="<?php echo esc_url( admin_url( 'user-new.php' ) ); ?>">Add a parent account</a> (Role: <em>Kids Parent</em>)
-		</p>
-		<p class="description">Who can open /kids/ is set in <code>kids/inc/boot.php</code> (H212_KIDS_ROLES). Every finished game gives 3 stars and its sticker; "Played" counts every tile a child opens.</p>
+	return (int) $wpdb->insert_id;
+}
 
-		<?php if ( ! $users ) : ?>
-			<p><em>No children added yet.</em></p>
-		<?php else : ?>
-		<table class="widefat striped" style="max-width:1200px">
-			<thead>
-				<tr>
-					<th>Account</th>
-					<th>Child</th>
-					<th>Level</th>
-					<th>Stars</th>
-					<th>Played</th>
-					<th>Last played</th>
-				</tr>
-			</thead>
-			<tbody>
-			<?php
-			foreach ( $users as $u ) :
-				$children = get_user_meta( $u->ID, 'h212_kids_children', true );
-				$progress = get_user_meta( $u->ID, 'h212_kids_progress', true );
-				$children = is_array( $children ) ? $children : array();
-				$progress = is_array( $progress ) ? $progress : array();
-				$role     = implode( ', ', array_map( 'ucwords', str_replace( '_', ' ', (array) $u->roles ) ) );
-				$first    = true;
-				if ( ! $children ) {
-					continue;
-				}
-				foreach ( $children as $c ) :
-					$p      = isset( $progress[ $c['id'] ] ) && is_array( $progress[ $c['id'] ] ) ? $progress[ $c['id'] ] : array();
-					$played = isset( $p['played'] ) && is_array( $p['played'] ) ? $p['played'] : array();
-					arsort( $played );
-					?>
-					<tr>
-						<td>
-							<?php if ( $first ) : ?>
-								<a href="<?php echo esc_url( get_edit_user_link( $u->ID ) ); ?>"><strong><?php echo esc_html( $u->display_name ); ?></strong></a><br>
-								<span class="description"><?php echo esc_html( $u->user_login . ' · ' . $role ); ?></span>
-							<?php endif; ?>
-						</td>
-						<td>
-							<span style="display:inline-block;width:14px;height:14px;border-radius:50%;vertical-align:middle;border:2px solid #2B2350;background:<?php echo esc_attr( $colors[ $c['color'] ] ?? '#ccc' ); ?>"></span>
-							<strong><?php echo esc_html( $c['name'] ); ?></strong>
-						</td>
-						<td><?php echo esc_html( $levels[ (string) $c['level'] ] ?? $c['level'] ); ?></td>
-						<td>
-							<?php echo (int) ( $p['stars'] ?? 0 ); ?> ⭐
-							<?php $stickers = isset( $p['stickers'] ) && is_array( $p['stickers'] ) ? $p['stickers'] : array(); ?>
-							<?php if ( $stickers ) : ?>
-								<br><span class="description">Stickers: <?php echo esc_html( implode( ', ', $stickers ) ); ?></span>
-							<?php endif; ?>
-						</td>
-						<td>
-							<?php if ( ! $played ) : ?>
-								<span class="description">Nothing yet</span>
-							<?php else : ?>
-								<?php $times = (int) array_sum( $played ); ?>
-								<strong><?php echo $times; ?></strong> <?php echo 1 === $times ? 'time' : 'times'; ?>
-								<details><summary>Show</summary>
-									<?php foreach ( $played as $tile => $n ) : ?>
-										<?php echo esc_html( $tiles[ $tile ] ?? $tile ); ?> × <?php echo (int) $n; ?><br>
-									<?php endforeach; ?>
-								</details>
-							<?php endif; ?>
-						</td>
-						<td><?php echo ! empty( $p['last'] ) ? esc_html( $p['last'] ) : '<span class="description">—</span>'; ?></td>
-					</tr>
-					<?php
-					$first = false;
-				endforeach;
-			endforeach;
-			?>
-			</tbody>
-		</table>
-		<?php endif; ?>
-	</div>
-	<?php
+// The play, if it belongs to this account and child; otherwise null.
+function h212_kids_get_play( $user_id, $child_id, $play_id ) {
+	global $wpdb;
+	$t = h212_kids_table( 'plays' );
+	return $wpdb->get_row( $wpdb->prepare( "SELECT * FROM $t WHERE id = %d AND user_id = %d AND child_id = %s", $play_id, $user_id, $child_id ) );
+}
+
+/*
+ * One answered question. $a = { item_id, round_type, word, counted (0 for opinion questions),
+ * tries (1 = right on the first try), glowed }. A question already saved for this play is ignored.
+ */
+function h212_kids_rec_answer( $play, $a ) {
+	global $wpdb;
+	$t = h212_kids_table( 'answers' );
+	$seen = $wpdb->get_var( $wpdb->prepare( "SELECT id FROM $t WHERE play_id = %d AND item_id = %s LIMIT 1", $play->id, $a['item_id'] ) );
+	if ( $seen ) {
+		return;
+	}
+	$tries       = max( 1, min( 9, (int) $a['tries'] ) );
+	$counted     = $a['counted'] ? 1 : 0;
+	$first_right = ( $counted && 1 === $tries ) ? 1 : 0;
+	$wpdb->insert( $t, array(
+		'play_id'     => $play->id,
+		'user_id'     => $play->user_id,
+		'child_id'    => $play->child_id,
+		'level'       => $play->level,
+		'game'        => $play->game,
+		'item_id'     => $a['item_id'],
+		'round_type'  => $a['round_type'],
+		'word'        => $a['word'],
+		'counted'     => $counted,
+		'first_right' => $first_right,
+		'tries'       => $tries,
+		'glowed'      => $a['glowed'] ? 1 : 0,
+		'created'     => h212_kids_now(),
+	) );
+	$wpdb->query( $wpdb->prepare(
+		'UPDATE ' . h212_kids_table( 'plays' ) . ' SET asked = asked + 1, counted = counted + %d, first_right = first_right + %d WHERE id = %d',
+		$counted, $first_right, $play->id
+	) );
+}
+
+function h212_kids_rec_finish( $play, $stars ) {
+	global $wpdb;
+	if ( $play->finished ) {
+		return;
+	}
+	$wpdb->update( h212_kids_table( 'plays' ), array( 'finished' => h212_kids_now(), 'stars' => (int) $stars ), array( 'id' => $play->id ) );
+}
+
+// A child was removed: delete every record of that child.
+function h212_kids_forget_child_records( $user_id, $child_id ) {
+	global $wpdb;
+	foreach ( array( 'plays', 'answers', 'events' ) as $name ) {
+		$wpdb->delete( h212_kids_table( $name ), array( 'user_id' => $user_id, 'child_id' => $child_id ) );
+	}
+}
+
+// A WordPress account was deleted: delete its kids records too.
+add_action( 'deleted_user', function ( $user_id ) {
+	global $wpdb;
+	foreach ( array( 'plays', 'answers', 'events' ) as $name ) {
+		$wpdb->delete( h212_kids_table( $name ), array( 'user_id' => (int) $user_id ) );
+	}
+} );
+
+// Count grown-up logins to 212 Kids: the kids login page, or a Kids Parent logging in anywhere.
+add_action( 'wp_login', function ( $login, $user ) {
+	if ( ! defined( 'H212_KIDS_LOGIN' ) && ! h212_kids_is_parent_only( $user ) ) {
+		return;
+	}
+	update_user_meta( $user->ID, 'h212_kids_login_count', (int) get_user_meta( $user->ID, 'h212_kids_login_count', true ) + 1 );
+	update_user_meta( $user->ID, 'h212_kids_last_login', h212_kids_now() );
+	h212_kids_rec_event( $user->ID, '', 'login' );
+}, 10, 2 );
+
+// The latest plays of one account's children, for the parents' "How is my child doing?" screen.
+function h212_kids_recent_plays( $user_id, $per_child = 15 ) {
+	global $wpdb;
+	$t    = h212_kids_table( 'plays' );
+	$rows = $wpdb->get_results( $wpdb->prepare(
+		"SELECT child_id, game, started, finished, counted, first_right, stars FROM $t WHERE user_id = %d ORDER BY started DESC LIMIT 400",
+		$user_id
+	) );
+	$out = array();
+	foreach ( (array) $rows as $r ) {
+		if ( ! isset( $out[ $r->child_id ] ) ) {
+			$out[ $r->child_id ] = array();
+		}
+		if ( count( $out[ $r->child_id ] ) < $per_child ) {
+			$out[ $r->child_id ][] = $r;
+		}
+	}
+	return $out;
 }

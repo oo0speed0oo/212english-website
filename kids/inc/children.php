@@ -76,6 +76,23 @@ function h212_kids_games() {
 	return $games;
 }
 
+// Every question id a game can ask (its rounds, including shared pools).
+function h212_kids_game_item_ids( $game_id ) {
+	$games = h212_kids_games();
+	$ids   = array();
+	foreach ( (array) ( $games['games'][ $game_id ]['rounds'] ?? array() ) as $round ) {
+		if ( isset( $round['pool'] ) && isset( $games['pools'][ $round['pool'] ] ) ) {
+			$round = $round + $games['pools'][ $round['pool'] ];
+		}
+		foreach ( (array) ( $round['items'] ?? array() ) as $id ) {
+			if ( isset( $games['items'][ $id ] ) ) {
+				$ids[] = (string) $id;
+			}
+		}
+	}
+	return $ids;
+}
+
 function h212_kids_find_child( $user_id, $child_id ) {
 	foreach ( h212_kids_get_children( $user_id ) as $c ) {
 		if ( $c['id'] === $child_id ) {

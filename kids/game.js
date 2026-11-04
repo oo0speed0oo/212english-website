@@ -291,13 +291,39 @@
     saveFinish();
   }
 
-  // Save the stars and sticker. If saving fails the child still sees the reward.
-  function saveFinish() {
-    fetch('save-progress.php', {
+  // ---------- records for the teacher (the child never sees them) ----------
+  // Nothing here ever stops or slows the game: if saving fails, the child just keeps playing.
+
+  function post(data) {
+    data.nonce = G.nonce;
+    data.child = G.child.id;
+    return fetch('save-progress.php', {
       method: 'POST',
       credentials: 'same-origin',
+      keepalive: true,
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ nonce: G.nonce, child: G.child.id, game: G.id, stars: STARS_PER_GAME })
+      body: JSON.stringify(data)
+    }).then(function (r) { return r.json(); });
+  }
+
+  var playId = Promise.resolve(0);
+  function saveStart() {
+    playId = post({ action: 'start', game: G.id })
+      .then(function (d) { return (d && d.play) || 0; })
+      .catch(function () { return 0; });
+  }
+
+  // tries 1 = right on the first try; glowed = the right answer had to glow.
+  function saveAnswer(item, tries) {
+    playId.then(function (id) {
+      if (id) return post({ action: 'answer', play: id, item: item.id, tries: tries, glowed: tries > 2 });
+    }).catch(function () {});
+  }
+
+  // Save the stars and sticker. If saving fails the child still sees the reward.
+  function saveFinish() {
+    playId.then(function (id) {
+      return post({ game: G.id, stars: STARS_PER_GAME, play: id || undefined });
     }).catch(function () {});
   }
 
@@ -334,6 +360,7 @@
   // Right answer: say the full sentence, praise, go on.
   function rightAnswer(el, en, jp) {
     busy = true;
+    saveAnswer(currentItem(), wrong + 1);
     el.classList.add(el.classList.contains('g-answer') ? 'g-picked' : 'g-right');
     root.querySelectorAll('.g-answer, .g-choice').forEach(function (b) { b.disabled = true; });
     setBubble(en, jp);
@@ -384,6 +411,7 @@
     if (!b || b.disabled) return;
     var act = b.getAttribute('data-act');
     if (act === 'start') {
+      saveStart();
       if (rounds.length > 1) return roundScreen(rounds[0], 1);
       return showItem();
     }
