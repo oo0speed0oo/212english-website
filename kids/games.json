@@ -1,7 +1,7 @@
 {
   "_help": [
     "212 Kids games. A game is a list of rounds; each round asks questions from \"items\".",
-    "Round types: yesno, tap, count, pizza, freeze, missing and search. See the top of kids/game.js for every option.",
+    "Round types: yesno, tap, count, pizza, freeze, missing, search and cross. See the top of kids/game.js for every option.",
     "A round can use a shared question pool: { \"pool\": \"fruits-what\" }. Pools are in \"pools\".",
     "Each play picks a random set of questions: \"per_play\" by level (6 to 10), or the round's own \"per_play\" (1 to 10). \"split\": true shares that number across a game's rounds.",
     "count questions: \"count\": how many to put in the basket. \"count_max\" (by level) skips bigger numbers: Pre-K 1-5, K 1-7, Grades 1-4 1-10.",
@@ -9,8 +9,9 @@
     "freeze questions: fruit dance to music made in code; it stops, \"Freeze!\", the child taps FREEZE, then the word, then \"Do you like...?\". \"freeze\".\"dancers\" by level; dance_seconds = random length of each dance.",
     "missing questions (word games, tiny): the picture, the word said aloud, ONE letter missing (\"at\": 0 = first letter), and 2 letter tiles (the right one and \"other\"). Shown first letter first, then last, then middle.",
     "search questions (word games, tiny): one puzzle = \"words\" (3) hidden left to right, one per row, in a grid as wide as the longest word. Pictures show what to find. Drag across a word, or tap its first and last letter.",
+    "cross questions (word games, tiny): one puzzle = \"words\" [across, down] that share a letter. Picture clues; every letter is given except 1 per word (Pre-K, K) or 2 (Grade 1+). Letter tiles = the missing letters + 1 extra.",
     "A question can be for some levels only: \"levels\": [\"k\", \"1\"]. Default: every level.",
-    "Item ids start at 100000 and are never reused or renumbered (one id sequence for all kids content). Next free id: 100119.",
+    "Item ids start at 100000 and are never reused or renumbered (one id sequence for all kids content). Next free id: 100123.",
     "picture: a picture name drawn by the site (fruits; pizza toppings cheese, mushrooms, tomato, corn, onion, pineapple, broccoli; pizza).",
     "  To use a real picture later, add \"image\": \"kids_nov_banana.jpg\" to the word (file goes in kids/images/).",
     "  To use a recorded voice later, add \"audio\": \"100003.m4a\" to an item (file goes in kids/audio/). Without it the browser voice speaks.",
@@ -152,7 +153,11 @@
     "100115": {"type": "search", "english": "Find the words!", "japanese": "ことばを さがそう！", "words": ["apple", "banana", "grapes"]},
     "100116": {"type": "search", "english": "Find the words!", "japanese": "ことばを さがそう！", "words": ["apple", "orange", "grapes"]},
     "100117": {"type": "search", "english": "Find the words!", "japanese": "ことばを さがそう！", "words": ["banana", "orange", "apple"]},
-    "100118": {"type": "search", "english": "Find the words!", "japanese": "ことばを さがそう！", "words": ["grapes", "banana", "orange"]}
+    "100118": {"type": "search", "english": "Find the words!", "japanese": "ことばを さがそう！", "words": ["grapes", "banana", "orange"]},
+    "100119": {"type": "cross", "english": "Fill in the letters!", "japanese": "もじを いれよう！", "words": ["apple", "grapes"]},
+    "100120": {"type": "cross", "english": "Fill in the letters!", "japanese": "もじを いれよう！", "words": ["banana", "orange"]},
+    "100121": {"type": "cross", "english": "Fill in the letters!", "japanese": "もじを いれよう！", "words": ["grapes", "orange"]},
+    "100122": {"type": "cross", "english": "Fill in the letters!", "japanese": "もじを いれよう！", "words": ["orange", "apple"]}
   },
 
   "answers": {
@@ -180,7 +185,8 @@
     "pizza-shop": {"english": "Pizza Shop", "japanese": "ピザやさん", "sticker": "pizza", "rounds": [{"pool": "pizza-customer"}, {"pool": "pizza-shopkeeper"}]},
     "freeze-dance": {"english": "Freeze Dance", "japanese": "フリーズダンス", "sticker": "music", "rounds": [{"pool": "fruits-freeze"}]},
     "fruits-missing": {"english": "Missing Letters", "japanese": "たりない もじ", "sticker": "grapes", "rounds": [{"pool": "fruits-missing"}]},
-    "fruits-search": {"english": "Word Search", "japanese": "ことば さがし", "sticker": "orange", "rounds": [{"pool": "fruits-search"}]}
+    "fruits-search": {"english": "Word Search", "japanese": "ことば さがし", "sticker": "orange", "rounds": [{"pool": "fruits-search"}]},
+    "fruits-cross": {"english": "Crossword", "japanese": "クロスワード", "sticker": "strawberry", "rounds": [{"pool": "fruits-cross"}]}
   },
 
   "colors": {
@@ -214,7 +220,8 @@
     "pizza-shopkeeper": {"type": "pizza", "english": "Now you are the shopkeeper!", "japanese": "こんどは おみせやさん！", "items": ["100083", "100084", "100085", "100086", "100087", "100088", "100089", "100090", "100091", "100092"]},
     "fruits-freeze": {"type": "freeze", "english": "Freeze Dance!", "japanese": "フリーズダンス！", "items": ["100093", "100094", "100095", "100096", "100097", "100098", "100099", "100100", "100101", "100102"]},
     "fruits-missing": {"type": "missing", "english": "What's missing?", "japanese": "たりない もじは？", "per_play": 5, "items": ["100103", "100104", "100105", "100106", "100107", "100108", "100109", "100110", "100111", "100112", "100113", "100114"]},
-    "fruits-search": {"type": "search", "english": "Find the words!", "japanese": "ことばを さがそう！", "per_play": 2, "items": ["100115", "100116", "100117", "100118"]}
+    "fruits-search": {"type": "search", "english": "Find the words!", "japanese": "ことばを さがそう！", "per_play": 2, "items": ["100115", "100116", "100117", "100118"]},
+    "fruits-cross": {"type": "cross", "english": "Fill in the letters!", "japanese": "もじを いれよう！", "per_play": 2, "items": ["100119", "100120", "100121", "100122"]}
   },
 
   "count_max": {

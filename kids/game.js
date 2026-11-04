@@ -25,6 +25,9 @@
  *   search Word Search (word games, tiny): `words` (3) hidden left to right, one per row, in a grid as
  *          wide as the longest word. Pictures above show what to find (tap = hear it). Drag across a word,
  *          or tap its first and last letter. Found = colors + the word said. 15 quiet seconds = a first letter glows.
+ *   cross  Crossword (word games, tiny): `words` [across, down] that share a letter. Picture clues (tap = hear).
+ *          Every letter is given except 1 per word (Pre-K, K) or 2 (Grade 1+), never the first letter or the
+ *          crossing. Letter tiles = that word's missing letters + 1 extra. Across first, then down.
  * Wrong = gentle wiggle + "Try again!" + the question again; after 2 wrong tries the right one glows.
  * game.php already picked this play's questions (per_play for the child's level).
  * Every game ends with 3 stars and the game's sticker, no matter what.
@@ -589,6 +592,157 @@
     if (ws) ws.drag = null;
   });
 
+  // ---------- cross: Crossword (word games, tiny) ----------
+
+  var cw = null;
+  var CW_COLORS = ['#FFD24D', '#9FD3FF'];
+
+  function buildCross(words) {
+    var A = wordText(words[0]).toLowerCase();
+    var D = wordText(words[1]).toLowerCase();
+    var pairs = [];
+    for (var i = 0; i < A.length; i++) {
+      for (var j = 0; j < D.length; j++) if (A.charAt(i) === D.charAt(j)) pairs.push([i, j]);
+    }
+    if (!pairs.length) return null;
+    // A crossing near the middle of both words looks most like a crossword.
+    function mid(p) {
+      return Math.min(p[0], A.length - 1 - p[0]) + Math.min(p[1], D.length - 1 - p[1]);
+    }
+    var best = Math.max.apply(null, pairs.map(mid));
+    var x = pick(pairs.filter(function (p) { return mid(p) === best; }));
+    var blanksPer = (G.child.level === 'prek' || G.child.level === 'k') ? 1 : 2;
+    var list = [
+      { key: words[0], text: A, cells: A.split('').map(function (_, k) { return [x[1], k]; }), cross: x[0] },
+      { key: words[1], text: D, cells: D.split('').map(function (_, k) { return [k, x[0]]; }), cross: x[1] }
+    ];
+    list.forEach(function (w) {
+      var can = [];
+      for (var k = 1; k < w.text.length; k++) if (k !== w.cross) can.push(k);
+      w.blanks = shuffle(can).slice(0, blanksPer).sort(function (a, b) { return a - b; });
+      w.filled = 0;
+    });
+    return { rows: D.length, cols: A.length, words: list };
+  }
+
+  function cwCell(rc) {
+    return root.querySelector('.g-cw-cell[data-r="' + rc[0] + '"][data-c="' + rc[1] + '"]');
+  }
+
+  function crossScreen(item) {
+    var b = buildCross(item.words);
+    if (!b) return next();
+    cw = { item: item, b: b, active: 0, misses: 0, wrongHere: 0 };
+    var letters = {};
+    var blank = {};
+    b.words.forEach(function (w) {
+      w.cells.forEach(function (rc, k) {
+        letters[rc] = w.text.charAt(k);
+        if (w.blanks.indexOf(k) !== -1) blank[rc] = true;
+      });
+    });
+    var cells = '';
+    for (var r = 0; r < b.rows; r++) {
+      for (var c = 0; c < b.cols; c++) {
+        var key = [r, c];
+        if (!(key in letters)) {
+          cells += '<div class="g-cw-empty"></div>';
+        } else {
+          cells += '<div class="g-cw-cell' + (blank[key] ? ' g-cw-blank' : '') + '" data-r="' + r + '" data-c="' + c + '">' +
+            (blank[key] ? '' : esc(letters[key])) + '</div>';
+        }
+      }
+    }
+    var clues = b.words.map(function (w, i) {
+      return '<button class="g-cw-clue k-press" data-cwword="' + i + '" aria-label="' + esc(w.text) + '">' +
+        '<span class="g-cw-arrow">' + (i === 0 ? '→' : '↓') + '</span>' + picture(w.key, 70) + '</button>';
+    }).join('');
+    frame(lion(item.english, item.japanese) +
+      '<div class="g-stage g-stage-col"><div class="g-cw-top"><div class="g-cw-clues">' + clues + '</div>' +
+      '<div class="g-cw-grid" style="--cols:' + b.cols + '">' + cells + '</div></div>' +
+      '<div class="g-cw-tiles"></div></div>', { replay: true });
+    crossWord(true);
+  }
+
+  // Shows the active word: its clue lights up, its next empty box blinks, its letter tiles appear.
+  function crossWord(first) {
+    var w = cw.b.words[cw.active];
+    root.querySelectorAll('.g-cw-clue').forEach(function (c, i) { c.classList.toggle('g-cw-on', i === cw.active); });
+    var need = [];
+    w.blanks.forEach(function (k) { if (need.indexOf(w.text.charAt(k)) === -1) need.push(w.text.charAt(k)); });
+    var extra = FILL.split('').filter(function (ch) { return w.text.indexOf(ch) === -1; });
+    var tiles = shuffle(need.concat(pick(extra))).map(function (ch) {
+      return '<button class="g-letter-tile g-cw-tile k-press" data-cwletter="' + esc(ch) + '" aria-label="' + esc(ch) + '">' + esc(ch) + '</button>';
+    }).join('');
+    root.querySelector('.g-cw-tiles').innerHTML = tiles;
+    crossActive();
+    say((first ? cw.item.english + ' ' : '') + w.text + '.');
+  }
+
+  function crossActive() {
+    root.querySelectorAll('.g-cw-active').forEach(function (e) { e.classList.remove('g-cw-active'); });
+    var w = cw.b.words[cw.active];
+    var k = w.blanks[w.filled];
+    if (k === undefined) return;
+    var e = cwCell(w.cells[k]);
+    if (e) e.classList.add('g-cw-active');
+  }
+
+  function crossLetter(tile) {
+    var w = cw.b.words[cw.active];
+    var k = w.blanks[w.filled];
+    var want = w.text.charAt(k);
+    if (tile.getAttribute('data-cwletter') !== want) {
+      cw.misses++;
+      cw.wrongHere++;
+      tile.classList.remove('g-wiggle');
+      void tile.offsetWidth;
+      tile.classList.add('g-wiggle');
+      setBubble('Try again!', 'もういちど！');
+      say('Try again! ' + w.text + '.');
+      if (cw.wrongHere >= 2) {
+        var right = root.querySelector('[data-cwletter="' + want + '"]');
+        if (right) right.classList.add('g-glow');
+      }
+      return;
+    }
+    cw.wrongHere = 0;
+    root.querySelectorAll('.g-cw-tile.g-glow').forEach(function (t) { t.classList.remove('g-glow'); });
+    var cell = cwCell(w.cells[k]);
+    cell.textContent = want;
+    cell.classList.remove('g-cw-blank');
+    cell.classList.add('g-cw-filled');
+    w.filled++;
+    if (w.filled < w.blanks.length) return crossActive();
+    // The word is done: color it, tick its clue, say it.
+    w.cells.forEach(function (rc, k) {
+      if (cw.active > 0 && k === w.cross) return; // the crossing box keeps the first word's color
+      var e = cwCell(rc);
+      if (e) e.style.background = CW_COLORS[cw.active];
+    });
+    var clue = root.querySelector('[data-cwword="' + cw.active + '"]');
+    if (clue) clue.classList.add('g-ws-done');
+    var en = w.text.charAt(0).toUpperCase() + w.text.slice(1) + '!';
+    setBubble(en, (G.words[w.key] && G.words[w.key].japanese) || '');
+    root.querySelectorAll('.g-cw-tile').forEach(function (t) { t.disabled = true; });
+    if (cw.active + 1 < cw.b.words.length) {
+      busy = true;
+      var mine = cw;
+      say(en).then(function () { return wait(300); }).then(function () {
+        if (cw !== mine) return;
+        busy = false;
+        cw.active++;
+        setBubble(cw.item.english, cw.item.japanese);
+        crossWord(false);
+      });
+      return;
+    }
+    root.querySelectorAll('.g-cw-active').forEach(function (e) { e.classList.remove('g-cw-active'); });
+    busy = true;
+    saveAnswer(cw.item, Math.min(9, cw.misses + 1));
+    say(en).then(praise).then(function () { return wait(400); }).then(next);
+  }
+
   function endScreen() {
     // Freeze Dance is over: its beat stops and the calm background music may come back.
     if (hasDance) {
@@ -1075,6 +1229,7 @@
     freeze = null;
     if (ws) clearTimeout(ws.hint);
     ws = null;
+    cw = null;
     if (!item) return endScreen();
     if (rounds[ri].type === 'yesno') yesnoScreen(item);
     else if (rounds[ri].type === 'count') countScreen(item);
@@ -1082,6 +1237,7 @@
     else if (rounds[ri].type === 'freeze') freezeScreen(item);
     else if (rounds[ri].type === 'missing') missingScreen(item);
     else if (rounds[ri].type === 'search') searchScreen(item);
+    else if (rounds[ri].type === 'cross') crossScreen(item);
     else tapScreen(item);
   }
 
@@ -1165,6 +1321,7 @@
         if (rounds[ri].type === 'tap') askTap(item);
         else if (freeze && freeze.phase === 'like') say(item.like.english);
         else if (freeze && freeze.phase !== 'pick') say(freeze.phase === 'dance' ? 'Dance!' : 'Freeze!');
+        else if (cw) say(cw.b.words[cw.active].text + '.');
         else say(item.english, item.audio);
       }
       return;
@@ -1176,6 +1333,8 @@
     if (b.hasAttribute('data-dancer')) return tapDancer(b);
     if (b.hasAttribute('data-like')) return answerLike(b);
     if (b.hasAttribute('data-letter')) return answerLetter(b);
+    if (b.hasAttribute('data-cwletter') && cw) return crossLetter(b);
+    if (b.hasAttribute('data-cwword') && cw) return say(cw.b.words[+b.getAttribute('data-cwword')].text);
     if (b.hasAttribute('data-wsword') && ws) {
       var w = ws.b.words[+b.getAttribute('data-wsword')];
       if (w) say(w.text);
