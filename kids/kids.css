@@ -729,6 +729,31 @@ button:focus-visible, a:focus-visible, input:focus-visible {
 	justify-content: center;
 }
 .g-card-big { width: 300px; height: 280px; max-width: 80vw; }
+
+/* The child's avatar beside the picture: sits on a stool, stands up for "Yes". */
+.g-stage-kid { gap: 28px; }
+.g-kid { display: flex; flex-direction: column; align-items: center; flex: none; }
+.g-kid svg { display: block; overflow: visible; }
+.g-kid-name { margin-top: 2px; font-size: 22px; font-weight: 800; line-height: 1; }
+.g-kid .g-pose-stand { display: none; }
+.g-kid-stand .g-pose-sit { display: none; }
+.g-kid-stand .g-pose-stand { display: inline; }
+.g-kid-stand svg { animation: g-kid-bounce .5s ease; }
+/* Standing up: the stool slides back to the side (never "standing on the stool"). */
+.g-kid .g-stool { transition: transform .35s ease, opacity .35s ease; transform-origin: 80px 230px; }
+.g-kid-stand .g-stool { transform: translateX(-64px) scale(.8); opacity: .55; }
+.g-kid-shrug .g-pose-sit { animation: g-kid-shrug .5s ease; transform-origin: 80px 170px; }
+@keyframes g-kid-bounce {
+	0% { transform: translateY(24px); }
+	45% { transform: translateY(-14px); }
+	70% { transform: translateY(2px); }
+	100% { transform: translateY(0); }
+}
+@keyframes g-kid-shrug {
+	0%, 100% { transform: translateY(0) rotate(0); }
+	30% { transform: translateY(-6px) rotate(-3deg); }
+	60% { transform: translateY(-6px) rotate(3deg); }
+}
 .g-pic { display: block; max-width: 100%; height: auto; }
 
 .g-choices { display: flex; justify-content: center; flex-wrap: wrap; gap: 24px; }
@@ -841,6 +866,11 @@ button:focus-visible, a:focus-visible, input:focus-visible {
 	.g-bubble { padding: 10px 16px 12px; }
 	.g-card-big { width: 240px; height: 220px; }
 	.g-card-big .g-pic { width: 170px; height: 170px; }
+	.g-stage-kid { gap: 10px; }
+	.g-stage-kid .g-card-big { width: 200px; height: 190px; }
+	.g-stage-kid .g-card-big .g-pic { width: 140px; height: 140px; }
+	.g-kid svg { width: 112px; height: 168px; }
+	.g-kid-name { font-size: 18px; }
 	.g-choices { gap: 14px; }
 	.g-choice { width: 150px; height: 150px; }
 	.g-choice .g-pic { width: 108px; height: 108px; }
@@ -861,7 +891,9 @@ button:focus-visible, a:focus-visible, input:focus-visible {
 }
 
 @media (prefers-reduced-motion: reduce) {
-	.g-right, .g-glow, .g-wiggle, .g-answer.g-picked, .g-end-star, .g-star-pop { animation: none; }
+	.g-right, .g-glow, .g-wiggle, .g-answer.g-picked, .g-end-star, .g-star-pop,
+	.g-kid-stand svg, .g-kid-shrug .g-pose-sit { animation: none; }
+	.g-kid .g-stool { transition: none; }
 	.g-glow { box-shadow: var(--lift), 0 0 0 10px rgba(255, 201, 51, .7); }
 }
 

@@ -5,6 +5,8 @@
  *          kind "opinion" (default): "Do you like apples?" -> "Yes, I do!" / "No, I don't." Both are right.
  *          kind "fact": "Is it an apple?" -> "Yes, it is!" / "No, it isn't." One is right (`correct`).
  *          yes_label / no_label change the button sentences ("Yes, I am!" ...).
+ *          Opinion questions show the child's own avatar: it stands up for Yes and stays sitting for No.
+ *          avatar_pose: false (on a question, a round or a game) turns that off.
  *   tap    The lion asks (`english`); the child taps the answer out of 3 (max 4) choices.
  *          show: none | picture | word        what appears big on screen
  *          choice_kind: picture | word | color what the buttons are
@@ -146,7 +148,7 @@
 
   // Each play takes a random `per_play` questions from the round's pool, so it's different every time.
   var rounds = G.rounds.filter(function (r) { return r.items && r.items.length; }).map(function (r) {
-    return { type: r.type, english: r.english, japanese: r.japanese, items: shuffle(r.items).slice(0, r.per_play || r.items.length) };
+    return { type: r.type, english: r.english, japanese: r.japanese, avatar_pose: r.avatar_pose, items: shuffle(r.items).slice(0, r.per_play || r.items.length) };
   });
   var total = rounds.reduce(function (n, r) { return n + r.items.length; }, 0);
   var done = 0;
@@ -212,11 +214,64 @@
     return item[which + '_label'] || G.answers[which];
   }
 
+  // ---------- the child's own avatar: sits on a stool, stands up for "Yes" ----------
+  // Lesson 1 in class: "Yes, I do!" = stand up, "No, I don't." = sit down. On screen the avatar does it.
+
+  var AVATAR = { pink: '#FF7DA8', blue: '#4DA3FF', green: '#5CC98B', yellow: '#FFD24D', orange: '#FFB46B', purple: '#C9B8FF' };
+
+  function kidFigure() {
+    var c = AVATAR[G.child.color] || AVATAR.blue;
+    var line = 'stroke="' + INK + '" stroke-width="6" stroke-linecap="round" fill="none"';
+    function face(cy) {
+      return '<circle cx="80" cy="' + cy + '" r="32" fill="' + c + '" stroke="' + INK + '" stroke-width="5"/>' +
+        '<circle cx="69" cy="' + (cy - 4) + '" r="4.5" fill="' + INK + '"/><circle cx="91" cy="' + (cy - 4) + '" r="4.5" fill="' + INK + '"/>' +
+        '<path d="M66 ' + (cy + 8) + ' Q80 ' + (cy + 22) + ' 94 ' + (cy + 8) + '" ' + line + ' stroke-width="4.5"/>';
+    }
+    var stool = '<g class="g-stool"><path d="M50 180 L44 230 M110 180 L116 230" stroke="#A86E35" stroke-width="7" stroke-linecap="round"/>' +
+      '<rect x="40" y="168" width="80" height="14" rx="7" fill="#C98A4B" stroke="' + INK + '" stroke-width="4"/></g>';
+    var sit = '<g class="g-pose-sit">' +
+      '<path d="M68 166 L50 192 V226 M92 166 L110 192 V226" ' + line + ' stroke-width="8"/>' +
+      '<path d="M40 228 H54 M106 228 H120" ' + line + ' stroke-width="10"/>' +
+      '<rect x="52" y="118" width="56" height="52" rx="18" fill="' + c + '" stroke="' + INK + '" stroke-width="5"/>' +
+      '<path d="M56 130 L46 186 M104 130 L114 186" ' + line + '/>' +
+      '<circle cx="46" cy="188" r="6" fill="' + INK + '"/><circle cx="114" cy="188" r="6" fill="' + INK + '"/>' +
+      face(88) + '</g>';
+    var stand = '<g class="g-pose-stand">' +
+      '<path d="M68 136 V224 M92 136 V224" ' + line + ' stroke-width="8"/>' +
+      '<path d="M58 228 H72 M88 228 H102" ' + line + ' stroke-width="10"/>' +
+      '<path d="M58 90 L34 54 M102 90 L126 54" ' + line + '/>' +
+      '<circle cx="33" cy="51" r="6" fill="' + INK + '"/><circle cx="127" cy="51" r="6" fill="' + INK + '"/>' +
+      '<rect x="52" y="80" width="56" height="60" rx="18" fill="' + c + '" stroke="' + INK + '" stroke-width="5"/>' +
+      face(48) + '</g>';
+    return '<div class="g-kid g-kid-sit" aria-hidden="true">' +
+      '<svg viewBox="0 0 160 240" width="180" height="270">' + stool + sit + stand + '</svg>' +
+      '<span class="g-kid-name">' + esc(G.child.name) + '</span></div>';
+  }
+
+  // "stand" = stands up with a small happy bounce; "shrug" = stays sitting with a little shrug.
+  function kidPose(pose) {
+    var kid = root.querySelector('.g-kid');
+    if (!kid) return;
+    kid.classList.remove('g-kid-sit', 'g-kid-stand', 'g-kid-shrug');
+    void kid.offsetWidth;
+    kid.classList.add(pose === 'stand' ? 'g-kid-stand' : 'g-kid-sit');
+    if (pose === 'shrug') kid.classList.add('g-kid-shrug');
+  }
+
+  // Only opinion questions ("Do you like…?"). avatar_pose: false on a question, round or game turns it off.
+  function usesAvatar(item) {
+    if (item.kind === 'fact') return false;
+    if (item.avatar_pose === false || rounds[ri].avatar_pose === false || G.avatar_pose === false) return false;
+    return true;
+  }
+
   function yesnoScreen(item) {
     var yes = label(item, 'yes');
     var no = label(item, 'no');
+    var withKid = usesAvatar(item);
     frame(lion(item.english, item.japanese) +
-      '<div class="g-stage"><div class="g-card g-card-big">' + picture(item.word, 220) + '</div></div>' +
+      '<div class="g-stage' + (withKid ? ' g-stage-kid' : '') + '">' + (withKid ? kidFigure() : '') +
+      '<div class="g-card g-card-big">' + picture(item.word, 220) + '</div></div>' +
       '<div class="g-answers">' +
       '<button class="g-answer g-yes k-press" data-answer="yes"><span class="g-thumb" aria-hidden="true">👍</span>' + two(yes.english, yes.japanese) + '</button>' +
       '<button class="g-answer g-no k-press" data-answer="no"><span class="g-thumb" aria-hidden="true">👎</span>' + two(no.english, no.japanese) + '</button>' +
@@ -391,6 +446,7 @@
     if (item.kind === 'fact' && picked !== item.correct) {
       return wrongAnswer(btn, item, '[data-answer="' + item.correct + '"]');
     }
+    if (usesAvatar(item)) kidPose(picked === 'yes' ? 'stand' : 'shrug');
     // A fact answer also says the whole sentence: "No, it isn't. It's a banana."
     var after = item.kind === 'fact' && item.after_correct ? item.after_correct : null;
     rightAnswer(btn, ans.english + (after ? ' ' + after.english : ''), ans.japanese + (after ? ' ' + after.japanese : ''));

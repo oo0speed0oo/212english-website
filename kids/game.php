@@ -65,6 +65,8 @@ $h212_kids_game = array(
 	'english'  => $game['english'],
 	'japanese' => $game['japanese'],
 	'sticker'  => $game['sticker'] ?? '',
+	// false turns off the stand-up / sit-down avatar for this game's "Do you like…?" questions.
+	'avatar_pose' => $game['avatar_pose'] ?? true,
 	'rounds'   => $rounds,
 	'words'    => $games['words'],
 	'colors'   => $games['colors'] ?? array(),
