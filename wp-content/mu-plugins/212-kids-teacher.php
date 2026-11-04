@@ -180,6 +180,9 @@ function h212_kids_render_admin_page() {
 			&nbsp;·&nbsp; <a href="<?php echo esc_url( admin_url( 'user-new.php' ) ); ?>">Add a parent account</a> (Role: <em>Kids Parent</em>)
 		</p>
 
+		<?php if ( isset( $_GET['hw_saved'] ) ) : ?>
+			<div class="notice notice-success"><p>Homework saved.</p></div>
+		<?php endif; ?>
 		<?php if ( isset( $_GET['purged'] ) ) : ?>
 			<div class="notice notice-success"><p>Deleted <?php echo (int) $_GET['purged']; ?> records older than 12 months.</p></div>
 		<?php endif; ?>
@@ -188,15 +191,17 @@ function h212_kids_render_admin_page() {
 			<?php h212_kids_admin_child_page( $child, $all, $levels ); ?>
 		<?php else : ?>
 			<h2 class="nav-tab-wrapper h212-tabs">
-				<?php foreach ( array( 'week' => 'This week', 'words' => 'Hardest words', 'overview' => 'Overview' ) as $k => $label ) : ?>
+				<?php foreach ( array( 'week' => 'This week', 'homework' => 'Homework', 'words' => 'Hardest words', 'overview' => 'Overview' ) as $k => $label ) : ?>
 					<a class="nav-tab<?php echo $view === $k ? ' nav-tab-active' : ''; ?>" href="<?php echo esc_url( h212_kids_admin_url( array( 'view' => $k ) ) ); ?>"><?php echo esc_html( $label ); ?></a>
 				<?php endforeach; ?>
 			</h2>
 			<?php
-			if ( 'overview' !== $view ) {
+			if ( 'overview' !== $view && 'homework' !== $view ) {
 				h212_kids_admin_filter_form( $view, $f, $levels, $all );
 			}
-			if ( 'words' === $view ) {
+			if ( 'homework' === $view ) {
+				h212_kids_admin_homework( $all, $levels );
+			} elseif ( 'words' === $view ) {
 				h212_kids_admin_words( $f, $levels );
 			} elseif ( 'overview' === $view ) {
 				h212_kids_admin_overview( $all, $levels );
@@ -349,6 +354,157 @@ function h212_kids_admin_week( $f, $all, $levels ) {
 	<p class="description">"Right on the first try" leaves out opinion questions ("Do you like…?"). Click a child's name for their plays and the words they miss most.</p>
 	<?php
 }
+
+// ---------- Homework (Batch 1C) ----------
+
+function h212_kids_admin_homework( $all, $levels ) {
+	$this_week = h212_kids_week_start();
+	$week      = isset( $_GET['hw_week'] ) ? sanitize_text_field( wp_unslash( $_GET['hw_week'] ) ) : $this_week;
+	if ( ! preg_match( '/^\d{4}-\d{2}-\d{2}$/', $week ) ) {
+		$week = $this_week;
+	}
+	$week     = h212_kids_week_start( strtotime( $week ) );
+	$todo     = ! empty( $_GET['todo'] );
+	$games    = h212_kids_admin_json( 'games.json' );
+	$picks    = h212_kids_homework_all()[ $week ] ?? array();
+	$base     = array( 'page' => 'h212-kids', 'view' => 'homework', 'hw_week' => $week );
+	$sunday   = gmdate( 'M j', strtotime( $week . ' +6 days' ) );
+	?>
+	<form class="h212-filters" method="get" action="<?php echo esc_url( admin_url( 'admin.php' ) ); ?>">
+		<input type="hidden" name="page" value="h212-kids">
+		<input type="hidden" name="view" value="homework">
+		<select name="hw_week" onchange="this.form.submit()">
+			<?php for ( $i = 2; $i >= -8; $i-- ) : ?>
+				<?php $m = gmdate( 'Y-m-d', strtotime( ( $i >= 0 ? '+' : '' ) . $i . ' weeks', strtotime( $this_week ) ) ); ?>
+				<option value="<?php echo esc_attr( $m ); ?>" <?php selected( $week, $m ); ?>>
+					<?php echo esc_html( 0 === $i ? 'This week' : ( 1 === $i ? 'Next week' : ( -1 === $i ? 'Last week' : 'Week of' ) ) ); ?> (<?php echo esc_html( gmdate( 'M j', strtotime( $m ) ) ); ?>)
+				</option>
+			<?php endfor; ?>
+		</select>
+		<noscript><button class="button">Show</button></noscript>
+	</form>
+
+	<h3>1. Pick the homework for <?php echo esc_html( gmdate( 'M j', strtotime( $week ) ) . ' – ' . $sunday ); ?></h3>
+	<p class="description">One game per level. The child's "Mike's homework" button opens it. It is done when the child finishes that game this week (Monday to Sunday).</p>
+	<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>">
+		<input type="hidden" name="action" value="h212_kids_homework">
+		<input type="hidden" name="week" value="<?php echo esc_attr( $week ); ?>">
+		<?php wp_nonce_field( 'h212_kids_homework' ); ?>
+		<table class="form-table" role="presentation" style="max-width:700px">
+			<?php foreach ( $levels as $lid => $lname ) : ?>
+				<tr>
+					<th scope="row"><label for="hw-<?php echo esc_attr( $lid ); ?>"><?php echo esc_html( $lname ); ?></label></th>
+					<td>
+						<select id="hw-<?php echo esc_attr( $lid ); ?>" name="hw[<?php echo esc_attr( $lid ); ?>]">
+							<option value="">— No homework —</option>
+							<?php foreach ( (array) ( $games['games'] ?? array() ) as $gid => $g ) : ?>
+								<option value="<?php echo esc_attr( $gid ); ?>" <?php selected( $picks[ $lid ] ?? '', $gid ); ?>><?php echo esc_html( $g['english'] . ' (' . $g['japanese'] . ')' ); ?></option>
+							<?php endforeach; ?>
+						</select>
+					</td>
+				</tr>
+			<?php endforeach; ?>
+		</table>
+		<button class="button button-primary">Save homework</button>
+	</form>
+
+	<h3 style="margin-top:28px">2. Who has done it?</h3>
+	<?php if ( ! $picks ) : ?>
+		<p><em>No homework picked for this week yet.</em></p>
+		<?php return; ?>
+	<?php endif; ?>
+	<?php
+	$finishes = array();
+	foreach ( array_unique( array_values( $picks ) ) as $gid ) {
+		$finishes[ $gid ] = h212_kids_homework_finishes( $gid, $week );
+	}
+	$rows    = array();
+	$missing = array();
+	$count   = array();
+	foreach ( $all as $row ) {
+		$lid = (string) $row['child']['level'];
+		if ( empty( $picks[ $lid ] ) ) {
+			continue;
+		}
+		$k    = $row['uid'] . ':' . $row['child']['id'];
+		$done = $finishes[ $picks[ $lid ] ][ $k ] ?? '';
+		$count[ $lid ] = $count[ $lid ] ?? array( 0, 0 );
+		$count[ $lid ][1]++;
+		if ( $done ) {
+			$count[ $lid ][0]++;
+		} else {
+			$u         = get_userdata( $row['uid'] );
+			$missing[] = $row['child']['name'] . ' (' . $row['family'] . ( $u ? ', ' . $u->user_email : '' ) . ') – ' . ( $levels[ $lid ] ?? $lid );
+		}
+		if ( ! $todo || ! $done ) {
+			$rows[] = array( $row, $lid, $done, $k );
+		}
+	}
+	// Pre-K first, then K, Grade 1 ...; in each level, who has not done it first.
+	$order = array_flip( array_map( 'strval', array_keys( $levels ) ) );
+	usort( $rows, function ( $a, $b ) use ( $order ) {
+		return array( $order[ $a[1] ] ?? 99, $a[2] ? 1 : 0, $a[0]['child']['name'] ) <=> array( $order[ $b[1] ] ?? 99, $b[2] ? 1 : 0, $b[0]['child']['name'] );
+	} );
+	uksort( $count, function ( $a, $b ) use ( $order ) {
+		return ( $order[ (string) $a ] ?? 99 ) <=> ( $order[ (string) $b ] ?? 99 );
+	} );
+	?>
+	<p>
+		<?php foreach ( $count as $lid => $c ) : ?>
+			<strong><?php echo esc_html( $levels[ $lid ] ?? $lid ); ?>:</strong> <?php echo (int) $c[0]; ?> of <?php echo (int) $c[1]; ?> done &nbsp;·&nbsp;
+		<?php endforeach; ?>
+		<?php if ( $todo ) : ?>
+			<a class="button" href="<?php echo esc_url( add_query_arg( $base, admin_url( 'admin.php' ) ) ); ?>">Show everyone</a>
+		<?php else : ?>
+			<a class="button button-primary" href="<?php echo esc_url( add_query_arg( $base + array( 'todo' => 1 ), admin_url( 'admin.php' ) ) ); ?>">Show only who has NOT done it (<?php echo count( $missing ); ?>)</a>
+		<?php endif; ?>
+	</p>
+	<?php if ( ! $count ) : ?>
+		<p><em>No children in the levels that have homework.</em></p>
+		<?php return; ?>
+	<?php endif; ?>
+	<table class="widefat striped">
+		<thead><tr><th>Child</th><th>Family</th><th>Level</th><th>Homework</th><th>Done?</th></tr></thead>
+		<tbody>
+		<?php foreach ( $rows as list( $row, $lid, $done, $k ) ) : ?>
+			<?php $u = get_userdata( $row['uid'] ); ?>
+			<tr class="<?php echo $done ? '' : 'h212-sleepy'; ?>">
+				<td><?php echo h212_kids_admin_dot( $row['child']['color'] ); ?> <a href="<?php echo esc_url( h212_kids_admin_url( array( 'child' => $k ) ) ); ?>"><strong><?php echo esc_html( $row['child']['name'] ); ?></strong></a></td>
+				<td><?php echo esc_html( $row['family'] ); ?><?php if ( $u ) : ?><br><a href="mailto:<?php echo esc_attr( $u->user_email ); ?>"><?php echo esc_html( $u->user_email ); ?></a><?php endif; ?></td>
+				<td><?php echo esc_html( $levels[ $lid ] ?? $lid ); ?></td>
+				<td><?php echo esc_html( h212_kids_admin_game_title( $picks[ $lid ] ) ); ?></td>
+				<td><?php echo $done ? '<span class="h212-good">✓ Done</span><br><span class="description">' . esc_html( substr( $done, 0, 16 ) ) . '</span>' : '<span class="h212-sleepy-note">✗ Not yet</span>'; ?></td>
+			</tr>
+		<?php endforeach; ?>
+		</tbody>
+	</table>
+	<?php if ( $missing ) : ?>
+		<p style="margin-top:16px"><strong>Not done yet</strong> <span class="description">(click the box, then copy)</span></p>
+		<textarea readonly rows="<?php echo min( 12, count( $missing ) + 1 ); ?>" style="width:100%;max-width:700px" onclick="this.select()"><?php echo esc_textarea( implode( "\n", $missing ) ); ?></textarea>
+	<?php endif; ?>
+	<?php
+}
+
+add_action( 'admin_post_h212_kids_homework', function () {
+	if ( ! current_user_can( 'manage_options' ) ) {
+		wp_die( 'Not allowed.' );
+	}
+	check_admin_referer( 'h212_kids_homework' );
+	$week  = h212_kids_week_start( strtotime( sanitize_text_field( wp_unslash( $_POST['week'] ?? '' ) ) ) ?: null );
+	$games = h212_kids_admin_json( 'games.json' );
+	list( , $levels ) = h212_kids_admin_menu_titles();
+	$picks = array();
+	foreach ( (array) ( $_POST['hw'] ?? array() ) as $lid => $gid ) {
+		$lid = sanitize_key( $lid );
+		$gid = (string) wp_unslash( $gid );
+		if ( isset( $levels[ $lid ] ) && isset( $games['games'][ $gid ] ) ) {
+			$picks[ $lid ] = $gid;
+		}
+	}
+	h212_kids_homework_save( $week, $picks );
+	wp_safe_redirect( add_query_arg( array( 'page' => 'h212-kids', 'view' => 'homework', 'hw_week' => $week, 'hw_saved' => 1 ), admin_url( 'admin.php' ) ) );
+	exit;
+} );
 
 // ---------- Hardest words ----------
 

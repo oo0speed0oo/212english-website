@@ -34,11 +34,36 @@ if ( function_exists( 'h212_kids_recent_plays' ) ) {
 	}
 }
 
+// This week's homework for each child (Batch 1C, needs 212-kids.php): the game for their level, and DONE if
+// they finished it this week (Monday to Sunday).
+$h212_kids_homework = array();
+if ( function_exists( 'h212_kids_homework_game' ) ) {
+	$h212_kids_games = h212_kids_games();
+	$h212_kids_week  = h212_kids_week_start();
+	$h212_kids_done  = array();
+	foreach ( h212_kids_get_children( $h212_user->ID ) as $c ) {
+		$gid = h212_kids_homework_game( $c['level'], $h212_kids_week );
+		if ( '' === $gid || ! isset( $h212_kids_games['games'][ $gid ] ) ) {
+			continue;
+		}
+		if ( ! isset( $h212_kids_done[ $gid ] ) ) {
+			$h212_kids_done[ $gid ] = h212_kids_homework_finishes( $gid, $h212_kids_week, $h212_user->ID );
+		}
+		$h212_kids_homework[ $c['id'] ] = array(
+			'game'     => $gid,
+			'english'  => $h212_kids_games['games'][ $gid ]['english'],
+			'japanese' => $h212_kids_games['games'][ $gid ]['japanese'],
+			'done'     => isset( $h212_kids_done[ $gid ][ $h212_user->ID . ':' . $c['id'] ] ),
+		);
+	}
+}
+
 $h212_kids_boot = array(
 	'nonce'     => wp_create_nonce( 'h212_kids_children' ),
 	'children'  => h212_kids_get_children( $h212_user->ID ),
 	'progress'  => (object) $h212_kids_progress,
 	'recent'    => (object) $h212_kids_recent,
+	'homework'  => (object) $h212_kids_homework,
 	'menuUrl'   => 'kids-menu.json?v=' . h212_kids_asset_v( 'kids-menu.json' ),
 	// wp_logout_url() returns "&amp;" for HTML; kids.js escapes the link itself, so give it plain "&".
 	'logoutUrl' => html_entity_decode( wp_logout_url( h212_kids_url( 'login.php' ) ) ),

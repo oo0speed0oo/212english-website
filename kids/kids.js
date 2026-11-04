@@ -206,11 +206,22 @@
     var stars = p.stars || 0;
     top += '<div class="k-stars" aria-label="Stars: ' + stars + '">' + star(34, true) + '<span>' + stars + '</span></div>' + musicBtn() + '</div>';
 
-    // Mike's homework (placeholder: opens the temporary page).
-    var hw = '<div class="k-homework"><div class="k-homework-icon">' + icon('backpack', 52) + '</div>' +
-      two(menu.homework.english, menu.homework.japanese).replace('</span>', '<span class="k-row-stars">' + star(30, false) + star(30, false) + star(30, false) + '</span></span>') +
-      '<button class="k-big-btn k-green k-press" data-tile="homework">' +
-      svg(26, 30, '0 0 26 30', '<path d="M4 3 L23 15 L4 27Z" fill="' + INK + '" stroke="' + INK + '" stroke-width="4" stroke-linejoin="round"/>') + 'Go!</button></div>';
+    // Mike's homework: this week's game for the child's level (picked in wp-admin). Done = finished this week.
+    var hwInfo = (BOOT.homework || {})[child.id];
+    var hwStars = '';
+    for (var s = 0; s < 3; s++) hwStars += star(30, !!(hwInfo && hwInfo.done));
+    var hw = '<div class="k-homework' + (hwInfo ? '' : ' k-homework-none') + '"><div class="k-homework-icon">' + icon('backpack', 52) + '</div>' +
+      two(menu.homework.english, menu.homework.japanese).replace('</span>',
+        (hwInfo
+          ? '<span class="k-homework-game">' + esc(hwInfo.english) + ' <span class="jp">' + esc(hwInfo.japanese) + '</span></span>' +
+            '<span class="k-row-stars">' + hwStars + (hwInfo.done ? '<span class="k-done k-done-inline">✓ DONE<small>できた</small></span>' : '') + '</span>'
+          : '<span class="k-homework-game">No homework this week <span class="jp">こんしゅうは しゅくだい なし</span></span>') +
+        '</span>') +
+      (hwInfo
+        ? '<button class="k-big-btn k-green k-press" data-tile="homework" data-game="' + esc(hwInfo.game) + '">' +
+          svg(26, 30, '0 0 26 30', '<path d="M4 3 L23 15 L4 27Z" fill="' + INK + '" stroke="' + INK + '" stroke-width="4" stroke-linejoin="round"/>') + 'Go!</button>'
+        : '') +
+      '</div>';
 
     // A game this child has finished at least once gets a DONE check (they can still play it again).
     function doneBadge(game) {

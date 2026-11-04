@@ -374,6 +374,11 @@ button:focus-visible, a:focus-visible, input:focus-visible {
 .k-homework .k-two small { font-size: 19px; }
 .k-row-stars { display: flex; gap: 4px; margin-top: 4px; }
 .k-homework .k-big-btn { flex: none; }
+.k-homework-game { display: block; margin-top: 6px; font-size: 24px; font-weight: 800; line-height: 1.15; }
+.k-homework-game .jp { font-size: 16px; font-weight: 700; }
+.k-done.k-done-inline { position: static; transform: rotate(-4deg); margin-left: 10px; align-self: center; }
+.k-homework-none { background: var(--white); }
+.k-homework-none .k-homework-game { font-size: 20px; }
 
 .k-heading { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; margin: 0 0 18px; }
 .k-heading h2 { margin: 0; font-size: 38px; font-weight: 800; line-height: 1; }

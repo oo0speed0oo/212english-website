@@ -257,3 +257,60 @@ function h212_kids_recent_plays( $user_id, $per_child = 15 ) {
 	}
 	return $out;
 }
+
+// ---------- homework (Batch 1C) ----------
+// Mike picks one game per level per week (212 Kids > Homework in wp-admin).
+// Saved in the option "h212_kids_homework": { "2026-11-02" (that week's Monday): { "prek": "fruits-tap", "k": ... } }.
+// A child's homework is DONE when they finish that game during that week (Monday to Sunday, site time).
+
+// The Monday ("Y-m-d") of the week a time falls in (default: now, site time).
+function h212_kids_week_start( $timestamp = null ) {
+	$t = null === $timestamp ? current_time( 'timestamp' ) : $timestamp;
+	return gmdate( 'Y-m-d', strtotime( 'monday this week', $t ) );
+}
+
+function h212_kids_homework_all() {
+	$all = get_option( 'h212_kids_homework', array() );
+	return is_array( $all ) ? $all : array();
+}
+
+// The homework game for one level in one week ('' if Mike has not picked one).
+function h212_kids_homework_game( $level, $monday = null ) {
+	$monday = $monday ? $monday : h212_kids_week_start();
+	$all    = h212_kids_homework_all();
+	return isset( $all[ $monday ][ (string) $level ] ) ? (string) $all[ $monday ][ (string) $level ] : '';
+}
+
+// Saves one week's picks ({ level: game id, ... }; an empty game id = no homework). Keeps the last year only.
+function h212_kids_homework_save( $monday, $picks ) {
+	$all = h212_kids_homework_all();
+	$all[ $monday ] = array_filter( array_map( 'strval', (array) $picks ) );
+	if ( ! $all[ $monday ] ) {
+		unset( $all[ $monday ] );
+	}
+	$oldest = gmdate( 'Y-m-d', strtotime( '-53 weeks', current_time( 'timestamp' ) ) );
+	foreach ( array_keys( $all ) as $week ) {
+		if ( $week < $oldest ) {
+			unset( $all[ $week ] );
+		}
+	}
+	ksort( $all );
+	update_option( 'h212_kids_homework', $all, false );
+}
+
+// When each child finished a game during a week: { "user id:child id": "Y-m-d H:i:s" (first finish) }.
+function h212_kids_homework_finishes( $game, $monday, $user_id = 0 ) {
+	global $wpdb;
+	$t    = h212_kids_table( 'plays' );
+	$from = $monday . ' 00:00:00';
+	$to   = gmdate( 'Y-m-d', strtotime( $monday . ' +7 days' ) ) . ' 00:00:00';
+	$sql  = $wpdb->prepare( "SELECT user_id, child_id, MIN(finished) done FROM $t WHERE game = %s AND finished >= %s AND finished < %s", $game, $from, $to );
+	if ( $user_id ) {
+		$sql .= $wpdb->prepare( ' AND user_id = %d', $user_id );
+	}
+	$out = array();
+	foreach ( (array) $wpdb->get_results( $sql . ' GROUP BY user_id, child_id' ) as $r ) {
+		$out[ $r->user_id . ':' . $r->child_id ] = $r->done;
+	}
+	return $out;
+}
