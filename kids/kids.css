@@ -776,6 +776,68 @@ button:focus-visible, a:focus-visible, input:focus-visible {
 .g-choice-color .k-two b { font-size: 28px; }
 .g-choice-color .k-two small { font-size: 15px; }
 
+/* Freeze Dance: the fruit dance on a floor; FREEZE! when the music stops. */
+.g-floor {
+	position: relative;
+	width: 100%;
+	max-width: 680px;
+	height: 270px;
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	padding: 0 30px;
+	background: repeating-linear-gradient(90deg, #FFF3DE 0 60px, #FFE6B3 60px 120px);
+	border: var(--line);
+	border-radius: 36px;
+	box-shadow: var(--lift);
+}
+.g-dancer {
+	width: 120px;
+	height: 120px;
+	padding: 0;
+	background: transparent;
+	border: 4px solid transparent;
+	border-radius: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.g-dancer:disabled { cursor: default; }
+.g-dancer-in { display: flex; }
+.g-dance-0 { animation: g-dance-0 1.2s ease-in-out infinite alternate; }
+.g-dance-1 { animation: g-dance-1 .9s ease-in-out infinite alternate; }
+.g-dance-2 { animation: g-dance-2 1.5s ease-in-out infinite alternate; }
+.g-dance-3 { animation: g-dance-3 .6s ease-in-out infinite alternate; }
+.g-frozen .g-dancer-in { animation-play-state: paused; }
+/* Frozen and waiting for a tap: each fruit gets a white circle so it looks tappable. */
+.g-frozen .g-dancer:not(:disabled) { background: var(--white); border-color: var(--ink); box-shadow: var(--lift-small); }
+@keyframes g-dance-0 { from { transform: translate(-26px, 10px) rotate(-12deg); } to { transform: translate(26px, -40px) rotate(12deg); } }
+@keyframes g-dance-1 { from { transform: translate(0, 30px) scale(.9); } to { transform: translate(0, -50px) scale(1.1); } }
+@keyframes g-dance-2 { from { transform: translate(30px, -30px) rotate(20deg); } to { transform: translate(-30px, 30px) rotate(-20deg); } }
+@keyframes g-dance-3 { from { transform: translate(-10px, 0) rotate(-8deg); } to { transform: translate(10px, -30px) rotate(8deg); } }
+
+.g-freeze-btn {
+	min-height: 96px;
+	min-width: 260px;
+	padding: 6px 36px;
+	border: var(--line);
+	border-radius: 999px;
+	box-shadow: var(--lift);
+	background: #9FD3FF;
+	opacity: .8;
+}
+.g-freeze-btn .k-two { align-items: center; }
+.g-freeze-btn .k-two b { font-size: 44px; letter-spacing: .03em; }
+.g-freeze-btn .k-two small { font-size: 18px; }
+.g-freeze-now { opacity: 1; background: #4DA3FF; animation: g-pulse 1s ease-in-out infinite; }
+.g-freeze-done { opacity: .5; background: var(--green); animation: none; }
+/* The music stopped: a colored flash around the screen (for when the sound is off). */
+.g-flash { animation: g-flash .45s ease 3; }
+@keyframes g-flash {
+	0%, 100% { box-shadow: inset 0 0 0 0 rgba(77, 163, 255, 0); }
+	50% { box-shadow: inset 0 0 0 16px rgba(77, 163, 255, .9); }
+}
+
 /* Pizza Shop: the pizza, a tray of toppings, and the child's own speech bubble. */
 .g-pizzeria { gap: 34px; flex-wrap: wrap; }
 .g-pizza { position: relative; width: 290px; height: 290px; flex: none; transition: transform .2s ease; }
@@ -982,6 +1044,12 @@ button:focus-visible, a:focus-visible, input:focus-visible {
 	.g-bubble { padding: 10px 16px 12px; }
 	.g-card-big { width: 240px; height: 220px; }
 	.g-card-big .g-pic { width: 170px; height: 170px; }
+	/* Room at the sides so the fruit never dance off the floor. */
+	.g-floor { height: 230px; border-radius: 28px; padding: 0 26px; }
+	.g-dancer { width: 66px; height: 66px; }
+	.g-dancer .g-pic { width: 54px; height: 54px; }
+	.g-freeze-btn { min-width: 0; width: 100%; min-height: 84px; }
+	.g-freeze-btn .k-two b { font-size: 36px; }
 	.g-pizzeria { gap: 12px; }
 	.g-pizza { width: 176px; height: 176px; }
 	.g-piece { margin: -19px 0 0 -19px; }
@@ -1038,6 +1106,10 @@ button:focus-visible, a:focus-visible, input:focus-visible {
 	.g-pulse { box-shadow: 0 0 0 8px rgba(255, 201, 51, .7); }
 	.g-flying, .g-fruit, .g-basket, .g-topping, .g-pizza, .g-you { transition: none; }
 	.g-piece { animation: none; }
+	/* Freeze Dance: the fruit only sway a little instead of running around. */
+	.g-dance-0, .g-dance-1, .g-dance-2, .g-dance-3 { animation: g-sway 1.2s ease-in-out infinite alternate; }
+	.g-freeze-now { animation: none; }
+	.g-flash { animation: none; box-shadow: inset 0 0 0 12px rgba(77, 163, 255, .9); }
 	.g-glow { box-shadow: var(--lift), 0 0 0 10px rgba(255, 201, 51, .7); }
 }
 
@@ -1119,3 +1191,6 @@ button:focus-visible, a:focus-visible, input:focus-visible {
 @media (prefers-reduced-motion: reduce) {
 	.k-press { transition: none; }
 }
+
+/* "reduce motion" for Freeze Dance: a gentle sway only. */
+@keyframes g-sway { from { transform: rotate(-4deg); } to { transform: rotate(4deg); } }

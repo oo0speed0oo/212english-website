@@ -24,7 +24,7 @@
             { "id": "nov-1", "number": 1, "english": "Fruits", "japanese": "くだもの", "icon": "apple", "color": "#FF9E94", "game": "fruits-lesson" },
             { "id": "nov-2", "number": 2, "english": "How many?", "japanese": "いくつ？", "icon": "banana", "color": "#FFE27A", "game": "fruit-shopping" },
             { "id": "nov-3", "number": 3, "english": "Pizza Shop", "japanese": "ピザやさん", "icon": "pizza", "color": "#FFB46B", "game": "pizza-shop" },
-            { "id": "nov-4", "number": 4, "english": "Freeze Dance", "japanese": "フリーズダンス", "icon": "music", "color": "#9FD3FF" }
+            { "id": "nov-4", "number": 4, "english": "Freeze Dance", "japanese": "フリーズダンス", "icon": "music", "color": "#9FD3FF", "game": "freeze-dance" }
           ]
         },
         {
@@ -56,6 +56,7 @@
         { "id": "food-yesno", "english": "Yes or No", "japanese": "すき？きらい？", "icon": "yesno", "color": "#FF9E94", "month": "nov", "game": "fruits-yesno" },
         { "id": "food-shopping", "english": "Shopping", "japanese": "おかいもの", "icon": "banana", "color": "#FFE27A", "month": "nov", "game": "fruit-shopping" },
         { "id": "food-pizza", "english": "Pizza Shop", "japanese": "ピザやさん", "icon": "pizza", "color": "#FFB46B", "month": "nov", "game": "pizza-shop" },
+        { "id": "food-freeze", "english": "Freeze Dance", "japanese": "フリーズダンス", "icon": "music", "color": "#9FD3FF", "month": "nov", "game": "freeze-dance" },
         { "id": "food-what", "english": "What is it?", "japanese": "なあに？", "icon": "apple", "color": "#8ED6A0", "month": "nov", "game": "fruits-what" },
         { "id": "food-isit", "english": "Is it a…?", "japanese": "これは…？", "icon": "yesno", "color": "#9FD3FF", "month": "nov", "game": "fruits-isit" },
         { "id": "food-color", "english": "What color?", "japanese": "なにいろ？", "icon": "colors", "color": "#FFE27A", "month": "nov", "game": "fruits-color" },

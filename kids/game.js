@@ -17,6 +17,8 @@
  *          An extra pops back out: "That's enough! Three bananas!"; after 5 quiet seconds a fruit pulses.
  *   pizza  Pizza Shop. mode "customer": free choice of toppings (child's lines in a higher voice);
  *          mode "shopkeeper": the lion orders, the child finds the topping. Tap or drag onto the pizza.
+ *   freeze Freeze Dance: fruit dance to code-made music (music.js); it stops, "Freeze!", tap FREEZE,
+ *          tap the fruit the lion names, then "Do you like ___?" (`like`) with the avatar.
  * Wrong = gentle wiggle + "Try again!" + the question again; after 2 wrong tries the right one glows.
  * game.php already picked this play's questions (per_play for the child's level).
  * Every game ends with 3 stars and the game's sticker, no matter what.
@@ -72,6 +74,7 @@
     corn: ['0 0 100 100', '<ellipse cx="50" cy="48" rx="18" ry="36" fill="#FFD84D" stroke="' + INK + '" stroke-width="6"/><g stroke="#E8B92E" stroke-width="3"><path d="M36 30 H64 M33 42 H67 M33 54 H67 M36 66 H64"/><path d="M44 16 V80 M56 16 V80"/></g><path d="M50 90 Q24 80 22 46 Q36 62 44 78 Z M50 90 Q76 80 78 46 Q64 62 56 78 Z" fill="#5CC98B" stroke="' + INK + '" stroke-width="5" stroke-linejoin="round"/>'],
     onion: ['0 0 100 100', '<path d="M50 12 Q54 30 72 44 Q90 62 72 82 Q50 96 28 82 Q10 62 28 44 Q46 30 50 12 Z" fill="#C9A0DC" stroke="' + INK + '" stroke-width="6" stroke-linejoin="round"/><path d="M50 26 Q40 50 44 86 M50 26 Q62 50 58 86" stroke="#9B6BD6" stroke-width="4" fill="none"/><path d="M42 92 L40 98 M50 93 V99 M58 92 L60 98" stroke="' + INK + '" stroke-width="4" stroke-linecap="round"/>'],
     pineapple: ['0 0 100 100', '<path d="M50 30 L38 6 L48 18 L50 2 L52 18 L62 6 Z" fill="#3FA864" stroke="' + INK + '" stroke-width="4" stroke-linejoin="round"/><ellipse cx="50" cy="62" rx="26" ry="32" fill="#FFC233" stroke="' + INK + '" stroke-width="6"/><g stroke="#C98A1E" stroke-width="3"><path d="M30 46 L66 86 M34 36 L74 80 M30 66 L50 90"/><path d="M70 46 L34 86 M66 36 L26 80 M70 66 L50 90"/></g>'],
+    music: ['0 0 70 70', '<path d="M28 50 V14 L56 8 V42" stroke="' + INK + '" stroke-width="6" fill="none" stroke-linejoin="round"/><path d="M28 24 L56 18" stroke="' + INK + '" stroke-width="6"/><ellipse cx="21" cy="50" rx="10" ry="8" fill="#FF7DA8" stroke="' + INK + '" stroke-width="4"/><ellipse cx="49" cy="43" rx="10" ry="8" fill="#FF7DA8" stroke="' + INK + '" stroke-width="4"/>'],
     broccoli: ['0 0 100 100', '<path d="M42 58 L40 90 H60 L58 58 Z" fill="#8ED6A0" stroke="' + INK + '" stroke-width="5" stroke-linejoin="round"/><g fill="#3FA864" stroke="' + INK + '" stroke-width="5"><circle cx="32" cy="48" r="16"/><circle cx="68" cy="48" r="16"/><circle cx="50" cy="34" r="20"/><circle cx="50" cy="56" r="14"/></g>'],
     pizza: ['0 0 100 100', '<circle cx="50" cy="50" r="44" fill="#E8B465" stroke="' + INK + '" stroke-width="6"/><circle cx="50" cy="50" r="35" fill="#E8453C"/><path d="M22 46 Q30 24 52 20 Q76 24 80 48 Q78 74 54 80 Q28 78 22 46 Z" fill="#FFD84D"/><g fill="#B8322C" stroke="' + INK + '" stroke-width="3"><circle cx="38" cy="40" r="7"/><circle cx="62" cy="38" r="7"/><circle cx="56" cy="62" r="7"/><circle cx="36" cy="62" r="6"/></g>']
   };
@@ -348,6 +351,7 @@
   }
 
   function endScreen() {
+    if (window.H212Music) window.H212Music.stop();
     var stars = '';
     for (var i = 0; i < STARS_PER_GAME; i++) stars += star(96, 'g-end-star');
     frame('<div class="g-center">' + lion('You did it!', 'できたね！') +
@@ -701,6 +705,112 @@
     });
   }
 
+  // ---------- freeze: Freeze Freeze Dance (Lesson 4) ----------
+  // The fruit dance while code-made music plays (5 to 9 seconds). The music stops: "Freeze!" and a
+  // colored flash (in case the sound is off). The child taps FREEZE (too early = "Not yet! Keep dancing!"),
+  // then taps the fruit the lion names, then answers "Do you like ___?" with the avatar standing or sitting.
+
+  var freeze = null;
+  var hasMusic = !!(window.H212Music && window.H212Music.supported());
+
+  function freezeScreen(item) {
+    var n = Math.max(3, Math.min(item.dancers.length, G.freeze.dancers));
+    var dancers = shuffle(item.dancers.slice(0, n)).map(function (w, i) {
+      // The dance moves the inner picture, so a wiggle or glow on the button never jumps it back.
+      return '<button class="g-dancer" data-dancer="' + esc(w) + '" disabled><span class="g-dancer-in g-dance-' + (i % 4) + '">' + picture(w, 96) + '</span></button>';
+    }).join('');
+    frame(lion('Dance!', 'おどろう！') +
+      '<div class="g-stage g-stage-col"><div class="g-floor g-floor-' + n + '">' + dancers + '</div>' +
+      '<button class="g-freeze-btn k-press" data-act="freeze">' + two('FREEZE!', 'フリーズ！') + '</button></div>',
+      { replay: true });
+    freeze = { item: item, phase: 'dance', timer: 0 };
+    var secs = G.freeze.seconds || [5, 9];
+    var ms = 1000 * (secs[0] + Math.random() * (secs[1] - secs[0]));
+    if (hasMusic) window.H212Music.start('dance');
+    freeze.timer = setTimeout(stopTheMusic, ms);
+  }
+
+  function stopTheMusic() {
+    var f = freeze;
+    if (!f || f.phase !== 'dance') return;
+    f.phase = 'frozen';
+    if (hasMusic) window.H212Music.stop();
+    root.querySelector('.g-floor').classList.add('g-frozen');
+    var wrap = root.querySelector('.g-wrap');
+    wrap.classList.remove('g-flash');
+    void wrap.offsetWidth;
+    wrap.classList.add('g-flash');
+    root.querySelector('.g-freeze-btn').classList.add('g-freeze-now');
+    setBubble('Freeze!', 'フリーズ！');
+    say('Freeze!');
+  }
+
+  function tapFreeze(btn) {
+    var f = freeze;
+    if (!f) return;
+    if (f.phase === 'dance') {
+      // Too early: nothing bad, keep dancing.
+      setBubble('Not yet! Keep dancing!', 'まだだよ！おどってね！');
+      say('Not yet! Keep dancing!').then(function () {
+        if (freeze === f && f.phase === 'dance') setBubble('Dance!', 'おどろう！');
+      });
+      return;
+    }
+    if (f.phase !== 'frozen') return;
+    f.phase = 'pick';
+    btn.classList.add('g-freeze-done');
+    btn.disabled = true;
+    root.querySelectorAll('.g-dancer').forEach(function (d) { d.disabled = false; });
+    setBubble(f.item.english, f.item.japanese);
+    say(f.item.english, f.item.audio);
+  }
+
+  function tapDancer(el) {
+    var f = freeze;
+    if (!f || f.phase !== 'pick') return;
+    var item = f.item;
+    if (el.getAttribute('data-dancer') !== item.word) {
+      return wrongAnswer(el, item, '[data-dancer="' + item.word + '"]');
+    }
+    f.phase = 'like';
+    busy = true;
+    saveAnswer(item, wrong + 1);
+    el.classList.add('g-right');
+    root.querySelectorAll('.g-dancer').forEach(function (d) { d.disabled = true; });
+    say(item.english).then(function () {
+      if (freeze !== f) return;
+      wrong = 0;
+      busy = false;
+      likeStep(item);
+    });
+  }
+
+  // "Do you like bananas?" with the child's avatar (Prompt A). Both answers are right.
+  function likeStep(item) {
+    var yes = G.answers.yes;
+    var no = G.answers.no;
+    var withKid = G.avatar_pose !== false && item.avatar_pose !== false;
+    frame(lion(item.like.english, item.like.japanese) +
+      '<div class="g-stage' + (withKid ? ' g-stage-kid' : '') + '">' + (withKid ? kidFigure() : '') +
+      '<div class="g-card g-card-big">' + picture(item.word, 220) + '</div></div>' +
+      '<div class="g-answers">' +
+      '<button class="g-answer g-yes k-press" data-like="yes"><span class="g-thumb" aria-hidden="true">👍</span>' + two(yes.english, yes.japanese) + '</button>' +
+      '<button class="g-answer g-no k-press" data-like="no"><span class="g-thumb" aria-hidden="true">👎</span>' + two(no.english, no.japanese) + '</button>' +
+      '</div>', { replay: true });
+    say(item.like.english);
+  }
+
+  function answerLike(btn) {
+    var picked = btn.getAttribute('data-like');
+    var ans = G.answers[picked];
+    if (root.querySelector('.g-kid')) kidPose(picked === 'yes' ? 'stand' : 'shrug');
+    busy = true;
+    btn.classList.add('g-picked');
+    root.querySelectorAll('.g-answer').forEach(function (b) { b.disabled = true; });
+    setBubble(ans.english, ans.japanese);
+    say(ans.english).then(praise).then(function () { return wait(250); }).then(next);
+  }
+
   // ---------- flow ----------
 
   var ri = 0;
@@ -718,10 +828,13 @@
     if (shop) clearTimeout(shop.hint);
     shop = null;
     pizza = null;
+    if (freeze) clearTimeout(freeze.timer);
+    freeze = null;
     if (!item) return endScreen();
     if (rounds[ri].type === 'yesno') yesnoScreen(item);
     else if (rounds[ri].type === 'count') countScreen(item);
     else if (rounds[ri].type === 'pizza') pizzaScreen(item);
+    else if (rounds[ri].type === 'freeze') freezeScreen(item);
     else tapScreen(item);
   }
 
@@ -791,6 +904,8 @@
     if (!b || b.disabled) return;
     var act = b.getAttribute('data-act');
     if (act === 'start') {
+      // The Play tap also wakes up the music maker (iPhone/iPad only allow sound after a tap).
+      if (hasMusic) window.H212Music.unlock();
       saveStart();
       if (rounds.length > 1) return roundScreen(rounds[0], 1);
       return showItem();
@@ -801,13 +916,18 @@
       var item = currentItem();
       if (item && !busy) {
         if (rounds[ri].type === 'tap') askTap(item);
+        else if (freeze && freeze.phase === 'like') say(item.like.english);
+        else if (freeze && freeze.phase !== 'pick') say(freeze.phase === 'dance' ? 'Dance!' : 'Freeze!');
         else say(item.english, item.audio);
       }
       return;
     }
+    if (act === 'freeze') return tapFreeze(b);
     if (busy) return;
     if (b.hasAttribute('data-answer')) return answerYesNo(b);
     if (b.hasAttribute('data-choice')) return answerTap(b);
+    if (b.hasAttribute('data-dancer')) return tapDancer(b);
+    if (b.hasAttribute('data-like')) return answerLike(b);
   });
 
   startScreen();

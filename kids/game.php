@@ -79,6 +79,11 @@ $h212_kids_game = array(
 		'picks'   => (int) ( $games['pizza']['picks'][ $level ] ?? 3 ),
 		'choices' => (int) ( $games['pizza']['choices'][ $level ] ?? 3 ),
 	),
+	// Freeze Dance, for this child's level: how many fruit dance, and how long each dance lasts.
+	'freeze'   => array(
+		'dancers' => (int) ( $games['freeze']['dancers'][ $level ] ?? 3 ),
+		'seconds' => $games['freeze']['dance_seconds'] ?? array( 5, 9 ),
+	),
 	'answers'  => $games['answers'],
 	'praise'   => $games['praise'],
 	'child'    => $child,
@@ -99,6 +104,7 @@ $h212_kids_game = array(
 <body class="k-sky">
 <div id="kids-game" aria-live="polite"></div>
 <script>window.H212_KIDS_GAME = <?php echo wp_json_encode( $h212_kids_game ); ?>;</script>
+<script src="music.js?v=<?php echo h212_kids_asset_v( 'music.js' ); ?>"></script>
 <script src="game.js?v=<?php echo h212_kids_asset_v( 'game.js' ); ?>"></script>
 </body>
 </html>
