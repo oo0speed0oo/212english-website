@@ -13,6 +13,8 @@
  *          read_choices: the lion reads the word buttons aloud (for children who can't read yet)
  *          answer: the right choice (default: the item's word)
  *          after_correct: what the lion says after a right answer ("It's a banana.")
+ *   count  "How many bananas?" -> drag or tap fruit into the basket; it counts out loud (`count`: how many).
+ *          An extra pops back out: "That's enough! Three bananas!"; after 5 quiet seconds a fruit pulses.
  * Wrong = gentle wiggle + "Try again!" + the question again; after 2 wrong tries the right one glows.
  * game.php already picked this play's questions (per_play for the child's level).
  * Every game ends with 3 stars and the game's sticker, no matter what.
@@ -382,6 +384,173 @@
     }).catch(function () {});
   }
 
+  // ---------- count: "How many bananas?" -> drag (or tap) fruit into the basket ----------
+  // Lesson 2 in class: Fruit Shopping. Each fruit that lands is counted out loud and the number shows
+  // big on the basket. Too many? The extra pops back out: "That's enough! Three bananas!"
+  // Nothing happening for a while? One fruit gently pulses to show where to start.
+
+  var NUMBER_WORDS = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten'];
+  var HINT_MS = 5000;
+  var shop = null;
+
+  var BASKET = '<svg class="g-basket-pic" viewBox="0 0 240 180" aria-hidden="true">' +
+    '<path d="M44 84 Q120 -6 196 84" stroke="#A86E35" stroke-width="12" fill="none" stroke-linecap="round"/>' +
+    '<path d="M44 84 Q120 -6 196 84" stroke="' + INK + '" stroke-width="4" fill="none" stroke-linecap="round" opacity=".35"/>' +
+    '<path d="M14 82 H226 L200 172 H40 Z" fill="#D99A55" stroke="' + INK + '" stroke-width="6" stroke-linejoin="round"/>' +
+    '<path d="M24 112 H216 M32 142 H208" stroke="#A86E35" stroke-width="6"/>' +
+    '<path d="M70 82 L80 172 M120 82 V172 M170 82 L160 172" stroke="#A86E35" stroke-width="6"/>' +
+    '<rect x="8" y="72" width="224" height="20" rx="10" fill="#C98A4B" stroke="' + INK + '" stroke-width="6"/></svg>';
+
+  function countScreen(item) {
+    var shelf = Math.min(10, item.count + 3);
+    var fruits = '';
+    for (var i = 0; i < shelf; i++) {
+      fruits += '<button class="g-fruit k-press" data-fruit="' + i + '" aria-label="' + esc(wordText(item.word)) + '">' + picture(item.word, 54) + '</button>';
+    }
+    frame(lion(item.english, item.japanese) +
+      '<div class="g-stage g-shop">' +
+      '<div class="g-shelf"><div class="g-shelf-sign">' + picture(item.word, 76) + '</div><div class="g-shelf-items">' + fruits + '</div></div>' +
+      '<div class="g-basket" aria-label="Basket">' + BASKET +
+      '<div class="g-basket-fruits"></div><div class="g-basket-num" aria-live="polite">0</div></div>' +
+      '</div>', { replay: true });
+    shop = { item: item, count: 0, full: false, extra: false, speech: say(item.english, item.audio), hint: 0 };
+    shopHint();
+  }
+
+  // After a few quiet seconds, the next fruit pulses to show what to do.
+  function shopHint() {
+    clearTimeout(shop.hint);
+    var mine = shop;
+    root.querySelectorAll('.g-pulse').forEach(function (f) { f.classList.remove('g-pulse'); });
+    shop.hint = setTimeout(function () {
+      if (shop !== mine || mine.full) return;
+      var f = root.querySelector('.g-fruit:not(.g-gone)');
+      if (f) f.classList.add('g-pulse');
+    }, HINT_MS);
+  }
+
+  function addFruit(el, fly) {
+    var s = shop;
+    if (!s || el.classList.contains('g-gone')) return;
+    var item = s.item;
+    if (s.count >= item.count) {
+      // One too many: it pops back out, gently. (Not "first try" in the records; nothing bad for the child.)
+      s.extra = true;
+      el.style.transform = '';
+      el.classList.remove('g-wiggle');
+      void el.offsetWidth;
+      el.classList.add('g-wiggle');
+      setBubble("That's enough! " + item.after_correct.english, item.after_correct.japanese);
+      s.speech = say("That's enough! " + item.after_correct.english);
+      return;
+    }
+    var basket = root.querySelector('.g-basket');
+    var into = root.querySelector('.g-basket-fruits');
+    var landed = document.createElement('span');
+    landed.className = 'g-landed';
+    landed.innerHTML = picture(item.word, 34);
+    into.appendChild(landed);
+    if (fly) flyTo(el, landed);
+    el.classList.add('g-gone');
+    el.disabled = true;
+    el.style.transform = '';
+
+    s.count++;
+    var num = root.querySelector('.g-basket-num');
+    num.textContent = s.count;
+    num.classList.remove('g-num-pop');
+    void num.offsetWidth;
+    num.classList.add('g-num-pop');
+    basket.classList.add('g-basket-on');
+    shopHint();
+
+    if (s.count < item.count) {
+      s.speech = say(NUMBER_WORDS[s.count] + '!');
+      return;
+    }
+    // Full: "Three bananas!" Wait until the lion is quiet (extras can still pop back), then praise and go on.
+    s.full = true;
+    clearTimeout(s.hint);
+    setBubble(item.after_correct.english, item.after_correct.japanese);
+    s.speech = say(NUMBER_WORDS[s.count] + '!').then(function () { return say(item.after_correct.english); });
+    (function waitQuiet(last) {
+      last.then(function () { return wait(700); }).then(function () {
+        if (shop !== s) return;
+        if (s.speech !== last) return waitQuiet(s.speech);
+        busy = true;
+        root.querySelectorAll('.g-fruit').forEach(function (b) { b.disabled = true; });
+        saveAnswer(item, s.extra ? 2 : 1);
+        praise().then(function () { return wait(250); }).then(next);
+      });
+    })(s.speech);
+  }
+
+  // A tapped fruit flies from the shelf into the basket.
+  function flyTo(from, to) {
+    var a = from.getBoundingClientRect();
+    var b = to.getBoundingClientRect();
+    var ghost = from.querySelector('.g-pic').cloneNode(true);
+    ghost.classList.add('g-flying');
+    ghost.style.left = a.left + 'px';
+    ghost.style.top = a.top + 'px';
+    ghost.style.width = a.width * 0.8 + 'px';
+    ghost.style.height = a.height * 0.8 + 'px';
+    document.body.appendChild(ghost);
+    to.style.visibility = 'hidden';
+    requestAnimationFrame(function () {
+      ghost.style.transform = 'translate(' + (b.left - a.left) + 'px,' + (b.top - a.top) + 'px) scale(.6)';
+    });
+    setTimeout(function () {
+      ghost.remove();
+      to.style.visibility = '';
+    }, 380);
+  }
+
+  // Drag a fruit with a finger (or the mouse). A short touch without moving counts as a tap.
+  var drag = null;
+  root.addEventListener('pointerdown', function (e) {
+    var f = e.target.closest('.g-fruit');
+    if (!f || f.disabled || busy) return;
+    e.preventDefault();
+    drag = { el: f, x: e.clientX, y: e.clientY, moved: false, id: e.pointerId };
+    try { f.setPointerCapture(e.pointerId); } catch (err) {}
+  });
+  root.addEventListener('pointermove', function (e) {
+    if (!drag || e.pointerId !== drag.id) return;
+    var dx = e.clientX - drag.x;
+    var dy = e.clientY - drag.y;
+    if (!drag.moved && Math.abs(dx) + Math.abs(dy) < 10) return;
+    drag.moved = true;
+    drag.el.classList.add('g-dragging');
+    drag.el.style.transform = 'translate(' + dx + 'px,' + dy + 'px) scale(1.15)';
+    var basket = root.querySelector('.g-basket');
+    if (basket) basket.classList.toggle('g-basket-hover', overBasket(e));
+  });
+  function endDrag(e, cancelled) {
+    if (!drag || e.pointerId !== drag.id) return;
+    var d = drag;
+    drag = null;
+    d.el.classList.remove('g-dragging');
+    var basket = root.querySelector('.g-basket');
+    if (basket) basket.classList.remove('g-basket-hover');
+    if (cancelled) {
+      d.el.style.transform = '';
+      return;
+    }
+    if (!d.moved) return addFruit(d.el, true);
+    if (overBasket(e)) return addFruit(d.el, false);
+    d.el.style.transform = ''; // not in the basket: it slides back to the shelf
+  }
+  root.addEventListener('pointerup', function (e) { endDrag(e, false); });
+  root.addEventListener('pointercancel', function (e) { endDrag(e, true); });
+  function overBasket(e) {
+    var basket = root.querySelector('.g-basket');
+    if (!basket) return false;
+    var r = basket.getBoundingClientRect();
+    var pad = 24;
+    return e.clientX > r.left - pad && e.clientX < r.right + pad && e.clientY > r.top - pad && e.clientY < r.bottom + pad;
+  }
+
   // ---------- flow ----------
 
   var ri = 0;
@@ -396,8 +565,11 @@
     var item = currentItem();
     wrong = 0;
     busy = false;
+    if (shop) clearTimeout(shop.hint);
+    shop = null;
     if (!item) return endScreen();
     if (rounds[ri].type === 'yesno') yesnoScreen(item);
+    else if (rounds[ri].type === 'count') countScreen(item);
     else tapScreen(item);
   }
 

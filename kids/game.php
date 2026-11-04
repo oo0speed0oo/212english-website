@@ -47,6 +47,10 @@ foreach ( (array) $game['rounds'] as $round ) {
 		if ( isset( $item['levels'] ) && ! in_array( $level, (array) $item['levels'], true ) ) {
 			continue;
 		}
+		// Counting: numbers bigger than this level counts to are skipped ("count_max": Pre-K 5, K 7 ...).
+		if ( 'count' === $item['type'] && isset( $games['count_max'][ $level ] ) && (int) $item['count'] > (int) $games['count_max'][ $level ] ) {
+			continue;
+		}
 		$items[] = array( 'id' => (string) $item_id ) + $item;
 	}
 	$per_play = isset( $round['per_play'] ) ? (int) $round['per_play'] : $per_level;

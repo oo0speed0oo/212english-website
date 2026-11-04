@@ -1,11 +1,12 @@
 {
   "_help": [
     "212 Kids games. A game is a list of rounds; each round asks questions from \"items\".",
-    "Round types: yesno and tap. See the top of kids/game.js for every option (show, choice_kind, read_choices, kind, labels, after_correct).",
+    "Round types: yesno, tap and count. See the top of kids/game.js for every option (show, choice_kind, read_choices, kind, labels, after_correct, count).",
     "A round can use a shared question pool: { \"pool\": \"fruits-what\" }. Pools are in \"pools\".",
     "Each play picks a random set of questions: \"per_play\" by level (6 to 10). \"split\": true shares that number across a game's rounds.",
+    "count questions: \"count\": how many to put in the basket. \"count_max\" (by level) skips bigger numbers: Pre-K 1-5, K 1-7, Grades 1-4 1-10.",
     "A question can be for some levels only: \"levels\": [\"k\", \"1\"]. Default: every level.",
-    "Item ids start at 100000 and are never reused or renumbered (one id sequence for all kids content). Next free id: 100072.",
+    "Item ids start at 100000 and are never reused or renumbered (one id sequence for all kids content). Next free id: 100082.",
     "picture: a picture name drawn by the site (apple, banana, orange, grapes, strawberry, watermelon).",
     "  To use a real picture later, add \"image\": \"kids_nov_banana.jpg\" to the word (file goes in kids/images/).",
     "  To use a recorded voice later, add \"audio\": \"100003.m4a\" to an item (file goes in kids/audio/). Without it the browser voice speaks.",
@@ -93,7 +94,17 @@
     "100068": {"type": "tap", "word": "apple", "english": "What is it?", "japanese": "これは なあに？", "show": "picture", "choice_kind": "word", "choices": ["apple", "banana", "strawberry"], "after_correct": {"english": "It's an apple.", "japanese": "りんごです。"}},
     "100069": {"type": "tap", "word": "banana", "english": "What is it?", "japanese": "これは なあに？", "show": "picture", "choice_kind": "word", "choices": ["banana", "orange", "watermelon"], "after_correct": {"english": "It's a banana.", "japanese": "バナナです。"}},
     "100070": {"type": "tap", "word": "grapes", "english": "What is it?", "japanese": "これは なあに？", "show": "picture", "choice_kind": "word", "choices": ["grapes", "apple", "strawberry"], "after_correct": {"english": "They're grapes.", "japanese": "ぶどうです。"}},
-    "100071": {"type": "tap", "word": "strawberry", "english": "What is it?", "japanese": "これは なあに？", "show": "picture", "choice_kind": "word", "choices": ["strawberry", "grapes", "watermelon"], "after_correct": {"english": "It's a strawberry.", "japanese": "いちごです。"}}
+    "100071": {"type": "tap", "word": "strawberry", "english": "What is it?", "japanese": "これは なあに？", "show": "picture", "choice_kind": "word", "choices": ["strawberry", "grapes", "watermelon"], "after_correct": {"english": "It's a strawberry.", "japanese": "いちごです。"}},
+    "100072": {"type": "count", "word": "apple", "count": 1, "english": "How many apples?", "japanese": "りんごは いくつ？", "after_correct": {"english": "One apple!", "japanese": "りんご 1こ！"}},
+    "100073": {"type": "count", "word": "banana", "count": 2, "english": "How many bananas?", "japanese": "バナナは いくつ？", "after_correct": {"english": "Two bananas!", "japanese": "バナナ 2こ！"}},
+    "100074": {"type": "count", "word": "orange", "count": 3, "english": "How many oranges?", "japanese": "オレンジは いくつ？", "after_correct": {"english": "Three oranges!", "japanese": "オレンジ 3こ！"}},
+    "100075": {"type": "count", "word": "strawberry", "count": 4, "english": "How many strawberries?", "japanese": "いちごは いくつ？", "after_correct": {"english": "Four strawberries!", "japanese": "いちご 4こ！"}},
+    "100076": {"type": "count", "word": "apple", "count": 5, "english": "How many apples?", "japanese": "りんごは いくつ？", "after_correct": {"english": "Five apples!", "japanese": "りんご 5こ！"}},
+    "100077": {"type": "count", "word": "banana", "count": 3, "english": "How many bananas?", "japanese": "バナナは いくつ？", "after_correct": {"english": "Three bananas!", "japanese": "バナナ 3こ！"}},
+    "100078": {"type": "count", "word": "orange", "count": 6, "english": "How many oranges?", "japanese": "オレンジは いくつ？", "after_correct": {"english": "Six oranges!", "japanese": "オレンジ 6こ！"}},
+    "100079": {"type": "count", "word": "strawberry", "count": 7, "english": "How many strawberries?", "japanese": "いちごは いくつ？", "after_correct": {"english": "Seven strawberries!", "japanese": "いちご 7こ！"}},
+    "100080": {"type": "count", "word": "apple", "count": 8, "english": "How many apples?", "japanese": "りんごは いくつ？", "after_correct": {"english": "Eight apples!", "japanese": "りんご 8こ！"}},
+    "100081": {"type": "count", "word": "banana", "count": 10, "english": "How many bananas?", "japanese": "バナナは いくつ？", "after_correct": {"english": "Ten bananas!", "japanese": "バナナ 10こ！"}}
   },
 
   "answers": {
@@ -116,7 +127,8 @@
     "fruits-what": {"english": "What is it?", "japanese": "なあに？", "sticker": "grapes", "rounds": [{"pool": "fruits-what"}]},
     "fruits-isit": {"english": "Is it a…?", "japanese": "これは…？", "sticker": "orange", "rounds": [{"pool": "fruits-isit"}]},
     "fruits-color": {"english": "What color?", "japanese": "なにいろ？", "sticker": "watermelon", "rounds": [{"pool": "fruits-color"}]},
-    "fruits-words": {"english": "Pick the word", "japanese": "ことばを えらぼう", "sticker": "banana", "split": true, "rounds": [{"pool": "fruits-hear-word"}, {"pool": "fruits-see-word"}]}
+    "fruits-words": {"english": "Pick the word", "japanese": "ことばを えらぼう", "sticker": "banana", "split": true, "rounds": [{"pool": "fruits-hear-word"}, {"pool": "fruits-see-word"}]},
+    "fruit-shopping": {"english": "Fruit Shopping", "japanese": "おかいもの", "sticker": "banana", "rounds": [{"pool": "fruits-count"}]}
   },
 
   "colors": {
@@ -144,6 +156,16 @@
     "fruits-isit": {"type": "yesno", "english": "Is it a…?", "japanese": "これは…？", "items": ["100042", "100043", "100044", "100045", "100046", "100047", "100048", "100049", "100050", "100051"]},
     "fruits-like": {"type": "yesno", "english": "Do you like…?", "japanese": "すき？", "items": ["100000", "100001", "100002", "100003", "100004", "100005"]},
     "fruits-hear-word": {"type": "tap", "english": "Hear it, pick the word!", "japanese": "きいて ことばを えらぼう", "items": ["100052", "100053", "100054", "100055", "100056", "100057", "100058", "100059", "100060", "100061"]},
-    "fruits-see-word": {"type": "tap", "english": "See it, pick the word!", "japanese": "みて ことばを えらぼう", "items": ["100062", "100063", "100064", "100065", "100066", "100067", "100068", "100069", "100070", "100071"]}
+    "fruits-see-word": {"type": "tap", "english": "See it, pick the word!", "japanese": "みて ことばを えらぼう", "items": ["100062", "100063", "100064", "100065", "100066", "100067", "100068", "100069", "100070", "100071"]},
+    "fruits-count": {"type": "count", "english": "How many?", "japanese": "いくつ？", "items": ["100072", "100073", "100074", "100075", "100076", "100077", "100078", "100079", "100080", "100081"]}
+  },
+
+  "count_max": {
+    "prek": 5,
+    "k": 7,
+    "1": 10,
+    "2": 10,
+    "3": 10,
+    "4": 10
   }
 }

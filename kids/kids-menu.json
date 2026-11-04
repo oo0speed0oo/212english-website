@@ -22,7 +22,7 @@
           "title_english": "Harvest Festival", "title_japanese": "しゅうかくさい", "icon": "apple",
           "lessons": [
             { "id": "nov-1", "number": 1, "english": "Fruits", "japanese": "くだもの", "icon": "apple", "color": "#FF9E94", "game": "fruits-lesson" },
-            { "id": "nov-2", "number": 2, "english": "How many?", "japanese": "いくつ？", "icon": "banana", "color": "#FFE27A" },
+            { "id": "nov-2", "number": 2, "english": "How many?", "japanese": "いくつ？", "icon": "banana", "color": "#FFE27A", "game": "fruit-shopping" },
             { "id": "nov-3", "number": 3, "english": "Pizza Shop", "japanese": "ピザやさん", "icon": "pizza", "color": "#FFB46B" },
             { "id": "nov-4", "number": 4, "english": "Freeze Dance", "japanese": "フリーズダンス", "icon": "music", "color": "#9FD3FF" }
           ]
@@ -54,7 +54,7 @@
         { "id": "food-memory", "english": "Memory", "japanese": "ペアさがし", "icon": "cards", "color": "#9FD3FF", "month": "nov" },
         { "id": "food-pop", "english": "Pop it", "japanese": "バブルポップ", "icon": "bubbles", "color": "#C9B8FF", "month": "nov" },
         { "id": "food-yesno", "english": "Yes or No", "japanese": "すき？きらい？", "icon": "yesno", "color": "#FF9E94", "month": "nov", "game": "fruits-yesno" },
-        { "id": "food-shopping", "english": "Shopping", "japanese": "おかいもの", "icon": "banana", "color": "#FFE27A", "month": "nov" },
+        { "id": "food-shopping", "english": "Shopping", "japanese": "おかいもの", "icon": "banana", "color": "#FFE27A", "month": "nov", "game": "fruit-shopping" },
         { "id": "food-pizza", "english": "Pizza Shop", "japanese": "ピザやさん", "icon": "pizza", "color": "#FFB46B", "month": "nov" },
         { "id": "food-what", "english": "What is it?", "japanese": "なあに？", "icon": "apple", "color": "#8ED6A0", "month": "nov", "game": "fruits-what" },
         { "id": "food-isit", "english": "Is it a…?", "japanese": "これは…？", "icon": "yesno", "color": "#9FD3FF", "month": "nov", "game": "fruits-isit" },
