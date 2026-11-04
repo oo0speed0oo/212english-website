@@ -19,6 +19,9 @@
  *          mode "shopkeeper": the lion orders, the child finds the topping. Tap or drag onto the pizza.
  *   freeze Freeze Dance: fruit dance to code-made music (music.js); it stops, "Freeze!", tap FREEZE,
  *          tap the fruit the lion names, then "Do you like ___?" (`like`) with the avatar.
+ *   missing Missing Letters (word games, tiny): the picture, the word said aloud, ONE letter missing
+ *          (`at`: 0 = the first letter), 2 big letter tiles (the right one and `other`).
+ *          A play shows first-letter questions first, then last letter, then middle.
  * Wrong = gentle wiggle + "Try again!" + the question again; after 2 wrong tries the right one glows.
  * game.php already picked this play's questions (per_play for the child's level).
  * Every game ends with 3 stars and the game's sticker, no matter what.
@@ -166,8 +169,16 @@
 
   // Each play takes a random `per_play` questions from the round's pool, so it's different every time.
   var rounds = G.rounds.filter(function (r) { return r.items && r.items.length; }).map(function (r) {
-    return { type: r.type, english: r.english, japanese: r.japanese, avatar_pose: r.avatar_pose, items: shuffle(r.items).slice(0, r.per_play || r.items.length) };
+    var items = shuffle(r.items).slice(0, r.per_play || r.items.length);
+    if (r.type === 'missing') items.sort(function (a, b) { return missingStep(a) - missingStep(b); });
+    return { type: r.type, english: r.english, japanese: r.japanese, avatar_pose: r.avatar_pose, items: items };
   });
+
+  // Missing Letters gets harder inside a play: first letter (0), then the last letter (1), then a middle one (2).
+  function missingStep(item) {
+    var len = wordText(item.word).length;
+    return item.at === 0 ? 0 : (item.at === len - 1 ? 1 : 2);
+  }
   var total = rounds.reduce(function (n, r) { return n + r.items.length; }, 0);
   var done = 0;
   var busy = false;
@@ -354,6 +365,45 @@
       });
     });
     return chain;
+  }
+
+  // ---------- missing: Missing Letters (word games, tiny) ----------
+  // The picture (tap it to hear the word again), the word with ONE empty box, and 2 big letter tiles.
+  // Right: the letter drops into the box and the lion says the word. Wrong: wiggle + "Try again!".
+
+  function missingScreen(item) {
+    var text = wordText(item.word).toLowerCase();
+    var right = text.charAt(item.at);
+    var boxes = text.split('').map(function (ch, i) {
+      return i === item.at
+        ? '<span class="g-miss-box g-miss-blank" aria-label="missing letter">?</span>'
+        : '<span class="g-miss-box">' + esc(ch) + '</span>';
+    }).join('');
+    var tiles = shuffle([right, item.other]).map(function (ch) {
+      return '<button class="g-letter-tile k-press" data-letter="' + esc(ch) + '" aria-label="' + esc(ch) + '">' + esc(ch) + '</button>';
+    }).join('');
+    var r = rounds[ri];
+    frame(lion(r.english, r.japanese) +
+      '<div class="g-stage g-stage-col">' +
+      '<button class="g-card g-card-show g-miss-pic k-press" data-act="replay" aria-label="Hear it again">' + picture(item.word, 140) + '</button>' +
+      '<div class="g-miss-word' + (text.length > 5 ? ' g-miss-long' : '') + '">' + boxes + '</div>' +
+      '<div class="g-miss-tiles">' + tiles + '</div></div>', { replay: true });
+    say((ii === 0 ? r.english + ' ' : '') + item.english, item.audio);
+  }
+
+  function answerLetter(tile) {
+    var item = currentItem();
+    var right = wordText(item.word).toLowerCase().charAt(item.at);
+    if (tile.getAttribute('data-letter') !== right) {
+      return wrongAnswer(tile, item, '[data-letter="' + right + '"]');
+    }
+    var box = root.querySelector('.g-miss-blank');
+    if (box) {
+      box.textContent = right;
+      box.classList.remove('g-miss-blank');
+      box.classList.add('g-miss-filled');
+    }
+    rightAnswer(tile, item.english, item.japanese);
   }
 
   function endScreen() {
@@ -845,6 +895,7 @@
     else if (rounds[ri].type === 'count') countScreen(item);
     else if (rounds[ri].type === 'pizza') pizzaScreen(item);
     else if (rounds[ri].type === 'freeze') freezeScreen(item);
+    else if (rounds[ri].type === 'missing') missingScreen(item);
     else tapScreen(item);
   }
 
@@ -864,7 +915,7 @@
     busy = true;
     saveAnswer(currentItem(), wrong + 1);
     el.classList.add(el.classList.contains('g-answer') ? 'g-picked' : 'g-right');
-    root.querySelectorAll('.g-answer, .g-choice').forEach(function (b) { b.disabled = true; });
+    root.querySelectorAll('.g-answer, .g-choice, .g-letter-tile').forEach(function (b) { b.disabled = true; });
     setBubble(en, jp);
     say(en).then(praise).then(function () { return wait(250); }).then(next);
   }
@@ -938,6 +989,7 @@
     if (b.hasAttribute('data-choice')) return answerTap(b);
     if (b.hasAttribute('data-dancer')) return tapDancer(b);
     if (b.hasAttribute('data-like')) return answerLike(b);
+    if (b.hasAttribute('data-letter')) return answerLetter(b);
   });
 
   startScreen();

@@ -791,6 +791,42 @@ button:focus-visible, a:focus-visible, input:focus-visible {
 .g-word { font-size: 52px; font-weight: 800; line-height: 1; letter-spacing: .02em; }
 .g-choice-word { width: auto; min-width: 210px; height: 120px; padding: 0 26px; }
 .g-word-long { font-size: 42px; }
+
+/* Missing Letters: the word in big letter boxes, one empty; 2 big letter tiles. */
+.g-miss-pic { cursor: pointer; }
+.g-miss-word { display: flex; justify-content: center; gap: 8px; margin: 18px 0 22px; }
+.g-miss-box {
+	width: 70px;
+	height: 84px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: var(--white);
+	border: var(--line-thin);
+	border-radius: 16px;
+	font-size: 56px;
+	font-weight: 800;
+	line-height: 1;
+}
+.g-miss-long .g-miss-box { width: 60px; height: 76px; font-size: 50px; }
+.g-miss-blank { background: #FFF6D6; border-style: dashed; color: #C9B48A; }
+.g-miss-filled { background: #D8F1DD; animation: g-pop .45s ease; }
+.g-miss-tiles { display: flex; justify-content: center; gap: 28px; }
+.g-letter-tile {
+	width: 120px;
+	height: 120px;
+	border-radius: 28px;
+	background: #FFE27A;
+	border: var(--line);
+	box-shadow: var(--lift);
+	font-size: 76px;
+	font-weight: 800;
+	line-height: 1;
+	padding: 0 0 8px;
+	color: var(--ink);
+	font-family: inherit;
+}
+.g-letter-tile.g-right { background: #8ED6A0; }
 .g-reading { background: #FFF3B8; transform: translateY(-4px); }
 
 /* Color choices: a big color circle with the color word under it. */
@@ -1116,6 +1152,10 @@ button:focus-visible, a:focus-visible, input:focus-visible {
 	.g-card-show .g-pic { width: 110px; height: 110px; }
 	.g-word { font-size: 40px; }
 	.g-word-long { font-size: 34px; }
+	.g-miss-word { gap: 5px; margin: 12px 0 16px; }
+	.g-miss-box { width: 46px; height: 58px; font-size: 38px; border-radius: 12px; }
+	.g-miss-long .g-miss-box { width: 44px; height: 56px; font-size: 36px; }
+	.g-letter-tile { width: 100px; height: 100px; font-size: 64px; }
 	.g-choice-word { width: 100%; max-width: 320px; height: 84px; }
 	.g-choice-color { width: 104px; height: 140px; gap: 6px; }
 	.g-color-dot { width: 64px; height: 64px; border-width: 4px; }

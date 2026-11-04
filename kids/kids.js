@@ -75,7 +75,7 @@
     bell: ['0 0 60 60', '<path d="M30 8 C18 8 14 20 14 30 C14 38 10 42 8 46 H52 C50 42 46 38 46 30 C46 20 42 8 30 8Z" fill="#FFD24D" stroke="' + INK + '" stroke-width="4" stroke-linejoin="round"/><circle cx="30" cy="50" r="5" fill="#FFB46B" stroke="' + INK + '" stroke-width="3.5"/>'],
     tree: ['0 0 60 60', '<polygon points="30,4 46,26 38,26 52,44 8,44 22,26 14,26" fill="#5CC98B" stroke="' + INK + '" stroke-width="4" stroke-linejoin="round"/><rect x="25" y="44" width="10" height="10" fill="#B4703A" stroke="' + INK + '" stroke-width="3.5"/><circle cx="24" cy="34" r="3" fill="#E8453C"/><circle cx="36" cy="22" r="3" fill="#FFD24D"/><circle cx="38" cy="38" r="3" fill="#4DA3FF"/>']
   };
-  var TEXT_ICONS = { numbers: ['123', '#5CC98B', 20], abc: ['ABC', '#FF7DA8', 19] };
+  var TEXT_ICONS = { numbers: ['123', '#5CC98B', 20], abc: ['ABC', '#FF7DA8', 19], missing: ['a_c', '#FFB46B', 19] };
 
   function icon(name, size) {
     if (TEXT_ICONS[name]) {

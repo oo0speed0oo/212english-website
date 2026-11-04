@@ -22,7 +22,7 @@ if ( ! $child || ! isset( $games['games'][ $game_id ] ) ) {
 
 /*
  * How many questions one play asks: per_play for the child's level (games.json "per_play"),
- * or the round's own per_play. Always 6 to 10, and never more than the pool has.
+ * or the round's own per_play (3 to 10). Never more than the pool has.
  * A game with "split": true shares that number across its rounds (e.g. two rounds of 4).
  */
 $game      = $games['games'][ $game_id ];
@@ -53,8 +53,8 @@ foreach ( (array) $game['rounds'] as $round ) {
 		}
 		$items[] = array( 'id' => (string) $item_id ) + $item;
 	}
-	$per_play = isset( $round['per_play'] ) ? (int) $round['per_play'] : $per_level;
-	$per_play = max( 6, min( 10, $per_play ) );
+	// A round's own per_play may be smaller (word games: 5); the level's per_play is 6 to 10.
+	$per_play = isset( $round['per_play'] ) ? max( 3, min( 10, (int) $round['per_play'] ) ) : max( 6, min( 10, $per_level ) );
 	if ( ! empty( $game['split'] ) ) {
 		$per_play = (int) ceil( $per_play / $n_rounds );
 	}

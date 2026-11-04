@@ -1,14 +1,15 @@
 {
   "_help": [
     "212 Kids games. A game is a list of rounds; each round asks questions from \"items\".",
-    "Round types: yesno, tap, count, pizza and freeze. See the top of kids/game.js for every option.",
+    "Round types: yesno, tap, count, pizza, freeze and missing. See the top of kids/game.js for every option.",
     "A round can use a shared question pool: { \"pool\": \"fruits-what\" }. Pools are in \"pools\".",
-    "Each play picks a random set of questions: \"per_play\" by level (6 to 10). \"split\": true shares that number across a game's rounds.",
+    "Each play picks a random set of questions: \"per_play\" by level (6 to 10), or the round's own \"per_play\" (3 to 10). \"split\": true shares that number across a game's rounds.",
     "count questions: \"count\": how many to put in the basket. \"count_max\" (by level) skips bigger numbers: Pre-K 1-5, K 1-7, Grades 1-4 1-10.",
     "pizza questions: mode \"customer\" (free choice; \"pizza\".\"picks\" by level) or \"shopkeeper\" (find the topping; \"pizza\".\"choices\" by level).",
     "freeze questions: fruit dance to music made in code; it stops, \"Freeze!\", the child taps FREEZE, then the word, then \"Do you like...?\". \"freeze\".\"dancers\" by level; dance_seconds = random length of each dance.",
+    "missing questions (word games, tiny): the picture, the word said aloud, ONE letter missing (\"at\": 0 = first letter), and 2 letter tiles (the right one and \"other\"). Shown first letter first, then last, then middle.",
     "A question can be for some levels only: \"levels\": [\"k\", \"1\"]. Default: every level.",
-    "Item ids start at 100000 and are never reused or renumbered (one id sequence for all kids content). Next free id: 100103.",
+    "Item ids start at 100000 and are never reused or renumbered (one id sequence for all kids content). Next free id: 100115.",
     "picture: a picture name drawn by the site (fruits; pizza toppings cheese, mushrooms, tomato, corn, onion, pineapple, broccoli; pizza).",
     "  To use a real picture later, add \"image\": \"kids_nov_banana.jpg\" to the word (file goes in kids/images/).",
     "  To use a recorded voice later, add \"audio\": \"100003.m4a\" to an item (file goes in kids/audio/). Without it the browser voice speaks.",
@@ -134,7 +135,19 @@
     "100099": {"type": "freeze", "word": "apple", "english": "Apple!", "japanese": "りんご", "dancers": ["apple", "grapes", "banana", "orange"], "like": {"english": "Do you like apples?", "japanese": "りんごは すき？"}},
     "100100": {"type": "freeze", "word": "banana", "english": "Banana!", "japanese": "バナナ", "dancers": ["banana", "watermelon", "apple", "grapes"], "like": {"english": "Do you like bananas?", "japanese": "バナナは すき？"}},
     "100101": {"type": "freeze", "word": "grapes", "english": "Grapes!", "japanese": "ぶどう", "dancers": ["grapes", "banana", "watermelon", "strawberry"], "like": {"english": "Do you like grapes?", "japanese": "ぶどうは すき？"}},
-    "100102": {"type": "freeze", "word": "strawberry", "english": "Strawberry!", "japanese": "いちご", "dancers": ["strawberry", "grapes", "banana", "orange"], "like": {"english": "Do you like strawberries?", "japanese": "いちごは すき？"}}
+    "100102": {"type": "freeze", "word": "strawberry", "english": "Strawberry!", "japanese": "いちご", "dancers": ["strawberry", "grapes", "banana", "orange"], "like": {"english": "Do you like strawberries?", "japanese": "いちごは すき？"}},
+    "100103": {"type": "missing", "word": "apple", "english": "Apple.", "japanese": "りんご", "at": 0, "other": "m"},
+    "100104": {"type": "missing", "word": "banana", "english": "Banana.", "japanese": "バナナ", "at": 0, "other": "f"},
+    "100105": {"type": "missing", "word": "orange", "english": "Orange.", "japanese": "オレンジ", "at": 0, "other": "d"},
+    "100106": {"type": "missing", "word": "grapes", "english": "Grapes.", "japanese": "ぶどう", "at": 0, "other": "h"},
+    "100107": {"type": "missing", "word": "apple", "english": "Apple.", "japanese": "りんご", "at": 4, "other": "s", "levels": ["k", "1", "2", "3", "4"]},
+    "100108": {"type": "missing", "word": "banana", "english": "Banana.", "japanese": "バナナ", "at": 5, "other": "t", "levels": ["k", "1", "2", "3", "4"]},
+    "100109": {"type": "missing", "word": "orange", "english": "Orange.", "japanese": "オレンジ", "at": 5, "other": "k", "levels": ["k", "1", "2", "3", "4"]},
+    "100110": {"type": "missing", "word": "grapes", "english": "Grapes.", "japanese": "ぶどう", "at": 5, "other": "m", "levels": ["k", "1", "2", "3", "4"]},
+    "100111": {"type": "missing", "word": "apple", "english": "Apple.", "japanese": "りんご", "at": 2, "other": "t", "levels": ["1", "2", "3", "4"]},
+    "100112": {"type": "missing", "word": "banana", "english": "Banana.", "japanese": "バナナ", "at": 2, "other": "s", "levels": ["1", "2", "3", "4"]},
+    "100113": {"type": "missing", "word": "orange", "english": "Orange.", "japanese": "オレンジ", "at": 2, "other": "w", "levels": ["1", "2", "3", "4"]},
+    "100114": {"type": "missing", "word": "grapes", "english": "Grapes.", "japanese": "ぶどう", "at": 2, "other": "k", "levels": ["1", "2", "3", "4"]}
   },
 
   "answers": {
@@ -160,7 +173,8 @@
     "fruits-words": {"english": "Pick the word", "japanese": "ことばを えらぼう", "sticker": "banana", "split": true, "rounds": [{"pool": "fruits-hear-word"}, {"pool": "fruits-see-word"}]},
     "fruit-shopping": {"english": "Fruit Shopping", "japanese": "おかいもの", "sticker": "banana", "rounds": [{"pool": "fruits-count"}]},
     "pizza-shop": {"english": "Pizza Shop", "japanese": "ピザやさん", "sticker": "pizza", "rounds": [{"pool": "pizza-customer"}, {"pool": "pizza-shopkeeper"}]},
-    "freeze-dance": {"english": "Freeze Dance", "japanese": "フリーズダンス", "sticker": "music", "rounds": [{"pool": "fruits-freeze"}]}
+    "freeze-dance": {"english": "Freeze Dance", "japanese": "フリーズダンス", "sticker": "music", "rounds": [{"pool": "fruits-freeze"}]},
+    "fruits-missing": {"english": "Missing Letters", "japanese": "たりない もじ", "sticker": "grapes", "rounds": [{"pool": "fruits-missing"}]}
   },
 
   "colors": {
@@ -192,7 +206,8 @@
     "fruits-count": {"type": "count", "english": "How many?", "japanese": "いくつ？", "items": ["100072", "100073", "100074", "100075", "100076", "100077", "100078", "100079", "100080", "100081"]},
     "pizza-customer": {"type": "pizza", "english": "You are the customer!", "japanese": "あなたは おきゃくさん！", "items": ["100082"]},
     "pizza-shopkeeper": {"type": "pizza", "english": "Now you are the shopkeeper!", "japanese": "こんどは おみせやさん！", "items": ["100083", "100084", "100085", "100086", "100087", "100088", "100089", "100090", "100091", "100092"]},
-    "fruits-freeze": {"type": "freeze", "english": "Freeze Dance!", "japanese": "フリーズダンス！", "items": ["100093", "100094", "100095", "100096", "100097", "100098", "100099", "100100", "100101", "100102"]}
+    "fruits-freeze": {"type": "freeze", "english": "Freeze Dance!", "japanese": "フリーズダンス！", "items": ["100093", "100094", "100095", "100096", "100097", "100098", "100099", "100100", "100101", "100102"]},
+    "fruits-missing": {"type": "missing", "english": "What's missing?", "japanese": "たりない もじは？", "per_play": 5, "items": ["100103", "100104", "100105", "100106", "100107", "100108", "100109", "100110", "100111", "100112", "100113", "100114"]}
   },
 
   "count_max": {
