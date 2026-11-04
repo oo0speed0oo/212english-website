@@ -61,7 +61,8 @@
         { "id": "food-isit", "english": "Is it a…?", "japanese": "これは…？", "icon": "yesno", "color": "#9FD3FF", "month": "nov", "game": "fruits-isit" },
         { "id": "food-color", "english": "What color?", "japanese": "なにいろ？", "icon": "colors", "color": "#FFE27A", "month": "nov", "game": "fruits-color" },
         { "id": "food-words", "english": "Pick the word", "japanese": "ことばをえらぼう", "icon": "abc", "color": "#C9B8FF", "month": "nov", "game": "fruits-words" },
-        { "id": "food-missing", "english": "Missing Letters", "japanese": "たりない もじ", "icon": "missing", "color": "#FFB46B", "month": "nov", "game": "fruits-missing" }
+        { "id": "food-missing", "english": "Missing Letters", "japanese": "たりない もじ", "icon": "missing", "color": "#FFB46B", "month": "nov", "game": "fruits-missing" },
+        { "id": "food-search", "english": "Word Search", "japanese": "ことば さがし", "icon": "search", "color": "#9FD3FF", "month": "nov", "game": "fruits-search" }
       ]
     },
     {

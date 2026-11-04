@@ -827,6 +827,63 @@ button:focus-visible, a:focus-visible, input:focus-visible {
 	font-family: inherit;
 }
 .g-letter-tile.g-right { background: #8ED6A0; }
+
+/* Word Search: pictures of the words to find, then the letter grid (left to right only). */
+.g-ws-pics { display: flex; justify-content: center; gap: 16px; margin-bottom: 18px; }
+.g-ws-pic {
+	width: 100px;
+	height: 100px;
+	border-radius: 24px;
+	background: var(--white);
+	border: var(--line-thin);
+	box-shadow: var(--lift-small);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 0;
+	position: relative;
+}
+.g-ws-pic.g-ws-done::after {
+	content: '✓';
+	position: absolute;
+	top: -12px;
+	right: -10px;
+	width: 34px;
+	height: 34px;
+	border-radius: 50%;
+	background: var(--green);
+	border: var(--line-thin);
+	font-size: 20px;
+	font-weight: 800;
+	line-height: 28px;
+	text-align: center;
+}
+.g-ws-grid {
+	display: grid;
+	grid-template-columns: repeat(var(--cols), 68px);
+	gap: 6px;
+	justify-content: center;
+	touch-action: none;
+	user-select: none;
+	-webkit-user-select: none;
+}
+.g-ws-cell {
+	height: 68px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: var(--white);
+	border: var(--line-thin);
+	border-radius: 14px;
+	font-size: 44px;
+	font-weight: 800;
+	line-height: 1;
+	padding-bottom: 4px;
+	cursor: pointer;
+}
+.g-ws-sel { background: #FFF1A8; transform: scale(1.06); }
+.g-ws-bad { animation: g-wiggle .5s ease; background: #FFE0E0; }
+.g-ws-found { animation: g-pop .45s ease; }
 .g-reading { background: #FFF3B8; transform: translateY(-4px); }
 
 /* Color choices: a big color circle with the color word under it. */
@@ -1156,6 +1213,11 @@ button:focus-visible, a:focus-visible, input:focus-visible {
 	.g-miss-box { width: 46px; height: 58px; font-size: 38px; border-radius: 12px; }
 	.g-miss-long .g-miss-box { width: 44px; height: 56px; font-size: 36px; }
 	.g-letter-tile { width: 100px; height: 100px; font-size: 64px; }
+	.g-ws-pics { gap: 10px; margin-bottom: 14px; }
+	.g-ws-pic { width: 84px; height: 84px; border-radius: 20px; }
+	.g-ws-pic .g-pic { width: 62px; height: 62px; }
+	.g-ws-grid { grid-template-columns: repeat(var(--cols), 50px); gap: 5px; }
+	.g-ws-cell { height: 50px; font-size: 32px; border-radius: 11px; }
 	.g-choice-word { width: 100%; max-width: 320px; height: 84px; }
 	.g-choice-color { width: 104px; height: 140px; gap: 6px; }
 	.g-color-dot { width: 64px; height: 64px; border-width: 4px; }

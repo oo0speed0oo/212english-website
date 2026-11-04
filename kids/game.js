@@ -22,6 +22,9 @@
  *   missing Missing Letters (word games, tiny): the picture, the word said aloud, ONE letter missing
  *          (`at`: 0 = the first letter), 2 big letter tiles (the right one and `other`).
  *          A play shows first-letter questions first, then last letter, then middle.
+ *   search Word Search (word games, tiny): `words` (3) hidden left to right, one per row, in a grid as
+ *          wide as the longest word. Pictures above show what to find (tap = hear it). Drag across a word,
+ *          or tap its first and last letter. Found = colors + the word said. 15 quiet seconds = a first letter glows.
  * Wrong = gentle wiggle + "Try again!" + the question again; after 2 wrong tries the right one glows.
  * game.php already picked this play's questions (per_play for the child's level).
  * Every game ends with 3 stars and the game's sticker, no matter what.
@@ -405,6 +408,186 @@
     }
     rightAnswer(tile, item.english, item.japanese);
   }
+
+  // ---------- search: Word Search (word games, tiny) ----------
+
+  var ws = null;
+  var WS_COLORS = ['#FFD24D', '#8ED6A0', '#9FD3FF', '#FFB0C8'];
+  var FILL = 'abcdefghijklmnoprstuwy';
+
+  // Builds the grid: one word per row (rows in random order, one spare row), each at a random start,
+  // the rest random letters. A word must read left to right exactly once.
+  function buildSearch(words) {
+    var list = words.map(function (k) { return wordText(k).toLowerCase(); });
+    var cols = Math.max.apply(null, list.map(function (w) { return w.length; }));
+    var rows = list.length + 1;
+    for (var attempt = 0; attempt < 200; attempt++) {
+      var order = shuffle(Array.apply(null, Array(rows)).map(function (_, i) { return i; })).slice(0, list.length);
+      var grid = [];
+      for (var r = 0; r < rows; r++) {
+        grid.push([]);
+        for (var c = 0; c < cols; c++) grid[r].push(FILL.charAt(Math.floor(Math.random() * FILL.length)));
+      }
+      var placed = list.map(function (w, i) {
+        var row = order[i];
+        var start = Math.floor(Math.random() * (cols - w.length + 1));
+        for (var j = 0; j < w.length; j++) grid[row][start + j] = w.charAt(j);
+        return { key: words[i], text: w, row: row, start: start, found: false };
+      });
+      var lines = grid.map(function (row) { return row.join(''); });
+      var once = list.every(function (w) {
+        return lines.reduce(function (n, line) {
+          for (var k = 0; k + w.length <= line.length; k++) if (line.substr(k, w.length) === w) n++;
+          return n;
+        }, 0) === 1;
+      });
+      if (once) return { grid: grid, rows: rows, cols: cols, words: placed };
+    }
+    return null;
+  }
+
+  function searchScreen(item) {
+    var b = buildSearch(item.words);
+    if (!b) return next();
+    ws = { item: item, b: b, anchor: null, drag: null, misses: 0, hint: 0 };
+    var pics = b.words.map(function (w, i) {
+      return '<button class="g-ws-pic k-press" data-wsword="' + i + '" aria-label="' + esc(w.text) + '">' + picture(w.key, 76) + '</button>';
+    }).join('');
+    var cells = '';
+    for (var r = 0; r < b.rows; r++) {
+      for (var c = 0; c < b.cols; c++) {
+        cells += '<div class="g-ws-cell" data-r="' + r + '" data-c="' + c + '">' + esc(b.grid[r][c]) + '</div>';
+      }
+    }
+    frame(lion(item.english, item.japanese) +
+      '<div class="g-stage g-stage-col"><div class="g-ws-pics">' + pics + '</div>' +
+      '<div class="g-ws-grid" style="--cols:' + b.cols + '">' + cells + '</div></div>', { replay: true });
+    say(item.english, item.audio);
+    searchHint();
+  }
+
+  function wsCell(r, c) {
+    return root.querySelector('.g-ws-cell[data-r="' + r + '"][data-c="' + c + '"]');
+  }
+
+  function wsMark(row, from, to, cls, on) {
+    for (var c = Math.min(from, to); c <= Math.max(from, to); c++) {
+      var e = wsCell(row, c);
+      if (e) e.classList[on ? 'add' : 'remove'](cls);
+    }
+  }
+
+  // After 15 quiet seconds, the first letter of a word not found yet glows (and its picture).
+  function searchHint() {
+    if (!ws) return;
+    clearTimeout(ws.hint);
+    var mine = ws;
+    ws.hint = setTimeout(function () {
+      if (ws !== mine) return;
+      var left = mine.b.words.filter(function (w) { return !w.found; });
+      if (!left.length) return;
+      var w = left[0];
+      var e = wsCell(w.row, w.start);
+      if (e) e.classList.add('g-glow');
+      var p = root.querySelector('[data-wsword="' + mine.b.words.indexOf(w) + '"]');
+      if (p) p.classList.add('g-glow');
+    }, 15000);
+  }
+
+  // A stretch of one row was chosen (from column a to column b): is it a word?
+  function searchPick(row, a, b) {
+    var from = Math.min(a, b);
+    var to = Math.max(a, b);
+    var hit = null;
+    ws.b.words.forEach(function (w) {
+      if (!w.found && w.row === row && w.start === from && w.start + w.text.length - 1 === to) hit = w;
+    });
+    if (!hit) {
+      ws.misses++;
+      wsMark(row, from, to, 'g-ws-bad', true);
+      setTimeout(function () { if (ws) wsMark(row, from, to, 'g-ws-bad', false); }, 500);
+      return;
+    }
+    var i = ws.b.words.indexOf(hit);
+    hit.found = true;
+    root.querySelectorAll('.g-ws-cell.g-glow, .g-ws-pic.g-glow').forEach(function (e) { e.classList.remove('g-glow'); });
+    for (var c = from; c <= to; c++) {
+      var cell = wsCell(row, c);
+      cell.style.background = WS_COLORS[i % WS_COLORS.length];
+      cell.classList.add('g-ws-found');
+    }
+    var pic = root.querySelector('[data-wsword="' + i + '"]');
+    if (pic) {
+      pic.style.background = WS_COLORS[i % WS_COLORS.length];
+      pic.classList.add('g-ws-done');
+    }
+    var left = ws.b.words.filter(function (w) { return !w.found; }).length;
+    var en = hit.text.charAt(0).toUpperCase() + hit.text.slice(1) + '!';
+    var jp = (G.words[hit.key] && G.words[hit.key].japanese) || '';
+    setBubble(en, jp);
+    if (left) {
+      say(en);
+      searchHint();
+      return;
+    }
+    // All found: one record for the puzzle (tries = 1 + the wrong picks), then praise and go on.
+    clearTimeout(ws.hint);
+    busy = true;
+    saveAnswer(ws.item, Math.min(9, ws.misses + 1));
+    say(en).then(praise).then(function () { return wait(400); }).then(next);
+  }
+
+  function wsAt(e) {
+    var el = document.elementFromPoint(e.clientX, e.clientY);
+    el = el && el.closest ? el.closest('.g-ws-cell') : null;
+    return el ? [+el.getAttribute('data-r'), +el.getAttribute('data-c')] : null;
+  }
+
+  root.addEventListener('pointerdown', function (e) {
+    if (!ws || busy || !e.target.closest || !e.target.closest('.g-ws-cell')) return;
+    e.preventDefault();
+    ws.drag = { start: wsAt(e), last: wsAt(e), moved: false };
+  });
+  root.addEventListener('pointermove', function (e) {
+    if (!ws || !ws.drag || !ws.drag.start) return;
+    var at = wsAt(e);
+    if (!at || at[0] !== ws.drag.start[0]) return;
+    var d = ws.drag;
+    wsMark(d.start[0], d.start[1], d.last[1], 'g-ws-sel', false);
+    if (at[1] !== d.start[1]) d.moved = true;
+    d.last = at;
+    wsMark(d.start[0], d.start[1], at[1], 'g-ws-sel', true);
+  });
+  function wsUp() {
+    if (!ws || !ws.drag) return;
+    var d = ws.drag;
+    ws.drag = null;
+    if (!d.start) return;
+    wsMark(d.start[0], d.start[1], d.last[1], 'g-ws-sel', false);
+    if (busy) return;
+    if (d.moved) {
+      if (ws.anchor) wsMark(ws.anchor[0], ws.anchor[1], ws.anchor[1], 'g-ws-sel', false);
+      ws.anchor = null;
+      return searchPick(d.start[0], d.start[1], d.last[1]);
+    }
+    // A tap: first letter, then last letter (same row). Tapping the same letter again cancels.
+    var t = d.start;
+    var a = ws.anchor;
+    if (a) wsMark(a[0], a[1], a[1], 'g-ws-sel', false);
+    ws.anchor = null;
+    if (!a || a[0] !== t[0]) {
+      ws.anchor = t;
+      wsMark(t[0], t[1], t[1], 'g-ws-sel', true);
+      return;
+    }
+    if (a[1] === t[1]) return;
+    searchPick(t[0], a[1], t[1]);
+  }
+  root.addEventListener('pointerup', wsUp);
+  root.addEventListener('pointercancel', function () {
+    if (ws && ws.drag && ws.drag.start) wsMark(ws.drag.start[0], ws.drag.start[1], ws.drag.last[1], 'g-ws-sel', false);
+    if (ws) ws.drag = null;
+  });
 
   function endScreen() {
     // Freeze Dance is over: its beat stops and the calm background music may come back.
@@ -890,12 +1073,15 @@
     pizza = null;
     if (freeze) clearTimeout(freeze.timer);
     freeze = null;
+    if (ws) clearTimeout(ws.hint);
+    ws = null;
     if (!item) return endScreen();
     if (rounds[ri].type === 'yesno') yesnoScreen(item);
     else if (rounds[ri].type === 'count') countScreen(item);
     else if (rounds[ri].type === 'pizza') pizzaScreen(item);
     else if (rounds[ri].type === 'freeze') freezeScreen(item);
     else if (rounds[ri].type === 'missing') missingScreen(item);
+    else if (rounds[ri].type === 'search') searchScreen(item);
     else tapScreen(item);
   }
 
@@ -990,6 +1176,10 @@
     if (b.hasAttribute('data-dancer')) return tapDancer(b);
     if (b.hasAttribute('data-like')) return answerLike(b);
     if (b.hasAttribute('data-letter')) return answerLetter(b);
+    if (b.hasAttribute('data-wsword') && ws) {
+      var w = ws.b.words[+b.getAttribute('data-wsword')];
+      if (w) say(w.text);
+    }
   });
 
   startScreen();
