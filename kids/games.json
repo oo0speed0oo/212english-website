@@ -1,13 +1,14 @@
 {
   "_help": [
     "212 Kids games. A game is a list of rounds; each round asks questions from \"items\".",
-    "Round types: yesno, tap and count. See the top of kids/game.js for every option (show, choice_kind, read_choices, kind, labels, after_correct, count).",
+    "Round types: yesno, tap, count and pizza. See the top of kids/game.js for every option.",
     "A round can use a shared question pool: { \"pool\": \"fruits-what\" }. Pools are in \"pools\".",
     "Each play picks a random set of questions: \"per_play\" by level (6 to 10). \"split\": true shares that number across a game's rounds.",
     "count questions: \"count\": how many to put in the basket. \"count_max\" (by level) skips bigger numbers: Pre-K 1-5, K 1-7, Grades 1-4 1-10.",
+    "pizza questions: mode \"customer\" (free choice; \"pizza\".\"picks\" by level) or \"shopkeeper\" (find the topping; \"pizza\".\"choices\" by level).",
     "A question can be for some levels only: \"levels\": [\"k\", \"1\"]. Default: every level.",
-    "Item ids start at 100000 and are never reused or renumbered (one id sequence for all kids content). Next free id: 100082.",
-    "picture: a picture name drawn by the site (apple, banana, orange, grapes, strawberry, watermelon).",
+    "Item ids start at 100000 and are never reused or renumbered (one id sequence for all kids content). Next free id: 100093.",
+    "picture: a picture name drawn by the site (fruits; pizza toppings cheese, mushrooms, tomato, corn, onion, pineapple, broccoli; pizza).",
     "  To use a real picture later, add \"image\": \"kids_nov_banana.jpg\" to the word (file goes in kids/images/).",
     "  To use a recorded voice later, add \"audio\": \"100003.m4a\" to an item (file goes in kids/audio/). Without it the browser voice speaks.",
     "Every game always ends with 3 stars and its sticker. Wrong answers only wiggle (\"Try again!\"); after 2 tries the right one glows."
@@ -19,7 +20,14 @@
     "orange": {"english": "orange", "plural": "oranges", "japanese": "オレンジ", "picture": "orange"},
     "grapes": {"english": "grapes", "plural": "grapes", "japanese": "ぶどう", "picture": "grapes"},
     "strawberry": {"english": "strawberry", "plural": "strawberries", "japanese": "いちご", "picture": "strawberry"},
-    "watermelon": {"english": "watermelon", "plural": "watermelon", "japanese": "すいか", "picture": "watermelon"}
+    "watermelon": {"english": "watermelon", "plural": "watermelon", "japanese": "すいか", "picture": "watermelon"},
+    "cheese": {"english": "cheese", "plural": "cheese", "japanese": "チーズ", "picture": "cheese"},
+    "mushrooms": {"english": "mushrooms", "plural": "mushrooms", "japanese": "マッシュルーム", "picture": "mushrooms"},
+    "tomato": {"english": "tomato", "plural": "tomatoes", "japanese": "トマト", "picture": "tomato"},
+    "corn": {"english": "corn", "plural": "corn", "japanese": "コーン", "picture": "corn"},
+    "onion": {"english": "onion", "plural": "onions", "japanese": "たまねぎ", "picture": "onion"},
+    "pineapple": {"english": "pineapple", "plural": "pineapple", "japanese": "パイナップル", "picture": "pineapple"},
+    "broccoli": {"english": "broccoli", "plural": "broccoli", "japanese": "ブロッコリー", "picture": "broccoli"}
   },
 
   "items": {
@@ -104,7 +112,18 @@
     "100078": {"type": "count", "word": "orange", "count": 6, "english": "How many oranges?", "japanese": "オレンジは いくつ？", "after_correct": {"english": "Six oranges!", "japanese": "オレンジ 6こ！"}},
     "100079": {"type": "count", "word": "strawberry", "count": 7, "english": "How many strawberries?", "japanese": "いちごは いくつ？", "after_correct": {"english": "Seven strawberries!", "japanese": "いちご 7こ！"}},
     "100080": {"type": "count", "word": "apple", "count": 8, "english": "How many apples?", "japanese": "りんごは いくつ？", "after_correct": {"english": "Eight apples!", "japanese": "りんご 8こ！"}},
-    "100081": {"type": "count", "word": "banana", "count": 10, "english": "How many bananas?", "japanese": "バナナは いくつ？", "after_correct": {"english": "Ten bananas!", "japanese": "バナナ 10こ！"}}
+    "100081": {"type": "count", "word": "banana", "count": 10, "english": "How many bananas?", "japanese": "バナナは いくつ？", "after_correct": {"english": "Ten bananas!", "japanese": "バナナ 10こ！"}},
+    "100082": {"type": "pizza", "mode": "customer", "opinion": true, "english": "Hello! What do you want?", "japanese": "いらっしゃいませ！なにが ほしい？", "choices": ["cheese", "mushrooms", "tomato", "corn", "onion", "pineapple", "broccoli", "banana"]},
+    "100083": {"type": "pizza", "mode": "shopkeeper", "word": "corn", "english": "Hello! I want corn, please.", "japanese": "こんにちは！コーンを ください。", "choices": ["corn", "broccoli", "tomato", "mushrooms", "onion"]},
+    "100084": {"type": "pizza", "mode": "shopkeeper", "word": "cheese", "english": "Hello! I want cheese, please.", "japanese": "こんにちは！チーズを ください。", "choices": ["cheese", "broccoli", "mushrooms", "tomato", "onion"]},
+    "100085": {"type": "pizza", "mode": "shopkeeper", "word": "mushrooms", "english": "Hello! I want mushrooms, please.", "japanese": "こんにちは！マッシュルームを ください。", "choices": ["mushrooms", "tomato", "broccoli", "corn", "pineapple"]},
+    "100086": {"type": "pizza", "mode": "shopkeeper", "word": "tomato", "english": "Hello! I want tomatoes, please.", "japanese": "こんにちは！トマトを ください。", "choices": ["tomato", "broccoli", "corn", "mushrooms", "cheese"]},
+    "100087": {"type": "pizza", "mode": "shopkeeper", "word": "onion", "english": "Hello! I want onions, please.", "japanese": "こんにちは！たまねぎを ください。", "choices": ["onion", "corn", "broccoli", "cheese", "banana"]},
+    "100088": {"type": "pizza", "mode": "shopkeeper", "word": "pineapple", "english": "Hello! I want pineapple, please.", "japanese": "こんにちは！パイナップルを ください。", "choices": ["pineapple", "tomato", "mushrooms", "broccoli", "onion"]},
+    "100089": {"type": "pizza", "mode": "shopkeeper", "word": "broccoli", "english": "Hello! I want broccoli, please.", "japanese": "こんにちは！ブロッコリーを ください。", "choices": ["broccoli", "tomato", "cheese", "mushrooms", "corn"]},
+    "100090": {"type": "pizza", "mode": "shopkeeper", "word": "banana", "english": "Hello! I want bananas, please.", "japanese": "こんにちは！バナナを ください。", "choices": ["banana", "broccoli", "tomato", "mushrooms", "onion"]},
+    "100091": {"type": "pizza", "mode": "shopkeeper", "word": "cheese", "english": "Hello! I want cheese, please.", "japanese": "こんにちは！チーズを ください。", "choices": ["cheese", "tomato", "broccoli", "mushrooms", "onion"]},
+    "100092": {"type": "pizza", "mode": "shopkeeper", "word": "mushrooms", "english": "Hello! I want mushrooms, please.", "japanese": "こんにちは！マッシュルームを ください。", "choices": ["mushrooms", "corn", "broccoli", "tomato", "cheese"]}
   },
 
   "answers": {
@@ -128,7 +147,8 @@
     "fruits-isit": {"english": "Is it a…?", "japanese": "これは…？", "sticker": "orange", "rounds": [{"pool": "fruits-isit"}]},
     "fruits-color": {"english": "What color?", "japanese": "なにいろ？", "sticker": "watermelon", "rounds": [{"pool": "fruits-color"}]},
     "fruits-words": {"english": "Pick the word", "japanese": "ことばを えらぼう", "sticker": "banana", "split": true, "rounds": [{"pool": "fruits-hear-word"}, {"pool": "fruits-see-word"}]},
-    "fruit-shopping": {"english": "Fruit Shopping", "japanese": "おかいもの", "sticker": "banana", "rounds": [{"pool": "fruits-count"}]}
+    "fruit-shopping": {"english": "Fruit Shopping", "japanese": "おかいもの", "sticker": "banana", "rounds": [{"pool": "fruits-count"}]},
+    "pizza-shop": {"english": "Pizza Shop", "japanese": "ピザやさん", "sticker": "pizza", "rounds": [{"pool": "pizza-customer"}, {"pool": "pizza-shopkeeper"}]}
   },
 
   "colors": {
@@ -157,7 +177,9 @@
     "fruits-like": {"type": "yesno", "english": "Do you like…?", "japanese": "すき？", "items": ["100000", "100001", "100002", "100003", "100004", "100005"]},
     "fruits-hear-word": {"type": "tap", "english": "Hear it, pick the word!", "japanese": "きいて ことばを えらぼう", "items": ["100052", "100053", "100054", "100055", "100056", "100057", "100058", "100059", "100060", "100061"]},
     "fruits-see-word": {"type": "tap", "english": "See it, pick the word!", "japanese": "みて ことばを えらぼう", "items": ["100062", "100063", "100064", "100065", "100066", "100067", "100068", "100069", "100070", "100071"]},
-    "fruits-count": {"type": "count", "english": "How many?", "japanese": "いくつ？", "items": ["100072", "100073", "100074", "100075", "100076", "100077", "100078", "100079", "100080", "100081"]}
+    "fruits-count": {"type": "count", "english": "How many?", "japanese": "いくつ？", "items": ["100072", "100073", "100074", "100075", "100076", "100077", "100078", "100079", "100080", "100081"]},
+    "pizza-customer": {"type": "pizza", "english": "You are the customer!", "japanese": "あなたは おきゃくさん！", "items": ["100082"]},
+    "pizza-shopkeeper": {"type": "pizza", "english": "Now you are the shopkeeper!", "japanese": "こんどは おみせやさん！", "items": ["100083", "100084", "100085", "100086", "100087", "100088", "100089", "100090", "100091", "100092"]}
   },
 
   "count_max": {
@@ -167,5 +189,10 @@
     "2": 10,
     "3": 10,
     "4": 10
+  },
+
+  "pizza": {
+    "picks": {"prek": 3, "k": 4, "1": 5, "2": 5, "3": 5, "4": 5},
+    "choices": {"prek": 3, "k": 4, "1": 5, "2": 5, "3": 5, "4": 5}
   }
 }

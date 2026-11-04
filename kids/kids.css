@@ -776,6 +776,40 @@ button:focus-visible, a:focus-visible, input:focus-visible {
 .g-choice-color .k-two b { font-size: 28px; }
 .g-choice-color .k-two small { font-size: 15px; }
 
+/* Pizza Shop: the pizza, a tray of toppings, and the child's own speech bubble. */
+.g-pizzeria { gap: 34px; flex-wrap: wrap; }
+.g-pizza { position: relative; width: 290px; height: 290px; flex: none; transition: transform .2s ease; }
+.g-pizza-pic { width: 100%; height: 100%; display: block; }
+.g-pizza-tops { position: absolute; inset: 0; }
+.g-piece { position: absolute; margin: -26px 0 0 -26px; display: flex; animation: g-pop .4s ease; }
+.g-piece .g-pic { width: 52px; height: 52px; }
+.g-tray { display: grid; grid-template-columns: repeat(4, 96px); gap: 10px; }
+.g-topping {
+	width: 96px;
+	height: 104px;
+	padding: 4px 2px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 2px;
+	background: var(--white);
+	border: 4px solid var(--ink);
+	border-radius: 22px;
+	box-shadow: var(--lift-small);
+	touch-action: none;
+	transition: transform .25s ease;
+}
+.g-topping span { font-size: 15px; font-weight: 800; line-height: 1; }
+.g-topping.g-dragging { position: relative; z-index: 20; transition: none; box-shadow: 0 10px 18px rgba(43, 35, 80, .25); }
+.g-topping:disabled { cursor: default; }
+.g-you { display: flex; align-items: center; justify-content: center; gap: 16px; margin-top: 14px; opacity: 0; transition: opacity .25s; pointer-events: none; }
+.g-you-on { opacity: 1; }
+.g-you svg { flex: none; }
+.g-you-bubble { padding: 8px 22px 10px; }
+.g-you-bubble b { font-size: 28px; }
+.g-you-bubble small { font-size: 16px; }
+
 /* Fruit Shopping: a shelf of fruit and a basket. */
 .g-shop { gap: 36px; flex-wrap: wrap; }
 .g-shelf {
@@ -818,7 +852,7 @@ button:focus-visible, a:focus-visible, input:focus-visible {
 .g-pulse { animation: g-pulse 1s ease-in-out infinite; }
 .g-basket { position: relative; width: 270px; height: 202px; flex: none; transition: transform .2s ease; }
 .g-basket-pic { width: 100%; height: 100%; display: block; }
-.g-basket-hover { transform: scale(1.06); }
+.g-drop-hover { transform: scale(1.06); }
 /* Fruit piles up from the rim upward, like a basket filling up. */
 .g-basket-fruits {
 	position: absolute;
@@ -948,6 +982,20 @@ button:focus-visible, a:focus-visible, input:focus-visible {
 	.g-bubble { padding: 10px 16px 12px; }
 	.g-card-big { width: 240px; height: 220px; }
 	.g-card-big .g-pic { width: 170px; height: 170px; }
+	.g-pizzeria { gap: 12px; }
+	.g-pizza { width: 176px; height: 176px; }
+	.g-piece { margin: -19px 0 0 -19px; }
+	.g-piece .g-pic { width: 38px; height: 38px; }
+	.g-tray { grid-template-columns: repeat(4, 76px); gap: 6px; }
+	.g-topping { width: 76px; height: 84px; border-width: 3px; border-radius: 18px; }
+	.g-topping .g-pic { width: 44px; height: 44px; }
+	.g-topping span { font-size: 12px; }
+	/* Phones: the child's line floats at the bottom of the screen (short iPhones have no room below the tray). */
+	.g-you { position: fixed; left: 12px; right: 12px; bottom: 12px; z-index: 30; margin: 0; gap: 10px; }
+	.g-you svg { width: 40px; height: 40px; }
+	.g-you-bubble { padding: 6px 14px 8px; }
+	.g-you-bubble b { font-size: 18px; }
+	.g-you-bubble small { font-size: 13px; }
 	.g-shop { flex-direction: column-reverse; gap: 14px; }
 	.g-basket { width: 220px; height: 165px; }
 	.g-basket-fruits { left: 38px; right: 38px; bottom: 84px; }
@@ -988,7 +1036,8 @@ button:focus-visible, a:focus-visible, input:focus-visible {
 	.g-kid .g-stool { transition: none; }
 	.g-pulse, .g-num-pop { animation: none; }
 	.g-pulse { box-shadow: 0 0 0 8px rgba(255, 201, 51, .7); }
-	.g-flying, .g-fruit, .g-basket { transition: none; }
+	.g-flying, .g-fruit, .g-basket, .g-topping, .g-pizza, .g-you { transition: none; }
+	.g-piece { animation: none; }
 	.g-glow { box-shadow: var(--lift), 0 0 0 10px rgba(255, 201, 51, .7); }
 }
 

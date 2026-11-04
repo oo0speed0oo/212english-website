@@ -74,6 +74,11 @@ $h212_kids_game = array(
 	'rounds'   => $rounds,
 	'words'    => $games['words'],
 	'colors'   => $games['colors'] ?? array(),
+	// Pizza Shop, for this child's level: toppings the customer picks, toppings the shopkeeper sees.
+	'pizza'    => array(
+		'picks'   => (int) ( $games['pizza']['picks'][ $level ] ?? 3 ),
+		'choices' => (int) ( $games['pizza']['choices'][ $level ] ?? 3 ),
+	),
 	'answers'  => $games['answers'],
 	'praise'   => $games['praise'],
 	'child'    => $child,

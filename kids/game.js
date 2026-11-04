@@ -15,6 +15,8 @@
  *          after_correct: what the lion says after a right answer ("It's a banana.")
  *   count  "How many bananas?" -> drag or tap fruit into the basket; it counts out loud (`count`: how many).
  *          An extra pops back out: "That's enough! Three bananas!"; after 5 quiet seconds a fruit pulses.
+ *   pizza  Pizza Shop. mode "customer": free choice of toppings (child's lines in a higher voice);
+ *          mode "shopkeeper": the lion orders, the child finds the topping. Tap or drag onto the pizza.
  * Wrong = gentle wiggle + "Try again!" + the question again; after 2 wrong tries the right one glows.
  * game.php already picked this play's questions (per_play for the child's level).
  * Every game ends with 3 stars and the game's sticker, no matter what.
@@ -62,7 +64,16 @@
     orange: ['0 0 100 100', '<circle cx="50" cy="56" r="38" fill="#FF9F2E" stroke="' + INK + '" stroke-width="6"/><path d="M50 18 C56 8 70 8 74 13 C67 21 56 21 50 18Z" fill="#5CC98B" stroke="' + INK + '" stroke-width="5" stroke-linejoin="round"/><circle cx="38" cy="48" r="3" fill="#D9780E"/><circle cx="62" cy="60" r="3" fill="#D9780E"/><circle cx="46" cy="72" r="3" fill="#D9780E"/>'],
     grapes: ['0 0 100 100', '<path d="M50 26 V10" stroke="' + INK + '" stroke-width="5" stroke-linecap="round"/><path d="M52 16 C60 6 74 8 76 14 C68 22 58 22 52 16Z" fill="#5CC98B" stroke="' + INK + '" stroke-width="4" stroke-linejoin="round"/><g fill="#9B6BD6" stroke="' + INK + '" stroke-width="4"><circle cx="38" cy="34" r="12"/><circle cx="62" cy="34" r="12"/><circle cx="27" cy="54" r="12"/><circle cx="50" cy="54" r="12"/><circle cx="73" cy="54" r="12"/><circle cx="38" cy="73" r="12"/><circle cx="62" cy="73" r="12"/><circle cx="50" cy="90" r="9"/></g>'],
     strawberry: ['0 0 100 100', '<path d="M50 94 C24 82 10 56 17 39 C23 27 39 29 50 33 C61 29 77 27 83 39 C90 56 76 82 50 94Z" fill="#FF4D5E" stroke="' + INK + '" stroke-width="6" stroke-linejoin="round"/><g fill="#FFE27A"><ellipse cx="36" cy="50" rx="2.5" ry="4"/><ellipse cx="52" cy="48" rx="2.5" ry="4"/><ellipse cx="66" cy="52" rx="2.5" ry="4"/><ellipse cx="42" cy="66" rx="2.5" ry="4"/><ellipse cx="58" cy="66" rx="2.5" ry="4"/><ellipse cx="50" cy="80" rx="2.5" ry="4"/></g><path d="M30 31 L41 21 L50 28 L59 21 L70 31 L57 36 L50 31 L43 36Z" fill="#5CC98B" stroke="' + INK + '" stroke-width="4" stroke-linejoin="round"/>'],
-    watermelon: ['0 10 100 80', '<path d="M5 34 A45 45 0 0 0 95 34 Z" fill="#5CC98B" stroke="' + INK + '" stroke-width="6" stroke-linejoin="round"/><path d="M15 34 A35 35 0 0 0 85 34 Z" fill="#FF5A6E"/><path d="M5 34 H95" stroke="' + INK + '" stroke-width="6" stroke-linecap="round"/><g fill="' + INK + '"><ellipse cx="34" cy="46" rx="3" ry="4.5"/><ellipse cx="50" cy="54" rx="3" ry="4.5"/><ellipse cx="66" cy="46" rx="3" ry="4.5"/><ellipse cx="42" cy="62" rx="3" ry="4.5"/><ellipse cx="58" cy="62" rx="3" ry="4.5"/></g>']
+    watermelon: ['0 10 100 80', '<path d="M5 34 A45 45 0 0 0 95 34 Z" fill="#5CC98B" stroke="' + INK + '" stroke-width="6" stroke-linejoin="round"/><path d="M15 34 A35 35 0 0 0 85 34 Z" fill="#FF5A6E"/><path d="M5 34 H95" stroke="' + INK + '" stroke-width="6" stroke-linecap="round"/><g fill="' + INK + '"><ellipse cx="34" cy="46" rx="3" ry="4.5"/><ellipse cx="50" cy="54" rx="3" ry="4.5"/><ellipse cx="66" cy="46" rx="3" ry="4.5"/><ellipse cx="42" cy="62" rx="3" ry="4.5"/><ellipse cx="58" cy="62" rx="3" ry="4.5"/></g>'],
+    // Pizza toppings (Pizza Shop) and the pizza sticker.
+    cheese: ['0 0 100 100', '<path d="M10 74 L90 30 L90 74 Z" fill="#FFD84D" stroke="' + INK + '" stroke-width="6" stroke-linejoin="round"/><path d="M10 74 L90 30" stroke="#FFF1A8" stroke-width="5" stroke-linecap="round" opacity=".8"/><g fill="#E8B92E"><circle cx="70" cy="58" r="7"/><circle cx="82" cy="44" r="4"/><circle cx="48" cy="66" r="4.5"/></g>'],
+    mushrooms: ['0 0 100 100', '<rect x="38" y="50" width="24" height="36" rx="10" fill="#FFF1D6" stroke="' + INK + '" stroke-width="6"/><path d="M12 56 Q14 14 50 12 Q86 14 88 56 Z" fill="#C98A4B" stroke="' + INK + '" stroke-width="6" stroke-linejoin="round"/><g fill="#FFF1D6"><circle cx="34" cy="38" r="6"/><circle cx="58" cy="28" r="5"/><circle cx="68" cy="44" r="4.5"/></g>'],
+    tomato: ['0 0 100 100', '<circle cx="50" cy="56" r="36" fill="#FF4D4D" stroke="' + INK + '" stroke-width="6"/><path d="M50 22 L58 12 M34 26 L50 26 L66 26 M40 18 L50 26 L60 18" stroke="#3FA864" stroke-width="6" stroke-linecap="round"/><ellipse cx="36" cy="44" rx="7" ry="4" fill="#FF8A8A" transform="rotate(-30 36 44)"/>'],
+    corn: ['0 0 100 100', '<ellipse cx="50" cy="48" rx="18" ry="36" fill="#FFD84D" stroke="' + INK + '" stroke-width="6"/><g stroke="#E8B92E" stroke-width="3"><path d="M36 30 H64 M33 42 H67 M33 54 H67 M36 66 H64"/><path d="M44 16 V80 M56 16 V80"/></g><path d="M50 90 Q24 80 22 46 Q36 62 44 78 Z M50 90 Q76 80 78 46 Q64 62 56 78 Z" fill="#5CC98B" stroke="' + INK + '" stroke-width="5" stroke-linejoin="round"/>'],
+    onion: ['0 0 100 100', '<path d="M50 12 Q54 30 72 44 Q90 62 72 82 Q50 96 28 82 Q10 62 28 44 Q46 30 50 12 Z" fill="#C9A0DC" stroke="' + INK + '" stroke-width="6" stroke-linejoin="round"/><path d="M50 26 Q40 50 44 86 M50 26 Q62 50 58 86" stroke="#9B6BD6" stroke-width="4" fill="none"/><path d="M42 92 L40 98 M50 93 V99 M58 92 L60 98" stroke="' + INK + '" stroke-width="4" stroke-linecap="round"/>'],
+    pineapple: ['0 0 100 100', '<path d="M50 30 L38 6 L48 18 L50 2 L52 18 L62 6 Z" fill="#3FA864" stroke="' + INK + '" stroke-width="4" stroke-linejoin="round"/><ellipse cx="50" cy="62" rx="26" ry="32" fill="#FFC233" stroke="' + INK + '" stroke-width="6"/><g stroke="#C98A1E" stroke-width="3"><path d="M30 46 L66 86 M34 36 L74 80 M30 66 L50 90"/><path d="M70 46 L34 86 M66 36 L26 80 M70 66 L50 90"/></g>'],
+    broccoli: ['0 0 100 100', '<path d="M42 58 L40 90 H60 L58 58 Z" fill="#8ED6A0" stroke="' + INK + '" stroke-width="5" stroke-linejoin="round"/><g fill="#3FA864" stroke="' + INK + '" stroke-width="5"><circle cx="32" cy="48" r="16"/><circle cx="68" cy="48" r="16"/><circle cx="50" cy="34" r="20"/><circle cx="50" cy="56" r="14"/></g>'],
+    pizza: ['0 0 100 100', '<circle cx="50" cy="50" r="44" fill="#E8B465" stroke="' + INK + '" stroke-width="6"/><circle cx="50" cy="50" r="35" fill="#E8453C"/><path d="M22 46 Q30 24 52 20 Q76 24 80 48 Q78 74 54 80 Q28 78 22 46 Z" fill="#FFD84D"/><g fill="#B8322C" stroke="' + INK + '" stroke-width="3"><circle cx="38" cy="40" r="7"/><circle cx="62" cy="38" r="7"/><circle cx="56" cy="62" r="7"/><circle cx="36" cy="62" r="6"/></g>']
   };
 
   function picture(wordKey, size) {
@@ -71,7 +82,8 @@
     if (w.image) {
       return '<img class="g-pic" src="images/' + esc(w.image) + '" alt="' + esc(label) + '" width="' + size + '" height="' + size + '">';
     }
-    var p = PICTURES[w.picture] || PICTURES.apple;
+    // A sticker can be a picture name that isn't a word ("pizza").
+    var p = PICTURES[w.picture] || PICTURES[wordKey] || PICTURES.apple;
     return '<svg class="g-pic" width="' + size + '" height="' + size + '" viewBox="' + p[0] + '" role="img" aria-label="' + esc(label) + '">' + p[1] + '</svg>';
   }
 
@@ -100,7 +112,8 @@
 
   var currentAudio = null;
   var lastUtterance = null; // kept so the browser doesn't throw it away mid-sentence (a Chrome bug)
-  function say(text, audioFile) {
+  // asChild: the line is the child's ("I want mushrooms, please!"), spoken in a higher voice than the lion's.
+  function say(text, audioFile, asChild) {
     return new Promise(function (resolve) {
       var done = false;
       function finish() {
@@ -113,8 +126,8 @@
       function speakNow() {
         var u = new SpeechSynthesisUtterance(text);
         u.lang = 'en-US';
-        u.rate = 0.85;
-        u.pitch = 1.1;
+        u.rate = asChild ? 0.9 : 0.85;
+        u.pitch = asChild ? 1.6 : 1.1;
         u.volume = 1;
         if (voice) u.voice = voice;
         u.onend = finish;
@@ -410,7 +423,7 @@
     frame(lion(item.english, item.japanese) +
       '<div class="g-stage g-shop">' +
       '<div class="g-shelf"><div class="g-shelf-sign">' + picture(item.word, 76) + '</div><div class="g-shelf-items">' + fruits + '</div></div>' +
-      '<div class="g-basket" aria-label="Basket">' + BASKET +
+      '<div class="g-basket g-drop" aria-label="Basket">' + BASKET +
       '<div class="g-basket-fruits"></div><div class="g-basket-num" aria-live="polite">0</div></div>' +
       '</div>', { replay: true });
     shop = { item: item, count: 0, full: false, extra: false, speech: say(item.english, item.audio), hint: 0 };
@@ -506,10 +519,15 @@
     }, 380);
   }
 
-  // Drag a fruit with a finger (or the mouse). A short touch without moving counts as a tap.
+  // Drag a fruit (into the basket) or a topping (onto the pizza) with a finger or the mouse.
+  // A short touch without moving counts as a tap. The drop target is the screen's .g-drop.
   var drag = null;
+  function dropped(el, fly) {
+    if (el.classList.contains('g-fruit')) addFruit(el, fly);
+    else useTopping(el, fly);
+  }
   root.addEventListener('pointerdown', function (e) {
-    var f = e.target.closest('.g-fruit');
+    var f = e.target.closest('.g-fruit, .g-topping');
     if (!f || f.disabled || busy) return;
     e.preventDefault();
     drag = { el: f, x: e.clientX, y: e.clientY, moved: false, id: e.pointerId };
@@ -523,32 +541,164 @@
     drag.moved = true;
     drag.el.classList.add('g-dragging');
     drag.el.style.transform = 'translate(' + dx + 'px,' + dy + 'px) scale(1.15)';
-    var basket = root.querySelector('.g-basket');
-    if (basket) basket.classList.toggle('g-basket-hover', overBasket(e));
+    var target = root.querySelector('.g-drop');
+    if (target) target.classList.toggle('g-drop-hover', overDrop(e));
   });
   function endDrag(e, cancelled) {
     if (!drag || e.pointerId !== drag.id) return;
     var d = drag;
     drag = null;
     d.el.classList.remove('g-dragging');
-    var basket = root.querySelector('.g-basket');
-    if (basket) basket.classList.remove('g-basket-hover');
+    var target = root.querySelector('.g-drop');
+    if (target) target.classList.remove('g-drop-hover');
     if (cancelled) {
       d.el.style.transform = '';
       return;
     }
-    if (!d.moved) return addFruit(d.el, true);
-    if (overBasket(e)) return addFruit(d.el, false);
-    d.el.style.transform = ''; // not in the basket: it slides back to the shelf
+    if (!d.moved) return dropped(d.el, true);
+    if (overDrop(e)) return dropped(d.el, false);
+    d.el.style.transform = ''; // not on the target: it slides back
   }
   root.addEventListener('pointerup', function (e) { endDrag(e, false); });
   root.addEventListener('pointercancel', function (e) { endDrag(e, true); });
-  function overBasket(e) {
-    var basket = root.querySelector('.g-basket');
-    if (!basket) return false;
-    var r = basket.getBoundingClientRect();
+  function overDrop(e) {
+    var target = root.querySelector('.g-drop');
+    if (!target) return false;
+    var r = target.getBoundingClientRect();
     var pad = 24;
     return e.clientX > r.left - pad && e.clientX < r.right + pad && e.clientY > r.top - pad && e.clientY < r.bottom + pad;
+  }
+
+  // ---------- pizza: Pizza Shop (Lesson 3). The lion is the shopkeeper. ----------
+  // Round 1, mode "customer": the child picks ANY topping. The child's line "I want mushrooms, please!"
+  //   (higher voice), the lion "Here you are!", the topping lands on the pizza, the child "Thank you!".
+  //   After the level's number of toppings: "I like mushrooms and cheese!" with the child's real choices.
+  // Round 2, mode "shopkeeper": the lion orders "Hello! I want corn, please." The child gives the right
+  //   topping: "Here you are!" / lion: "Thank you!". Wrong = wiggle and the order again; glow after 2 tries.
+
+  // Where pieces land on the pizza (percent of its size): 3 pieces per topping, up to 5 toppings.
+  var PIZZA_SPOTS = [[50, 28], [28, 52], [70, 64], [72, 34], [32, 74], [52, 50], [26, 32], [56, 76], [76, 50],
+    [42, 38], [62, 44], [44, 62], [38, 22], [64, 22], [50, 86]];
+  var pizza = null;
+
+  function pizzaBase() {
+    return '<svg class="g-pizza-pic" viewBox="0 0 100 100" aria-hidden="true">' +
+      '<circle cx="50" cy="50" r="46" fill="#E8B465" stroke="' + INK + '" stroke-width="4"/>' +
+      '<circle cx="50" cy="50" r="37" fill="#E8453C"/>' +
+      '<path d="M20 48 Q26 22 52 17 Q80 22 83 48 Q80 78 52 84 Q24 80 20 48 Z" fill="#FFE27A" opacity=".55"/></svg>';
+  }
+
+  function youSay(en, jp) {
+    var b = root.querySelector('.g-you-bubble');
+    if (b) b.innerHTML = '<b>' + esc(en) + '</b><small>' + esc(jp) + '</small>';
+    var you = root.querySelector('.g-you');
+    if (you) you.classList.add('g-you-on');
+  }
+
+  function pizzaScreen(item) {
+    var shopkeeper = item.mode === 'shopkeeper';
+    var choices = item.choices;
+    if (shopkeeper) {
+      // The right topping plus the first others (clearly different), as many as this level sees.
+      choices = shuffle(choices.slice(0, Math.max(3, G.pizza.choices)));
+    }
+    var tray = choices.map(function (w) {
+      return '<button class="g-topping k-press" data-top="' + esc(w) + '">' + picture(w, 58) +
+        '<span>' + esc(wordText(w)) + '</span></button>';
+    }).join('');
+    var face = '<svg width="54" height="54" viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="54" fill="' + (AVATAR[G.child.color] || AVATAR.blue) + '" stroke="' + INK + '" stroke-width="6"/>' +
+      '<circle cx="42" cy="52" r="7" fill="' + INK + '"/><circle cx="78" cy="52" r="7" fill="' + INK + '"/>' +
+      '<path d="M38 74 Q60 96 82 74" stroke="' + INK + '" stroke-width="7" fill="none" stroke-linecap="round"/></svg>';
+    frame(lion(item.english, item.japanese) +
+      '<div class="g-stage g-pizzeria">' +
+      '<div class="g-pizza g-drop" aria-label="Pizza">' + pizzaBase() + '<div class="g-pizza-tops"></div></div>' +
+      '<div class="g-tray">' + tray + '</div></div>' +
+      '<div class="g-you">' + face + '<div class="k-bubble g-you-bubble"><b>…</b><small>' + esc(G.child.name) + '</small></div></div>',
+      { replay: true });
+    pizza = { item: item, picked: [], spot: 0 };
+    say(item.english, item.audio);
+  }
+
+  // Put 3 pieces of a topping on the pizza.
+  function landTopping(el, word, fly) {
+    var tops = root.querySelector('.g-pizza-tops');
+    var first = null;
+    for (var i = 0; i < 3; i++) {
+      var at = PIZZA_SPOTS[pizza.spot % PIZZA_SPOTS.length];
+      pizza.spot++;
+      var piece = document.createElement('span');
+      piece.className = 'g-piece';
+      piece.style.left = at[0] + '%';
+      piece.style.top = at[1] + '%';
+      piece.innerHTML = picture(word, 40);
+      tops.appendChild(piece);
+      first = first || piece;
+    }
+    el.style.transform = '';
+    if (fly) flyTo(el, first);
+  }
+
+  // "mushrooms", "mushrooms and cheese", "mushrooms, cheese and corn" (up to 3 by name).
+  function joinNames(words) {
+    var names = words.slice(0, 3).map(function (w) { return (G.words[w] && G.words[w].plural) || w; });
+    if (names.length < 2) return names.join('');
+    return names.slice(0, -1).join(', ') + ' and ' + names[names.length - 1];
+  }
+
+  function useTopping(el, fly) {
+    var p = pizza;
+    if (!p || busy) return;
+    var item = p.item;
+    var word = el.getAttribute('data-top');
+    var w = G.words[word] || {};
+
+    if (item.mode === 'shopkeeper') {
+      if (word !== item.word) {
+        el.style.transform = '';
+        return wrongAnswer(el, item, '[data-top="' + item.word + '"]');
+      }
+      busy = true;
+      saveAnswer(item, wrong + 1);
+      root.querySelectorAll('.g-topping').forEach(function (b) { b.disabled = true; });
+      el.classList.add('g-right');
+      landTopping(el, word, fly);
+      youSay('Here you are!', 'はい、どうぞ！');
+      say('Here you are!', null, true).then(function () {
+        setBubble('Thank you!', 'ありがとう！');
+        return say('Thank you!');
+      }).then(praise).then(function () { return wait(250); }).then(next);
+      return;
+    }
+
+    // Customer: any topping is fine.
+    busy = true;
+    if (p.picked.indexOf(word) === -1) p.picked.push(word);
+    p.count = (p.count || 0) + 1;
+    var plural = w.plural || word;
+    youSay('I want ' + plural + ', please!', (w.japanese || '') + 'を ください！');
+    say('I want ' + plural + ', please!', null, true).then(function () {
+      setBubble('Here you are!', 'はい、どうぞ！');
+      landTopping(el, word, fly);
+      return say('Here you are!');
+    }).then(function () {
+      youSay('Thank you!', 'ありがとう！');
+      return say('Thank you!', null, true);
+    }).then(function () {
+      if (pizza !== p) return;
+      if (p.count < G.pizza.picks) {
+        busy = false;
+        var you = root.querySelector('.g-you');
+        if (you) you.classList.remove('g-you-on');
+        setBubble(item.english, item.japanese);
+        return say(item.english, item.audio);
+      }
+      // The pizza is ready: the lion says what the child likes, naming their real choices.
+      var likes = 'I like ' + joinNames(p.picked) + '!';
+      var likesJa = p.picked.slice(0, 3).map(function (k) { return (G.words[k] && G.words[k].japanese) || k; }).join('と') + 'が すき！';
+      setBubble(likes, likesJa);
+      saveAnswer(item, 1);
+      return say(likes).then(praise).then(function () { return wait(250); }).then(next);
+    });
   }
 
   // ---------- flow ----------
@@ -567,9 +717,11 @@
     busy = false;
     if (shop) clearTimeout(shop.hint);
     shop = null;
+    pizza = null;
     if (!item) return endScreen();
     if (rounds[ri].type === 'yesno') yesnoScreen(item);
     else if (rounds[ri].type === 'count') countScreen(item);
+    else if (rounds[ri].type === 'pizza') pizzaScreen(item);
     else tapScreen(item);
   }
 

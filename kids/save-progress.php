@@ -71,8 +71,9 @@ if ( 'answer' === $action ) {
 		'item_id'    => $item_id,
 		'round_type' => (string) $item['type'],
 		'word'       => (string) ( $item['word'] ?? '' ),
-		// Opinion questions ("Do you like...?") have no right or wrong: saved, but not in accuracy.
-		'counted'    => ! ( 'yesno' === $item['type'] && 'fact' !== ( $item['kind'] ?? 'opinion' ) ),
+		// Opinion questions ("Do you like...?", the Pizza Shop customer) have no right or wrong:
+		// saved, but not in accuracy.
+		'counted'    => ! ( ( 'yesno' === $item['type'] && 'fact' !== ( $item['kind'] ?? 'opinion' ) ) || ! empty( $item['opinion'] ) ),
 		'tries'      => isset( $body['tries'] ) ? (int) $body['tries'] : 1,
 		'glowed'     => ! empty( $body['glowed'] ),
 	) );
