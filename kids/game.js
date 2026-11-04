@@ -1,9 +1,18 @@
 /* 212 Kids - the game engine. Plays one game from games.json (sent by game.php as window.H212_KIDS_GAME).
  *
  * Round types:
- *   yesno  "Do you like apples?"  ->  "Yes, I do!" / "No, I don't."  Any answer is right (it's an opinion).
- *   tap    "Apple!"  ->  tap the apple out of 3 pictures. Wrong = gentle wiggle + "Try again!";
- *          after 2 wrong tries the right picture glows.
+ *   yesno  A question with two big answer buttons.
+ *          kind "opinion" (default): "Do you like apples?" -> "Yes, I do!" / "No, I don't." Both are right.
+ *          kind "fact": "Is it an apple?" -> "Yes, it is!" / "No, it isn't." One is right (`correct`).
+ *          yes_label / no_label change the button sentences ("Yes, I am!" ...).
+ *   tap    The lion asks (`english`); the child taps the answer out of 3 (max 4) choices.
+ *          show: none | picture | word        what appears big on screen
+ *          choice_kind: picture | word | color what the buttons are
+ *          read_choices: the lion reads the word buttons aloud (for children who can't read yet)
+ *          answer: the right choice (default: the item's word)
+ *          after_correct: what the lion says after a right answer ("It's a banana.")
+ * Wrong = gentle wiggle + "Try again!" + the question again; after 2 wrong tries the right one glows.
+ * game.php already picked this play's questions (per_play for the child's level).
  * Every game ends with 3 stars and the game's sticker, no matter what.
  */
 (function () {
@@ -135,8 +144,9 @@
 
   // ---------- game state ----------
 
+  // Each play takes a random `per_play` questions from the round's pool, so it's different every time.
   var rounds = G.rounds.filter(function (r) { return r.items && r.items.length; }).map(function (r) {
-    return { type: r.type, english: r.english, japanese: r.japanese, items: shuffle(r.items) };
+    return { type: r.type, english: r.english, japanese: r.japanese, items: shuffle(r.items).slice(0, r.per_play || r.items.length) };
   });
   var total = rounds.reduce(function (n, r) { return n + r.items.length; }, 0);
   var done = 0;
@@ -198,23 +208,73 @@
     say(r.english.replace('…', ''));
   }
 
+  function label(item, which) {
+    return item[which + '_label'] || G.answers[which];
+  }
+
   function yesnoScreen(item) {
+    var yes = label(item, 'yes');
+    var no = label(item, 'no');
     frame(lion(item.english, item.japanese) +
       '<div class="g-stage"><div class="g-card g-card-big">' + picture(item.word, 220) + '</div></div>' +
       '<div class="g-answers">' +
-      '<button class="g-answer g-yes k-press" data-answer="yes"><span class="g-thumb" aria-hidden="true">👍</span>' + two(G.answers.yes.english, G.answers.yes.japanese) + '</button>' +
-      '<button class="g-answer g-no k-press" data-answer="no"><span class="g-thumb" aria-hidden="true">👎</span>' + two(G.answers.no.english, G.answers.no.japanese) + '</button>' +
+      '<button class="g-answer g-yes k-press" data-answer="yes"><span class="g-thumb" aria-hidden="true">👍</span>' + two(yes.english, yes.japanese) + '</button>' +
+      '<button class="g-answer g-no k-press" data-answer="no"><span class="g-thumb" aria-hidden="true">👎</span>' + two(no.english, no.japanese) + '</button>' +
       '</div>', { replay: true });
     say(item.english, item.audio);
   }
 
+  function wordText(key) {
+    return (G.words[key] && G.words[key].english) || key;
+  }
+
+  // A big written word; long words ("strawberry") get slightly smaller letters so they fit.
+  function bigWord(key) {
+    var text = wordText(key).toLowerCase();
+    return '<span class="g-word' + (text.length > 7 ? ' g-word-long' : '') + '">' + esc(text) + '</span>';
+  }
+
+  // One answer button: a picture, a big written word, or a color circle.
+  function choiceButton(item, key) {
+    var kind = item.choice_kind || 'picture';
+    var inner;
+    if (kind === 'word') {
+      inner = bigWord(key);
+    } else if (kind === 'color') {
+      var c = G.colors[key] || {};
+      inner = '<span class="g-color-dot" style="background:' + esc(c.hex || '#ccc') + '"></span>' + two(c.english || key, c.japanese || '');
+    } else {
+      inner = picture(key, 150);
+    }
+    return '<button class="g-card g-choice g-choice-' + kind + ' k-press" data-choice="' + esc(key) + '">' + inner + '</button>';
+  }
+
   function tapScreen(item) {
-    var cards = shuffle(item.choices).map(function (w) {
-      return '<button class="g-card g-choice k-press" data-choice="' + esc(w) + '">' + picture(w, 150) + '</button>';
-    }).join('');
+    var show = item.show || 'none';
+    var shown = '';
+    if (show === 'picture') {
+      shown = '<div class="g-card g-card-show">' + picture(item.word, 150) + '</div>';
+    } else if (show === 'word') {
+      shown = '<div class="g-card g-card-show">' + bigWord(item.word) + '</div>';
+    }
+    var cards = shuffle(item.choices).map(function (key) { return choiceButton(item, key); }).join('');
     frame(lion(item.english, item.japanese) +
-      '<div class="g-stage"><div class="g-choices">' + cards + '</div></div>', { replay: true });
-    say(item.english, item.audio);
+      '<div class="g-stage g-stage-col">' + shown + '<div class="g-choices">' + cards + '</div></div>', { replay: true });
+    askTap(item);
+  }
+
+  // Say the question; for read_choices, then read each word button aloud while it lights up.
+  function askTap(item) {
+    var chain = say(item.english, item.audio);
+    if (!item.read_choices) return chain;
+    root.querySelectorAll('.g-choice').forEach(function (b) {
+      chain = chain.then(function () {
+        if (currentItem() !== item || busy) return;
+        b.classList.add('g-reading');
+        return say(wordText(b.getAttribute('data-choice')) + '?').then(function () { b.classList.remove('g-reading'); });
+      });
+    });
+    return chain;
   }
 
   function endScreen() {
@@ -271,38 +331,52 @@
     showItem();
   }
 
-  function answerYesNo(btn) {
-    var ans = G.answers[btn.getAttribute('data-answer')];
+  // Right answer: say the full sentence, praise, go on.
+  function rightAnswer(el, en, jp) {
     busy = true;
-    btn.classList.add('g-picked');
-    root.querySelectorAll('.g-answer').forEach(function (b) { b.disabled = true; });
-    setBubble(ans.english, ans.japanese);
-    say(ans.english).then(praise).then(function () { return wait(250); }).then(next);
+    el.classList.add(el.classList.contains('g-answer') ? 'g-picked' : 'g-right');
+    root.querySelectorAll('.g-answer, .g-choice').forEach(function (b) { b.disabled = true; });
+    setBubble(en, jp);
+    say(en).then(praise).then(function () { return wait(250); }).then(next);
   }
 
-  function answerTap(card) {
-    var item = currentItem();
-    if (card.getAttribute('data-choice') === item.word) {
-      busy = true;
-      card.classList.add('g-right');
-      root.querySelectorAll('.g-choice').forEach(function (b) { b.disabled = true; });
-      say(item.english).then(praise).then(function () { return wait(250); }).then(next);
-      return;
-    }
-    // Wrong: a gentle wiggle, never a red cross. After 2 tries the right one glows.
+  // Wrong answer: a gentle wiggle, never a red cross, and the question again.
+  // After 2 wrong tries the right one glows.
+  function wrongAnswer(el, item, rightSelector) {
     wrong++;
-    card.classList.remove('g-wiggle');
-    void card.offsetWidth;
-    card.classList.add('g-wiggle');
-    // Say the word again so the child remembers what to look for.
+    el.classList.remove('g-wiggle');
+    void el.offsetWidth;
+    el.classList.add('g-wiggle');
     setBubble('Try again!', 'もういちど！');
     say('Try again! ' + item.english).then(function () {
       if (currentItem() === item && !busy) setBubble(item.english, item.japanese);
     });
     if (wrong >= 2) {
-      var right = root.querySelector('[data-choice="' + item.word + '"]');
+      var right = root.querySelector(rightSelector);
       if (right) right.classList.add('g-glow');
     }
+  }
+
+  function answerYesNo(btn) {
+    var item = currentItem();
+    var picked = btn.getAttribute('data-answer');
+    var ans = label(item, picked);
+    if (item.kind === 'fact' && picked !== item.correct) {
+      return wrongAnswer(btn, item, '[data-answer="' + item.correct + '"]');
+    }
+    // A fact answer also says the whole sentence: "No, it isn't. It's a banana."
+    var after = item.kind === 'fact' && item.after_correct ? item.after_correct : null;
+    rightAnswer(btn, ans.english + (after ? ' ' + after.english : ''), ans.japanese + (after ? ' ' + after.japanese : ''));
+  }
+
+  function answerTap(card) {
+    var item = currentItem();
+    var answer = item.answer || item.word;
+    if (card.getAttribute('data-choice') === answer) {
+      var after = item.after_correct || { english: item.english, japanese: item.japanese };
+      return rightAnswer(card, after.english, after.japanese);
+    }
+    wrongAnswer(card, item, '[data-choice="' + answer + '"]');
   }
 
   root.addEventListener('click', function (e) {
@@ -317,7 +391,10 @@
     if (act === 'again') return location.reload();
     if (act === 'replay') {
       var item = currentItem();
-      if (item) say(item.english, item.audio);
+      if (item && !busy) {
+        if (rounds[ri].type === 'tap') askTap(item);
+        else say(item.english, item.audio);
+      }
       return;
     }
     if (busy) return;

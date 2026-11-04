@@ -1,70 +1,149 @@
 {
   "_help": [
-    "212 Kids games. A game is a list of rounds; each round uses question items from \"items\".",
-    "Round types: yesno (\"Do you like ...?\" - any answer is right) and tap (hear a word, tap its picture; 3 choices).",
-    "Item ids start at 100000 and are never reused or renumbered (one id sequence for all kids content).",
+    "212 Kids games. A game is a list of rounds; each round asks questions from \"items\".",
+    "Round types: yesno and tap. See the top of kids/game.js for every option (show, choice_kind, read_choices, kind, labels, after_correct).",
+    "A round can use a shared question pool: { \"pool\": \"fruits-what\" }. Pools are in \"pools\".",
+    "Each play picks a random set of questions: \"per_play\" by level (6 to 10). \"split\": true shares that number across a game's rounds.",
+    "A question can be for some levels only: \"levels\": [\"k\", \"1\"]. Default: every level.",
+    "Item ids start at 100000 and are never reused or renumbered (one id sequence for all kids content). Next free id: 100072.",
     "picture: a picture name drawn by the site (apple, banana, orange, grapes, strawberry, watermelon).",
     "  To use a real picture later, add \"image\": \"kids_nov_banana.jpg\" to the word (file goes in kids/images/).",
     "  To use a recorded voice later, add \"audio\": \"100003.m4a\" to an item (file goes in kids/audio/). Without it the browser voice speaks.",
-    "Every game always ends with 3 stars and its sticker. Wrong taps only wiggle (\"Try again!\")."
+    "Every game always ends with 3 stars and its sticker. Wrong answers only wiggle (\"Try again!\"); after 2 tries the right one glows."
   ],
 
   "words": {
-    "apple":      { "english": "apple",      "plural": "apples",       "japanese": "りんご",   "picture": "apple" },
-    "banana":     { "english": "banana",     "plural": "bananas",      "japanese": "バナナ",   "picture": "banana" },
-    "orange":     { "english": "orange",     "plural": "oranges",      "japanese": "オレンジ", "picture": "orange" },
-    "grapes":     { "english": "grapes",     "plural": "grapes",       "japanese": "ぶどう",   "picture": "grapes" },
-    "strawberry": { "english": "strawberry", "plural": "strawberries", "japanese": "いちご",   "picture": "strawberry" },
-    "watermelon": { "english": "watermelon", "plural": "watermelon",   "japanese": "すいか",   "picture": "watermelon" }
+    "apple": {"english": "apple", "plural": "apples", "japanese": "りんご", "picture": "apple"},
+    "banana": {"english": "banana", "plural": "bananas", "japanese": "バナナ", "picture": "banana"},
+    "orange": {"english": "orange", "plural": "oranges", "japanese": "オレンジ", "picture": "orange"},
+    "grapes": {"english": "grapes", "plural": "grapes", "japanese": "ぶどう", "picture": "grapes"},
+    "strawberry": {"english": "strawberry", "plural": "strawberries", "japanese": "いちご", "picture": "strawberry"},
+    "watermelon": {"english": "watermelon", "plural": "watermelon", "japanese": "すいか", "picture": "watermelon"}
   },
 
   "items": {
-    "100000": { "type": "yesno", "word": "apple",      "english": "Do you like apples?",       "japanese": "りんごは すき？" },
-    "100001": { "type": "yesno", "word": "banana",     "english": "Do you like bananas?",      "japanese": "バナナは すき？" },
-    "100002": { "type": "yesno", "word": "orange",     "english": "Do you like oranges?",      "japanese": "オレンジは すき？" },
-    "100003": { "type": "yesno", "word": "grapes",     "english": "Do you like grapes?",       "japanese": "ぶどうは すき？" },
-    "100004": { "type": "yesno", "word": "strawberry", "english": "Do you like strawberries?", "japanese": "いちごは すき？" },
-    "100005": { "type": "yesno", "word": "watermelon", "english": "Do you like watermelon?",   "japanese": "すいかは すき？" },
-
-    "100006": { "type": "tap", "word": "apple",      "english": "Apple!",      "japanese": "りんご",   "choices": ["apple", "banana", "grapes"] },
-    "100007": { "type": "tap", "word": "banana",     "english": "Banana!",     "japanese": "バナナ",   "choices": ["banana", "grapes", "watermelon"] },
-    "100008": { "type": "tap", "word": "orange",     "english": "Orange!",     "japanese": "オレンジ", "choices": ["orange", "grapes", "banana"] },
-    "100009": { "type": "tap", "word": "grapes",     "english": "Grapes!",     "japanese": "ぶどう",   "choices": ["grapes", "apple", "banana"] },
-    "100010": { "type": "tap", "word": "strawberry", "english": "Strawberry!", "japanese": "いちご",   "choices": ["strawberry", "banana", "grapes"] },
-    "100011": { "type": "tap", "word": "watermelon", "english": "Watermelon!", "japanese": "すいか",   "choices": ["watermelon", "banana", "grapes"] }
+    "100000": {"type": "yesno", "word": "apple", "english": "Do you like apples?", "japanese": "りんごは すき？"},
+    "100001": {"type": "yesno", "word": "banana", "english": "Do you like bananas?", "japanese": "バナナは すき？"},
+    "100002": {"type": "yesno", "word": "orange", "english": "Do you like oranges?", "japanese": "オレンジは すき？"},
+    "100003": {"type": "yesno", "word": "grapes", "english": "Do you like grapes?", "japanese": "ぶどうは すき？"},
+    "100004": {"type": "yesno", "word": "strawberry", "english": "Do you like strawberries?", "japanese": "いちごは すき？"},
+    "100005": {"type": "yesno", "word": "watermelon", "english": "Do you like watermelon?", "japanese": "すいかは すき？"},
+    "100006": {"type": "tap", "word": "apple", "english": "Apple!", "japanese": "りんご", "choices": ["apple", "banana", "grapes"]},
+    "100007": {"type": "tap", "word": "banana", "english": "Banana!", "japanese": "バナナ", "choices": ["banana", "grapes", "watermelon"]},
+    "100008": {"type": "tap", "word": "orange", "english": "Orange!", "japanese": "オレンジ", "choices": ["orange", "grapes", "banana"]},
+    "100009": {"type": "tap", "word": "grapes", "english": "Grapes!", "japanese": "ぶどう", "choices": ["grapes", "apple", "banana"]},
+    "100010": {"type": "tap", "word": "strawberry", "english": "Strawberry!", "japanese": "いちご", "choices": ["strawberry", "banana", "grapes"]},
+    "100011": {"type": "tap", "word": "watermelon", "english": "Watermelon!", "japanese": "すいか", "choices": ["watermelon", "banana", "grapes"]},
+    "100012": {"type": "tap", "word": "apple", "english": "Apple!", "japanese": "りんご", "show": "none", "choice_kind": "picture", "choices": ["apple", "banana", "grapes"]},
+    "100013": {"type": "tap", "word": "banana", "english": "Banana!", "japanese": "バナナ", "show": "none", "choice_kind": "picture", "choices": ["banana", "grapes", "watermelon"]},
+    "100014": {"type": "tap", "word": "orange", "english": "Orange!", "japanese": "オレンジ", "show": "none", "choice_kind": "picture", "choices": ["orange", "grapes", "banana"]},
+    "100015": {"type": "tap", "word": "grapes", "english": "Grapes!", "japanese": "ぶどう", "show": "none", "choice_kind": "picture", "choices": ["grapes", "apple", "banana"]},
+    "100016": {"type": "tap", "word": "strawberry", "english": "Strawberry!", "japanese": "いちご", "show": "none", "choice_kind": "picture", "choices": ["strawberry", "banana", "grapes"]},
+    "100017": {"type": "tap", "word": "watermelon", "english": "Watermelon!", "japanese": "すいか", "show": "none", "choice_kind": "picture", "choices": ["watermelon", "banana", "grapes"]},
+    "100018": {"type": "tap", "word": "apple", "english": "Apple!", "japanese": "りんご", "show": "none", "choice_kind": "picture", "choices": ["apple", "banana", "watermelon"]},
+    "100019": {"type": "tap", "word": "banana", "english": "Banana!", "japanese": "バナナ", "show": "none", "choice_kind": "picture", "choices": ["banana", "apple", "grapes"]},
+    "100020": {"type": "tap", "word": "grapes", "english": "Grapes!", "japanese": "ぶどう", "show": "none", "choice_kind": "picture", "choices": ["grapes", "banana", "orange"]},
+    "100021": {"type": "tap", "word": "watermelon", "english": "Watermelon!", "japanese": "すいか", "show": "none", "choice_kind": "picture", "choices": ["watermelon", "apple", "banana"]},
+    "100022": {"type": "tap", "word": "apple", "english": "What is it?", "japanese": "これは なあに？", "show": "picture", "choice_kind": "word", "read_choices": true, "choices": ["apple", "banana", "grapes"], "after_correct": {"english": "It's an apple.", "japanese": "りんごです。"}},
+    "100023": {"type": "tap", "word": "banana", "english": "What is it?", "japanese": "これは なあに？", "show": "picture", "choice_kind": "word", "read_choices": true, "choices": ["banana", "apple", "watermelon"], "after_correct": {"english": "It's a banana.", "japanese": "バナナです。"}},
+    "100024": {"type": "tap", "word": "orange", "english": "What is it?", "japanese": "これは なあに？", "show": "picture", "choice_kind": "word", "read_choices": true, "choices": ["orange", "banana", "grapes"], "after_correct": {"english": "It's an orange.", "japanese": "オレンジです。"}},
+    "100025": {"type": "tap", "word": "grapes", "english": "What is it?", "japanese": "これは なあに？", "show": "picture", "choice_kind": "word", "read_choices": true, "choices": ["grapes", "apple", "banana"], "after_correct": {"english": "They're grapes.", "japanese": "ぶどうです。"}},
+    "100026": {"type": "tap", "word": "strawberry", "english": "What is it?", "japanese": "これは なあに？", "show": "picture", "choice_kind": "word", "read_choices": true, "choices": ["strawberry", "banana", "grapes"], "after_correct": {"english": "It's a strawberry.", "japanese": "いちごです。"}},
+    "100027": {"type": "tap", "word": "watermelon", "english": "What is it?", "japanese": "これは なあに？", "show": "picture", "choice_kind": "word", "read_choices": true, "choices": ["watermelon", "apple", "grapes"], "after_correct": {"english": "It's a watermelon.", "japanese": "すいかです。"}},
+    "100028": {"type": "tap", "word": "apple", "english": "What is it?", "japanese": "これは なあに？", "show": "picture", "choice_kind": "word", "read_choices": true, "choices": ["apple", "orange", "banana"], "after_correct": {"english": "It's an apple.", "japanese": "りんごです。"}},
+    "100029": {"type": "tap", "word": "banana", "english": "What is it?", "japanese": "これは なあに？", "show": "picture", "choice_kind": "word", "read_choices": true, "choices": ["banana", "grapes", "strawberry"], "after_correct": {"english": "It's a banana.", "japanese": "バナナです。"}},
+    "100030": {"type": "tap", "word": "grapes", "english": "What is it?", "japanese": "これは なあに？", "show": "picture", "choice_kind": "word", "read_choices": true, "choices": ["grapes", "orange", "watermelon"], "after_correct": {"english": "They're grapes.", "japanese": "ぶどうです。"}},
+    "100031": {"type": "tap", "word": "watermelon", "english": "What is it?", "japanese": "これは なあに？", "show": "picture", "choice_kind": "word", "read_choices": true, "choices": ["watermelon", "banana", "strawberry"], "after_correct": {"english": "It's a watermelon.", "japanese": "すいかです。"}},
+    "100032": {"type": "tap", "word": "apple", "answer": "red", "english": "What color is it?", "japanese": "なにいろ？", "show": "picture", "choice_kind": "color", "choices": ["red", "yellow", "blue"], "after_correct": {"english": "It's red.", "japanese": "あかです。"}},
+    "100033": {"type": "tap", "word": "banana", "answer": "yellow", "english": "What color is it?", "japanese": "なにいろ？", "show": "picture", "choice_kind": "color", "choices": ["yellow", "red", "blue"], "after_correct": {"english": "It's yellow.", "japanese": "きいろです。"}},
+    "100034": {"type": "tap", "word": "orange", "answer": "orange", "english": "What color is it?", "japanese": "なにいろ？", "show": "picture", "choice_kind": "color", "choices": ["orange", "blue", "purple"], "after_correct": {"english": "It's orange.", "japanese": "オレンジです。"}},
+    "100035": {"type": "tap", "word": "grapes", "answer": "purple", "english": "What color is it?", "japanese": "なにいろ？", "show": "picture", "choice_kind": "color", "choices": ["purple", "yellow", "green"], "after_correct": {"english": "They're purple.", "japanese": "むらさきです。"}},
+    "100036": {"type": "tap", "word": "strawberry", "answer": "red", "english": "What color is it?", "japanese": "なにいろ？", "show": "picture", "choice_kind": "color", "choices": ["red", "yellow", "blue"], "after_correct": {"english": "It's red.", "japanese": "あかです。"}},
+    "100037": {"type": "tap", "word": "apple", "answer": "red", "english": "What color is it?", "japanese": "なにいろ？", "show": "picture", "choice_kind": "color", "choices": ["red", "green", "purple"], "after_correct": {"english": "It's red.", "japanese": "あかです。"}},
+    "100038": {"type": "tap", "word": "banana", "answer": "yellow", "english": "What color is it?", "japanese": "なにいろ？", "show": "picture", "choice_kind": "color", "choices": ["yellow", "purple", "blue"], "after_correct": {"english": "It's yellow.", "japanese": "きいろです。"}},
+    "100039": {"type": "tap", "word": "orange", "answer": "orange", "english": "What color is it?", "japanese": "なにいろ？", "show": "picture", "choice_kind": "color", "choices": ["orange", "green", "blue"], "after_correct": {"english": "It's orange.", "japanese": "オレンジです。"}},
+    "100040": {"type": "tap", "word": "grapes", "answer": "purple", "english": "What color is it?", "japanese": "なにいろ？", "show": "picture", "choice_kind": "color", "choices": ["purple", "red", "yellow"], "after_correct": {"english": "They're purple.", "japanese": "むらさきです。"}},
+    "100041": {"type": "tap", "word": "strawberry", "answer": "red", "english": "What color is it?", "japanese": "なにいろ？", "show": "picture", "choice_kind": "color", "choices": ["red", "green", "purple"], "after_correct": {"english": "It's red.", "japanese": "あかです。"}},
+    "100042": {"type": "yesno", "kind": "fact", "word": "apple", "correct": "yes", "english": "Is it an apple?", "japanese": "これは りんご？", "yes_label": {"english": "Yes, it is!", "japanese": "はい、そうです！"}, "no_label": {"english": "No, it isn't.", "japanese": "いいえ、ちがいます。"}, "after_correct": {"english": "It's an apple.", "japanese": "りんごです。"}},
+    "100043": {"type": "yesno", "kind": "fact", "word": "banana", "correct": "yes", "english": "Is it a banana?", "japanese": "これは バナナ？", "yes_label": {"english": "Yes, it is!", "japanese": "はい、そうです！"}, "no_label": {"english": "No, it isn't.", "japanese": "いいえ、ちがいます。"}, "after_correct": {"english": "It's a banana.", "japanese": "バナナです。"}},
+    "100044": {"type": "yesno", "kind": "fact", "word": "orange", "correct": "yes", "english": "Is it an orange?", "japanese": "これは オレンジ？", "yes_label": {"english": "Yes, it is!", "japanese": "はい、そうです！"}, "no_label": {"english": "No, it isn't.", "japanese": "いいえ、ちがいます。"}, "after_correct": {"english": "It's an orange.", "japanese": "オレンジです。"}},
+    "100045": {"type": "yesno", "kind": "fact", "word": "strawberry", "correct": "yes", "english": "Is it a strawberry?", "japanese": "これは いちご？", "yes_label": {"english": "Yes, it is!", "japanese": "はい、そうです！"}, "no_label": {"english": "No, it isn't.", "japanese": "いいえ、ちがいます。"}, "after_correct": {"english": "It's a strawberry.", "japanese": "いちごです。"}},
+    "100046": {"type": "yesno", "kind": "fact", "word": "watermelon", "correct": "yes", "english": "Is it a watermelon?", "japanese": "これは すいか？", "yes_label": {"english": "Yes, it is!", "japanese": "はい、そうです！"}, "no_label": {"english": "No, it isn't.", "japanese": "いいえ、ちがいます。"}, "after_correct": {"english": "It's a watermelon.", "japanese": "すいかです。"}},
+    "100047": {"type": "yesno", "kind": "fact", "word": "banana", "correct": "no", "english": "Is it an apple?", "japanese": "これは りんご？", "yes_label": {"english": "Yes, it is!", "japanese": "はい、そうです！"}, "no_label": {"english": "No, it isn't.", "japanese": "いいえ、ちがいます。"}, "after_correct": {"english": "It's a banana.", "japanese": "バナナです。"}},
+    "100048": {"type": "yesno", "kind": "fact", "word": "apple", "correct": "no", "english": "Is it a banana?", "japanese": "これは バナナ？", "yes_label": {"english": "Yes, it is!", "japanese": "はい、そうです！"}, "no_label": {"english": "No, it isn't.", "japanese": "いいえ、ちがいます。"}, "after_correct": {"english": "It's an apple.", "japanese": "りんごです。"}},
+    "100049": {"type": "yesno", "kind": "fact", "word": "watermelon", "correct": "no", "english": "Is it an orange?", "japanese": "これは オレンジ？", "yes_label": {"english": "Yes, it is!", "japanese": "はい、そうです！"}, "no_label": {"english": "No, it isn't.", "japanese": "いいえ、ちがいます。"}, "after_correct": {"english": "It's a watermelon.", "japanese": "すいかです。"}},
+    "100050": {"type": "yesno", "kind": "fact", "word": "orange", "correct": "no", "english": "Is it a strawberry?", "japanese": "これは いちご？", "yes_label": {"english": "Yes, it is!", "japanese": "はい、そうです！"}, "no_label": {"english": "No, it isn't.", "japanese": "いいえ、ちがいます。"}, "after_correct": {"english": "It's an orange.", "japanese": "オレンジです。"}},
+    "100051": {"type": "yesno", "kind": "fact", "word": "strawberry", "correct": "no", "english": "Is it a watermelon?", "japanese": "これは すいか？", "yes_label": {"english": "Yes, it is!", "japanese": "はい、そうです！"}, "no_label": {"english": "No, it isn't.", "japanese": "いいえ、ちがいます。"}, "after_correct": {"english": "It's a strawberry.", "japanese": "いちごです。"}},
+    "100052": {"type": "tap", "word": "apple", "english": "Apple!", "japanese": "りんご", "show": "none", "choice_kind": "word", "choices": ["apple", "banana", "grapes"]},
+    "100053": {"type": "tap", "word": "banana", "english": "Banana!", "japanese": "バナナ", "show": "none", "choice_kind": "word", "choices": ["banana", "apple", "orange"]},
+    "100054": {"type": "tap", "word": "orange", "english": "Orange!", "japanese": "オレンジ", "show": "none", "choice_kind": "word", "choices": ["orange", "banana", "grapes"]},
+    "100055": {"type": "tap", "word": "grapes", "english": "Grapes!", "japanese": "ぶどう", "show": "none", "choice_kind": "word", "choices": ["grapes", "apple", "banana"]},
+    "100056": {"type": "tap", "word": "strawberry", "english": "Strawberry!", "japanese": "いちご", "show": "none", "choice_kind": "word", "choices": ["strawberry", "apple", "grapes"]},
+    "100057": {"type": "tap", "word": "watermelon", "english": "Watermelon!", "japanese": "すいか", "show": "none", "choice_kind": "word", "choices": ["watermelon", "banana", "grapes"]},
+    "100058": {"type": "tap", "word": "apple", "english": "Apple!", "japanese": "りんご", "show": "none", "choice_kind": "word", "choices": ["apple", "orange", "watermelon"]},
+    "100059": {"type": "tap", "word": "banana", "english": "Banana!", "japanese": "バナナ", "show": "none", "choice_kind": "word", "choices": ["banana", "grapes", "strawberry"]},
+    "100060": {"type": "tap", "word": "grapes", "english": "Grapes!", "japanese": "ぶどう", "show": "none", "choice_kind": "word", "choices": ["grapes", "orange", "watermelon"]},
+    "100061": {"type": "tap", "word": "orange", "english": "Orange!", "japanese": "オレンジ", "show": "none", "choice_kind": "word", "choices": ["orange", "apple", "strawberry"]},
+    "100062": {"type": "tap", "word": "apple", "english": "What is it?", "japanese": "これは なあに？", "show": "picture", "choice_kind": "word", "choices": ["apple", "grapes", "watermelon"], "after_correct": {"english": "It's an apple.", "japanese": "りんごです。"}},
+    "100063": {"type": "tap", "word": "banana", "english": "What is it?", "japanese": "これは なあに？", "show": "picture", "choice_kind": "word", "choices": ["banana", "apple", "grapes"], "after_correct": {"english": "It's a banana.", "japanese": "バナナです。"}},
+    "100064": {"type": "tap", "word": "orange", "english": "What is it?", "japanese": "これは なあに？", "show": "picture", "choice_kind": "word", "choices": ["orange", "banana", "watermelon"], "after_correct": {"english": "It's an orange.", "japanese": "オレンジです。"}},
+    "100065": {"type": "tap", "word": "grapes", "english": "What is it?", "japanese": "これは なあに？", "show": "picture", "choice_kind": "word", "choices": ["grapes", "banana", "orange"], "after_correct": {"english": "They're grapes.", "japanese": "ぶどうです。"}},
+    "100066": {"type": "tap", "word": "strawberry", "english": "What is it?", "japanese": "これは なあに？", "show": "picture", "choice_kind": "word", "choices": ["strawberry", "banana", "orange"], "after_correct": {"english": "It's a strawberry.", "japanese": "いちごです。"}},
+    "100067": {"type": "tap", "word": "watermelon", "english": "What is it?", "japanese": "これは なあに？", "show": "picture", "choice_kind": "word", "choices": ["watermelon", "apple", "grapes"], "after_correct": {"english": "It's a watermelon.", "japanese": "すいかです。"}},
+    "100068": {"type": "tap", "word": "apple", "english": "What is it?", "japanese": "これは なあに？", "show": "picture", "choice_kind": "word", "choices": ["apple", "banana", "strawberry"], "after_correct": {"english": "It's an apple.", "japanese": "りんごです。"}},
+    "100069": {"type": "tap", "word": "banana", "english": "What is it?", "japanese": "これは なあに？", "show": "picture", "choice_kind": "word", "choices": ["banana", "orange", "watermelon"], "after_correct": {"english": "It's a banana.", "japanese": "バナナです。"}},
+    "100070": {"type": "tap", "word": "grapes", "english": "What is it?", "japanese": "これは なあに？", "show": "picture", "choice_kind": "word", "choices": ["grapes", "apple", "strawberry"], "after_correct": {"english": "They're grapes.", "japanese": "ぶどうです。"}},
+    "100071": {"type": "tap", "word": "strawberry", "english": "What is it?", "japanese": "これは なあに？", "show": "picture", "choice_kind": "word", "choices": ["strawberry", "grapes", "watermelon"], "after_correct": {"english": "It's a strawberry.", "japanese": "いちごです。"}}
   },
 
   "answers": {
-    "yes": { "english": "Yes, I do!",  "japanese": "うん、すき！" },
-    "no":  { "english": "No, I don't.", "japanese": "ううん、すきじゃない。" }
+    "yes": {"english": "Yes, I do!", "japanese": "うん、すき！"},
+    "no": {"english": "No, I don't.", "japanese": "ううん、すきじゃない。"}
   },
 
   "praise": [
-    { "english": "Great job!", "japanese": "よくできました！" },
-    { "english": "You did it!", "japanese": "できたね！" },
-    { "english": "Super!", "japanese": "すごい！" },
-    { "english": "Wow!", "japanese": "わあ！" }
+    {"english": "Great job!", "japanese": "よくできました！"},
+    {"english": "You did it!", "japanese": "できたね！"},
+    {"english": "Super!", "japanese": "すごい！"},
+    {"english": "Wow!", "japanese": "わあ！"}
   ],
 
   "games": {
-    "fruits-lesson": {
-      "english": "Fruits", "japanese": "くだもの", "sticker": "apple",
-      "rounds": [
-        { "type": "yesno", "english": "Do you like…?", "japanese": "すき？", "items": ["100000", "100001", "100002", "100003", "100004", "100005"] },
-        { "type": "tap", "english": "Tap it!", "japanese": "きいてタップ", "items": ["100006", "100007", "100008", "100009", "100010", "100011"] }
-      ]
-    },
-    "fruits-yesno": {
-      "english": "Yes or No", "japanese": "すき？きらい？", "sticker": "strawberry",
-      "rounds": [
-        { "type": "yesno", "english": "Do you like…?", "japanese": "すき？", "items": ["100000", "100001", "100002", "100003", "100004", "100005"] }
-      ]
-    },
-    "fruits-tap": {
-      "english": "Tap it", "japanese": "きいてタップ", "sticker": "banana",
-      "rounds": [
-        { "type": "tap", "english": "Tap it!", "japanese": "きいてタップ", "items": ["100006", "100007", "100008", "100009", "100010", "100011"] }
-      ]
-    }
+    "fruits-lesson": {"english": "Fruits", "japanese": "くだもの", "sticker": "apple", "rounds": [{"type": "yesno", "english": "Do you like…?", "japanese": "すき？", "items": ["100000", "100001", "100002", "100003", "100004", "100005"]}, {"type": "tap", "english": "Tap it!", "japanese": "きいてタップ", "items": ["100006", "100007", "100008", "100009", "100010", "100011"]}]},
+    "fruits-yesno": {"english": "Yes or No", "japanese": "すき？きらい？", "sticker": "strawberry", "rounds": [{"type": "yesno", "english": "Do you like…?", "japanese": "すき？", "items": ["100000", "100001", "100002", "100003", "100004", "100005"]}]},
+    "fruits-tap": {"english": "Tap it", "japanese": "きいてタップ", "sticker": "banana", "rounds": [{"type": "tap", "english": "Tap it!", "japanese": "きいてタップ", "items": ["100006", "100007", "100008", "100009", "100010", "100011"]}]},
+    "fruits-practice": {"english": "Fruits practice", "japanese": "くだもの れんしゅう", "sticker": "apple", "split": true, "rounds": [{"pool": "fruits-hear"}, {"pool": "fruits-what"}, {"pool": "fruits-color"}, {"pool": "fruits-isit"}, {"pool": "fruits-like"}, {"pool": "fruits-hear-word"}, {"pool": "fruits-see-word"}]},
+    "fruits-what": {"english": "What is it?", "japanese": "なあに？", "sticker": "grapes", "rounds": [{"pool": "fruits-what"}]},
+    "fruits-isit": {"english": "Is it a…?", "japanese": "これは…？", "sticker": "orange", "rounds": [{"pool": "fruits-isit"}]},
+    "fruits-color": {"english": "What color?", "japanese": "なにいろ？", "sticker": "watermelon", "rounds": [{"pool": "fruits-color"}]},
+    "fruits-words": {"english": "Pick the word", "japanese": "ことばを えらぼう", "sticker": "banana", "split": true, "rounds": [{"pool": "fruits-hear-word"}, {"pool": "fruits-see-word"}]}
+  },
+
+  "colors": {
+    "red": {"english": "red", "japanese": "あか", "hex": "#FF4D4D"},
+    "yellow": {"english": "yellow", "japanese": "きいろ", "hex": "#FFD84D"},
+    "orange": {"english": "orange", "japanese": "オレンジ", "hex": "#FF9F2E"},
+    "purple": {"english": "purple", "japanese": "むらさき", "hex": "#9B6BD6"},
+    "green": {"english": "green", "japanese": "みどり", "hex": "#5CC98B"},
+    "blue": {"english": "blue", "japanese": "あお", "hex": "#4DA3FF"}
+  },
+
+  "per_play": {
+    "prek": 6,
+    "k": 7,
+    "1": 8,
+    "2": 10,
+    "3": 10,
+    "4": 10
+  },
+
+  "pools": {
+    "fruits-hear": {"type": "tap", "english": "Hear it and tap it!", "japanese": "きいてタップ", "items": ["100012", "100013", "100014", "100015", "100016", "100017", "100018", "100019", "100020", "100021"]},
+    "fruits-what": {"type": "tap", "english": "What is it?", "japanese": "これは なあに？", "items": ["100022", "100023", "100024", "100025", "100026", "100027", "100028", "100029", "100030", "100031"]},
+    "fruits-color": {"type": "tap", "english": "What color is it?", "japanese": "なにいろ？", "items": ["100032", "100033", "100034", "100035", "100036", "100037", "100038", "100039", "100040", "100041"]},
+    "fruits-isit": {"type": "yesno", "english": "Is it a…?", "japanese": "これは…？", "items": ["100042", "100043", "100044", "100045", "100046", "100047", "100048", "100049", "100050", "100051"]},
+    "fruits-like": {"type": "yesno", "english": "Do you like…?", "japanese": "すき？", "items": ["100000", "100001", "100002", "100003", "100004", "100005"]},
+    "fruits-hear-word": {"type": "tap", "english": "Hear it, pick the word!", "japanese": "きいて ことばを えらぼう", "items": ["100052", "100053", "100054", "100055", "100056", "100057", "100058", "100059", "100060", "100061"]},
+    "fruits-see-word": {"type": "tap", "english": "See it, pick the word!", "japanese": "みて ことばを えらぼう", "items": ["100062", "100063", "100064", "100065", "100066", "100067", "100068", "100069", "100070", "100071"]}
   }
 }

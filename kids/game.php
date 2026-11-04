@@ -20,18 +20,44 @@ if ( ! $child || ! isset( $games['games'][ $game_id ] ) ) {
 	exit;
 }
 
+/*
+ * How many questions one play asks: per_play for the child's level (games.json "per_play"),
+ * or the round's own per_play. Always 6 to 10, and never more than the pool has.
+ * A game with "split": true shares that number across its rounds (e.g. two rounds of 4).
+ */
+$game      = $games['games'][ $game_id ];
+$level     = (string) $child['level'];
+$per_level = isset( $games['per_play'][ $level ] ) ? (int) $games['per_play'][ $level ] : 8;
+$n_rounds  = max( 1, count( (array) $game['rounds'] ) );
+
 // Send the browser only what this game needs: its rounds with their items and words filled in.
-$game   = $games['games'][ $game_id ];
 $rounds = array();
 foreach ( (array) $game['rounds'] as $round ) {
+	// A round can borrow a shared question pool: { "pool": "fruits-what" }.
+	if ( isset( $round['pool'] ) && isset( $games['pools'][ $round['pool'] ] ) ) {
+		$round = $round + $games['pools'][ $round['pool'] ];
+	}
 	$items = array();
 	foreach ( (array) $round['items'] as $item_id ) {
-		if ( isset( $games['items'][ $item_id ] ) ) {
-			$items[] = array( 'id' => (string) $item_id ) + $games['items'][ $item_id ];
+		if ( ! isset( $games['items'][ $item_id ] ) ) {
+			continue;
 		}
+		$item = $games['items'][ $item_id ];
+		// A question can be kept for some levels only: "levels": ["k", "1"]. Default: every level.
+		if ( isset( $item['levels'] ) && ! in_array( $level, (array) $item['levels'], true ) ) {
+			continue;
+		}
+		$items[] = array( 'id' => (string) $item_id ) + $item;
 	}
-	$round['items'] = $items;
-	$rounds[]       = $round;
+	$per_play = isset( $round['per_play'] ) ? (int) $round['per_play'] : $per_level;
+	$per_play = max( 6, min( 10, $per_play ) );
+	if ( ! empty( $game['split'] ) ) {
+		$per_play = (int) ceil( $per_play / $n_rounds );
+	}
+	$round['items']    = $items;
+	$round['per_play'] = min( $per_play, count( $items ) );
+	unset( $round['pool'] );
+	$rounds[] = $round;
 }
 
 $h212_kids_game = array(
@@ -41,6 +67,7 @@ $h212_kids_game = array(
 	'sticker'  => $game['sticker'] ?? '',
 	'rounds'   => $rounds,
 	'words'    => $games['words'],
+	'colors'   => $games['colors'] ?? array(),
 	'answers'  => $games['answers'],
 	'praise'   => $games['praise'],
 	'child'    => $child,

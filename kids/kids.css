@@ -697,6 +697,23 @@ button:focus-visible, a:focus-visible, input:focus-visible {
 .g-choices { display: flex; justify-content: center; flex-wrap: wrap; gap: 24px; }
 .g-choice { width: 210px; height: 210px; padding: 0; }
 .g-choice:disabled { cursor: default; }
+/* Picture or word shown above the choices ("What is it?", "What color is it?"). */
+.g-stage-col { flex-direction: column; gap: 22px; }
+.g-card-show { width: 210px; height: 180px; }
+
+/* Written-word choices: big, lowercase, rounded. */
+.g-word { font-size: 52px; font-weight: 800; line-height: 1; letter-spacing: .02em; }
+.g-choice-word { width: auto; min-width: 210px; height: 120px; padding: 0 26px; }
+.g-word-long { font-size: 42px; }
+.g-reading { background: #FFF3B8; transform: translateY(-4px); }
+
+/* Color choices: a big color circle with the color word under it. */
+.g-choice-color { flex-direction: column; gap: 8px; width: 180px; height: 180px; }
+.g-color-dot { width: 96px; height: 96px; border-radius: 50%; border: var(--line); }
+.g-choice-color .k-two { align-items: center; }
+.g-choice-color .k-two b { font-size: 28px; }
+.g-choice-color .k-two small { font-size: 15px; }
+
 .g-right { background: #D8F1DD; animation: g-pop .45s ease; }
 .g-glow { animation: g-glow 1.1s ease-in-out infinite; }
 .g-wiggle { animation: g-wiggle .5s ease; }
@@ -790,6 +807,15 @@ button:focus-visible, a:focus-visible, input:focus-visible {
 	.g-choices { gap: 14px; }
 	.g-choice { width: 150px; height: 150px; }
 	.g-choice .g-pic { width: 108px; height: 108px; }
+	.g-stage-col { gap: 16px; }
+	.g-card-show { width: 170px; height: 140px; }
+	.g-card-show .g-pic { width: 110px; height: 110px; }
+	.g-word { font-size: 40px; }
+	.g-word-long { font-size: 34px; }
+	.g-choice-word { width: 100%; max-width: 320px; height: 84px; }
+	.g-choice-color { width: 104px; height: 140px; gap: 6px; }
+	.g-color-dot { width: 64px; height: 64px; border-width: 4px; }
+	.g-choice-color .k-two b { font-size: 22px; }
 	.g-answer { min-width: 0; width: 100%; min-height: 92px; }
 	.g-answer .k-two b { font-size: 30px; }
 	.g-thumb { font-size: 42px; }
