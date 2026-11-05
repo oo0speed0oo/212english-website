@@ -38,7 +38,20 @@
  *   sort   Sort it: 2 baskets (`groups`); drag each picture into the right one ("Apple! Fruit!").
  *   hidden Find it: a picnic picture with things around it; "Find the banana!" for each word in `find`
  *          (boards.hidden), among `others` (boards.hidden_things in all). A few are half behind leaves.
- * Board games (memory, match, sort, hidden, search, cross) save one record per board: tries = misses + 1.
+ *   pick   Pick the written answer (Batch 3): the lion asks, the child taps the written sentence (`choices`,
+ *          `answer` = one sentence or a list of right ones). show: picture | count (`count` pictures).
+ *          boards.read_choices (Pre-K, K): the lion reads the sentences aloud.
+ *   say    Say it (Batch 4): the word, then "Your turn!". The microphone is OFF until a grown-up turns it on
+ *          (this device). Fuzzy and kind ("Oh, it's close!"); nothing is recorded or graded. "I said it!" always works.
+ *   elf    Elf Workshop: "Can I have a red ball, please?" -> tap it (`word` + `color`; `choices` = picture names
+ *          like ball_blue; boards.elf). The child says "Yes, you may! Here you are!".
+ *   wish   Dear Santa: tap presents for your letter (boards.wish; boards.wish_toys to pick from). "I want a robot!"
+ *   present Pass the Present: unwrap `layers` (boards.present): "What color is the paper?", then the `toy`: "What is it?".
+ *   sounds / listen / blend  ABC phonics (Batch 5; sound files = the adult phonics files, game.php sends G.phonics):
+ *          sounds = tap each letter to hear it; listen = hear a sound, tap the letter; blend = tap each letter, then Blend.
+ *          A bubble with `sound` pops letters: the lion plays the sound.
+ *   yesno with `sack`: Santa's Sack. The picture is a shadow in the sack until it is answered.
+ * Board games (memory, match, sort, hidden, search, cross, wish, present, sounds, blend) save one record per board: tries = misses + 1.
  * Wrong = gentle wiggle + "Try again!" + the question again; after 2 wrong tries the right one glows.
  * game.php already picked this play's questions (per_play for the child's level).
  * Every game ends with 3 stars and the game's sticker, no matter what.
@@ -307,7 +320,7 @@
     var withKid = usesAvatar(item);
     frame(lion(item.english, item.japanese) +
       '<div class="g-stage' + (withKid ? ' g-stage-kid' : '') + '">' + (withKid ? kidFigure() : '') +
-      '<div class="g-card g-card-big">' + picture(item.word, 220) + '</div></div>' +
+      '<div class="g-card g-card-big' + (item.sack ? ' g-sack g-shadow' : '') + '">' + picture(item.word, 220) + '</div></div>' +
       '<div class="g-answers">' +
       '<button class="g-answer g-yes k-press" data-answer="yes"><span class="g-thumb" aria-hidden="true">👍</span>' + two(yes.english, yes.japanese) + '</button>' +
       '<button class="g-answer g-no k-press" data-answer="no"><span class="g-thumb" aria-hidden="true">👎</span>' + two(no.english, no.japanese) + '</button>' +
@@ -1268,14 +1281,24 @@
         '<button class="g-choice g-bub" data-choice="' + esc(k) + '" aria-label="' + esc(wordText(k)) + '">' + picture(k, 96) + '</button></span>';
     }).join('');
     frame(lion(item.english, item.japanese) + '<div class="g-stage"><div class="g-bub-sky">' + html + '</div></div>', { replay: true });
-    say(item.english, item.audio);
+    if (item.sound) playSound(item.sound, true);
+    else say(item.english, item.audio);
   }
 
   function answerBubble(b) {
     var item = currentItem();
-    if (b.getAttribute('data-choice') !== item.word) return wrongAnswer(b, item, '[data-choice="' + item.word + '"]');
+    if (b.getAttribute('data-choice') !== item.word) {
+      wrongAnswer(b, item, '[data-choice="' + item.word + '"]');
+      if (item.sound) wait(1500).then(function () { if (currentItem() === item && !busy) playSound(item.sound, true); });
+      return;
+    }
     b.parentNode.classList.add('g-bub-stop');
     b.classList.add('g-bub-popped');
+    if (item.sound) {
+      busy = true;
+      saveAnswer(item, wrong + 1);
+      return playSound(item.sound, false).then(praise).then(function () { return wait(250); }).then(next);
+    }
     rightAnswer(b, cap(wordText(item.word)) + '!', wordJa(item.word));
   }
 
@@ -1559,6 +1582,505 @@
     say(en).then(function () { boardDone(h.item, h.misses); });
   }
 
+  // ---------- Batch 3: pick — Pick the written answer ----------
+  // The lion asks; the child reads and taps the written sentence. boards.read_choices (Pre-K, K): the lion reads them.
+
+  function youRow() {
+    var face = '<svg width="54" height="54" viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="54" fill="' + (AVATAR[G.child.color] || AVATAR.blue) + '" stroke="' + INK + '" stroke-width="6"/>' +
+      '<circle cx="42" cy="52" r="7" fill="' + INK + '"/><circle cx="78" cy="52" r="7" fill="' + INK + '"/>' +
+      '<path d="M38 74 Q60 96 82 74" stroke="' + INK + '" stroke-width="7" fill="none" stroke-linecap="round"/></svg>';
+    return '<div class="g-you">' + face + '<div class="k-bubble g-you-bubble"><b>…</b><small>' + esc(G.child.name) + '</small></div></div>';
+  }
+  // "a robot", "an apple", "blocks" (a word whose plural is itself has no "a").
+  function withArticle(key) {
+    var w = G.words[key] || {};
+    var e = w.english || key;
+    if (w.plural === e) return e;
+    return (/^[aeiou]/i.test(e) ? 'an ' : 'a ') + e;
+  }
+  function pictureOf(name, size, label) {
+    var p = PICTURES[name] || PICTURES.apple;
+    return '<svg class="g-pic" width="' + size + '" height="' + size + '" viewBox="' + p[0] + '" role="img" aria-label="' + esc(label || name) + '">' + p[1] + '</svg>';
+  }
+
+  function pickScreen(item) {
+    var shown;
+    if (item.show === 'count') {
+      var many = '';
+      for (var i = 0; i < item.count; i++) many += picture(item.word, item.count > 6 ? 54 : (item.count > 3 ? 66 : 84));
+      shown = '<div class="g-card g-card-show g-count-show">' + many + '</div>';
+    } else {
+      shown = '<div class="g-card g-card-show">' + picture(item.word, 150) + '</div>';
+    }
+    var btns = shuffle(item.choices).map(function (s) {
+      return '<button class="g-sentence k-press" data-sentence="' + esc(s) + '">' + esc(s) + '</button>';
+    }).join('');
+    frame(lion(item.english, item.japanese) + '<div class="g-stage g-stage-col">' + shown + '<div class="g-sentences">' + btns + '</div></div>', { replay: true });
+    askPick(item);
+  }
+
+  function askPick(item) {
+    var chain = say(item.english, item.audio);
+    if (!BOARDS.read_choices) return;
+    root.querySelectorAll('.g-sentence').forEach(function (b) {
+      chain = chain.then(function () {
+        if (currentItem() !== item || busy) return;
+        b.classList.add('g-reading');
+        return say(b.getAttribute('data-sentence')).then(function () { b.classList.remove('g-reading'); });
+      });
+    });
+  }
+
+  function answerPick(b) {
+    var item = currentItem();
+    var s = b.getAttribute('data-sentence');
+    var right = [].concat(item.answer);
+    if (right.indexOf(s) !== -1) return rightAnswer(b, s, item.answer_japanese || '');
+    wrongAnswer(b, item, '[data-sentence="' + right[0].replace(/"/g, '\\"') + '"]');
+  }
+
+  // ---------- Batch 4: say — Say it (microphone, optional, nothing recorded, never graded) ----------
+  // The microphone is OFF until a grown-up turns it on (remembered on this device). "I said it!" always works.
+
+  var MIC_KEY = 'h212_kids_mic';
+  var Recognizer = window.SpeechRecognition || window.webkitSpeechRecognition || null;
+  var sy = null;
+  function micOn() {
+    try { return localStorage.getItem(MIC_KEY) === '1'; } catch (e) { return false; }
+  }
+  function setMic(on) {
+    try { localStorage.setItem(MIC_KEY, on ? '1' : '0'); } catch (e) {}
+  }
+
+  function sayScreen(item) {
+    if (sy && sy.rec) try { sy.rec.abort(); } catch (e) {}
+    sy = { item: item, rec: null, tries: 0 };
+    var mic = '';
+    if (Recognizer && micOn()) {
+      mic = '<button class="g-mic k-press" data-act="listen" aria-label="Say it into the microphone">' +
+        '<svg width="46" height="46" viewBox="0 0 40 40" aria-hidden="true"><rect x="13" y="4" width="14" height="22" rx="7" fill="' + INK + '"/><path d="M8 19 Q8 31 20 31 Q32 31 32 19 M20 31 V37 M13 37 H27" stroke="' + INK + '" stroke-width="3.5" fill="none" stroke-linecap="round"/></svg>' +
+        two('Say it', 'マイクで いう') + '</button>';
+    }
+    var off = !Recognizer ? '' : (micOn()
+      ? '<button class="g-mic-switch" data-act="mic-off">マイク: オン（おとなの かた：オフに する）</button>'
+      : '<button class="g-mic-switch" data-act="mic-on">🎤 マイクを つかう（おとなの かたへ：きろくは されません）</button>');
+    frame(lion(item.english, item.japanese) +
+      '<div class="g-stage g-stage-col"><div class="g-card g-card-big">' + picture(item.word, 200) + '</div>' +
+      '<div class="g-say-row">' + mic +
+      '<button class="k-big-btn k-green k-press g-said" data-act="said">' + two('I said it!', 'いったよ！') + '</button></div>' + off + '</div>', { replay: true });
+    say(item.english + ' Your turn!', item.audio);
+  }
+
+  // Close enough? Fuzzy and kind: "teddy bear" ~ "teddy", "3" = "three", one or two letters off is fine.
+  var DIGITS = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten'];
+  function distance(a, b) {
+    var row = [];
+    for (var j = 0; j <= b.length; j++) row[j] = j;
+    for (var i = 1; i <= a.length; i++) {
+      var prev = row[0];
+      row[0] = i;
+      for (var k = 1; k <= b.length; k++) {
+        var tmp = row[k];
+        row[k] = Math.min(row[k] + 1, row[k - 1] + 1, prev + (a.charAt(i - 1) === b.charAt(k - 1) ? 0 : 1));
+        prev = tmp;
+      }
+    }
+    return row[b.length];
+  }
+  function closeTo(heard, target) {
+    var h = String(heard).toLowerCase().replace(/\b(10|[0-9])\b/g, function (n) { return DIGITS[+n]; }).replace(/[^a-z ]/g, '').trim();
+    if (!h) return false;
+    var t = target.toLowerCase();
+    var slack = Math.max(1, Math.floor(t.length / 4));
+    if (h.indexOf(t) !== -1 || distance(h, t) <= slack) return true;
+    return h.split(' ').some(function (w) { return distance(w, t.split(' ')[0]) <= slack || distance(w, t.replace(/s$/, '')) <= slack; });
+  }
+
+  function listenSay() {
+    var s = sy;
+    if (!s || s.rec || !Recognizer) return;
+    var r;
+    try { r = new Recognizer(); } catch (e) { return; }
+    s.rec = r;
+    r.lang = 'en-US';
+    r.interimResults = false;
+    r.maxAlternatives = 5;
+    var heard = [];
+    var btn = root.querySelector('.g-mic');
+    if (btn) btn.classList.add('g-mic-live');
+    setBubble("I'm listening…", 'きいてるよ…');
+    r.onresult = function (e) {
+      for (var i = 0; i < e.results.length; i++) {
+        for (var j = 0; j < e.results[i].length; j++) heard.push(e.results[i][j].transcript);
+      }
+    };
+    // No permission for the microphone (or none on this device): turn it off again; "I said it!" still works.
+    r.onerror = function (e) {
+      if (e && (e.error === 'not-allowed' || e.error === 'service-not-allowed' || e.error === 'audio-capture')) s.denied = true;
+    };
+    r.onend = function () {
+      if (sy !== s) return;
+      s.rec = null;
+      if (btn) btn.classList.remove('g-mic-live');
+      if (s.denied) {
+        setMic(false);
+        sayScreen(s.item);
+        return;
+      }
+      heardIt(s, heard);
+    };
+    if ('speechSynthesis' in window) speechSynthesis.cancel();
+    try { r.start(); } catch (e) { s.rec = null; if (btn) btn.classList.remove('g-mic-live'); }
+  }
+
+  function heardIt(s, heard) {
+    var target = wordText(s.item.word);
+    if (heard.some(function (h) { return closeTo(h, target); })) return finishSay('Great! ' + cap(target) + '!', 'じょうず！' + wordJa(s.item.word));
+    s.tries++;
+    if (!heard.length && s.tries < 3) {
+      setBubble("I didn't hear you. Try again!", 'きこえなかったよ。もういちど！');
+      return say("I didn't hear you. Try again!");
+    }
+    if (s.tries < 2) {
+      setBubble("Oh, it's close! " + cap(target) + '!', 'おしい！もういちど！');
+      return say("Oh, it's close! " + cap(target) + '! Try again!');
+    }
+    finishSay('Good try! ' + cap(target) + '!', 'がんばったね！' + wordJa(s.item.word));
+  }
+
+  function finishSay(en, jp) {
+    var s = sy;
+    if (!s || busy) return;
+    if (s.rec) try { s.rec.abort(); } catch (e) {}
+    busy = true;
+    saveAnswer(s.item, 1);
+    root.querySelectorAll('.g-mic, .g-said').forEach(function (b) { b.disabled = true; });
+    setBubble(en, jp);
+    say(en).then(praise).then(function () { return wait(250); }).then(next);
+  }
+
+  // ---------- December: Santa's Sack (yesno "sack"), Elf Workshop, Dear Santa, Pass the Present ----------
+
+  // Elf Workshop: the lion is the elf ("Can I have a red ball, please?"), the child is Santa.
+  function elfName(key) {
+    var p = key.split('_');
+    return p[1] + ' ' + wordText(p[0]);
+  }
+  function elfScreen(item) {
+    var n = boardSize('elf', 3, 2, 4);
+    var right = item.word + '_' + item.color;
+    var keys = shuffle([right].concat(shuffle(item.choices.filter(function (k) { return k !== right; })).slice(0, n - 1)));
+    var cards = keys.map(function (k) {
+      return '<button class="g-card g-choice g-choice-picture k-press" data-elf="' + esc(k) + '">' + pictureOf(k, 140, elfName(k)) + '</button>';
+    }).join('');
+    frame(lion(item.english, item.japanese) + '<div class="g-stage g-stage-col"><div class="g-choices">' + cards + '</div></div>' + youRow(), { replay: true });
+    say(item.english, item.audio);
+  }
+  function answerElf(b) {
+    var item = currentItem();
+    var right = item.word + '_' + item.color;
+    if (b.getAttribute('data-elf') !== right) return wrongAnswer(b, item, '[data-elf="' + right + '"]');
+    busy = true;
+    saveAnswer(item, wrong + 1);
+    b.classList.add('g-right');
+    root.querySelectorAll('[data-elf]').forEach(function (x) { x.disabled = true; });
+    youSay('Yes, you may! Here you are!', 'はい、どうぞ！');
+    say('Yes, you may! Here you are!', null, true).then(function () {
+      setBubble('Thank you!', 'ありがとう！');
+      return say('Thank you!');
+    }).then(praise).then(function () { return wait(250); }).then(next);
+  }
+
+  // Dear Santa: pick presents for your letter. "I want a robot!" Every choice is right.
+  var wsh = null;
+  function wishScreen(item) {
+    var n = boardSize('wish', 3, 1, 3);
+    var keys = shuffle(item.toys).slice(0, boardSize('wish_toys', 6, 3, 10));
+    wsh = { item: item, n: n, picked: [] };
+    var boxes = '';
+    for (var i = 0; i < n; i++) boxes += '<span class="g-wish-box" data-wishbox="' + i + '"></span>';
+    var toys = keys.map(function (k) {
+      return '<button class="g-card g-wish-toy k-press" data-wish="' + esc(k) + '">' + picture(k, 92) + '</button>';
+    }).join('');
+    frame(lion(item.english, item.japanese) +
+      '<div class="g-stage g-wish"><div class="g-letter"><b>Dear Santa,</b><div class="g-wish-boxes">' + boxes + '</div>' +
+      '<span class="g-letter-from">From ' + esc(G.child.name) + '</span></div><div class="g-wish-toys">' + toys + '</div></div>' + youRow(), { replay: true });
+    say(item.english);
+  }
+  function tapWish(b) {
+    var w = wsh;
+    var k = b.getAttribute('data-wish');
+    if (w.picked.length >= w.n || w.picked.indexOf(k) !== -1) return;
+    w.picked.push(k);
+    b.disabled = true;
+    b.classList.add('g-wish-used');
+    var box = root.querySelector('[data-wishbox="' + (w.picked.length - 1) + '"]');
+    if (box) {
+      box.innerHTML = picture(k, 64);
+      box.classList.add('g-wish-full');
+    }
+    var line = 'I want ' + withArticle(k) + '!';
+    var last = w.picked.length === w.n;
+    if (last) {
+      busy = true;
+      root.querySelectorAll('[data-wish]').forEach(function (x) { x.disabled = true; });
+    }
+    youSay(line, wordJa(k) + 'が ほしい！');
+    say(line, null, true).then(function () {
+      if (!last || wsh !== w || w.n < 2) return last && wsh === w ? boardDone(w.item, 0) : null;
+      var names = w.picked.map(withArticle);
+      var all = 'I want ' + names.slice(0, -1).join(', ') + (names.length > 2 ? ',' : '') + ' and ' + names[names.length - 1] + '.';
+      youSay(all, w.picked.map(wordJa).join('と') + 'が ほしい！');
+      return wait(300).then(function () { return say(all, null, true); }).then(function () { boardDone(w.item, 0); });
+    });
+  }
+
+  // Pass the Present: it goes round, "Stop!", unwrap one layer ("What color is the paper?"),
+  // and the last layer shows the toy ("What is it?" → "It's a teddy bear!" → "I want a teddy bear!").
+  var pr = null;
+  var PAPER = ['red', 'yellow', 'blue', 'green', 'purple', 'orange', 'pink'];
+  function presentScreen(item) {
+    pr = { item: item, layers: item.layers.slice(0, boardSize('present', 2, 1, 3)), at: 0, misses: 0, wrong: 0 };
+    passLayer();
+  }
+  function passLayer() {
+    var p = pr;
+    var c = p.layers[p.at];
+    frame(lion('Pass the present!', 'プレゼントを まわそう！') +
+      '<div class="g-stage g-stage-col"><div class="g-present g-present-pass">' + pictureOf('present_' + c, 190, 'present') + '</div>' +
+      '<div class="g-choices g-present-q"></div></div>', { replay: true });
+    say('Pass, pass, pass…').then(function () { return wait(900); }).then(function () {
+      if (pr !== p) return;
+      root.querySelector('.g-present').classList.remove('g-present-pass');
+      setBubble('Stop! What color is the paper?', 'ストップ！つつみがみは なにいろ？');
+      var opts = shuffle([c].concat(shuffle(PAPER.filter(function (x) { return x !== c; })).slice(0, 2)));
+      root.querySelector('.g-present-q').innerHTML = opts.map(function (k) {
+        var col = G.colors[k] || {};
+        return '<button class="g-card g-choice g-choice-color k-press" data-paper="' + k + '"><span class="g-color-dot" style="background:' + esc(col.hex || '#ccc') + '"></span>' + two(col.english || k, col.japanese || '') + '</button>';
+      }).join('');
+      p.wrong = 0;
+      return say('Stop! What color is the paper?');
+    });
+  }
+  function presentWrong(b, q, sel) {
+    var p = pr;
+    p.wrong++;
+    p.misses++;
+    wiggle(b);
+    setBubble('Try again!', 'もういちど！');
+    say('Try again! ' + q);
+    if (p.wrong >= 2) {
+      var r = root.querySelector(sel);
+      if (r) r.classList.add('g-glow');
+    }
+  }
+  function tapPaper(b) {
+    var p = pr;
+    var c = p.layers[p.at];
+    if (b.getAttribute('data-paper') !== c) return presentWrong(b, 'What color is the paper?', '[data-paper="' + c + '"]');
+    busy = true;
+    b.classList.add('g-right');
+    var col = G.colors[c] || { english: c, japanese: '' };
+    setBubble("It's " + col.english + '!', col.japanese + 'です！');
+    say("It's " + col.english + '!').then(function () {
+      if (pr !== p) return;
+      root.querySelector('.g-present').classList.add('g-present-open');
+      return wait(650);
+    }).then(function () {
+      if (pr !== p) return;
+      busy = false;
+      p.at++;
+      if (p.at < p.layers.length) return passLayer();
+      showToy();
+    });
+  }
+  function showToy() {
+    var p = pr;
+    var item = p.item;
+    var cards = shuffle(item.choices).map(function (k) {
+      return '<button class="g-card g-choice g-choice-word k-press" data-ptoy="' + esc(k) + '">' + bigWord(k) + '</button>';
+    }).join('');
+    frame(lion('What is it?', 'これは なあに？') +
+      '<div class="g-stage g-stage-col"><div class="g-card g-card-show g-present-toy">' + picture(item.toy, 160) + '</div>' +
+      '<div class="g-choices">' + cards + '</div></div>' + youRow(), { replay: true });
+    p.wrong = 0;
+    var chain = say('What is it?');
+    if (BOARDS.read_choices) {
+      root.querySelectorAll('[data-ptoy]').forEach(function (b) {
+        chain = chain.then(function () {
+          if (pr !== p || busy) return;
+          b.classList.add('g-reading');
+          return say(wordText(b.getAttribute('data-ptoy')) + '?').then(function () { b.classList.remove('g-reading'); });
+        });
+      });
+    }
+  }
+  function tapToy(b) {
+    var p = pr;
+    var k = p.item.toy;
+    if (b.getAttribute('data-ptoy') !== k) return presentWrong(b, 'What is it?', '[data-ptoy="' + k + '"]');
+    busy = true;
+    b.classList.add('g-right');
+    root.querySelectorAll('[data-ptoy]').forEach(function (x) { x.disabled = true; });
+    var its = "It's " + withArticle(k) + '!';
+    setBubble(its, wordJa(k) + 'です！');
+    say(its).then(function () {
+      setBubble('What do you want?', 'なにが ほしい？');
+      return say('What do you want?');
+    }).then(function () {
+      youSay('I want ' + withArticle(k) + '!', wordJa(k) + 'が ほしい！');
+      return say('I want ' + withArticle(k) + '!', null, true);
+    }).then(function () {
+      if (pr === p) boardDone(p.item, p.misses);
+    });
+  }
+
+  // ---------- Batch 5: ABC phonics (sounds, listen, blend + letter bubbles) ----------
+  // The sound files are the adult phonics files (portal/audio/phonics/): sounds/<no> = the sound + its key word,
+  // alone/<no> = the sound alone, words/<word>. game.php says which exist; a missing file = the browser voice.
+
+  var PH = G.phonics || { base: '', v: 0, sounds: {}, words: {} };
+  function playFile(url, fallback) {
+    return new Promise(function (resolve) {
+      var done = false;
+      function fin() {
+        if (!done) { done = true; resolve(); }
+      }
+      function robot() {
+        say(fallback).then(fin);
+      }
+      if (!url) return robot();
+      if (currentAudio) currentAudio.pause();
+      if ('speechSynthesis' in window && speechSynthesis.speaking) speechSynthesis.cancel();
+      var a = new Audio(url);
+      currentAudio = a;
+      a.onended = fin;
+      a.onerror = robot;
+      var p = a.play();
+      if (p && p.catch) p.catch(robot);
+      setTimeout(fin, 6000);
+    });
+  }
+  function soundUrl(no, alone) {
+    var s = PH.sounds[no];
+    if (!s) return '';
+    if (alone && s.alone) return PH.base + 'alone/' + no + '.m4a?v=' + PH.v;
+    return s.file ? PH.base + 'sounds/' + no + '.m4a?v=' + PH.v : '';
+  }
+  // alone: just the sound (/h/); otherwise the sound and the key word (/h/ … hat).
+  function playSound(no, alone) {
+    var s = PH.sounds[no] || {};
+    return playFile(soundUrl(no, alone), (s.letter || '') + '. ' + (s.key || ''));
+  }
+  function playWord(w) {
+    return playFile(PH.words[w] ? PH.base + 'words/' + encodeURIComponent(w) + '.m4a?v=' + PH.v : '', w);
+  }
+
+  // Sound board: tap every letter to hear it. Done when each one was heard.
+  var sb = null;
+  function soundsScreen(item) {
+    sb = { item: item, heard: {} };
+    var tiles = item.sounds.map(function (no) {
+      var s = PH.sounds[no] || {};
+      return '<button class="g-sound-tile k-press" data-sound="' + no + '"><span class="g-sound-letter">' + esc(s.letter || '?') + '</span>' +
+        picture(s.key, 88) + '<span class="g-sound-key">' + esc(s.key || '') + '</span></button>';
+    }).join('');
+    frame(lion(item.english, item.japanese) + '<div class="g-stage"><div class="g-sounds">' + tiles + '</div></div>', { replay: true });
+    say(item.english);
+  }
+  function tapSound(b) {
+    var s = sb;
+    var no = +b.getAttribute('data-sound');
+    if (s.playing) return;
+    s.playing = true;
+    s.heard[no] = true;
+    b.classList.add('g-sound-on');
+    var all = s.item.sounds.every(function (n) { return s.heard[n]; });
+    if (all) busy = true;
+    playSound(no, false).then(function () {
+      s.playing = false;
+      b.classList.remove('g-sound-on');
+      b.classList.add('g-sound-done');
+      if (all && sb === s) boardDone(s.item, 0);
+    });
+  }
+
+  // Listen and pick: hear a sound, tap its letter.
+  function listenScreen(item) {
+    var tiles = shuffle(item.choices).map(function (l) {
+      return '<button class="g-card g-choice g-big-letter k-press" data-heard="' + esc(l) + '">' + esc(l) + '</button>';
+    }).join('');
+    frame(lion(item.english, item.japanese) + '<div class="g-stage g-stage-col">' +
+      '<button class="g-hear k-press" data-act="hearsound" aria-label="Hear the sound again">' +
+      '<svg width="54" height="54" viewBox="0 0 36 36" aria-hidden="true"><path d="M5 14 H12 L21 6 V30 L12 22 H5Z" fill="' + INK + '"/><path d="M26 12 Q31 18 26 24 M29 8 Q37 18 29 28" stroke="' + INK + '" stroke-width="3.5" fill="none" stroke-linecap="round"/></svg></button>' +
+      '<div class="g-choices">' + tiles + '</div></div>', { replay: true });
+    say(item.english).then(function () {
+      if (currentItem() === item && !busy) return playSound(item.sound, true);
+    });
+  }
+  function answerListen(b) {
+    var item = currentItem();
+    if (b.getAttribute('data-heard') !== item.letter) {
+      wrongAnswer(b, item, '[data-heard="' + item.letter + '"]');
+      return wait(1800).then(function () {
+        if (currentItem() === item && !busy) playSound(item.sound, true);
+      });
+    }
+    busy = true;
+    saveAnswer(item, wrong + 1);
+    b.classList.add('g-right');
+    root.querySelectorAll('[data-heard]').forEach(function (x) { x.disabled = true; });
+    var s = PH.sounds[item.sound] || {};
+    setBubble(item.letter + ' … ' + (s.key || ''), '');
+    playSound(item.sound, false).then(praise).then(function () { return wait(250); }).then(next);
+  }
+
+  // Blend it: tap each letter (its sound), then Blend (the whole word). The picture shows if there is one.
+  var bl = null;
+  function blendScreen(item) {
+    bl = { item: item, tapped: {} };
+    var tiles = item.tiles.map(function (t, i) {
+      return '<button class="g-blend-tile k-press' + (i === 0 ? ' g-glow' : '') + '" data-blend="' + i + '">' + esc(t[0]) + '</button>';
+    }).join('');
+    frame(lion(item.english, item.japanese) + '<div class="g-stage g-stage-col">' +
+      '<div class="g-blend-pic">' + (PICTURES[item.word] ? picture(item.word, 120) : '') + '</div>' +
+      '<div class="g-blend">' + tiles + '</div>' +
+      '<button class="k-big-btn k-green k-press g-blend-go" data-act="blend" disabled>' + two('Blend!', 'つなげて よもう！') + '</button></div>', { replay: true });
+    say('Tap each letter!');
+  }
+  function tapBlend(b) {
+    var x = bl;
+    var i = +b.getAttribute('data-blend');
+    var t = x.item.tiles[i];
+    x.tapped[i] = true;
+    root.querySelectorAll('.g-blend-tile').forEach(function (e) { e.classList.remove('g-glow'); });
+    b.classList.add('g-blend-on');
+    playSound(t[1], true).then(function () {
+      if (bl !== x) return;
+      var nextTile = root.querySelector('[data-blend="' + (i + 1) + '"]');
+      var all = x.item.tiles.every(function (_, k) { return x.tapped[k]; });
+      if (all) {
+        var go = root.querySelector('.g-blend-go');
+        go.disabled = false;
+        go.classList.add('g-glow');
+      } else if (nextTile && !x.tapped[i + 1]) {
+        nextTile.classList.add('g-glow');
+      }
+    });
+  }
+  function blendGo() {
+    var x = bl;
+    busy = true;
+    root.querySelector('.g-blend').classList.add('g-blend-joined');
+    root.querySelector('.g-blend-go').disabled = true;
+    var pic = root.querySelector('.g-blend-pic');
+    if (pic) pic.classList.add('g-blend-pic-on');
+    setBubble(x.item.word + '!', '');
+    playWord(x.item.word).then(function () {
+      if (bl === x) boardDone(x.item, 0);
+    });
+  }
+
   // ---------- flow ----------
 
   var ri = 0;
@@ -1582,6 +2104,8 @@
     ws = null;
     cw = null;
     mem = mt = st = hd = pd = picked = null;
+    if (sy && sy.rec) try { sy.rec.abort(); } catch (e) {}
+    sy = pr = wsh = sb = bl = null;
     if (!item) return endScreen();
     if (rounds[ri].type === 'yesno') yesnoScreen(item);
     else if (rounds[ri].type === 'count') countScreen(item);
@@ -1596,6 +2120,14 @@
     else if (rounds[ri].type === 'match') matchScreen(item);
     else if (rounds[ri].type === 'sort') sortScreen(item);
     else if (rounds[ri].type === 'hidden') hiddenScreen(item);
+    else if (rounds[ri].type === 'pick') pickScreen(item);
+    else if (rounds[ri].type === 'say') sayScreen(item);
+    else if (rounds[ri].type === 'elf') elfScreen(item);
+    else if (rounds[ri].type === 'wish') wishScreen(item);
+    else if (rounds[ri].type === 'present') presentScreen(item);
+    else if (rounds[ri].type === 'sounds') soundsScreen(item);
+    else if (rounds[ri].type === 'listen') listenScreen(item);
+    else if (rounds[ri].type === 'blend') blendScreen(item);
     else tapScreen(item);
   }
 
@@ -1615,7 +2147,7 @@
     busy = true;
     saveAnswer(currentItem(), wrong + 1);
     el.classList.add(el.classList.contains('g-answer') ? 'g-picked' : 'g-right');
-    root.querySelectorAll('.g-answer, .g-choice, .g-letter-tile').forEach(function (b) { b.disabled = true; });
+    root.querySelectorAll('.g-answer, .g-choice, .g-letter-tile, .g-sentence').forEach(function (b) { b.disabled = true; });
     setBubble(en, jp);
     say(en).then(praise).then(function () { return wait(250); }).then(next);
   }
@@ -1645,6 +2177,8 @@
       return wrongAnswer(btn, item, '[data-answer="' + item.correct + '"]');
     }
     if (usesAvatar(item)) kidPose(picked === 'yes' ? 'stand' : 'shrug');
+    var sack = root.querySelector('.g-sack');
+    if (sack) sack.classList.remove('g-shadow');
     // A fact answer also says the whole sentence: "No, it isn't. It's a banana."
     var after = item.kind === 'fact' && item.after_correct ? item.after_correct : null;
     rightAnswer(btn, ans.english + (after ? ' ' + after.english : ''), ans.japanese + (after ? ' ' + after.japanese : ''));
@@ -1681,13 +2215,38 @@
         else if (freeze && freeze.phase !== 'pick') say(freeze.phase === 'dance' ? 'Dance!' : 'Freeze!');
         else if (cw) say(cw.b.words[cw.active].text + '.');
         else if (hd) hiddenAsk();
+        else if (rounds[ri].type === 'pick') askPick(item);
+        else if (rounds[ri].type === 'listen') playSound(item.sound, true);
+        else if (rounds[ri].type === 'blend') playWord(item.word);
+        else if (rounds[ri].type === 'bubble' && item.sound) playSound(item.sound, true);
+        else if (pr) say(root.querySelector('[data-ptoy]') ? 'What is it?' : 'What color is the paper?');
         else say(item.english, item.audio);
       }
       return;
     }
     if (act === 'freeze') return tapFreeze(b);
+    if (act === 'mic-on' || act === 'mic-off') {
+      setMic(act === 'mic-on');
+      if (sy && !busy) {
+        sayScreen(sy.item);
+        if (act === 'mic-on') listenSay();
+      }
+      return;
+    }
     if (busy) return;
+    if (act === 'listen') return listenSay();
+    if (act === 'said') return finishSay('Great! ' + cap(wordText(currentItem().word)) + '!', 'じょうず！' + wordJa(currentItem().word));
+    if (act === 'hearsound') return playSound(currentItem().sound, true);
+    if (act === 'blend' && bl) return blendGo();
     if (b.hasAttribute('data-answer')) return answerYesNo(b);
+    if (b.hasAttribute('data-sentence')) return answerPick(b);
+    if (b.hasAttribute('data-elf')) return answerElf(b);
+    if (b.hasAttribute('data-wish') && wsh) return tapWish(b);
+    if (b.hasAttribute('data-paper') && pr) return tapPaper(b);
+    if (b.hasAttribute('data-ptoy') && pr) return tapToy(b);
+    if (b.hasAttribute('data-sound') && sb) return tapSound(b);
+    if (b.hasAttribute('data-heard')) return answerListen(b);
+    if (b.hasAttribute('data-blend') && bl) return tapBlend(b);
     if (b.hasAttribute('data-choice')) return rounds[ri].type === 'bubble' ? answerBubble(b) : answerTap(b);
     if (b.hasAttribute('data-mem') && mem) return tapMemory(b);
     if (b.hasAttribute('data-hide') && hd) return tapHidden(b);

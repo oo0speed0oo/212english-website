@@ -64,6 +64,67 @@ foreach ( (array) $game['rounds'] as $round ) {
 	$rounds[] = $round;
 }
 
+/*
+ * ABC phonics (sounds, listen, blend, letter bubbles): the letters, key words and sound files of Mike's phonics
+ * order, read from the adult phonics files (portal/phonics/phonics-sounds.csv, portal/audio/phonics/).
+ * Only what this game uses is sent; a file that is missing makes the game use the browser voice instead.
+ */
+$phonics = null;
+$need_sounds = array();
+$need_words  = array();
+foreach ( $rounds as $round ) {
+	foreach ( $round['items'] as $item ) {
+		foreach ( (array) ( $item['sounds'] ?? array() ) as $no ) {
+			$need_sounds[] = (int) $no;
+		}
+		if ( isset( $item['sound'] ) ) {
+			$need_sounds[] = (int) $item['sound'];
+		}
+		if ( 'blend' === $item['type'] ) {
+			$need_words[] = (string) $item['word'];
+			foreach ( (array) $item['tiles'] as $t ) {
+				$need_sounds[] = (int) $t[1];
+			}
+		}
+	}
+}
+if ( $need_sounds || $need_words ) {
+	$portal = dirname( __DIR__ ) . '/portal';
+	$letters = array();
+	$csv = $portal . '/phonics/phonics-sounds.csv';
+	if ( is_readable( $csv ) && ( $h = fopen( $csv, 'r' ) ) ) {
+		fgetcsv( $h );
+		while ( ( $r = fgetcsv( $h ) ) !== false ) {
+			if ( isset( $r[2] ) && (int) $r[0] > 0 ) {
+				$letters[ (int) $r[0] ] = array( trim( $r[1] ), trim( explode( '/', $r[2] )[0] ) );
+			}
+		}
+		fclose( $h );
+	}
+	$audio   = $portal . '/audio/phonics/';
+	$phonics = array(
+		'base'   => '../portal/audio/phonics/',
+		'v'      => is_dir( $audio ) ? (int) filemtime( $audio ) : 0,
+		'sounds' => array(),
+		'words'  => array(),
+	);
+	foreach ( array_unique( $need_sounds ) as $no ) {
+		$phonics['sounds'][ $no ] = array(
+			'letter' => $letters[ $no ][0] ?? '',
+			'key'    => $letters[ $no ][1] ?? '',
+			'file'   => is_file( $audio . 'sounds/' . $no . '.m4a' ),
+			'alone'  => is_file( $audio . 'alone/' . $no . '.m4a' ),
+		);
+	}
+	foreach ( array_unique( $need_words ) as $w ) {
+		if ( preg_match( '/^[a-z-]+$/', $w ) && is_file( $audio . 'words/' . $w . '.m4a' ) ) {
+			$phonics['words'][ $w ] = true;
+		}
+	}
+	$phonics['sounds'] = (object) $phonics['sounds'];
+	$phonics['words']  = (object) $phonics['words'];
+}
+
 $h212_kids_game = array(
 	'id'       => $game_id,
 	'english'  => $game['english'],
@@ -84,13 +145,15 @@ $h212_kids_game = array(
 		'dancers' => (int) ( $games['freeze']['dancers'][ $level ] ?? 3 ),
 		'seconds' => $games['freeze']['dance_seconds'] ?? array( 5, 9 ),
 	),
-	// Board games (memory, bubble, match, sort, hidden): how big a board is for this child's level.
+	// Board games (memory, bubble, match, sort, hidden, elf, wish, present): how big a board is for this child's level.
+	// read_choices: 1 = the lion reads the written answers aloud (Pick the answer, Pass the Present) for this level.
 	'boards'   => array_map(
 		function ( $by_level ) use ( $level ) {
 			return (int) ( is_array( $by_level ) ? ( $by_level[ $level ] ?? 0 ) : $by_level );
 		},
 		(array) ( $games['boards'] ?? array() )
 	),
+	'phonics'  => $phonics,
 	'answers'  => $games['answers'],
 	'praise'   => $games['praise'],
 	'child'    => $child,

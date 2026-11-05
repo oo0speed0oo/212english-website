@@ -5,7 +5,7 @@
     "themes > games.  Each tile: id, english, japanese, icon, color, month (optional: nov, dec ...).",
     "game (optional): a game id from games.json. Tiles with a game open it; tiles without one open the temporary \"being made\" page.",
     "ids: short words with a-z, 0-9 and -. Never reuse an id. (Future kids question ids start at 100000.)",
-    "icons: apple, banana, pizza, music, speaker, cards, bubbles, yesno, sack, gift, letter, bell, tree, star, smile, sad, shapes, circle, colors, numbers, abc, missing, search, cross, oddout, match, sort, hidden, class, backpack",
+    "icons: apple, banana, pizza, music, speaker, cards, bubbles, yesno, sack, gift, letter, bell, tree, star, smile, sad, shapes, circle, colors, numbers, abc, missing, search, cross, oddout, match, sort, hidden, pick, mic, class, backpack, or any picture name from kids/pictures.js (carrot, robot, snowman, teddy_bear ...)",
     "colors: any #RRGGBB. Nice ones: #FF9E94 #FFE27A #FFB46B #9FD3FF #C9B8FF #8ED6A0 #FF7DA8"
   ],
 
@@ -31,10 +31,10 @@
           "id": "dec", "english": "Dec", "japanese": "12がつ",
           "title_english": "Santa's Workshop", "title_japanese": "サンタのこうぼう", "icon": "tree",
           "lessons": [
-            { "id": "dec-1", "number": 1, "english": "Santa's Sack", "japanese": "サンタのふくろ", "icon": "sack", "color": "#FF9E94" },
-            { "id": "dec-2", "number": 2, "english": "Elf Workshop", "japanese": "こびとのこうぼう", "icon": "colors", "color": "#8ED6A0" },
-            { "id": "dec-3", "number": 3, "english": "Dear Santa", "japanese": "サンタへのてがみ", "icon": "letter", "color": "#FFE27A" },
-            { "id": "dec-4", "number": 4, "english": "Pass the Present", "japanese": "プレゼントまわし", "icon": "gift", "color": "#C9B8FF" }
+            { "id": "dec-1", "number": 1, "english": "Santa's Sack", "japanese": "サンタのふくろ", "icon": "sack", "color": "#FF9E94", "game": "santa-sack" },
+            { "id": "dec-2", "number": 2, "english": "Elf Workshop", "japanese": "こびとのこうぼう", "icon": "colors", "color": "#8ED6A0", "game": "elf-workshop" },
+            { "id": "dec-3", "number": 3, "english": "Dear Santa", "japanese": "サンタへのてがみ", "icon": "letter", "color": "#FFE27A", "game": "dear-santa" },
+            { "id": "dec-4", "number": 4, "english": "Pass the Present", "japanese": "プレゼントまわし", "icon": "gift", "color": "#C9B8FF", "game": "pass-present" }
           ]
         }
       ]
@@ -67,7 +67,85 @@
         { "id": "food-words", "english": "Pick the word", "japanese": "ことばをえらぼう", "icon": "abc", "color": "#C9B8FF", "month": "nov", "game": "fruits-words" },
         { "id": "food-missing", "english": "Missing Letters", "japanese": "たりない もじ", "icon": "missing", "color": "#FFB46B", "month": "nov", "game": "fruits-missing" },
         { "id": "food-search", "english": "Word Search", "japanese": "ことば さがし", "icon": "search", "color": "#9FD3FF", "month": "nov", "game": "fruits-search" },
-        { "id": "food-cross", "english": "Crossword", "japanese": "クロスワード", "icon": "cross", "color": "#8ED6A0", "month": "nov", "game": "fruits-cross" }
+        { "id": "food-cross", "english": "Crossword", "japanese": "クロスワード", "icon": "cross", "color": "#8ED6A0", "month": "nov", "game": "fruits-cross" },
+        { "id": "food-pick", "english": "Pick the answer", "japanese": "こたえを えらぼう", "icon": "pick", "color": "#8ED6A0", "month": "nov", "game": "food-pick" },
+        { "id": "food-say", "english": "Say it", "japanese": "いってみよう", "icon": "mic", "color": "#FF9E94", "month": "nov", "game": "food-say" }
+      ]
+    },
+    {
+      "id": "christmas", "english": "Christmas", "japanese": "クリスマス", "icon": "tree", "background": "#E2F5E6",
+      "games": [
+        { "id": "xmas-tap", "english": "Tap it", "japanese": "きいてタップ", "icon": "speaker", "color": "#FFE27A", "month": "dec", "game": "xmas-tap" },
+        { "id": "xmas-sack", "english": "Santa's Sack", "japanese": "サンタのふくろ", "icon": "sack", "color": "#FF9E94", "month": "dec", "game": "santa-sack" },
+        { "id": "xmas-what", "english": "What is it?", "japanese": "なあに？", "icon": "snowman", "color": "#9FD3FF", "month": "dec", "game": "xmas-what" },
+        { "id": "xmas-memory", "english": "Memory", "japanese": "ペアさがし", "icon": "cards", "color": "#8ED6A0", "month": "dec", "game": "xmas-memory" },
+        { "id": "xmas-pop", "english": "Pop it", "japanese": "バブルポップ", "icon": "bubbles", "color": "#C9B8FF", "month": "dec", "game": "xmas-pop" },
+        { "id": "xmas-match", "english": "Match it", "japanese": "あわせよう", "icon": "match", "color": "#FFB46B", "month": "dec", "game": "xmas-match" },
+        { "id": "xmas-oddout", "english": "Odd one out", "japanese": "なかまはずれ", "icon": "oddout", "color": "#FFE27A", "month": "dec", "game": "xmas-oddout" },
+        { "id": "xmas-pick", "english": "Pick the answer", "japanese": "こたえを えらぼう", "icon": "pick", "color": "#8ED6A0", "month": "dec", "game": "xmas-pick" },
+        { "id": "xmas-say", "english": "Say it", "japanese": "いってみよう", "icon": "mic", "color": "#FF9E94", "month": "dec", "game": "xmas-say" },
+        { "id": "xmas-missing", "english": "Missing Letters", "japanese": "たりない もじ", "icon": "missing", "color": "#FFB46B", "month": "dec", "game": "xmas-missing" },
+        { "id": "xmas-search", "english": "Word Search", "japanese": "ことば さがし", "icon": "search", "color": "#9FD3FF", "month": "dec", "game": "xmas-search" },
+        { "id": "xmas-cross", "english": "Crossword", "japanese": "クロスワード", "icon": "cross", "color": "#8ED6A0", "month": "dec", "game": "xmas-cross" }
+      ]
+    },
+    {
+      "id": "toys", "english": "Toys", "japanese": "おもちゃ", "icon": "teddy_bear", "background": "#E0F0FF",
+      "games": [
+        { "id": "toys-tap", "english": "Tap it", "japanese": "きいてタップ", "icon": "speaker", "color": "#FFE27A", "month": "dec", "game": "toys-tap" },
+        { "id": "toys-santa", "english": "Dear Santa", "japanese": "サンタへの てがみ", "icon": "letter", "color": "#FF9E94", "month": "dec", "game": "dear-santa" },
+        { "id": "toys-present", "english": "Pass the Present", "japanese": "プレゼントまわし", "icon": "gift", "color": "#C9B8FF", "month": "dec", "game": "pass-present" },
+        { "id": "toys-what", "english": "What is it?", "japanese": "なあに？", "icon": "robot", "color": "#9FD3FF", "month": "dec", "game": "toys-what" },
+        { "id": "toys-isit", "english": "Is it a…?", "japanese": "これは…？", "icon": "yesno", "color": "#8ED6A0", "month": "dec", "game": "toys-isit" },
+        { "id": "toys-memory", "english": "Memory", "japanese": "ペアさがし", "icon": "cards", "color": "#FFB46B", "month": "dec", "game": "toys-memory" },
+        { "id": "toys-pop", "english": "Pop it", "japanese": "バブルポップ", "icon": "bubbles", "color": "#C9B8FF", "month": "dec", "game": "toys-pop" },
+        { "id": "toys-match", "english": "Match it", "japanese": "あわせよう", "icon": "match", "color": "#8ED6A0", "month": "dec", "game": "toys-match" },
+        { "id": "toys-sort", "english": "Sort it", "japanese": "わけよう", "icon": "sort", "color": "#FF9E94", "month": "dec", "game": "toys-sort" },
+        { "id": "toys-oddout", "english": "Odd one out", "japanese": "なかまはずれ", "icon": "oddout", "color": "#FFE27A", "month": "dec", "game": "toys-oddout" },
+        { "id": "toys-pick", "english": "Pick the answer", "japanese": "こたえを えらぼう", "icon": "pick", "color": "#9FD3FF", "month": "dec", "game": "toys-pick" },
+        { "id": "toys-say", "english": "Say it", "japanese": "いってみよう", "icon": "mic", "color": "#FF9E94", "month": "dec", "game": "toys-say" },
+        { "id": "toys-missing", "english": "Missing Letters", "japanese": "たりない もじ", "icon": "missing", "color": "#FFB46B", "month": "dec", "game": "toys-missing" },
+        { "id": "toys-search", "english": "Word Search", "japanese": "ことば さがし", "icon": "search", "color": "#9FD3FF", "month": "dec", "game": "toys-search" },
+        { "id": "toys-cross", "english": "Crossword", "japanese": "クロスワード", "icon": "cross", "color": "#8ED6A0", "month": "dec", "game": "toys-cross" }
+      ]
+    },
+    {
+      "id": "colors", "english": "Colors", "japanese": "いろ", "icon": "colors", "background": "#FFE0EC",
+      "games": [
+        { "id": "colors-tap", "english": "Tap it", "japanese": "きいてタップ", "icon": "speaker", "color": "#FFE27A", "month": "dec", "game": "colors-tap" },
+        { "id": "colors-pop", "english": "Pop it", "japanese": "バブルポップ", "icon": "bubbles", "color": "#C9B8FF", "month": "dec", "game": "colors-pop" },
+        { "id": "colors-memory", "english": "Memory", "japanese": "ペアさがし", "icon": "cards", "color": "#9FD3FF", "month": "dec", "game": "colors-memory" },
+        { "id": "colors-match", "english": "Match it", "japanese": "あわせよう", "icon": "match", "color": "#8ED6A0", "month": "dec", "game": "colors-match" },
+        { "id": "colors-oddout", "english": "Odd one out", "japanese": "なかまはずれ", "icon": "oddout", "color": "#FFB46B", "month": "dec", "game": "colors-oddout" },
+        { "id": "colors-sort", "english": "Sort it", "japanese": "わけよう", "icon": "sort", "color": "#FF9E94", "month": "dec", "game": "colors-sort" },
+        { "id": "colors-elves", "english": "Elf Workshop", "japanese": "こびとのこうぼう", "icon": "gift", "color": "#8ED6A0", "month": "dec", "game": "elf-workshop" },
+        { "id": "colors-missing", "english": "Missing Letters", "japanese": "たりない もじ", "icon": "missing", "color": "#FFB46B", "month": "dec", "game": "colors-missing" },
+        { "id": "colors-search", "english": "Word Search", "japanese": "ことば さがし", "icon": "search", "color": "#9FD3FF", "month": "dec", "game": "colors-search" },
+        { "id": "colors-cross", "english": "Crossword", "japanese": "クロスワード", "icon": "cross", "color": "#8ED6A0", "month": "dec", "game": "colors-cross" },
+        { "id": "colors-pick", "english": "Pick the answer", "japanese": "こたえを えらぼう", "icon": "pick", "color": "#C9B8FF", "month": "dec", "game": "colors-pick" },
+        { "id": "colors-say", "english": "Say it", "japanese": "いってみよう", "icon": "mic", "color": "#FF9E94", "month": "dec", "game": "colors-say" }
+      ]
+    },
+    {
+      "id": "numbers", "english": "Numbers", "japanese": "かず", "icon": "numbers", "background": "#DDF0FF",
+      "games": [
+        { "id": "numbers-howmany", "english": "How many?", "japanese": "いくつ？", "icon": "banana", "color": "#FFE27A", "month": "nov", "game": "fruit-shopping" },
+        { "id": "numbers-pop", "english": "Pop it", "japanese": "バブルポップ", "icon": "bubbles", "color": "#C9B8FF", "game": "numbers-pop" },
+        { "id": "numbers-tap", "english": "Tap it", "japanese": "きいてタップ", "icon": "speaker", "color": "#9FD3FF", "game": "numbers-tap" },
+        { "id": "numbers-memory", "english": "Memory", "japanese": "ペアさがし", "icon": "cards", "color": "#FF9E94", "game": "numbers-memory" },
+        { "id": "numbers-pick", "english": "Pick the answer", "japanese": "こたえを えらぼう", "icon": "pick", "color": "#8ED6A0", "game": "numbers-pick" },
+        { "id": "numbers-say", "english": "Say it", "japanese": "いってみよう", "icon": "mic", "color": "#FFB46B", "game": "numbers-say" },
+        { "id": "numbers-missing", "english": "Missing Letters", "japanese": "たりない もじ", "icon": "missing", "color": "#FFB46B", "game": "numbers-missing" },
+        { "id": "numbers-search", "english": "Word Search", "japanese": "ことば さがし", "icon": "search", "color": "#9FD3FF", "game": "numbers-search" },
+        { "id": "numbers-cross", "english": "Crossword", "japanese": "クロスワード", "icon": "cross", "color": "#8ED6A0", "game": "numbers-cross" }
+      ]
+    },
+    {
+      "id": "abc", "english": "ABC", "japanese": "アルファベット", "icon": "abc", "background": "#FFE6D6",
+      "games": [
+        { "id": "abc-sounds-nov", "english": "H · T · i", "japanese": "おとをきこう", "icon": "speaker", "color": "#FF9E94", "month": "nov", "game": "phonics-nov" },
+        { "id": "abc-sounds-dec", "english": "J · K · P", "japanese": "おとをきこう", "icon": "speaker", "color": "#8ED6A0", "month": "dec", "game": "phonics-dec" },
+        { "id": "abc-pop", "english": "Pop it", "japanese": "バブルポップ", "icon": "bubbles", "color": "#C9B8FF", "game": "abc-pop" }
       ]
     },
     {
@@ -84,37 +162,6 @@
         { "id": "shapes-tap", "english": "Tap it", "japanese": "きいてタップ", "icon": "speaker", "color": "#FFE27A" },
         { "id": "shapes-match", "english": "Match it", "japanese": "おなじかたち", "icon": "circle", "color": "#9FD3FF" },
         { "id": "shapes-memory", "english": "Memory", "japanese": "ペアさがし", "icon": "cards", "color": "#FF9E94" }
-      ]
-    },
-    {
-      "id": "colors", "english": "Colors", "japanese": "いろ", "icon": "colors", "background": "#FFE0EC",
-      "games": [
-        { "id": "colors-tap", "english": "Tap it", "japanese": "きいてタップ", "icon": "speaker", "color": "#FFE27A", "month": "dec" },
-        { "id": "colors-pop", "english": "Pop it", "japanese": "バブルポップ", "icon": "bubbles", "color": "#C9B8FF", "month": "dec", "game": "colors-pop" },
-        { "id": "colors-memory", "english": "Memory", "japanese": "ペアさがし", "icon": "cards", "color": "#9FD3FF", "month": "dec", "game": "colors-memory" },
-        { "id": "colors-match", "english": "Match it", "japanese": "あわせよう", "icon": "match", "color": "#8ED6A0", "month": "dec", "game": "colors-match" },
-        { "id": "colors-oddout", "english": "Odd one out", "japanese": "なかまはずれ", "icon": "oddout", "color": "#FFB46B", "month": "dec", "game": "colors-oddout" },
-        { "id": "colors-sort", "english": "Sort it", "japanese": "わけよう", "icon": "sort", "color": "#FF9E94", "month": "dec", "game": "colors-sort" },
-        { "id": "colors-elves", "english": "Elf Workshop", "japanese": "こびとのこうぼう", "icon": "gift", "color": "#8ED6A0", "month": "dec" },
-        { "id": "colors-missing", "english": "Missing Letters", "japanese": "たりない もじ", "icon": "missing", "color": "#FFB46B", "month": "dec", "game": "colors-missing" },
-        { "id": "colors-search", "english": "Word Search", "japanese": "ことば さがし", "icon": "search", "color": "#9FD3FF", "month": "dec", "game": "colors-search" },
-        { "id": "colors-cross", "english": "Crossword", "japanese": "クロスワード", "icon": "cross", "color": "#8ED6A0", "month": "dec", "game": "colors-cross" }
-      ]
-    },
-    {
-      "id": "numbers", "english": "Numbers", "japanese": "かず", "icon": "numbers", "background": "#DDF0FF",
-      "games": [
-        { "id": "numbers-howmany", "english": "How many?", "japanese": "いくつ？", "icon": "banana", "color": "#FFE27A", "month": "nov" },
-        { "id": "numbers-pop", "english": "Pop it", "japanese": "バブルポップ", "icon": "bubbles", "color": "#C9B8FF" },
-        { "id": "numbers-tap", "english": "Tap it", "japanese": "きいてタップ", "icon": "speaker", "color": "#9FD3FF" }
-      ]
-    },
-    {
-      "id": "abc", "english": "ABC", "japanese": "アルファベット", "icon": "abc", "background": "#FFE6D6",
-      "games": [
-        { "id": "abc-sounds-nov", "english": "H · T · i", "japanese": "おとをきこう", "icon": "speaker", "color": "#FF9E94", "month": "nov" },
-        { "id": "abc-sounds-dec", "english": "J · K · P", "japanese": "おとをきこう", "icon": "speaker", "color": "#8ED6A0", "month": "dec" },
-        { "id": "abc-pop", "english": "Pop it", "japanese": "バブルポップ", "icon": "bubbles", "color": "#C9B8FF" }
       ]
     }
   ]

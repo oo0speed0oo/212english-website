@@ -81,14 +81,16 @@
     bell: ['0 0 60 60', '<path d="M30 8 C18 8 14 20 14 30 C14 38 10 42 8 46 H52 C50 42 46 38 46 30 C46 20 42 8 30 8Z" fill="#FFD24D" stroke="' + INK + '" stroke-width="4" stroke-linejoin="round"/><circle cx="30" cy="50" r="5" fill="#FFB46B" stroke="' + INK + '" stroke-width="3.5"/>'],
     tree: ['0 0 60 60', '<polygon points="30,4 46,26 38,26 52,44 8,44 22,26 14,26" fill="#5CC98B" stroke="' + INK + '" stroke-width="4" stroke-linejoin="round"/><rect x="25" y="44" width="10" height="10" fill="#B4703A" stroke="' + INK + '" stroke-width="3.5"/><circle cx="24" cy="34" r="3" fill="#E8453C"/><circle cx="36" cy="22" r="3" fill="#FFD24D"/><circle cx="38" cy="38" r="3" fill="#4DA3FF"/>']
   };
-  var TEXT_ICONS = { numbers: ['123', '#5CC98B', 20], abc: ['ABC', '#FF7DA8', 19], missing: ['a_c', '#FFB46B', 19] };
+  var TEXT_ICONS = { numbers: ['123', '#5CC98B', 20], abc: ['ABC', '#FF7DA8', 19], missing: ['a_c', '#FFB46B', 19], pick: ['Yes!', '#4DA3FF', 17] };
+  ICONS.mic = ['0 0 40 40', '<rect x="13" y="3" width="14" height="23" rx="7" fill="#FF7DA8" stroke="' + INK + '" stroke-width="3"/><path d="M8 19 Q8 31 20 31 Q32 31 32 19 M20 31 V37 M13 37 H27" stroke="' + INK + '" stroke-width="3.5" fill="none" stroke-linecap="round"/>'];
 
   function icon(name, size) {
     if (TEXT_ICONS[name]) {
       var t = TEXT_ICONS[name];
       return '<span class="k-text-icon" style="background:' + t[1] + ';font-size:' + Math.round(t[2] * size / 48) + 'px;width:' + size + 'px;height:' + size + 'px" aria-hidden="true">' + t[0] + '</span>';
     }
-    var i = ICONS[name] || ICONS.star;
+    // Any picture from pictures.js works too (carrot, robot, snowman, teddy_bear ...).
+    var i = ICONS[name] || (window.H212_KIDS_PICTURES || {})[name] || ICONS.star;
     var box = i[0].split(' ');
     var ratio = box[3] / box[2];
     var w = ratio > 1 ? Math.round(size / ratio) : size;

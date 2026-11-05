@@ -83,6 +83,7 @@ $h212_kids_boot = array(
 <div id="kids-app" aria-live="polite"></div>
 <script>window.H212_KIDS = <?php echo wp_json_encode( $h212_kids_boot ); ?>;</script>
 <script src="music.js?v=<?php echo h212_kids_asset_v( 'music.js' ); ?>"></script>
+<script src="pictures.js?v=<?php echo h212_kids_asset_v( 'pictures.js' ); ?>"></script>
 <script src="kids.js?v=<?php echo h212_kids_asset_v( 'kids.js' ); ?>"></script>
 </body>
 </html>

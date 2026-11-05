@@ -1599,3 +1599,186 @@ button:focus-visible, a:focus-visible, input:focus-visible {
 	.g-bub-lane { animation-duration: 20s !important; }
 	.g-drag { transition: none; }
 }
+
+/* ---------- Batches 3-5 + December: Pick the answer, Say it, Santa's Sack, Elf Workshop, Dear Santa,
+   Pass the Present, ABC phonics (sound board, listen, blend) ---------- */
+
+/* Pick the written answer: big sentence buttons, one under the other. */
+.g-sentences { display: flex; flex-direction: column; gap: 14px; width: min(620px, 100%); }
+.g-sentence {
+	min-height: 72px;
+	padding: 8px 24px 12px;
+	border-radius: 24px;
+	background: var(--white);
+	border: var(--line);
+	box-shadow: var(--lift-small);
+	color: var(--ink);
+	font: 800 clamp(26px, 3.6vw, 36px)/1.15 'Baloo 2', sans-serif;
+	text-align: left;
+	cursor: pointer;
+}
+.g-sentence.g-right { background: #D8F1DD; }
+.g-count-show { width: auto; min-width: 210px; max-width: min(620px, 100%); height: auto; min-height: 140px; padding: 14px 20px; flex-wrap: wrap; gap: 6px; }
+
+/* Say it */
+.g-say-row { display: flex; gap: 22px; align-items: center; justify-content: center; flex-wrap: wrap; }
+.g-mic {
+	display: inline-flex;
+	align-items: center;
+	gap: 10px;
+	min-height: 96px;
+	padding: 0 28px;
+	border-radius: 999px;
+	background: #FFE27A;
+	border: var(--line);
+	box-shadow: var(--lift);
+	color: var(--ink);
+	font: 800 26px/1.05 'Baloo 2', sans-serif;
+	cursor: pointer;
+}
+.g-mic-live { background: #FF9E94; animation: g-glow 1.1s ease-in-out infinite; }
+.g-mic-switch {
+	background: none;
+	border: 0;
+	color: var(--ink);
+	opacity: .7;
+	font: 700 14px/1.4 'M PLUS Rounded 1c', sans-serif;
+	text-decoration: underline;
+	min-height: 44px;
+	cursor: pointer;
+}
+
+/* Santa's Sack: the picture is a shadow in a sack until it is answered. */
+.g-sack { background: #E9C9A0; border-radius: 48px 48px 36px 36px; position: relative; }
+.g-sack::before {
+	content: '';
+	position: absolute;
+	top: -14px;
+	left: 50%;
+	width: 90px;
+	height: 26px;
+	margin-left: -45px;
+	border-radius: 14px;
+	background: #C98A4B;
+	border: var(--line-thin);
+}
+.g-sack .g-pic { transition: filter .5s ease, opacity .5s ease; }
+
+/* Dear Santa: the letter with boxes, the toys to pick from. */
+.g-wish { flex-direction: column; gap: 18px; }
+.g-letter {
+	background: #FFFDF4;
+	border: var(--line);
+	border-radius: 18px;
+	box-shadow: var(--lift-small);
+	padding: 10px 22px 12px;
+	display: flex;
+	flex-direction: column;
+	gap: 6px;
+	min-width: min(460px, 100%);
+}
+.g-letter b { font-size: 28px; line-height: 1.1; }
+.g-letter-from { align-self: flex-end; font-size: 20px; font-weight: 800; }
+.g-wish-boxes { display: flex; gap: 14px; justify-content: center; }
+.g-wish-box { width: 90px; height: 90px; border: 4px dashed #C9B48A; border-radius: 18px; display: flex; align-items: center; justify-content: center; background: var(--white); }
+.g-wish-full { border-style: solid; border-color: var(--ink); animation: g-pop .45s ease; }
+.g-wish-toys { display: flex; flex-wrap: wrap; gap: 16px; justify-content: center; max-width: 760px; }
+.g-wish-toy { width: 128px; height: 128px; padding: 0; cursor: pointer; }
+.g-wish-used { opacity: .3; }
+
+/* Pass the Present */
+.g-present { transition: transform .6s ease, opacity .6s ease; }
+.g-present-pass { animation: g-pass 1.2s ease-in-out infinite; }
+.g-present-open { transform: scale(1.4) rotate(8deg); opacity: 0; }
+.g-present-q:empty { min-height: 120px; }
+.g-present-toy { animation: g-pop .5s ease; }
+@keyframes g-pass {
+	0%, 100% { transform: translateX(-120px) rotate(-8deg); }
+	50% { transform: translateX(120px) rotate(8deg); }
+}
+.g-choice-color { width: 190px; height: 150px; flex-direction: column; gap: 6px; }
+
+/* ABC phonics */
+.g-sounds { display: flex; flex-wrap: wrap; gap: 24px; justify-content: center; }
+.g-sound-tile {
+	width: 190px;
+	height: 230px;
+	border-radius: 32px;
+	background: var(--white);
+	border: var(--line);
+	box-shadow: var(--lift);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 4px;
+	color: var(--ink);
+	cursor: pointer;
+	font-family: inherit;
+}
+.g-sound-letter { font-size: 92px; font-weight: 800; line-height: .9; }
+.g-sound-key { font-size: 24px; font-weight: 800; line-height: 1; }
+.g-sound-on { background: #FFF3B8; transform: translateY(-6px); }
+.g-sound-done { background: #D8F1DD; }
+.g-big-letter { width: 170px; height: 170px; font: 800 110px/1 'Baloo 2', sans-serif; color: var(--ink); padding: 0 0 12px; }
+.g-hear {
+	width: 96px;
+	height: 96px;
+	border-radius: 50%;
+	background: #FFE27A;
+	border: var(--line);
+	box-shadow: var(--lift);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+}
+.g-blend { display: flex; gap: 14px; justify-content: center; transition: gap .4s ease; }
+.g-blend-tile {
+	width: 120px;
+	height: 140px;
+	border-radius: 26px;
+	background: #FFE27A;
+	border: var(--line);
+	box-shadow: var(--lift);
+	font: 800 92px/1 'Baloo 2', sans-serif;
+	color: var(--ink);
+	padding: 0 0 12px;
+	cursor: pointer;
+}
+.g-blend-on { background: #FFF3B8; }
+.g-blend-joined { gap: 0; }
+.g-blend-joined .g-blend-tile { background: #8ED6A0; border-radius: 0; }
+.g-blend-joined .g-blend-tile:first-child { border-radius: 26px 0 0 26px; }
+.g-blend-joined .g-blend-tile:last-child { border-radius: 0 26px 26px 0; }
+.g-blend-pic { height: 120px; opacity: 0; transition: opacity .4s ease; }
+.g-blend-pic-on { opacity: 1; animation: g-pop .5s ease; }
+.g-blend-go:disabled { opacity: .45; }
+
+@media (max-width: 640px) {
+	.g-sentence { min-height: 60px; font-size: 24px; padding: 6px 16px 10px; }
+	.g-mic { min-height: 80px; font-size: 22px; padding: 0 20px; }
+	.g-wish { gap: 10px; }
+	.g-wish-toys { gap: 8px; }
+	.g-wish-toy { width: 78px; height: 78px; border-radius: 24px; }
+	.g-wish-toy .g-pic { width: 58px; height: 58px; }
+	.g-letter b { font-size: 22px; }
+	.g-wish-box { width: 72px; height: 72px; }
+	.g-wish-box .g-pic { width: 54px; height: 54px; }
+	.g-sounds { gap: 12px; }
+	.g-sound-tile { width: 104px; height: 150px; gap: 2px; }
+	.g-sound-letter { font-size: 60px; }
+	.g-sound-key { font-size: 18px; }
+	.g-sound-tile .g-pic { width: 48px; height: 48px; }
+	.g-big-letter { width: 100px; height: 100px; font-size: 72px; padding-bottom: 8px; }
+	.g-blend-tile { width: 84px; height: 104px; font-size: 64px; }
+	.g-choice-color { width: 104px; height: 120px; }
+	@keyframes g-pass {
+		0%, 100% { transform: translateX(-50px) rotate(-8deg); }
+		50% { transform: translateX(50px) rotate(8deg); }
+	}
+}
+@media (prefers-reduced-motion: reduce) {
+	.g-present-pass, .g-mic-live, .g-wish-full, .g-present-toy, .g-blend-pic-on { animation: none; }
+	.g-present, .g-blend, .g-sack .g-pic { transition: none; }
+}
