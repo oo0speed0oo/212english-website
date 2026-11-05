@@ -145,7 +145,9 @@
       "games": [
         { "id": "abc-sounds-nov", "english": "H · T · i", "japanese": "おとをきこう", "icon": "speaker", "color": "#FF9E94", "month": "nov", "game": "phonics-nov" },
         { "id": "abc-sounds-dec", "english": "J · K · P", "japanese": "おとをきこう", "icon": "speaker", "color": "#8ED6A0", "month": "dec", "game": "phonics-dec" },
-        { "id": "abc-pop", "english": "Pop it", "japanese": "バブルポップ", "icon": "bubbles", "color": "#C9B8FF", "game": "abc-pop" }
+        { "id": "abc-pop", "english": "Pop it", "japanese": "バブルポップ", "icon": "bubbles", "color": "#C9B8FF", "game": "abc-pop" },
+        { "id": "abc-all", "english": "All the sounds", "japanese": "ぜんぶの おと", "icon": "speaker", "color": "#FFE27A", "game": "abc-all" },
+        { "id": "abc-listen", "english": "Listen and tap", "japanese": "きいて タップ", "icon": "letter_a", "color": "#9FD3FF", "game": "abc-listen" }
       ]
     },
     {

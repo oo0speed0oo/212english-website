@@ -1782,3 +1782,221 @@ button:focus-visible, a:focus-visible, input:focus-visible {
 	.g-present-pass, .g-mic-live, .g-wish-full, .g-present-toy, .g-blend-pic-on { animation: none; }
 	.g-present, .g-blend, .g-sack .g-pic { transition: none; }
 }
+
+/* ---------- Round 2 (Nov 5): screen fit, goal bar, the child's character, and the game fixes ---------- */
+
+/* Screen fit: every game fills the visible screen exactly (iPad, iPhone, any window) and never scrolls.
+   game.js shrinks a screen's content (zoom) when it is taller than the room it has. */
+html:has(.g-wrap), html:has(.g-wrap) body { height: 100%; overflow: hidden; overscroll-behavior: none; }
+.g-wrap {
+	min-height: 0;
+	height: 100vh;
+	height: 100dvh;
+	padding: max(10px, env(safe-area-inset-top)) max(16px, env(safe-area-inset-right)) max(10px, env(safe-area-inset-bottom)) max(16px, env(safe-area-inset-left));
+	max-width: 1180px;
+}
+.g-top { margin-bottom: 6px; flex: none; }
+.g-body { flex: 1; min-height: 0; position: relative; display: flex; }
+.g-fit { width: 100%; min-height: 100%; display: flex; flex-direction: column; }
+.g-fit.g-fill { height: 100%; min-height: 0; }
+.g-fit:not(.g-fill) > * { flex-shrink: 0; }
+.g-fill > .g-stage { min-height: 0; }
+
+/* The goal bar: who speaks + one sentence (tap = hear it again), the goal picture, the child. */
+.g-goal { display: flex; align-items: center; justify-content: center; gap: 12px; margin: 0 0 12px; flex: none; }
+.g-goal-say {
+	flex: 0 1 auto;
+	min-width: 0;
+	display: flex;
+	align-items: center;
+	gap: 14px;
+	background: none;
+	border: 0;
+	padding: 0;
+	text-align: left;
+}
+.g-goal .g-goal-who { width: clamp(64px, 12vh, 120px); height: auto; flex: none; }
+.g-goal-girl .g-goal-who { width: clamp(60px, 11vh, 104px); }
+.g-goal .g-bubble { display: block; }
+.g-goal .g-bubble b { display: block; font-size: clamp(24px, 3.6vw, 38px); line-height: 1.1; }
+.g-goal .g-bubble small { display: block; font-size: clamp(14px, 1.8vw, 19px); }
+.g-goal-pic {
+	flex: none;
+	display: flex;
+	align-items: center;
+	gap: 6px;
+	background: var(--white);
+	border: var(--line-thin);
+	border-radius: 22px;
+	box-shadow: var(--lift-small);
+	padding: 6px 12px;
+	min-height: 76px;
+}
+.g-goal-num { font-size: 64px; font-weight: 800; line-height: 1; color: var(--ink); }
+.g-faces { display: flex; gap: 6px; }
+.g-swatch { display: block; width: 62px; height: 62px; border-radius: 50%; border: var(--line); }
+.g-cat-marks { display: flex; gap: 8px; }
+.g-cat-mark { width: 52px; height: 52px; border-radius: 14px; border: 4px dashed #B9B2D6; display: flex; align-items: center; justify-content: center; }
+.g-cat-mark:has(svg) { border: 4px solid #5CC98B; background: #D8F1DD; }
+.g-order { display: flex; gap: 6px; }
+.g-order-item { position: relative; display: flex; }
+.g-order-done::after {
+	content: '✓';
+	position: absolute;
+	right: -8px;
+	top: -10px;
+	width: 28px;
+	height: 28px;
+	border-radius: 50%;
+	background: #5CC98B;
+	border: 3px solid var(--ink);
+	font: 800 18px/22px 'Baloo 2', sans-serif;
+	text-align: center;
+	color: var(--ink);
+}
+
+/* The "?" listen button: tap to hear the word again; after a pick it shows what was picked. */
+.g-ask {
+	flex: none;
+	min-width: 88px;
+	height: 88px;
+	border-radius: 44px;
+	background: #FFD24D;
+	border: var(--line);
+	box-shadow: var(--lift-small);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 6px;
+	padding: 0 12px;
+	animation: g-ask-pulse 1.6s ease-in-out infinite;
+}
+.g-ask-q { font-size: 64px; font-weight: 800; line-height: 1; }
+.g-ask-pick { display: flex; }
+.g-ask-pick .g-pic { width: 56px; height: 56px; }
+.g-ask-letter { font-size: 52px; font-weight: 800; line-height: 1; }
+.g-ask-tag { font-size: 20px; font-weight: 800; line-height: 1; white-space: nowrap; }
+.g-ask-good { background: #8ED6A0; animation: g-pop .45s ease; }
+.g-ask-try { background: #FFF3B8; animation: g-wiggle .5s ease; }
+@keyframes g-ask-pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.07); } }
+
+/* The child's own character: always in the goal bar, bouncing and blinking; cheers, shrugs, dances. */
+.g-me { flex: none; display: flex; flex-direction: column; align-items: center; margin-left: 4px; }
+.g-me-svg { width: clamp(64px, 12vh, 118px); height: auto; overflow: visible; animation: g-me-idle 2.4s ease-in-out infinite; }
+.g-me-name { font-size: 15px; font-weight: 800; line-height: 1; margin-top: 2px; max-width: 110px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.g-me-eyes { transform-box: fill-box; transform-origin: center; animation: g-me-blink 4s infinite; }
+.g-me-arms { transform-box: fill-box; transform-origin: 50% 100%; }
+.g-me-cheer .g-me-svg { animation: g-me-cheer .7s ease; }
+.g-me-cheer .g-me-arms { animation: g-me-arms .7s ease; }
+.g-me-shrug .g-me-svg { animation: g-me-shrug .6s ease; }
+.g-me-dance .g-me-svg { animation: g-me-dance .5s ease-in-out infinite alternate; }
+@keyframes g-me-idle { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }
+@keyframes g-me-blink { 0%, 92%, 100% { transform: scaleY(1); } 95% { transform: scaleY(.1); } }
+@keyframes g-me-cheer { 0% { transform: translateY(0); } 35% { transform: translateY(-22px) scale(1.08); } 70% { transform: translateY(2px); } 100% { transform: translateY(0); } }
+@keyframes g-me-arms { 0%, 100% { transform: scaleY(1); } 40% { transform: scaleY(1.5) translateY(-6px); } }
+@keyframes g-me-shrug { 0%, 100% { transform: rotate(0); } 30% { transform: rotate(-8deg) translateY(-3px); } 65% { transform: rotate(8deg) translateY(-3px); } }
+@keyframes g-me-dance { from { transform: rotate(-10deg) translateY(0); } to { transform: rotate(10deg) translateY(-8px); } }
+
+/* Yes / No with faces (Do you like…?). */
+.g-answer .g-face { flex: none; }
+
+/* How many: "0 of 3" on the basket. */
+.g-basket-num { width: 96px; height: 96px; flex-direction: column; gap: 0; }
+.g-basket-num b { font-size: 50px; line-height: .85; }
+.g-basket-num small { font-size: 17px; line-height: 1; }
+
+/* Pop it: balloons bounce around the whole play area. */
+.g-bub-stage { flex: 1; min-height: 0; display: flex; align-items: stretch; }
+.g-bub-sky { width: 100%; height: auto; max-height: none; flex: 1; min-height: 220px; }
+.g-bub-at { position: absolute; left: 0; top: 0; will-change: transform; }
+.g-bub-at .g-bub, .g-bub-at .g-bub:active { position: relative; left: 0; display: flex; align-items: center; justify-content: center; }
+
+/* Sound board: lowercase letters, a check once heard, pages of 12 with big arrows. */
+.g-sound-letter { text-transform: lowercase; }
+.g-sound-tile { position: relative; }
+.g-sound-check {
+	position: absolute;
+	right: -8px;
+	top: -8px;
+	width: 38px;
+	height: 38px;
+	border-radius: 50%;
+	background: #5CC98B;
+	border: 3px solid var(--ink);
+	font: 800 24px/30px 'Baloo 2', sans-serif;
+	color: var(--ink);
+	text-align: center;
+	display: none;
+}
+.g-sound-done .g-sound-check { display: block; }
+.g-sounds-many { display: grid; grid-template-columns: repeat(6, auto); gap: 14px; }
+.g-sounds-many .g-sound-tile { width: 140px; height: 168px; border-radius: 26px; }
+.g-sounds-many .g-sound-letter { font-size: 64px; }
+.g-sounds-many .g-sound-key { font-size: 18px; }
+.g-sounds-many .g-pic { width: 56px; height: 56px; }
+.g-sb-nav { display: flex; align-items: center; justify-content: center; gap: 18px; flex-wrap: wrap; }
+.g-sb-arrow {
+	width: 80px;
+	height: 80px;
+	border-radius: 50%;
+	background: var(--white);
+	border: var(--line);
+	box-shadow: var(--lift-small);
+	font-size: 34px;
+	color: var(--ink);
+}
+.g-sb-arrow:disabled { opacity: .3; cursor: default; }
+.g-sb-count { font-size: 24px; font-weight: 800; }
+.g-sb-finish { min-height: 80px; }
+
+/* Shadows (December): any shown picture can be a shadow until it is answered. */
+.g-card-show.g-sack .g-pic { transition: filter .5s ease, opacity .5s ease; }
+
+@media (max-width: 900px) and (orientation: portrait) {
+	.g-sounds-many { grid-template-columns: repeat(4, auto); }
+}
+@media (max-width: 640px) {
+	.g-goal { gap: 6px; margin-bottom: 8px; }
+	.g-goal-say { gap: 6px; }
+	.g-goal .g-goal-who { width: 56px; }
+	.g-goal .g-bubble { padding: 8px 12px 10px; }
+	.g-goal .g-bubble b { font-size: 20px; }
+	.g-goal .g-bubble small { font-size: 12px; }
+	.g-goal-pic { min-height: 56px; padding: 4px 6px; border-radius: 16px; }
+	.g-goal-pic .g-pic, .g-goal-pic .g-face { width: 40px; height: 40px; }
+	.g-goal-num { font-size: 40px; }
+	.g-swatch { width: 44px; height: 44px; }
+	.g-cat-mark { width: 38px; height: 38px; }
+	.g-ask { min-width: 64px; height: 64px; }
+	.g-ask-q { font-size: 44px; }
+	.g-ask-tag { display: none; }
+	.g-me-svg { width: 54px; }
+	.g-me-name { font-size: 12px; max-width: 64px; }
+	.g-answer .g-face { width: 48px; height: 48px; }
+	.g-sounds-many { grid-template-columns: repeat(3, auto); gap: 8px; }
+	.g-sounds-many .g-sound-tile { width: 100px; height: 124px; }
+	.g-sounds-many .g-sound-letter { font-size: 46px; }
+	.g-sb-arrow { width: 64px; height: 64px; }
+}
+/* Short screens (iPhone sideways): a slimmer goal bar. */
+@media (max-height: 500px) {
+	.g-goal { margin-bottom: 4px; }
+	.g-goal .g-goal-who, .g-me-svg { width: 52px; }
+	.g-goal .g-bubble b { font-size: 20px; }
+	.g-me-name { display: none; }
+	.g-round-btn, .g-top .k-music-btn { width: 48px; height: 48px; }
+	.g-round-spacer { width: 48px; }
+}
+@media (prefers-reduced-motion: reduce) {
+	.g-ask, .g-me-svg, .g-me-eyes, .g-me-cheer .g-me-svg, .g-me-cheer .g-me-arms, .g-me-shrug .g-me-svg, .g-me-dance .g-me-svg { animation: none; }
+}
+/* December shadows: dark enough to guess from. */
+.g-sack.g-shadow .g-pic { filter: brightness(0); opacity: .7; }
+.g-sb-finish[hidden] { display: none; }
+/* Phones held upright: the sentence gets the whole width; the goal picture and the child sit under it. */
+@media (max-width: 640px) and (orientation: portrait) {
+	.g-goal { flex-wrap: wrap; row-gap: 6px; }
+	.g-goal-say { flex: 1 1 100%; justify-content: center; }
+	.g-goal .g-bubble b { font-size: 22px; }
+}
+.g-choices.g-odd:has(> :nth-child(3):last-child) { grid-template-columns: repeat(3, auto); }

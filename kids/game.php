@@ -125,6 +125,20 @@ if ( $need_sounds || $need_words ) {
 	$phonics['words']  = (object) $phonics['words'];
 }
 
+/*
+ * Voices: audio/voices.json says which recorded file (Kokoro now, Mike's own later) says which line:
+ * { "lion": { "great job": "ui_praise_1", ... }, "girl": { ... } }. game.js plays the file and uses the
+ * browser voice only for a line that has no file. Made by _work/kids/audio/kids-voices/build_voice_list.py.
+ */
+$voices  = array();
+$voice_v = 0;
+$vfile   = __DIR__ . '/audio/voices.json';
+if ( is_readable( $vfile ) ) {
+	$voices  = json_decode( (string) file_get_contents( $vfile ), true );
+	$voices  = is_array( $voices ) ? $voices : array();
+	$voice_v = (int) filemtime( $vfile );
+}
+
 $h212_kids_game = array(
 	'id'       => $game_id,
 	'english'  => $game['english'],
@@ -135,11 +149,15 @@ $h212_kids_game = array(
 	'rounds'   => $rounds,
 	'words'    => $games['words'],
 	'colors'   => $games['colors'] ?? array(),
-	// Pizza Shop, for this child's level: toppings the customer picks, toppings the shopkeeper sees.
+	// Pizza Shop, for this child's level: toppings the shopkeeper sees, toppings one customer orders.
 	'pizza'    => array(
-		'picks'   => (int) ( $games['pizza']['picks'][ $level ] ?? 3 ),
 		'choices' => (int) ( $games['pizza']['choices'][ $level ] ?? 3 ),
+		'order'   => (int) ( $games['pizza']['order'][ $level ] ?? 1 ),
 	),
+	// Memory cards for this level: picture-picture or picture-word (a game's own card_type wins).
+	'memory_cards' => (string) ( $games['memory_cards'][ $level ] ?? 'picture-picture' ),
+	'voices'   => (object) $voices,
+	'voice_v'  => $voice_v,
 	// Freeze Dance, for this child's level: how many fruit dance, and how long each dance lasts.
 	'freeze'   => array(
 		'dancers' => (int) ( $games['freeze']['dancers'][ $level ] ?? 3 ),
@@ -165,7 +183,7 @@ $h212_kids_game = array(
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="robots" content="noindex">
 <title><?php echo esc_html( $game['english'] ); ?> – 212 Kids</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;800&family=M+PLUS+Rounded+1c:wght@500;700&display=swap">
