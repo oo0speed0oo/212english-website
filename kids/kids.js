@@ -218,7 +218,8 @@
     var hwInfo = (BOOT.homework || {})[child.id];
     var hwStars = '';
     for (var s = 0; s < 3; s++) hwStars += star(30, !!(hwInfo && hwInfo.done));
-    var hw = '<div class="k-homework' + (hwInfo ? '' : ' k-homework-none') + '"><div class="k-homework-icon">' + icon('backpack', 52) + '</div>' +
+    // On a theme page the homework is a slim strip, so more game tiles fit on one page.
+    var hw = '<div class="k-homework' + (hwInfo ? '' : ' k-homework-none') + (theme ? ' k-homework-mini' : '') + '"><div class="k-homework-icon">' + icon('backpack', 52) + '</div>' +
       two(menu.homework.english, menu.homework.japanese).replace('</span>',
         (hwInfo
           ? '<span class="k-homework-game">' + esc(hwInfo.english) + ' <span class="jp">' + esc(hwInfo.japanese) + '</span></span>' +
@@ -259,9 +260,62 @@
       body = '<p class="k-sub">No lessons yet. まだ ありません。</p>';
     }
 
-    app.innerHTML = '<div class="k-menu">' + rail + '<main class="k-main">' + top + hw + body + '</main></div>';
+    // The tiles are shown in pages that fit the screen (big arrows, never scrolling).
+    var nav = '<div class="k-pager-nav" hidden>' +
+      '<button class="k-pager-btn k-press" data-page="-1" aria-label="Back">◀</button>' +
+      '<span class="k-pager-count"></span>' +
+      '<button class="k-pager-btn k-press" data-page="1" aria-label="Next">▶</button></div>';
+    app.innerHTML = '<div class="k-menu">' + rail + '<main class="k-main">' + top + hw +
+      '<div class="k-pager">' + body + '</div>' + nav + '</main></div>';
     app.setAttribute('data-here', here);
+    pageMenu();
   }
+
+  // ---------- menu pages: as many tiles as fit, then ◀ 1 / 3 ▶ ----------
+  // The page is remembered (this browser tab), so "Back" from a game returns to the same page.
+  var menuPage = { key: '', at: 0 };
+  try { menuPage = JSON.parse(sessionStorage.getItem('h212_kids_page')) || menuPage; } catch (e) {}
+  function pageMenu() {
+    var box = app.querySelector('.k-pager');
+    var nav = app.querySelector('.k-pager-nav');
+    if (!box || !nav) return;
+    var grid = box.querySelector('.k-games, .k-lessons');
+    if (!grid) return;
+    var tiles = [].slice.call(grid.children);
+    tiles.forEach(function (t) { t.style.display = ''; });
+    nav.hidden = true;
+    var key = app.getAttribute('data-here') || '';
+    if (menuPage.key !== key) menuPage = { key: key, at: 0 };
+    function perPage() {
+      var cs = getComputedStyle(grid);
+      var cols = cs.gridTemplateColumns.split(' ').filter(function (x) { return x && x !== 'none'; }).length || 1;
+      var gap = parseFloat(cs.rowGap) || 0;
+      var tileH = 0;
+      tiles.forEach(function (t) { tileH = Math.max(tileH, t.offsetHeight); });
+      var room = box.clientHeight - (grid.getBoundingClientRect().top - box.getBoundingClientRect().top);
+      return cols * Math.max(1, Math.floor((room + gap) / (tileH + gap)));
+    }
+    var per = perPage();
+    if (tiles.length > per) {
+      nav.hidden = false; // the arrows take some room: measure again
+      per = perPage();
+    }
+    var pages = Math.max(1, Math.ceil(tiles.length / per));
+    menuPage.at = Math.max(0, Math.min(menuPage.at, pages - 1));
+    tiles.forEach(function (t, i) { t.style.display = Math.floor(i / per) === menuPage.at ? '' : 'none'; });
+    try { sessionStorage.setItem('h212_kids_page', JSON.stringify(menuPage)); } catch (e) {}
+    if (pages > 1) {
+      nav.querySelector('.k-pager-count').textContent = (menuPage.at + 1) + ' / ' + pages;
+      nav.querySelector('[data-page="-1"]').disabled = menuPage.at === 0;
+      nav.querySelector('[data-page="1"]').disabled = menuPage.at === pages - 1;
+    }
+  }
+  var pageTimer = 0;
+  window.addEventListener('resize', function () {
+    clearTimeout(pageTimer);
+    pageTimer = setTimeout(pageMenu, 80);
+  });
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(pageMenu);
 
   function railBtn(item, route, current) {
     return '<button class="k-rail-btn k-press" data-go="' + esc(route) + '"' + (current ? ' aria-current="page"' : '') + '>' +
@@ -494,6 +548,10 @@
     var b = e.target.closest('button, a');
     if (!b) return;
     if (b.hasAttribute('data-go')) return go(b.getAttribute('data-go'));
+    if (b.hasAttribute('data-page')) {
+      menuPage.at += +b.getAttribute('data-page');
+      return pageMenu();
+    }
     if (b.hasAttribute('data-kid')) {
       // The child's "login": recorded for the teacher. Never waits for the save.
       fetch('save-progress.php', {

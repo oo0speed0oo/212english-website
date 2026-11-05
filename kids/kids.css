@@ -2000,3 +2000,263 @@ html:has(.g-wrap), html:has(.g-wrap) body { height: 100%; overflow: hidden; over
 	.g-goal .g-bubble b { font-size: 22px; }
 }
 .g-choices.g-odd:has(> :nth-child(3):last-child) { grid-template-columns: repeat(3, auto); }
+
+/* ---------- Menu fits the screen (Round 2): no page scroll; tiles in pages with big arrows ---------- */
+html:has(.k-menu), html:has(.k-menu) body, html:has(.k-home) body { height: 100%; overflow: hidden; overscroll-behavior: none; }
+.k-menu { height: 100vh; height: 100dvh; min-height: 0; overflow: hidden; }
+.k-rail { min-height: 0; overflow: hidden; padding-top: max(12px, env(safe-area-inset-top)); padding-bottom: max(12px, env(safe-area-inset-bottom)); }
+/* The rail buttons share the height they have (9 of them must fit a short iPad). */
+.k-rail-btn { flex: 1 1 0; height: auto; min-height: 40px; max-height: 76px; }
+.k-main {
+	display: flex;
+	flex-direction: column;
+	min-height: 0;
+	padding: max(16px, env(safe-area-inset-top)) max(20px, env(safe-area-inset-right)) max(14px, env(safe-area-inset-bottom)) 20px;
+	overflow: hidden;
+}
+.k-main > .k-top, .k-main > .k-homework { flex: none; }
+.k-homework { margin-bottom: 18px; }
+.k-pager { flex: 1; min-height: 0; overflow: hidden; padding: 4px 6px 10px; margin: -4px -6px 0; }
+.k-pager-nav { flex: none; display: flex; align-items: center; justify-content: center; gap: 22px; padding-top: 8px; }
+.k-pager-nav[hidden] { display: none; }
+.k-pager-btn {
+	width: 72px;
+	height: 72px;
+	border-radius: 50%;
+	background: var(--white);
+	border: var(--line);
+	box-shadow: var(--lift-small);
+	font-size: 30px;
+	color: var(--ink);
+}
+.k-pager-btn:disabled { opacity: .3; cursor: default; }
+.k-pager-count { font-size: 26px; font-weight: 800; min-width: 70px; text-align: center; }
+/* Who is playing: fits the screen too. */
+.k-home { height: 100vh; height: 100dvh; min-height: 0; overflow: hidden; }
+
+/* Short screens (iPad sideways with the toolbar, small laptops): smaller rail text and tiles. */
+@media (max-height: 820px) and (min-width: 641px) {
+	.k-rail-top .k-lion-small { width: 72px; }
+	.k-rail-btn .k-two b { font-size: 22px; }
+	.k-rail-btn .k-two small { font-size: 12px; }
+	.k-rail-btn .k-icon svg, .k-rail-btn .k-text-icon { width: 38px !important; height: 38px !important; }
+	.k-switch { min-height: 52px; font-size: 21px; }
+	.k-homework { min-height: 0; padding: 8px 18px; }
+	.k-homework .k-two b { font-size: 32px; }
+	.k-homework-icon { width: 64px; height: 64px; }
+	.k-lesson { min-height: 150px; }
+	.k-game { min-height: 180px; }
+}
+@media (max-height: 560px) and (min-width: 641px) {
+	.k-rail-btn .k-two small { display: none; }
+	.k-rail-btn .k-two b { font-size: 18px; }
+	.k-rail-top { display: none; }
+	.k-top { min-height: 0; margin-bottom: 8px; }
+	.k-top h1 { font-size: 32px; }
+	.k-tab, .k-stars, .k-top .k-music-btn { height: 48px; }
+	.k-top .k-music-btn { width: 48px; }
+	.k-homework { margin-bottom: 10px; }
+	.k-homework .k-two b { font-size: 24px; }
+	.k-homework .k-two small, .k-homework-game .jp { display: none; }
+	.k-homework-game { font-size: 18px; margin-top: 2px; }
+	.k-homework-icon { width: 48px; height: 48px; }
+	.k-homework .k-big-btn { min-height: 56px; }
+	.k-row-stars svg { width: 22px; height: 22px; }
+	.k-heading { margin-bottom: 8px; }
+	.k-heading h2 { font-size: 26px; }
+	.k-lesson { min-height: 110px; padding: 8px 14px; }
+	.k-lesson-pic { width: 76px; height: 76px; }
+	.k-lesson .k-two b { font-size: 26px; }
+	.k-game { min-height: 140px; }
+	.k-game-pic { width: 64px; height: 64px; }
+	.k-game .k-two b { font-size: 22px; }
+	.k-pager-btn { width: 56px; height: 56px; }
+}
+/* Phones upright: the rail is two rows (who + level, then the 9 buttons as icons), nothing scrolls. */
+@media (max-width: 640px) {
+	.k-menu { display: flex; flex-direction: column; }
+	.k-rail { position: static; flex: none; flex-wrap: wrap; overflow: visible; gap: 6px; padding: max(8px, env(safe-area-inset-top)) 10px 8px; }
+	.k-rail-top { order: 1; }
+	.k-switch { order: 2; flex: 1; max-width: none; min-height: 48px; font-size: 20px; }
+	.k-rail-top .k-lion-small { width: 48px; }
+	.k-rail-btn { order: 3; flex: 1 1 0; min-width: 0; max-height: none; height: 50px; padding: 0; justify-content: center; border-radius: 16px; }
+	.k-rail-btn .k-two { display: none; }
+	.k-rail-btn .k-icon svg, .k-rail-btn .k-text-icon { width: 32px !important; height: 32px !important; }
+	.k-rail-btn .k-text-icon { font-size: 12px !important; border-width: 3px; }
+	.k-main { flex: 1; padding: 12px 14px max(10px, env(safe-area-inset-bottom)); }
+	.k-homework { margin-bottom: 12px; }
+	.k-homework .k-big-btn { width: auto; min-height: 56px; }
+	.k-homework .k-two small { display: none; }
+	.k-lesson { min-height: 116px; padding: 10px 14px; }
+	.k-lesson-pic { width: 76px; height: 76px; }
+	.k-game { min-height: 150px; }
+	.k-pager-btn { width: 60px; height: 60px; }
+}
+/* Theme pages: a slim homework strip and slightly smaller tiles (about 8 on a page on an iPad). */
+.k-homework-mini { min-height: 0; padding: 6px 14px; gap: 12px; margin-bottom: 14px; }
+.k-homework-mini .k-homework-icon { width: 50px; height: 50px; }
+.k-homework-mini .k-homework-icon svg { width: 32px; height: 32px; }
+.k-homework-mini .k-two b { font-size: 24px; }
+.k-homework-mini .k-two small, .k-homework-mini .k-row-stars, .k-homework-mini .k-homework-game .jp { display: none; }
+.k-homework-mini .k-homework-game { font-size: 18px; margin-top: 2px; }
+.k-homework-mini .k-big-btn { min-height: 54px; font-size: 24px; padding: 0 18px; }
+.k-games { grid-template-columns: repeat(auto-fill, minmax(168px, 1fr)); gap: 16px; }
+.k-game { min-height: 160px; padding: 10px 8px; }
+.k-game-pic { width: 70px; height: 70px; }
+.k-game .k-two b { font-size: 25px; }
+@media (max-width: 640px) {
+	.k-games { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+	.k-game { min-height: 140px; }
+	.k-game .k-two b { font-size: 21px; }
+	.k-homework-mini .k-homework-game { display: none; }
+}
+/* Phones upright: rail = row 1 (lion, level, who) + row 2 (the 9 buttons); compact top bar, homework and lessons. */
+@media (max-width: 640px) {
+	.k-rail { display: grid; grid-template-columns: repeat(9, minmax(0, 1fr)); gap: 5px; }
+	.k-rail-top { grid-column: 1 / span 4; }
+	.k-switch { grid-column: 5 / span 5; }
+	.k-rail-btn { height: 44px; border-width: 3px; box-shadow: 0 3px 0 var(--ink); }
+	.k-rail-btn .k-icon svg, .k-rail-btn .k-text-icon { width: 28px !important; height: 28px !important; }
+	.k-top { flex-wrap: nowrap; gap: 8px; min-height: 0; margin-bottom: 10px; }
+	.k-top h1 { font-size: 30px; }
+	.k-top .jp { display: none; }
+	.k-top > .k-icon svg { width: 36px; height: 36px; }
+	.k-tab { height: 46px; font-size: 20px; padding: 0 8px; }
+	.k-tab small { font-size: 12px; }
+	.k-stars { height: 46px; font-size: 22px; padding: 0 12px 0 8px; gap: 6px; }
+	.k-stars svg { width: 24px; height: 24px; }
+	.k-top .k-music-btn { width: 46px; height: 46px; flex: none; }
+	.k-homework { min-height: 0; padding: 6px 12px; gap: 10px; flex-wrap: nowrap; }
+	.k-homework .k-homework-icon { width: 46px; height: 46px; }
+	.k-homework .k-homework-icon svg { width: 30px; height: 30px; }
+	.k-homework .k-two b { font-size: 20px; }
+	.k-homework .k-two small, .k-homework .k-row-stars, .k-homework .k-homework-game .jp { display: none; }
+	.k-homework .k-homework-game { font-size: 15px; margin-top: 2px; display: block; }
+	.k-homework .k-big-btn { min-height: 50px; font-size: 20px; padding: 0 14px; }
+	.k-heading { margin-bottom: 8px; gap: 8px; }
+	.k-heading h2 { font-size: 24px; }
+	.k-heading .jp { font-size: 14px; }
+	.k-heading .k-icon svg { width: 32px; height: 32px; }
+	.k-lessons { gap: 12px; }
+	.k-lesson { min-height: 96px; padding: 8px 14px; border-radius: 24px; }
+	.k-lesson-pic { width: 64px; height: 64px; }
+	.k-lesson-pic .k-icon svg { width: 40px; height: 40px; }
+	.k-lesson-num { width: 32px; height: 32px; font-size: 20px; line-height: 26px; left: -8px; top: -8px; }
+	.k-lesson .k-two b { font-size: 24px; }
+	.k-lesson .k-two small { font-size: 14px; }
+	.k-lesson .k-row-stars svg { width: 24px; height: 24px; }
+}
+@media (max-width: 640px) {
+	.k-tab { white-space: nowrap; min-width: 0; }
+	.k-tab small { font-size: 11px; }
+}
+/* Short screens (iPhone sideways): a slim icon rail, compact homework, smaller tiles; Who is playing fits too. */
+@media (max-height: 560px) and (min-width: 641px) {
+	.k-menu { grid-template-columns: 84px minmax(0, 1fr); }
+	.k-rail { padding: max(6px, env(safe-area-inset-top)) 8px max(6px, env(safe-area-inset-bottom)) max(8px, env(safe-area-inset-left)); gap: 4px; }
+	.k-switch { min-height: 40px; padding: 0; justify-content: center; border-width: 2px; }
+	.k-switch span { display: none; }
+	.k-switch svg { width: 32px; height: 32px; }
+	.k-rail-btn { min-height: 28px; padding: 0; justify-content: center; border-radius: 14px; border-width: 3px; box-shadow: 0 3px 0 var(--ink); }
+	.k-rail-btn .k-two { display: none; }
+	.k-rail-btn .k-icon svg, .k-rail-btn .k-text-icon { width: 26px !important; height: 26px !important; }
+	.k-rail-btn .k-text-icon { font-size: 10px !important; border-width: 2.5px; }
+	.k-main { padding: max(8px, env(safe-area-inset-top)) max(14px, env(safe-area-inset-right)) max(6px, env(safe-area-inset-bottom)) 14px; }
+	.k-homework { min-height: 0; padding: 4px 12px; gap: 10px; margin-bottom: 8px; }
+	.k-homework-icon { width: 40px; height: 40px; }
+	.k-homework-icon svg { width: 26px; height: 26px; }
+	.k-homework .k-two b { font-size: 20px; }
+	.k-homework .k-row-stars { display: none; }
+	.k-homework .k-big-btn { min-height: 46px; font-size: 20px; padding: 0 14px; }
+	.k-heading { margin-bottom: 6px; }
+	.k-heading h2 { font-size: 22px; }
+	.k-heading .k-icon svg { width: 28px; height: 28px; }
+	.k-lessons { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+	.k-lesson { min-height: 0; padding: 6px 12px; gap: 10px; border-radius: 22px; }
+	.k-lesson-pic { width: 54px; height: 54px; }
+	.k-lesson-pic .k-icon svg { width: 34px; height: 34px; }
+	.k-lesson-num { width: 28px; height: 28px; font-size: 17px; line-height: 22px; left: -8px; top: -8px; }
+	.k-lesson .k-two b { font-size: 20px; }
+	.k-lesson .k-two small { font-size: 12px; }
+	.k-lesson .k-row-stars svg { width: 20px; height: 20px; }
+	.k-games { grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 10px; }
+	.k-game { min-height: 0; padding: 6px; gap: 0; border-radius: 22px; }
+	.k-game-pic { width: 46px; height: 46px; margin-bottom: 2px; }
+	.k-game-pic .k-icon svg, .k-game-pic .k-text-icon { width: 30px !important; height: 30px !important; }
+	.k-game .k-two b { font-size: 18px; }
+	.k-game .k-two small { font-size: 11px; }
+	.k-month-tag { margin-top: 2px; font-size: 11px; }
+	.k-done { transform: scale(.75); transform-origin: top right; }
+	.k-pager-nav { padding-top: 4px; gap: 16px; }
+	.k-pager-btn { width: 48px; height: 48px; font-size: 22px; }
+	.k-pager-count { font-size: 20px; }
+
+	.k-home { padding: max(8px, env(safe-area-inset-top)) 16px max(8px, env(safe-area-inset-bottom)); }
+	.k-logo { transform: scale(.75); }
+	.k-home h1 { margin-top: 0; font-size: 34px; }
+	.k-home .k-sub { margin: 0; font-size: 16px; }
+	.k-kids { margin: 8px 0; gap: 14px; }
+	.k-kid { width: 120px; height: 140px; gap: 6px; border-radius: 26px; }
+	.k-kid svg { width: 72px; height: 72px; }
+	.k-kid-name { font-size: 24px; }
+	.k-kid-add b { font-size: 22px; }
+	.k-mike img { width: 80px; }
+	.k-home-foot .k-bubble b { font-size: 22px; }
+	.k-home-foot .k-bubble small { font-size: 13px; }
+	.k-home-foot .k-bubble { padding: 6px 16px 8px; }
+	.k-home-foot .k-bubble::before { top: 16px; }
+}
+/* iPad upright / narrow windows: compact homework card and lessons so 3-4 lessons fit on one page. */
+@media (max-width: 900px) and (min-width: 641px) {
+	.k-top { flex-wrap: nowrap; gap: 10px; }
+	.k-tab { min-width: 0; padding: 0 14px; white-space: nowrap; }
+	.k-stars { padding: 0 14px 0 10px; }
+	.k-homework { flex-wrap: nowrap; min-height: 0; padding: 8px 16px; gap: 14px; margin-bottom: 14px; }
+	.k-homework-icon { width: 60px; height: 60px; }
+	.k-homework .k-two b { font-size: 28px; }
+	.k-homework .k-two small { display: none; }
+	.k-homework-game { font-size: 19px; }
+	.k-lesson { min-height: 132px; padding: 10px 18px; }
+	.k-lesson-pic { width: 92px; height: 92px; }
+}
+/* Phones upright: 3 game tiles in a row, a top bar that never runs off the side, and a Who is playing screen that fits. */
+@media (max-width: 640px) {
+	.k-games { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+	.k-game { min-height: 118px; padding: 6px 4px; border-radius: 22px; gap: 0; }
+	.k-game-pic { width: 52px; height: 52px; margin-bottom: 2px; }
+	.k-game-pic .k-icon svg, .k-game-pic .k-text-icon { width: 34px !important; height: 34px !important; }
+	.k-game .k-two b { font-size: 16px; line-height: 1.05; }
+	.k-game .k-two small { font-size: 10px; }
+	.k-month-tag { margin-top: 3px; font-size: 10px; padding: 0 8px; }
+	.k-done { transform: scale(.7); transform-origin: top right; }
+	.k-top { gap: 6px; }
+	.k-stars { padding: 0 10px 0 6px; font-size: 19px; }
+
+	.k-home { padding: max(12px, env(safe-area-inset-top)) 14px max(10px, env(safe-area-inset-bottom)); }
+	.k-home h1 { font-size: 36px; margin-top: 10px; }
+	.k-kids { gap: 10px; margin: 14px 0; }
+	.k-kid { width: 104px; height: 132px; gap: 6px; border-radius: 26px; }
+	.k-kid svg { width: 64px; height: 64px; }
+	.k-kid-name { font-size: 22px; }
+	.k-kid-add b { font-size: 20px; }
+	.k-kid-add small { font-size: 13px; }
+	.k-home-foot { flex-wrap: nowrap; align-items: center; gap: 8px; }
+	.k-mike { gap: 8px; min-width: 0; }
+	.k-mike img { width: 64px; }
+	.k-home-foot .k-bubble { padding: 6px 12px 8px; border-radius: 20px; }
+	.k-home-foot .k-bubble b { font-size: 17px; }
+	.k-home-foot .k-bubble small { font-size: 11px; }
+	.k-home-foot .k-bubble::before { top: 14px; }
+	.k-home-foot .k-music-btn { width: 48px; height: 48px; flex: none; }
+	.k-home-foot .k-pill-btn { flex: none; padding: 0 12px; }
+}
+@media (max-width: 400px) {
+	.k-tab small { display: none; }
+	.k-tab { font-size: 18px; }
+	.k-home-foot .k-bubble small { display: none; }
+}
+@media (max-width: 640px) {
+	.k-homework-mini .k-homework-game { display: none; }
+	.k-homework-mini .k-two b { font-size: 18px; }
+	.k-homework-mini .k-homework-icon { width: 40px; height: 40px; }
+}
