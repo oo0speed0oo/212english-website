@@ -43,7 +43,7 @@ h212_js_strings( array(
 	'wg.finish_title', 'wg.finish_sub', 'wg.hint', 'wg.found', 'wg.left', 'wg.finish_search', 'wg.finish_cross',
 	'pr.name', 'pr.date', 'pr.answers', 'pr.words', 'pr.across', 'pr.down', 'pr.ja_missing', 'pr.en_missing', 'pr.ja_search', 'pr.en_search', 'pr.ja_cross', 'pr.en_cross', 'pr.teacher_reads',
 	'phonics.q_sentence', 'phonics.sentence_was',
-	'phonics.blend_hint', 'phonics.blend_btn', 'phonics.blend_next', 'phonics.blend_say', 'phonics.blend_done_sub', 'phonics.blend_more',
+	'phonics.blend_soon', 'phonics.blend_hint', 'phonics.blend_btn', 'phonics.blend_next', 'phonics.blend_say', 'phonics.blend_done_sub', 'phonics.blend_more',
 ) );
 echo '<script>window.H212_PHONICS = ' . wp_json_encode( h212_phonics_for_js( $h212_user->ID ) ) . ';</script>' . "\n";
 echo '<script>window.H212_NONCE = "' . esc_js( wp_create_nonce( 'h212_phonics' ) ) . '";</script>' . "\n";

@@ -256,6 +256,7 @@ $GLOBALS['h212_strings'] = array(
 	'phonics.finish_sub'     => array( 'en' => '{c} of {t} correct', 'ja' => '{t}問中{c}問正解' ),
 	'phonics.again'          => array( 'en' => 'Try again', 'ja' => 'もう一度' ),
 	'phonics.best'           => array( 'en' => 'Best {n}%', 'ja' => '最高 {n}%' ),
+	'phonics.blend_soon'     => array( 'en' => 'Coming soon / 準備中', 'ja' => '準備中 / Coming soon' ),
 	'phonics.blend_hint'     => array( 'en' => 'Tap each sound to hear it. Then tap Blend to hear them together.', 'ja' => '音をタップして聞きましょう。「つなげる」で続けて聞けます。' ),
 	'phonics.blend_btn'      => array( 'en' => 'Blend', 'ja' => 'つなげる' ),
 	'phonics.blend_next'     => array( 'en' => 'Next word', 'ja' => '次の単語' ),

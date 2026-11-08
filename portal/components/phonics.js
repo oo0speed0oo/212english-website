@@ -27,6 +27,9 @@ var H212Phonics = (function () {
   var picked = null;      // Sound Board: the sound shown in the card { no, part }
   // Parts that exist so far, in menu order.
   var READY = ['board', 'blend', 'listen', 'read', 'sentences'];
+  // Blend it is switched off for now (the card shows "Coming soon / 準備中", greyed out, not clickable) while the
+  // robot voices are replaced with the teacher's own. All the Blend code below stays: set this to true to bring it back.
+  var BLEND_ON = false;
   var PARTS = ['board', 'blend', 'listen', 'read', 'sentences', 'games'];
   var OPTIONAL = ['games'];       // extra parts: they show a tick but never decide whether a lesson is done
   var GAMES = ['sound', 'word', 'begin'];
@@ -57,7 +60,7 @@ var H212Phonics = (function () {
   }
   function partAvailable(n, part) {
     if (part === 'listen') return GAMES.some(function (g) { return gameAvailable(n, g); });
-    if (part === 'blend') return blendPool(n).length >= 2;
+    if (part === 'blend') return BLEND_ON && blendPool(n).length >= 2;
     if (part === 'read') { var r = P.read && P.read[n]; return !!(r && (r.w.length || r.c.length)); }
     if (part === 'sentences') return sentencePool(n).length >= 3;
     if (part === 'games') return WG.some(function (g) { return wgAvailable(n, g); });
@@ -227,6 +230,8 @@ var H212Phonics = (function () {
         } else if (partCounts(n, p)) {
           status = partDone(n, p) ? '<span class="status done">✓ ' + esc(T('phonics.done')) + '</span>' : '<span class="status take">' + esc(T('phonics.new')) + '</span>';
         }
+      } else if (p === 'blend' && !BLEND_ON) {
+        sub = T('phonics.blend_soon');
       } else if (inBuild) {
         sub = T('phonics.game_locked');
       }
@@ -1191,7 +1196,7 @@ var H212Phonics = (function () {
     lesson: function (n) { showLesson(n); goTop(); },
     part: function (n, p) {
       if (p === 'board') { showBoard(n); goTop(); }
-      else if (p === 'blend') { showBlend(n); goTop(); }
+      else if (p === 'blend') { if (BLEND_ON) { showBlend(n); goTop(); } }
       else if (p === 'read') { showReadMenu(n); goTop(); }
       else if (p === 'sentences') { startSentences(n); goTop(); }
       else if (p === 'listen') { showListenMenu(n); goTop(); }
